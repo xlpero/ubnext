@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+drush make -y --no-core --contrib-destination=. profile.make

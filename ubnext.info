@@ -1,0 +1,3 @@
+name = UBNext
+description = UBNext installation profile.
+core = 7.x
