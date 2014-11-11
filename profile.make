@@ -20,3 +20,8 @@ projects[features][subdir] = contrib
 ; Strongarm
 projects[strongarm][version] = 2.0
 projects[strongarm][subdir] = contrib
+
+
+; Chaos tool suite (ctools)
+projects[ctools][version] = 1.4
+projects[ctools][subdir] = contrib
