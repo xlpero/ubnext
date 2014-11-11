@@ -15,3 +15,8 @@ projects[admin_views][subdir] = contrib
 ; Features
 projects[features][version] = 2.2
 projects[features][subdir] = contrib
+
+
+; Strongarm
+projects[strongarm][version] = 2.0
+projects[strongarm][subdir] = contrib
