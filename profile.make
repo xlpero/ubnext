@@ -25,3 +25,25 @@ projects[strongarm][subdir] = contrib
 ; Chaos tool suite (ctools)
 projects[ctools][version] = 1.4
 projects[ctools][subdir] = contrib
+
+
+; Diff
+projects[diff][version] = 3.2
+projects[diff][subdir] = contrib
+
+
+; Entity API
+projects[entity][version] = 1.5
+projects[entity][subdir] = contrib
+
+
+; Title
+projects[title][version] = 1.0-alpha7
+projects[title][download][revision] = b0a5aebf36b95cf94e77f5352a0c51b535ffb64c
+projects[title][subdir] = contrib
+
+
+; Entity Translation
+projects[entity_translation][version] = 1.0-beta3
+projects[entity_translation][download][revision] = 496a13f82d2d6e9b771bba8bdccae59917703f9e
+projects[entity_translation][subdir] = contrib
