@@ -18,13 +18,13 @@ function ubn_general_strongarm() {
     'language' => 'sv',
     'name' => 'Swedish',
     'native' => 'Svenska',
-    'direction' => '0',
+    'direction' => 0,
     'enabled' => 1,
-    'plurals' => '0',
+    'plurals' => 0,
     'formula' => '',
     'domain' => '',
     'prefix' => 'sv',
-    'weight' => '0',
+    'weight' => 0,
     'javascript' => '',
   );
   $export['language_default'] = $strongarm;
@@ -92,7 +92,7 @@ function ubn_general_strongarm() {
   $strongarm->name = 'language_types';
   $strongarm->value = array(
     'language' => TRUE,
-    'language_content' => FALSE,
+    'language_content' => TRUE,
     'language_url' => FALSE,
   );
   $export['language_types'] = $strongarm;
