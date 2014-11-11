@@ -81,3 +81,8 @@ projects[pathauto][subdir] = contrib
 projects[globalredirect][version] = 1.5
 projects[globalredirect][download][revision] = 42029008fe3e9f541aac65565f19f5215d915cfa
 projects[globalredirect][subdir] = contrib
+
+
+; Transliteration
+projects[transliteration][version] = 3.2
+projects[transliteration][subdir] = contrib
