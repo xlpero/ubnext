@@ -47,3 +47,19 @@ projects[title][subdir] = contrib
 projects[entity_translation][version] = 1.0-beta3
 projects[entity_translation][download][revision] = 496a13f82d2d6e9b771bba8bdccae59917703f9e
 projects[entity_translation][subdir] = contrib
+
+
+; Variable
+projects[variable][version] = 2.5
+projects[variable][subdir] = contrib
+
+
+; Internationalization
+projects[i18n][version] = 1.11
+projects[i18n][subdir] = contrib
+
+
+; Book translation
+projects[i18n_book_navigation][version] = 2.6
+projects[i18n_book_navigation][download][revision] = 53d88f770841046bf19ce24b0620f743aea3ef91
+projects[i18n_book_navigation][subdir] = contrib
