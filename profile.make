@@ -63,3 +63,21 @@ projects[i18n][subdir] = contrib
 projects[i18n_book_navigation][version] = 2.6
 projects[i18n_book_navigation][download][revision] = 53d88f770841046bf19ce24b0620f743aea3ef91
 projects[i18n_book_navigation][subdir] = contrib
+
+
+; Token
+projects[token][version] = 1.5
+projects[token][download][revision] = 49db17816243441544fa09847276e626b02ba4e6
+projects[token][subdir] = contrib
+
+
+; Pathauto
+projects[pathauto][version] = 1.2
+projects[pathauto][download][revision] = e7562ad81db4b5c82e7e23eef6e9f66158f87dce
+projects[pathauto][subdir] = contrib
+
+
+; Global Redirect
+projects[globalredirect][version] = 1.5
+projects[globalredirect][download][revision] = 42029008fe3e9f541aac65565f19f5215d915cfa
+projects[globalredirect][subdir] = contrib
