@@ -36,10 +36,10 @@ function ubn_guide_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '4',
+          'weight' => '5',
         ),
         'language' => array(
-          'weight' => '1',
+          'weight' => '2',
         ),
       ),
       'display' => array(),
