@@ -15,3 +15,105 @@ function ubn_guide_ctools_plugin_directory($owner, $plugin_type) {
     return "plugins/$plugin_type";
   }
 }
+
+/**
+ * Get root guide for a chapter.
+ */
+function ubn_guide_get_root(EntityDrupalWrapper $node) {
+  switch ($node->getBundle()) {
+    case 'guide':
+      return $node;
+
+    case 'guide_chapter':
+      return ubn_guide_get_root($node->field_guide_chapter_parent);
+
+    default:
+      throw new Exception('Invalid bundle.');
+  }
+}
+
+/**
+ * Guide tree.
+ */
+function ubg_guide_get_children($nid) {
+  $children = array();
+
+  $query = new EntityFieldQuery();
+
+  $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'guide_chapter')
+    ->propertyCondition('status', NODE_PUBLISHED)
+    ->fieldCondition('field_guide_chapter_parent', 'target_id', $nid)
+    ->fieldOrderBy('field_guide_chapter_weight', 'value', 'ASC');
+
+  $result = $query->execute();
+
+  if (!empty($result['node'])) {
+    foreach ($result['node'] as $child) {
+      $children[] = array(
+        'id' => $child->nid,
+        'children' => ubg_guide_get_children($child->nid)
+      );
+    }
+  }
+
+  return $children;
+}
+
+/**
+ * Flatten a tree of children.
+ */
+function ubn_guide_flatten($tree) {
+  $flat = array();
+
+  foreach ($tree as $branch) {
+    $flat[] = $branch['id'];
+
+    if (!empty($branch['children'])) {
+      $flat = array_merge($flat, ubn_guide_flatten($branch['children']));
+    }
+  }
+
+  return $flat;
+}
+
+/**
+ * Finds the prev chapter for a guide.
+ */
+function ubn_guide_find_prev_chapter(EntityDrupalWrapper $node) {
+  $root = ubn_guide_get_root($node);
+
+  if ($root === $node) {
+    return FALSE;
+  }
+
+  $children = ubg_guide_get_children($root->getIdentifier());
+  $flatten = ubn_guide_flatten($children);
+
+  $index = array_search($node->getIdentifier(), $flatten);
+
+  if ($index === 0) {
+    return $root->getIdentifier();
+  }
+
+  return $flatten[$index - 1];
+}
+
+/**
+ * Finds the next chapter for a guide.
+ */
+function ubn_guide_find_next_chapter(EntityDrupalWrapper $node) {
+  $root = ubn_guide_get_root($node);
+
+  $children = ubg_guide_get_children($root->getIdentifier());
+  $flatten = ubn_guide_flatten($children);
+
+  if ($root === $node) {
+    return $flatten[0];
+  }
+
+  $index = array_search($node->getIdentifier(), $flatten);
+
+  return isset($flatten[$index + 1]) ? $flatten[$index + 1] : FALSE;
+}

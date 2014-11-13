@@ -28,10 +28,36 @@ function ubn_guide_guide_navigation_content_type_settings($form, &$form_state) {
  * Render callback.
  */
 function ubn_guide_guide_navigation_content_type_render($subtype, $conf, $panel_args, $context) {
-  $block = new stdClass();
+  if (empty($context)) {
+    return;
+  }
 
+  $node = entity_metadata_wrapper('node', $context->data);
+
+  $block = new stdClass();
   $block->title = t('Guide Navigation');
-  $block->content = 'foobar';
+
+  $links = array();
+
+  $prev = ubn_guide_find_prev_chapter($node);
+
+  if ($prev !== FALSE) {
+    $links[] = array(
+      'title' => 'Prev',
+      'href' => "node/$prev",
+    );
+  }
+
+  $next = ubn_guide_find_next_chapter($node);
+
+  if ($next !== FALSE) {
+    $links[] = array(
+      'title' => 'Next',
+      'href' => "node/$next",
+    );
+  }
+
+  $block->content = theme('links', array('links' => $links));
 
   return $block;
 }
