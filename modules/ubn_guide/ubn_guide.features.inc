@@ -26,6 +26,14 @@ function ubn_guide_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
+    'guide_chapter' => array(
+      'name' => t('Guide: Chapter'),
+      'base' => 'node_content',
+      'description' => t('Chapter in a Guide.'),
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
   );
   drupal_alter('node_info', $items);
   return $items;

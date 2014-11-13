@@ -80,3 +80,7 @@ projects[globalredirect][subdir] = contrib
 ; Transliteration
 projects[transliteration][version] = 3.2
 projects[transliteration][subdir] = contrib
+
+; Entity reference
+projects[entityreference][version] = 1.1
+projects[entityreference][subdir] = contrib
