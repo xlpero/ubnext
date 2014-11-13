@@ -28,7 +28,7 @@ function ubn_guide_guide_navigation_content_type_settings($form, &$form_state) {
  * Render callback.
  */
 function ubn_guide_guide_navigation_content_type_render($subtype, $conf, $panel_args, $context) {
-  if (empty($context)) {
+  if (empty($context->data)) {
     return;
   }
 
