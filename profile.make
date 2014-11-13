@@ -59,12 +59,6 @@ projects[i18n][version] = 1.11
 projects[i18n][subdir] = contrib
 
 
-; Book translation
-projects[i18n_book_navigation][version] = 2.6
-projects[i18n_book_navigation][download][revision] = 53d88f770841046bf19ce24b0620f743aea3ef91
-projects[i18n_book_navigation][subdir] = contrib
-
-
 ; Token
 projects[token][version] = 1.5
 projects[token][download][revision] = 49db17816243441544fa09847276e626b02ba4e6
