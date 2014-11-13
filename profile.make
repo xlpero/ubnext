@@ -84,3 +84,7 @@ projects[transliteration][subdir] = contrib
 ; Entity reference
 projects[entityreference][version] = 1.1
 projects[entityreference][subdir] = contrib
+
+; Panels
+projects[panels][version] = 3.4
+projects[panels][subdir] = contrib

@@ -1,0 +1,7 @@
+name = Development
+description = Feature for use in development.
+core = 7.x
+package = UBNext
+dependencies[] = field_ui
+features[features_api][] = api:2
+project path = profiles/ubnext/modules
