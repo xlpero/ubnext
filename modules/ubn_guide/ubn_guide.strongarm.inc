@@ -78,21 +78,21 @@ function ubn_guide_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_guide_en_pattern';
-  $strongarm->value = '';
+  $strongarm->value = 'guides/[node:i18n-book:parents:join-path]/[node:title_field]';
   $export['pathauto_node_guide_en_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_guide_pattern';
-  $strongarm->value = 'guide/[node:book:parents:join-path]/[node:book:title]';
+  $strongarm->value = 'guider/[node:i18n-book:parents:join-path]/[node:title_field]';
   $export['pathauto_node_guide_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_guide_sv_pattern';
-  $strongarm->value = 'kureradeguider/[node:book:parents:join-path]/[node:book:title]';
+  $strongarm->value = '';
   $export['pathauto_node_guide_sv_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
