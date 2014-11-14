@@ -26,15 +26,20 @@ function ubn_guide_path_update($path) {
     return;
   }
 
-  $children = ubg_guide_get_children($node->nid, 1);
+  $children = array_keys(ubg_guide_get_children($node->nid, 1));
 
   if (empty($children)) {
     return;
   }
 
-  cache_clear_all($path['source'], 'cache_path');
+  // Clear path cache for source edit page, and do it only once.
+  if (($clear = &drupal_static(__FUNCTION__, TRUE)) === TRUE) {
+    cache_clear_all("{$path['source']}/edit", 'cache_path');
 
-  pathauto_node_update_alias_multiple(array_keys($children), 'bulkupdate');
+    $clear = FALSE;
+  }
+
+  pathauto_node_update_alias_multiple($children, 'bulkupdate');
 }
 
 /**
