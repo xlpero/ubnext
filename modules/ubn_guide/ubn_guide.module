@@ -107,6 +107,11 @@ function ubn_guide_find_next_chapter(EntityDrupalWrapper $node) {
   $root = ubn_guide_get_root($node);
 
   $children = ubg_guide_get_children($root->getIdentifier());
+
+  if (empty($children)) {
+    return FALSE;
+  }
+
   $flatten = ubn_guide_flatten($children);
 
   if ($root === $node) {
