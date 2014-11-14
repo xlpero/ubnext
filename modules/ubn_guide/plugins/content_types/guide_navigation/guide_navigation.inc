@@ -43,7 +43,7 @@ function ubn_guide_guide_navigation_content_type_render($subtype, $conf, $panel_
 
   if ($prev !== FALSE) {
     $links[] = array(
-      'title' => 'Prev',
+      'title' => t('Prev'),
       'href' => "node/$prev",
     );
   }
@@ -52,7 +52,7 @@ function ubn_guide_guide_navigation_content_type_render($subtype, $conf, $panel_
 
   if ($next !== FALSE) {
     $links[] = array(
-      'title' => 'Next',
+      'title' => t('Next'),
       'href' => "node/$next",
     );
   }

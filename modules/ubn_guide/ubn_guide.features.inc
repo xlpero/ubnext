@@ -26,7 +26,7 @@ function ubn_guide_node_info() {
       'base' => 'node_content',
       'description' => t('A guide that contains guides.'),
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => t('Titel'),
       'help' => '',
     ),
     'guide_chapter' => array(
@@ -34,7 +34,7 @@ function ubn_guide_node_info() {
       'base' => 'node_content',
       'description' => t('Chapter in a Guide.'),
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => t('Titel'),
       'help' => '',
     ),
   );
