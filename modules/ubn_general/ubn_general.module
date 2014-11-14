@@ -5,3 +5,15 @@
  */
 
 include_once 'ubn_general.features.inc';
+
+
+/**
+ * Implements hook_strongarm_alter().
+ */
+function ubn_general_strongarm_alter(&$variables) {
+  if (isset($variables['language_default']->value->javascript)) {
+    $language_default = variable_get('language_default');
+
+    $variables['language_default']->value->javascript = $language_default->javascript;
+  }
+}
