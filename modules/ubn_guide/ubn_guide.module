@@ -17,6 +17,33 @@ function ubn_guide_ctools_plugin_directory($owner, $plugin_type) {
 }
 
 /**
+ * Implements hook_path_update().
+ */
+function ubn_guide_path_update($path) {
+  $node = menu_get_object('node', 1, $path['source']);
+
+  if (!isset($node->type) || !in_array($node->type, array('guide', 'guide_chapter'))) {
+    return;
+  }
+
+  $children = ubg_guide_get_children($node->nid, 1);
+
+  if (empty($children)) {
+    return;
+  }
+
+  $nids = array();
+
+  foreach ($children as $child) {
+    $nids[] = $child['id'];
+  }
+
+  cache_clear_all($path['source'], 'cache_path');
+
+  pathauto_node_update_alias_multiple($nids, 'bulkupdate');
+}
+
+/**
  * Get root node.
  */
 function ubn_guide_get_root(EntityDrupalWrapper $node) {

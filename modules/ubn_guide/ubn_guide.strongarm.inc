@@ -137,15 +137,43 @@ function ubn_guide_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_guide_chapter_en_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_guide_chapter_en_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_guide_chapter_pattern';
+  $strongarm->value = '[node:field-guide-chapter-parent:url:path]/[node:title-field]';
+  $export['pathauto_node_guide_chapter_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_guide_chapter_sv_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_guide_chapter_sv_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_guide_chapter_und_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_guide_chapter_und_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_guide_en_pattern';
-  $strongarm->value = 'guides/[node:i18n-book:parents:join-path]/[node:title_field]';
+  $strongarm->value = 'guides/[node:title-field]';
   $export['pathauto_node_guide_en_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_guide_pattern';
-  $strongarm->value = 'guider/[node:i18n-book:parents:join-path]/[node:title_field]';
+  $strongarm->value = 'guider/[node:title-field]';
   $export['pathauto_node_guide_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
