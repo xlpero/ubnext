@@ -17,7 +17,7 @@ function ubn_guide_ctools_plugin_directory($owner, $plugin_type) {
 }
 
 /**
- * Get root guide for a chapter.
+ * Get root node.
  */
 function ubn_guide_get_root(EntityDrupalWrapper $node) {
   switch ($node->getBundle()) {
@@ -33,7 +33,7 @@ function ubn_guide_get_root(EntityDrupalWrapper $node) {
 }
 
 /**
- * Guide tree.
+ * Get children as a tree.
  */
 function ubg_guide_get_children($nid) {
   $children = array();
@@ -79,7 +79,7 @@ function ubn_guide_flatten($tree) {
 }
 
 /**
- * Finds the prev chapter for a guide.
+ * Finds the prev chapter for a guide/chapter.
  */
 function ubn_guide_find_prev_chapter(EntityDrupalWrapper $node) {
   $root = ubn_guide_get_root($node);
@@ -101,7 +101,7 @@ function ubn_guide_find_prev_chapter(EntityDrupalWrapper $node) {
 }
 
 /**
- * Finds the next chapter for a guide.
+ * Finds the next chapter for a guide/chapter.
  */
 function ubn_guide_find_next_chapter(EntityDrupalWrapper $node) {
   $root = ubn_guide_get_root($node);
