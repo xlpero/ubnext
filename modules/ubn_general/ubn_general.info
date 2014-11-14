@@ -1,8 +1,8 @@
 name = General
 core = 7.x
 package = UBNext
-dependencies[] = admin_menu
 dependencies[] = ctools
+dependencies[] = diff
 dependencies[] = features
 dependencies[] = globalredirect
 dependencies[] = locale
@@ -27,4 +27,4 @@ features[variable][] = node_admin_theme
 features[variable][] = page_manager_node_view_disabled
 features[variable][] = pathauto_node_pattern
 features[variable][] = pathauto_transliterate
-mtime = 1415881413
+mtime = 1415960616

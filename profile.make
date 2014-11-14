@@ -88,3 +88,7 @@ projects[entityreference][subdir] = contrib
 ; Panels
 projects[panels][version] = 3.4
 projects[panels][subdir] = contrib
+
+; Administration Language
+projects[admin_language][version] = 1.0-beta1
+projects[admin_language][subdir] = contrib
