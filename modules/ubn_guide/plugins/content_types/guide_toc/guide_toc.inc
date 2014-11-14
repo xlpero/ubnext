@@ -37,31 +37,54 @@ function ubn_guide_guide_toc_content_type_render($subtype, $conf, $panel_args, $
   $block = new stdClass();
   $block->title = t('Table of Contents');
 
-  $root = ubn_guide_get_root($node);
-  $children = ubg_guide_get_children($root->getIdentifier());
+  $tree = _ubn_guide_generate_toc_tree($node);
 
-  $links = _ubn_guide_generate_toc($children, $node);
-
-  $block->content = theme('item_list', array('items' => $links));
+  $block->content = theme('item_list', array('items' => $tree));
 
   return $block;
 }
 
 /**
- *
+ * Generate ToC tree.
  */
-function _ubn_guide_generate_toc($children, EntityDrupalWrapper $current) {
+function _ubn_guide_generate_toc_tree(EntityDrupalWrapper $current, &$flat = array(), EntityDrupalWrapper $child = NULL, $data = array()) {
   $items = array();
 
-  foreach ($children as $child_info) {
-    $child = entity_load_single('node', $child_info['id']);
+  $children = ubg_guide_get_children($current->getIdentifier(), 1);
+  foreach ($children as $info) {
+    $items[$info['id']] = array();
+    $flat[] = $info['id'];
+  }
+
+  if (!empty($data)) {
+    $items[$child->getIdentifier()] = $data;
+  }
+
+  // If current is of type guide, we have reached the root node.
+  if ($current->getBundle() === 'guide') {
+    $nodes = entity_load('node', array_values($flat));
+
+    return _ubn_guide_populate_toc_tree($items, $nodes);
+  }
+
+  return _ubn_guide_generate_toc_tree($current->field_guide_chapter_parent, $flat, $current, $items);
+}
+
+/**
+ * Populate ToC tree.
+ */
+function _ubn_guide_populate_toc_tree($tree, $nodes) {
+  $items = array();
+
+  foreach ($tree as $nid => $children) {
+    $node = entity_metadata_wrapper('node', $nodes[$nid]);
 
     $item = array(
-      'data' => l($child->title, "node/$child->nid"),
+      'data' => l($node->label(), "node/{$node->getIdentifier()}"),
     );
 
-    if (!empty($child_info['children'])) {
-      $item['children'] = _ubn_guide_generate_toc($child_info['children'], $current);
+    if (!empty($children)) {
+      $item['children'] = _ubn_guide_populate_toc_tree($children, $nodes);
     }
 
     $items[] = $item;

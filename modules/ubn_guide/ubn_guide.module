@@ -35,8 +35,12 @@ function ubn_guide_get_root(EntityDrupalWrapper $node) {
 /**
  * Get children as a tree.
  */
-function ubg_guide_get_children($nid) {
+function ubg_guide_get_children($nid, $depth = -1) {
   $children = array();
+
+  if ($depth === 0) {
+    return $children;
+  }
 
   $query = new EntityFieldQuery();
 
@@ -53,7 +57,7 @@ function ubg_guide_get_children($nid) {
     foreach ($result['node'] as $child) {
       $children[] = array(
         'id' => $child->nid,
-        'children' => ubg_guide_get_children($child->nid)
+        'children' => ubg_guide_get_children($child->nid, $depth - 1)
       );
     }
   }
