@@ -51,9 +51,9 @@ function _ubn_guide_generate_toc_tree(EntityDrupalWrapper $current, &$flat = arr
   $items = array();
 
   $children = ubg_guide_get_children($current->getIdentifier(), 1);
-  foreach ($children as $info) {
-    $items[$info['id']] = array();
-    $flat[] = $info['id'];
+  foreach (array_keys($children) as $id) {
+    $flat[] = $id;
+    $items[$id] = array();
   }
 
   if (!empty($data)) {

@@ -32,15 +32,9 @@ function ubn_guide_path_update($path) {
     return;
   }
 
-  $nids = array();
-
-  foreach ($children as $child) {
-    $nids[] = $child['id'];
-  }
-
   cache_clear_all($path['source'], 'cache_path');
 
-  pathauto_node_update_alias_multiple($nids, 'bulkupdate');
+  pathauto_node_update_alias_multiple(array_keys($children), 'bulkupdate');
 }
 
 /**
@@ -61,6 +55,8 @@ function ubn_guide_get_root(EntityDrupalWrapper $node) {
 
 /**
  * Get children as a tree.
+ *
+ * @todo cache?
  */
 function ubg_guide_get_children($nid, $depth = -1) {
   $children = array();
@@ -82,10 +78,7 @@ function ubg_guide_get_children($nid, $depth = -1) {
 
   if (!empty($result['node'])) {
     foreach ($result['node'] as $child) {
-      $children[] = array(
-        'id' => $child->nid,
-        'children' => ubg_guide_get_children($child->nid, $depth - 1)
-      );
+      $children[$child->nid] = ubg_guide_get_children($child->nid, $depth - 1);
     }
   }
 
@@ -98,11 +91,11 @@ function ubg_guide_get_children($nid, $depth = -1) {
 function ubn_guide_flatten($tree) {
   $flat = array();
 
-  foreach ($tree as $branch) {
-    $flat[] = $branch['id'];
+  foreach ($tree as $id => $children) {
+    $flat[] = $id;
 
-    if (!empty($branch['children'])) {
-      $flat = array_merge($flat, ubn_guide_flatten($branch['children']));
+    if (!empty($children)) {
+      $flat = array_merge($flat, ubn_guide_flatten($children));
     }
   }
 
