@@ -88,7 +88,3 @@ projects[entityreference][subdir] = contrib
 ; Panels
 projects[panels][version] = 3.4
 projects[panels][subdir] = contrib
-
-; Localization update
-projects[l10n_update][version] = 1.1
-projects[l10n_update][subdir] = contrib
