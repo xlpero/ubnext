@@ -81,14 +81,23 @@ projects[globalredirect][subdir] = contrib
 projects[transliteration][version] = 3.2
 projects[transliteration][subdir] = contrib
 
+
 ; Entity reference
 projects[entityreference][version] = 1.1
 projects[entityreference][subdir] = contrib
+
 
 ; Panels
 projects[panels][version] = 3.4
 projects[panels][subdir] = contrib
 
+
 ; Administration Language
 projects[admin_language][version] = 1.0-beta1
 projects[admin_language][subdir] = contrib
+
+
+; Redirect
+projects[redirect][version] = 1.0-rc1
+projects[redirect][download][revision] = 6957f39ecd7a7c3724d699458db62311fce7b542
+projects[redirect][subdir] = contrib
