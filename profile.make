@@ -86,6 +86,9 @@ projects[transliteration][subdir] = contrib
 projects[entityreference][version] = 1.1
 projects[entityreference][subdir] = contrib
 
+; Autocomplete widget improvements (https://www.drupal.org/node/1389238)
+projects[entityreference][patch][1389238] = https://www.drupal.org/files/1389238-43.patch
+
 
 ; Panels
 projects[panels][version] = 3.4
