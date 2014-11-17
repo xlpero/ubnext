@@ -101,3 +101,9 @@ projects[admin_language][subdir] = contrib
 projects[redirect][version] = 1.0-rc1
 projects[redirect][download][revision] = 6957f39ecd7a7c3724d699458db62311fce7b542
 projects[redirect][subdir] = contrib
+
+
+; Panels Everywhere
+projects[panels_everywhere][version] = 1.0-rc1
+projects[panels_everywhere][download][revision] = d91b9fd1ecc648cdf8f8e43d35007087d8671154
+projects[panels_everywhere][subdir] = contrib

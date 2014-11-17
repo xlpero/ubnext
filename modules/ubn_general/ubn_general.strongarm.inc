@@ -25,14 +25,14 @@ function ubn_general_strongarm() {
     'language' => 'sv',
     'name' => 'Swedish',
     'native' => 'Svenska',
-    'direction' => '0',
-    'enabled' => '1',
-    'plurals' => '2',
-    'formula' => '($n!=1)',
+    'direction' => 0,
+    'enabled' => 1,
+    'plurals' => 0,
+    'formula' => '',
     'domain' => '',
     'prefix' => 'sv',
-    'weight' => '0',
-    'javascript' => 'gZFA9XpAsf9PnjEACRu_S2kLKpDCMymdbtsgCMazlss',
+    'weight' => 0,
+    'javascript' => '',
   );
   $export['language_default'] = $strongarm;
 
@@ -121,6 +121,13 @@ function ubn_general_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'panels_everywhere_site_template_enabled';
+  $strongarm->value = TRUE;
+  $export['panels_everywhere_site_template_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_pattern';
   $strongarm->value = 'content/[node:title]';
   $export['pathauto_node_pattern'] = $strongarm;
@@ -131,6 +138,13 @@ function ubn_general_strongarm() {
   $strongarm->name = 'pathauto_transliterate';
   $strongarm->value = 1;
   $export['pathauto_transliterate'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'theme_default';
+  $strongarm->value = 'ubnext';
+  $export['theme_default'] = $strongarm;
 
   return $export;
 }
