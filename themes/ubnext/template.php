@@ -4,6 +4,20 @@
  */
 
 
+
+function ubnext_links__locale_block($variables) {
+  global $language;
+  unset($variables['links'][$language->language]);
+
+  return theme('links', $variables);
+}
+
+
+
+function ubnext_preprocess_html(&$vars) {
+  $vars['classes_array'][] = 'new-class';
+}
+
 /**
  * Change the CSS @import rules to <link> tags.
  */
