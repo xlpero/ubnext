@@ -25,14 +25,14 @@ function ubn_general_strongarm() {
     'language' => 'sv',
     'name' => 'Swedish',
     'native' => 'Svenska',
-    'direction' => 0,
-    'enabled' => 1,
-    'plurals' => 0,
-    'formula' => '',
+    'direction' => '0',
+    'enabled' => '1',
+    'plurals' => '2',
+    'formula' => '($n!=1)',
     'domain' => '',
     'prefix' => 'sv',
-    'weight' => 0,
-    'javascript' => '',
+    'weight' => '0',
+    'javascript' => 'tEevc6AzLQkeiMObF9FL7gOm53tZuEENgwiECLcoo8E',
   );
   $export['language_default'] = $strongarm;
 
