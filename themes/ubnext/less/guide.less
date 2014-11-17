@@ -1,0 +1,128 @@
+.guide {
+	.make-row();
+	.guide-sidebar {
+		.make-md-column(4);
+		@media (min-width: @screen-xs-min) {
+			.make-md-column-push(8);
+		}
+	}
+	.guide-table-of-contents {
+		
+		margin-bottom: 20px;
+		.guide-table-of-contents-list {
+			padding:10px 0;
+
+			.guide-table-of-contents-title {
+				font-weight: bold;
+				margin-bottom: 5px;
+			}
+			border-top: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;	
+			.list-unstyled();
+			ul {
+				margin-left: 30px;
+				.list-unstyled();
+			}
+
+			li {
+				padding-bottom: 7px;
+				a {
+					display: inline-block;
+					margin-left: 5px;
+					&.active {
+						color: @black;
+					}
+				}
+
+				&.collapsed {
+					&:before {
+						content: "\f0da ";
+	    				font-family: FontAwesome;
+					}
+				}
+
+				&.expanded {
+					&:before {
+						content: "\f0d7 ";
+	    				font-family: FontAwesome;
+					}
+				}
+				&.leaf {
+					&:before {
+						content: ''; 
+					}
+				}
+			}
+		}
+	}
+	.guide-content {
+		img {
+			.img-responsive();
+		}
+
+		.videoWrapper {
+			position: relative;
+			padding-bottom: 56.25%; /* 16:9 */
+	
+			margin-bottom: 20px;
+			height: 0;
+			iframe {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.guide-content-pager {
+			.make-row();
+			margin-bottom: 20px;
+			text-transform: uppercase;
+			a {
+				text-decoration: none;
+			}
+			.guide-content-pager-previous {
+				.make-xs-column(4);
+				a {
+					.btn-sm();
+					.btn();
+					.btn-primary();
+					
+					&:before {
+						font-size: 18px;
+						content: "\f053";
+    					font-family: FontAwesome;
+					}
+				}
+
+			}
+			.guide-content-pager-next {
+				.make-xs-column(8);
+				text-align: right;
+				a {
+					.btn-sm();
+					.btn();
+					.btn-primary();
+					
+					display: block;
+					&:after {
+						font-size: 18px;
+						content: "  \f054";
+    					font-family: FontAwesome;
+					}
+				}
+			}
+		}
+		//max-width: @max-width-of-text-container;
+		.make-md-column(8);
+		@media (min-width: @screen-xs-min) {
+			.make-md-column-pull(4);
+		}
+		.guide-content-sidebar-bottom {
+			@media (min-width: @screen-xs-min) {
+				display: none;
+		}
+	}
+		
+	}
+}
