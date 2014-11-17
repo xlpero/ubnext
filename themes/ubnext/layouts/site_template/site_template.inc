@@ -10,10 +10,9 @@ $plugin = array(
   'icon' => '',
   'category' => 'UBNext',
   'regions' => array(
+    'toplinks' => t('Toplinks'),
     'topbar' => t('Topbar'),
-    'header' => t('Header'),
     'navigation' => t('Navigation'),
     'content' => t('Content'),
-    'footer' => t('Footer'),
   ),
 );
