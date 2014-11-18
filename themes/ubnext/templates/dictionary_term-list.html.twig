@@ -1,0 +1,19 @@
+{# slate
+  name = Dictionary: Term List
+  models[list] = item
+#}
+{% for key, terms in list if terms is not empty %}
+    <div>
+        <h2 id="{{ drupal_html_id(key) }}">{{ key }}</h2>
+        {% for term in terms %}
+            <div>
+                <h3 id="{{ ubn_dictionary_get_html_id(term.label) }}">{{ term.label }}</h3>
+                {% if term.primary %}
+                    {{ view_mode(term.entity, 'primary') | raw }}
+                {% else %}
+                    {{ view_mode(term.entity, 'secondary') | raw }}
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
