@@ -45,11 +45,6 @@
         <!-- PRIMARY NAV -->
         <nav class="main-navigation">
           <?php print render($content['navigation']); ?>
-       <!--   <ul role="menu" class="main-navigation-nav">
-            <li><a class="active" href="#">Sök</a></li>
-            <li><a href="#">Lån</a></li>
-            <li><a href="#">På biblioteken</a></li>
-          </ul>-->
         </nav>
         <!-- END PRIMARY NAV --> 
       </div>
@@ -75,7 +70,7 @@
 
 
 <?php if (!empty($content['content'])): ?>
-  <section id="main">
+  <section class="main">
     <div class="wrap">
       <?php print render($content['content']); ?>
     </div>
