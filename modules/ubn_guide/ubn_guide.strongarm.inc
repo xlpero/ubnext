@@ -34,6 +34,12 @@ function ubn_guide_strongarm() {
         'language' => array(
           'weight' => '0',
         ),
+        'path' => array(
+          'weight' => '5',
+        ),
+        'redirect' => array(
+          'weight' => '4',
+        ),
       ),
       'display' => array(),
     ),
@@ -62,10 +68,13 @@ function ubn_guide_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '5',
+          'weight' => '6',
         ),
         'language' => array(
           'weight' => '2',
+        ),
+        'redirect' => array(
+          'weight' => '7',
         ),
       ),
       'display' => array(),
