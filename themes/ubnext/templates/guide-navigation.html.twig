@@ -1,0 +1,11 @@
+{# slate
+  name = Guide: Navigation
+  models[prev] = item
+  models[next] = item
+#}
+{% if next %}
+    <a href="{{ next.url }}">{{ next.label }}</a>
+{% endif %}
+{% if prev %}
+    <a href="{{ prev.url }}">{{ prev.label }}</a>
+{% endif %}
