@@ -3,9 +3,23 @@
   models[prev] = item
   models[next] = item
 #}
-{% if next %}
-    <a href="{{ next.url }}">{{ next.label }}</a>
-{% endif %}
-{% if prev %}
-    <a href="{{ prev.url }}">{{ prev.label }}</a>
-{% endif %}
+
+<div class="guide">
+	<nav class="guide-content-pager">
+		{% if prev %}
+		    <div class="guide-content-pager-previous"><a href="{{ prev.url }}"></a></div>
+		{% else %}
+			<div class="guide-content-pager-previous"><a class="disabled" href="{{ prev.url }}"></a></div>
+		{% endif %}
+
+		{% if next %}
+		    <div class="guide-content-pager-next">
+		    	<a href="{{ next.url }}">{{t('next')}}</a>
+		    </div>
+		{% else %}
+		    <div class="guide-content-pager-next">
+		    	<a  class="disabled" href="{{ next.url }}">{{t('next')}}</a>
+		    </div>
+		{% endif %}
+	</nav>
+</div>
