@@ -3,7 +3,6 @@
 		margin-bottom: 20px;
 		.guide-table-of-contents-list {
 			padding:10px 0;
-
 			.guide-table-of-contents-title {
 				font-weight: bold;
 				margin-bottom: 5px;
@@ -51,7 +50,6 @@
 		img {
 			.img-responsive();
 		}
-
 		.videoWrapper {
 			position: relative;
 			padding-bottom: 56.25%; /* 16:9 */
@@ -69,14 +67,14 @@
 
 	}
 	.guide-content-pager {
-		.make-row();
+		.clearfix();
 		margin-bottom: 20px;
 		text-transform: uppercase;
 		a {
 			text-decoration: none;
 		}
 		.guide-content-pager-previous {
-			.make-xs-column(4);
+			float:left;
 			a {
 				.btn-sm();
 				.btn();
@@ -91,7 +89,13 @@
 
 		}
 		.guide-content-pager-next {
-			.make-xs-column(8);
+			float:right;
+			min-width: 200px;
+			@media(min-width: @screen-sm-min) {
+				float:left;
+				margin-left: 20px;
+
+			}
 			text-align: right;
 			a {
 				.btn-sm();
