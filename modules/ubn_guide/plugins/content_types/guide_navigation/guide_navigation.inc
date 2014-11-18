@@ -37,23 +37,30 @@ function ubn_guide_guide_navigation_content_type_render($subtype, $conf, $panel_
   $block = new stdClass();
   $block->title = t('Guide Navigation');
 
-  $next = ubn_guide_find_next_chapter($node);
-  if ($next !== FALSE) {
-    $next = array(
-      'label' => t('Next'),
-      'url' => url("node/$next"),
+  $args = array(
+    'next' => FALSE,
+    'prev' => FALSE,
+  );
+
+  if (($nid = ubn_guide_find_next_chapter($node)) !== FALSE) {
+    $next = entity_metadata_wrapper('node', $nid);
+
+    $args['next'] = array(
+      'label' => $next->label(),
+      'url' => url("node/{$nid}"),
     );
   }
 
-  $prev = ubn_guide_find_prev_chapter($node);
-  if ($prev !== FALSE) {
-    $prev = array(
-      'label' => t('Prev'),
-      'url' => url("node/$prev"),
+  if (($nid = ubn_guide_find_prev_chapter($node)) !== FALSE) {
+    $prev = entity_metadata_wrapper('node', $nid);
+
+    $args['prev'] = array(
+      'label' => $prev->label(),
+      'url' => url("node/{$nid}"),
     );
   }
 
-  $block->content = slate_render('guide-navigation', array('next' => $next, 'prev' => $prev));
+  $block->content = slate_render('guide-navigation', $args);
 
   return $block;
 }
