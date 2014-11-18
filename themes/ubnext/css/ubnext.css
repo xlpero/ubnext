@@ -8056,6 +8056,88 @@ header .header-inner-wrapper:after,
 .arrow {
   position: relative;
 }
+p {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+/* ####### HEADINGS ####### */
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  text-rendering: optimizeLegibility;
+  font-weight: normal;
+}
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  margin-top: 0;
+}
+h1,
+.h1 {
+  margin-top: 22px;
+  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
+  font-size: 2em;
+  margin-bottom: 24px;
+  line-height: 1.25em;
+}
+h2,
+.h2 {
+  font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
+  font-size: 1.625em;
+  line-height: 1.15384615em;
+  margin-bottom: 24px;
+}
+h3,
+.h3 {
+  font-family: 'NimbusSanNovCon-Med', "Arial Narrow", Arial, sans-serif;
+  font-size: 1.375em;
+  line-height: 1.13636364em;
+  margin-bottom: 6px;
+}
+h4,
+h4 {
+  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
+  font-size: 1.125em;
+  margin-bottom: 6px;
+}
+h5,
+.h5 {
+  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
+  font-size: 0.85em;
+  margin-bottom: 6px;
+}
+h6,
+.h6 {
+  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
+  font-size: 0.75em;
+  margin-bottom: 6px;
+}
+.lead {
+  font-size: 1.125em;
+  font-weight: bold;
+  line-height: 1.333em;
+  margin-bottom: 24px;
+}
+.btn {
+  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
+  font-size: 21px;
+}
 #skip-link {
   position: absolute;
   width: 1px;
@@ -8155,88 +8237,6 @@ a {
 img {
   margin-bottom: 20px;
 }
-p {
-  margin-top: 0;
-  margin-bottom: 24px;
-}
-/* ####### HEADINGS ####### */
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-  text-rendering: optimizeLegibility;
-  font-weight: normal;
-}
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-  margin-top: 0;
-}
-h1,
-.h1 {
-  margin-top: 22px;
-  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
-  font-size: 2em;
-  margin-bottom: 24px;
-  line-height: 1.25em;
-}
-h2,
-.h2 {
-  font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
-  font-size: 1.625em;
-  line-height: 1.15384615em;
-  margin-bottom: 24px;
-}
-h3,
-.h3 {
-  font-family: 'NimbusSanNovCon-Med', "Arial Narrow", Arial, sans-serif;
-  font-size: 1.375em;
-  line-height: 1.13636364em;
-  margin-bottom: 6px;
-}
-h4,
-h4 {
-  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
-  font-size: 1.125em;
-  margin-bottom: 6px;
-}
-h5,
-.h5 {
-  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
-  font-size: 0.85em;
-  margin-bottom: 6px;
-}
-h6,
-.h6 {
-  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
-  font-size: 0.75em;
-  margin-bottom: 6px;
-}
-.lead {
-  font-size: 1.125em;
-  font-weight: bold;
-  line-height: 1.333em;
-  margin-bottom: 24px;
-}
-.btn {
-  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
-  font-size: 21px;
-}
 .main-navigation-wrapper {
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
@@ -8300,6 +8300,29 @@ h6,
   text-decoration: none;
 }
 .main-navigation-wrapper .main-navigation-inner-wrapper .primary .main-navigation-nav li a.active {
+  text-decoration: underline;
+}
+.main-navigation-wrapper .main-navigation-inner-wrapper .primary .menu {
+  padding-left: 0;
+  list-style: none;
+  margin-top: 8px;
+}
+.main-navigation-wrapper .main-navigation-inner-wrapper .primary .menu li {
+  display: inline-block;
+  float: left;
+}
+.main-navigation-wrapper .main-navigation-inner-wrapper .primary .menu li:first-child a {
+  padding-left: 0;
+}
+.main-navigation-wrapper .main-navigation-inner-wrapper .primary .menu li a {
+  padding: 10px;
+  font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
+  font-size: 1.125em;
+  color: #000000;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.main-navigation-wrapper .main-navigation-inner-wrapper .primary .menu li a.active {
   text-decoration: underline;
 }
 .main-navigation-wrapper .main-navigation-inner-wrapper .secondary {

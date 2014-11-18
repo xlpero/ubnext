@@ -17,33 +17,16 @@
         </div>
         <div class="site-headers">
           <div class="site-title">
-            <a href="#">Göteborgs Universitetsbibliotek</a>
+            <a href="#"><?php print variable_get('site_name'); ?></a>
           </div>
           <div class="site-title-tagline">
+              <?php print variable_get('site_slogan'); ?>
           </div>
         </div>
       </div>
       <div class="right">
         <nav>
-          <ul>
-            <?php /*<li>
-              <?=
-                print l("In english", "", array(
-                   'language' => _return_language_object("en"),
-              ));
-              ?>
-            </li>
-            <li>
-              <?=
-                print l("På svenska", "", array(
-                   'language' => _return_language_object("sv"),
-              ));
-              ?>
-            </li>
-
-          </ul>*/?>
-        <?php print render($content['toplinks']); ?>
-
+          <?php print render($content['toplinks']); ?>
         </nav>
       </div>
     </div>
@@ -61,11 +44,12 @@
       <div class="primary">
         <!-- PRIMARY NAV -->
         <nav class="main-navigation">
-          <ul role="menu" class="main-navigation-nav">
+          <?php print render($content['navigation']); ?>
+       <!--   <ul role="menu" class="main-navigation-nav">
             <li><a class="active" href="#">Sök</a></li>
             <li><a href="#">Lån</a></li>
             <li><a href="#">På biblioteken</a></li>
-          </ul>
+          </ul>-->
         </nav>
         <!-- END PRIMARY NAV --> 
       </div>
