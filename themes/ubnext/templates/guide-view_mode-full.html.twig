@@ -1,0 +1,7 @@
+{# slate
+  name = Guide: View mode 'Full content'
+  models[guide] = entity:node
+  view_mode[node][guide] = full
+#}
+{{ guide.label }}
+{{ guide.field_guide_body.value | raw }}
