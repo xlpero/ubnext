@@ -5,3 +5,21 @@
  */
 
 include_once 'ubn_development.features.inc';
+
+
+/**
+ * Implements hook_boot().
+ */
+function ubn_development_boot() {
+  global $conf;
+
+  // Always show all error messages.
+  $conf['error_level'] = 2;
+
+  // Always set slate in debug mode.
+  $conf['slate_debug'] = TRUE;
+
+  // Restore error and exception handlers.
+  restore_error_handler();
+  restore_exception_handler();
+}
