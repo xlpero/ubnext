@@ -6,8 +6,11 @@
 
 <div class="guide">
 	<div class="guide-content">
+
 		<h2>{{ guide.label }}</h2>
-		{{ guide.field_guide_lead.value | raw }}
+		<p class="lead">
+			{{ guide.field_guide_lead.value | raw }}
+		</p>
 		{{ guide.field_guide_body.value | raw }}
 	</div>
 </div>
