@@ -45,7 +45,7 @@ function ubn_guide_default_page_manager_handlers() {
     ),
   );
   $display = new panels_display();
-  $display->layout = 'twocol_stacked';
+  $display->layout = 'twocol_right';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -55,6 +55,14 @@ function ubn_guide_default_page_manager_handlers() {
       'right' => NULL,
       'top' => NULL,
       'bottom' => NULL,
+      'main' => NULL,
+      'sidebar' => NULL,
+    ),
+    'main' => array(
+      'style' => 'naked',
+    ),
+    'sidebar' => array(
+      'style' => 'naked',
     ),
   );
   $display->cache = array();
@@ -64,7 +72,7 @@ function ubn_guide_default_page_manager_handlers() {
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-32e72bd9-7f0d-4eed-83c6-7f8663a631ff';
-    $pane->panel = 'left';
+    $pane->panel = 'main';
     $pane->type = 'guide_navigation';
     $pane->subtype = 'guide_navigation';
     $pane->shown = TRUE;
@@ -77,6 +85,7 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
+      'style' => 'naked',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -84,10 +93,10 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->locks = array();
     $pane->uuid = '32e72bd9-7f0d-4eed-83c6-7f8663a631ff';
     $display->content['new-32e72bd9-7f0d-4eed-83c6-7f8663a631ff'] = $pane;
-    $display->panels['left'][0] = 'new-32e72bd9-7f0d-4eed-83c6-7f8663a631ff';
+    $display->panels['main'][0] = 'new-32e72bd9-7f0d-4eed-83c6-7f8663a631ff';
     $pane = new stdClass();
-    $pane->pid = 'new-259bdb02-6936-46ea-b3d2-0a54d0d4835b';
-    $pane->panel = 'left';
+    $pane->pid = 'new-9a1b4d96-2def-4ed5-885a-f4fa6e62658a';
+    $pane->panel = 'main';
     $pane->type = 'entity_view';
     $pane->subtype = 'node';
     $pane->shown = TRUE;
@@ -101,17 +110,18 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
+      'style' => 'naked',
     );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = '259bdb02-6936-46ea-b3d2-0a54d0d4835b';
-    $display->content['new-259bdb02-6936-46ea-b3d2-0a54d0d4835b'] = $pane;
-    $display->panels['left'][1] = 'new-259bdb02-6936-46ea-b3d2-0a54d0d4835b';
+    $pane->uuid = '9a1b4d96-2def-4ed5-885a-f4fa6e62658a';
+    $display->content['new-9a1b4d96-2def-4ed5-885a-f4fa6e62658a'] = $pane;
+    $display->panels['main'][1] = 'new-9a1b4d96-2def-4ed5-885a-f4fa6e62658a';
     $pane = new stdClass();
     $pane->pid = 'new-ab33d1c8-ae14-45a2-9595-c0127c17e752';
-    $pane->panel = 'left';
+    $pane->panel = 'main';
     $pane->type = 'guide_navigation';
     $pane->subtype = 'guide_navigation';
     $pane->shown = TRUE;
@@ -124,6 +134,7 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
+      'style' => 'naked',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -131,10 +142,10 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->locks = array();
     $pane->uuid = 'ab33d1c8-ae14-45a2-9595-c0127c17e752';
     $display->content['new-ab33d1c8-ae14-45a2-9595-c0127c17e752'] = $pane;
-    $display->panels['left'][2] = 'new-ab33d1c8-ae14-45a2-9595-c0127c17e752';
+    $display->panels['main'][2] = 'new-ab33d1c8-ae14-45a2-9595-c0127c17e752';
     $pane = new stdClass();
     $pane->pid = 'new-9da5cb3c-a3a7-4d9c-9fad-a14beba4a988';
-    $pane->panel = 'right';
+    $pane->panel = 'sidebar';
     $pane->type = 'guide_toc';
     $pane->subtype = 'guide_toc';
     $pane->shown = TRUE;
@@ -147,6 +158,7 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
+      'style' => 'naked',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -154,7 +166,7 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->locks = array();
     $pane->uuid = '9da5cb3c-a3a7-4d9c-9fad-a14beba4a988';
     $display->content['new-9da5cb3c-a3a7-4d9c-9fad-a14beba4a988'] = $pane;
-    $display->panels['right'][0] = 'new-9da5cb3c-a3a7-4d9c-9fad-a14beba4a988';
+    $display->panels['sidebar'][0] = 'new-9da5cb3c-a3a7-4d9c-9fad-a14beba4a988';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -195,7 +207,7 @@ function ubn_guide_default_page_manager_handlers() {
     ),
   );
   $display = new panels_display();
-  $display->layout = 'twocol_stacked';
+  $display->layout = 'twocol_right';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
@@ -205,6 +217,14 @@ function ubn_guide_default_page_manager_handlers() {
       'right' => NULL,
       'top' => NULL,
       'bottom' => NULL,
+      'main' => NULL,
+      'sidebar' => NULL,
+    ),
+    'main' => array(
+      'style' => 'naked',
+    ),
+    'sidebar' => array(
+      'style' => 'naked',
     ),
   );
   $display->cache = array();
@@ -214,7 +234,7 @@ function ubn_guide_default_page_manager_handlers() {
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-32e72bd9-7f0d-4eed-83c6-7f8663a631ff';
-    $pane->panel = 'left';
+    $pane->panel = 'main';
     $pane->type = 'guide_navigation';
     $pane->subtype = 'guide_navigation';
     $pane->shown = TRUE;
@@ -227,6 +247,7 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
+      'style' => 'naked',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -234,10 +255,10 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->locks = array();
     $pane->uuid = '32e72bd9-7f0d-4eed-83c6-7f8663a631ff';
     $display->content['new-32e72bd9-7f0d-4eed-83c6-7f8663a631ff'] = $pane;
-    $display->panels['left'][0] = 'new-32e72bd9-7f0d-4eed-83c6-7f8663a631ff';
+    $display->panels['main'][0] = 'new-32e72bd9-7f0d-4eed-83c6-7f8663a631ff';
     $pane = new stdClass();
     $pane->pid = 'new-259bdb02-6936-46ea-b3d2-0a54d0d4835b';
-    $pane->panel = 'left';
+    $pane->panel = 'main';
     $pane->type = 'entity_view';
     $pane->subtype = 'node';
     $pane->shown = TRUE;
@@ -251,6 +272,7 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
+      'style' => 'naked',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -258,10 +280,10 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->locks = array();
     $pane->uuid = '259bdb02-6936-46ea-b3d2-0a54d0d4835b';
     $display->content['new-259bdb02-6936-46ea-b3d2-0a54d0d4835b'] = $pane;
-    $display->panels['left'][1] = 'new-259bdb02-6936-46ea-b3d2-0a54d0d4835b';
+    $display->panels['main'][1] = 'new-259bdb02-6936-46ea-b3d2-0a54d0d4835b';
     $pane = new stdClass();
     $pane->pid = 'new-ab33d1c8-ae14-45a2-9595-c0127c17e752';
-    $pane->panel = 'left';
+    $pane->panel = 'main';
     $pane->type = 'guide_navigation';
     $pane->subtype = 'guide_navigation';
     $pane->shown = TRUE;
@@ -274,6 +296,7 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
+      'style' => 'naked',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -281,10 +304,10 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->locks = array();
     $pane->uuid = 'ab33d1c8-ae14-45a2-9595-c0127c17e752';
     $display->content['new-ab33d1c8-ae14-45a2-9595-c0127c17e752'] = $pane;
-    $display->panels['left'][2] = 'new-ab33d1c8-ae14-45a2-9595-c0127c17e752';
+    $display->panels['main'][2] = 'new-ab33d1c8-ae14-45a2-9595-c0127c17e752';
     $pane = new stdClass();
     $pane->pid = 'new-9da5cb3c-a3a7-4d9c-9fad-a14beba4a988';
-    $pane->panel = 'right';
+    $pane->panel = 'sidebar';
     $pane->type = 'guide_toc';
     $pane->subtype = 'guide_toc';
     $pane->shown = TRUE;
@@ -297,6 +320,7 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
+      'style' => 'naked',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -304,7 +328,7 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->locks = array();
     $pane->uuid = '9da5cb3c-a3a7-4d9c-9fad-a14beba4a988';
     $display->content['new-9da5cb3c-a3a7-4d9c-9fad-a14beba4a988'] = $pane;
-    $display->panels['right'][0] = 'new-9da5cb3c-a3a7-4d9c-9fad-a14beba4a988';
+    $display->panels['sidebar'][0] = 'new-9da5cb3c-a3a7-4d9c-9fad-a14beba4a988';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
