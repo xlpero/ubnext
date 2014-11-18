@@ -110,3 +110,18 @@ projects[redirect][subdir] = contrib
 projects[panels_everywhere][version] = 1.0-rc1
 projects[panels_everywhere][download][revision] = d91b9fd1ecc648cdf8f8e43d35007087d8671154
 projects[panels_everywhere][subdir] = contrib
+
+
+; Slate
+projects[slate][version] = 2.0-alpha5
+projects[slate][subdir] = contrib
+
+
+; Libraries
+projects[libraries][version] = 2.2
+projects[libraries][subdir] = contrib
+
+
+; Twig
+libraries[twig][download][type] = get
+libraries[twig][download][url] = https://github.com/fabpot/Twig/archive/v1.16.2.tar.gz
