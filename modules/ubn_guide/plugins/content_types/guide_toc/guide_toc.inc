@@ -36,7 +36,10 @@ function ubn_guide_guide_toc_content_type_render($subtype, $conf, $panel_args, $
 
   $block = new stdClass();
   $block->title = t('Table of Contents');
-  $block->content = _ubn_guide_generate_tree($node);
+
+  $tree = _ubn_guide_generate_tree($node);
+
+  $block->content = slate_render('guide-toc', array('tree' => drupal_render($tree)));
 
 
   //$block->content = slate_render('guide-toc', $args);
@@ -70,7 +73,7 @@ function _ubn_guide_generate_tree($node, $tree = NULL, $parents = NULL, $nodes =
       '#below' => array(),
     );
 
-    // we don't need active-trail right now.
+    // We don't need active-trail right now.
     // if ($id == $node->getIdentifier()) {
     //   $link['#attributes']['class'][] = 'active-trail';
     // }
@@ -82,7 +85,7 @@ function _ubn_guide_generate_tree($node, $tree = NULL, $parents = NULL, $nodes =
       if (in_array($id, $parents) || $id == $node->getIdentifier()) {
         $link['#attributes']['class'][] = 'expanded';
 
-        // we don't need active-trail right now.
+        // We don't need active-trail right now.
         // $link['#attributes']['class'][] = 'active-trail';
       }
       else {
