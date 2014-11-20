@@ -6,6 +6,7 @@
 
 include_once 'ubn_dictionary.features.inc';
 
+
 /**
  * Implements hook_ctools_plugin_directory().
  */
@@ -13,4 +14,43 @@ function ubn_dictionary_ctools_plugin_directory($owner, $plugin_type) {
   if (in_array($plugin_type, array('content_types'))) {
     return "plugins/$plugin_type";
   }
+}
+
+/**
+ * Return a list of chars to use as index.
+ */
+function ubn_dictionary_get_index() {
+  global $language;
+
+  $list = array(
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+    'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+  );
+
+  if ($language->language === 'sv') {
+    $list[] = 'å';
+    $list[] = 'ä';
+    $list[] = 'ö';
+  }
+
+  $list[] = '0-9';
+
+  return $list;
+}
+
+/**
+ *
+ */
+function ubn_dictionary_get_html_id($id) {
+  $id = strtr(drupal_strtolower($id), array(
+    ' ' => '-',
+    '_' => '-',
+    '[' => '-',
+    ']' => '',
+  ));
+
+  $id = preg_replace('/[^A-Za-z0-9\-_]/', '', $id);
+  $id = preg_replace('/\-+/', '-', $id);
+
+  return $id;
 }

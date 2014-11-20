@@ -17,3 +17,32 @@ function ubn_general_strongarm_alter(&$variables) {
     $variables['language_default']->value->javascript = $language_default->javascript;
   }
 }
+
+/**
+ * Custom strnatcmp to fix a bad, bad, bad PHP bug!
+ */
+function ubn_general_strnatcmp($left, $right) {
+  if (extension_loaded('intl') === TRUE) {
+    global $language;
+
+    switch ($language->language) {
+      case 'sv':
+        $coll = collator_create('sv_SE');
+        break;
+
+      case 'en':
+        $coll = collator_create('en_US');
+        break;
+
+      default:
+        $coll = collator_create('root');
+        break;
+    }
+
+    $coll->setAttribute(Collator::NUMERIC_COLLATION, Collator::ON);
+
+    return $coll->compare($left, $right);
+  }
+
+  return strnatcmp($left, $right);
+}
