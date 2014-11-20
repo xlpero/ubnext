@@ -39,7 +39,7 @@ function ubn_guide_guide_toc_content_type_render($subtype, $conf, $panel_args, $
 
   $tree = _ubn_guide_generate_tree($node);
 
-  $block->content = slate_render('guide-toc', array('tree' => drupal_render($tree)));
+  $block->content = slate_render('guide-toc', array('tree' => drupal_render($tree), 'title' => $block->title));
 
 
   //$block->content = slate_render('guide-toc', $args);
