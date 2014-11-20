@@ -2,6 +2,14 @@
   name = Dictionary: Term List
   models[list] = item
 #}
+{% for key, terms in list  %}
+    {% if (terms is empty) %}
+        <a>{{ key }}</a>
+    {% else %}
+        <a href="#{{ ubn_dictionary_get_html_id(key) }}">{{ key }}</a>
+    {% endif %}
+{% endfor %}
+
 {% for key, terms in list if terms is not empty %}
     <div>
         <h2 id="{{ ubn_dictionary_get_html_id(key) }}">{{ key }}</h2>

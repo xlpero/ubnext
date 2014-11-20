@@ -74,7 +74,7 @@ function ubn_dictionary_term_list_content_type_render($subtype, $conf, $panel_ar
       if (!isset($list[$key])) {
         $key = '0-9';
       }
-      
+
       $list[$key][$synonym->value()] = array(
         'label' => $synonym->value(),
         'entity' => $term,
