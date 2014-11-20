@@ -38,8 +38,15 @@ function ubn_guide_guide_toc_content_type_render($subtype, $conf, $panel_args, $
   $block->title = t('Table of Contents');
 
   $tree = _ubn_guide_generate_tree($node);
+  $root = ubn_guide_get_root($node);
 
-  $block->content = slate_render('guide-toc', array('tree' => drupal_render($tree)));
+  $block->content = slate_render('guide-toc', array(
+    'tree' => drupal_render($tree),
+    'root' => array(
+      'label' => $root->label(),
+      'url' => url("node/{$root->getIdentifier()}"),
+    ),
+  ));
 
   return $block;
 }
