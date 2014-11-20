@@ -12,5 +12,6 @@ $plugin = array(
   'regions' => array(
     'main' => t('Main'),
     'sidebar' => t('Sidebar'),
+    'sidebar-bottom' => t('Sidebar bottom (only mobile layout)'),
   ),
 );

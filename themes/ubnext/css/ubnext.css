@@ -6063,10 +6063,10 @@ header .header-inner-wrapper:after,
 #footer-wrapper footer:after,
 .site-bottom-wrapper .site-bottom:before,
 .site-bottom-wrapper .site-bottom:after,
-.guide:before,
-.guide:after,
-.guide .guide-content .guide-content-pager:before,
-.guide .guide-content .guide-content-pager:after {
+.two-col-right:before,
+.two-col-right:after,
+.two-col-right .two-col-right-inner-wrapper:before,
+.two-col-right .two-col-right-inner-wrapper:after {
   content: " ";
   display: table;
 }
@@ -6092,8 +6092,8 @@ header:after,
 header .header-inner-wrapper:after,
 #footer-wrapper footer:after,
 .site-bottom-wrapper .site-bottom:after,
-.guide:after,
-.guide .guide-content .guide-content-pager:after {
+.two-col-right:after,
+.two-col-right .two-col-right-inner-wrapper:after {
   clear: both;
 }
 .center-block {
@@ -8624,25 +8624,95 @@ header .header-inner-wrapper .header-block .left .site-headers .site-title a:hov
 .site-bottom-wrapper .site-bottom a {
   color: #ffffff;
 }
-.guide {
+/* layout */
+.two-col-right {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 960px;
+}
+@media (min-width: 768px) {
+  .two-col-right {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .two-col-right {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .two-col-right {
+    width: 1170px;
+  }
+}
+.two-col-right > .navbar-header,
+.two-col-right > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  .two-col-right > .navbar-header,
+  .two-col-right > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+.two-col-right .two-col-right-inner-wrapper {
   margin-left: -15px;
   margin-right: -15px;
 }
-.guide .guide-sidebar {
+.two-col-right .two-col-right-inner-wrapper #main {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
 }
 @media (min-width: 992px) {
-  .guide .guide-sidebar {
+  .two-col-right .two-col-right-inner-wrapper #main {
+    float: left;
+    width: 66.66666667%;
+  }
+}
+@media (min-width: 480px) and (min-width: 992px) {
+  .two-col-right .two-col-right-inner-wrapper #main {
+    right: 33.33333333%;
+  }
+}
+.two-col-right .two-col-right-inner-wrapper #sidebar {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  /*background-color: blue;*/
+}
+@media (min-width: 992px) {
+  .two-col-right .two-col-right-inner-wrapper #sidebar {
     float: left;
     width: 33.33333333%;
   }
 }
 @media (min-width: 480px) and (min-width: 992px) {
-  .guide .guide-sidebar {
+  .two-col-right .two-col-right-inner-wrapper #sidebar {
     left: 66.66666667%;
+  }
+}
+.two-col-right .two-col-right-inner-wrapper #sidebar-mobile-only {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 992px) {
+  .two-col-right .two-col-right-inner-wrapper #sidebar-mobile-only {
+    float: left;
+    width: 66.66666667%;
+  }
+}
+@media (min-width: 768px) {
+  .two-col-right .two-col-right-inner-wrapper #sidebar-mobile-only {
+    display: none;
   }
 }
 .guide .guide-table-of-contents {
@@ -8685,12 +8755,6 @@ header .header-inner-wrapper .header-block .left .site-headers .site-title a:hov
 .guide .guide-table-of-contents .guide-table-of-contents-list li.leaf:before {
   content: '';
 }
-.guide .guide-content {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
 .guide .guide-content img {
   display: block;
   max-width: 100%;
@@ -8710,24 +8774,33 @@ header .header-inner-wrapper .header-block .left .site-headers .site-title a:hov
   width: 100%;
   height: 100%;
 }
-.guide .guide-content .guide-content-pager {
-  margin-left: -15px;
-  margin-right: -15px;
+.guide .guide-content-pager {
   margin-bottom: 20px;
   text-transform: uppercase;
 }
-.guide .guide-content .guide-content-pager a {
+.guide .guide-content-pager:before,
+.guide .guide-content-pager:after {
+  content: " ";
+  display: table;
+}
+.guide .guide-content-pager:after {
+  clear: both;
+}
+.guide .guide-content-pager:before,
+.guide .guide-content-pager:after {
+  content: " ";
+  display: table;
+}
+.guide .guide-content-pager:after {
+  clear: both;
+}
+.guide .guide-content-pager a {
   text-decoration: none;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-previous {
-  position: relative;
+.guide .guide-content-pager .guide-content-pager-previous {
   float: left;
-  width: 33.33333333%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a {
+.guide .guide-content-pager .guide-content-pager-previous a {
   padding: 5px 10px;
   font-size: 14px;
   line-height: 1.5;
@@ -8756,32 +8829,32 @@ header .header-inner-wrapper .header-block .left .site-headers .site-title a:hov
   background-color: #025da6;
   border-color: #024f8d;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a:focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a:active:focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a.active:focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a.focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a:active.focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a.active.focus {
+.guide .guide-content-pager .guide-content-pager-previous a:focus,
+.guide .guide-content-pager .guide-content-pager-previous a:active:focus,
+.guide .guide-content-pager .guide-content-pager-previous a.active:focus,
+.guide .guide-content-pager .guide-content-pager-previous a.focus,
+.guide .guide-content-pager .guide-content-pager-previous a:active.focus,
+.guide .guide-content-pager .guide-content-pager-previous a.active.focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a:hover,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a:focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a.focus {
+.guide .guide-content-pager .guide-content-pager-previous a:hover,
+.guide .guide-content-pager .guide-content-pager-previous a:focus,
+.guide .guide-content-pager .guide-content-pager-previous a.focus {
   color: #333333;
   text-decoration: none;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a:active,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a.active {
+.guide .guide-content-pager .guide-content-pager-previous a:active,
+.guide .guide-content-pager .guide-content-pager-previous a.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a.disabled,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a[disabled],
-fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pager-previous a {
+.guide .guide-content-pager .guide-content-pager-previous a.disabled,
+.guide .guide-content-pager .guide-content-pager-previous a[disabled],
+fieldset[disabled] .guide .guide-content-pager .guide-content-pager-previous a {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -8789,61 +8862,63 @@ fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pag
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a:hover,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a:focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a.focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a:active,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a.active,
-.open > .dropdown-toggle.guide .guide-content .guide-content-pager .guide-content-pager-previous a {
+.guide .guide-content-pager .guide-content-pager-previous a:hover,
+.guide .guide-content-pager .guide-content-pager-previous a:focus,
+.guide .guide-content-pager .guide-content-pager-previous a.focus,
+.guide .guide-content-pager .guide-content-pager-previous a:active,
+.guide .guide-content-pager .guide-content-pager-previous a.active,
+.open > .dropdown-toggle.guide .guide-content-pager .guide-content-pager-previous a {
   color: #ffffff;
   background-color: #014174;
   border-color: #012d50;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a:active,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a.active,
-.open > .dropdown-toggle.guide .guide-content .guide-content-pager .guide-content-pager-previous a {
+.guide .guide-content-pager .guide-content-pager-previous a:active,
+.guide .guide-content-pager .guide-content-pager-previous a.active,
+.open > .dropdown-toggle.guide .guide-content-pager .guide-content-pager-previous a {
   background-image: none;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a.disabled,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a[disabled],
-fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pager-previous a,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a.disabled:hover,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a[disabled]:hover,
-fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pager-previous a:hover,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a.disabled:focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a[disabled]:focus,
-fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pager-previous a:focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a.disabled.focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a[disabled].focus,
-fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pager-previous a.focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a.disabled:active,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a[disabled]:active,
-fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pager-previous a:active,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a.disabled.active,
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a[disabled].active,
-fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pager-previous a.active {
+.guide .guide-content-pager .guide-content-pager-previous a.disabled,
+.guide .guide-content-pager .guide-content-pager-previous a[disabled],
+fieldset[disabled] .guide .guide-content-pager .guide-content-pager-previous a,
+.guide .guide-content-pager .guide-content-pager-previous a.disabled:hover,
+.guide .guide-content-pager .guide-content-pager-previous a[disabled]:hover,
+fieldset[disabled] .guide .guide-content-pager .guide-content-pager-previous a:hover,
+.guide .guide-content-pager .guide-content-pager-previous a.disabled:focus,
+.guide .guide-content-pager .guide-content-pager-previous a[disabled]:focus,
+fieldset[disabled] .guide .guide-content-pager .guide-content-pager-previous a:focus,
+.guide .guide-content-pager .guide-content-pager-previous a.disabled.focus,
+.guide .guide-content-pager .guide-content-pager-previous a[disabled].focus,
+fieldset[disabled] .guide .guide-content-pager .guide-content-pager-previous a.focus,
+.guide .guide-content-pager .guide-content-pager-previous a.disabled:active,
+.guide .guide-content-pager .guide-content-pager-previous a[disabled]:active,
+fieldset[disabled] .guide .guide-content-pager .guide-content-pager-previous a:active,
+.guide .guide-content-pager .guide-content-pager-previous a.disabled.active,
+.guide .guide-content-pager .guide-content-pager-previous a[disabled].active,
+fieldset[disabled] .guide .guide-content-pager .guide-content-pager-previous a.active {
   background-color: #025da6;
   border-color: #024f8d;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a .badge {
+.guide .guide-content-pager .guide-content-pager-previous a .badge {
   color: #025da6;
   background-color: #ffffff;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-previous a:before {
+.guide .guide-content-pager .guide-content-pager-previous a:before {
   font-size: 18px;
   content: "\f053";
   font-family: FontAwesome;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-next {
-  position: relative;
-  float: left;
-  width: 66.66666667%;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
+.guide .guide-content-pager .guide-content-pager-next {
+  float: right;
+  min-width: 200px;
   text-align: right;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-next a {
+@media (min-width: 768px) {
+  .guide .guide-content-pager .guide-content-pager-next {
+    float: left;
+    margin-left: 20px;
+  }
+}
+.guide .guide-content-pager .guide-content-pager-next a {
   padding: 5px 10px;
   font-size: 14px;
   line-height: 1.5;
@@ -8873,32 +8948,32 @@ fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pag
   border-color: #024f8d;
   display: block;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-next a:focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a:active:focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a.active:focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a.focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a:active.focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a.active.focus {
+.guide .guide-content-pager .guide-content-pager-next a:focus,
+.guide .guide-content-pager .guide-content-pager-next a:active:focus,
+.guide .guide-content-pager .guide-content-pager-next a.active:focus,
+.guide .guide-content-pager .guide-content-pager-next a.focus,
+.guide .guide-content-pager .guide-content-pager-next a:active.focus,
+.guide .guide-content-pager .guide-content-pager-next a.active.focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-next a:hover,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a:focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a.focus {
+.guide .guide-content-pager .guide-content-pager-next a:hover,
+.guide .guide-content-pager .guide-content-pager-next a:focus,
+.guide .guide-content-pager .guide-content-pager-next a.focus {
   color: #333333;
   text-decoration: none;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-next a:active,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a.active {
+.guide .guide-content-pager .guide-content-pager-next a:active,
+.guide .guide-content-pager .guide-content-pager-next a.active {
   outline: 0;
   background-image: none;
   -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-next a.disabled,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a[disabled],
-fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pager-next a {
+.guide .guide-content-pager .guide-content-pager-next a.disabled,
+.guide .guide-content-pager .guide-content-pager-next a[disabled],
+fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a {
   cursor: not-allowed;
   pointer-events: none;
   opacity: 0.65;
@@ -8906,64 +8981,48 @@ fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pag
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-next a:hover,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a:focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a.focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a:active,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a.active,
-.open > .dropdown-toggle.guide .guide-content .guide-content-pager .guide-content-pager-next a {
+.guide .guide-content-pager .guide-content-pager-next a:hover,
+.guide .guide-content-pager .guide-content-pager-next a:focus,
+.guide .guide-content-pager .guide-content-pager-next a.focus,
+.guide .guide-content-pager .guide-content-pager-next a:active,
+.guide .guide-content-pager .guide-content-pager-next a.active,
+.open > .dropdown-toggle.guide .guide-content-pager .guide-content-pager-next a {
   color: #ffffff;
   background-color: #014174;
   border-color: #012d50;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-next a:active,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a.active,
-.open > .dropdown-toggle.guide .guide-content .guide-content-pager .guide-content-pager-next a {
+.guide .guide-content-pager .guide-content-pager-next a:active,
+.guide .guide-content-pager .guide-content-pager-next a.active,
+.open > .dropdown-toggle.guide .guide-content-pager .guide-content-pager-next a {
   background-image: none;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-next a.disabled,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a[disabled],
-fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pager-next a,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a.disabled:hover,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a[disabled]:hover,
-fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pager-next a:hover,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a.disabled:focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a[disabled]:focus,
-fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pager-next a:focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a.disabled.focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a[disabled].focus,
-fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pager-next a.focus,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a.disabled:active,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a[disabled]:active,
-fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pager-next a:active,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a.disabled.active,
-.guide .guide-content .guide-content-pager .guide-content-pager-next a[disabled].active,
-fieldset[disabled] .guide .guide-content .guide-content-pager .guide-content-pager-next a.active {
+.guide .guide-content-pager .guide-content-pager-next a.disabled,
+.guide .guide-content-pager .guide-content-pager-next a[disabled],
+fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a,
+.guide .guide-content-pager .guide-content-pager-next a.disabled:hover,
+.guide .guide-content-pager .guide-content-pager-next a[disabled]:hover,
+fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a:hover,
+.guide .guide-content-pager .guide-content-pager-next a.disabled:focus,
+.guide .guide-content-pager .guide-content-pager-next a[disabled]:focus,
+fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a:focus,
+.guide .guide-content-pager .guide-content-pager-next a.disabled.focus,
+.guide .guide-content-pager .guide-content-pager-next a[disabled].focus,
+fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.focus,
+.guide .guide-content-pager .guide-content-pager-next a.disabled:active,
+.guide .guide-content-pager .guide-content-pager-next a[disabled]:active,
+fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a:active,
+.guide .guide-content-pager .guide-content-pager-next a.disabled.active,
+.guide .guide-content-pager .guide-content-pager-next a[disabled].active,
+fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.active {
   background-color: #025da6;
   border-color: #024f8d;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-next a .badge {
+.guide .guide-content-pager .guide-content-pager-next a .badge {
   color: #025da6;
   background-color: #ffffff;
 }
-.guide .guide-content .guide-content-pager .guide-content-pager-next a:after {
+.guide .guide-content-pager .guide-content-pager-next a:after {
   font-size: 18px;
   content: "  \f054";
   font-family: FontAwesome;
-}
-@media (min-width: 992px) {
-  .guide .guide-content {
-    float: left;
-    width: 66.66666667%;
-  }
-}
-@media (min-width: 480px) and (min-width: 992px) {
-  .guide .guide-content {
-    right: 33.33333333%;
-  }
-}
-@media (min-width: 480px) {
-  .guide .guide-content .guide-content-sidebar-bottom {
-    display: none;
-  }
 }

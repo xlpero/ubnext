@@ -1,0 +1,29 @@
+.two-col-right {
+	.container();
+	.two-col-right-inner-wrapper {
+		.make-row();
+		#main {
+			.make-md-column(8);
+			@media (min-width: @screen-xs-min) {
+				.make-md-column-pull(4);
+			}
+		//	background-color: red;
+		}
+
+		#sidebar {
+			.make-md-column(4);
+			@media (min-width: @screen-xs-min) {
+				.make-md-column-push(8);
+			}
+			/*background-color: blue;*/
+		}
+
+		#sidebar-mobile-only {
+			.make-md-column(8);
+			@media (min-width: @screen-sm-min) {
+				display: none;
+			}
+
+		}
+	}
+}

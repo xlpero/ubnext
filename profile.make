@@ -113,7 +113,7 @@ projects[panels_everywhere][subdir] = contrib
 
 
 ; Slate
-projects[slate][version] = 2.0-alpha5
+projects[slate][version] = 2.0-alpha6
 projects[slate][subdir] = contrib
 
 

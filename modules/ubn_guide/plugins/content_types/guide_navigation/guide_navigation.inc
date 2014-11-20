@@ -37,27 +37,30 @@ function ubn_guide_guide_navigation_content_type_render($subtype, $conf, $panel_
   $block = new stdClass();
   $block->title = t('Guide Navigation');
 
-  $links = array();
+  $args = array(
+    'next' => FALSE,
+    'prev' => FALSE,
+  );
 
-  $prev = ubn_guide_find_prev_chapter($node);
+  if (($nid = ubn_guide_find_next_chapter($node)) !== FALSE) {
+    $next = entity_metadata_wrapper('node', $nid);
 
-  if ($prev !== FALSE) {
-    $links[] = array(
-      'title' => t('Prev'),
-      'href' => "node/$prev",
+    $args['next'] = array(
+      'label' => $next->label(),
+      'url' => url("node/{$nid}"),
     );
   }
 
-  $next = ubn_guide_find_next_chapter($node);
+  if (($nid = ubn_guide_find_prev_chapter($node)) !== FALSE) {
+    $prev = entity_metadata_wrapper('node', $nid);
 
-  if ($next !== FALSE) {
-    $links[] = array(
-      'title' => t('Next'),
-      'href' => "node/$next",
+    $args['prev'] = array(
+      'label' => $prev->label(),
+      'url' => url("node/{$nid}"),
     );
   }
 
-  $block->content = theme('links', array('links' => $links));
+  $block->content = slate_render('guide-navigation', $args);
 
   return $block;
 }

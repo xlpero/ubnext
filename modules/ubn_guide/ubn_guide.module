@@ -26,7 +26,7 @@ function ubn_guide_path_update($path) {
     return;
   }
 
-  $children = array_keys(ubg_guide_get_children($node->nid, 1));
+  $children = array_keys(ubn_guide_get_children($node->nid, 1));
 
   if (empty($children)) {
     return;
@@ -43,7 +43,9 @@ function ubn_guide_path_update($path) {
 }
 
 /**
- * Get root node.
+ * Get root node
+ *
+ * @todo use ubn_guide_get_parents()
  */
 function ubn_guide_get_root(EntityDrupalWrapper $node) {
   switch ($node->getBundle()) {
@@ -63,7 +65,7 @@ function ubn_guide_get_root(EntityDrupalWrapper $node) {
  *
  * @todo cache?
  */
-function ubg_guide_get_children($nid, $depth = -1) {
+function ubn_guide_get_children($nid, $depth = -1) {
   $children = array();
 
   if ($depth === 0) {
@@ -83,11 +85,27 @@ function ubg_guide_get_children($nid, $depth = -1) {
 
   if (!empty($result['node'])) {
     foreach ($result['node'] as $child) {
-      $children[$child->nid] = ubg_guide_get_children($child->nid, $depth - 1);
+      $children[$child->nid] = ubn_guide_get_children($child->nid, $depth - 1);
     }
   }
 
   return $children;
+}
+
+/**
+ * Return a list of parents.
+ */
+function ubn_guide_get_parents(EntityDrupalWrapper $node) {
+  switch ($node->getBundle()) {
+    case 'guide':
+      return array();
+
+    case 'guide_chapter':
+      return array_merge(array($node->field_guide_chapter_parent->getIdentifier()), ubn_guide_get_parents($node->field_guide_chapter_parent));
+
+    default:
+      throw new Exception('Invalid bundle.');
+  }
 }
 
 /**
@@ -117,7 +135,7 @@ function ubn_guide_find_prev_chapter(EntityDrupalWrapper $node) {
     return FALSE;
   }
 
-  $children = ubg_guide_get_children($root->getIdentifier());
+  $children = ubn_guide_get_children($root->getIdentifier());
   $flatten = ubn_guide_flatten($children);
 
   $index = array_search($node->getIdentifier(), $flatten);
@@ -135,7 +153,7 @@ function ubn_guide_find_prev_chapter(EntityDrupalWrapper $node) {
 function ubn_guide_find_next_chapter(EntityDrupalWrapper $node) {
   $root = ubn_guide_get_root($node);
 
-  $children = ubg_guide_get_children($root->getIdentifier());
+  $children = ubn_guide_get_children($root->getIdentifier());
 
   if (empty($children)) {
     return FALSE;

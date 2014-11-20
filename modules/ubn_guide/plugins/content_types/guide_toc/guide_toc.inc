@@ -37,58 +37,64 @@ function ubn_guide_guide_toc_content_type_render($subtype, $conf, $panel_args, $
   $block = new stdClass();
   $block->title = t('Table of Contents');
 
-  $tree = _ubn_guide_generate_toc_tree($node);
+  $tree = _ubn_guide_generate_tree($node);
 
-  $block->content = theme('item_list', array('items' => $tree));
+  $block->content = slate_render('guide-toc', array('tree' => drupal_render($tree)));
 
   return $block;
 }
 
 /**
- * Generate ToC tree.
+ * Generate ToC tree to be used with item_list.
  */
-function _ubn_guide_generate_toc_tree(EntityDrupalWrapper $current, &$flat = array(), EntityDrupalWrapper $child = NULL, $data = array()) {
-  $items = array();
-
-  $children = ubg_guide_get_children($current->getIdentifier(), 1);
-  foreach (array_keys($children) as $id) {
-    $flat[] = $id;
-    $items[$id] = array();
+function _ubn_guide_generate_tree($node, $tree = NULL, $parents = NULL, $nodes = NULL) {
+  if ($tree === NULL) {
+    $root = ubn_guide_get_root($node);
+    $tree = ubn_guide_get_children($root->getIdentifier());
+    $flat = ubn_guide_flatten($tree);
+    $nodes = array_map(function($entity) { return entity_metadata_wrapper('node', $entity); }, entity_load('node', $flat));
+    $parents = ubn_guide_get_parents($node);
   }
 
-  if (!empty($data)) {
-    $items[$child->getIdentifier()] = $data;
-  }
+  $build = array(
+    '#sorted' => TRUE,
+    '#theme_wrappers' => array('menu_tree'),
+  );
 
-  // If current is of type guide, we have reached the root node.
-  if ($current->getBundle() === 'guide') {
-    $nodes = entity_load('node', array_values($flat));
-
-    return _ubn_guide_populate_toc_tree($items, $nodes);
-  }
-
-  return _ubn_guide_generate_toc_tree($current->field_guide_chapter_parent, $flat, $current, $items);
-}
-
-/**
- * Populate ToC tree.
- */
-function _ubn_guide_populate_toc_tree($tree, $nodes) {
-  $items = array();
-
-  foreach ($tree as $nid => $children) {
-    $node = entity_metadata_wrapper('node', $nodes[$nid]);
-
-    $item = array(
-      'data' => l($node->label(), "node/{$node->getIdentifier()}"),
+  foreach ($tree as $id => $children) {
+    $link = array(
+      '#theme' => 'menu_link',
+      '#title' => $nodes[$id]->label(),
+      '#href' => "node/{$nodes[$id]->getIdentifier()}",
+      '#localized_options' => array(),
+      '#attributes' => array(),
+      '#below' => array(),
     );
 
-    if (!empty($children)) {
-      $item['children'] = _ubn_guide_populate_toc_tree($children, $nodes);
+    // We don't need active-trail right now.
+    // if ($id == $node->getIdentifier()) {
+    //   $link['#attributes']['class'][] = 'active-trail';
+    // }
+
+    if (empty($children)) {
+      $link['#attributes']['class'][] = 'leaf';
+    }
+    else {
+      if (in_array($id, $parents) || $id == $node->getIdentifier()) {
+        $link['#attributes']['class'][] = 'expanded';
+
+        // We don't need active-trail right now.
+        // $link['#attributes']['class'][] = 'active-trail';
+      }
+      else {
+        $link['#attributes']['class'][] = 'collapsed';
+      }
+
+      $link['#below']['children'] = _ubn_guide_generate_tree($node, $children, $parents, $nodes);
     }
 
-    $items[] = $item;
+    $build[] = $link;
   }
 
-  return $items;
+  return $build;
 }

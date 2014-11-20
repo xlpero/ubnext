@@ -3,6 +3,13 @@
   models[guide_chapter] = entity:node
   view_mode[node][guide_chapter] = full
 #}
-{{ guide_chapter.label }}
-{{ guide_chapter.field_guide_chapter_lead.value | raw }}
-{{ guide_chapter.field_guide_chapter_body.value | raw }}
+<div class="guide">
+	<div class="guide-content">
+		<h2>{{ guide_chapter.label }}</h2>
+		<p class="lead">
+			{{ guide_chapter.field_guide_chapter_lead.value | raw }}
+		</p>
+		{{ guide_chapter.field_guide_chapter_body.value | raw }}
+	</div>
+</div>
+
