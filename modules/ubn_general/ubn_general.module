@@ -39,7 +39,9 @@ function ubn_general_strnatcmp($left, $right) {
         break;
     }
 
-    return collator_compare($coll, $left, $right);
+    $coll->setAttribute(Collator::NUMERIC_COLLATION, Collator::ON);
+
+    return $coll->compare($left, $right);
   }
 
   return strnatcmp($left, $right);

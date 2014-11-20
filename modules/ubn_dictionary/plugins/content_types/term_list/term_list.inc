@@ -54,6 +54,12 @@ function ubn_dictionary_term_list_content_type_render($subtype, $conf, $panel_ar
 
     $key = mb_substr($term->label(), 0, 1);
 
+    $key = drupal_strtolower($key);
+
+    if (!isset($list[$key])) {
+      $key = '0-9';
+    }
+
     $list[$key][$term->label()] = array(
       'label' => $term->label(),
       'entity' => $term,
@@ -63,6 +69,12 @@ function ubn_dictionary_term_list_content_type_render($subtype, $conf, $panel_ar
     foreach ($term->field_dictionary_term_synonyms as $synonym) {
       $key = mb_substr($synonym->value(), 0, 1);
 
+      $key = drupal_strtolower($key);
+
+      if (!isset($list[$key])) {
+        $key = '0-9';
+      }
+      
       $list[$key][$synonym->value()] = array(
         'label' => $synonym->value(),
         'entity' => $term,

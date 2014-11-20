@@ -23,15 +23,17 @@ function ubn_dictionary_get_index() {
   global $language;
 
   $list = array(
-    'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
-    'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+    'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+    'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
   );
 
   if ($language->language === 'sv') {
-    $list[] = 'Å';
-    $list[] = 'Ä';
-    $list[] = 'Ö';
+    $list[] = 'å';
+    $list[] = 'ä';
+    $list[] = 'ö';
   }
+
+  $list[] = '0-9';
 
   return $list;
 }
@@ -44,7 +46,7 @@ function ubn_dictionary_get_html_id($id) {
     ' ' => '-',
     '_' => '-',
     '[' => '-',
-    ']' => ''
+    ']' => '',
   ));
 
   $id = preg_replace('/[^A-Za-z0-9\-_]/', '', $id);
