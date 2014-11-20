@@ -8716,43 +8716,44 @@ header .header-inner-wrapper .header-block .left .site-headers .site-title a:hov
   }
 }
 .guide .guide-table-of-contents {
-  margin-bottom: 20px;
-}
-.guide .guide-table-of-contents .guide-table-of-contents-list {
-  padding: 10px 0;
+  padding-top: 10px;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
-  padding-left: 0;
-  list-style: none;
+  margin-bottom: 20px;
 }
-.guide .guide-table-of-contents .guide-table-of-contents-list .guide-table-of-contents-title {
+.guide .guide-table-of-contents .guide-table-of-contents-title {
   font-weight: bold;
   margin-bottom: 5px;
 }
-.guide .guide-table-of-contents .guide-table-of-contents-list ul {
+.guide .guide-table-of-contents .menu {
+  padding: 10px 0;
+  padding-left: 0;
+  list-style: none;
+}
+.guide .guide-table-of-contents .menu ul {
   margin-left: 30px;
   padding-left: 0;
   list-style: none;
 }
-.guide .guide-table-of-contents .guide-table-of-contents-list li {
+.guide .guide-table-of-contents .menu li {
   padding-bottom: 7px;
 }
-.guide .guide-table-of-contents .guide-table-of-contents-list li a {
+.guide .guide-table-of-contents .menu li a {
   display: inline-block;
   margin-left: 5px;
 }
-.guide .guide-table-of-contents .guide-table-of-contents-list li a.active {
+.guide .guide-table-of-contents .menu li a.active {
   color: #000000;
 }
-.guide .guide-table-of-contents .guide-table-of-contents-list li.collapsed:before {
+.guide .guide-table-of-contents .menu li.collapsed:before {
   content: "\f0da ";
   font-family: FontAwesome;
 }
-.guide .guide-table-of-contents .guide-table-of-contents-list li.expanded:before {
+.guide .guide-table-of-contents .menu li.expanded:before {
   content: "\f0d7 ";
   font-family: FontAwesome;
 }
-.guide .guide-table-of-contents .guide-table-of-contents-list li.leaf:before {
+.guide .guide-table-of-contents .menu li.leaf:before {
   content: '';
 }
 .guide .guide-content img {

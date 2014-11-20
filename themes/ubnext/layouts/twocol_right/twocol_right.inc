@@ -3,7 +3,6 @@
  * @file
  */
 
-
 $plugin = array(
   'title' => t('Two column, right'),
   'theme' => 'twocol_right',

@@ -41,6 +41,8 @@ function ubn_guide_guide_toc_content_type_render($subtype, $conf, $panel_args, $
 
   $block->content = slate_render('guide-toc', array('tree' => drupal_render($tree)));
 
+
+  //$block->content = slate_render('guide-toc', $args);
   return $block;
 }
 
@@ -90,7 +92,7 @@ function _ubn_guide_generate_tree($node, $tree = NULL, $parents = NULL, $nodes =
         $link['#attributes']['class'][] = 'collapsed';
       }
 
-      $link['#below']['children'] = _ubn_guide_generate_tree($node, $children, $parents, $nodes);
+      $link['below']['children'] = _ubn_guide_generate_tree($node, $children, $parents, $nodes);
     }
 
     $build[] = $link;
