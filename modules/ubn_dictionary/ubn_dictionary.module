@@ -20,26 +20,16 @@ function ubn_dictionary_ctools_plugin_directory($owner, $plugin_type) {
  * Return a list of chars to use as index.
  */
 function ubn_dictionary_get_index() {
-  global $language;
 
-  $list = array(
+  return array(
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+    'å', 'ä', 'ö', '0-9',
   );
-
-  if ($language->language === 'sv') {
-    $list[] = 'å';
-    $list[] = 'ä';
-    $list[] = 'ö';
-  }
-
-  $list[] = '0-9';
-
-  return $list;
 }
 
 /**
- *
+ * Generates html IDs for Terms.
  */
 function ubn_dictionary_get_html_id($id) {
   $id = strtr(drupal_strtolower($id), array(
@@ -49,7 +39,6 @@ function ubn_dictionary_get_html_id($id) {
     ']' => '',
   ));
 
-  $id = preg_replace('/[^A-Za-z0-9\-_]/', '', $id);
   $id = preg_replace('/\-+/', '-', $id);
 
   return $id;
