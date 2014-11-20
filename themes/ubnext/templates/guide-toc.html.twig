@@ -1,13 +1,12 @@
 {# slate
   name = Guide: Table of Contents.
   models[tree] = item
-  models[title] = item
+  models[root] = item
 #}
 
 <div class="guide">
-
 	<div class="guide-table-of-contents">
-		<div class="guide-table-of-contents-title">{{title}}</div>
+		<div class="guide-table-of-contents-title"><a href="{{ root.url }}">{{ root.label }}</a></div>
 		{{ tree | raw }}
 	</div>
 </div>
