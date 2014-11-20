@@ -6,7 +6,7 @@
 
 <div class="guide">
 	<div class="guide-table-of-contents">
-		<div class="guide-table-of-contents-title"><a href="{{ root.url }}">{{ root.label }}</a></div>
+		<div class="guide-table-of-contents-title"><a href="{{ root.url }}" {{ root.active ? 'class="active"' : '' }}>{{ root.label }}</a></div>
 		{{ tree | raw }}
 	</div>
 </div>
