@@ -38,6 +38,8 @@ function ubn_guide_guide_toc_content_type_render($subtype, $conf, $panel_args, $
   $block->title = t('Table of Contents');
   $block->content = _ubn_guide_generate_tree($node);
 
+
+  //$block->content = slate_render('guide-toc', $args);
   return $block;
 }
 
@@ -87,7 +89,7 @@ function _ubn_guide_generate_tree($node, $tree = NULL, $parents = NULL, $nodes =
         $link['#attributes']['class'][] = 'collapsed';
       }
 
-      $link['#below']['children'] = _ubn_guide_generate_tree($node, $children, $parents, $nodes);
+      $link['below']['children'] = _ubn_guide_generate_tree($node, $children, $parents, $nodes);
     }
 
     $build[] = $link;
