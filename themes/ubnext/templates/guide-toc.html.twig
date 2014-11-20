@@ -1,10 +1,13 @@
 {# slate
   name = Guide: Table of Contents.
   models[tree] = item
+  models[title] = item
 #}
 
 <div class="guide">
+
 	<div class="guide-table-of-contents">
+		<div class="guide-table-of-contents-title">{{title}}</div>
 		{{ tree | raw }}
 	</div>
 </div>
