@@ -8,6 +8,76 @@ include_once 'ubn_dictionary.features.inc';
 
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function ubn_dictionary_form_dictionary_term_node_form_alter(&$form, $form_state) {
+  $form['#validate'][] =  '_ubn_dictionary_dictionary_term_node_form_validate';
+}
+
+/**
+ * Validate callback; dictionary_term_node_form.
+ */
+function _ubn_dictionary_dictionary_term_node_form_validate($form, $form_state) {
+  $wrapper = entity_metadata_wrapper('node', $form_state['node']);
+  $entity_id = $wrapper->getIdentifier();
+
+  $lang = $form['title_field']['#language'];
+  $value = $form_state['values']['title_field'][$lang][0]['value'];
+
+  $result = _ubn_dictionary_validate_term($value, 'title_field', $entity_id);
+
+  if (!empty($result['node'])) {
+    form_set_error('title_field', t('Term has to be unique.'));
+  }
+
+  $result = _ubn_dictionary_validate_term($value, 'field_dictionary_term_synonyms');
+
+  if (!empty($result['node'])) {
+    form_set_error('title_field', t('Term has to be unique.'));
+  }
+
+  $lang = $form['field_dictionary_term_synonyms']['#language'];
+  foreach ($form_state['values']['field_dictionary_term_synonyms'][$lang] as $i => $summary) {
+    if (empty($summary['value'])) {
+      continue;
+    }
+
+    $value = $summary['value'];
+
+    $result = _ubn_dictionary_validate_term($value, 'title_field');
+
+    if (!empty($result['node'])) {
+      form_set_error("field_dictionary_term_synonyms][{$lang}][{$i}", t('Term has to be unique.'));
+    }
+
+    $result = _ubn_dictionary_validate_term($value, 'field_dictionary_term_synonyms', $entity_id);
+
+    if (!empty($result['node'])) {
+      form_set_error("field_dictionary_term_synonyms][{$lang}][{$i}", t('Term has to be unique.'));
+    }
+  }
+}
+
+/**
+ * Helper function to validate term and synonyms.
+ */
+function _ubn_dictionary_validate_term($term, $field, $skip = NULL) {
+  $query = new EntityFieldQuery();
+
+  $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'dictionary_term')
+    ->fieldCondition($field, 'value', $term, '=')
+    ->addTag('DANGEROUS_ACCESS_CHECK_OPT_OUT');
+
+  if ($skip !== NULL) {
+    $query->entityCondition('entity_id', $skip, '!=');
+  }
+
+  return $query->execute();
+}
+
+/**
  * Implements hook_ctools_plugin_directory().
  */
 function ubn_dictionary_ctools_plugin_directory($owner, $plugin_type) {
