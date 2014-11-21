@@ -2,7 +2,9 @@
   name = Dictionary: Term List
   models[list] = item
 #}
-<div class="a-z">
+
+
+<div id="az" class="a-z">
     <ul class="menu">
         {% for key, terms in list  %}
             {% if (terms is empty) %}
@@ -27,8 +29,11 @@
                             {% endif %}
                         </li>
                     {% endfor %}
+                     <a class="back-to-top" href="#header">{{t('Tillbaka till A-Ö')}}</a>
                 </ul>
+
             </li>
+           
         {% endfor %}
     </ul>
    

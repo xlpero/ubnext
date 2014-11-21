@@ -9112,6 +9112,7 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
 }
 .a-z .alphabetic-list {
   float: left;
+  min-width: 320px;
   max-width: 640px;
   padding-left: 0;
   list-style: none;

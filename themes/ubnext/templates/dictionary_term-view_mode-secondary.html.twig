@@ -3,4 +3,6 @@
   models[dictionary_term] = entity:node
   view_mode[node][dictionary_term] = secondary
 #}
+<p>
 {{ t('See <a href="#@anchor">@term</a>', {'@anchor': ubn_dictionary_get_html_id(dictionary_term.label), '@term': dictionary_term.label}) | raw }}
+</p>
