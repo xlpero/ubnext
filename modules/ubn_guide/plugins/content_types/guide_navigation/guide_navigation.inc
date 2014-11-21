@@ -44,19 +44,21 @@ function ubn_guide_guide_navigation_content_type_render($subtype, $conf, $panel_
 
   if (($nid = ubn_guide_find_next_chapter($node)) !== FALSE) {
     $next = entity_metadata_wrapper('node', $nid);
+    $uri = entity_uri('node', $next->value());
 
     $args['next'] = array(
       'label' => $next->label(),
-      'url' => url("node/{$nid}"),
+      'url' => url($uri['path']),
     );
   }
 
   if (($nid = ubn_guide_find_prev_chapter($node)) !== FALSE) {
     $prev = entity_metadata_wrapper('node', $nid);
+    $uri = entity_uri('node', $prev->value());
 
     $args['prev'] = array(
       'label' => $prev->label(),
-      'url' => url("node/{$nid}"),
+      'url' => url($uri['path']),
     );
   }
 

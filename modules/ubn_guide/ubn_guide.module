@@ -17,6 +17,31 @@ function ubn_guide_ctools_plugin_directory($owner, $plugin_type) {
 }
 
 /**
+ * Implements hook_entity_info_alter().
+ */
+function ubn_guide_entity_info_alter(&$entity_info) {
+  $entity_info['node']['bundles']['guide_chapter']['uri callback'] = '_ubn_guide_chapter_uri';
+}
+
+/**
+ * Override node_uri for chapters that are the first chapter in a guide.
+ */
+function _ubn_guide_chapter_uri($node) {
+  $chapter = entity_metadata_wrapper('node', $node);
+
+  $root = ubn_guide_get_root($chapter);
+  $children = array_keys(ubn_guide_get_children($root->getIdentifier(), 1));
+
+  $index = array_search($chapter->getIdentifier(), $children);
+
+  if ($index === 0) {
+    return node_uri($root->value());
+  }
+
+  return node_uri($node);
+}
+
+/**
  * Implements hook_path_update().
  */
 function ubn_guide_path_update($path) {

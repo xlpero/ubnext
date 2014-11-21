@@ -76,10 +76,12 @@ function _ubn_guide_generate_tree($node, $tree = NULL, $parents = NULL, $nodes =
   );
 
   foreach ($tree as $id => $children) {
+    $uri = entity_uri('node', $nodes[$id]->value());
+
     $link = array(
       '#theme' => 'menu_link',
       '#title' => $nodes[$id]->label(),
-      '#href' => "node/{$nodes[$id]->getIdentifier()}",
+      '#href' => $uri['path'],
       '#localized_options' => array(),
       '#attributes' => array(),
       '#below' => array(),
