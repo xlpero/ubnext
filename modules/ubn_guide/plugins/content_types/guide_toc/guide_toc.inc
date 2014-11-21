@@ -39,6 +39,10 @@ function ubn_guide_guide_toc_content_type_render($subtype, $conf, $panel_args, $
 
   $tree = _ubn_guide_generate_tree($node);
 
+  if (count(element_children($tree)) < 2) {
+    return $block;
+  }
+
   $root = ubn_guide_get_root($node);
   $root_path = "node/{$root->getIdentifier()}";
 

@@ -60,6 +60,10 @@ function ubn_guide_guide_navigation_content_type_render($subtype, $conf, $panel_
     );
   }
 
+  if ($args['next'] === FALSE && $args['prev'] === FALSE) {
+    return $block;
+  }
+
   $block->content = slate_render('guide-navigation', $args);
 
   return $block;
