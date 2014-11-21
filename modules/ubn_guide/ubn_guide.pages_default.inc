@@ -17,7 +17,7 @@ function ubn_guide_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = 0;
+  $handler->weight = -29;
   $handler->conf = array(
     'title' => 'Guide',
     'no_blocks' => 0,
@@ -27,7 +27,15 @@ function ubn_guide_default_page_manager_handlers() {
     'css_id' => '',
     'css' => '',
     'contexts' => array(),
-    'relationships' => array(),
+    'relationships' => array(
+      0 => array(
+        'identifier' => 'First chapter from Guide',
+        'keyword' => 'first_chapter',
+        'name' => 'first_chapter',
+        'context' => 'argument_entity_id:node_1',
+        'id' => 1,
+      ),
+    ),
     'access' => array(
       'plugins' => array(
         0 => array(
@@ -79,7 +87,7 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'context' => 'argument_entity_id:node_1',
+      'context' => 'relationship_first_chapter_1',
       'override_title' => 1,
       'override_title_text' => '',
     );
@@ -104,7 +112,7 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->access = array();
     $pane->configuration = array(
       'view_mode' => 'full',
-      'context' => 'argument_entity_id:node_1',
+      'context' => 'relationship_first_chapter_1',
       'override_title' => 0,
       'override_title_text' => '',
     );
@@ -128,7 +136,7 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'context' => 'argument_entity_id:node_1',
+      'context' => 'relationship_first_chapter_1',
       'override_title' => 1,
       'override_title_text' => '',
     );
@@ -152,7 +160,7 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'context' => 'argument_entity_id:node_1',
+      'context' => 'relationship_first_chapter_1',
       'override_title' => 1,
       'override_title_text' => '',
     );
@@ -176,7 +184,7 @@ function ubn_guide_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'context' => 'argument_entity_id:node_1',
+      'context' => 'relationship_first_chapter_1',
       'override_title' => 1,
       'override_title_text' => '',
     );
@@ -203,7 +211,7 @@ function ubn_guide_default_page_manager_handlers() {
   $handler->task = 'node_view';
   $handler->subtask = '';
   $handler->handler = 'panel_context';
-  $handler->weight = 1;
+  $handler->weight = -28;
   $handler->conf = array(
     'title' => 'Guide: Chapter',
     'no_blocks' => 0,
