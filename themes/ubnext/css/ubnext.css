@@ -8237,6 +8237,13 @@ body {
 a {
   text-decoration: underline;
 }
+a[href^="http"]:after {
+  content: " \f08e";
+  font-family: FontAwesome;
+  display: inline-block;
+  padding-left: 5px;
+  font-size: .8em;
+}
 img {
   margin-bottom: 20px;
 }
@@ -8298,7 +8305,7 @@ img {
   padding: 10px;
   font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
   font-size: 1.125em;
-  color: #000000;
+  color: #292f33;
   text-transform: uppercase;
   text-decoration: none;
 }
@@ -8321,7 +8328,7 @@ img {
   padding: 10px;
   font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
   font-size: 1.125em;
-  color: #000000;
+  color: #292f33;
   text-transform: uppercase;
   text-decoration: none;
 }
@@ -8336,7 +8343,7 @@ img {
 .main-navigation-wrapper .main-navigation-inner-wrapper .secondary > a {
   padding: 10px;
   font-size: 24px;
-  color: #000000;
+  color: #292f33;
 }
 .main-navigation-wrapper .main-navigation-inner-wrapper .secondary .secondary-navigation {
   background-color: #ffffff;
@@ -8365,7 +8372,7 @@ img {
 .main-navigation-wrapper .main-navigation-inner-wrapper .secondary .secondary-navigation ul li a {
   text-transform: uppercase;
   font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
-  color: #000000;
+  color: #292f33;
   display: block;
 }
 .main-navigation-wrapper .main-navigation-inner-wrapper .secondary .secondary-navigation ul li:last-child {
@@ -8442,7 +8449,7 @@ header .header-inner-wrapper .header-block .right nav ul li {
   float: left;
 }
 header .header-inner-wrapper .header-block .right nav ul li a {
-  color: #000000;
+  color: #292f33;
   font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
 }
 header .header-inner-wrapper .header-block .right nav ul li + li {
@@ -8474,7 +8481,7 @@ header .header-inner-wrapper .header-block .left .site-headers .site-title a {
   text-decoration: none;
   font-family: NimbusSanNovCon-Bol;
   font-size: 28px;
-  color: #000000;
+  color: #292f33;
 }
 header .header-inner-wrapper .header-block .left .site-headers .site-title a:hover {
   text-decoration: underline;
@@ -8586,7 +8593,7 @@ header .header-inner-wrapper .header-block .left .site-headers .site-title a:hov
   list-style: none;
 }
 .site-bottom-wrapper {
-  background-color: #000000;
+  background-color: #292f33;
 }
 .site-bottom-wrapper .site-bottom {
   margin-right: auto;
@@ -8780,7 +8787,7 @@ header .header-inner-wrapper .header-block .left .site-headers .site-title a:hov
   margin-left: 5px;
 }
 .guide .guide-table-of-contents .menu li a.active {
-  color: #000000;
+  color: #292f33;
 }
 .guide .guide-table-of-contents .menu li.collapsed:before {
   content: "\f0da ";
@@ -9146,10 +9153,6 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
 }
 .a-z .alphabetic-list .alphabetic-letter-terms:after {
   clear: both;
-}
-.a-z .alphabetic-list .alphabetic-letter-terms a[href^="http"]:after {
-  content: " \f08e";
-  font-family: FontAwesome;
 }
 .a-z .alphabetic-list .alphabetic-letter-terms .back-to-top {
   float: right;
