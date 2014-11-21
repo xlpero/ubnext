@@ -4,7 +4,9 @@
  */
 
 
-
+/**
+ *
+ */
 function ubnext_links__locale_block($variables) {
   global $language;
   unset($variables['links'][$language->language]);
@@ -12,9 +14,34 @@ function ubnext_links__locale_block($variables) {
   return theme('links', $variables);
 }
 
-
-
+/**
+ *
+ */
 function ubnext_preprocess_html(&$vars) {
+  // If the Guide feature is enabled, add chapter-1 class to body if the first
+  // chapter on a guide is active.
+  if (module_exists('ubn_guide')) {
+    $page = page_manager_get_current_page();
+
+    if ($page['task']['name'] === 'node_view') {
+      $node = entity_metadata_wrapper('node', reset($page['contexts'])->data);
+
+      if ($node->getBundle() === 'guide') {
+        $vars['classes_array'][] = 'chapter-1';
+      }
+      elseif ($node->getBundle() === 'guide_chapter') {
+        $root = ubn_guide_get_root($node);
+        $children = array_keys(ubn_guide_get_children($root->getIdentifier(), 1));
+
+        $index = array_search($node->getIdentifier(), $children);
+
+        if ($index === 0) {
+          $vars['classes_array'][] = 'chapter-1';
+        }
+      }
+    }
+  }
+
   $vars['classes_array'][] = 'new-class';
 }
 
