@@ -21,21 +21,23 @@ function _ubn_dictionary_dictionary_term_node_form_validate($form, $form_state) 
   $wrapper = entity_metadata_wrapper('node', $form_state['node']);
   $entity_id = $wrapper->getIdentifier();
 
+  // Title.
   $lang = $form['title_field']['#language'];
-  $value = $form_state['values']['title_field'][$lang][0]['value'];
+  $title = $form_state['values']['title_field'][$lang][0]['value'];
 
-  $result = _ubn_dictionary_validate_term($value, 'title_field', $entity_id);
-
-  if (!empty($result['node'])) {
+  // Check database for titles.
+  $result = _ubn_dictionary_validate_term($title, 'title_field', $entity_id);
+  if (!empty($result)) {
     form_set_error('title_field', t('Term has to be unique.'));
   }
 
-  $result = _ubn_dictionary_validate_term($value, 'field_dictionary_term_synonyms');
-
-  if (!empty($result['node'])) {
+  // Check database for synonyms.
+  $result = _ubn_dictionary_validate_term($title, 'field_dictionary_term_synonyms', $entity_id);
+  if (!empty($result)) {
     form_set_error('title_field', t('Term has to be unique.'));
   }
 
+  // Synonyms.
   $lang = $form['field_dictionary_term_synonyms']['#language'];
   foreach ($form_state['values']['field_dictionary_term_synonyms'][$lang] as $i => $summary) {
     if (empty($summary['value'])) {
@@ -44,15 +46,20 @@ function _ubn_dictionary_dictionary_term_node_form_validate($form, $form_state) 
 
     $value = $summary['value'];
 
-    $result = _ubn_dictionary_validate_term($value, 'title_field');
-
-    if (!empty($result['node'])) {
+    // Check entity title.
+    if ($value == $title) {
       form_set_error("field_dictionary_term_synonyms][{$lang}][{$i}", t('Term has to be unique.'));
     }
 
-    $result = _ubn_dictionary_validate_term($value, 'field_dictionary_term_synonyms', $entity_id);
+    // Check database for titles.
+    $result = _ubn_dictionary_validate_term($value, 'title_field', $entity_id);
+    if (!empty($result)) {
+      form_set_error("field_dictionary_term_synonyms][{$lang}][{$i}", t('Term has to be unique.'));
+    }
 
-    if (!empty($result['node'])) {
+    // Check database for synonyms.
+    $result = _ubn_dictionary_validate_term($value, 'field_dictionary_term_synonyms', $entity_id);
+    if (!empty($result)) {
       form_set_error("field_dictionary_term_synonyms][{$lang}][{$i}", t('Term has to be unique.'));
     }
   }
@@ -74,7 +81,9 @@ function _ubn_dictionary_validate_term($term, $field, $skip = NULL) {
     $query->entityCondition('entity_id', $skip, '!=');
   }
 
-  return $query->execute();
+  $result = $query->execute();
+
+  return !empty($result['node']) ? $result['node'] : array();
 }
 
 /**
@@ -90,7 +99,6 @@ function ubn_dictionary_ctools_plugin_directory($owner, $plugin_type) {
  * Return a list of chars to use as index.
  */
 function ubn_dictionary_get_index() {
-
   return array(
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
