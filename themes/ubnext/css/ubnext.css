@@ -8059,6 +8059,88 @@ header .header-inner-wrapper:after,
 .arrow {
   position: relative;
 }
+p {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+/* ####### HEADINGS ####### */
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  text-rendering: optimizeLegibility;
+  font-weight: normal;
+}
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  margin-top: 0;
+}
+h1,
+.h1 {
+  margin-top: 22px;
+  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
+  font-size: 2em;
+  margin-bottom: 24px;
+  line-height: 1.25em;
+}
+h2,
+.h2 {
+  font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
+  font-size: 1.625em;
+  line-height: 1.15384615em;
+  margin-bottom: 24px;
+}
+h3,
+.h3 {
+  font-family: 'NimbusSanNovCon-Med', "Arial Narrow", Arial, sans-serif;
+  font-size: 1.375em;
+  line-height: 1.13636364em;
+  margin-bottom: 6px;
+}
+h4,
+h4 {
+  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
+  font-size: 1.125em;
+  margin-bottom: 6px;
+}
+h5,
+.h5 {
+  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
+  font-size: 0.85em;
+  margin-bottom: 6px;
+}
+h6,
+.h6 {
+  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
+  font-size: 0.75em;
+  margin-bottom: 6px;
+}
+.lead {
+  font-size: 1.125em;
+  font-weight: bold;
+  line-height: 1.333em;
+  margin-bottom: 24px;
+}
+.btn {
+  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
+  font-size: 21px;
+}
 #skip-link {
   position: absolute;
   width: 1px;
@@ -8164,88 +8246,6 @@ a[href^="http"]:after {
 }
 img {
   margin-bottom: 20px;
-}
-p {
-  margin-top: 0;
-  margin-bottom: 24px;
-}
-/* ####### HEADINGS ####### */
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-  text-rendering: optimizeLegibility;
-  font-weight: normal;
-}
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-  margin-top: 0;
-}
-h1,
-.h1 {
-  margin-top: 22px;
-  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
-  font-size: 2em;
-  margin-bottom: 24px;
-  line-height: 1.25em;
-}
-h2,
-.h2 {
-  font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
-  font-size: 1.625em;
-  line-height: 1.15384615em;
-  margin-bottom: 24px;
-}
-h3,
-.h3 {
-  font-family: 'NimbusSanNovCon-Med', "Arial Narrow", Arial, sans-serif;
-  font-size: 1.375em;
-  line-height: 1.13636364em;
-  margin-bottom: 6px;
-}
-h4,
-h4 {
-  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
-  font-size: 1.125em;
-  margin-bottom: 6px;
-}
-h5,
-.h5 {
-  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
-  font-size: 0.85em;
-  margin-bottom: 6px;
-}
-h6,
-.h6 {
-  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
-  font-size: 0.75em;
-  margin-bottom: 6px;
-}
-.lead {
-  font-size: 1.125em;
-  font-weight: bold;
-  line-height: 1.333em;
-  margin-bottom: 24px;
-}
-.btn {
-  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
-  font-size: 21px;
 }
 .main-navigation-wrapper {
   border-top: 1px solid #ccc;
@@ -8691,11 +8691,11 @@ header .header-inner-wrapper .header-block .left .site-headers .site-title a:hov
   }
 }
 .two-col-right .two-col-right-inner-wrapper #sidebar {
+  display: none;
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
-  /*background-color: blue;*/
 }
 @media (min-width: 992px) {
   .two-col-right .two-col-right-inner-wrapper #sidebar {
@@ -8703,7 +8703,12 @@ header .header-inner-wrapper .header-block .left .site-headers .site-title a:hov
     width: 33.33333333%;
   }
 }
-@media (min-width: 480px) and (min-width: 992px) {
+@media (min-width: 768px) {
+  .two-col-right .two-col-right-inner-wrapper #sidebar {
+    display: block;
+  }
+}
+@media (min-width: 768px) and (min-width: 992px) {
   .two-col-right .two-col-right-inner-wrapper #sidebar {
     left: 66.66666667%;
   }
@@ -8759,6 +8764,13 @@ header .header-inner-wrapper .header-block .left .site-headers .site-title a:hov
     margin-left: 0;
   }
 }
+/* override two-col-right.less for guide */
+.chapter-1 .two-col-right #sidebar {
+  display: block;
+}
+.chapter-1 .two-col-right #sidebar-mobile-only {
+  display: none;
+}
 .guide .guide-table-of-contents {
   padding-top: 10px;
   border-top: 1px solid #ccc;
@@ -8778,9 +8790,6 @@ header .header-inner-wrapper .header-block .left .site-headers .site-title a:hov
   margin-left: 30px;
   padding-left: 0;
   list-style: none;
-}
-.guide .guide-table-of-contents .menu li {
-  padding-bottom: 7px;
 }
 .guide .guide-table-of-contents .menu li a {
   display: inline-block;
