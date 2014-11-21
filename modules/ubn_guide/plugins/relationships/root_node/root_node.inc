@@ -33,6 +33,11 @@ function ubn_guide_root_node_context($context = NULL, $conf) {
   }
 
   $guide_chapter = entity_metadata_wrapper('node', $context->data);
+
+  if ($guide_chapter->getBundle() !== 'guide_chapter') {
+    return ctools_context_create_empty('entity:node', NULL);
+  }
+
   $root = ubn_guide_get_root($guide_chapter);
 
   return ctools_context_create('entity:node', $root->value());

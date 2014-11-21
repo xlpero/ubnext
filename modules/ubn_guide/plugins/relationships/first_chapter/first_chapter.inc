@@ -33,6 +33,11 @@ function ubn_guide_first_chapter_context($context = NULL, $conf) {
   }
 
   $guide = entity_metadata_wrapper('node', $context->data);
+
+  if ($guide->getBundle() !== 'guide') {
+    return ctools_context_create_empty('entity:node', NULL);
+  }
+
   $children = ubn_guide_get_children($guide->getIdentifier(), 1);
 
   if (empty($children)) {

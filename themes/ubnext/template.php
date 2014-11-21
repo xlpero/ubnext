@@ -23,7 +23,7 @@ function ubnext_preprocess_html(&$vars) {
   if (module_exists('ubn_guide')) {
     $page = page_manager_get_current_page();
 
-    if ($page['task']['name'] === 'node_view') {
+    if (!empty($page['task']['name']) && $page['task']['name'] === 'node_view') {
       $node = entity_metadata_wrapper('node', reset($page['contexts'])->data);
 
       if ($node->getBundle() === 'guide') {
