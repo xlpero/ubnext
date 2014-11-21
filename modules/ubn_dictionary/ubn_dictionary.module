@@ -8,6 +8,91 @@ include_once 'ubn_dictionary.features.inc';
 
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function ubn_dictionary_form_dictionary_term_node_form_alter(&$form, $form_state) {
+  array_unshift($form['#validate'], '_ubn_dictionary_dictionary_term_node_form_validate');
+}
+
+/**
+ * Validate callback; dictionary_term_node_form.
+ */
+function _ubn_dictionary_dictionary_term_node_form_validate($form, &$form_state) {
+  $wrapper = entity_metadata_wrapper('node', $form_state['node']);
+  $entity_id = $wrapper->getIdentifier();
+
+  // Title.
+  $lang = $form['title_field']['#language'];
+  $title = $form_state['values']['title_field'][$lang][0]['value'];
+
+  // Trim and 'save' title.
+  $title = trim($title);
+  $form_state['values']['title_field'][$lang][0]['value'] = $title;
+
+  // Check database for titles.
+  $result = _ubn_dictionary_validate_term($title, 'title_field', $entity_id);
+  if (!empty($result)) {
+    form_set_error('title_field', t('Term already exists.'));
+  }
+
+  // Check database for synonyms.
+  $result = _ubn_dictionary_validate_term($title, 'field_dictionary_term_synonyms', $entity_id);
+  if (!empty($result)) {
+    form_set_error('title_field', t('Term already exists as a synonym.'));
+  }
+
+  // Synonyms.
+  $lang = $form['field_dictionary_term_synonyms']['#language'];
+  foreach ($form_state['values']['field_dictionary_term_synonyms'][$lang] as $i => &$instance) {
+    if (empty($instance['value'])) {
+      continue;
+    }
+
+    // Trim and 'save' synonym.
+    $synonym = trim($instance['value']);
+    $instance['value'] = $synonym;
+
+    // Check entity title.
+    if (drupal_strtolower($synonym) === drupal_strtolower($title)) {
+      form_set_error("field_dictionary_term_synonyms][{$lang}][{$i}", t('Synonym already exists as a term.'));
+    }
+
+    // Check database for titles.
+    $result = _ubn_dictionary_validate_term($synonym, 'title_field', $entity_id);
+    if (!empty($result)) {
+      form_set_error("field_dictionary_term_synonyms][{$lang}][{$i}", t('Synonym already exists as a term.'));
+    }
+
+    // Check database for synonyms.
+    $result = _ubn_dictionary_validate_term($synonym, 'field_dictionary_term_synonyms', $entity_id);
+    if (!empty($result)) {
+      form_set_error("field_dictionary_term_synonyms][{$lang}][{$i}", t('Synonym already exists.'));
+    }
+  }
+}
+
+/**
+ * Helper function to validate term and synonyms.
+ */
+function _ubn_dictionary_validate_term($term, $field, $skip = NULL) {
+  $query = new EntityFieldQuery();
+
+  $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'dictionary_term')
+    ->fieldCondition($field, 'value', $term, '=')
+    ->addTag('DANGEROUS_ACCESS_CHECK_OPT_OUT');
+
+  if ($skip !== NULL) {
+    $query->entityCondition('entity_id', $skip, '!=');
+  }
+
+  $result = $query->execute();
+
+  return !empty($result['node']) ? $result['node'] : array();
+}
+
+/**
  * Implements hook_ctools_plugin_directory().
  */
 function ubn_dictionary_ctools_plugin_directory($owner, $plugin_type) {
@@ -20,7 +105,6 @@ function ubn_dictionary_ctools_plugin_directory($owner, $plugin_type) {
  * Return a list of chars to use as index.
  */
 function ubn_dictionary_get_index() {
-
   return array(
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
     'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
