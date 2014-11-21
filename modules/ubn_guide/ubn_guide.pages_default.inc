@@ -221,7 +221,15 @@ function ubn_guide_default_page_manager_handlers() {
     'css_id' => '',
     'css' => '',
     'contexts' => array(),
-    'relationships' => array(),
+    'relationships' => array(
+      0 => array(
+        'identifier' => 'Root node from Guide Chapter',
+        'keyword' => 'root_node',
+        'name' => 'root_node',
+        'context' => 'argument_entity_id:node_1',
+        'id' => 1,
+      ),
+    ),
     'access' => array(
       'plugins' => array(
         0 => array(
@@ -261,7 +269,7 @@ function ubn_guide_default_page_manager_handlers() {
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = '%root_node:title';
   $display->uuid = '8c44c2dd-97e8-49e9-976d-1ecde191f9a2';
   $display->content = array();
   $display->panels = array();
