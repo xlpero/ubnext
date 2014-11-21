@@ -11,13 +11,13 @@ include_once 'ubn_dictionary.features.inc';
  * Implements hook_form_FORM_ID_alter().
  */
 function ubn_dictionary_form_dictionary_term_node_form_alter(&$form, $form_state) {
-  $form['#validate'][] =  '_ubn_dictionary_dictionary_term_node_form_validate';
+  array_unshift($form['#validate'], '_ubn_dictionary_dictionary_term_node_form_validate');
 }
 
 /**
  * Validate callback; dictionary_term_node_form.
  */
-function _ubn_dictionary_dictionary_term_node_form_validate($form, $form_state) {
+function _ubn_dictionary_dictionary_term_node_form_validate($form, &$form_state) {
   $wrapper = entity_metadata_wrapper('node', $form_state['node']);
   $entity_id = $wrapper->getIdentifier();
 
@@ -25,42 +25,48 @@ function _ubn_dictionary_dictionary_term_node_form_validate($form, $form_state) 
   $lang = $form['title_field']['#language'];
   $title = $form_state['values']['title_field'][$lang][0]['value'];
 
+  // Trim and 'save' title.
+  $title = trim($title);
+  $form_state['values']['title_field'][$lang][0]['value'] = $title;
+
   // Check database for titles.
   $result = _ubn_dictionary_validate_term($title, 'title_field', $entity_id);
   if (!empty($result)) {
-    form_set_error('title_field', t('Term has to be unique.'));
+    form_set_error('title_field', t('Term already exists.'));
   }
 
   // Check database for synonyms.
   $result = _ubn_dictionary_validate_term($title, 'field_dictionary_term_synonyms', $entity_id);
   if (!empty($result)) {
-    form_set_error('title_field', t('Term has to be unique.'));
+    form_set_error('title_field', t('Term already exists as a synonym.'));
   }
 
   // Synonyms.
   $lang = $form['field_dictionary_term_synonyms']['#language'];
-  foreach ($form_state['values']['field_dictionary_term_synonyms'][$lang] as $i => $summary) {
-    if (empty($summary['value'])) {
+  foreach ($form_state['values']['field_dictionary_term_synonyms'][$lang] as $i => &$instance) {
+    if (empty($instance['value'])) {
       continue;
     }
 
-    $value = $summary['value'];
+    // Trim and 'save' synonym.
+    $synonym = trim($instance['value']);
+    $instance['value'] = $synonym;
 
     // Check entity title.
-    if ($value == $title) {
-      form_set_error("field_dictionary_term_synonyms][{$lang}][{$i}", t('Term has to be unique.'));
+    if (drupal_strtolower($synonym) === drupal_strtolower($title)) {
+      form_set_error("field_dictionary_term_synonyms][{$lang}][{$i}", t('Synonym already exists as a term.'));
     }
 
     // Check database for titles.
-    $result = _ubn_dictionary_validate_term($value, 'title_field', $entity_id);
+    $result = _ubn_dictionary_validate_term($synonym, 'title_field', $entity_id);
     if (!empty($result)) {
-      form_set_error("field_dictionary_term_synonyms][{$lang}][{$i}", t('Term has to be unique.'));
+      form_set_error("field_dictionary_term_synonyms][{$lang}][{$i}", t('Synonym already exists as a term.'));
     }
 
     // Check database for synonyms.
-    $result = _ubn_dictionary_validate_term($value, 'field_dictionary_term_synonyms', $entity_id);
+    $result = _ubn_dictionary_validate_term($synonym, 'field_dictionary_term_synonyms', $entity_id);
     if (!empty($result)) {
-      form_set_error("field_dictionary_term_synonyms][{$lang}][{$i}", t('Term has to be unique.'));
+      form_set_error("field_dictionary_term_synonyms][{$lang}][{$i}", t('Synonym already exists.'));
     }
   }
 }
