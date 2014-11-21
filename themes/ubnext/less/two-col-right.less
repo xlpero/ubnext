@@ -7,15 +7,17 @@
 			@media (min-width: @screen-xs-min) {
 				.make-md-column-pull(4);
 			}
-		//	background-color: red;
+
 		}
 
 		#sidebar {
+			display:none;
 			.make-md-column(4);
-			@media (min-width: @screen-xs-min) {
+			@media (min-width: @screen-sm-min) {
 				.make-md-column-push(8);
+				display: block;
 			}
-			/*background-color: blue;*/
+
 		}
 
 		#sidebar-mobile-only {
