@@ -8763,7 +8763,7 @@ header .header-inner-wrapper .header-block .left .site-headers .site-title a:hov
   margin-bottom: 5px;
 }
 .guide .guide-table-of-contents .menu {
-  padding: 10px 0;
+  padding: 0;
   padding-left: 0;
   list-style: none;
 }
@@ -8785,6 +8785,9 @@ header .header-inner-wrapper .header-block .left .site-headers .site-title a:hov
 .guide .guide-table-of-contents .menu li.collapsed:before {
   content: "\f0da ";
   font-family: FontAwesome;
+}
+.guide .guide-table-of-contents .menu li.collapsed ul {
+  display: none;
 }
 .guide .guide-table-of-contents .menu li.expanded:before {
   content: "\f0d7 ";
@@ -9063,4 +9066,88 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
   font-size: 18px;
   content: "  \f054";
   font-family: FontAwesome;
+}
+.a-z .menu {
+  padding-left: 0;
+  list-style: none;
+  border-bottom: 1px solid #ccc;
+}
+.a-z .menu:before,
+.a-z .menu:after {
+  content: " ";
+  display: table;
+}
+.a-z .menu:after {
+  clear: both;
+}
+.a-z .menu:before,
+.a-z .menu:after {
+  content: " ";
+  display: table;
+}
+.a-z .menu:after {
+  clear: both;
+}
+.a-z .menu li {
+  text-transform: uppercase;
+  float: left;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+.a-z .menu li a {
+  font-weight: bold;
+  padding: 9px;
+  padding-left: 0;
+  text-decoration: none;
+}
+.a-z .menu li a:hover {
+  text-decoration: underline;
+}
+.a-z .menu li a.disabled {
+  opacity: .5;
+}
+.a-z .alphabetic-list {
+  float: left;
+  max-width: 640px;
+  padding-left: 0;
+  list-style: none;
+}
+@media (min-width: 768px) {
+  .a-z .alphabetic-list {
+    min-width: 640px;
+  }
+}
+.a-z .alphabetic-list .alphabetic-heading {
+  text-transform: uppercase;
+}
+.a-z .alphabetic-list .alphabetic-letter-terms {
+  padding-left: 0;
+  list-style: none;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+.a-z .alphabetic-list .alphabetic-letter-terms:before,
+.a-z .alphabetic-list .alphabetic-letter-terms:after {
+  content: " ";
+  display: table;
+}
+.a-z .alphabetic-list .alphabetic-letter-terms:after {
+  clear: both;
+}
+.a-z .alphabetic-list .alphabetic-letter-terms:before,
+.a-z .alphabetic-list .alphabetic-letter-terms:after {
+  content: " ";
+  display: table;
+}
+.a-z .alphabetic-list .alphabetic-letter-terms:after {
+  clear: both;
+}
+.a-z .alphabetic-list .alphabetic-letter-terms a[href^="http"]:after {
+  content: " \f08e";
+  font-family: FontAwesome;
+}
+.a-z .alphabetic-list .alphabetic-letter-terms .back-to-top {
+  float: right;
+  font-size: .8em;
+  padding: 10px 0;
 }

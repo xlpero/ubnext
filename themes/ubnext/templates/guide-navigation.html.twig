@@ -14,11 +14,11 @@
 
 		{% if next %}
 		    <div class="guide-content-pager-next">
-		    	<a href="{{ next.url }}">{{t('next')}}</a>
+		    	<a href="{{ next.url }}">{{t('Next')}}</a>
 		    </div>
 		{% else %}
 		    <div class="guide-content-pager-next">
-		    	<a  class="disabled" href="{{ next.url }}">{{next.label}}</a>
+		    	<a  class="disabled" href="{{ next.url }}">{{t('Next')}}</a>
 		    </div>
 		{% endif %}
 	</nav>
