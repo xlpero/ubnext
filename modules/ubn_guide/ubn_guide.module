@@ -17,28 +17,96 @@ function ubn_guide_ctools_plugin_directory($owner, $plugin_type) {
 }
 
 /**
- * Implements hook_entity_info_alter().
+ * Implements hook_entity_insert().
  */
-function ubn_guide_entity_info_alter(&$entity_info) {
-  $entity_info['node']['bundles']['guide_chapter']['uri callback'] = '_ubn_guide_chapter_uri';
+function ubn_guide_entity_insert($entity, $type) {
+  ubn_guide_entity_delete($entity, $type);
 }
 
 /**
- * Override node_uri for chapters that are the first chapter in a guide.
+ * Implements hook_entity_update().
  */
-function _ubn_guide_chapter_uri($node) {
-  $chapter = entity_metadata_wrapper('node', $node);
+function ubn_guide_entity_update($entity, $type) {
+  ubn_guide_entity_delete($entity, $type);
+}
 
-  $root = ubn_guide_get_root($chapter);
-  $children = array_keys(ubn_guide_get_children($root->getIdentifier(), 1));
+/**
+ * Implements hook_entity_delete().
+ */
+function ubn_guide_entity_delete($entity, $type) {
+  if ($type === 'node' && in_array($entity->type, array('guide', 'guide_chapter'))) {
+    // Reset URL bound map if this is a guide or guide chapter node.
+    _ubn_guide_url_bound_map(TRUE);
+  }
+}
 
-  $index = array_search($chapter->getIdentifier(), $children);
+/**
+ * Get a inbound and outbound map for guides and their first chapters.
+ */
+function _ubn_guide_url_bound_map($reset = FALSE) {
+  $map = &drupal_static(__FUNCTION__);
 
-  if ($index === 0) {
-    return node_uri($root->value());
+  if (!isset($map) || $reset) {
+    if (($cache = cache_get(__FUNCTION__)) === FALSE || $reset) {
+      $query = new EntityFieldQuery();
+
+      $query
+        ->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'guide')
+        ->propertyCondition('status', NODE_PUBLISHED)
+        ->addTag('DANGEROUS_ACCESS_CHECK_OPT_OUT');
+
+      $result = $query->execute();
+
+      $inbound = array();
+
+      if (!empty($result['node'])) {
+        foreach (array_keys($result['node']) as $guide) {
+          $chapters = ubn_guide_get_children($guide, 1);
+
+          if (empty($chapters)) {
+            continue;
+          }
+
+          $chapter = key($chapters);
+
+          $inbound["node/{$guide}"] = "node/{$chapter}";
+        }
+      }
+
+      $map = array($inbound, array_flip($inbound));
+
+      cache_set(__FUNCTION__, $map);
+    }
+    else {
+      $map = $cache->data;
+    }
   }
 
-  return node_uri($node);
+  return $map;
+}
+
+/**
+ * Implements hook_url_outbound_alter().
+ */
+function ubn_guide_url_outbound_alter(&$path, &$options, $original_path) {
+  list(, $map) = _ubn_guide_url_bound_map();
+
+  if (isset($map[$original_path])) {
+    $path = drupal_get_path_alias($map[$original_path]);;
+    $options['alias'] = TRUE;
+  }
+}
+
+/**
+ * Implements hook_url_inbound_alter().
+ */
+function ubn_guide_url_inbound_alter(&$path, $original_path, $path_language) {
+  list($map, ) = _ubn_guide_url_bound_map();
+
+  if (isset($map[$path])) {
+    $path = $map[$path];
+  }
 }
 
 /**
@@ -57,9 +125,9 @@ function ubn_guide_path_update($path) {
     return;
   }
 
-  // Clear path cache for source edit page, and do it only once.
+  // Clear path cache, but do it only once.
   if (($clear = &drupal_static(__FUNCTION__, TRUE)) === TRUE) {
-    cache_clear_all("{$path['source']}/edit", 'cache_path');
+    cache_clear_all("*", 'cache_path');
 
     $clear = FALSE;
   }
