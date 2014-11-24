@@ -125,3 +125,13 @@ projects[libraries][subdir] = contrib
 ; Twig
 libraries[twig][download][type] = get
 libraries[twig][download][url] = https://github.com/fabpot/Twig/archive/v1.16.2.tar.gz
+
+
+; Markdown
+projects[markdown][version] = 1.2
+projects[markdown][subdir] = contrib
+
+
+; Pathologic
+projects[pathologic][version] = 2.12
+projects[pathologic][subdir] = contrib

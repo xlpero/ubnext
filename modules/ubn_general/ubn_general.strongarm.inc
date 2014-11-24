@@ -32,7 +32,7 @@ function ubn_general_strongarm() {
     'domain' => '',
     'prefix' => 'sv',
     'weight' => '0',
-    'javascript' => 'u7ZtjYbZ93Jh01JjQb8uFd-aorRoqVfgP-pS1j5gIhs',
+    'javascript' => 'X8es6bi08ux38Nqs-GlZb3eEK4YibE9CWZjFd-uzBvE',
   );
   $export['language_default'] = $strongarm;
 
