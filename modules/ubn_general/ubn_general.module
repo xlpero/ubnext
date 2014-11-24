@@ -19,6 +19,20 @@ function ubn_general_strongarm_alter(&$variables) {
 }
 
 /**
+ * Implements hook_query_TAG_alter().
+ *
+ * Only works for entities of type 'node'.
+ *
+ * @param QueryAlterableInterface $query
+ */
+function ubn_general_query_ENTITY_TRANSLATION_alter(QueryAlterableInterface $query) {
+  global $language_content;
+
+  $query->join('entity_translation', 'entity_translation', "entity_translation.entity_type = 'node' AND entity_translation.entity_id = node.nid");
+  $query->condition('entity_translation.language', $language_content->language, '=');
+}
+
+/**
  * Custom strnatcmp to fix a bad, bad, bad PHP bug!
  */
 function ubn_general_strnatcmp($left, $right) {

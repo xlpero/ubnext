@@ -45,7 +45,7 @@ projects[title][subdir] = contrib
 
 ; Entity Translation
 projects[entity_translation][version] = 1.0-beta3
-projects[entity_translation][download][revision] = 496a13f82d2d6e9b771bba8bdccae59917703f9e
+projects[entity_translation][download][revision] = 182739794291db83ee7d2a74bfb2ae2a83d5bcea
 projects[entity_translation][subdir] = contrib
 
 
