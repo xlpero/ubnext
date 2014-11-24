@@ -32,6 +32,8 @@ function ubn_guide_entity_update($entity, $type) {
 
 /**
  * Implements hook_entity_delete().
+ *
+ * @todo do we need to update when type is guide?
  */
 function ubn_guide_entity_delete($entity, $type) {
   if ($type === 'node' && in_array($entity->type, array('guide', 'guide_chapter'))) {
@@ -87,6 +89,42 @@ function _ubn_guide_url_bound_map($reset = FALSE) {
 }
 
 /**
+ * Get a list of guide aliases.
+ */
+function _ubn_guide_url_guide_aliases($reset = FALSE) {
+  $aliases = &drupal_static(__FUNCTION__);
+
+  if (!isset($aliases) || $reset) {
+    if (($cache = cache_get(__FUNCTION__)) === FALSE || $reset) {
+      $query = new EntityFieldQuery();
+
+      $query
+        ->entityCondition('entity_type', 'node')
+        ->entityCondition('bundle', 'guide')
+        ->propertyCondition('status', NODE_PUBLISHED)
+        ->addTag('DANGEROUS_ACCESS_CHECK_OPT_OUT');
+
+      $result = $query->execute();
+
+      $aliases = array();
+
+      if (!empty($result['node'])) {
+        foreach (array_keys($result['node']) as $guide) {
+          $aliases[drupal_get_path_alias("node/{$guide}")] = $guide;
+        }
+      }
+
+      cache_set(__FUNCTION__, $aliases);
+    }
+    else {
+      $aliases = $cache->data;
+    }
+  }
+
+  return $aliases;
+}
+
+/**
  * Implements hook_url_outbound_alter().
  */
 function ubn_guide_url_outbound_alter(&$path, &$options, $original_path) {
@@ -110,6 +148,31 @@ function ubn_guide_url_inbound_alter(&$path, $original_path, $path_language) {
 }
 
 /**
+ * Implements hook_drupal_goto_alter().
+ */
+function ubn_guide_drupal_goto_alter(&$path, &$options, &$http_response_code) {
+  $aliases = _ubn_guide_url_guide_aliases();
+
+  if (isset($aliases[$path])) {
+    $http_response_code = 302;
+  }
+}
+
+/**
+ * Implements hook_path_insert().
+ */
+function ubn_guide_path_insert($path) {
+  $node = menu_get_object('node', 1, $path['source']);
+
+  if (!isset($node->type) || $node->type !== 'guide') {
+    return;
+  }
+
+  // New guide alias, reset alias cache.
+  _ubn_guide_url_guide_aliases(TRUE);
+}
+
+/**
  * Implements hook_path_update().
  */
 function ubn_guide_path_update($path) {
@@ -117,6 +180,11 @@ function ubn_guide_path_update($path) {
 
   if (!isset($node->type) || !in_array($node->type, array('guide', 'guide_chapter'))) {
     return;
+  }
+
+  if ($node->type === 'guide') {
+    // Updated guide alias, reset alias cache.
+    _ubn_guide_url_guide_aliases(TRUE);
   }
 
   $children = array_keys(ubn_guide_get_children($node->nid, 1));
