@@ -4,6 +4,31 @@ header {
 	@media (min-width: @screen-xs) {
 	
 	}
+
+
+	.logo {
+		width: 127px;
+		height: 129px;
+		padding-top: 31px;
+		background-repeat: no-repeat;
+		#gradient > .vertical(#004d8e; #004278);
+		.border-bottom-radius(4px);
+		box-shadow: 0 2px 2px rgba(0,0,0,.3);
+		.logo-image {
+			margin:0 auto;
+			width: 94px;
+			height: 75px;
+			background-image: url("img/gu-mark-neg-sv.svg");
+			background-size: 100%;
+			background-repeat: no-repeat;
+		}
+	}
+	.en .logo {
+		.logo-image {
+			width: 101px;
+			background-image: url("img/gu-mark-neg-en.svg");
+		}
+	}
 	.right {
 		float: right;
 		position: relative;
@@ -79,27 +104,3 @@ header {
 
 
 
-
-.logo {
-	width: 127px;
-	height: 129px;
-	padding-top: 31px;
-	background-repeat: no-repeat;
-	#gradient > .vertical(#004d8e; #004278);
-	.border-bottom-radius(4px);
-	box-shadow: 0 2px 2px rgba(0,0,0,.3);
-	.logo-image {
-		margin:0 auto;
-		width: 94px;
-		height: 75px;
-		background-image: url("img/gu-mark-neg-sv.svg");
-		background-size: 100%;
-		background-repeat: no-repeat;
-	}
-}
-.en .logo {
-	.logo-image {
-		width: 101px;
-		background-image: url("img/gu-mark-neg-en.svg");
-	}
-}

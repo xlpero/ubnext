@@ -10,7 +10,7 @@
       <div class="left">
         <div class="siteNav-logo">
           <div class="logo">
-            <div class="logo-image"></div>
+            <a href="/"><div class="logo-image"></div></a>  
           </div>
         </div>
         <div class="site-headers">
@@ -112,8 +112,13 @@
 
 <!-- ### SITE BOTTOM ### --> 
 <div class="full-width-wrapper site-bottom-wrapper">
-  <div class="site-bottom">
-    &copy; Göteborgs Universitetsbibliotek    
+  <div class="site-bottom"> 
+    <div class="left">
+      <div class="logo"><div class="logo-image"></div></div>
+    </div>
+    <div class="right">
+      &copy; <?php print variable_get('site_name'); ?>  
+    </div>
   </div>
 </div>
 <!-- ### END SITE BOTTOM ### --> 
