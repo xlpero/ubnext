@@ -135,3 +135,9 @@ projects[markdown][subdir] = contrib
 ; Pathologic
 projects[pathologic][version] = 2.12
 projects[pathologic][subdir] = contrib
+
+
+; Panelizer
+projects[panelizer][version] = 3.1
+projects[panelizer][download][revision] = 9bc5ed6ed350aa30165bde05b8e0f581f695247e
+projects[panelizer][subdir] = contrib
