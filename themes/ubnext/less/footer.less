@@ -36,11 +36,7 @@
 
 	.site-bottom {
 		.container();
-
-		.right {
-			float: right;
-			.clearfix();
-		}
+		text-align: center;
 
 		font-size: @font-size-small;
 		color: @white;
@@ -49,8 +45,11 @@
 		}
 
 
-		.left {
-			float: left;
+		.logotype {
+			@media(min-width: @screen-sm-min) {
+				display:none;
+			}
+			display: inline-block;
 			.logo {
 
 				width: 80px;
@@ -71,8 +70,10 @@
 					width: 101px;
 					background-image: url("img/gu-mark-neg-en.svg");
 				}
-			}
+			}			
 		}
+
+
 	}
 
 }

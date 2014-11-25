@@ -8658,6 +8658,7 @@ header .left .site-headers .site-title a:hover {
   padding-left: 15px;
   padding-right: 15px;
   max-width: 960px;
+  text-align: center;
   font-size: 14px;
   color: #ffffff;
 }
@@ -8688,37 +8689,23 @@ header .left .site-headers .site-title a:hover {
     margin-left: 0;
   }
 }
-.site-bottom-wrapper .site-bottom .right {
-  float: right;
-}
-.site-bottom-wrapper .site-bottom .right:before,
-.site-bottom-wrapper .site-bottom .right:after {
-  content: " ";
-  display: table;
-}
-.site-bottom-wrapper .site-bottom .right:after {
-  clear: both;
-}
-.site-bottom-wrapper .site-bottom .right:before,
-.site-bottom-wrapper .site-bottom .right:after {
-  content: " ";
-  display: table;
-}
-.site-bottom-wrapper .site-bottom .right:after {
-  clear: both;
-}
 .site-bottom-wrapper .site-bottom a {
   color: #ffffff;
 }
-.site-bottom-wrapper .site-bottom .left {
-  float: left;
+.site-bottom-wrapper .site-bottom .logotype {
+  display: inline-block;
 }
-.site-bottom-wrapper .site-bottom .left .logo {
+@media (min-width: 768px) {
+  .site-bottom-wrapper .site-bottom .logotype {
+    display: none;
+  }
+}
+.site-bottom-wrapper .site-bottom .logotype .logo {
   width: 80px;
   height: 80px;
   background-repeat: no-repeat;
 }
-.site-bottom-wrapper .site-bottom .left .logo .logo-image {
+.site-bottom-wrapper .site-bottom .logotype .logo .logo-image {
   margin: 0 auto;
   width: 94px;
   height: 75px;
@@ -8726,7 +8713,7 @@ header .left .site-headers .site-title a:hover {
   background-size: 100%;
   background-repeat: no-repeat;
 }
-.site-bottom-wrapper .site-bottom .left .en .logo .logo-image {
+.site-bottom-wrapper .site-bottom .logotype .en .logo .logo-image {
   width: 101px;
   background-image: url("img/gu-mark-neg-en.svg");
 }

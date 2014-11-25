@@ -113,11 +113,12 @@
 <!-- ### SITE BOTTOM ### --> 
 <div class="full-width-wrapper site-bottom-wrapper">
   <div class="site-bottom"> 
-    <div class="left">
+
+    <div class="logotype">  
       <div class="logo"><div class="logo-image"></div></div>
     </div>
-    <div class="right">
-      &copy; <?php print variable_get('site_name'); ?>  
+    <div class="copyright">
+      &copy; <?php print variable_get('site_name'); ?>  <?php echo date("Y"); ?>
     </div>
   </div>
 </div>
