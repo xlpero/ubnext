@@ -142,3 +142,8 @@ projects[pathologic][subdir] = contrib
 projects[panelizer][version] = 3.1
 projects[panelizer][download][revision] = 9bc5ed6ed350aa30165bde05b8e0f581f695247e
 projects[panelizer][subdir] = contrib
+
+
+; Field collection
+projects[field_collection][version] = 1.0-beta8
+projects[field_collection][subdir] = contrib
