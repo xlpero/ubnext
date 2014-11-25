@@ -9,8 +9,8 @@
  */
 $plugin = array(
   'single' => TRUE,
-  'title' => t('App'),
-  'description' => t('App'),
+  'title' => t('App: View'),
+  'description' => t('View an app.'),
   'category' => 'UBNext',
   'required context' => new ctools_context_required(t('App'), 'entity:node'),
   'edit form' => 'ubn_app_app_view_content_type_settings',
