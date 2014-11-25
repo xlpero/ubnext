@@ -33,7 +33,7 @@ function ubn_app_app_view_content_type_render($subtype, $conf, $panel_args, $con
   }
 
   global $language;
-  
+
   $node = entity_metadata_wrapper('node', $context->data);
 
   $block = new stdClass();
