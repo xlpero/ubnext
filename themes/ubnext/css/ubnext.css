@@ -8141,12 +8141,6 @@ h6,
   font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
   font-size: 21px;
 }
-#admin-menu-wrapper {
-  display: none;
-}
-body.admin-menu {
-  margin-top: 0 !important;
-}
 #skip-link {
   position: absolute;
   width: 1px;
