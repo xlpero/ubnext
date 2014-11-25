@@ -7,8 +7,6 @@
 
 <!-- ### HEADER ### -->
 <header id="header">  
-  <div class="header-inner-wrapper">
-    <div class="header-block">
       <div class="left">
         <div class="siteNav-logo">
           <div class="logo">
@@ -29,8 +27,6 @@
           <?php print render($content['toplinks']); ?>
         </nav>
       </div>
-    </div>
-  </div>  <!-- end header-inner-wrapper --> 
   </header>
 
 <!-- ### END HEADER ### -->
@@ -41,17 +37,8 @@
 <div class="full-width-wrapper">
   <div class="main-navigation-wrapper">
     <div class="main-navigation-inner-wrapper">
-      <div class="primary">
-        <!-- PRIMARY NAV -->
-        <nav class="main-navigation">
-          <?php print render($content['navigation']); ?>
-        </nav>
-        <!-- END PRIMARY NAV --> 
-      </div>
-
-      
       <div class="secondary">
-        <a id="menu-toggler-btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+        <a id="menu-toggler-btn" href="javascript:void(0);"><span>Meny</span><i class="fa fa-bars"></i></a>
         <!-- SECONDARY NAV -->
         <nav class="secondary-navigation">
           <ul role="menu" class="secondary-navigation-nav">
@@ -62,12 +49,26 @@
         </nav>
         <!-- END SECONDARY NAV --> 
       </div>
+      <div class="primary">
+        <!-- PRIMARY NAV -->
+        <nav class="main-navigation">
+          <?php print render($content['navigation']); ?>
+        </nav>
+        <!-- END PRIMARY NAV --> 
+      </div>
+
+      
+
     </div>
   </div>
 </div>
 <!-- ### END NAVIGATION ### -->
 
-
+<?php if (!empty($content['pagetitle'])): ?>
+  <section class="page-head">
+    <?php print render($content['pagetitle']); ?>
+  </section>
+<?php endif; ?>
 
 <?php if (!empty($content['content'])): ?>
   <section class="main">
