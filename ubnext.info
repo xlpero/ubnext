@@ -5,3 +5,4 @@ core = 7.x
 dependencies[] = ubn_guide
 dependencies[] = ubn_dictionary
 dependencies[] = ubn_page
+dependencies[] = ubn_app
