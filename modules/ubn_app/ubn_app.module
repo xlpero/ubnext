@@ -5,3 +5,12 @@
  */
 
 include_once 'ubn_app.features.inc';
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function ubn_app_ctools_plugin_directory($owner, $plugin_type) {
+  if (in_array($plugin_type, array('content_types'))) {
+    return "plugins/$plugin_type";
+  }
+}
