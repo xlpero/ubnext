@@ -8141,6 +8141,9 @@ h6,
   font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
   font-size: 21px;
 }
+#admin-menu-wrapper {
+  max-height: 20px;
+}
 #skip-link {
   position: absolute;
   width: 1px;
