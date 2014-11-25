@@ -52,6 +52,9 @@ function ubn_app_default_page_manager_handlers() {
       'default' => NULL,
       'main' => NULL,
     ),
+    'main' => array(
+      'style' => 'naked',
+    ),
   );
   $display->cache = array();
   $display->title = '';
@@ -73,6 +76,7 @@ function ubn_app_default_page_manager_handlers() {
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
+      'style' => 'naked',
     );
     $pane->css = array();
     $pane->extras = array();
