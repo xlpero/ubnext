@@ -1,81 +1,79 @@
 header {
 	.container();
-	margin-bottom: 10px;
+
 	@media (min-width: @screen-xs) {
 	
 	}
-	.header-inner-wrapper {
-		.make-row();
-		.header-block {
-			.make-xs-column(12);
-			.right {
-				margin-top: 6px;
-				nav {
-					.pull-right();
-					position: absolute;
-					top:6px;
-					right: 20px;
+	.right {
+		float: right;
+		position: relative;
+		nav {
+			position: absolute;
+			top:6px;
+			right: 0px;
 
-					ul {
-						.list-unstyled();
-						li {
+			ul {
+				.list-unstyled();
+				li {
 
-							text-transform: uppercase;
-							float: left;
-							a {
-								color: @black;
-								font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
-							}
-						}
-						li + li {
-							margin-left: 10px;
-							&:before {
-								content: " | ";
-							};
-						}
+					text-transform: uppercase;
+					float: left;
+					a {
+						color: @black;
+						font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
 					}
+				}
+				li + li {
+					margin-left: 10px;
+					&:before {
+						content: " | ";
+					};
 				}
 			}
-			.left {
-				.siteNav-logo {
-					float: left;
-					display: none;
-					@media (min-width: @screen-xs) {
-						display:block;
-					}
-				}
-				.site-headers {
-					position: relative;
-					margin-top: 35px;
-					float:left;
-					max-width: 300px;
-					.site-title {
-						text-transform: uppercase;
-						line-height: 1.2;
-						a {
-							text-decoration: none;
-							font-family: NimbusSanNovCon-Bol;
-							font-size: 28px;
-							color: @black;
-							&:hover {
-								text-decoration:underline;
-							};
-						}
-					}
-					.site-title-tagline {
-
-					}
-					@media (min-width: @screen-xs) {
-						margin-left: 20px;	
-					}
-					@media (min-width: @screen-sm) {
-						max-width: none;
-					}
-					
-				}
-			}		
 		}
+	}
+	.left {
+		float: left;
 
+		.siteNav-logo {
+			float: left;
+			display: none;
+			@media (min-width: @screen-sm-min) {
+				display:block;
+			}
+		}
+		.site-headers {
+			position: relative;
+			margin-top: 20px;
+			@media(min-width: @screen-sm-min) {
+				margin-top: 35px;
+			}
+			float:left;
+			max-width: 300px;
+			.site-title {
+				text-transform: uppercase;
+				line-height: 1.2;
+				a {
+					text-decoration: none;
+					font-family: NimbusSanNovCon-Bol;
+					font-size: 28px;
+					color: @black;
+					&:hover {
+						text-decoration:underline;
+					};
+				}
+			}
+			.site-title-tagline {
+
+			}
+			@media (min-width: @screen-sm-min) {
+				margin-left: 20px;	
+			}
+			@media (min-width: @screen-sm) {
+				max-width: none;
+			}
+			
+		}	
 	}
 }
 
