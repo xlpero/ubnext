@@ -42,7 +42,7 @@ function ubn_page_panelizer_defaults() {
     ),
   );
   $display->cache = array();
-  $display->title = '%node:title';
+  $display->title = '%node:title_field';
   $display->uuid = '7f839932-8391-4990-b7ed-f5b82707d644';
   $display->content = array();
   $display->panels = array();
