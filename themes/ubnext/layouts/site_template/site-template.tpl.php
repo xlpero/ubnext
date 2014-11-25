@@ -10,7 +10,7 @@
       <div class="left">
         <div class="siteNav-logo">
           <div class="logo">
-            <div class="logo-image"></div>
+            <a href="/"><div class="logo-image"></div></a>  
           </div>
         </div>
         <div class="site-headers">
