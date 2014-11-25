@@ -15,3 +15,34 @@ function ubn_app_ctools_plugin_directory($owner, $plugin_type) {
     return "plugins/$plugin_type";
   }
 }
+
+
+/**
+ * Helper function to include an app.
+ */
+function ubn_app_include_app(EntityDrupalWrapper $app) {
+  global $language;
+
+  $app_name = $app->field_app_name->value();
+
+  // @todo setting to change base url?
+  drupal_add_js('http://130.241.35.100:4001/assets/vendor.js', 'external');
+  drupal_add_js("http://130.241.35.100:4001/assets/{$app_name}.js", 'external');
+
+  drupal_add_css('http://130.241.35.100:4001/assets/vendor.css', array('type' => 'external'));
+  drupal_add_css("http://130.241.35.100:4001/assets/{$app_name}.css", array('type' => 'external'));
+
+  $attributes = array(
+    'id' => "ember-app-{$app_name}",
+    'data-lang' => $language->language,
+  );
+
+  foreach ($app->field_app_properties as $property) {
+    $name = $property->field_app_properties_name->value();
+    $value = $property->field_app_properties_value->value();
+
+    $attributes["data-{$name}"] = $value;
+  }
+
+  return '<div' . drupal_attributes($attributes) . '"></div>';
+}
