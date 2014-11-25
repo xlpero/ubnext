@@ -8350,6 +8350,9 @@ img {
 .main-navigation-wrapper .main-navigation-inner-wrapper .primary .main-navigation-nav li a.active {
   text-decoration: underline;
 }
+.main-navigation-wrapper .main-navigation-inner-wrapper .primary .main-navigation-nav li a:hover {
+  color: #025da6;
+}
 .main-navigation-wrapper .main-navigation-inner-wrapper .primary .menu {
   padding-left: 0;
   list-style: none;
@@ -8382,6 +8385,9 @@ img {
 .main-navigation-wrapper .main-navigation-inner-wrapper .primary .menu li a.active {
   text-decoration: underline;
 }
+.main-navigation-wrapper .main-navigation-inner-wrapper .primary .menu li a:hover {
+  color: #025da6;
+}
 .main-navigation-wrapper .main-navigation-inner-wrapper .secondary {
   float: right;
   position: relative;
@@ -8407,6 +8413,9 @@ img {
 .main-navigation-wrapper .main-navigation-inner-wrapper .secondary > a i {
   font-size: 18px;
   padding-left: 10px;
+}
+.main-navigation-wrapper .main-navigation-inner-wrapper .secondary > a:hover {
+  color: #025da6;
 }
 .main-navigation-wrapper .main-navigation-inner-wrapper .secondary .secondary-navigation {
   background-color: #ffffff;
@@ -8621,10 +8630,19 @@ header .left .site-headers .site-title a:hover {
   list-style: none;
 }
 #footer-wrapper footer ul li {
-  padding-bottom: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+#footer-wrapper footer ul li:last-child {
+  border-bottom: none;
 }
 #footer-wrapper footer a {
   color: #ffffff;
+  display: block;
+  text-decoration: none;
+}
+#footer-wrapper footer a:hover {
+  color: #025da6;
 }
 #footer-wrapper footer h3 {
   color: #ffffff;

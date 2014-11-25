@@ -96,11 +96,11 @@
         </ul>
       </div>
       <div class="col-2">
-        <h3>Alla bibliotek</h3>
+        <h3>Paulins Blogg</h3>
         <ul>
-          <li><a href="#">Bibliotek sammhällsvetenskapliga</a></li>
-          <li><a href="#">Bibliotek</a></li>
-          <li><a href="#">Bibliotek</a></li>
+          <li><a href="#">Nya intranätet är lajvat :)</a></li>
+          <li><a href="#">Ny utställning på biomed</a></li>
+          <li><a href="#">Tillfället gör tjuven</a></li>
           <li><a href="#">Bibliotek</a></li>
           <li><a href="#">Bibliotek</a></li>
         </ul>
