@@ -85,7 +85,7 @@
 <div id="footer-wrapper" class="full-width-wrapper">
   <footer id="footer">  
     <div class="row">
-      <div class="links-to-guides">
+      <div class="col-1">
         <h3>Alla guider</h3>
         <ul>
           <li><a href="#">Guide 1</a></li>
@@ -95,8 +95,18 @@
           <li><a href="#">Guide 1</a></li>
         </ul>
       </div>
-      <div class="links-to-libraries">
+      <div class="col-2">
         <h3>Alla bibliotek</h3>
+        <ul>
+          <li><a href="#">Bibliotek sammhällsvetenskapliga</a></li>
+          <li><a href="#">Bibliotek</a></li>
+          <li><a href="#">Bibliotek</a></li>
+          <li><a href="#">Bibliotek</a></li>
+          <li><a href="#">Bibliotek</a></li>
+        </ul>
+      </div>
+      <div class="col-3">
+        <h3>Alla andra bibliotek</h3>
         <ul>
           <li><a href="#">Bibliotek sammhällsvetenskapliga</a></li>
           <li><a href="#">Bibliotek</a></li>

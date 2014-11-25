@@ -8629,23 +8629,47 @@ header .left .site-headers .site-title a:hover {
 #footer-wrapper footer h3 {
   color: #ffffff;
 }
-#footer-wrapper footer .links-to-guides {
+#footer-wrapper footer .col-1 {
   position: relative;
-  float: left;
-  width: 50%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
 }
-#footer-wrapper footer .links-to-libraries {
+@media (min-width: 768px) {
+  #footer-wrapper footer .col-1 {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+#footer-wrapper footer .col-2 {
   position: relative;
-  float: left;
-  width: 50%;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
 }
-#footer-wrapper footer .links-to-libraries ul {
+@media (min-width: 768px) {
+  #footer-wrapper footer .col-2 {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+#footer-wrapper footer .col-2 ul {
+  padding-left: 0;
+  list-style: none;
+}
+#footer-wrapper footer .col-3 {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  #footer-wrapper footer .col-3 {
+    float: left;
+    width: 33.33333333%;
+  }
+}
+#footer-wrapper footer .col-3 ul {
   padding-left: 0;
   list-style: none;
 }
