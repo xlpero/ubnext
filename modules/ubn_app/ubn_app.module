@@ -26,11 +26,11 @@ function ubn_app_include_app(EntityDrupalWrapper $app) {
   $app_name = $app->field_app_name->value();
 
   // @todo setting to change base url?
-  drupal_add_js('http://130.241.35.100:4001/assets/vendor.js', 'external');
-  drupal_add_js("http://130.241.35.100:4001/assets/{$app_name}.js", 'external');
+  drupal_add_js('http://130.241.16.183:8888/demo-app-stefan/assets/vendor.js', 'external');
+  drupal_add_js("http://130.241.16.183:8888/demo-app-stefan/assets/{$app_name}.js", 'external');
 
-  drupal_add_css('http://130.241.35.100:4001/assets/vendor.css', array('type' => 'external'));
-  drupal_add_css("http://130.241.35.100:4001/assets/{$app_name}.css", array('type' => 'external'));
+  drupal_add_css('http://130.241.16.183:8888/demo-app-stefan/assets/dist/vendor.css', array('type' => 'external'));
+  drupal_add_css("http://130.241.16.183:8888/demo-app-stefan/assets/{$app_name}.css", array('type' => 'external'));
 
   $attributes = array(
     'id' => "ember-app-{$app_name}",

@@ -6,6 +6,11 @@ body.admin-menu {
 //	margin-top: 0 !important;
 }
 
+
+body {
+	overflow-y: scroll;
+}
+
 #skip-link {
 	.sr-only();
 }
@@ -16,7 +21,7 @@ body.admin-menu {
 }
 
 .full-width-wrapper {
-	padding:20px 0;
+	padding:0;
 	.clearfix();
 	&.odd {
 		background-color: @gray-light;
@@ -27,6 +32,10 @@ body.admin-menu {
 	section {
 		.container();
 	}
+	&.padding-20 {
+		padding:20px 0;
+	}
+
 }
 
 

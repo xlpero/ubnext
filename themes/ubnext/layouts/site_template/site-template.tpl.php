@@ -56,12 +56,36 @@
         </nav>
         <!-- END PRIMARY NAV --> 
       </div>
-
-      
-
     </div>
   </div>
 </div>
+
+<div class="mega-menu">
+  <ul>
+
+    <li>
+      <a href="#">Tjänster</a>
+      <ul>
+        <li><a href="#">link testar </a></li>
+        <li><a href="#">Boka grupprum</a></li>
+        <li><a href="#">Boka annat</a></li>
+        <li><a href="#">Fråga bibliotikare</a></li>
+        <li><a href="#">Digitalisera</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Skriva</a>
+      <ul>
+        <li><a href="#">link 1</a></li>
+        <li><a href="#">link 1</a></li>
+        <li><a href="#">link 1</a></li>
+        <li><a href="#">link 1</a></li>
+        <li><a href="#">link 1</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
 <!-- ### END NAVIGATION ### -->
 
 <?php if (!empty($content['pagetitle'])): ?>
@@ -82,7 +106,7 @@
 
 
 <!-- ### FOOTER ### -->
-<div id="footer-wrapper" class="full-width-wrapper">
+<div id="footer-wrapper" class="full-width-wrapper padding-20">
   <footer id="footer">  
     <div class="row">
       <div class="col-1">
@@ -121,7 +145,7 @@
 <!-- ### END FOOTER ### -->
 
 <!-- ### SITE BOTTOM ### --> 
-<div class="full-width-wrapper site-bottom-wrapper">
+<div class="full-width-wrapper site-bottom-wrapper padding-20">
   <div class="site-bottom"> 
 
     <div class="logotype">  

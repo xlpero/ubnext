@@ -5,8 +5,11 @@
 
 		//some jquery goodness here...
 			$("#menu-toggler-btn").bind( "click", function() {
-				var itemToDisplay = $(".secondary-navigation");
-				itemToDisplay.toggle();
+				var itemToDisplay = $(".mega-menu");
+				itemToDisplay.animate({
+		            height: "toggle",
+		            opacity: "toggle"
+		        }, 300);
 			});
 	 	 }
  	 }
