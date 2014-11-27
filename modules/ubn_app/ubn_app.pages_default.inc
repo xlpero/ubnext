@@ -45,7 +45,7 @@ function ubn_app_default_page_manager_handlers() {
     ),
   );
   $display = new panels_display();
-  $display->layout = 'onecol';
+  $display->layout = 'onecol_app';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(

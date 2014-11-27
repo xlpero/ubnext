@@ -80,6 +80,47 @@ function ubn_app_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-app-field_app_base_url'
+  $field_instances['node-app-field_app_base_url'] = array(
+    'bundle' => 'app',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_app_base_url',
+    'label' => 'Base URL',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 2,
+    ),
+  );
+
   // Exported field_instance: 'node-app-field_app_name'
   $field_instances['node-app-field_app_name'] = array(
     'bundle' => 'app',
@@ -161,7 +202,7 @@ function ubn_app_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -210,6 +251,7 @@ function ubn_app_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Base URL');
   t('Name');
   t('Properties');
   t('The name of the app.');
