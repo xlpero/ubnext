@@ -32,6 +32,7 @@ function ubn_app_include_app(EntityDrupalWrapper $app) {
   drupal_add_css("{$base_url}/vendor.css", array('type' => 'external'));
   drupal_add_css("{$base_url}/{$name}.css", array('type' => 'external'));
 
+
   $attributes = array(
     'id' => "ember-app-{$name}",
     'data-lang' => $language->language,

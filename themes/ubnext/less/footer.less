@@ -7,21 +7,38 @@
 		ul {
 			.list-unstyled();
 			li {
-				padding-bottom: 10px;
+				padding: 10px 0;
+				border-bottom: 1px solid rgba(255, 255, 255, .3);
+				&:last-child {
+					border-bottom:none;
+				}
+				
 			}
+	
 		}
 		a {
 			color: @white;
+			display: block;
+			text-decoration: none;
+			&:hover {
+				color: @blue-gu-dark;
+			}
 		}
 		h3 {
 			color: @white;
 		}
-		.links-to-guides {
-			.make-xs-column(6);
+		.col-1 {
+			.make-sm-column(4);
 
 		}
-		.links-to-libraries {
-			.make-xs-column(6);
+		.col-2 {
+			.make-sm-column(4);
+			ul {
+				.list-unstyled();
+			}
+		}
+		.col-3 {
+			.make-sm-column(4);
 			ul {
 				.list-unstyled();
 			}

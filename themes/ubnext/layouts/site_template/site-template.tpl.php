@@ -56,12 +56,36 @@
         </nav>
         <!-- END PRIMARY NAV --> 
       </div>
-
-      
-
     </div>
   </div>
 </div>
+
+<div class="mega-menu">
+  <ul>
+
+    <li>
+      <a href="#">Tjänster</a>
+      <ul>
+        <li><a href="#">link testar </a></li>
+        <li><a href="#">Boka grupprum</a></li>
+        <li><a href="#">Boka annat</a></li>
+        <li><a href="#">Fråga bibliotikare</a></li>
+        <li><a href="#">Digitalisera</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#">Skriva</a>
+      <ul>
+        <li><a href="#">link 1</a></li>
+        <li><a href="#">link 1</a></li>
+        <li><a href="#">link 1</a></li>
+        <li><a href="#">link 1</a></li>
+        <li><a href="#">link 1</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
 <!-- ### END NAVIGATION ### -->
 
 <?php if (!empty($content['pagetitle'])): ?>
@@ -82,10 +106,10 @@
 
 
 <!-- ### FOOTER ### -->
-<div id="footer-wrapper" class="full-width-wrapper">
+<div id="footer-wrapper" class="full-width-wrapper padding-20">
   <footer id="footer">  
     <div class="row">
-      <div class="links-to-guides">
+      <div class="col-1">
         <h3>Alla guider</h3>
         <ul>
           <li><a href="#">Guide 1</a></li>
@@ -95,8 +119,18 @@
           <li><a href="#">Guide 1</a></li>
         </ul>
       </div>
-      <div class="links-to-libraries">
-        <h3>Alla bibliotek</h3>
+      <div class="col-2">
+        <h3>Paulins Blogg</h3>
+        <ul>
+          <li><a href="#">Nya intranätet är lajvat :)</a></li>
+          <li><a href="#">Ny utställning på biomed</a></li>
+          <li><a href="#">Tillfället gör tjuven</a></li>
+          <li><a href="#">Bibliotek</a></li>
+          <li><a href="#">Bibliotek</a></li>
+        </ul>
+      </div>
+      <div class="col-3">
+        <h3>Alla andra bibliotek</h3>
         <ul>
           <li><a href="#">Bibliotek sammhällsvetenskapliga</a></li>
           <li><a href="#">Bibliotek</a></li>
@@ -111,7 +145,7 @@
 <!-- ### END FOOTER ### -->
 
 <!-- ### SITE BOTTOM ### --> 
-<div class="full-width-wrapper site-bottom-wrapper">
+<div class="full-width-wrapper site-bottom-wrapper padding-20">
   <div class="site-bottom"> 
 
     <div class="logotype">  
