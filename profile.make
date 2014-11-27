@@ -114,7 +114,7 @@ projects[panels_everywhere][subdir] = contrib
 
 ; Slate
 projects[slate][version] = 2.0-alpha6
-projects[slate][download][revision] = 02ab8529cf87dd724b7702b3875f5d125c65b427
+projects[slate][download][revision] = df595aaaef30f06920c7e0cf6521f4c3101f88cf
 projects[slate][subdir] = contrib
 
 

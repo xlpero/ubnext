@@ -4,7 +4,7 @@
  */
 
 $plugin = array(
-  'title' => t('Two column, right'),
+  'title' => t('Two column: Right'),
   'theme' => 'twocol_right',
   'icon' => '',
   'category' => 'UBNext',

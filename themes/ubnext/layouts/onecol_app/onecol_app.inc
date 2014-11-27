@@ -4,8 +4,8 @@
  */
 
 $plugin = array(
-  'title' => t('One column'),
-  'theme' => 'onecol',
+  'title' => t('One column: App'),
+  'theme' => 'onecol_app',
   'icon' => '',
   'category' => 'UBNext',
   'regions' => array(
