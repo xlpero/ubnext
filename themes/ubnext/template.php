@@ -5,7 +5,11 @@
 
 
 
-
+function ubnext_links__locale_block($variables) {
+  global $language;
+  unset($variables['links'][$language->language]);
+  return theme('links', $variables);
+}
 /**
  *
  */
