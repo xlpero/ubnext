@@ -56,6 +56,7 @@ projects[variable][subdir] = contrib
 
 ; Internationalization
 projects[i18n][version] = 1.11
+projects[i18n][download][revision] = 3777b86d34a3e5e2c1e9b691b629f5b038d0a092
 projects[i18n][subdir] = contrib
 
 
