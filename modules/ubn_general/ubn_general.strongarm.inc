@@ -39,7 +39,7 @@ function ubn_general_strongarm() {
     'domain' => '',
     'prefix' => 'sv',
     'weight' => '0',
-    'javascript' => 'hS-CRcFT2hR05XVzX6y-1eogDhoYdn4qnUBvc4i7-VY',
+    'javascript' => 'OxWrIhbXuYBskeZRbC-fFvQDUi5HvIAPZiKCo6PI3qk',
   );
   $export['language_default'] = $strongarm;
 
