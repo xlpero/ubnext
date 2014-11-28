@@ -131,7 +131,7 @@ function ubn_guide_url_outbound_alter(&$path, &$options, $original_path) {
   list(, $map) = _ubn_guide_url_bound_map();
 
   if (isset($map[$original_path])) {
-    $path = drupal_get_path_alias($map[$original_path]);;
+    $path = drupal_get_path_alias($map[$original_path], $options['language']->language);
     $options['alias'] = TRUE;
   }
 }
