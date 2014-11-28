@@ -1,6 +1,7 @@
 
 
 #footer-wrapper {
+	margin-top: 40px;
 	background-color: @gray-dark;
 	footer {
 		.container();
@@ -60,7 +61,9 @@
 		a {
 			color: @white;
 		}
-
+		@media(min-width: @screen-sm-min) {
+			text-align: left;
+		}
 
 		.logotype {
 			@media(min-width: @screen-sm-min) {
