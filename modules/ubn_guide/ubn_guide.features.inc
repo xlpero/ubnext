@@ -34,7 +34,7 @@ function ubn_guide_node_info() {
       'base' => 'node_content',
       'description' => t('Chapter in a Guide.'),
       'has_title' => '1',
-      'title_label' => t('Titel'),
+      'title_label' => t('Title'),
       'help' => '',
     ),
   );
