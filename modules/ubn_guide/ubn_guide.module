@@ -109,8 +109,12 @@ function _ubn_guide_url_guide_aliases($reset = FALSE) {
       $aliases = array();
 
       if (!empty($result['node'])) {
+        $languages = array_keys(locale_language_list('name'));
+
         foreach (array_keys($result['node']) as $guide) {
-          $aliases[drupal_get_path_alias("node/{$guide}")] = $guide;
+          foreach ($languages as $langcode) {
+            $aliases[drupal_get_path_alias("node/{$guide}", $langcode)] = $guide;
+          }
         }
       }
 
@@ -131,7 +135,7 @@ function ubn_guide_url_outbound_alter(&$path, &$options, $original_path) {
   list(, $map) = _ubn_guide_url_bound_map();
 
   if (isset($map[$original_path])) {
-    $path = drupal_get_path_alias($map[$original_path]);;
+    $path = drupal_get_path_alias($map[$original_path], $options['language']->language);
     $options['alias'] = TRUE;
   }
 }

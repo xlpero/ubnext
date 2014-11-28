@@ -147,3 +147,13 @@ projects[panelizer][subdir] = contrib
 ; Field collection
 projects[field_collection][version] = 1.0-beta8
 projects[field_collection][subdir] = contrib
+
+
+; Pathauto i18n
+projects[pathauto_i18n][version] = 1.3
+projects[pathauto_i18n][subdir] = contrib
+
+
+; Pathauto persistent state
+projects[pathauto_persist][version] = 1.3
+projects[pathauto_persist][subdir] = contrib

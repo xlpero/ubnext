@@ -10,6 +10,15 @@
 function ubn_general_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: 'access content'.
+  $permissions['access content'] = array(
+    'name' => 'access content',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'use text format markdown'.
   $permissions['use text format markdown'] = array(
     'name' => 'use text format markdown',

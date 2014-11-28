@@ -96,9 +96,25 @@ function ubn_guide_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'menu_options_guide';
+  $strongarm->value = array(
+    0 => 'main-menu',
+  );
+  $export['menu_options_guide'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'menu_options_guide_chapter';
   $strongarm->value = array();
   $export['menu_options_guide_chapter'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'menu_parent_guide';
+  $strongarm->value = 'main-menu:0';
+  $export['menu_parent_guide'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -130,7 +146,7 @@ function ubn_guide_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_guide';
-  $strongarm->value = '1';
+  $strongarm->value = '0';
   $export['node_preview_guide'] = $strongarm;
 
   $strongarm = new stdClass();
