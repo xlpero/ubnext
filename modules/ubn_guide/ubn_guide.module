@@ -109,11 +109,11 @@ function _ubn_guide_url_guide_aliases($reset = FALSE) {
       $aliases = array();
 
       if (!empty($result['node'])) {
-        $languages = array_keys(locale_language_list('name'));
+        $languages = language_list();
 
         foreach (array_keys($result['node']) as $guide) {
-          foreach ($languages as $langcode) {
-            $aliases[drupal_get_path_alias("node/{$guide}", $langcode)] = $guide;
+          foreach ($languages as $language) {
+            $aliases[drupal_get_path_alias("node/{$guide}", $language->language)] = $guide;
           }
         }
       }
@@ -166,14 +166,7 @@ function ubn_guide_drupal_goto_alter(&$path, &$options, &$http_response_code) {
  * Implements hook_path_insert().
  */
 function ubn_guide_path_insert($path) {
-  $node = menu_get_object('node', 1, $path['source']);
-
-  if (!isset($node->type) || $node->type !== 'guide') {
-    return;
-  }
-
-  // New guide alias, reset alias cache.
-  _ubn_guide_url_guide_aliases(TRUE);
+  ubn_guide_path_update($path);
 }
 
 /**
@@ -197,14 +190,14 @@ function ubn_guide_path_update($path) {
     return;
   }
 
-  // Clear path cache, but do it only once.
-  if (($clear = &drupal_static(__FUNCTION__, TRUE)) === TRUE) {
-    cache_clear_all("*", 'cache_path');
+  // Clear path cache.
+  drupal_clear_path_cache($path['source']);
 
-    $clear = FALSE;
-  }
+  $options = array(
+    'language' => $path['language'],
+  );
 
-  pathauto_node_update_alias_multiple($children, 'bulkupdate');
+  pathauto_node_update_alias_multiple($children, 'bulkupdate', $options);
 }
 
 /**

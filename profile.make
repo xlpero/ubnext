@@ -23,7 +23,7 @@ projects[strongarm][subdir] = contrib
 
 
 ; Chaos tool suite (ctools)
-projects[ctools][version] = 1.4
+projects[ctools][version] = 1.5
 projects[ctools][subdir] = contrib
 
 
