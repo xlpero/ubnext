@@ -45,7 +45,7 @@ function ubn_guide_guide_toc_content_type_render($subtype, $conf, $panel_args, $
     return $block;
   }
 
-  $tree = _ubn_guide_generate_tree($node, $tree);
+  $tree = _ubn_guide_generate_tree($node);
 
   $root = ubn_guide_get_root($node);
   $root_path = "node/{$root->getIdentifier()}";
