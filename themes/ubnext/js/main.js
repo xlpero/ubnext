@@ -9,7 +9,9 @@
 				itemToDisplay.animate({
 		            height: "toggle",
 		            opacity: "toggle"
-		        }, 300);
+		        }, 300, function() {
+		        	itemToDisplay.css("overflow", "visible");
+		        });
 			});
 	 	 }
  	 }

@@ -8269,6 +8269,7 @@ img {
   color: #ffffff;
   position: relative;
   margin-top: -1px;
+  /*overflow: visible !important;*/
 }
 @media (min-width: 768px) {
   .mega-menu {
@@ -9445,21 +9446,22 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
   margin-bottom: 20px;
   display: inline-block;
 }
-@media (min-width: 768px) {
-  .a-z .menu li {
-    /*	width: 3.33%;*/
-  }
-}
 .a-z .menu li a {
   font-weight: bold;
-  padding: 9px;
+  padding: 9px 18px 9px 0;
   text-decoration: none;
 }
 .a-z .menu li a:hover {
   text-decoration: underline;
 }
+.a-z .menu li a:hover.disabled {
+  text-decoration: none;
+}
 .a-z .menu li a.disabled {
   opacity: .5;
+}
+.a-z .menu li:first-child a {
+  padding-left: 0;
 }
 .a-z .alphabetic-list {
   float: left;

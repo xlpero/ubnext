@@ -11,27 +11,28 @@
 			float:left;
 			margin-bottom: 20px;
 			display: inline-block;
-			@media(min-width: @screen-sm-min) {
-			/*	width: 3.33%;*/
-			}
-
 
 			a {
 				font-weight: bold;
 				
-				padding:9px;
+				padding:9px 18px 9px 0;
+
 				text-decoration: none;
 				&:hover {
 					text-decoration: underline;
+					&.disabled {
+						text-decoration: none;
+					}
 				}
 				&.disabled {
 					opacity: .5;
+
 				}
 			}
 			&:first-child {
 				
 				a {
-					
+					padding-left: 0;
 				}
 			}
 		}
