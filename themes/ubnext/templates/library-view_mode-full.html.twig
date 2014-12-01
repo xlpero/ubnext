@@ -5,10 +5,19 @@
 #}
 {% import "images.html.twig" as images %}
 
-<h2>{{ library.label }}</h2>
-<p>{{ library.field_library_description_short.value }}</p>
 
-{% if library.field_library_image_hero.value %}
-    {{ images.style('library_hero', library.field_library_image_hero) }}
-    {{ library.field_library_image_hero.file.field_file_image_title_text.value }}
-{% endif %}
+<div class="library">
+	<div class="intro">
+		<div class="wrap">
+			<div class="ingress-wrapper">
+				<p class="ingress">{{ library.field_library_description_short.value }}</p>	
+			</div>
+			{% if library.field_library_image_hero.value %}
+				<div class="hero-image">
+			    	{{ images.style('library_hero', library.field_library_image_hero) }}
+			    	{{ library.field_library_image_hero.file.field_file_image_title_text.value }}
+			    </div>
+			{% endif %}
+		</div>
+	</div>
+</div>

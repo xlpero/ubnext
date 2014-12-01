@@ -6077,6 +6077,10 @@ header:after,
 .one-col-center-app:after,
 .one-col-center-app .wrap:before,
 .one-col-center-app .wrap:after,
+.one-col-wide .intro:before,
+.one-col-wide .intro:after,
+.one-col-wide .intro .wrap:before,
+.one-col-wide .intro .wrap:after,
 .page-head:before,
 .page-head:after {
   content: " ";
@@ -6111,6 +6115,8 @@ header:after,
 .one-col-app:after,
 .one-col-center-app:after,
 .one-col-center-app .wrap:after,
+.one-col-wide .intro:after,
+.one-col-wide .intro .wrap:after,
 .page-head:after {
   clear: both;
 }
@@ -9065,6 +9071,71 @@ header .left .site-headers .site-title a:hover {
   .one-col-center-app .wrap .main {
     margin-left: 16.66666667%;
   }
+}
+.one-col-wide .intro {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 960px;
+}
+@media (min-width: 768px) {
+  .one-col-wide .intro {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .one-col-wide .intro {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .one-col-wide .intro {
+    width: 1170px;
+  }
+}
+.one-col-wide .intro > .navbar-header,
+.one-col-wide .intro > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  .one-col-wide .intro > .navbar-header,
+  .one-col-wide .intro > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+.one-col-wide .intro .wrap {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.one-col-wide .intro .wrap .ingress-wrapper {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .one-col-wide .intro .wrap .ingress-wrapper {
+    float: left;
+    width: 100%;
+  }
+}
+.one-col-wide .intro .wrap .hero-image {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .one-col-wide .intro .wrap .hero-image {
+    float: left;
+    width: 50%;
+  }
+}
+.one-col-wide .intro .wrap .hero-image img {
+  width: 100%;
 }
 .page-head {
   margin-right: auto;
