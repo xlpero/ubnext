@@ -21,6 +21,7 @@
 		</div>
 	</div>
 
+    {% if library.field_library_properties.count > 0 %}
 	<div class="library-resources">
 		<header>
 			<h3>På {{library.label}}</h3>
@@ -44,6 +45,7 @@
             </table>
         </main>
     </div>
+    {% endif %}
 
 	<div class="contact-library">
 		<div class="wrap">
