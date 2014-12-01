@@ -37,11 +37,15 @@ function ubn_guide_guide_toc_content_type_render($subtype, $conf, $panel_args, $
   $block = new stdClass();
   $block->title = t('Table of Contents');
 
-  $tree = _ubn_guide_generate_tree($node);
+  $root = ubn_guide_get_root($node);
+  $tree = ubn_guide_get_children($root->getIdentifier());
+  $flat = ubn_guide_flatten($tree);
 
-  if (count(element_children($tree)) < 2) {
+  if (count($flat) < 2) {
     return $block;
   }
+
+  $tree = _ubn_guide_generate_tree($node, $tree);
 
   $root = ubn_guide_get_root($node);
   $root_path = "node/{$root->getIdentifier()}";
