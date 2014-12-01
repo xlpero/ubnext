@@ -1,0 +1,3 @@
+{% macro style(style, image) %}
+    <img src="{{ image_style_url(style, image.value.uri) }}" title="{{ image.file.field_file_image_title_text.value }}" alt="{{ image.file.field_file_image_alt_text.value }}">
+{% endmacro %}
