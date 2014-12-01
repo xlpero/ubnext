@@ -3,10 +3,12 @@
   models[library] = entity:node
   view_mode[node][library] = full
 #}
+{% import "images.html.twig" as images %}
+
 <h2>{{ library.label }}</h2>
 <p>{{ library.field_library_description_short.value }}</p>
+
 {% if library.field_library_image_hero.value %}
-    {% import "images.html.twig" as images %}
     {{ images.style('library_hero', library.field_library_image_hero) }}
     {{ library.field_library_image_hero.file.field_file_image_title_text.value }}
 {% endif %}
