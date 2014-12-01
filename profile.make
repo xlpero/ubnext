@@ -186,3 +186,14 @@ projects[conditional_fields][subdir] = contrib
 
 ; Support for multiple "Field Collection" fields. (https://www.drupal.org/node/1464950#comment-9051923)
 projects[conditional_fields][patch][1464950] = https://www.drupal.org/files/issues/conditional_fields-fixed_multiple_field_collection_fields-1464950-153.patch
+
+
+; Location
+projects[location][version] = 3.5
+projects[location][subdir] = contrib
+
+
+; GMap
+projects[gmap][version] = 2.9
+projects[gmap][download][revision] = de71dda46b26d50051fa75ecedc678d181d20991
+projects[gmap][subdir] = contrib

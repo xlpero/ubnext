@@ -213,6 +213,44 @@ function ubn_library_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-library-field_library_location'
+  $field_instances['node-library-field_library_location'] = array(
+    'bundle' => 'library',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'location_cck',
+        'settings' => array(),
+        'type' => 'location_default',
+        'weight' => 5,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_library_location',
+    'label' => 'Location',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'location_cck',
+      'settings' => array(),
+      'type' => 'location',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'node-library-field_library_properties'
   $field_instances['node-library-field_library_properties'] = array(
     'bundle' => 'library',
@@ -382,6 +420,7 @@ function ubn_library_field_default_field_instances() {
   t('Description');
   t('Hero Image');
   t('Key');
+  t('Location');
   t('Name');
   t('Properties');
   t('Short Description');
