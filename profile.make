@@ -158,3 +158,20 @@ projects[pathauto_i18n][subdir] = contrib
 ; Pathauto persistent state
 projects[pathauto_persist][version] = 1.3
 projects[pathauto_persist][subdir] = contrib
+
+
+; File entity (fieldable files)
+projects[file_entity][version] = 2.0-beta1
+projects[file_entity][download][revision] = a603cedb5e3c7e2a18464ab1760fe48fb12fbb8e
+projects[file_entity][subdir] = contrib
+
+
+; Media
+projects[media][version] = 2.0-alpha4
+projects[media][download][revision] = 247b31f88e0d1b9bfa3b5ef2669fe75f31f3b78d
+projects[media][subdir] = contrib
+
+
+; Views
+projects[views][version] = 3.8
+projects[views][subdir] = contrib

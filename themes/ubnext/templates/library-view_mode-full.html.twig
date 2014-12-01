@@ -1,0 +1,10 @@
+{# slate
+  name = Library: View mode 'Full content'
+  models[library] = entity:node
+  view_mode[node][library] = full
+#}
+<h2>{{ library.label }}</h2>
+<p>{{ library.field_library_description_short.value }}</p>
+{% if library.field_library_image_hero.value %}
+    <img src="{{ image_style_url('library_hero', library.field_library_image_hero.value.uri) }}">
+{% endif %}
