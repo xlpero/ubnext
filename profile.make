@@ -178,3 +178,12 @@ projects[media][subdir] = contrib
 ; Views
 projects[views][version] = 3.8
 projects[views][subdir] = contrib
+
+
+; Conditional Fields
+projects[conditional_fields][version] = 3.0-alpha1
+projects[conditional_fields][download][revision] = 78ecb040828f8b9b38ca6e1c37a69782da8d9f86
+projects[conditional_fields][subdir] = contrib
+
+; Support for multiple "Field Collection" fields. (https://www.drupal.org/node/1464950#comment-9051923)
+projects[conditional_fields][patch][1464950] = https://www.drupal.org/files/issues/conditional_fields-fixed_multiple_field_collection_fields-1464950-153.patch
