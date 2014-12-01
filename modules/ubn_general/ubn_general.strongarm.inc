@@ -20,6 +20,19 @@ function ubn_general_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_entity_types';
+  $strongarm->value = array(
+    'node' => 'node',
+    'taxonomy_term' => 'taxonomy_term',
+    'field_collection_item' => 'field_collection_item',
+    'file' => 0,
+    'user' => 0,
+  );
+  $export['entity_translation_entity_types'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'i18n_string_source_language';
   $strongarm->value = 'en';
   $export['i18n_string_source_language'] = $strongarm;
@@ -39,7 +52,7 @@ function ubn_general_strongarm() {
     'domain' => '',
     'prefix' => 'sv',
     'weight' => '0',
-    'javascript' => 'DCGuZCui9nyzHJNweAIAhATGCOrtl4JU4b24_sYMao8',
+    'javascript' => 'K7Ki7RA-qm7TWE_wgK9BIdCmrUh_OLfikk9hjNMciBU',
   );
   $export['language_default'] = $strongarm;
 
