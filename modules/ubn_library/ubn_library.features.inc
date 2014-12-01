@@ -17,6 +17,13 @@ function ubn_library_ctools_plugin_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function ubn_library_views_api($module = NULL, $api = NULL) {
+  return array("api" => "3.0");
+}
+
+/**
  * Implements hook_image_default_styles().
  */
 function ubn_library_image_default_styles() {
@@ -28,8 +35,8 @@ function ubn_library_image_default_styles() {
     'label' => 'Library: Hero',
     'effects' => array(
       1 => array(
-        'label' => 'Skala',
-        'help' => 'Skalning kommer att bibehålla proportionerna i den ursprungliga bilden. Om enbart ett mått anges kommer det andra måttet att räknas ut.',
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
         'effect callback' => 'image_scale_effect',
         'dimensions callback' => 'image_scale_dimensions',
         'form callback' => 'image_scale_form',
