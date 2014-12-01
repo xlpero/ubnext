@@ -21,48 +21,29 @@
 		</div>
 	</div>
 
-
 	<div class="library-resources">
 		<header>
 			<h3>På {{library.label}}</h3>
 		</header>
 		<main>
-			<table>
-				<tr>
-					<td>
-						Läsplatser
-					</td>
-					<td>
-						10
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Grupprum
-					</td>
-					<td>
-						8
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Microvågsugn
-					</td>
-					<td>
-						<i class="fa fa-check"></i>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						Microvågsugn
-					</td>
-					<td>
-						<i class="fa fa-times"></i>
-					</td>
-				</tr>
-			</table>
-		</main>
-	</div>
+            <table>
+                {% for property in library.field_library_properties %}
+                    <tr>
+                        <td>
+                            {{ property.field_library_properties_key.label }}
+                        </td>
+                        <td>
+                            {% if property.field_library_properties_type.value == 'text' %}
+                                {{ property.field_library_properties_text.value }}
+                            {% else %}
+                                <i class="fa fa-{{ property.field_library_properties_type.value == 'yes' ? 'check' : 'times' }}"></i>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </main>
+    </div>
 
 	<div class="contact-library">
 		<div class="wrap">

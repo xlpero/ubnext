@@ -149,6 +149,9 @@ projects[panelizer][subdir] = contrib
 projects[field_collection][version] = 1.0-beta8
 projects[field_collection][subdir] = contrib
 
+; Field Collection: Field translation (entity_translation) support. (https://www.drupal.org/node/1344672)
+projects[field_collection][patch][1344672] = https://www.drupal.org/files/issues/field_collection-et-1344672-265.patch
+
 
 ; Pathauto i18n
 projects[pathauto_i18n][version] = 1.3
