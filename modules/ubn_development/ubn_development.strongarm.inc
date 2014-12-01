@@ -16,8 +16,9 @@ function ubn_development_strongarm() {
   $strongarm->name = 'admin_language_pages';
   $strongarm->value = 'admin_menu/*
 file/ajax/*
-system/ajax
-panels/ajax/*';
+system/ajax/*
+panels/ajax/*
+media/ajax/*';
   $export['admin_language_pages'] = $strongarm;
 
   $strongarm = new stdClass();
