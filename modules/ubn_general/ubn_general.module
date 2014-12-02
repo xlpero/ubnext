@@ -79,6 +79,7 @@ function ubn_general_generate_map($entities) {
     list($latitude, $longitude) = explode(',', $coordinates);
 
     $coords[] = array(
+      'label' => $wrapper->label(),
       'latitude' => trim($latitude),
       'longitude' => trim($longitude),
     );
