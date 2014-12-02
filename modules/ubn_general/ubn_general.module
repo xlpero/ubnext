@@ -65,10 +65,13 @@ function ubn_general_strnatcmp($left, $right) {
  * Display entities on a map.
  */
 function ubn_general_generate_map($entities) {
+  global $language_content;
+
   $coords = array();
 
   foreach ($entities as $entity) {
     $wrapper = entity_metadata_wrapper('node', $entity);
+    $wrapper->language($language_content->language);
 
     $coordinates = $wrapper->field_gps_coordinates->value();
 
