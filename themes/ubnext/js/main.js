@@ -8,7 +8,7 @@
 				itemToDisplay.animate({
 		            height: "toggle",
 		            opacity: "toggle"
-		        }, 300, function() {
+		        }, 200, function() {
 		        	itemToDisplay.css("overflow", "visible");
 		        });
 			});
