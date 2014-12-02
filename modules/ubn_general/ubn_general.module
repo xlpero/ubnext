@@ -62,13 +62,34 @@ function ubn_general_strnatcmp($left, $right) {
 }
 
 /**
- * Add JS and cords to display a map.
+ * Display entities on a map.
  */
-function ubn_general_generate_map($cords = array()) {
+function ubn_general_generate_map($entities) {
+  $coords = array();
+
+  foreach ($entities as $entity) {
+    $wrapper = entity_metadata_wrapper('node', $entity);
+
+    $coordinates = $wrapper->field_gps_coordinates->value();
+    list($latitude, $longitude) = explode(',', $coordinates);
+
+    $coords[] = array(
+      'latitude' => trim($latitude),
+      'longitude' => trim($longitude),
+    );
+  }
+
+  return ubn_general_render_map($coords);
+}
+
+/**
+ * Add JS and cords to render a map.
+ */
+function ubn_general_render_map($coords = array()) {
   // @todo add this as a setting!
   drupal_add_js('https://maps.googleapis.com/maps/api/js?key=AIzaSyCrHH1UmYwF_jHleEU6rBCf115wBXCb6KM', 'external');
 
-  drupal_add_js(array('ubMap' => $cords), 'setting');
+  drupal_add_js(array('ubMap' => $coords), 'setting');
   drupal_add_js(drupal_get_path('module', 'ubn_general') . '/ubn_general.map.js');
 
   return '<div id="ub-map"></div>';

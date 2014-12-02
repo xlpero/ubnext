@@ -109,6 +109,47 @@ function ubn_library_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-library-field_gps_coordinates'
+  $field_instances['node-library-field_gps_coordinates'] = array(
+    'bundle' => 'library',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 5,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_gps_coordinates',
+    'label' => 'GPS Coordinates',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'node-library-field_library_description_short'
   $field_instances['node-library-field_library_description_short'] = array(
     'bundle' => 'library',
@@ -210,44 +251,6 @@ function ubn_library_field_default_field_instances() {
       ),
       'type' => 'media_generic',
       'weight' => 3,
-    ),
-  );
-
-  // Exported field_instance: 'node-library-field_library_location'
-  $field_instances['node-library-field_library_location'] = array(
-    'bundle' => 'library',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'location_cck',
-        'settings' => array(),
-        'type' => 'location_default',
-        'weight' => 5,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_library_location',
-    'label' => 'Location',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'location_cck',
-      'settings' => array(),
-      'type' => 'location',
-      'weight' => 5,
     ),
   );
 
@@ -418,9 +421,9 @@ function ubn_library_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Description');
+  t('GPS Coordinates');
   t('Hero Image');
   t('Key');
-  t('Location');
   t('Name');
   t('Properties');
   t('Short Description');
