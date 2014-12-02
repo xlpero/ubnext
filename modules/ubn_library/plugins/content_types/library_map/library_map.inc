@@ -48,24 +48,24 @@ function ubn_library_library_map_content_type_render($subtype, $conf, $panel_arg
 
   $libraries = entity_load('node', array_keys($result['node']));
 
-  $library_info = array();
+  $libraries_info = array();
 
   foreach ($libraries as $_library) {
     $library = entity_metadata_wrapper('node', $_library);
-
     $library->language($language_content->language);
+
     $uri = entity_uri('node', $_library);
 
-    $library_info[] = array(
+    $libraries_info[] = array(
       'label' => $library->label(),
       'url' => url($uri['path']),
     );
-
   }
 
-
-  var_dump($library_info);
-  $block->content = ubn_general_generate_map($libraries);
+  $block->content = slate_render('library-library_map', array(
+    'libraries' => $libraries_info,
+    'map' => ubn_general_generate_map($libraries),
+  ));
 
   return $block;
 }

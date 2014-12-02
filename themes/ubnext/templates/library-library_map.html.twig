@@ -1,0 +1,9 @@
+{# slate
+  name = Library: Library Map
+  models[map] = item
+  models[libraries] = item
+#}
+{% for library in libraries %}
+    <a href="{{ library.url }}">{{ library.label }}</a>
+{% endfor %}
+{{ map | raw }}

@@ -28,9 +28,20 @@ function ubn_general_super_search_content_type_settings($form, &$form_state) {
  */
 function ubn_general_super_search_content_type_render($subtype, $conf, $panel_args, $context) {
   $block = new stdClass();
-  $block->title = t('List of Terms');
+  $block->title = t('Super Search');
 
   $block->content = drupal_get_form('ubn_general_super_search_form');
 
   return $block;
+}
+
+/**
+ *
+ */
+function ubn_general_super_search_form($form, $form_state) {
+  $form['search'] = array(
+    '#type' => 'textfield',
+  );
+
+  return $form;
 }
