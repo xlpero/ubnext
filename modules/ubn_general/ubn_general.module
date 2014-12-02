@@ -62,7 +62,7 @@ function ubn_general_strnatcmp($left, $right) {
 }
 
 /**
- *
+ * Add JS and cords to display a map.
  */
 function ubn_general_generate_map($cords = array()) {
   // @todo add this as a setting!
