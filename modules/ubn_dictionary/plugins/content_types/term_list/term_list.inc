@@ -48,10 +48,6 @@ function ubn_dictionary_term_list_content_type_render($subtype, $conf, $panel_ar
     foreach (entity_load('node', array_keys($result['node'])) as $_term) {
       $term = entity_metadata_wrapper('node', $_term);
 
-      // This is not the correct way to do handle this, seems like there is a
-      // bug in Entity API. But for now, set language. We can do this because
-      // we know there is a translation in this language because we use our
-      // query tag 'ENTITY_TRANSLATION'.
       $term->language($language_content->language);
 
       $key = mb_substr($term->label(), 0, 1);
