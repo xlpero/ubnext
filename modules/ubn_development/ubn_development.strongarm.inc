@@ -31,6 +31,13 @@ media/ajax/*';
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'slate_debug_enabled';
+  $strongarm->value = 1;
+  $export['slate_debug_enabled'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'views_ui_show_advanced_column';
   $strongarm->value = 1;
   $export['views_ui_show_advanced_column'] = $strongarm;
