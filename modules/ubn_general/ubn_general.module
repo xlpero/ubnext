@@ -71,12 +71,21 @@ function ubn_general_generate_map($entities) {
     $wrapper = entity_metadata_wrapper('node', $entity);
 
     $coordinates = $wrapper->field_gps_coordinates->value();
+
+    if (empty($coordinates)) {
+      continue;
+    }
+
     list($latitude, $longitude) = explode(',', $coordinates);
 
     $coords[] = array(
       'latitude' => trim($latitude),
       'longitude' => trim($longitude),
     );
+  }
+
+  if (empty($coords)) {
+    return "";
   }
 
   return ubn_general_render_map($coords);
