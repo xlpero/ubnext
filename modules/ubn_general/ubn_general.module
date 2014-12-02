@@ -92,5 +92,5 @@ function ubn_general_render_map($coords = array()) {
   drupal_add_js(array('ubMap' => $coords), 'setting');
   drupal_add_js(drupal_get_path('module', 'ubn_general') . '/ubn_general.map.js');
 
-  return '<div id="ub-map"></div>';
+  return '<div id="ub-map-canvas"></div>';
 }

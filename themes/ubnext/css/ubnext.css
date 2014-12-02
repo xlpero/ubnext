@@ -9520,6 +9520,9 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
   font-size: .8em;
   padding: 10px 0;
 }
+.library #ub-map-canvas {
+  height: 500px;
+}
 .library .intro {
   margin-right: auto;
   margin-left: auto;
