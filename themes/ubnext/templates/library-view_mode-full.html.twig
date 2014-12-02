@@ -23,27 +23,29 @@
 
     {% if library.field_library_properties.count > 0 %}
 	<div class="library-resources">
-		<header>
-			<h3>På {{library.label}}</h3>
-		</header>
-		<main>
-            <table>
-                {% for property in library.field_library_properties %}
-                    <tr>
-                        <td>
-                            {{ property.field_library_properties_key.label }}
-                        </td>
-                        <td>
-                            {% if property.field_library_properties_type.value == 'text' %}
-                                {{ property.field_library_properties_text.value }}
-                            {% else %}
-                                <i class="fa fa-{{ property.field_library_properties_type.value == 'yes' ? 'check' : 'times' }}"></i>
-                            {% endif %}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </table>
-        </main>
+            <div class="wrap">
+                		<header>
+                			<h3> {{ t('At @library', {'@library': library.label}) }}</h3>
+                		</header>
+                		<main>
+                            <table>
+                                {% for property in library.field_library_properties %}
+                                    <tr>
+                                        <td>
+                                            {{ property.field_library_properties_key.label }}
+                                        </td>
+                                        <td>
+                                            {% if property.field_library_properties_type.value == 'text' %}
+                                                {{ property.field_library_properties_text.value }}
+                                            {% else %}
+                                                <i class="fa fa-{{ property.field_library_properties_type.value == 'yes' ? 'check' : 'times' }}"></i>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </main>
+            </div> <!-- end wrap --> 
     </div>
     {% endif %}
 

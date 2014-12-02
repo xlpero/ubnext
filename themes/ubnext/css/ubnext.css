@@ -6086,9 +6086,7 @@ header:after,
 .library .library-resources:before,
 .library .library-resources:after,
 .library .contact-library:before,
-.library .contact-library:after,
-.library .contact-library .wrap:before,
-.library .contact-library .wrap:after {
+.library .contact-library:after {
   content: " ";
   display: table;
 }
@@ -6125,8 +6123,7 @@ header:after,
 .library .intro:after,
 .library .intro .wrap:after,
 .library .library-resources:after,
-.library .contact-library:after,
-.library .contact-library .wrap:after {
+.library .contact-library:after {
   clear: both;
 }
 .center-block {
@@ -9528,7 +9525,7 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
   padding: 10px 0;
 }
 .library #ub-map-canvas {
-  height: 500px;
+  height: 250px;
 }
 .library .intro {
   margin-right: auto;
@@ -9602,7 +9599,6 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
   padding-right: 15px;
   max-width: 960px;
   margin-top: 20px;
-  background-color: #025da6;
   color: white;
 }
 @media (min-width: 768px) {
@@ -9632,6 +9628,10 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
     margin-left: 0;
   }
 }
+.library .library-resources .wrap {
+  background-color: #025da6;
+  padding-bottom: 20px;
+}
 .library .library-resources header {
   padding-top: 20px;
   text-align: center;
@@ -9645,6 +9645,7 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
   width: 100%;
   max-width: 100%;
   margin-bottom: 22px;
+  margin-bottom: 0;
 }
 .library .library-resources main table > thead > tr > th,
 .library .library-resources main table > tbody > tr > th,
@@ -9722,8 +9723,7 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
   }
 }
 .library .contact-library .wrap {
-  margin-left: -15px;
-  margin-right: -15px;
+  overflow: hidden;
 }
 .library .contact-library .wrap header {
   z-index: 10;
