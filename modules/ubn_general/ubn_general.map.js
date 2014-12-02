@@ -3,7 +3,6 @@
     Drupal.behaviors.ubMap = {
         attach: function(context, settings) {
 			console.log(settings.ubMap);
-
 			if (settings.ubMap.length) {
 				// set center on first item in array
 				var centerLatlng = new google.maps.LatLng(settings.ubMap[0].latitude * 1, settings.ubMap[0].longitude * 1);
@@ -32,14 +31,13 @@
 					  position = markers[index].position;
 					  new_boundary.extend(position);
 					}
-
 					map.fitBounds(new_boundary);
 				}
-
-				
-
-
-
+				google.maps.event.addDomListener(window, "resize", function() {
+				    var center = map.getCenter();
+				    google.maps.event.trigger(map, "resize");
+				    map.setCenter(center); 
+				});
 			}
     	}
     }
