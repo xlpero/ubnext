@@ -47,13 +47,18 @@
     </div>
     {% endif %}
 
-    {{ ubn_general_generate_map([library.value]) | raw }}
+    
 
 	<div class="contact-library">
 		<div class="wrap">
 			<header>
 				<h3>Kontakta {{library.label}}</h3>
 			</header>
+            <main>
+                <div class="map-wrapper">
+                    {{ ubn_general_generate_map([library.value]) | raw }}
+                </div>  
+            </main>
 		</div>
 	</div>
 
