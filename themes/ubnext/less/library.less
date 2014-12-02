@@ -21,9 +21,9 @@
 	.library-resources {
 		.container();
 		margin-top: 20px;
-		color: white;
+		color: @black;
 		.wrap {
-			background-color: @blue-gu-dark;
+			background-color: @gray-lighter;
 			padding-bottom: 20px;
 		}
 		header {
@@ -78,7 +78,15 @@
 					bottom: -17px;
 				}
 			}
-
+			.contact-wrapper {
+				.make-row();
+				.adress {
+					.make-sm-column(6);
+				}
+				.contact-form {
+					.make-sm-column(6);
+				}
+			}
 		}
 	}
 }
