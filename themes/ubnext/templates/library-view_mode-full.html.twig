@@ -54,25 +54,47 @@
 	<div class="contact-library">
 		<div class="wrap">
 			<header>
-				<h3>Kontakta {{library.label}}</h3>
+				<h3>{{ t('Contact @library', {'@library': library.label}) }}</h3>
 			</header>
             <main>
                 <div class="map-wrapper">
                     {{ ubn_general_generate_map([library.value]) | raw }}
                 </div>  
+
+                <div class="contact-wrapper">
+                    <div class="adress">
+                        <div class="first-adress">
+                            {% if library.field_library_mailing_address %}
+                                 <h4>{{ library.label }}</h4>
+                                {{ library.field_library_mailing_address._label }}
+                                {{ library.field_library_mailing_address }}
+                            {% endif %}
+                        </div>
+                        <div class="second-adress">
+                            <h4>Visiting adress</h4>
+                                {% if library.field_library_visiting_address %}
+                                    {{ library.field_library_visiting_address }}
+                                {% endif %}
+                        </div>
+                        <div class="phone">
+                            
+                        </div>
+
+                    </div>
+                    <div class="contact-form">
+
+
+                        form
+                    </div>
+                </div>
             </main>
 		</div>
 	</div>
 
-    {% if library.field_library_visiting_address %}
-        {{ library.label }}
-        {{ library.field_library_visiting_address }}
-    {% endif %}
 
-    {% if library.field_library_mailing_address %}
-        {{ library.field_library_mailing_address._label }}
-        {{ library.field_library_mailing_address }}
-    {% endif %}
+
+
+
 
     {% if library.field_library_delivery_address %}
         {{ library.field_library_delivery_address._label }}

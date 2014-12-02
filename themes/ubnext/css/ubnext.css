@@ -6086,7 +6086,9 @@ header:after,
 .library .library-resources:before,
 .library .library-resources:after,
 .library .contact-library:before,
-.library .contact-library:after {
+.library .contact-library:after,
+.library .contact-library .wrap .contact-wrapper:before,
+.library .contact-library .wrap .contact-wrapper:after {
   content: " ";
   display: table;
 }
@@ -6123,7 +6125,8 @@ header:after,
 .library .intro:after,
 .library .intro .wrap:after,
 .library .library-resources:after,
-.library .contact-library:after {
+.library .contact-library:after,
+.library .contact-library .wrap .contact-wrapper:after {
   clear: both;
 }
 .center-block {
@@ -8129,6 +8132,17 @@ h6,
   font-size: 0.75em;
   margin-bottom: 6px;
 }
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3em;
+  }
+  h2 {
+    font-size: 2.25em;
+  }
+  h3 {
+    font-size: 1.75em;
+  }
+}
 .lead {
   font-size: 1.125em;
   font-weight: bold;
@@ -9599,7 +9613,7 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
   padding-right: 15px;
   max-width: 960px;
   margin-top: 20px;
-  color: white;
+  color: #292f33;
 }
 @media (min-width: 768px) {
   .library .library-resources {
@@ -9629,7 +9643,7 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
   }
 }
 .library .library-resources .wrap {
-  background-color: #025da6;
+  background-color: #eeeeee;
   padding-bottom: 20px;
 }
 .library .library-resources header {
@@ -9740,4 +9754,32 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
   position: absolute;
   right: 50%;
   bottom: -17px;
+}
+.library .contact-library .wrap .contact-wrapper {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.library .contact-library .wrap .contact-wrapper .adress {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .library .contact-library .wrap .contact-wrapper .adress {
+    float: left;
+    width: 50%;
+  }
+}
+.library .contact-library .wrap .contact-wrapper .contact-form {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .library .contact-library .wrap .contact-wrapper .contact-form {
+    float: left;
+    width: 50%;
+  }
 }
