@@ -45,10 +45,10 @@ function ubn_library_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '7',
+          'weight' => '10',
         ),
         'redirect' => array(
-          'weight' => '6',
+          'weight' => '11',
         ),
         'language' => array(
           'weight' => '0',
