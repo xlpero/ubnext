@@ -42,11 +42,29 @@ function ubn_library_library_map_content_type_render($subtype, $conf, $panel_arg
 
   $result = $query->execute();
 
-  if (!empty($result['node'])) {
-    $libraries = entity_load('node', array_keys($result['node']));
+  if (empty($result['node'])) {
+    return $block;
   }
 
-  //var_dump($libraries);
+  $libraries = entity_load('node', array_keys($result['node']));
+
+  $library_info = array();
+
+  foreach ($libraries as $_library) {
+    $library = entity_metadata_wrapper('node', $_library);
+
+    $library->language($language_content->language);
+    $uri = entity_uri('node', $_library);
+
+    $library_info[] = array(
+      'label' => $library->label(),
+      'url' => url($uri['path']),
+    );
+
+  }
+
+
+  var_dump($library_info);
   $block->content = ubn_general_generate_map($libraries);
 
   return $block;
