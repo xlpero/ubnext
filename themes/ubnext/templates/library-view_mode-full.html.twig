@@ -56,20 +56,24 @@
 			</header>
 		</div>
 	</div>
+
     {% if library.field_library_visiting_address %}
         {{ library.label }}
         {{ library.field_library_visiting_address }}
     {% endif %}
+
     {% if library.field_library_mailing_address %}
-        {{ t("Mailing Address") }}
+        {{ library.field_library_mailing_address._label }}
         {{ library.field_library_mailing_address }}
     {% endif %}
+
     {% if library.field_library_delivery_address %}
-        {{ t("Delivery Address") }}
+        {{ library.field_library_delivery_address._label }}
         {{ library.field_library_delivery_address }}
     {% endif %}
+
     {% if library.field_library_phone %}
-        {{ t("Phone") }}
+        {{ library.field_library_phone._label }}
         {{ library.field_library_phone }}
     {% endif %}
 
