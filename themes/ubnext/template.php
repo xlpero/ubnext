@@ -15,8 +15,7 @@ function ubnext_links__locale_block($variables) {
  */
 function ubnext_preprocess_html(&$vars) {
   drupal_add_css('http://fonts.googleapis.com/css?family=Open+Sans:700,400', array('type' => 'external'));
-  drupal_add_js('https://maps.googleapis.com/maps/api/js?key=AIzaSyCrHH1UmYwF_jHleEU6rBCf115wBXCb6KM', 'external');
-  
+
   // If the Guide feature is enabled, add chapter-1 class to body if the first
   // chapter on a guide is active.
   if (module_exists('ubn_guide')) {

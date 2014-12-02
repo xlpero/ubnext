@@ -5,3 +5,24 @@
  */
 
 include_once 'ubn_library.features.inc';
+
+
+/**
+ *
+ */
+function ubn_library_generate_map($libraries) {
+  $cords = array();
+
+  foreach ($libraries as $library) {
+    $wrapper = entity_metadata_wrapper('node', $library);
+
+    $location = $wrapper->field_library_location->value();
+
+    $cords[] = array(
+      'latitude' => $location['latitude'],
+      'longitude' => $location['longitude'],
+    );
+  }
+
+  return ubn_general_generate_map($cords);
+}
