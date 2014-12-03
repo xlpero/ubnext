@@ -6085,10 +6085,10 @@ header:after,
 .library .intro .wrap:after,
 .library .library-resources:before,
 .library .library-resources:after,
-.library .contact-library:before,
-.library .contact-library:after,
-.library .contact-library .wrap .contact-wrapper:before,
-.library .contact-library .wrap .contact-wrapper:after {
+.library .contact-library .wrap .adress-container:before,
+.library .contact-library .wrap .adress-container:after,
+.library .contact-library .wrap .adress-container .wrap:before,
+.library .contact-library .wrap .adress-container .wrap:after {
   content: " ";
   display: table;
 }
@@ -6125,8 +6125,8 @@ header:after,
 .library .intro:after,
 .library .intro .wrap:after,
 .library .library-resources:after,
-.library .contact-library:after,
-.library .contact-library .wrap .contact-wrapper:after {
+.library .contact-library .wrap .adress-container:after,
+.library .contact-library .wrap .adress-container .wrap:after {
   clear: both;
 }
 .center-block {
@@ -8166,6 +8166,9 @@ body {
   background: #fbffc3;
   padding: 10px;
 }
+.light {
+  background-color: #eeeeee;
+}
 #skip-link {
   position: absolute;
   width: 1px;
@@ -8175,6 +8178,9 @@ body {
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   border: 0;
+}
+#ub-map-canvas {
+  height: 400px;
 }
 .container {
   max-width: 960px;
@@ -9612,7 +9618,6 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
   padding-left: 15px;
   padding-right: 15px;
   max-width: 960px;
-  margin-top: 20px;
   color: #292f33;
 }
 @media (min-width: 768px) {
@@ -9646,7 +9651,7 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
   background-color: #eeeeee;
   padding-bottom: 20px;
 }
-.library .library-resources header {
+.library .library-resources .header {
   padding-top: 20px;
   text-align: center;
 }
@@ -9702,44 +9707,9 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
 .library .library-resources main tr td + td {
   text-align: center;
 }
-.library .contact-library {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  max-width: 960px;
-}
-@media (min-width: 768px) {
-  .library .contact-library {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  .library .contact-library {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  .library .contact-library {
-    width: 1170px;
-  }
-}
-.library .contact-library > .navbar-header,
-.library .contact-library > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-@media (min-width: 768px) {
-  .library .contact-library > .navbar-header,
-  .library .contact-library > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-.library .contact-library .wrap {
-  overflow: hidden;
-}
-.library .contact-library .wrap header {
+.library .contact-library .wrap .header {
+  width: 100%;
+  margin: 0;
   z-index: 10;
   position: relative;
   text-align: center;
@@ -9747,7 +9717,7 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
   background: #292f33;
   color: #ffffff;
 }
-.library .contact-library .wrap header:after {
+.library .contact-library .wrap .header:after {
   content: ' ';
   border: solid 9px transparent;
   border-top-color: #292f33;
@@ -9755,30 +9725,69 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
   right: 50%;
   bottom: -17px;
 }
-.library .contact-library .wrap .contact-wrapper {
+.library .contact-library .wrap .adress-container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 960px;
+}
+@media (min-width: 768px) {
+  .library .contact-library .wrap .adress-container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .library .contact-library .wrap .adress-container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .library .contact-library .wrap .adress-container {
+    width: 1170px;
+  }
+}
+.library .contact-library .wrap .adress-container > .navbar-header,
+.library .contact-library .wrap .adress-container > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  .library .contact-library .wrap .adress-container > .navbar-header,
+  .library .contact-library .wrap .adress-container > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+.library .contact-library .wrap .adress-container .wrap {
   margin-left: -15px;
   margin-right: -15px;
+  padding-top: 20px;
 }
-.library .contact-library .wrap .contact-wrapper .adress {
+.library .contact-library .wrap .adress-container .wrap .adress {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
 }
 @media (min-width: 768px) {
-  .library .contact-library .wrap .contact-wrapper .adress {
+  .library .contact-library .wrap .adress-container .wrap .adress {
     float: left;
     width: 50%;
   }
 }
-.library .contact-library .wrap .contact-wrapper .contact-form {
+.library .contact-library .wrap .adress-container .wrap .adress .header {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.library .contact-library .wrap .adress-container .wrap .contact-form {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
 }
 @media (min-width: 768px) {
-  .library .contact-library .wrap .contact-wrapper .contact-form {
+  .library .contact-library .wrap .adress-container .wrap .contact-form {
     float: left;
     width: 50%;
   }

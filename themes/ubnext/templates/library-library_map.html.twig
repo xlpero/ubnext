@@ -3,7 +3,10 @@
   models[map] = item
   models[libraries] = item
 #}
-{% for library in libraries %}
-    <a href="{{ library.url }}">{{ library.label }}</a>
-{% endfor %}
+
+<select class="form-control">
+	{% for library in libraries %}
+	   <option><a href="{{ library.url }}">{{ library.label }}</a></option>
+	{% endfor %}
+</select>
 {{ map | raw }}
