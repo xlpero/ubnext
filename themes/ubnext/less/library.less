@@ -83,14 +83,35 @@
 					.make-row();
 					padding-top: 20px;
 					.adress {
-						.make-sm-column(6);
-						.header {
-							font-size: 1.5em;
+
+						.make-sm-column(4);
+						.make-sm-column-offset(2);
+						.header-field {
+							font-size: 1.2em;
+							margin-bottom: 10px;
 							font-weight: bold;
+						}
+						.body-field {
+							margin-bottom: 10px;
 						}
 					}
 					.contact-form {
-						.make-sm-column(6);
+						margin-top: 20px;
+						@media(min-width: @screen-sm-min ) {
+							margin-top:0;
+						}
+						.make-sm-column(4);
+						form {
+							#send-form-btn {
+								.btn(); 
+								.btn-primary();
+								display: block;
+								width: 100%;
+							}
+							textarea {
+								resize: none;
+							}
+						}
 					}
 				}
 			}
