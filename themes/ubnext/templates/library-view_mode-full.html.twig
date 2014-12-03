@@ -23,31 +23,31 @@
 
     {% if library.field_library_properties.count > 0 %}
     <div class="full-width-wrapper light">
-	<div class="library-resources">
-            <div class="wrap">
-                		<div class="header">
-                			<h3> {{ t('At @library', {'@library': library.label}) }}</h3>
-                		</div>
-                		<main>
-                            <table>
-                                {% for property in library.field_library_properties %}
-                                    <tr>
-                                        <td>
-                                            {{ property.field_library_properties_key.label }}
-                                        </td>
-                                        <td>
-                                            {% if property.field_library_properties_type.value == 'text' %}
-                                                {{ property.field_library_properties_text.value }}
-                                            {% else %}
-                                                <i class="fa fa-{{ property.field_library_properties_type.value == 'yes' ? 'check' : 'times' }}"></i>
-                                            {% endif %}
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </table>
-                        </main>
-            </div> <!-- end wrap --> 
-    </div>
+    	<div class="library-resources">
+                <div class="wrap">
+                    		<div class="header">
+                    			<h3> {{ t('At @library', {'@library': library.label}) }}</h3>
+                    		</div>
+                    		<main>
+                                <table>
+                                    {% for property in library.field_library_properties %}
+                                        <tr>
+                                            <td>
+                                                {{ property.field_library_properties_key.label }}
+                                            </td>
+                                            <td>
+                                                {% if property.field_library_properties_type.value == 'text' %}
+                                                    {{ property.field_library_properties_text.value }}
+                                                {% else %}
+                                                    <i class="fa fa-{{ property.field_library_properties_type.value == 'yes' ? 'check' : 'times' }}"></i>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            </main>
+                </div> <!-- end wrap --> 
+        </div>
     </div>
     {% endif %}
 

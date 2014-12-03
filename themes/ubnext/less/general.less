@@ -64,6 +64,9 @@ body {
 }
 
 
+p.lead {
+	max-width: @max-width-of-text-container;
+}
 
 body {
 	line-height: @base-line-height;
@@ -73,9 +76,9 @@ body {
 a {
 	text-decoration:underline;
 	:hover {
-
 	};
 }
+
 a[href^="http"] {
 	&:after {
 		content: " \f08e";

@@ -1,0 +1,23 @@
+.library-map {
+	.header {
+		background: @black;
+		position: relative;
+		padding: 10px;
+		z-index: 10;
+		text-align: center;
+		&:after {
+			content: ' ';
+			border: solid 9px transparent;
+			border-top-color: @black;
+			position: absolute;
+			right: 50%;
+			bottom: -17px;
+		}
+		.links {
+			display: inline-block;
+			width: 300px;
+		}
+	}
+
+
+}

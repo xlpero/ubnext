@@ -4,9 +4,16 @@
   models[libraries] = item
 #}
 
-<select class="form-control">
-	{% for library in libraries %}
-	   <option><a href="{{ library.url }}">{{ library.label }}</a></option>
-	{% endfor %}
-</select>
-{{ map | raw }}
+
+<div class="library-map">
+	<div class="header">
+		<div class="links">
+			<select class="form-control">
+				{% for library in libraries %}
+				   <option><a href="{{ library.url }}">{{ library.label }}</a></option>
+				{% endfor %}
+			</select>
+		</div>
+	</div>
+	{{ map | raw }}
+</div>
