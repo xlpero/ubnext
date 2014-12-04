@@ -143,6 +143,30 @@ function ubn_general_default_page_manager_handlers() {
     $display->content['new-ce326e53-b34a-4815-b93f-3210320a4edd'] = $pane;
     $display->panels['pagetitle'][0] = 'new-ce326e53-b34a-4815-b93f-3210320a4edd';
     $pane = new stdClass();
+    $pane->pid = 'new-d6739a86-9218-46bf-afeb-912ab28a76f1';
+    $pane->panel = 'topbar';
+    $pane->type = 'page_tabs';
+    $pane->subtype = 'page_tabs';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'type' => 'both',
+      'id' => 'tabs',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd6739a86-9218-46bf-afeb-912ab28a76f1';
+    $display->content['new-d6739a86-9218-46bf-afeb-912ab28a76f1'] = $pane;
+    $display->panels['topbar'][0] = 'new-d6739a86-9218-46bf-afeb-912ab28a76f1';
+    $pane = new stdClass();
     $pane->pid = 'new-179c37da-32bb-42e2-900c-6dbcaec09453';
     $pane->panel = 'toplinks';
     $pane->type = 'block';
