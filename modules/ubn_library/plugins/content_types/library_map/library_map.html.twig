@@ -1,0 +1,21 @@
+{# slate
+  name = Library: Library Map
+  models[map] = item
+  models[libraries] = item
+#}
+<div class="library-map">
+	<div class="header">
+        {% if count(libraries) > 1 %}
+            <div class="links">
+                <select class="form-control">
+                    {% for library in libraries %}
+                        <option><a href="{{ library.url }}">{{ library.label }}</a></option>
+                    {% endfor %}
+                </select>
+            </div>
+        {% else %}
+            <h3>{{ libraries[0].label }}</h3>
+        {% endif %}
+    </div>
+    {{ map | raw }}
+</div>

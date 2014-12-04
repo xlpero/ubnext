@@ -12,6 +12,7 @@ $plugin = array(
   'title' => t('Library: Map'),
   'description' => t('A map with all Libraries.'),
   'category' => 'UBNext',
+  'required context' => new ctools_context_optional(t('Library'), 'entity:node'),
   'edit form' => 'ubn_library_library_map_content_type_settings',
 );
 
@@ -32,21 +33,26 @@ function ubn_library_library_map_content_type_render($subtype, $conf, $panel_arg
   $block = new stdClass();
   $block->title = t('Library Map');
 
-  $query = new EntityFieldQuery();
+  if (empty($context->data)) {
+    $query = new EntityFieldQuery();
 
-  $query
-    ->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'library')
-    ->propertyCondition('status', NODE_PUBLISHED)
-    ->addTag('ENTITY_TRANSLATION');
+    $query
+      ->entityCondition('entity_type', 'node')
+      ->entityCondition('bundle', 'library')
+      ->propertyCondition('status', NODE_PUBLISHED)
+      ->addTag('ENTITY_TRANSLATION');
 
-  $result = $query->execute();
+    $result = $query->execute();
 
-  if (empty($result['node'])) {
-    return $block;
+    if (empty($result['node'])) {
+      return $block;
+    }
+
+    $libraries = entity_load('node', array_keys($result['node']));
   }
-
-  $libraries = entity_load('node', array_keys($result['node']));
+  else {
+    $libraries = array($context->data);
+  }
 
   $libraries_info = array();
 
@@ -62,7 +68,7 @@ function ubn_library_library_map_content_type_render($subtype, $conf, $panel_arg
     );
   }
 
-  $block->content = slate_render('library-library_map', array(
+  $block->content = slate_render('library_map', array(
     'libraries' => $libraries_info,
     'map' => ubn_general_generate_map($libraries),
   ));
