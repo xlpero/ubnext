@@ -33,9 +33,11 @@
 		main {
 			table {
 				.table();
-				margin-bottom: 0;
 			}
 			tr {
+				td {
+
+				}
 				.fa-check {
 					color: green;
 				}
@@ -46,6 +48,9 @@
 					td{
 						border-top: none;
 					}	
+				}
+				&:last-child {
+					border-bottom: 1px solid;
 				}
 				td + td {
 					text-align: center;

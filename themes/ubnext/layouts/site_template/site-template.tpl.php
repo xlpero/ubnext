@@ -120,14 +120,14 @@
         </ul>
       </div>
       <div class="col-2">
-        <h3>Paulins Blogg</h3>
+        <h3>Allt annat</h3>
         <ul>
-          <li><a href="#">Nya intranätet är lajvat :)</a></li>
-          <li><a href="#">Ny utställning på biomed</a></li>
-          <li><a href="#">Tillfället gör tjuven</a></li>
-          <li><a href="#">Bibliotek</a></li>
-          <li><a href="#">Bibliotek</a></li>
-        </ul>
+          <li><a href="#">Annat 123 </a></li>
+          <li><a href="#">Annat 123 </a></li>
+          <li><a href="#">Annat 123 </a></li>
+          <li><a href="#">Annat 123 </a></li>
+          <li><a href="#">Annat 123 </a></li>
+        </ul>Annat 123 
       </div>
       <div class="col-3">
         <h3>Alla andra bibliotek</h3>

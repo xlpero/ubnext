@@ -29,11 +29,12 @@ function theme_container_style_render_pane($vars) {
     $id = ' id="' . $vars['pane']->css['css_id'] . '"';
   }
 
-  $output = '<section' . $classes . $id . '>';
-  $output .= '<div class="wrap">';
+//  $output = '<div' . $classes . $id . '>';
+  $output = '<div class="full-width-wrapper light" >';
+  $output .= '<div class="container">';
   $output .= render($vars['content']->content);
   $output .= '</div>';
-  $output .= '</section>';
+  $output .= '</div>';
 
   return $output;
 }
