@@ -111,6 +111,30 @@ function ubn_library_default_page_manager_handlers() {
     $pane->uuid = '19be738f-316b-4061-9a04-acc4dd6b1c0b';
     $display->content['new-19be738f-316b-4061-9a04-acc4dd6b1c0b'] = $pane;
     $display->panels['main'][1] = 'new-19be738f-316b-4061-9a04-acc4dd6b1c0b';
+    $pane = new stdClass();
+    $pane->pid = 'new-f3bbe9fd-0ff8-4543-905f-0a7c0c1e830c';
+    $pane->panel = 'main';
+    $pane->type = 'library_contact';
+    $pane->subtype = 'library_contact';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+      'style' => 'naked',
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $pane->uuid = 'f3bbe9fd-0ff8-4543-905f-0a7c0c1e830c';
+    $display->content['new-f3bbe9fd-0ff8-4543-905f-0a7c0c1e830c'] = $pane;
+    $display->panels['main'][2] = 'new-f3bbe9fd-0ff8-4543-905f-0a7c0c1e830c';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-5e4d22a5-0850-45cb-a053-572c4e85d6f5';
   $handler->conf['display'] = $display;
