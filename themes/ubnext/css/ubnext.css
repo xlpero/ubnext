@@ -6093,6 +6093,8 @@ header:after,
 .contact-library .wrap .adress-container:after,
 .contact-library .wrap .adress-container .wrap:before,
 .contact-library .wrap .adress-container .wrap:after,
+.library-resources:before,
+.library-resources:after,
 .one-col-wide .page:before,
 .one-col-wide .page:after {
   content: " ";
@@ -6135,6 +6137,7 @@ header:after,
 .library .contact-library .wrap .adress-container .wrap:after,
 .contact-library .wrap .adress-container:after,
 .contact-library .wrap .adress-container .wrap:after,
+.library-resources:after,
 .one-col-wide .page:after {
   clear: both;
 }
@@ -8178,6 +8181,12 @@ body {
 .light {
   background-color: #eeeeee;
 }
+.dark {
+  background-color: #333333;
+}
+.white {
+  background-color: #ffffff;
+}
 #skip-link {
   position: absolute;
   width: 1px;
@@ -10141,6 +10150,102 @@ fieldset[disabled] .contact-library .wrap .adress-container .wrap .contact-form 
 }
 .contact-library .wrap .adress-container .wrap .contact-form form textarea {
   resize: none;
+}
+.library-resources {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  max-width: 960px;
+  color: #292f33;
+}
+@media (min-width: 768px) {
+  .library-resources {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .library-resources {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .library-resources {
+    width: 1170px;
+  }
+}
+.library-resources > .navbar-header,
+.library-resources > .navbar-collapse {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+@media (min-width: 768px) {
+  .library-resources > .navbar-header,
+  .library-resources > .navbar-collapse {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+.library-resources .wrap {
+  padding-bottom: 20px;
+}
+.library-resources .header {
+  padding-top: 20px;
+  text-align: center;
+}
+.library-resources main {
+  padding-top: 20px;
+  margin: 0 auto;
+  max-width: 580px;
+}
+.library-resources main table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 22px;
+}
+.library-resources main table > thead > tr > th,
+.library-resources main table > tbody > tr > th,
+.library-resources main table > tfoot > tr > th,
+.library-resources main table > thead > tr > td,
+.library-resources main table > tbody > tr > td,
+.library-resources main table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  border-top: 1px solid #555555;
+}
+.library-resources main table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #555555;
+}
+.library-resources main table > caption + thead > tr:first-child > th,
+.library-resources main table > colgroup + thead > tr:first-child > th,
+.library-resources main table > thead:first-child > tr:first-child > th,
+.library-resources main table > caption + thead > tr:first-child > td,
+.library-resources main table > colgroup + thead > tr:first-child > td,
+.library-resources main table > thead:first-child > tr:first-child > td {
+  border-top: 0;
+}
+.library-resources main table > tbody + tbody {
+  border-top: 2px solid #555555;
+}
+.library-resources main table .table {
+  background-color: #ffffff;
+}
+.library-resources main tr .fa-check {
+  color: green;
+}
+.library-resources main tr .fa-times {
+  color: red;
+}
+.library-resources main tr:first-child td {
+  border-top: none;
+}
+.library-resources main tr:last-child {
+  border-bottom: 1px solid;
+}
+.library-resources main tr td + td {
+  text-align: center;
 }
 .library-map .header {
   background: #292f33;

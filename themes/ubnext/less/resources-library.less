@@ -1,0 +1,42 @@
+	.library-resources {
+		.container();
+		color: @black;
+		.wrap {
+			padding-bottom: 20px;
+		}
+		.header {
+			padding-top: 20px;
+			text-align: center;
+		}
+
+		main {
+			table {
+				.table();
+			}
+			tr {
+				td {
+
+				}
+				.fa-check {
+					color: green;
+				}
+				.fa-times {
+					color: red;
+				}
+				&:first-child {
+					td{
+						border-top: none;
+					}	
+				}
+				&:last-child {
+					border-bottom: 1px solid;
+				}
+				td + td {
+					text-align: center;
+				}
+			}
+			padding-top: 20px;
+			margin:0 auto;
+			max-width: 580px;	
+		}
+	}

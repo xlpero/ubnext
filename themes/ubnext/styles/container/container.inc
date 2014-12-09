@@ -22,19 +22,18 @@ function theme_container_style_render_pane($vars) {
   $id = '';
 
   if (!empty($vars['pane']->css['css_class'])) {
-    $classes = ' class="' . $vars['pane']->css['css_class'] . '"';
+    $classes = ' class="full-width-wrapper ' . $vars['pane']->css['css_class'] . '"';
   }
 
   if (!empty($vars['pane']->css['css_id'])) {
     $id = ' id="' . $vars['pane']->css['css_id'] . '"';
   }
 
-//  $output = '<div' . $classes . $id . '>';
-  $output = '<div class="full-width-wrapper light" >';
-  $output .= '<div class="container">';
+  $output = '<div' . $classes . '>';
   $output .= render($vars['content']->content);
   $output .= '</div>';
-  $output .= '</div>';
+
+
 
   return $output;
 }
