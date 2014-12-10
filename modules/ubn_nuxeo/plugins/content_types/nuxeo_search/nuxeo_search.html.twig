@@ -1,0 +1,13 @@
+{# slate
+  name = Nuxeo search
+  models[resultlist] = item
+#}
+  
+
+
+<h1>Här är våran lista</h1>
+<ul>
+{% for item in resultlist %}
+    <li>{{ item.filename }}</a></li>
+{% endfor %}
+</ul>
