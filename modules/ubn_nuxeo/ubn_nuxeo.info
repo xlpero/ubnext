@@ -1,0 +1,7 @@
+name = Nuxeo
+description = Nuxeo stuff
+core = 7.x
+package = UBNext
+dependencies[] = ubn_general
+features[features_api][] = api:2
+project path = profiles/ubnext/modules
