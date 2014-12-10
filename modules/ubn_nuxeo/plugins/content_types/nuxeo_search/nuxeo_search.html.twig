@@ -8,6 +8,6 @@
 <h1>Här är våran lista</h1>
 <ul>
 {% for item in resultlist %}
-    <li>{{ item.filename }}</a></li>
+    <li><a href="{{ item.url }}">{{ item.filename }}</a> {{ item.author }} {{ item.size }}</li>
 {% endfor %}
 </ul>
