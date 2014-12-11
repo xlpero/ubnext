@@ -38,7 +38,19 @@ function _ubn_nuxeo_search($search_params = array()) {
     $page_size_key_value = '&pageSize='.$search_params['page_size'];
   }
 
-  $response = drupal_http_request('https://TheUser:ThePassword@doku.ub.gu.se/nuxeo/api/v1/query/CoreQueryDocumentPageProvider?query=SELECT+*+FROM+Document+WHERE+ecm%3Afulltext+%3D+%3F+AND+ecm%3AprimaryType+%3D+%27File%27+AND+ecm%3AcurrentLifeCycleState+%3C%3E+%27deleted%27+AND+ecm%3AisLatestVersion+%3D+1'.$search_term_key_value.$page_size_key_value);
+  // Headers to send to Nuxeo server
+  $headers = array(
+    'X-NXDocumentProperties' => '*',
+  );
+
+  // Options used in http request
+  $options = array(
+    'headers' => $headers,
+  );
+
+  $options[] =
+
+  $response = drupal_http_request('https://jupp:jupp@doku.ub.gu.se/nuxeo/api/v1/query/CoreQueryDocumentPageProvider?query=SELECT+*+FROM+Document+WHERE+ecm%3Afulltext+%3D+%3F+AND+ecm%3AprimaryType+%3D+%27File%27+AND+ecm%3AcurrentLifeCycleState+%3C%3E+%27deleted%27+AND+ecm%3AisLatestVersion+%3D+1'.$search_term_key_value.$page_size_key_value, $options);
   //var_dump($response);
 
   if (!empty($response->error)) {
@@ -54,13 +66,14 @@ function _ubn_nuxeo_search($search_params = array()) {
  * @return array
  */
 function _ubn_nuxeo_get_resultlist($results) {
-  var_dump($results);
+  //var_dump($results);
   //var_dump($results['entries']);
 
   $data = array();
 
   foreach ($results['entries'] as $entry) {
     $data[] = $entry;
+    var_dump($entry['properties']);
     //$data[] = array(
     //  'filename' => $entry['title'],
     //  'url' => $entry['contextParameters']['documentURL'],
