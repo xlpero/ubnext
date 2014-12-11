@@ -24,49 +24,69 @@ function ubn_nuxeo_nuxeo_search_content_type_settings($form, &$form_state) {
   return $form;
 }
 
+function _ubn_nuxeo_search($search_params = array()) {
+
+  $search_term_key_value = '';
+
+  if (!empty($search_params['search_term'])) {
+    $search_term_key_value = '&queryParams='.$search_params['search_term'];
+  }
+
+  $page_size_key_value = '';
+
+  if (!empty($search_params['page_size'])) {
+    $page_size_key_value = '&pageSize='.$search_params['page_size'];
+  }
+
+  $response = drupal_http_request('https://TheUser:ThePassword@doku.ub.gu.se/nuxeo/api/v1/query/CoreQueryDocumentPageProvider?query=SELECT+*+FROM+Document+WHERE+ecm%3Afulltext+%3D+%3F+AND+ecm%3AprimaryType+%3D+%27File%27+AND+ecm%3AcurrentLifeCycleState+%3C%3E+%27deleted%27+AND+ecm%3AisLatestVersion+%3D+1'.$search_term_key_value.$page_size_key_value);
+  //var_dump($response);
+
+  if (empty($response->error)) {
+    $json = $response->data;
+  }
+
+  return json_decode($json, true);
+}
+
+/**
+ * @param $results
+ * @return array
+ */
+function _ubn_nuxeo_get_resultlist($results) {
+  //var_dump($results);
+  //var_dump($results['entries']);
+
+  $data = array();
+
+  foreach ($results['entries'] as $entry) {
+    $data[] = array(
+      'filename' => $entry['title'],
+      'url' => $entry['contextParameters']['documentURL'],
+      'author' => $entry['uid'],
+      'size' => $entry['entity-type'],
+    );
+  }
+  return $data;
+}
+
+function _ubn_nuxeo_get_query_params() {
+  $params = drupal_get_query_parameters();
+  //var_dump($params);
+  return $params;
+};
+
 /**
  * Render callback.
  */
-
-function ubn_nuxeo_nuxeo_search_search($query = null, $filter = null) {
-
-  $data = array(
-    array(
-      'filename' => 'title 1', 
-      'url' => 'http://www.google.se',
-      'author' => 'Johan Von Geijer',
-      'size' => '200kb',
-    ),
-    array(
-      'filename' => 'title 2', 
-      'url' => 'http://www.google.se',
-      'author' => 'Johan Von Geijer',
-      'size' => '200kb',
-    ),
-  );
-
-  return $data;
-};
-
-
-function ubn_nuxeo_nuxeo_search_get_query_params() {
-
-};
-
 function ubn_nuxeo_nuxeo_search_content_type_render($subtype, $conf, $panel_args, $context) {
- 
+  $search_params = _ubn_nuxeo_get_query_params();
 
-  //global $language_content;
-
-  //$data = entity_metadata_wrapper('node', $context->data);
-  //$data = []
-
-     // $data->language($language_content->language);
-  $data = ubn_nuxeo_nuxeo_search_search();
+  $resultlist = _ubn_nuxeo_get_resultlist(_ubn_nuxeo_search($search_params));
+  //var_dump($resultlist);
   
   $block = new stdClass();
   $block->title = t('Nuxeo search');
-  $block->content = slate_render('nuxeo_search', array('resultlist' => $data));
+  $block->content = slate_render('nuxeo_search', array('resultlist' => $resultlist));
 
   return $block;
 }
