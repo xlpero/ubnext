@@ -28,8 +28,8 @@ function _ubn_nuxeo_search($search_params = array()) {
 
   $search_term_key_value = '';
 
-  if (!empty($search_params['search_term'])) {
-    $search_term_key_value = '&queryParams='.$search_params['search_term'];
+  if (!empty($search_params['query'])) {
+    $search_term_key_value = '&queryParams='.$search_params['query'];
   }
 
   $page_size_key_value = '';
@@ -38,9 +38,9 @@ function _ubn_nuxeo_search($search_params = array()) {
     $page_size_key_value = '&pageSize='.$search_params['page_size'];
   }
 
-  $response = drupal_http_request('https://TheUser:ThePassword@doku.ub.gu.se/nuxeo/api/v1/query/CoreQueryDocumentPageProvider?query=SELECT+*+FROM+Document+WHERE+ecm%3Afulltext+%3D+%3F+AND+ecm%3AprimaryType+%3D+%27File%27+AND+ecm%3AcurrentLifeCycleState+%3C%3E+%27deleted%27+AND+ecm%3AisLatestVersion+%3D+1'.$search_term_key_value.$page_size_key_value);
+  $response = drupal_http_request('https://Administrator:Administrator@doku.ub.gu.se/nuxeo/api/v1/query/CoreQueryDocumentPageProvider?query=SELECT+*+FROM+Document+WHERE+ecm%3Afulltext+%3D+%3F+AND+ecm%3AprimaryType+%3D+%27File%27+AND+ecm%3AcurrentLifeCycleState+%3C%3E+%27deleted%27+AND+ecm%3AisLatestVersion+%3D+1'.$search_term_key_value.$page_size_key_value);
   //var_dump($response);
-
+  //https://doku.ub.gu.se/nuxeo/nxdoc/default/e83cce95-19e7-455d-8b4e-19f101396d47/view_documents
   if (empty($response->error)) {
     $json = $response->data;
   }

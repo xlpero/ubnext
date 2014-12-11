@@ -20,17 +20,14 @@
             {% for item in resultlist %}
                 <li>
                     <div class="filename">
-                        <a href="#">{{ item.filename }}</a>
-                    </div>
-                    <div class="author">
-                        {{item.author}}
+                        <a href="#">{{ item.title }}</a>
                     </div>
                     <div class="filesize">
                         {{item.size}}
                     </div>
 
                     <div class="toolkit">
-                        <a href="#"><i class="fa fa-download"></i>Ladda ner</a>
+                        <a href="{{'https://doku.ub.gu.se/' ~  item.path}}"><i class="fa fa-download"></i>Ladda ner</a>
                     </div>
 
                 </li>
