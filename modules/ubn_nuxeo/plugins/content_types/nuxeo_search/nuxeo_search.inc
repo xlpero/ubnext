@@ -40,11 +40,17 @@ function _ubn_nuxeo_search($search_params = array()) {
 
   $response = drupal_http_request('https://Administrator:Administrator@doku.ub.gu.se/nuxeo/api/v1/query/CoreQueryDocumentPageProvider?query=SELECT+*+FROM+Document+WHERE+ecm%3Afulltext+%3D+%3F+AND+ecm%3AprimaryType+%3D+%27File%27+AND+ecm%3AcurrentLifeCycleState+%3C%3E+%27deleted%27+AND+ecm%3AisLatestVersion+%3D+1'.$search_term_key_value.$page_size_key_value);
   //var_dump($response);
-  //https://doku.ub.gu.se/nuxeo/nxdoc/default/e83cce95-19e7-455d-8b4e-19f101396d47/view_documents
+
   if (empty($response->error)) {
     $json = $response->data;
+
+
+  if (!empty($response->error)) {
+    return "";
+
   }
 
+  $json = $response->data;
   return json_decode($json, true);
 }
 
@@ -53,18 +59,19 @@ function _ubn_nuxeo_search($search_params = array()) {
  * @return array
  */
 function _ubn_nuxeo_get_resultlist($results) {
-  //var_dump($results);
+  var_dump($results);
   //var_dump($results['entries']);
 
   $data = array();
 
   foreach ($results['entries'] as $entry) {
-    $data[] = array(
-      'filename' => $entry['title'],
-      'url' => $entry['contextParameters']['documentURL'],
-      'author' => $entry['uid'],
-      'size' => $entry['entity-type'],
-    );
+    $data[] = $entry;
+    //$data[] = array(
+    //  'filename' => $entry['title'],
+    //  'url' => $entry['contextParameters']['documentURL'],
+    //  'author' => $entry['uid'],
+    //  'size' => $entry['entity-type'],
+    //);
   }
   return $data;
 }
