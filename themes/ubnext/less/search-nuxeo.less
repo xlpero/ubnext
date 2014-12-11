@@ -1,0 +1,56 @@
+
+.search-nuxeo {
+	.search-area {
+		.make-row();	
+		.search-nuxeo-form {
+
+			input {
+				display: inline-block;
+				width: 80%;
+			}
+			button {
+			}
+			.make-sm-column(6);
+			.make-sm-column-offset(3);
+		}
+	}
+	.result-area {
+		.make-row();
+		.wrap {
+			.make-sm-column(12);
+		}
+		.result-list {
+			.list-unstyled();
+			li {
+
+				.clearfix();
+				padding: 10px 0;
+				&:nth-child(odd) {
+
+				}
+				border-bottom: 1px solid #ccc;
+
+				&:last-child{
+					border-bottom: none;
+				}
+				.filname {
+
+				}
+				.author {
+
+				}
+				.filesize {
+
+				}
+				.toolkit {
+					i {
+						margin-right: 10px;
+					}
+					width: 200px;
+					padding-top: 10px;
+
+				}
+			}
+		}
+	}
+}

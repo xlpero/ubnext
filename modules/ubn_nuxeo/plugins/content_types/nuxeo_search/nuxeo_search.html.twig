@@ -2,12 +2,39 @@
   name = Nuxeo search
   models[resultlist] = item
 #}
-  
 
 
-<h1>Här är våran lista</h1>
-<ul>
-{% for item in resultlist %}
-    <li>{{ item.filename }}</a></li>
-{% endfor %}
-</ul>
+<div class="search-nuxeo">
+    <section class="search-area">
+        <form class="search-nuxeo-form" method="get" action="" >
+            <input class="form-control" name="query" type="search" placeholder="Sök efter allt..">   
+            </input>
+            <button type="submit" class="btn btn-primary">Sök</button>
+        </form>
+    </section>
+
+    <section class="result-area">
+        <div class="wrap">
+            <ul class="result-list">
+            {% for item in resultlist %}
+                <li>
+                    <div class="filename">
+                        <a href="#">{{ item.filename }}</a>
+                    </div>
+                    <div class="author">
+                        {{item.author}}
+                    </div>
+                    <div class="filesize">
+                        {{item.size}}
+                    </div>
+
+                    <div class="toolkit">
+                        <a href="#"><i class="fa fa-download"></i>Ladda ner</a>
+                    </div>
+
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+    </section>
+</div>

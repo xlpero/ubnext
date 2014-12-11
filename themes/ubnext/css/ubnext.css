@@ -6095,6 +6095,10 @@ header:after,
 .contact-library .wrap .adress-container .wrap:after,
 .library-resources:before,
 .library-resources:after,
+.search-nuxeo .search-area:before,
+.search-nuxeo .search-area:after,
+.search-nuxeo .result-area:before,
+.search-nuxeo .result-area:after,
 .one-col-wide .page:before,
 .one-col-wide .page:after {
   content: " ";
@@ -6138,6 +6142,8 @@ header:after,
 .contact-library .wrap .adress-container:after,
 .contact-library .wrap .adress-container .wrap:after,
 .library-resources:after,
+.search-nuxeo .search-area:after,
+.search-nuxeo .result-area:after,
 .one-col-wide .page:after {
   clear: both;
 }
@@ -10246,6 +10252,81 @@ fieldset[disabled] .contact-library .wrap .adress-container .wrap .contact-form 
 }
 .library-resources main tr td + td {
   text-align: center;
+}
+.search-nuxeo .search-area {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.search-nuxeo .search-area .search-nuxeo-form {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.search-nuxeo .search-area .search-nuxeo-form input {
+  display: inline-block;
+  width: 80%;
+}
+@media (min-width: 768px) {
+  .search-nuxeo .search-area .search-nuxeo-form {
+    float: left;
+    width: 50%;
+  }
+}
+@media (min-width: 768px) {
+  .search-nuxeo .search-area .search-nuxeo-form {
+    margin-left: 25%;
+  }
+}
+.search-nuxeo .result-area {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+.search-nuxeo .result-area .wrap {
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .search-nuxeo .result-area .wrap {
+    float: left;
+    width: 100%;
+  }
+}
+.search-nuxeo .result-area .result-list {
+  padding-left: 0;
+  list-style: none;
+}
+.search-nuxeo .result-area .result-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+.search-nuxeo .result-area .result-list li:before,
+.search-nuxeo .result-area .result-list li:after {
+  content: " ";
+  display: table;
+}
+.search-nuxeo .result-area .result-list li:after {
+  clear: both;
+}
+.search-nuxeo .result-area .result-list li:before,
+.search-nuxeo .result-area .result-list li:after {
+  content: " ";
+  display: table;
+}
+.search-nuxeo .result-area .result-list li:after {
+  clear: both;
+}
+.search-nuxeo .result-area .result-list li:last-child {
+  border-bottom: none;
+}
+.search-nuxeo .result-area .result-list li .toolkit {
+  width: 200px;
+  padding-top: 10px;
+}
+.search-nuxeo .result-area .result-list li .toolkit i {
+  margin-right: 10px;
 }
 .library-map .header {
   background: #292f33;

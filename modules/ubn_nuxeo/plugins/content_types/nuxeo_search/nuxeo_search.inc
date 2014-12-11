@@ -46,7 +46,6 @@ function ubn_nuxeo_nuxeo_search_search($query = null, $filter = null) {
   );
 
   return $data;
-
 };
 
 
