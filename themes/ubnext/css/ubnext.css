@@ -10279,6 +10279,7 @@ fieldset[disabled] .contact-library .wrap .adress-container .wrap .contact-form 
   }
 }
 .search-nuxeo .result-area {
+  margin-top: 20px;
   margin-left: -15px;
   margin-right: -15px;
 }

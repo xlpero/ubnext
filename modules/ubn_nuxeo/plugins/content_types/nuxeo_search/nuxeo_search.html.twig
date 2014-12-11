@@ -22,12 +22,11 @@
                     <div class="filename">
                         <a href="#">{{ item.title }}</a>
                     </div>
-                    <div class="filesize">
-                        {{item.size}}
+                    <div class="last-modified">
+                        Last modified: {{item.lastModified}}
                     </div>
-
                     <div class="toolkit">
-                        <a href="{{'https://doku.ub.gu.se/' ~  item.path}}"><i class="fa fa-download"></i>Ladda ner</a>
+                        <a target="_blank" href="{{'https://doku.ub.gu.se/' ~  item.contextParameters.documentURL}}"><i class="fa fa-download"></i>Ladda ner</a>
                     </div>
 
                 </li>
