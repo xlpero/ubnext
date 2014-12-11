@@ -50,12 +50,28 @@ function _ubn_nuxeo_search($search_params = array()) {
   );
 
   $base_url = "https://Administrator:Administrator@doku.ub.gu.se/nuxeo/api/v1/query/CoreQueryDocumentPageProvider?query=";
-  $ub_doctype = "minnesanteckning";
-  $nxql_string = urlencode("SELECT * FROM Document WHERE ecm:currentLifeCycleState <> 'deleted'  AND ecm:primaryType <> 'Folder' AND ub:doctypes IN ('minnesanteckning')") ;
+  // to be set on content type instance... 
+  $ub_doctype = array("minnesanteckning");
+  $ub_organisation = array('digit_top/digit_team_utveckling', 'digit');
 
-//http://localhost:8080/nuxeo/site/api/v1/query?query=select * from Document&pageSize=2&currentPageIndex=1
+  if (!empty($ub_doctype)) {
+    $ub_doctype_str = " AND ub:doctypes IN " . _ubn_nuxeo_make_string_from_array($ub_doctype);
+  }
+  else {
+    $ub_doctype_str = "";
+  }
 
-  $url = $base_url . $nxql_string . "&pageSize=10";
+  if (!empty($ub_organisation)) {
+    $ub_organisation_str = " AND ub:orgs IN " . _ubn_nuxeo_make_string_from_array($ub_organisation);
+  }
+  else {
+    $ub_organisation_str = '';
+  }
+  var_dump($ub_doctype_str);
+
+  $nxql_string = urlencode("SELECT * FROM Document WHERE ecm:currentLifeCycleState <> 'deleted'  AND ecm:primaryType <> 'Folder'"  . $ub_doctype_str . $ub_organisation_str);
+
+  $url = $base_url . $nxql_string . "&pageSize=50";
 
   var_dump($url);
   $response = drupal_http_request($url, $options);
@@ -65,9 +81,19 @@ function _ubn_nuxeo_search($search_params = array()) {
   if (!empty($response->error)) {
     return "";
   }
-
   $json = $response->data;
   return json_decode($json, true);
+}
+
+function _ubn_nuxeo_make_string_from_array($arr) {
+    $tempstr = "(";
+    foreach ($arr as $item) {
+      $tempstr .= "'" . $item . "',";
+    }
+    $tempstr = trim($tempstr, ",");
+    $tempstr .= ")";
+    //var_dump($tempstr);
+    return $tempstr;
 }
 
 /**
