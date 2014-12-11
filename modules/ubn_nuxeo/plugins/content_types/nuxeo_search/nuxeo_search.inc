@@ -49,9 +49,18 @@ function _ubn_nuxeo_search($search_params = array()) {
     'headers' => $headers,
   );
 
-  $response = drupal_http_request('https://Administrator:Administrator@doku.ub.gu.se/nuxeo/api/v1/query/CoreQueryDocumentPageProvider?query=SELECT+*+FROM+Document+WHERE+ecm%3Afulltext+%3D+%3F+AND+ecm%3AprimaryType+%3D+%27File%27+AND+ecm%3AcurrentLifeCycleState+%3C%3E+%27deleted%27+AND+ecm%3AisLatestVersion+%3D+1'.$search_term_key_value.$page_size_key_value, $options);
+  $base_url = "https://Administrator:Administrator@doku.ub.gu.se/nuxeo/api/v1/query/CoreQueryDocumentPageProvider?query=";
+  $ub_doctype = "minnesanteckning";
+  $nxql_string = urlencode("SELECT * FROM Document WHERE ecm:currentLifeCycleState <> 'deleted'  AND ecm:primaryType <> 'Folder' AND ub:doctypes IN ('minnesanteckning')") ;
 
-  //var_dump($response);
+//http://localhost:8080/nuxeo/site/api/v1/query?query=select * from Document&pageSize=2&currentPageIndex=1
+
+  $url = $base_url . $nxql_string . "&pageSize=10";
+
+  var_dump($url);
+  $response = drupal_http_request($url, $options);
+
+  var_dump($response);
 
   if (!empty($response->error)) {
     return "";
