@@ -12,7 +12,7 @@ $plugin = array(
   'title' => t('Nuxeo: Search'),
   'description' => t('Search filesystem on Nuxeo server.'),
   'category' => 'UBNext',
-  /*'required context' => new ctools_context_required(t('Library'), 'entity:node'),*/
+  'required context' => new ctools_context_required(t('Document List'), 'entity:node'),
   'edit form' => 'ubn_nuxeo_nuxeo_search_content_type_settings',
 );
 
@@ -125,6 +125,13 @@ function _ubn_nuxeo_get_query_params() {
  * Render callback.
  */
 function ubn_nuxeo_nuxeo_search_content_type_render($subtype, $conf, $panel_args, $context) {
+
+  if (empty($context->data)) {
+    return;
+  }
+  else {
+    var_dump($context->data);    
+  }
   $search_params = _ubn_nuxeo_get_query_params();
 
   $resultlist = _ubn_nuxeo_get_resultlist(_ubn_nuxeo_search($search_params));
