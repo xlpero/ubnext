@@ -10322,6 +10322,9 @@ fieldset[disabled] .contact-library .wrap .adress-container .wrap .contact-form 
 .search-nuxeo .result-area .result-list li:last-child {
   border-bottom: none;
 }
+.search-nuxeo .result-area .result-list li .filename {
+  font-size: 1.5em;
+}
 .search-nuxeo .result-area .result-list li .toolkit {
   width: 200px;
   padding-top: 10px;
