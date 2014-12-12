@@ -7,11 +7,11 @@
 
 <div class="search-nuxeo">
     <section class="search-area">
-        <form class="search-nuxeo-form" method="get" action="" >
+        <!--<form class="search-nuxeo-form" method="get" action="" >
             <input class="form-control" name="query" type="search" placeholder="Sök efter allt..">   
             </input>
             <button type="submit" class="btn btn-primary">Sök</button>
-        </form>
+        </form>-->
     </section>
 
     <section class="result-area">
@@ -20,10 +20,10 @@
             {% for item in resultlist %}
                 <li>
                     <div class="filename">
-                        <a href="#">{{ item.title }}</a>
+                        {{ item.title }}
                     </div>
                     <div class="last-modified">
-                        Last modified: {{item.lastModified}}
+                       <small> Last modified: {{item.lastModified}}</small>
                     </div>
                     <div class="toolkit">
                         <a target="_blank" href="{{'https://doku.ub.gu.se/' ~  item.contextParameters.documentURL}}"><i class="fa fa-download"></i>Ladda ner</a>
