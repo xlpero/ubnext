@@ -24,20 +24,13 @@ function ubn_nuxeo_nuxeo_search_content_type_settings($form, &$form_state) {
   return $form;
 }
 
-function _ubn_nuxeo_search($search_params = array()) {
+function _ubn_nuxeo_search($document_list) {
 
   $search_term_key_value = '';
 
   if (!empty($search_params['query'])) {
     $search_term_key_value = '&queryParams='.$search_params['query'];
   }
-
-  $page_size_key_value = '';
-
-  if (!empty($search_params['page_size'])) {
-    $page_size_key_value = '&pageSize='.$search_params['page_size'];
-  }
-
 
   // Headers to send to Nuxeo server
   $headers = array(
@@ -49,36 +42,51 @@ function _ubn_nuxeo_search($search_params = array()) {
     'headers' => $headers,
   );
 
-  $user_name = 'Administrator';
-  $password = 'Administrator';
-  $base_url = "https://".$user_name.":".$password."@doku.ub.gu.se/nuxeo/api/v1/query/CoreQueryDocumentPageProvider?query=";
-  // to be set on content type instance... 
-  $ub_doctype = array("minnesanteckning");
-  $ub_organisation = array('digit_top/digit_team_utveckling', 'digit');
+  // TODO: Put these in configuration instead of in Content type.
+  $user_name = $document_list->field_doclist_username->value();
+  $password = $document_list->field_doclist_password->value();
+  $base_url = $document_list->field_doclist_base_url->value();
 
-  if (!empty($ub_doctype)) {
-    $ub_doctype_str = " AND ub:doctypes IN " . _ubn_nuxeo_make_string_from_array($ub_doctype);
+  // Take these from Content type.
+  $page_size = $document_list->field_doclist_page_size->value();
+  $page_size_key_value = '&pageSize='.$page_size;
+
+  // Take ub_doctypes and ub_orgs from Taxonomy terms in Content type.
+  $ub_doctypes = array();
+
+  foreach ($document_list->field_doclist_document_type->value() as $idx => $term) {
+    $ub_doctypes[] = $term->name;
+  }
+
+  //var_dump($ub_doctypes);
+
+  $ub_orgs = array();
+
+  foreach ($document_list->field_doclist_organization->value() as $idx => $term) {
+    $ub_orgs[] = $term->name;
+  }
+  //var_dump($ub_orgs);
+
+  if (!empty($ub_doctypes)) {
+    $ub_doctype_str = " AND ub:doctypes IN " . _ubn_nuxeo_make_string_from_array($ub_doctypes);
   }
   else {
     $ub_doctype_str = "";
   }
 
-  if (!empty($ub_organisation)) {
-    $ub_organisation_str = " AND ub:orgs IN " . _ubn_nuxeo_make_string_from_array($ub_organisation);
+  if (!empty($ub_orgs)) {
+    $ub_organisation_str = " AND ub:orgs IN " . _ubn_nuxeo_make_string_from_array($ub_orgs);
   }
   else {
     $ub_organisation_str = '';
   }
-  var_dump($ub_doctype_str);
 
   $nxql_string = urlencode("SELECT * FROM Document WHERE ecm:currentLifeCycleState <> 'deleted'  AND ecm:primaryType <> 'Folder'"  . $ub_doctype_str . $ub_organisation_str);
 
-  $url = $base_url . $nxql_string . "&pageSize=10";
+  $url = "https://".$user_name.":".$password."@".$base_url."?query=" . $nxql_string . $page_size_key_value;
 
   //var_dump($url);
   $response = drupal_http_request($url, $options);
-
-  //var_dump($response);
 
   if (!empty($response->error)) {
     return "";
@@ -88,14 +96,16 @@ function _ubn_nuxeo_search($search_params = array()) {
 }
 
 function _ubn_nuxeo_make_string_from_array($arr) {
-    $tempstr = "(";
-    foreach ($arr as $item) {
-      $tempstr .= "'" . $item . "',";
-    }
-    $tempstr = trim($tempstr, ",");
-    $tempstr .= ")";
-    //var_dump($tempstr);
-    return $tempstr;
+
+  $tempstr = "(";
+
+  foreach ($arr as $item) {
+    $tempstr .= "'" . $item . "',";
+  }
+  $tempstr = trim($tempstr, ",");
+  $tempstr .= ")";
+
+  return $tempstr;
 }
 
 /**
@@ -103,23 +113,18 @@ function _ubn_nuxeo_make_string_from_array($arr) {
  * @return array
  */
 function _ubn_nuxeo_get_resultlist($results) {
-  //var_dump($results);
-  //var_dump($results['entries']);
 
   $data = array();
 
   foreach ($results['entries'] as $entry) {
     $data[] = $entry;
-
-    //var_dump($entry['properties']);
-    
   }
   return $data;
 }
 
 function _ubn_nuxeo_get_query_params() {
+
   $params = drupal_get_query_parameters();
-  //var_dump($params);
   return $params;
 };
 
@@ -132,31 +137,10 @@ function ubn_nuxeo_nuxeo_search_content_type_render($subtype, $conf, $panel_args
     return;
   }
 
-  $doclist = entity_metadata_wrapper('node', $context->data);
-  //$doclist->language($language_content->language);
-  //var_dump($doclist);
+  $wrapper = entity_metadata_wrapper('node', $context->data);
 
-  $label = $doclist->label();
-  var_dump($label);
+  $resultlist = _ubn_nuxeo_get_resultlist(_ubn_nuxeo_search($wrapper));
 
-  //$base_url = $doclist->field_doclist_baseurl;
-  //$username = $doclist->field_doclist_username;
-  var_dump($doclist);
-  var_dump($doclist->data);
-
-    //$uri = entity_uri('node', $_library);
-
-  //$libraries_info[] = array(
-  //  'label' => $doclist->label(),
-      //'url' => url($uri['path']),
-    //);
-
-
-  $search_params = _ubn_nuxeo_get_query_params();
-
-  $resultlist = _ubn_nuxeo_get_resultlist(_ubn_nuxeo_search($search_params));
-  //var_dump($resultlist);
-  
   $block = new stdClass();
   $block->title = t('Nuxeo search');
   $block->content = slate_render('nuxeo_search', array('resultlist' => $resultlist));
