@@ -1,8 +1,10 @@
 <?php
 /**
  * @file
- * Drupal needs this blank file.
+ * Code for the Nuxeo feature.
  */
+
+include_once 'ubn_nuxeo.features.inc';
 
 
 
