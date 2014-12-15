@@ -42,10 +42,9 @@ function _ubn_nuxeo_search($document_list) {
     'headers' => $headers,
   );
 
-  // TODO: Put these in configuration instead of in Content type.
-  $user_name = $document_list->field_doclist_username->value();
-  $password = $document_list->field_doclist_password->value();
-  $base_url = $document_list->field_doclist_base_url->value();
+  $user_name = (isset($_SERVER['DMS_API_USERNAME']) ?$_SERVER['DMS_API_USERNAME']  : 'TheUsername' );
+  $password = (isset($_SERVER['DMS_API_PASSWORD']) ?$_SERVER['DMS_API_PASSWORD']  : 'ThePassword' );
+  $base_url = (isset($_SERVER['DMS_API_BASE_URL']) ?$_SERVER['DMS_API_BASE_URL']  : 'example.local/the/path/to/the/api' );
 
   // Take these from Content type.
   $page_size = $document_list->field_doclist_page_size->value();
