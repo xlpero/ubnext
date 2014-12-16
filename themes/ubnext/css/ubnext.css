@@ -2374,7 +2374,7 @@ output {
 .form-control[disabled],
 .form-control[readonly],
 fieldset[disabled] .form-control {
-  cursor: not-allowed;
+  cursor: default;
   background-color: #eeeeee;
   opacity: 1;
 }
@@ -2485,19 +2485,19 @@ input[type="radio"].disabled,
 input[type="checkbox"].disabled,
 fieldset[disabled] input[type="radio"],
 fieldset[disabled] input[type="checkbox"] {
-  cursor: not-allowed;
+  cursor: default;
 }
 .radio-inline.disabled,
 .checkbox-inline.disabled,
 fieldset[disabled] .radio-inline,
 fieldset[disabled] .checkbox-inline {
-  cursor: not-allowed;
+  cursor: default;
 }
 .radio.disabled label,
 .checkbox.disabled label,
 fieldset[disabled] .radio label,
 fieldset[disabled] .checkbox label {
-  cursor: not-allowed;
+  cursor: default;
 }
 .form-control-static {
   padding-top: 7px;
@@ -2809,7 +2809,7 @@ select[multiple].form-group-lg .form-control {
 .btn.disabled,
 .btn[disabled],
 fieldset[disabled] .btn {
-  cursor: not-allowed;
+  cursor: default;
   pointer-events: none;
   opacity: 0.65;
   filter: alpha(opacity=65);
@@ -3267,7 +3267,7 @@ tbody.collapse.in {
   background-color: transparent;
   background-image: none;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
-  cursor: not-allowed;
+  cursor: default;
 }
 .open > .dropdown-menu {
   display: block;
@@ -3678,7 +3678,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #cccccc;
   text-decoration: none;
   background-color: transparent;
-  cursor: not-allowed;
+  cursor: default;
 }
 .nav .open > a,
 .nav .open > a:hover,
@@ -4448,7 +4448,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: #cccccc;
   background-color: #ffffff;
   border-color: #dddddd;
-  cursor: not-allowed;
+  cursor: default;
 }
 .pagination-lg > li > a,
 .pagination-lg > li > span {
@@ -4516,7 +4516,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .pager .disabled > span {
   color: #cccccc;
   background-color: #ffffff;
-  cursor: not-allowed;
+  cursor: default;
 }
 .label {
   display: inline;
@@ -4926,7 +4926,7 @@ a.list-group-item:focus {
 .list-group-item.disabled:focus {
   background-color: #eeeeee;
   color: #cccccc;
-  cursor: not-allowed;
+  cursor: default;
 }
 .list-group-item.disabled .list-group-item-heading,
 .list-group-item.disabled:hover .list-group-item-heading,
@@ -6390,6 +6390,99 @@ header:after,
   .hidden-print {
     display: none !important;
   }
+}
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 22px 0;
+  border-radius: 6px;
+}
+.pagination > li {
+  display: inline;
+}
+.pagination > li > a,
+.pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  line-height: 1.42857143;
+  text-decoration: none;
+  color: #025da6;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  margin-left: -1px;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  margin-left: 0;
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  color: #01335a;
+  background-color: #eeeeee;
+  border-color: #dddddd;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  z-index: 2;
+  color: #ffffff;
+  background-color: #428bca;
+  border-color: #428bca;
+  cursor: default;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #cccccc;
+  background-color: #ffffff;
+  border-color: #dddddd;
+  cursor: default;
+}
+.pagination-lg > li > a,
+.pagination-lg > li > span {
+  padding: 10px 16px;
+  font-size: 20px;
+}
+.pagination-lg > li:first-child > a,
+.pagination-lg > li:first-child > span {
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
+}
+.pagination-lg > li:last-child > a,
+.pagination-lg > li:last-child > span {
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.pagination-sm > li > a,
+.pagination-sm > li > span {
+  padding: 5px 10px;
+  font-size: 14px;
+}
+.pagination-sm > li:first-child > a,
+.pagination-sm > li:first-child > span {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+.pagination-sm > li:last-child > a,
+.pagination-sm > li:last-child > span {
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
 }
 @font-face {
   font-family: 'NimbusSanNovCon-Bol';
@@ -9329,7 +9422,7 @@ header .left .site-headers .site-title a:hover {
 .guide .guide-content-pager .guide-content-pager-previous a.disabled,
 .guide .guide-content-pager .guide-content-pager-previous a[disabled],
 fieldset[disabled] .guide .guide-content-pager .guide-content-pager-previous a {
-  cursor: not-allowed;
+  cursor: default;
   pointer-events: none;
   opacity: 0.65;
   filter: alpha(opacity=65);
@@ -9448,7 +9541,7 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-previous a.a
 .guide .guide-content-pager .guide-content-pager-next a.disabled,
 .guide .guide-content-pager .guide-content-pager-next a[disabled],
 fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a {
-  cursor: not-allowed;
+  cursor: default;
   pointer-events: none;
   opacity: 0.65;
   filter: alpha(opacity=65);
@@ -9904,7 +9997,7 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
 .library .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.disabled,
 .library .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn[disabled],
 fieldset[disabled] .library .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn {
-  cursor: not-allowed;
+  cursor: default;
   pointer-events: none;
   opacity: 0.65;
   filter: alpha(opacity=65);
@@ -10107,7 +10200,7 @@ fieldset[disabled] .library .contact-library .wrap .adress-container .wrap .cont
 .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.disabled,
 .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn[disabled],
 fieldset[disabled] .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn {
-  cursor: not-allowed;
+  cursor: default;
   pointer-events: none;
   opacity: 0.65;
   filter: alpha(opacity=65);
