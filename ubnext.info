@@ -7,3 +7,4 @@ dependencies[] = ubn_dictionary
 dependencies[] = ubn_page
 dependencies[] = ubn_app
 dependencies[] = ubn_library
+dependencies[] = ubn_nuxeo
