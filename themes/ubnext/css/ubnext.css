@@ -10332,6 +10332,9 @@ fieldset[disabled] .contact-library .wrap .adress-container .wrap .contact-form 
 .search-nuxeo .result-area .result-list li .toolkit i {
   margin-right: 10px;
 }
+.search-nuxeo .paging-area {
+  text-align: center;
+}
 .library-map .header {
   background: #292f33;
   color: #ffffff;

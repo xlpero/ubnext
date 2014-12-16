@@ -25,7 +25,9 @@ function ubn_nuxeo_nuxeo_search_content_type_settings($form, &$form_state) {
 }
 
 function _ubn_nuxeo_search($document_list) {
+  $query_params = _ubn_nuxeo_get_query_params();
 
+  //var_dump($document_list);
   $search_term_key_value = '';
 
   if (!empty($search_params['query'])) {
@@ -49,6 +51,16 @@ function _ubn_nuxeo_search($document_list) {
   // Take these from Content type.
   $page_size = $document_list->field_doclist_page_size->value();
   $page_size_key_value = '&pageSize='.$page_size;
+
+  //var_dump($query_params['page']);
+  if (!empty($query_params['page'])) {
+    $current_page = '&currentPageIndex=' . $query_params['page'];    
+  }
+  else {
+    $current_page = '';
+  }
+
+
 
   // Take ub_doctypes and ub_orgs from Taxonomy terms in Content type.
   $ub_doctypes = array();
@@ -80,9 +92,9 @@ function _ubn_nuxeo_search($document_list) {
     $ub_organisation_str = '';
   }
 
-  $nxql_string = urlencode("SELECT * FROM Document WHERE ecm:currentLifeCycleState <> 'deleted'  AND ecm:primaryType <> 'Folder'"  . $ub_doctype_str . $ub_organisation_str);
+  $nxql_string = urlencode("SELECT * FROM Document WHERE ecm:currentLifeCycleState <> 'deleted'  AND ecm:primaryType <> 'Folder'"  . $ub_doctype_str . $ub_organisation_str . " AND dc:title NOT LIKE '._%'");
 
-  $url = "https://".$user_name.":".$password."@".$base_url."?query=" . $nxql_string . $page_size_key_value;
+  $url = "https://".$user_name.":".$password."@".$base_url."?query=" . $nxql_string . $page_size_key_value .   $current_page;
 
   //var_dump($url);
   $response = drupal_http_request($url, $options);
@@ -91,6 +103,7 @@ function _ubn_nuxeo_search($document_list) {
     return "";
   }
   $json = $response->data;
+  //var_dump($json);
   return json_decode($json, true);
 }
 
@@ -107,24 +120,13 @@ function _ubn_nuxeo_make_string_from_array($arr) {
   return $tempstr;
 }
 
-/**
- * @param $results
- * @return array
- */
-function _ubn_nuxeo_get_resultlist($results) {
 
-  $data = array();
-
-  foreach ($results['entries'] as $entry) {
-    $data[] = $entry;
-  }
-  return $data;
-}
 
 function _ubn_nuxeo_get_query_params() {
 
   $params = drupal_get_query_parameters();
   return $params;
+
 };
 
 /**
@@ -137,9 +139,8 @@ function ubn_nuxeo_nuxeo_search_content_type_render($subtype, $conf, $panel_args
   }
 
   $wrapper = entity_metadata_wrapper('node', $context->data);
-
-  $resultlist = _ubn_nuxeo_get_resultlist(_ubn_nuxeo_search($wrapper));
-
+  $resultlist = _ubn_nuxeo_search($wrapper);
+  //var_dump($resultlist);
   $block = new stdClass();
   $block->title = t('Nuxeo search');
   $block->content = slate_render('nuxeo_search', array('resultlist' => $resultlist));
