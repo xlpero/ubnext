@@ -10381,6 +10381,7 @@ fieldset[disabled] .contact-library .wrap .adress-container .wrap .contact-form 
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  max-width: 640px;
 }
 @media (min-width: 768px) {
   .search-nuxeo .result-area .wrap {
@@ -10416,11 +10417,19 @@ fieldset[disabled] .contact-library .wrap .adress-container .wrap .contact-form 
   border-bottom: none;
 }
 .search-nuxeo .result-area .result-list li .filename {
-  font-size: 1.5em;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  word-wrap: break-word;
+}
+.search-nuxeo .result-area .result-list li .description {
+  margin-bottom: 10px;
 }
 .search-nuxeo .result-area .result-list li .toolkit {
   width: 200px;
   padding-top: 10px;
+}
+.search-nuxeo .result-area .result-list li .toolkit a[href^="http"]:after {
+  content: "";
 }
 .search-nuxeo .result-area .result-list li .toolkit i {
   margin-right: 10px;

@@ -19,6 +19,7 @@
 		.make-row();
 		.wrap {
 			.make-sm-column(12);
+			max-width: @max-width-of-text-container;
 		}
 		.result-list {
 			.list-unstyled();
@@ -35,16 +36,22 @@
 					border-bottom: none;
 				}
 				.filename {
-					font-size: 1.5em;
+					margin-bottom: 10px;
+					font-size: 1.2em;
+					 word-wrap: break-word;
 
 				}
-				.author {
-
-				}
-				.filesize {
+				.description {
+					margin-bottom: 10px;
 
 				}
 				.toolkit {
+					a {
+
+					}
+					a[href^="http"]:after {
+						content: "";
+					}
 					i {
 						margin-right: 10px;
 					}
