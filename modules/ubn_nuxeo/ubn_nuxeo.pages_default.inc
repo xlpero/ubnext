@@ -55,11 +55,11 @@ function ubn_nuxeo_default_page_manager_handlers() {
   );
   $display->cache = array();
   $display->title = '';
-  $display->uuid = '61b4e204-e5d2-4405-82d2-e8f82e31179b';
+  $display->uuid = '9a4198c6-03c7-410e-8511-4bd7b1bf8cae';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-475c3305-2755-4896-9bd2-00b0fae01037';
+    $pane->pid = 'new-73f78cbe-dafd-488f-bfa4-6a832a563d54';
     $pane->panel = 'main';
     $pane->type = 'nuxeo_search';
     $pane->subtype = 'nuxeo_search';
@@ -78,11 +78,11 @@ function ubn_nuxeo_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '475c3305-2755-4896-9bd2-00b0fae01037';
-    $display->content['new-475c3305-2755-4896-9bd2-00b0fae01037'] = $pane;
-    $display->panels['main'][0] = 'new-475c3305-2755-4896-9bd2-00b0fae01037';
+    $pane->uuid = '73f78cbe-dafd-488f-bfa4-6a832a563d54';
+    $display->content['new-73f78cbe-dafd-488f-bfa4-6a832a563d54'] = $pane;
+    $display->panels['main'][0] = 'new-73f78cbe-dafd-488f-bfa4-6a832a563d54';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-475c3305-2755-4896-9bd2-00b0fae01037';
+  $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $export['node_view_panel_context_5'] = $handler;
 

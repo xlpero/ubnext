@@ -10,8 +10,8 @@
 function ubn_nuxeo_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'node-document_list-field_doclist_document_type'
-  $field_instances['node-document_list-field_doclist_document_type'] = array(
+  // Exported field_instance: 'node-document_list-field_doclist_doctypes'
+  $field_instances['node-document_list-field_doclist_doctypes'] = array(
     'bundle' => 'document_list',
     'default_value' => NULL,
     'deleted' => 0,
@@ -19,10 +19,10 @@ function ubn_nuxeo_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'taxonomy',
+        'module' => 'list',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 9,
+        'type' => 'list_default',
+        'weight' => 14,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -32,8 +32,8 @@ function ubn_nuxeo_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_doclist_document_type',
-    'label' => 'Document Type',
+    'field_name' => 'field_doclist_doctypes',
+    'label' => 'Document types',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -43,13 +43,13 @@ function ubn_nuxeo_field_default_field_instances() {
       'active' => 1,
       'module' => 'options',
       'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 11,
+      'type' => 'options_select',
+      'weight' => 4,
     ),
   );
 
-  // Exported field_instance: 'node-document_list-field_doclist_organization'
-  $field_instances['node-document_list-field_doclist_organization'] = array(
+  // Exported field_instance: 'node-document_list-field_doclist_orgs'
+  $field_instances['node-document_list-field_doclist_orgs'] = array(
     'bundle' => 'document_list',
     'default_value' => NULL,
     'deleted' => 0,
@@ -57,10 +57,10 @@ function ubn_nuxeo_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'taxonomy',
+        'module' => 'list',
         'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 10,
+        'type' => 'list_default',
+        'weight' => 15,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -70,8 +70,8 @@ function ubn_nuxeo_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_doclist_organization',
-    'label' => 'Organization',
+    'field_name' => 'field_doclist_orgs',
+    'label' => 'Organisations',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -82,7 +82,7 @@ function ubn_nuxeo_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 12,
+      'weight' => 5,
     ),
   );
 
@@ -133,7 +133,7 @@ function ubn_nuxeo_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 15,
+      'weight' => 6,
     ),
   );
 
@@ -182,8 +182,8 @@ function ubn_nuxeo_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Document Type');
-  t('Organization');
+  t('Document types');
+  t('Organisations');
   t('Page Size');
   t('Title');
 

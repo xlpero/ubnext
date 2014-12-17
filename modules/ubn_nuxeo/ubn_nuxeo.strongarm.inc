@@ -19,13 +19,13 @@ function ubn_nuxeo_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '7',
+          'weight' => '1',
         ),
         'redirect' => array(
-          'weight' => '8',
+          'weight' => '2',
         ),
         'language' => array(
-          'weight' => '9',
+          'weight' => '3',
         ),
       ),
       'display' => array(),
