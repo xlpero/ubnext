@@ -7,12 +7,36 @@
 include_once 'ubn_nuxeo.features.inc';
 
 
-
 /**
  * Implements hook_ctools_plugin_directory().
  */
 function ubn_nuxeo_ctools_plugin_directory($owner, $plugin_type) {
   if (in_array($plugin_type, array('content_types'))) {
     return "plugins/$plugin_type";
+  }
+}
+
+
+/**
+ * Implements hook_form_alter()
+ *
+ * @param $form
+ * @param $form_state
+ * @param $form_id
+ */
+function ubn_nuxeo_form_alter(&$form, $form_state, $form_id) {
+  if ($form_id == 'document_list_node_form') {
+    #var_dump(array('hej' => 'håå', 'halloj' => 'Hejkon Bejkon!'));
+    #var_dump($form['field_doclist_document_type']['und']['#options']);
+
+    $vocabulary = (isset($_SERVER['DMS_API_DOCTYPES']) ?$_SERVER['DMS_API_DOCTYPES']  : 'l10n_ub_doctypes' );
+    $ub_doctypes = _ubn_nuxeo_vocabulary($vocabulary);
+    #var_dump($ub_doctypes);
+    $form['field_doclist_document_type']['und']['#options'] = $ub_doctypes;
+
+    $vocabulary = (isset($_SERVER['DMS_API_ORGS']) ?$_SERVER['DMS_API_ORGS']  : 'l10n_ub_orgs' );
+    $ub_orgs = _ubn_nuxeo_vocabulary($vocabulary);
+    #var_dump($ub_orgs);
+    $form['field_doclist_organization']['und']['#options'] = $ub_orgs;
   }
 }

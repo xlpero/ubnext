@@ -44,9 +44,11 @@ function _ubn_nuxeo_search($document_list) {
     'headers' => $headers,
   );
 
-  $user_name = (isset($_SERVER['DMS_API_USERNAME']) ?$_SERVER['DMS_API_USERNAME']  : 'TheUsername' );
+  $username = (isset($_SERVER['DMS_API_USERNAME']) ?$_SERVER['DMS_API_USERNAME']  : 'TheUsername' );
   $password = (isset($_SERVER['DMS_API_PASSWORD']) ?$_SERVER['DMS_API_PASSWORD']  : 'ThePassword' );
-  $base_url = (isset($_SERVER['DMS_API_BASE_URL']) ?$_SERVER['DMS_API_BASE_URL']  : 'example.local/the/path/to/the/api' );
+  $protocol = (isset($_SERVER['DMS_API_PROTOCOL']) ?$_SERVER['DMS_API_PROTOCOL']  : 'https' );
+  $base_url = (isset($_SERVER['DMS_API_BASE_URL']) ?$_SERVER['DMS_API_BASE_URL']  : 'doku.ub.gu.se/nuxeo/api/v1/' );
+  $end_point = (isset($_SERVER['DMS_API_EP_QUERY']) ?$_SERVER['DMS_API_EP_QUERY']  : 'query/' );
 
   // Take these from Content type.
   $page_size = $document_list->field_doclist_page_size->value();
@@ -94,9 +96,9 @@ function _ubn_nuxeo_search($document_list) {
 
   $nxql_string = urlencode("SELECT * FROM Document WHERE ecm:currentLifeCycleState <> 'deleted'  AND ecm:primaryType <> 'Folder'"  . $ub_doctype_str . $ub_organisation_str . " AND dc:title NOT LIKE '._%'");
 
-  $url = "https://".$user_name.":".$password."@".$base_url."?query=" . $nxql_string . $page_size_key_value .   $current_page;
+  $url = $protocol."://".$username.":".$password."@".$base_url.$end_point."?query=" . $nxql_string . $page_size_key_value . $current_page;
 
-  //var_dump($url);
+  var_dump($url);
   $response = drupal_http_request($url, $options);
 
   if (!empty($response->error)) {
@@ -129,6 +131,7 @@ function _ubn_nuxeo_get_query_params() {
 
 };
 
+
 /**
  * Render callback.
  */
@@ -140,7 +143,8 @@ function ubn_nuxeo_nuxeo_search_content_type_render($subtype, $conf, $panel_args
 
   $wrapper = entity_metadata_wrapper('node', $context->data);
   $resultlist = _ubn_nuxeo_search($wrapper);
-  //var_dump($resultlist);
+  #var_dump($resultlist);
+
   $block = new stdClass();
   $block->title = t('Nuxeo search');
   $block->content = slate_render('nuxeo_search', array('resultlist' => $resultlist));
