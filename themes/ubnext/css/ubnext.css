@@ -8300,9 +8300,6 @@ body {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
-#ub-map-canvas {
-  height: 400px;
-}
 .container {
   max-width: 960px;
 }
@@ -9646,14 +9643,13 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
 }
 .a-z .alphabetic-list {
   float: left;
-  min-width: 320px;
-  max-width: 640px;
+  width: 100%;
   padding-left: 0;
   list-style: none;
 }
 @media (min-width: 768px) {
   .a-z .alphabetic-list {
-    min-width: 640px;
+    max-width: 640px;
   }
 }
 .a-z .alphabetic-list .alphabetic-heading {
@@ -9686,8 +9682,23 @@ fieldset[disabled] .guide .guide-content-pager .guide-content-pager-next a.activ
   font-size: .8em;
   padding: 10px 0;
 }
-.library #ub-map-canvas {
-  height: 250px;
+.library-map #ub-map-canvas {
+  height: 200px;
+}
+@media (min-width: 768px) {
+  .library-map #ub-map-canvas {
+    height: 400px;
+  }
+}
+.library-map .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+@media (min-width: 768px) {
+  .library-map .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 .library .intro {
   margin-right: auto;
