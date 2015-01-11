@@ -15,7 +15,7 @@
         </div>
         <div class="site-headers">
           <div class="site-title">
-            <a href="#"><?php print variable_get('site_name'); ?></a>
+            <a href="/"><?php print variable_get('site_name'); ?></a>
           </div>
           <div class="site-title-tagline">
               <?php print variable_get('site_slogan'); ?>
@@ -60,7 +60,9 @@
   </div>
 </div>
 
+
 <div class="mega-menu">
+<div class="wrap">
   <ul>
 
     <li>
@@ -84,6 +86,7 @@
       </ul>
     </li>
   </ul>
+</div>
 </div>
 
 <!-- ### END NAVIGATION ### -->
