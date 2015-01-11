@@ -56,7 +56,7 @@ function _ubn_nuxeo_search($document_list) {
 
   //var_dump($query_params['page']);
   if (!empty($query_params['page'])) {
-    $current_page = '&currentPageIndex=' . $query_params['page'];    
+    $current_page = '&currentPageIndex=' . $query_params['page'];
   }
   else {
     $current_page = '';
@@ -67,16 +67,18 @@ function _ubn_nuxeo_search($document_list) {
   // Take ub_doctypes and ub_orgs from Taxonomy terms in Content type.
   $ub_doctypes = array();
 
-  foreach ($document_list->field_doclist_document_type->value() as $idx => $term) {
-    $ub_doctypes[] = $term->name;
+  var_dump($document_list->field_doclist_doctypes->value());
+  foreach ($document_list->field_doclist_doctypes->value() as $value) {
+    $ub_doctypes[] = $value;
   }
 
   //var_dump($ub_doctypes);
 
   $ub_orgs = array();
 
-  foreach ($document_list->field_doclist_organization->value() as $idx => $term) {
-    $ub_orgs[] = $term->name;
+  #var_dump($document_list->field_doclist_orgs->value());
+  foreach ($document_list->field_doclist_orgs->value() as $value) {
+    $ub_orgs[] = $value;
   }
   //var_dump($ub_orgs);
 
@@ -98,7 +100,7 @@ function _ubn_nuxeo_search($document_list) {
 
   $url = $protocol."://".$username.":".$password."@".$base_url.$end_point."?query=" . $nxql_string . $page_size_key_value . $current_page;
 
-  var_dump($url);
+  #var_dump($url);
   $response = drupal_http_request($url, $options);
 
   if (!empty($response->error)) {
