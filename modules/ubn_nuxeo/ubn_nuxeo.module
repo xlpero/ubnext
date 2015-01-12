@@ -37,12 +37,15 @@ function ubn_nuxeo_form_alter(&$form, &$form_state, $form_id) {
     #var_dump($form_state['field']['field_doclist_doctypes']['und']);
     #var_dump($form['field_doclist_doctypes']['und']['#entity']);
     $ent = $form['field_doclist_doctypes']['und']['#entity'];
+    var_dump($ent);
 
     $default_doctypes = array();
 
-    foreach ($ent->field_doclist_doctypes['und'] as $doctype) {
-    # var_dump($doctype);
+    if (isset($ent->field_doclist_doctypes)) {
+      foreach ($ent->field_doclist_doctypes['und'] as $doctype) {
+      # var_dump($doctype);
         $default_doctypes[] = $doctype['value'];
+      }
     }
     #var_dump($default_doctypes);
 
@@ -53,19 +56,24 @@ function ubn_nuxeo_form_alter(&$form, &$form_state, $form_id) {
     ##var_dump($ent->field_doclist_orgs['und']);
 
     $default_orgs = array();
-    foreach ($ent->field_doclist_orgs['und'] as $org) {
-    # var_dump($org);
+
+    if (isset($ent->field_doclist_orgs)) {
+      foreach ($ent->field_doclist_orgs['und'] as $org) {
+      # var_dump($org);
         $default_orgs[] = $org['value'];
+      }
     }
     #var_dump($default_orgs);
-
 
     $vocabulary = (isset($_SERVER['DMS_API_DOCTYPES']) ?$_SERVER['DMS_API_DOCTYPES']  : 'l10n_ub_doctypes' );
     $ub_doctypes = _ubn_nuxeo_vocabulary($vocabulary);
     #var_dump($ub_doctypes);
     $form['field_doclist_doctypes']['und']['#options'] = $ub_doctypes;
     #$form['field_doclist_doctypes']['und']['#default_value'] = $default_doctypes;
-    $form['field_doclist_doctypes']['und']['#default_value'] = $default_doctypes[0];
+
+    if (isset($default_doctypes[0])) {
+      $form['field_doclist_doctypes']['und']['#default_value'] = $default_doctypes[0];
+    }
     #var_dump($form['field_doclist_doctypes']['und']);
     #var_dump($form['field_doclist_doctypes']);
 
