@@ -66,7 +66,7 @@ function ubn_nuxeo_form_alter(&$form, &$form_state, $form_id) {
     $form['field_doclist_doctypes']['und']['#options'] = $ub_doctypes;
     #$form['field_doclist_doctypes']['und']['#default_value'] = $default_doctypes;
     $form['field_doclist_doctypes']['und']['#default_value'] = $default_doctypes[0];
-    var_dump($form['field_doclist_doctypes']['und']);
+    #var_dump($form['field_doclist_doctypes']['und']);
     #var_dump($form['field_doclist_doctypes']);
 
     $vocabulary = (isset($_SERVER['DMS_API_ORGS']) ?$_SERVER['DMS_API_ORGS']  : 'l10n_ub_orgs' );
@@ -133,7 +133,6 @@ function _ubn_nuxeo_vocabulary($vocabulary = 'l10n_ub_orgs') {
       # and put it in a separate array for later use.
       if (strpos($id, '_top') !== FALSE) {
         $top_levels[$id] = $entry['properties']['label_sv'];
-        #var_dump("OOOOOOOOAHAHAHAHAHAHAHAHA HA HA HA HA!!!!!!!");
       }
     }
   }
