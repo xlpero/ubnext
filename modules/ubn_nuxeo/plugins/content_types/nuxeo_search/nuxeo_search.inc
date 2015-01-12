@@ -67,7 +67,7 @@ function _ubn_nuxeo_search($document_list) {
   // Take ub_doctypes and ub_orgs from Taxonomy terms in Content type.
   $ub_doctypes = array();
 
-  var_dump($document_list->field_doclist_doctypes->value());
+  #var_dump($document_list->field_doclist_doctypes->value());
   foreach ($document_list->field_doclist_doctypes->value() as $value) {
     $ub_doctypes[] = $value;
   }
@@ -125,13 +125,10 @@ function _ubn_nuxeo_make_string_from_array($arr) {
 }
 
 
-
 function _ubn_nuxeo_get_query_params() {
-
   $params = drupal_get_query_parameters();
   return $params;
-
-};
+}
 
 
 /**
