@@ -28,14 +28,7 @@ function ubn_nuxeo_ctools_plugin_directory($owner, $plugin_type) {
  */
 function ubn_nuxeo_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'document_list_node_form') {
-    #var_dump(array('hej' => 'håå', 'halloj' => 'Hejkon Bejkon!'));
-    #var_dump($form['field_doclist_doctypes']['und']['#options']);
-    #print_r($form);
-    #var_dump($form_state);
-    #$a_component = $form_state;
-    #var_dump($a_component);
-    #var_dump($form_state['field']['field_doclist_doctypes']['und']);
-    #var_dump($form['field_doclist_doctypes']['und']['#entity']);
+
     $ent = $form['field_doclist_doctypes']['und']['#entity'];
     var_dump($ent);
 
@@ -43,48 +36,30 @@ function ubn_nuxeo_form_alter(&$form, &$form_state, $form_id) {
 
     if (isset($ent->field_doclist_doctypes)) {
       foreach ($ent->field_doclist_doctypes['und'] as $doctype) {
-      # var_dump($doctype);
         $default_doctypes[] = $doctype['value'];
       }
     }
-    #var_dump($default_doctypes);
-
-    #var_dump($ent);
-    #var_dump($ent->field_doclist_doctypes['und'][0]['value']);
-
-    #var_dump($ent->field_doclist_orgs['und'][0]['value']);
-    ##var_dump($ent->field_doclist_orgs['und']);
 
     $default_orgs = array();
 
     if (isset($ent->field_doclist_orgs)) {
       foreach ($ent->field_doclist_orgs['und'] as $org) {
-      # var_dump($org);
         $default_orgs[] = $org['value'];
       }
     }
-    #var_dump($default_orgs);
 
     $vocabulary = (isset($_SERVER['DMS_API_DOCTYPES']) ?$_SERVER['DMS_API_DOCTYPES']  : 'l10n_ub_doctypes' );
     $ub_doctypes = _ubn_nuxeo_vocabulary($vocabulary);
-    #var_dump($ub_doctypes);
     $form['field_doclist_doctypes']['und']['#options'] = $ub_doctypes;
-    #$form['field_doclist_doctypes']['und']['#default_value'] = $default_doctypes;
 
     if (isset($default_doctypes[0])) {
       $form['field_doclist_doctypes']['und']['#default_value'] = $default_doctypes[0];
     }
-    #var_dump($form['field_doclist_doctypes']['und']);
-    #var_dump($form['field_doclist_doctypes']);
 
     $vocabulary = (isset($_SERVER['DMS_API_ORGS']) ?$_SERVER['DMS_API_ORGS']  : 'l10n_ub_orgs' );
     $ub_orgs = _ubn_nuxeo_vocabulary($vocabulary);
-    #var_dump($ub_orgs);
-    #var_dump($form['field_doclist_orgs']['und']);
     $form['field_doclist_orgs']['und']['#options'] = $ub_orgs;
     $form['field_doclist_orgs']['und']['#default_value'] = $default_orgs;
-    ##var_dump($form['field_doclist_orgs']['und']);
-    #var_dump($form['field_doclist_orgs']['und']['#options']);
   }
 }
 
@@ -115,9 +90,7 @@ function _ubn_nuxeo_vocabulary($vocabulary = 'l10n_ub_orgs') {
 
   $url = $protocol."://".$username.":".$password."@".$base_url . $end_point . $vocabulary;
 
-  #var_dump($url);
   $response = drupal_http_request($url, $options);
-  #var_dump($response);
 
   $vocabulary = array();
 
@@ -162,9 +135,6 @@ function _ubn_nuxeo_vocabulary($vocabulary = 'l10n_ub_orgs') {
       $id .= $parent . '/' . $entry['properties']['id'];
       $vocabulary[$id] = "(" . $top_levels[$parent] . ") " . $entry['properties']['label_sv'];
     }
-    //var_dump($id);
   }
-  //var_dump($top_levels);
-  //var_dump($vocabulary);
   return $vocabulary;
 }
