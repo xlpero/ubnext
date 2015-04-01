@@ -6071,8 +6071,6 @@ header:after,
 .two-col-right .two-col-right-inner-wrapper:after,
 .one-col:before,
 .one-col:after,
-.one-col-app:before,
-.one-col-app:after,
 .one-col-center-app:before,
 .one-col-center-app:after,
 .one-col-center-app .wrap:before,
@@ -6126,7 +6124,6 @@ header:after,
 .two-col-right:after,
 .two-col-right .two-col-right-inner-wrapper:after,
 .one-col:after,
-.one-col-app:after,
 .one-col-center-app:after,
 .one-col-center-app .wrap:after,
 .page-head:after,
@@ -9037,38 +9034,7 @@ header .left .site-headers .site-title a:hover {
   }
 }
 .one-col-app {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  max-width: 960px;
-}
-@media (min-width: 768px) {
-  .one-col-app {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  .one-col-app {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  .one-col-app {
-    width: 1170px;
-  }
-}
-.one-col-app > .navbar-header,
-.one-col-app > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-@media (min-width: 768px) {
-  .one-col-app > .navbar-header,
-  .one-col-app > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
+  margin-bottom: 40px;
 }
 .one-col-center-app {
   margin-right: auto;
