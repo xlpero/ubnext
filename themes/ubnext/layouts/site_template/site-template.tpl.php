@@ -97,7 +97,7 @@
 
 <div class="footer-cms">
   <!-- ### FOOTER ### -->
-  <div id="footer-wrapper" class="full-width-wrapper padding-20">
+  <div class="footer-area">
     <footer id="footer" class="container">  
       <div class="row">
         <div class="col-sm-4">
@@ -132,11 +132,11 @@
         </div>
       </div>
     </footer>
-  </div>
+  </div> 
   <!-- ### END FOOTER ### -->
 
   <!-- ### SITE BOTTOM ### --> 
-  <div id="site-bottom-wrapper" class="full-width-wrapper padding-20">
+  <div class="site-bottom-area">
     <div class="site-bottom container"> 
 
       <div class="logotype">  

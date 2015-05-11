@@ -8098,6 +8098,99 @@ button.close {
 .fa-meanpath:before {
   content: "\f20c";
 }
+p {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+/* ####### HEADINGS ####### */
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  text-rendering: optimizeLegibility;
+  font-weight: normal;
+}
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  margin-top: 0;
+}
+h1,
+.h1 {
+  margin-top: 22px;
+  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
+  font-size: 2em;
+  margin-bottom: 24px;
+  line-height: 1.25em;
+}
+h2,
+.h2 {
+  font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
+  font-size: 1.625em;
+  line-height: 1.15384615em;
+  margin-bottom: 24px;
+}
+h3,
+.h3 {
+  font-family: 'NimbusSanNovCon-Med', "Arial Narrow", Arial, sans-serif;
+  font-size: 1.375em;
+  line-height: 1.13636364em;
+  margin-bottom: 6px;
+}
+h4,
+h4 {
+  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
+  font-size: 1.125em;
+  margin-bottom: 6px;
+}
+h5,
+.h5 {
+  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
+  font-size: 0.85em;
+  margin-bottom: 6px;
+}
+h6,
+.h6 {
+  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
+  font-size: 0.75em;
+  margin-bottom: 6px;
+}
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3em;
+  }
+  h2 {
+    font-size: 2.25em;
+  }
+  h3 {
+    font-size: 1.75em;
+  }
+}
+.lead {
+  font-size: 1.125em;
+  font-weight: bold;
+  line-height: 1.333em;
+  margin-bottom: 24px;
+}
+.btn {
+  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
+  font-size: 21px;
+}
 .general .light {
   background-color: #eeeeee;
 }
@@ -8224,99 +8317,6 @@ button.close {
 }
 .general img {
   margin-bottom: 20px;
-}
-p {
-  margin-top: 0;
-  margin-bottom: 24px;
-}
-/* ####### HEADINGS ####### */
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-  text-rendering: optimizeLegibility;
-  font-weight: normal;
-}
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-  margin-top: 0;
-}
-h1,
-.h1 {
-  margin-top: 22px;
-  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
-  font-size: 2em;
-  margin-bottom: 24px;
-  line-height: 1.25em;
-}
-h2,
-.h2 {
-  font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
-  font-size: 1.625em;
-  line-height: 1.15384615em;
-  margin-bottom: 24px;
-}
-h3,
-.h3 {
-  font-family: 'NimbusSanNovCon-Med', "Arial Narrow", Arial, sans-serif;
-  font-size: 1.375em;
-  line-height: 1.13636364em;
-  margin-bottom: 6px;
-}
-h4,
-h4 {
-  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
-  font-size: 1.125em;
-  margin-bottom: 6px;
-}
-h5,
-.h5 {
-  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
-  font-size: 0.85em;
-  margin-bottom: 6px;
-}
-h6,
-.h6 {
-  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
-  font-size: 0.75em;
-  margin-bottom: 6px;
-}
-@media (min-width: 768px) {
-  h1 {
-    font-size: 3em;
-  }
-  h2 {
-    font-size: 2.25em;
-  }
-  h3 {
-    font-size: 1.75em;
-  }
-}
-.lead {
-  font-size: 1.125em;
-  font-weight: bold;
-  line-height: 1.333em;
-  margin-bottom: 24px;
-}
-.btn {
-  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
-  font-size: 21px;
 }
 .main-nav-cms .light {
   background-color: #eeeeee;
@@ -8962,57 +8962,59 @@ COMMENT:
 .footer-cms img {
   margin-bottom: 20px;
 }
-.footer-cms #footer-wrapper {
+.footer-cms .footer-area {
   background-color: #333333;
+  padding: 20px 0;
 }
-.footer-cms #footer-wrapper footer ul li {
+.footer-cms .footer-area footer ul li {
   padding: 10px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
-.footer-cms #footer-wrapper footer ul li:last-child {
+.footer-cms .footer-area footer ul li:last-child {
   border-bottom: none;
 }
-.footer-cms #footer-wrapper footer a {
+.footer-cms .footer-area footer a {
   color: #ffffff;
   display: block;
   text-decoration: none;
 }
-.footer-cms #footer-wrapper footer a:hover {
+.footer-cms .footer-area footer a:hover {
   color: #025da6;
 }
-.footer-cms #footer-wrapper footer h3 {
+.footer-cms .footer-area footer h3 {
   color: #ffffff;
 }
-.footer-cms #site-bottom-wrapper {
+.footer-cms .site-bottom-area {
   background-color: #000000;
+  padding: 20px 0;
 }
-.footer-cms #site-bottom-wrapper .site-bottom {
+.footer-cms .site-bottom-area .site-bottom {
   text-align: center;
   font-size: 14px;
   color: #ffffff;
 }
-.footer-cms #site-bottom-wrapper .site-bottom a {
+.footer-cms .site-bottom-area .site-bottom a {
   color: #ffffff;
 }
 @media (min-width: 768px) {
-  .footer-cms #site-bottom-wrapper .site-bottom {
+  .footer-cms .site-bottom-area .site-bottom {
     text-align: left;
   }
 }
-.footer-cms #site-bottom-wrapper .site-bottom .logotype {
+.footer-cms .site-bottom-area .site-bottom .logotype {
   display: inline-block;
 }
 @media (min-width: 768px) {
-  .footer-cms #site-bottom-wrapper .site-bottom .logotype {
+  .footer-cms .site-bottom-area .site-bottom .logotype {
     display: none;
   }
 }
-.footer-cms #site-bottom-wrapper .site-bottom .logotype .logo {
+.footer-cms .site-bottom-area .site-bottom .logotype .logo {
   width: 100px;
   height: 100px;
   background-repeat: no-repeat;
 }
-.footer-cms #site-bottom-wrapper .site-bottom .logotype .logo .logo-image {
+.footer-cms .site-bottom-area .site-bottom .logotype .logo .logo-image {
   margin: 0 auto;
   width: 94px;
   height: 80px;
@@ -9020,7 +9022,7 @@ COMMENT:
   background-size: 100%;
   background-repeat: no-repeat;
 }
-.footer-cms #site-bottom-wrapper .site-bottom .logotype .en .logo .logo-image {
+.footer-cms .site-bottom-area .site-bottom .logotype .en .logo .logo-image {
   width: 101px;
   background-image: url("img/gu-mark-neg-en.svg");
 }
