@@ -6083,8 +6083,6 @@ button.close {
 .main-nav-cms .full-width-wrapper section:after,
 .main-nav-cms .main-content-container:before,
 .main-nav-cms .main-content-container:after,
-.main-nav-cms .mega-menu-area .mega-menu > ul:before,
-.main-nav-cms .mega-menu-area .mega-menu > ul:after,
 .header-cms .full-width-wrapper section:before,
 .header-cms .full-width-wrapper section:after,
 .header-cms .main-content-container:before,
@@ -6147,7 +6145,6 @@ button.close {
 .general .main-content-container:after,
 .main-nav-cms .full-width-wrapper section:after,
 .main-nav-cms .main-content-container:after,
-.main-nav-cms .mega-menu-area .mega-menu > ul:after,
 .header-cms .full-width-wrapper section:after,
 .header-cms .main-content-container:after,
 .footer-cms .full-width-wrapper section:after,
@@ -8101,99 +8098,6 @@ button.close {
 .fa-meanpath:before {
   content: "\f20c";
 }
-p {
-  margin-top: 0;
-  margin-bottom: 24px;
-}
-/* ####### HEADINGS ####### */
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-  text-rendering: optimizeLegibility;
-  font-weight: normal;
-}
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-  margin-top: 0;
-}
-h1,
-.h1 {
-  margin-top: 22px;
-  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
-  font-size: 2em;
-  margin-bottom: 24px;
-  line-height: 1.25em;
-}
-h2,
-.h2 {
-  font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
-  font-size: 1.625em;
-  line-height: 1.15384615em;
-  margin-bottom: 24px;
-}
-h3,
-.h3 {
-  font-family: 'NimbusSanNovCon-Med', "Arial Narrow", Arial, sans-serif;
-  font-size: 1.375em;
-  line-height: 1.13636364em;
-  margin-bottom: 6px;
-}
-h4,
-h4 {
-  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
-  font-size: 1.125em;
-  margin-bottom: 6px;
-}
-h5,
-.h5 {
-  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
-  font-size: 0.85em;
-  margin-bottom: 6px;
-}
-h6,
-.h6 {
-  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
-  font-size: 0.75em;
-  margin-bottom: 6px;
-}
-@media (min-width: 768px) {
-  h1 {
-    font-size: 3em;
-  }
-  h2 {
-    font-size: 2.25em;
-  }
-  h3 {
-    font-size: 1.75em;
-  }
-}
-.lead {
-  font-size: 1.125em;
-  font-weight: bold;
-  line-height: 1.333em;
-  margin-bottom: 24px;
-}
-.btn {
-  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
-  font-size: 21px;
-}
 .general .light {
   background-color: #eeeeee;
 }
@@ -8320,6 +8224,99 @@ h6,
 }
 .general img {
   margin-bottom: 20px;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+/* ####### HEADINGS ####### */
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  text-rendering: optimizeLegibility;
+  font-weight: normal;
+}
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  margin-top: 0;
+}
+h1,
+.h1 {
+  margin-top: 22px;
+  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
+  font-size: 2em;
+  margin-bottom: 24px;
+  line-height: 1.25em;
+}
+h2,
+.h2 {
+  font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
+  font-size: 1.625em;
+  line-height: 1.15384615em;
+  margin-bottom: 24px;
+}
+h3,
+.h3 {
+  font-family: 'NimbusSanNovCon-Med', "Arial Narrow", Arial, sans-serif;
+  font-size: 1.375em;
+  line-height: 1.13636364em;
+  margin-bottom: 6px;
+}
+h4,
+h4 {
+  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
+  font-size: 1.125em;
+  margin-bottom: 6px;
+}
+h5,
+.h5 {
+  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
+  font-size: 0.85em;
+  margin-bottom: 6px;
+}
+h6,
+.h6 {
+  font-family: NimbusSanNovCon-Bol, "Arial Narrow", Arial, sans-serif;
+  font-size: 0.75em;
+  margin-bottom: 6px;
+}
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3em;
+  }
+  h2 {
+    font-size: 2.25em;
+  }
+  h3 {
+    font-size: 1.75em;
+  }
+}
+.lead {
+  font-size: 1.125em;
+  font-weight: bold;
+  line-height: 1.333em;
+  margin-bottom: 24px;
+}
+.btn {
+  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
+  font-size: 21px;
 }
 .main-nav-cms .light {
   background-color: #eeeeee;
@@ -8452,11 +8449,10 @@ h6,
   background-color: #292f33;
 }
 .main-nav-cms .mega-menu-area .mega-menu {
+  position: relative;
   display: none;
   color: #ffffff;
-  position: relative;
   margin-top: -1px;
-  /*overflow: visible !important;*/
 }
 .main-nav-cms .mega-menu-area .mega-menu:before {
   content: ' ';
@@ -8474,27 +8470,11 @@ h6,
 .main-nav-cms .mega-menu-area .mega-menu a:hover {
   color: #025da6;
 }
-.main-nav-cms .mega-menu-area .mega-menu ul {
-  padding-left: 0;
-  list-style: none;
-}
 .main-nav-cms .mega-menu-area .mega-menu > ul {
   padding: 20px 0;
-  margin-left: -15px;
-  margin-right: -15px;
 }
 .main-nav-cms .mega-menu-area .mega-menu > ul > li {
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
   float: right !important;
-}
-@media (min-width: 768px) {
-  .main-nav-cms .mega-menu-area .mega-menu > ul > li {
-    float: left;
-    width: 33.33333333%;
-  }
 }
 .main-nav-cms .mega-menu-area .mega-menu > ul > li > a {
   font-size: 1.5em;
@@ -8508,11 +8488,6 @@ h6,
 }
 .main-nav-cms .main-navigation-area {
   border-bottom: 1px solid #ccc;
-}
-@media (min-width: 768px) {
-  .main-nav-cms .main-navigation-area {
-    /*margin-top: -30px;*/
-  }
 }
 .main-nav-cms .main-navigation-area .main-navigation-wrap {
   min-height: 43px;

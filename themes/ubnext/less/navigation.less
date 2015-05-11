@@ -3,11 +3,10 @@
 	.mega-menu-area {
 		background-color: @black;
 		.mega-menu {
+			position: relative;
 			display: none;
 			color: @white;
-			position: relative;
 			margin-top: -1px;
-			/*overflow: visible !important;*/
 			&:before {
 				content: ' ';
 				border: solid 9px transparent;
@@ -26,13 +25,10 @@
 
 			}
 			ul {
-				.list-unstyled();
 			}
 			> ul {
 				padding:20px 0;
-				.make-row();
 				> li {
-					.make-sm-column(4);
 					float: right !important;
 					> a {
 						font-size: 1.5em;
@@ -52,11 +48,7 @@
 		}
 	}
 	.main-navigation-area {	
-		@media(min-width: @screen-sm-min) {
-			/*margin-top: -30px;*/
-		}
 		border-bottom: 1px solid #ccc;
-
 		.main-navigation-wrap {
 			min-height: 43px;
 			padding-bottom: 15px;

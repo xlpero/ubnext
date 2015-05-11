@@ -50,34 +50,32 @@
         </div>
       </div>
     </div>
-
-
-  <div class="mega-menu-area">
-    <div class="mega-menu container">
-      <ul>
-        <li>
-          <a href="#">Tjänster</a>
-          <ul>
-            <li><a href="#">link testar </a></li>
-            <li><a href="#">Boka grupprum</a></li>
-            <li><a href="#">Boka annat</a></li>
-            <li><a href="#">Fråga bibliotikare</a></li>
-            <li><a href="#">Digitalisera</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">Skriva</a>
-          <ul>
-            <li><a href="#">link 1</a></li>
-            <li><a href="#">link 1</a></li>
-            <li><a href="#">link 1</a></li>
-            <li><a href="#">link 1</a></li>
-            <li><a href="#">link 1</a></li>
-          </ul>
-        </li>
-      </ul>
+    <div class="mega-menu-area">
+      <div class="mega-menu container">
+        <ul class="list-unstyled row">
+          <li class="col-sm-4">
+            <a href="#">Tjänster</a>
+            <ul class="list-unstyled">
+              <li><a href="#">link testar </a></li>
+              <li><a href="#">Boka grupprum</a></li>
+              <li><a href="#">Boka annat</a></li>
+              <li><a href="#">Fråga bibliotikare</a></li>
+              <li><a href="#">Digitalisera</a></li>
+            </ul>
+          </li>
+          <li class="col-sm-4">
+            <a href="#">Skriva</a>
+            <ul class="list-unstyled">
+              <li><a href="#">link 1</a></li>
+              <li><a href="#">link 1</a></li>
+              <li><a href="#">link 1</a></li>
+              <li><a href="#">link 1</a></li>
+              <li><a href="#">link 1</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
 </div>
 <!-- ### END NAVIGATION ### -->
 
