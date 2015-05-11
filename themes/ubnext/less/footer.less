@@ -1,99 +1,80 @@
+/* #### 
+COMMENT: 
 
+####*/
+ 
 
-#footer-wrapper {
-
-	background-color: @gray-dark;
-	footer {
-		.container();
-		ul {
-			.list-unstyled();
-			li {
-				padding: 10px 0;
-				border-bottom: 1px solid rgba(255, 255, 255, .3);
-				&:last-child {
-					border-bottom:none;
+.footer-cms {
+	// include general styles
+	.general;
+	#footer-wrapper {
+		background-color: @gray-dark;
+		footer {
+			ul {
+				li {
+					padding: 10px 0;
+					border-bottom: 1px solid rgba(255, 255, 255, .3);
+					&:last-child {
+						border-bottom:none;
+					}
 				}
-				
 			}
-	
-		}
-		a {
-			color: @white;
-			display: block;
-			text-decoration: none;
-			&:hover {
-				color: @blue-gu-dark;
+			a {
+				color: @white;
+				display: block;
+				text-decoration: none;
+				&:hover {
+					color: @blue-gu-dark;
+				}
 			}
-		}
-		h3 {
-			color: @white;
-		}
-		.col-1 {
-			.make-sm-column(4);
-
-		}
-		.col-2 {
-			.make-sm-column(4);
-			ul {
-				.list-unstyled();
-			}
-		}
-		.col-3 {
-			.make-sm-column(4);
-			ul {
-				.list-unstyled();
+			h3 {
+				color: @white;
 			}
 		}
 	}
-}
 
 
 
-.site-bottom-wrapper {
-	background-color: @pure-black;
-
-	.site-bottom {
-		.container();
-		text-align: center;
-
-		font-size: @font-size-small;
-		color: @white;
-		a {
+	#site-bottom-wrapper {
+		background-color: @pure-black;
+		.site-bottom {
+			text-align: center;
+			font-size: @font-size-small;
 			color: @white;
-		}
-		@media(min-width: @screen-sm-min) {
-			text-align: left;
-		}
-
-		.logotype {
+			a {
+				color: @white;
+			}
 			@media(min-width: @screen-sm-min) {
-				display:none;
+				text-align: left;
 			}
-			display: inline-block;
-			.logo {
 
-				width: 100px;
-				height: 100px;
+			.logotype {
+				@media(min-width: @screen-sm-min) {
+					display:none;
+				}
+				display: inline-block;
+				.logo {
 
-				background-repeat: no-repeat;
-				.logo-image {
-					margin:0 auto;
-					width: 94px;
-					height: 80px;
-					background-image: url("img/gu-mark-neg-sv.svg");
-					background-size: 100%;
+					width: 100px;
+					height: 100px;
+
 					background-repeat: no-repeat;
+					.logo-image {
+						margin:0 auto;
+						width: 94px;
+						height: 80px;
+						background-image: url("img/gu-mark-neg-sv.svg");
+						background-size: 100%;
+						background-repeat: no-repeat;
+					}
 				}
+				.en .logo {
+					.logo-image {
+						width: 101px;
+						background-image: url("img/gu-mark-neg-en.svg");
+					}
+				}			
 			}
-			.en .logo {
-				.logo-image {
-					width: 101px;
-					background-image: url("img/gu-mark-neg-en.svg");
-				}
-			}			
 		}
-
-
 	}
-
 }

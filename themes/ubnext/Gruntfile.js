@@ -43,7 +43,6 @@ module.exports = function(grunt) {
   // Watch 
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
