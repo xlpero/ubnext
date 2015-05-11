@@ -2,10 +2,8 @@
   name = Dictionary: Term List
   models[list] = item
 #}
-
-
 <div id="az" class="a-z">
-    <ul class="menu">
+    <ul class="menu list-unstyled">
         {% for key, terms in list  %}
             {% if (terms is empty) %}
                 <li><a class="disabled">{{ key }}</a></li>
@@ -14,11 +12,11 @@
             {% endif %}
         {% endfor %}
      </ul>
-     <ul class="alphabetic-list">
+     <ul class="alphabetic-list list-unstyled">
         {% for key, terms in list if terms is not empty %}
             <li>
                 <h2 class="alphabetic-heading" id="{{ ubn_dictionary_get_html_id(key) }}">{{ key }}</h2>
-                <ul class="alphabetic-letter-terms">
+                <ul class="alphabetic-letter-terms list-unstyled">
                     {% for term in terms %}
                         <li>
                             <h3 id="{{ ubn_dictionary_get_html_id(term.label) }}">{{ term.label }}</h3>
@@ -33,7 +31,6 @@
                 </ul>
 
             </li>
-           
         {% endfor %}
     </ul>
    

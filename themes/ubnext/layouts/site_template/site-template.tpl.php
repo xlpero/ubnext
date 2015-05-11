@@ -36,56 +36,47 @@
 
 <!-- ### MAIN NAVIGATION ### --> 
 <div class="main-nav-cms">
-  <div class="full-width-wrapper">
-  <div class="main-navigation-wrapper">
-    <div class="main-navigation-inner-wrapper">
-      <div class="secondary">
-        <a id="menu-toggler-btn" href="javascript:void(0);"><span>Meny</span><i class="fa fa-bars"></i></a>
-        <!-- SECONDARY NAV -->
-        <nav class="secondary-navigation">
-          <ul role="menu" class="secondary-navigation-nav">
-            <li><a href="#">Våra bibliotek</a></li>
-            <li><a href="#">Kansliet</a></li>
-            <li><a href="#">Kvinnsam</a></li>
-          </ul>
-        </nav>
-        <!-- END SECONDARY NAV --> 
-      </div>
-      <div class="primary">
-        <!-- PRIMARY NAV -->
-        <nav class="main-navigation">
-          <?php print render($content['navigation']); ?>
-        </nav>
-        <!-- END PRIMARY NAV --> 
+    <div class="main-navigation-area">
+      <div class="main-navigation-wrap container">
+        <div class="secondary">
+          <a id="menu-toggler-btn" href="javascript:void(0);"><span>Meny</span><i class="fa fa-bars"></i></a>
+        </div>
+        <div class="primary">
+          <!-- PRIMARY NAV -->
+          <nav class="main-navigation">
+            <?php print render($content['navigation']); ?>
+          </nav>
+          <!-- END PRIMARY NAV --> 
+        </div>
       </div>
     </div>
-  </div>
-  </div>
 
 
-  <div class="mega-menu">
-    <ul>
-      <li>
-        <a href="#">Tjänster</a>
-        <ul>
-          <li><a href="#">link testar </a></li>
-          <li><a href="#">Boka grupprum</a></li>
-          <li><a href="#">Boka annat</a></li>
-          <li><a href="#">Fråga bibliotikare</a></li>
-          <li><a href="#">Digitalisera</a></li>
-        </ul>
-      </li>
-      <li>
-        <a href="#">Skriva</a>
-        <ul>
-          <li><a href="#">link 1</a></li>
-          <li><a href="#">link 1</a></li>
-          <li><a href="#">link 1</a></li>
-          <li><a href="#">link 1</a></li>
-          <li><a href="#">link 1</a></li>
-        </ul>
-      </li>
-    </ul>
+  <div class="mega-menu-area">
+    <div class="mega-menu container">
+      <ul>
+        <li>
+          <a href="#">Tjänster</a>
+          <ul>
+            <li><a href="#">link testar </a></li>
+            <li><a href="#">Boka grupprum</a></li>
+            <li><a href="#">Boka annat</a></li>
+            <li><a href="#">Fråga bibliotikare</a></li>
+            <li><a href="#">Digitalisera</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Skriva</a>
+          <ul>
+            <li><a href="#">link 1</a></li>
+            <li><a href="#">link 1</a></li>
+            <li><a href="#">link 1</a></li>
+            <li><a href="#">link 1</a></li>
+            <li><a href="#">link 1</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>
 <!-- ### END NAVIGATION ### -->

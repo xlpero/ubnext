@@ -1,4 +1,4 @@
-<div class="one-col">
+<div class="one-col container">
 	<section class="main">
 		<?php print render($content['main']); ?>
 	</section>
