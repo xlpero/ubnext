@@ -53,7 +53,7 @@
     <div class="mega-menu-area">
       <div class="mega-menu container">
         <ul class="list-unstyled row">
-          <li class="col-sm-4">
+          <li class="col-xs-12 col-sm-4">
             <a href="#">Tjänster</a>
             <ul class="list-unstyled">
               <li><a href="#">link testar </a></li>
@@ -63,7 +63,7 @@
               <li><a href="#">Digitalisera</a></li>
             </ul>
           </li>
-          <li class="col-sm-4">
+          <li class="col-xs-12 col-sm-4">
             <a href="#">Skriva</a>
             <ul class="list-unstyled">
               <li><a href="#">link 1</a></li>
@@ -86,7 +86,7 @@
 <?php endif; ?>
 
 <?php if (!empty($content['content'])): ?>
-  <section class="main">
+  <section class="main-cms">
     <div class="wrap">
       <?php print render($content['content']); ?>
     </div>
@@ -100,7 +100,7 @@
   <div class="footer-area">
     <footer id="footer" class="container">  
       <div class="row">
-        <div class="col-sm-4">
+        <div class="col-xs-12 col-sm-4">
           <h3>Alla guider</h3>
           <ul class="list-unstyled">
             <li><a href="#">Guide 1</a></li>
@@ -110,7 +110,7 @@
             <li><a href="#">Guide 1</a></li>
           </ul>
         </div>
-        <div class="col-sm-4">
+        <div class="col-xs-12 col-sm-4">
           <h3>Allt annat</h3>
           <ul class="list-unstyled">
             <li><a href="#">Annat 123 </a></li>
@@ -120,7 +120,7 @@
             <li><a href="#">Annat 123 </a></li>
           </ul>Annat 123 
         </div>
-        <div class="col-sm-4">
+        <div class="col-xs-12 col-sm-4">
           <h3>Alla andra bibliotek</h3>
           <ul class="list-unstyled">
             <li><a href="#">Bibliotek sammhällsvetenskapliga</a></li>
