@@ -23,7 +23,7 @@ projects[strongarm][subdir] = contrib
 
 
 ; Chaos tool suite (ctools)
-projects[ctools][version] = 1.5
+projects[ctools][version] = 1.7
 projects[ctools][subdir] = contrib
 
 
@@ -33,7 +33,7 @@ projects[diff][subdir] = contrib
 
 
 ; Entity API
-projects[entity][version] = 1.5
+projects[entity][version] = 1.6
 projects[entity][subdir] = contrib
 
 
@@ -175,7 +175,7 @@ projects[media][subdir] = contrib
 
 
 ; Views
-projects[views][version] = 3.8
+projects[views][version] = 3.11
 projects[views][subdir] = contrib
 
 
