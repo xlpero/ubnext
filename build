@@ -1,6 +1,0 @@
-#!/bin/bash
-
-
-rm -rf modules/contrib
-
-drush make -y --no-core --contrib-destination=. profile.make
