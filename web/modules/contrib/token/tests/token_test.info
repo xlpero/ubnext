@@ -1,0 +1,11 @@
+name = Token Test
+description = Testing module for token functionality.
+package = Testing
+core = 7.x
+files[] = token_test.module
+hidden = TRUE
+
+; Information added by drush on 2014-06-20
+version = "7.x-1.5"
+project = "token"
+datestamp = "1403221769"
