@@ -23,10 +23,6 @@ function ubn_general_strongarm() {
   $strongarm->name = 'entity_translation_entity_types';
   $strongarm->value = array(
     'node' => 'node',
-    'taxonomy_term' => 'taxonomy_term',
-    'field_collection_item' => 'field_collection_item',
-    'file' => 0,
-    'user' => 0,
   );
   $export['entity_translation_entity_types'] = $strongarm;
 
@@ -42,17 +38,17 @@ function ubn_general_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'language_default';
   $strongarm->value = (object) array(
-    'language' => 'sv',
-    'name' => 'Swedish',
-    'native' => 'Svenska',
-    'direction' => '0',
-    'enabled' => '1',
-    'plurals' => '2',
-    'formula' => '($n!=1)',
+    'language' => 'en',
+    'name' => 'English',
+    'native' => 'English',
+    'direction' => 0,
+    'enabled' => 1,
+    'plurals' => 0,
+    'formula' => '',
     'domain' => '',
-    'prefix' => 'sv',
-    'weight' => '0',
-    'javascript' => 'FSkivCUZTleZbs3CFqiW5aYrsK6nFoCZ7KzubI8MnzA',
+    'prefix' => 'en',
+    'weight' => 0,
+    'javascript' => '',
   );
   $export['language_default'] = $strongarm;
 
@@ -82,11 +78,10 @@ function ubn_general_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'language_negotiation_language_content';
   $strongarm->value = array(
-    'locale-interface' => array(
+    'language-default' => array(
       'callbacks' => array(
-        'language' => 'locale_language_from_interface',
+        'language' => 'language_from_default',
       ),
-      'file' => 'includes/locale.inc',
     ),
   );
   $export['language_negotiation_language_content'] = $strongarm;
@@ -128,7 +123,7 @@ function ubn_general_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'node_admin_theme';
-  $strongarm->value = 1;
+  $strongarm->value = '1';
   $export['node_admin_theme'] = $strongarm;
 
   $strongarm = new stdClass();
