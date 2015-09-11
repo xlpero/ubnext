@@ -1,4 +1,5 @@
 .DS_Store
+secret.settings.php
 
 # Ignore temporary vim files
 *~
