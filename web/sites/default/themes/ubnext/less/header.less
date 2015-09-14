@@ -1,103 +1,86 @@
-.header-cms {
-	// include general styles here
-	.general;
-	header {
-		height: 100px;
-		.logo {
-			width: 127px;
-			height: 129px;
-			padding-top: 31px;
+
+header {
+	height: 100px;
+	.logo {
+		width: 127px;
+		height: 129px;
+		padding-top: 31px;
+		background-repeat: no-repeat;
+		#gradient > .vertical(#004d8e; #004278);
+		.border-bottom-radius(4px);
+		box-shadow: 0 2px 2px rgba(0,0,0,.3);
+		.logo-image {
+			margin:0 auto;
+			width: 94px;
+			height: 75px;
+			background-image: url("img/gu-mark-neg-sv.svg");
+			background-size: 100%;
 			background-repeat: no-repeat;
-			#gradient > .vertical(#004d8e; #004278);
-			.border-bottom-radius(4px);
-			box-shadow: 0 2px 2px rgba(0,0,0,.3);
-			.logo-image {
-				margin:0 auto;
-				width: 94px;
-				height: 75px;
-				background-image: url("img/gu-mark-neg-sv.svg");
-				background-size: 100%;
-				background-repeat: no-repeat;
-			}
-		}
-		.en .logo {
-			.logo-image {
-				width: 101px;
-				background-image: url("img/gu-mark-neg-en.svg");
-			}
-		}
-		.right {
-			float: right;
-			position: relative;
-			nav {
-				position: absolute;
-				top:6px;
-				right: 0px;
-
-				ul {
-					.list-unstyled();
-					li {
-
-						text-transform: uppercase;
-						float: left;
-						a {
-							color: @black;
-							font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
-						}
-					}
-					li + li {
-						margin-left: 10px;
-						&:before {
-							content: " | ";
-						};
-					}
-				}
-			}
-		}
-		.left {
-			float: left;
-
-			.siteNav-logo {
-				float: left;
-				display: none;
-				@media (min-width: @screen-sm-min) {
-					display:block;
-				}
-			}
-			.site-headers {
-				position: relative;
-				margin-top: 20px;
-				@media(min-width: @screen-sm-min) {
-					margin-top: 35px;
-				}
-				float:left;
-				max-width: 300px;
-				.site-title {
-					text-transform: uppercase;
-					line-height: 1.2;
-					a {
-						text-decoration: none;
-						font-family: NimbusSanNovCon-Bol;
-						font-size: 28px;
-						color: @black;
-						&:hover {
-							text-decoration:underline;
-						};
-					}
-				}
-				.site-title-tagline {
-
-				}
-				@media (min-width: @screen-sm-min) {
-					margin-left: 20px;	
-				}
-				@media (min-width: @screen-sm) {
-					max-width: none;
-				}
-				
-			}	
 		}
 	}
+	.i18n-en .logo {
+		.logo-image {
+			width: 101px;
+			background-image: url("img/gu-mark-neg-en.svg");
+		}
+	}
+	.toplinks {
+		.pull-right();
+		ul {
+			.list-unstyled();
+			li {
+				text-transform: uppercase;
+				float: left;
+				a {
+					color: @black;
+					font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
+				}
+			}
+			li + li {
+				margin-left: 10px;
+				&:before {
+					content: " | ";
+				};
+			}
+		}
+	}
+
+	.siteNav-logo {
+		float: left;
+		display: none;
+		@media (min-width: @screen-sm-min) {
+			display:block;
+		}
+	}
+	.site-headers {
+		float: left;
+		margin-top: 20px;
+		@media(min-width: @screen-sm-min) {
+			margin-top: 35px;
+		}
+		max-width: 300px;
+		.site-title {
+			text-transform: uppercase;
+			line-height: 1.2;
+			a {
+				text-decoration: none;
+				font-family: NimbusSanNovCon-Bol;
+				font-size: 28px;
+				color: @black;
+				&:hover {
+					text-decoration:underline;
+				};
+			}
+		}
+		@media (min-width: @screen-sm-min) {
+			margin-left: 20px;	
+		}
+		@media (min-width: @screen-sm) {
+			max-width: none;
+		}
+		
+	}	
 }
+
 
 

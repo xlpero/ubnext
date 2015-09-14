@@ -1,40 +1,13 @@
-/* #### 
-COMMENT: 
-
-####*/
- 
 .footer-cms {
 	// include general styles
 	.general;
 	.footer-area {
 		background-color: @gray-dark;
 		padding: 20px 0;
-		footer {
-			ul {
-				li {
-					padding: 10px 0;
-					border-bottom: 1px solid rgba(255, 255, 255, .3);
-					&:last-child {
-						border-bottom:none;
-					}
-				}
-			}
-			a {
-				color: @white;
-				display: block;
-				text-decoration: none;
-				&:hover {
-					color: @blue-gu-dark;
-				}
-			}
-			h3 {
-				color: @white;
-			}
-		}
 	}
 
 	.site-bottom-area {
-		background-color: @pure-black;
+		background-color: @black;
 		padding:20px 0;
 		.site-bottom {
 			text-align: center;
@@ -45,32 +18,6 @@ COMMENT:
 			}
 			@media(min-width: @screen-sm-min) {
 				text-align: left;
-			}
-
-			.logotype {
-				@media(min-width: @screen-sm-min) {
-					display:none;
-				}
-				display: inline-block;
-				.logo {
-					width: 100px;
-					height: 100px;
-					background-repeat: no-repeat;
-					.logo-image {
-						margin:0 auto;
-						width: 94px;
-						height: 80px;
-						background-image: url("img/gu-mark-neg-sv.svg");
-						background-size: 100%;
-						background-repeat: no-repeat;
-					}
-				}
-				.en .logo {
-					.logo-image {
-						width: 101px;
-						background-image: url("img/gu-mark-neg-en.svg");
-					}
-				}			
 			}
 		}
 	}
