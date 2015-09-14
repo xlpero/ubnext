@@ -56,14 +56,34 @@ function ubn_general_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'language_negotiation_language';
-  $strongarm->value = array();
+  $strongarm->value = array(
+    'locale-url' => array(
+      'callbacks' => array(
+        'language' => 'locale_language_from_url',
+        'switcher' => 'locale_language_switcher_url',
+        'url_rewrite' => 'locale_language_url_rewrite_url',
+      ),
+      'file' => 'includes/locale.inc',
+    ),
+    'language-default' => array(
+      'callbacks' => array(
+        'language' => 'language_from_default',
+      ),
+    ),
+  );
   $export['language_negotiation_language'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'language_negotiation_language_content';
-  $strongarm->value = array();
+  $strongarm->value = array(
+    'language-default' => array(
+      'callbacks' => array(
+        'language' => 'language_from_default',
+      ),
+    ),
+  );
   $export['language_negotiation_language_content'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -166,9 +186,7 @@ function ubn_general_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'theme_default';
-  $strongarm->value = array(
-    0 => 'ubnext',
-  );
+  $strongarm->value = 'ubnext';
   $export['theme_default'] = $strongarm;
 
   return $export;
