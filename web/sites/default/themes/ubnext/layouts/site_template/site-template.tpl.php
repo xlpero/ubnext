@@ -52,6 +52,16 @@
 </div>
 <!-- ### END NAVIGATION ### -->
 
+<?php if (!empty($content['tabs'])): ?>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <?php print render($content['tabs']); ?>
+      </div>
+    </div>
+  </div>
+<?php endif; ?>
+
 <?php if (!empty($content['pagetitle'])): ?>
   <section class="page-head">
     <?php print render($content['pagetitle']); ?>
