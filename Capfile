@@ -4,6 +4,9 @@ require 'capistrano/setup'
 # Includes default deployment tasks
 require 'capistrano/deploy'
 
+# Composer is needed to install drush on the server
+require 'capistrano/composer'
+
 # Includes tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:

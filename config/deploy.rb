@@ -30,4 +30,9 @@ set :linked_files, %w{web/sites/default/secret.settings.php}
 set :keep_releases, 5
 
 namespace :deploy do
+  SSHKit.config.command_map[:composer] = "php #{shared_path.join("composer.phar")}"
+  SSHKit.config.command_map[:drush] = "#{shared_path.join("vendor/drush/drush/drush")}"
 end
+
+# We have no composer root level dependencies so far
+Rake::Task['deploy:updated'].prerequisites.delete('composer:install')
