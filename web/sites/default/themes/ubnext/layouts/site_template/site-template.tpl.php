@@ -1,3 +1,7 @@
+<?php global $language; ?>
+
+
+
 <?php if (!empty($content['topbar'])): ?>
   <div class="topbar clearfix">
     <?php print render($content['topbar']); ?>
@@ -9,14 +13,14 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-8">  
-        <div class="siteNav-logo">
+        <div class="siteNav-logo <?php echo $language->language; ?>">
           <div class="logo">
-            <a href="/"><div class="logo-image"></div></a>  
+            <a href="<?php echo $GLOBALS['base_url']; ?>"><div class="logo-image"></div></a>  
           </div>
         </div>
         <div class="site-headers">
           <div class="site-title">
-            <a href="/"><?php print variable_get('site_name'); ?></a>
+            <a href="<?php echo $GLOBALS['base_url']; ?>"><?php print variable_get('site_name'); ?></a>
           </div>
         </div>
       </div>
