@@ -1,7 +1,5 @@
 <?php global $language; ?>
 
-
-
 <?php if (!empty($content['topbar'])): ?>
   <div class="topbar clearfix">
     <?php print render($content['topbar']); ?>
