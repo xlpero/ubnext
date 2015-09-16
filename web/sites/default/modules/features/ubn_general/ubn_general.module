@@ -7,6 +7,19 @@
 include_once 'ubn_general.features.inc';
 
 
+
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function ubn_general_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+
+
 /**
  * Implements hook_strongarm_alter().
  */
