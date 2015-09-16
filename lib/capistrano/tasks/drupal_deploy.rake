@@ -2,12 +2,7 @@
 # See https://github.com/capistrano/capistrano/pull/605
 namespace :load do
   task :defaults do
-    set :install_composer, true
-    #set :install_drush, true
     set :app_path, 'web' #??
-    #if fetch(:install_drush)
-    #  set :drush,  "#{fetch(:shared_path)}/drush/drush"
-    #end
   end
 end
 
@@ -31,7 +26,6 @@ namespace :drupal do
       within release_path.join(fetch(:app_path)) do
         #TODO: exclude cache tables etc, just testing for now
         #TODO: Promt instead of overwriting?
-        #execute :drush, "sql-dump > #{fetch(:current_revision)}.sql"
         execute :drush, "sql-dump > #{release_path}/DATABASE.sql"
       end
     end
@@ -41,7 +35,7 @@ namespace :drupal do
     task :clear_cache do
     on release_roles(fetch(:composer_roles)) do
       within release_path.join(fetch(:app_path)) do
-        execute :drush, 'cc all -y'
+        execute :drush, 'cache-clear all -y'
       end
     end
   end
@@ -74,13 +68,9 @@ namespace :drupal do
       end
     end
   end
-
   #TODO restore/revert/import?
   #task :restore_database
 end
-
-# SSHKit.config.command_map[:composer] = "php #{fetch(:shared_path).join("composer.phar")}"
-# SSHKit.config.command_map[:drush] = "#{shared_path.join("drush/drush")}"
 
 namespace :deploy do
   after :starting, 'composer:install_executable'

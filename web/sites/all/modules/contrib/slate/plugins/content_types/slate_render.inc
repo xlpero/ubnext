@@ -65,9 +65,13 @@ function slate_slate_render_content_type_content_type_settings($form, &$form_sta
  *
  */
 function slate_slate_render_content_type_render($subtype, $conf, $panel_args, $context) {
+  // We want to be able to create slates withouts models for page elements
+  // footer etc
+  /*
   if (empty($context)) {
     return FALSE;
   }
+  */
 
   list(, $slate) = explode(':', $subtype);
 
