@@ -42,6 +42,11 @@ function ubn_general_default_page_manager_handlers() {
       'footer' => NULL,
       'toplinks' => NULL,
       'pagetitle' => NULL,
+      'tabs' => NULL,
+      'messages' => NULL,
+    ),
+    'tabs' => array(
+      'style' => 'default',
     ),
   );
   $display->cache = array();
@@ -49,26 +54,6 @@ function ubn_general_default_page_manager_handlers() {
   $display->uuid = '9e33ff90-3988-470d-9ff9-57c03abb7a3d';
   $display->content = array();
   $display->panels = array();
-    $pane = new stdClass();
-    $pane->pid = 'new-94db747d-dbbe-42bd-9909-a59b215d30bd';
-    $pane->panel = 'content';
-    $pane->type = 'page_messages';
-    $pane->subtype = 'page_messages';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-      'style' => 'naked',
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '94db747d-dbbe-42bd-9909-a59b215d30bd';
-    $display->content['new-94db747d-dbbe-42bd-9909-a59b215d30bd'] = $pane;
-    $display->panels['content'][0] = 'new-94db747d-dbbe-42bd-9909-a59b215d30bd';
     $pane = new stdClass();
     $pane->pid = 'new-011a4262-ca7b-42af-ab00-9d5ee0a36877';
     $pane->panel = 'content';
@@ -88,11 +73,31 @@ function ubn_general_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = '011a4262-ca7b-42af-ab00-9d5ee0a36877';
     $display->content['new-011a4262-ca7b-42af-ab00-9d5ee0a36877'] = $pane;
-    $display->panels['content'][1] = 'new-011a4262-ca7b-42af-ab00-9d5ee0a36877';
+    $display->panels['content'][0] = 'new-011a4262-ca7b-42af-ab00-9d5ee0a36877';
+    $pane = new stdClass();
+    $pane->pid = 'new-94db747d-dbbe-42bd-9909-a59b215d30bd';
+    $pane->panel = 'messages';
+    $pane->type = 'page_messages';
+    $pane->subtype = 'page_messages';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+      'style' => 'naked',
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '94db747d-dbbe-42bd-9909-a59b215d30bd';
+    $display->content['new-94db747d-dbbe-42bd-9909-a59b215d30bd'] = $pane;
+    $display->panels['messages'][0] = 'new-94db747d-dbbe-42bd-9909-a59b215d30bd';
     $pane = new stdClass();
     $pane->pid = 'new-e34d37ae-a017-41ad-8e31-c2bd7ead5e1b';
     $pane->panel = 'navigation';
@@ -143,8 +148,8 @@ function ubn_general_default_page_manager_handlers() {
     $display->content['new-ce326e53-b34a-4815-b93f-3210320a4edd'] = $pane;
     $display->panels['pagetitle'][0] = 'new-ce326e53-b34a-4815-b93f-3210320a4edd';
     $pane = new stdClass();
-    $pane->pid = 'new-d6739a86-9218-46bf-afeb-912ab28a76f1';
-    $pane->panel = 'topbar';
+    $pane->pid = 'new-3054dda2-3a4b-428b-b253-726c16c2f284';
+    $pane->panel = 'tabs';
     $pane->type = 'page_tabs';
     $pane->subtype = 'page_tabs';
     $pane->shown = TRUE;
@@ -152,8 +157,9 @@ function ubn_general_default_page_manager_handlers() {
     $pane->configuration = array(
       'type' => 'both',
       'id' => 'tabs',
-      'override_title' => 0,
+      'override_title' => 1,
       'override_title_text' => '',
+      'override_title_heading' => 'h2',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -163,9 +169,9 @@ function ubn_general_default_page_manager_handlers() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'd6739a86-9218-46bf-afeb-912ab28a76f1';
-    $display->content['new-d6739a86-9218-46bf-afeb-912ab28a76f1'] = $pane;
-    $display->panels['topbar'][0] = 'new-d6739a86-9218-46bf-afeb-912ab28a76f1';
+    $pane->uuid = '3054dda2-3a4b-428b-b253-726c16c2f284';
+    $display->content['new-3054dda2-3a4b-428b-b253-726c16c2f284'] = $pane;
+    $display->panels['tabs'][0] = 'new-3054dda2-3a4b-428b-b253-726c16c2f284';
     $pane = new stdClass();
     $pane->pid = 'new-179c37da-32bb-42e2-900c-6dbcaec09453';
     $pane->panel = 'toplinks';
