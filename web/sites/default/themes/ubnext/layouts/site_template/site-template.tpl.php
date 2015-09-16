@@ -62,6 +62,19 @@
   </div>
 <?php endif; ?>
 
+<?php if (!empty($content['messages'])): ?>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="alert alert-success alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <?php print render($content['messages']); ?>
+        </div>
+      </div>
+    </div>
+  </div>
+<?php endif; ?>
+
 <?php if (!empty($content['pagetitle'])): ?>
   <section class="page-head">
     <?php print render($content['pagetitle']); ?>

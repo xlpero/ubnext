@@ -1,13 +1,6 @@
 body {
   overflow-y: scroll;
 }
-.messages {
-  position: fixed;
-  top: 40px;
-  right: 20px;
-  background: #fbffc3;
-  padding: 10px;
-}
 .container {
   max-width: 960px;
 }
