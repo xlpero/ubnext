@@ -1,3 +1,5 @@
+## CAPISTRANO ##
+
 # config valid only for Capistrano 3.1
 lock '3.2.1'
 
@@ -29,10 +31,14 @@ set :linked_files, %w{web/sites/default/secret.settings.php}
 # Default value for keep_releases is 5
 set :keep_releases, 5
 
+## DRUPAL DEPLOY ##
+set :app_path, 'web'
+
 namespace :deploy do
-  SSHKit.config.command_map[:composer] = "php #{shared_path.join("composer.phar")}"
-  SSHKit.config.command_map[:drush] = "#{shared_path.join("vendor/drush/drush/drush")}"
 end
+
+SSHKit.config.command_map[:composer] = "php #{shared_path.join("composer.phar")}"
+SSHKit.config.command_map[:drush] = "#{shared_path.join("vendor/drush/drush/drush")}"
 
 # We have no composer root level dependencies so far
 Rake::Task['deploy:updated'].prerequisites.delete('composer:install')
