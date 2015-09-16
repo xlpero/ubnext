@@ -1,0 +1,8 @@
+name = Feeds
+core = 7.x
+package = UBNext
+dependencies[] = feeds
+dependencies[] = feeds_ui
+features[features_api][] = api:2
+mtime = 1442395545
+project path = sites/default/modules/features
