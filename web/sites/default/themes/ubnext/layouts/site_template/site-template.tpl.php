@@ -62,7 +62,7 @@
 
 <?php if (!empty($content['messages'])): ?>
   <div class="container">
-    <div class="row">
+    <div id="message-box" class="row">
       <div class="col-xs-12">
         <div class="alert alert-success alert-dismissible" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

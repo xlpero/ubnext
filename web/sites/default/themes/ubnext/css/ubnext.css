@@ -6366,6 +6366,12 @@ button.close {
   margin-right: 10px;
   font-size: .8em;
 }
+#search-widget {
+  text-align: center;
+}
+#message-box {
+  margin-top: 20px;
+}
 @font-face {
   font-family: 'NimbusSanNovCon-Bol';
   src: url('http://webresources.gu.se/webfonts/2C1499_0_0.eot');
@@ -8215,6 +8221,9 @@ h6,
 }
 .main-nav-cms {
   border-bottom: 1px solid #ccc;
+}
+.main-nav-cms .nav-primary {
+  margin-top: -20px;
 }
 .main-nav-cms .nav-primary .menu {
   font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
