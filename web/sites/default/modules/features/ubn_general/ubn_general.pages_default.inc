@@ -255,6 +255,29 @@ function ubn_general_default_page_manager_pages() {
   $display->uuid = 'b0bb68cb-13cf-4310-82a0-499fdb2f2d71';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-40c86ccc-6666-442a-a994-f89c035b8757';
+    $pane->panel = 'main';
+    $pane->type = 'search_widget';
+    $pane->subtype = 'search_widget';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '40c86ccc-6666-442a-a994-f89c035b8757';
+    $display->content['new-40c86ccc-6666-442a-a994-f89c035b8757'] = $pane;
+    $display->panels['main'][0] = 'new-40c86ccc-6666-442a-a994-f89c035b8757';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
