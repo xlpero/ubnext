@@ -1,13 +1,14 @@
 {# slate
     name = Search-widget
+    models[list] = item
 #}
 
 <div id="search-widget">
-	<h1>Sök bland 152 322 434 böcker, artiklar, tidskrifter mm...</h1>
+	<h1>{{list}}</h1>
 	<div class="input-group">
-	  <input type="text" class="form-control" placeholder="Search for...">
-	  <span class="input-group-btn">
-	    <button class="btn btn-primary" type="button">{{t('Search')}} <i class="fa fa-search"></i></button>
-	  </span>
-</div><!-- /input-group -->
+		<input type="text" class="form-control" aria-label="Search Terms" placeholder="Search for... (t ex Bo Rothstein)">
+		<span class="input-group-btn">
+		<button class="btn btn-primary" type="button">{{t('Search')}} <i class="fa fa-search"></i></button>
+		</span>
+	</div><!-- /input-group -->
 </div>
