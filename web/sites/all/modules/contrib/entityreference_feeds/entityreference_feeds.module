@@ -16,11 +16,13 @@ function _entityreference_feeds_get_targets($field_name, $target_type, $target_b
 
     // @todo: maybe restrict to data types feeds can deal with.
     foreach ($wrapper->getPropertyInfo() as $name => $property_info) {
-      // We leave fields to feeds mappers in accordance with the principle of least astonishment.
-      // They are also more forgiving and "robust" in some cases, for file/image-fields for example.
-      // Node targets for properties like "title" etc are inaccessable to us as they are found in the node-processor.
-      // Besides, using entity-api for this is a much more generic approach
-      // and will work for more entity-types than just node
+      /* We leave fields to feeds mappers in accordance with the principle of
+         least astonishment. They are also more forgiving and "robust" in some
+         cases, for file/image-fields for example. Node targets for properties
+         like "title" etc are inaccessable to us as they are found in the
+         node-processor. Besides, using entity-api for this is a much more
+         generic approach and will work for more entity-types than just node
+      */
       if(!isset($property_info['field']) || !$property_info['field']) {
         if (!empty($property_info['setter callback'])) {
           $_targets[$target_key . ':entityreference_feeds:' . $name] = array(
@@ -59,13 +61,15 @@ function _entityreference_feeds_get_targets($field_name, $target_type, $target_b
       'callback' => 'entityreference_feeds_feeds_set_target',
     );
 
-    // @todo: this is ugly as hell, but needed because of limitations of drupal_alter
-    // (taking a maximum of 3 parameters). Should do the job though, hopefully with
-    // no side-effects
+    // @todo: this is ugly as hell, but needed because of limitations of
+    // drupal_alter (taking a maximum of 3 parameters). Should do the job
+    // though, hopefully with no side-effects
     $entity_targets = array('entityreference_feeds_processed' => array());
 
     // Let other modules expose mapping targets.
+    $entity_targets += module_invoke_all('feeds_processor_targets', $target_type, $target_bundle);
     drupal_alter('feeds_processor_targets', $entity_targets, $target_type, $target_bundle);
+
     foreach ($entity_targets as $target_target => $entity_target) {
       if (isset($entity_target['name'])) {
         $entity_target['name'] = t('@field_name (@bundle: @target)', array(
