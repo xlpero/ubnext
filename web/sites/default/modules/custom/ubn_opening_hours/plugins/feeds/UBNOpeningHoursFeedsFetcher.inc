@@ -23,7 +23,7 @@ class UBNOpeningHoursFeedsFetcher extends FeedsFetcher {
 
     //TODO: use drupal_http_build_query instead to get rid of potential url
     // rewriting etc?
-    $url = url($source_config['endpoint_url'], array('query' => $query, 'external' => TRUE));
+    $url = url($source_config['source'], array('query' => $query, 'external' => TRUE));
 
     $options = array();
     if(!empty($this->config['request_timeout'])) {
@@ -40,7 +40,18 @@ class UBNOpeningHoursFeedsFetcher extends FeedsFetcher {
       throw new Exception('Expected HTTP response code 200, got ' . $result->code);
     }
 
-    $fetcher_result = new FeedsFetcherResult($result->data);
+    // This is a kludge, but until fixed in api we need to generate unique id
+    // for each opening hour item here
+    $result_json = drupal_json_decode($result->data);
+    if(!$result_json) {
+      throw new Exception('Invalid json');
+    }
+    foreach($result_json['locations'] as &$location) {
+      foreach($location['openhours'] as &$openhour) {
+        $openhour['id'] = md5($location['id'] . $openhour['date']);
+      }
+    }
+    $fetcher_result = new FeedsFetcherResult(drupal_json_decode($result_json));
 
     return $fetcher_result;
   }
@@ -77,10 +88,10 @@ class UBNOpeningHoursFeedsFetcher extends FeedsFetcher {
    */
   public function sourceForm($source_config) {
     $form = parent::sourceForm($source_config);
-    $form['endpoint_url'] = array(
+    $form['source'] = array(
       '#type' => 'textfield',
       '#title' => t('Endpoint url'),
-      '#default_value' => !empty($source_config['endpoint_url']) ? $source_config['endpoint_url'] : 'http://130.241.35.161:3014/locations',
+      '#default_value' => !empty($source_config['source']) ? $source_config['source'] : 'http://130.241.35.161:3014/locations',
       '#maxlength' => NULL,
       '#required' => TRUE,
     );
@@ -91,14 +102,14 @@ class UBNOpeningHoursFeedsFetcher extends FeedsFetcher {
    * Override parent::sourceFormValidate().
    */
   public function sourceFormValidate(&$values) {
-    $values['endpoint_url'] = trim($values['endpoint_url']);
+    $values['source'] = trim($values['source']);
 
     // Keep a copy for error messages.
-    $original_url = $values['endpoint_url'];
+    $original_url = $values['source'];
 
-    if (!feeds_valid_url($values['endpoint_url'], TRUE)) {
-      $form_key = 'feeds][' . get_class($this) . '][endpoint_url';
-      form_set_error($form_key, t('The URL %endpoint_url is invalid.', array('%endpoint_url' => $original_url)));
+    if (!feeds_valid_url($values['source'], TRUE)) {
+      $form_key = 'feeds][' . get_class($this) . '][source';
+      form_set_error($form_key, t('The URL %source is invalid.', array('%source' => $original_url)));
     }
   }
 
