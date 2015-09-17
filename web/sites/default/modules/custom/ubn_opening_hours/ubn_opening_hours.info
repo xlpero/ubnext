@@ -1,0 +1,5 @@
+name = UBN Opening hours
+description = Feeds fetcher and other functionality for library opening hours
+core = 7.x
+package = UBNext
+dependencies[] = feeds

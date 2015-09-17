@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * Implementation of hook_feed_plugins (CTools plugin declarations)
+ */
+function ubn_opening_hours_feeds_plugins() {
+  $path = drupal_get_path('module', 'ubn_opening_hours') . '/plugins/feeds';
+  $info = array();
+  $info['UBNOpeningHoursFeedsFetcher'] = array(
+    'name' => 'UBN Opening hours fetcher',
+    'description' => 'Fetch library opening hours.',
+    'handler' => array(
+      'parent' => 'FeedsFetcher', // This is the key name, not the class name.
+      'class' => 'UBNOpeningHoursFeedsFetcher',
+      'file' => 'UBNOpeningHoursFeedsFetcher.inc',
+      'path' => $path,
+    ),
+  );
+  return $info;
+}
+
+function ubn_opening_hours_ctools_plugin_api($owner, $api) {
+  if ($owner == 'feeds' && $api == 'plugins') {
+    return array('version' => 1);
+  }
+}
