@@ -236,6 +236,44 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-opening_hours-field_opening_hours_is_open'
+  $field_instances['node-opening_hours-field_opening_hours_is_open'] = array(
+    'bundle' => 'opening_hours',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_opening_hours_is_open',
+    'label' => 'Is open',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'node-opening_hours-title_field'
   $field_instances['node-opening_hours-title_field'] = array(
     'bundle' => 'opening_hours',
@@ -283,6 +321,7 @@ function ubn_content_types_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Body');
   t('Is exception');
+  t('Is open');
   t('Opening hours');
   t('Title');
 
