@@ -2,9 +2,8 @@
   name = Library opening hours
   models[library] = entity:node
 #}
-# TODO: Macro with limit, yes
-{% set today = "now"|date("Y-m-d", "Europe/Stockholm") %}
-{% set tomorrow = "+ 1 day"|date("Y-m-d", "Europe/Stockholm") %}
+{% set today = "now"|date("Y-m-d", date_default_timezone()) %}
+{% set tomorrow = "+ 1 day"|date("Y-m-d", date_default_timezone()) %}
 <table class="library-opening-hours table">
   <tbody>
   {% for opening_hours in library.field_referenced_opening_hours %}
