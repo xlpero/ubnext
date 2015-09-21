@@ -60,7 +60,7 @@ function ubn_general_search_widget_content_type_render($subtype, $conf, $panel_a
   }
   $search_slogan = t('Search among <strong> @number </strong> books, articles, magazines and more...', array('@number' => $number));
   $lang =  $language->language;
-  dpm($lang);
+  //dpm($lang);
   if ($lang == 'en') {
     $url = "http://gothenburg.summon.serialssolutions.com/en/search/";
   }
