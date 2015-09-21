@@ -16,7 +16,11 @@
       {% else %}
         <td>{{ t(opening_hours.field_opening_hours_date.value|date("l")) }}</td>
       {% endif %}
-      <td>{{ opening_hours.field_opening_hours.value|date("H:i") ~ " - " ~ opening_hours.field_opening_hours.value2|date("H:i") }}</td>
+      {% if opening_hours.field_opening_hours_is_open.value %}
+        <td>{{ opening_hours.field_opening_hours.value|date("H:i") ~ " - " ~ opening_hours.field_opening_hours.value2|date("H:i") }}</td>
+      {% else %}
+        <td>{{ t("Closed") }}</td>
+      {% endif %}
     </tr>
   {% endfor %}
   </tbody>
