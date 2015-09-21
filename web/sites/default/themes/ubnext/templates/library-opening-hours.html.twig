@@ -1,0 +1,24 @@
+{# slate
+  name = Library opening hours
+  models[library] = entity:node
+#}
+# TODO: Macro with limit, yes
+{% set today = "now"|date("Y-m-d", "Europe/Stockholm") %}
+{% set tomorrow = "+ 1 day"|date("Y-m-d", "Europe/Stockholm") %}
+<table class="library-opening-hours table">
+  <tbody>
+  {% for opening_hours in library.field_referenced_opening_hours %}
+    <tr class="library-opening-hours-item">
+      {% set opening_hours_date = opening_hours.field_opening_hours_date.value|date("Y-m-d") %}
+      {% if opening_hours_date == today %}
+        <td class="library-opening-hours-item-day-today">{{ t("Today") }}</td>
+      {% elseif opening_hours_date == tomorrow %}
+        <td class="library-opening-hours-item-day-tomorrow">{{ t("Tomorrow") }}</td>
+      {% else %}
+        <td>{{ t(opening_hours.field_opening_hours_date.value|date("l")) }}</td>
+      {% endif %}
+      <td>{{ opening_hours.field_opening_hours.value|date("H:i") ~ " - " ~ opening_hours.field_opening_hours.value2|date("H:i") }}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
