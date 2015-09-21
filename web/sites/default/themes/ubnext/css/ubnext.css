@@ -6372,6 +6372,29 @@ button.close {
 #message-box {
   margin-top: 20px;
 }
+.ub-list-of-links li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+.ub-list-of-links li:first-child {
+  border-top: 1px solid #eeeeee;
+}
+.ub-list-of-links a {
+  color: #333333;
+}
+.ub-list-of-links a:hover {
+  color: #025da6;
+}
+.ub-list-of-links a .fa {
+  color: #025da6;
+}
+.pane-title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.panel-separator {
+  margin-bottom: 50px;
+}
 @font-face {
   font-family: 'NimbusSanNovCon-Bol';
   src: url('http://webresources.gu.se/webfonts/2C1499_0_0.eot');
