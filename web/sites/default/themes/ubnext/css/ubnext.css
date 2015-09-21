@@ -8174,6 +8174,11 @@ h6,
 .btn {
   font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
 }
+.vcenter {
+  display: inline-block;
+  vertical-align: middle;
+  float: none;
+}
 .general .container {
   max-width: 960px;
 }
