@@ -1,0 +1,61 @@
+<?php
+
+function _ubn_slate_opening_hours_items($opening_hours_values, $limit = NULL) {
+  //TODO: static lookup table for weekdays?
+  $opening_hours_items = array();
+  $tz = new DateTimeZone(date_default_timezone(FALSE));
+  $tz_db = new DateTimeZone('UTC');
+  $today = new DateTime('now', $tz);
+  $today = $today->format('Y-m-d');
+  $tomorrow = new DateTime('+ 1 day', $tz);
+  $tomorrow = $tomorrow->format('Y-m-d');
+  foreach($opening_hours_values as $i => $opening_hours) {
+    if(isset($limit) && $i > $limit) {
+      break;
+    }
+    $opening_hours_date_datetime = new DateTime('@' . $opening_hours->field_opening_hours_date->value(), $tz_db);
+    $opening_hours_date = $opening_hours_date_datetime->format('Y-m-d');
+    if ($opening_hours_date === $today) {
+      $opening_hours_items[$i] = array('weekday' => t('Today'));
+    }
+    elseif ($opening_hours_date === $tomorrow) {
+      $opening_hours_items[$i] = array('weekday' => t('Tomorrow'));
+    }
+    else {
+      //Could replace with lookup-table (php array) to avoid variable in t()
+      $opening_hours_items[$i] = array('weekday' => t($opening_hours_date_datetime->format("l")));
+    }
+    $opening_hours_items[$i]['is_open'] = (bool) $opening_hours->field_opening_hours_is_open->value();
+    if($opening_hours_items[$i]['is_open']) {
+      //TODO: would be more correct to get timezone from field, or if ->value()
+      //produced an ISO-formatted time-string with timezone-information
+      $opening_hours_from = new DateTime('@' . $opening_hours->field_opening_hours->value->value(), $tz_db);
+      $opening_hours_from->setTimezone($tz);
+      $opening_hours_to = new DateTime('@' . $opening_hours->field_opening_hours->value2->value(), $tz_db);
+      $opening_hours_to->setTimezone($tz);
+      $opening_hours_items[$i]['hours'] = $opening_hours_from->format('H:i') . ' - ' . $opening_hours_to->format('H:i');
+    }
+    else {
+      $opening_hours_items[$i]['hours'] = t('Closed');
+    }
+    $opening_hours_items[$i]['is_exception'] = (bool) $opening_hours->field_opening_hours_is_exception->value();
+    if($opening_hours_items[$i]['is_exception']) {
+      $opening_hours_items[$i]['hours'] .= '*';
+    }
+  }
+  return $opening_hours_items;
+}
+
+/**
+ * Implements hook_slate_twig_alter().
+ *
+ * @param $twig
+ */
+function ubn_slate_slate_twig_alter(&$twig) {
+  $filter = new Twig_SimpleFunction(
+    'ubn_opening_hours_items',
+    '_ubn_slate_opening_hours_items'
+  );
+  $twig->addFunction($filter);
+}
+

@@ -1,0 +1,5 @@
+name = UBN Slate
+description = Slate/Twig customizations for UBNext
+core = 7.x
+package = UBNext
+dependencies[] = slate
