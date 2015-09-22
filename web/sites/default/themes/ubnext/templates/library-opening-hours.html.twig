@@ -4,14 +4,17 @@
 #}
 
 
-{% set today = "now"|date("Y-m-d", "Europe/Stockholm") %}
-{% set tomorrow = "+ 1 day"|date("Y-m-d", "Europe/Stockholm") %}
+{% set today = "now"|date("Y-m-d", date_default_timezone(FALSE)) %}
+{% set tomorrow = "+ 1 day"|date("Y-m-d", date_default_timezone(FALSE)) %}
+
+
 
 <ul class="list-unstyled ub-list-of-links">
 {% for opening_hours in library.field_referenced_opening_hours %}
   <li>
     <div class="row vertical-align">
       {% set opening_hours_date = opening_hours.field_opening_hours_date.value|date("Y-m-d") %}
+        {{dump(opening_hours.field_opening_hours_date.value)}}
       {% if opening_hours_date == today %}
         <div class="col-xs-7 col-sm-9">{{ t("Today") }}</div>
       {% elseif opening_hours_date == tomorrow %}
@@ -19,9 +22,11 @@
       {% else %}
         <div class="col-xs-7 col-sm-9">{{ t(opening_hours.field_opening_hours_date.value|date("l")) }}</div>
       {% endif %}
+
       <div class="col-xs-5 col-sm-3">{{ opening_hours.field_opening_hours.value|date("H:i") ~ " - " ~ opening_hours.field_opening_hours.value2|date("H:i") }}</div>
     </div> <!-- end row -->
   </li>
 {% endfor %}
 </ul>
+
 
