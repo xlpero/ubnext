@@ -47,6 +47,10 @@ class UBNOpeningHoursFeedsFetcher extends FeedsFetcher {
       throw new Exception('Invalid json');
     }
     foreach($result_json['locations'] as &$location) {
+      foreach(array('swedish_name', 'english_name', 'name') as $key) {
+        // Also fix encoding
+        $location[$key] = html_entity_decode($location[$key], ENT_COMPAT | ENT_HTML401, 'UTF-8');
+      }
       foreach($location['openhours'] as &$openhour) {
         $openhour['id'] = md5($location['id'] . $openhour['date']);
       }
