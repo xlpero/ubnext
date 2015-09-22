@@ -52,10 +52,10 @@ function _ubn_slate_opening_hours_items($opening_hours_values, $limit = NULL) {
  * @param $twig
  */
 function ubn_slate_slate_twig_alter(&$twig) {
-  $filter = new Twig_SimpleFunction(
+  $function = new Twig_SimpleFunction(
     'ubn_opening_hours_items',
     '_ubn_slate_opening_hours_items'
   );
-  $twig->addFunction($filter);
+  $twig->addFunction($function);
 }
 
