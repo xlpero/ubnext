@@ -1,5 +1,8 @@
 .ub-list-of-links {
 	li {
+		@media (max-width: @screen-xs-min) {
+			font-size: .8em;
+		}
 		&:first-child {
 			border-top: 1px solid @gray-lighter;
 		}
@@ -17,3 +20,9 @@
 		}
 	}
 }	
+
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}

@@ -10,8 +10,6 @@
  */
 ?>
 
-
-
 <ul class="list-unstyled ub-list-of-links">
 	<?php foreach ($rows as $id => $row): ?>
 	  <li><?php print $row; ?></li>
