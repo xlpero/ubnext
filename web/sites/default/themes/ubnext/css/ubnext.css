@@ -6393,6 +6393,9 @@ button.close {
 .ub-list-of-links a .fa {
   color: #025da6;
 }
+.library-map #ub-map-canvas {
+  height: 300px;
+}
 .pane-title {
   text-align: center;
   margin-bottom: 10px;
@@ -8124,7 +8127,7 @@ h1,
   margin-top: 24px;
   font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
   font-size: 2em;
-  margin-bottom: 24px;
+  margin-bottom: 10px;
   line-height: 1.25em;
 }
 h2,
@@ -8171,7 +8174,7 @@ h6,
   }
 }
 .lead {
-  font-size: 1.125em;
+  font-size: 1em;
   font-weight: bold;
   line-height: 1.333em;
   margin-bottom: 24px;
@@ -8194,9 +8197,6 @@ h6,
 }
 .general .white {
   background-color: #ffffff;
-}
-.general #ub-map-canvas {
-  height: 400px;
 }
 .general .full-width-wrapper {
   padding: 0;
@@ -8381,9 +8381,6 @@ header .site-headers .site-title a:hover {
 .footer-cms .white {
   background-color: #ffffff;
 }
-.footer-cms #ub-map-canvas {
-  height: 400px;
-}
 .footer-cms .full-width-wrapper {
   padding: 0;
 }
@@ -8470,9 +8467,6 @@ header .site-headers .site-title a:hover {
 }
 .one-col .white {
   background-color: #ffffff;
-}
-.one-col #ub-map-canvas {
-  height: 400px;
 }
 .one-col .full-width-wrapper {
   padding: 0;
@@ -9638,26 +9632,6 @@ fieldset[disabled] .main-cms .contact-library .wrap .adress-container .wrap .con
 }
 .main-cms .library-resources main tr td + td {
   text-align: center;
-}
-.main-cms .library-map .header {
-  background: #000000;
-  color: #ffffff;
-  position: relative;
-  padding: 10px;
-  z-index: 10;
-  text-align: center;
-}
-.main-cms .library-map .header:after {
-  content: ' ';
-  border: solid 9px transparent;
-  border-top-color: #000000;
-  position: absolute;
-  right: 50%;
-  bottom: -17px;
-}
-.main-cms .library-map .header .links {
-  display: inline-block;
-  width: 300px;
 }
 .one-col-wide .page {
   max-width: 960px;

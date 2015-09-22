@@ -29,7 +29,6 @@ function ubn_general_library_map_content_type_settings($form, &$form_state) {
  */
 function ubn_general_library_map_content_type_render($subtype, $conf, $panel_args, $context) {
   global $language_content;
-  dsm($language_content);
   $block = new stdClass();
   $block->title = t('Library Map');
 
