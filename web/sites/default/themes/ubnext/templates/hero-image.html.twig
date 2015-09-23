@@ -1,0 +1,17 @@
+{# slate
+  name = Hero image: the hero image displayed on a page
+  models[library] = entity:node
+#}
+
+{% import "images.html.twig" as images %}
+
+{% if library.field_hero_image.value %}
+	<div class="hero-image">
+		<div class="row">
+			<div class="col-xs-12">
+	    	{{ images.style('library_hero', library.field_hero_image, true) }}
+	    	</div>
+	    </div>
+
+    </div>
+{% endif %}
