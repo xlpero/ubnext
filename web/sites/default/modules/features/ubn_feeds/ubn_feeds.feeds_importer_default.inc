@@ -20,7 +20,7 @@ function ubn_feeds_feeds_importer_default() {
     'fetcher' => array(
       'plugin_key' => 'UBNOpeningHoursFeedsFetcher',
       'config' => array(
-        'request_timeout' => NULL,
+        'request_timeout' => '120',
       ),
     ),
     'parser' => array(
@@ -36,18 +36,20 @@ function ubn_feeds_feeds_importer_default() {
           'jsonpath_parser:5' => 'openhours[*].is_exception',
           'jsonpath_parser:6' => 'openhours[*].is_open',
           'jsonpath_parser:7' => 'openhours[*].date',
+          'jsonpath_parser:8' => 'openhours[*].date',
         ),
         'debug' => array(
           'options' => array(
+            'jsonpath_parser:1' => 'jsonpath_parser:1',
             'context' => 0,
             'jsonpath_parser:0' => 0,
-            'jsonpath_parser:1' => 0,
             'jsonpath_parser:2' => 0,
             'jsonpath_parser:3' => 0,
             'jsonpath_parser:4' => 0,
             'jsonpath_parser:5' => 0,
             'jsonpath_parser:6' => 0,
             'jsonpath_parser:7' => 0,
+            'jsonpath_parser:8' => 0,
           ),
         ),
         'allow_override' => 0,
@@ -99,6 +101,11 @@ function ubn_feeds_feeds_importer_default() {
           7 => array(
             'source' => 'jsonpath_parser:7',
             'target' => 'field_referenced_opening_hours:opening_hours:text_feeds_set_target:title_field',
+            'unique' => FALSE,
+          ),
+          8 => array(
+            'source' => 'jsonpath_parser:8',
+            'target' => 'field_referenced_opening_hours:opening_hours:date_feeds_set_target:field_opening_hours_date:start',
             'unique' => FALSE,
           ),
         ),
