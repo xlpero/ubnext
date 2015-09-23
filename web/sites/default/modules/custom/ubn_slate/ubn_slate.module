@@ -19,6 +19,7 @@ function _ubn_slate_opening_hours_items($opening_hours_values, $weekdays = NULL,
     $opening_hours_date_datetime = new DateTime('@' . $opening_hours->field_opening_hours_date->value());
     $opening_hours_date_datetime->setTimezone($tz);
     $opening_hours_date = $opening_hours_date_datetime->format('Y-m-d');
+    //TOOD: $weekday = '';
     if ($opening_hours_date === $today) {
       $opening_hours_items[$i] = array('weekday' => t('Today'));
     }
@@ -30,8 +31,14 @@ function _ubn_slate_opening_hours_items($opening_hours_values, $weekdays = NULL,
       $opening_hours_items[$i] = array('weekday' => t($opening_hours_date_datetime->format("l")));
     }
 
-    if(is_array($weekdays) && in_array($opening_hours_items[$i]['weekday'], $weekdays)) {
-      unset($weekdays[array_search($opening_hours_items[$i]['weekday'], $weekdays)]);
+    if(is_array($weekdays))  {
+      if(in_array($opening_hours_items[$i]['weekday'], $weekdays)) {
+        unset($weekdays[array_search($opening_hours_items[$i]['weekday'], $weekdays)]);
+      }
+      else {
+        unset($opening_hours_items[$i]);
+        continue;
+      }
     }
 
     $opening_hours_items[$i]['is_open'] = (bool) $opening_hours->field_opening_hours_is_open->value();
@@ -52,7 +59,7 @@ function _ubn_slate_opening_hours_items($opening_hours_values, $weekdays = NULL,
       $opening_hours_items[$i]['hours'] .= '*';
     }
   }
-  return $opening_hours_items;
+  return array_values($opening_hours_items);
 }
 
 /**
