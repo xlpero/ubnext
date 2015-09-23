@@ -55,6 +55,57 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-library-field_hero_image'
+  $field_instances['node-library-field_hero_image'] = array(
+    'bundle' => 'library',
+    'deleted' => 0,
+    'description' => 'Upload and store the header image for this library. ',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'image',
+        'settings' => array(
+          'image_link' => '',
+          'image_style' => '',
+        ),
+        'type' => 'image',
+        'weight' => 2,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_hero_image',
+    'label' => 'Header image for this library',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => '',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '2 mb',
+      'max_resolution' => '',
+      'min_resolution' => '1000x300',
+      'title_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'image',
+      'settings' => array(
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'image_image',
+      'weight' => 34,
+    ),
+  );
+
   // Exported field_instance: 'node-library-field_lead'
   $field_instances['node-library-field_lead'] = array(
     'bundle' => 'library',
@@ -67,7 +118,7 @@ function ubn_content_types_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 1,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -96,6 +147,48 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-library-field_location'
+  $field_instances['node-library-field_location'] = array(
+    'bundle' => 'library',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'geofield',
+        'settings' => array(
+          'data' => 'full',
+        ),
+        'type' => 'geofield_wkt',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_location',
+    'label' => 'Location',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'geofield',
+      'settings' => array(
+        'html5_geolocation' => 0,
+      ),
+      'type' => 'geofield_latlon',
+      'weight' => 33,
+    ),
+  );
+
   // Exported field_instance: 'node-library-field_referenced_opening_hours'
   $field_instances['node-library-field_referenced_opening_hours'] = array(
     'bundle' => 'library',
@@ -110,7 +203,7 @@ function ubn_content_types_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -151,7 +244,7 @@ function ubn_content_types_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 1,
+        'weight' => 5,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -417,12 +510,15 @@ function ubn_content_types_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Body');
+  t('Header image for this library');
   t('Is exception');
   t('Is open');
   t('Lead');
+  t('Location');
   t('Opening hours');
   t('Opening hours date');
   t('Title');
+  t('Upload and store the header image for this library. ');
 
   return $field_instances;
 }

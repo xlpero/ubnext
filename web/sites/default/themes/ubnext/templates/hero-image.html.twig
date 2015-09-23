@@ -4,7 +4,7 @@
 #}
 
 {% import "images.html.twig" as images %}
-
+<div class="container fullwidth-on-xs">
 {% if library.field_hero_image.value %}
 	<div class="hero-image">
 		<div class="row">
@@ -12,6 +12,6 @@
 	    	{{ images.style('library_hero', library.field_hero_image, true) }}
 	    	</div>
 	    </div>
-
     </div>
 {% endif %}
+</div>

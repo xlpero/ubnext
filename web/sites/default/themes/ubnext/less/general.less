@@ -3,6 +3,15 @@
     align-items: center;
 }
 
+.container {
+	@media (max-width: @screen-xs-max) {
+		&.fullwidth-on-xs {
+			padding: 0;
+		}
+	}
+
+}
+
 .general {
 	.container {
 		max-width: 960px;

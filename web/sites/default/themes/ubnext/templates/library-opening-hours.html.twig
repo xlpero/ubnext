@@ -2,18 +2,19 @@
   name = Library opening hours
   models[library] = entity:node
 #}
-
-<div class="row">
-  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-    <ul class="list-unstyled ub-list-of-links">
-    {% for opening_hours in ubn_opening_hours_items(library.field_referenced_opening_hours) %}
-      <li>
-        <div class="row vertical-align">
-          <div class="col-xs-7 col-sm-8">{{ opening_hours.weekday }}</div>
-          <div class="col-xs-5 col-sm-4">{{ opening_hours.hours }}</div>
-        </div> <!-- end row -->
-      </li>
-    {% endfor %}
-    </ul>
-  </div>
-</div> <!-- end row -->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      <ul class="list-unstyled ub-list-of-links">
+      {% for opening_hours in ubn_opening_hours_items(library.field_referenced_opening_hours) %}
+        <li>
+          <div class="row vertical-align">
+            <div class="col-xs-7 col-sm-8">{{ opening_hours.weekday }}</div>
+            <div class="col-xs-5 col-sm-4">{{ opening_hours.hours }}</div>
+          </div> <!-- end row -->
+        </li>
+      {% endfor %}
+      </ul>
+    </div>
+  </div> <!-- end row -->
+</div>
