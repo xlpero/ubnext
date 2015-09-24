@@ -10,7 +10,6 @@
 function ubn_content_types_field_default_field_bases() {
   $field_bases = array();
 
-<<<<<<< HEAD
   // Exported field_base: 'body'
   $field_bases['body'] = array(
     'active' => 1,
@@ -44,7 +43,32 @@ function ubn_content_types_field_default_field_bases() {
 
   // Exported field_base: 'field_hero_image'
   $field_bases['field_hero_image'] = array(
-=======
+    'field_name' => 'field_hero_image',
+    'foreign keys' => array(
+      'fid' => array(
+        'columns' => array(
+          'fid' => 'fid',
+        ),
+        'table' => 'file_managed',
+      ),
+    ),
+    'indexes' => array(
+      'fid' => array(
+        0 => 'fid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'image',
+    'settings' => array(
+      'default_image' => 1,
+      'entity_translation_sync' => array(
+        0 => 'fid',
+      ),
+      'uri_scheme' => 'public',
+    ),
+    'translatable' => 0,
+    'type' => 'image',
+  );
   // Exported field_base: 'field_adapted_study_rooms_count'
   $field_bases['field_adapted_study_rooms_count'] = array(
     'active' => 1,
@@ -116,38 +140,10 @@ function ubn_content_types_field_default_field_bases() {
 
   // Exported field_base: 'field_food_heating_facilities'
   $field_bases['field_food_heating_facilities'] = array(
->>>>>>> master
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-<<<<<<< HEAD
-    'field_name' => 'field_hero_image',
-    'foreign keys' => array(
-      'fid' => array(
-        'columns' => array(
-          'fid' => 'fid',
-        ),
-        'table' => 'file_managed',
-      ),
-    ),
-    'indexes' => array(
-      'fid' => array(
-        0 => 'fid',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'image',
-    'settings' => array(
-      'default_image' => 1,
-      'entity_translation_sync' => array(
-        0 => 'fid',
-      ),
-      'uri_scheme' => 'public',
-    ),
-    'translatable' => 0,
-    'type' => 'image',
-=======
     'field_name' => 'field_food_heating_facilities',
     'foreign keys' => array(),
     'indexes' => array(
@@ -212,7 +208,6 @@ function ubn_content_types_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'list_boolean',
->>>>>>> master
   );
 
   // Exported field_base: 'field_lead'
