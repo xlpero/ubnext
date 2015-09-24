@@ -19,29 +19,38 @@ function _ubn_slate_opening_hours_items($opening_hours_values, $weekdays = NULL,
     $opening_hours_date_datetime = new DateTime('@' . $opening_hours->field_opening_hours_date->value());
     $opening_hours_date_datetime->setTimezone($tz);
     $opening_hours_date = $opening_hours_date_datetime->format('Y-m-d');
-    //TOOD: $weekday = '';
+
+    $weekday = NULL;
+    //$is_today = FALSE;
+    //$is_tomorrow = FALSE;
     if ($opening_hours_date === $today) {
-      $opening_hours_items[$i] = array('weekday' => t('Today'));
+      //$is_today = TRUE;
+      $weekday = t('Today');
     }
     elseif ($opening_hours_date === $tomorrow) {
-      $opening_hours_items[$i] = array('weekday' => t('Tomorrow'));
+      //$is_tomorrow = TRUE;
+      $weekday = t('Tomorrow');
     }
     else {
       //Could replace with lookup-table (php array) to avoid variable in t()
-      $opening_hours_items[$i] = array('weekday' => t($opening_hours_date_datetime->format("l")));
+      $weekday = t($opening_hours_date_datetime->format("l"));
     }
-
     if(is_array($weekdays))  {
-      if(in_array($opening_hours_items[$i]['weekday'], $weekdays)) {
-        unset($weekdays[array_search($opening_hours_items[$i]['weekday'], $weekdays)]);
+      if(in_array($weekday, $weekdays)) {
+        unset($weekdays[array_search($weekday, $weekdays)]);
       }
       else {
-        unset($opening_hours_items[$i]);
         continue;
       }
     }
 
-    $opening_hours_items[$i]['is_open'] = (bool) $opening_hours->field_opening_hours_is_open->value();
+    $opening_hours_items[$i] = array(
+      'weekday' => $weekday,
+      //'is_today' => $is_today,
+      //'is_tomorrow' => $is_tomorrow,
+      'is_open' => (bool) $opening_hours->field_opening_hours_is_open->value(),
+    );
+
     if($opening_hours_items[$i]['is_open']) {
       //TODO: would be more correct to get timezone from field, or if ->value()
       //produced an ISO-formatted time-string with timezone-information

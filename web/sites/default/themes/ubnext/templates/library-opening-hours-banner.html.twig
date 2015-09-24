@@ -1,0 +1,19 @@
+{# slate
+  name = Library opening hours banner
+  models[library] = entity:node
+#}
+
+<div class="row">
+  <div class="">
+    <ul class="list-unstyled ub-list-of-links">
+    {% for opening_hours in ubn_opening_hours_items(library.field_referenced_opening_hours, [t('Today'), t('Tomorrow')]) %}
+      <li>
+        <div class="row vertical-align {{ 'library-opening-hours-banner-' ~ drupal_html_class(opening_hours.weekday) }}">
+          <div class="library-opening-hours-banner-label">{{ t("Open !weekday", {'!weekday' : drupal_strtolower(opening_hours.weekday)}) ~ ':' }}</div>
+          <div class="library-opening-hours-banner-hours">{{ opening_hours.hours }}</div>
+        </div> <!-- end row -->
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+</div> <!-- end row -->
