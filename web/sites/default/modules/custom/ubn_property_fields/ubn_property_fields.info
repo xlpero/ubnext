@@ -2,3 +2,4 @@ name = UBN property fields
 description = Overlay ordinary drupal fields with metadata allowing them to be themed as "properties"
 core = 7.x
 package = UBNext
+dependencies[] = entity
