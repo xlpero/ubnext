@@ -12,7 +12,3 @@ function ubn_general_install() {
 function ubn_general_update_7100() {
   module_enable(array('ubn_slate'));
 }
-
-function ubn_general_update_7101() {
-  module_enable(array('addressfield'));
-}

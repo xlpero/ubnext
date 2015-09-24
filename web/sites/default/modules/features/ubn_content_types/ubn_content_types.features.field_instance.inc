@@ -392,8 +392,6 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_location'
-  $field_instances['node-library-field_location'] = array(
   // Exported field_instance: 'node-library-field_quiet_reading_room'
   $field_instances['node-library-field_quiet_reading_room'] = array(
     'bundle' => 'library',

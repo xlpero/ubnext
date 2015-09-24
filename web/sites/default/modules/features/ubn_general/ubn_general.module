@@ -1,0 +1,126 @@
+<?php
+/**
+ * @file
+ * Code for the General feature.
+ */
+
+include_once 'ubn_general.features.inc';
+
+
+
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function ubn_general_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+
+
+/**
+ * Implements hook_strongarm_alter().
+ */
+function ubn_general_strongarm_alter(&$variables) {
+  if (isset($variables['language_default']->value->javascript)) {
+    $language_default = variable_get('language_default');
+
+    $variables['language_default']->value->javascript = $language_default->javascript;
+  }
+}
+
+/**
+ * Implements hook_query_TAG_alter().
+ *
+ * Only works for entities of type 'node'.
+ *
+ * @param QueryAlterableInterface $query
+ */
+function ubn_general_query_ENTITY_TRANSLATION_alter(QueryAlterableInterface $query) {
+  global $language_content;
+
+  $query->join('entity_translation', 'entity_translation', "entity_translation.entity_type = 'node' AND entity_translation.entity_id = node.nid");
+  $query->condition('entity_translation.language', $language_content->language, '=');
+}
+
+/**
+ * Custom strnatcmp to fix a bad, bad, bad PHP bug!
+ */
+function ubn_general_strnatcmp($left, $right) {
+  if (extension_loaded('intl') === TRUE) {
+    global $language;
+
+    switch ($language->language) {
+      case 'sv':
+        $coll = collator_create('sv_SE');
+        break;
+
+      case 'en':
+        $coll = collator_create('en_US');
+        break;
+
+      default:
+        $coll = collator_create('root');
+        break;
+    }
+
+    $coll->setAttribute(Collator::NUMERIC_COLLATION, Collator::ON);
+
+    return $coll->compare($left, $right);
+  }
+
+  return strnatcmp($left, $right);
+}
+
+/**
+ * Display entities on a map.
+ */
+function ubn_general_generate_map($entities) {
+  global $language_content;
+
+  $coords = array();
+  foreach ($entities as $entity) {
+    //dsm($entity->field_location['und'][0]['lat']);
+    $wrapper = entity_metadata_wrapper('node', $entity);
+    $wrapper->language($language_content->language);
+    if (!empty($entity->field_location['und'])) {
+      $coordinates = $entity->field_location['und'][0]['lat'] . ',' . $entity->field_location['und'][0]['lon'];
+    } 
+
+    if (empty($coordinates)) {
+      continue;
+    }
+
+    list($latitude, $longitude) = explode(',', $coordinates);
+
+    $coords[] = array(
+      'label' => $wrapper->label(),
+      'latitude' => trim($latitude),
+      'longitude' => trim($longitude),
+    );
+  }
+
+  if (empty($coords)) {
+    return "";
+  }
+
+  return ubn_general_render_map($coords);
+}
+
+/**
+ * Add JS and cords to render a map.
+ */
+function ubn_general_render_map($coords = array()) {
+  // @todo add this as a setting!
+    if (!empty($coords[0]['longitude'] and !empty($coords[0]['latitude']))) {
+    drupal_add_js('https://maps.googleapis.com/maps/api/js?key=AIzaSyCrHH1UmYwF_jHleEU6rBCf115wBXCb6KM', 'external');
+
+    drupal_add_js(array('ubMap' => $coords), 'setting');
+    drupal_add_js(drupal_get_path('module', 'ubn_general') . '/ubn_general.map.js');
+
+    return '<div id="ub-map-canvas"></div>';
+  } 
+
+}
