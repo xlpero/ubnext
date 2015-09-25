@@ -1,0 +1,37 @@
+{# slate
+  name = Library contact
+  models[library] = entity:node
+#}
+
+<h2>{{ t('Contact informatoin') }}</h2>
+
+{% set mailing_address = library.field_mailing_address.value %}
+{% if not mailing_address is empty %}
+  <h3>{{ mailing_address.organisation_name }}</h3>
+  <div>{{ mailing_address.thoroughfare }}</div>
+  <div>{{ mailing_address.postal_code }}</div>
+  <div>{{ mailing_address.locality }}</div>
+{% endif %}
+
+{% set visiting_address = library.field_visiting_address.value %}
+{% if not visiting_address is empty %}
+  <h3>{{ library.field_visiting_address._label }}</h3>
+  <div>{{ (not visiting_address.premise is empty ? visiting_address.premise ~ ', ') ~ visiting_address.thoroughfare }}</div>
+  <div>{{ visiting_address.thoroghfare }}</div>
+{% endif %}
+
+{% set delivery_address = library.field_delivery_address.value %}
+{% if not delivery_address is empty %}
+  <h3>{{ library.field_delivery_address._label }}</h3>
+  <div>{{ delivery_address.organisation_name }}</div>
+  <div>{{ (not delivery_address.premise is empty ? delivery_address.premise ~ ', ') ~ delivery_address.thoroughfare }}</div>
+  <div>{{ delivery_address.thoroghfare }}</div>
+  <div>{{ delivery_address.postal_code }}</div>
+  <div>{{ delivery_address.locality }}</div>
+{% endif %}
+
+{% if not library.field_phone.value is empty %}
+  <h3>{{ library.field_phone._label }}</h3>
+  <div>{{ library.field_phone.value }}</div>
+{% endif %}
+
