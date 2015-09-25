@@ -1,14 +1,5 @@
 <?php
 
-function ubn_property_test($wrapper) {
-  foreach($wrapper->ubn_property_fields as $field) {
-    dsm($field->label->value());
-    dsm($field->value->value());
-    dsm($field->type->value());
-    dsm($field->name->value());
-  }
-}
-
 /**
  * Implements hook_entity_property_info_alter()
  */
@@ -33,27 +24,29 @@ function ubn_property_fields_entity_property_info_alter(&$info) {
                 'label' => array(
                   'label' => t('Label'),
                   'description' => t('The property label'),
-                  //'getter callback' => 'ubn_property_fields_get_property_fields', //wtf :)
                   'type' => 'text',
                 ),
                 'value' => array(
                   'label' => t('Label'),
                   'description' => t('The property label'),
-                  //'getter callback' => 'ubn_property_fields_get_property_fields', //wtf :)
                   'type' => 'text',
                 ),
                 'name' => array(
                   'label' => t('Name'),
                   'description' => t('Name of the field this property is based upon'),
-                  //'getter callback' => 'ubn_property_fields_get_property_fields', //wtf :)
                   'type' => 'token',
                 ),
                 'type' => array(
                   'label' => t('Type'),
-                  'description' => t('Type of the field this property is based upon'), // Or type system of our own?
-                  //'getter callback' => 'ubn_property_fields_get_property_fields', //wtf :)
+                  'description' => t('Property type of the field this property is based upon'),
                   'type' => 'token',
                 ),
+                'language' => array(
+                  'label' => t('Language'),
+                  'description' => t('The currently selected language'),
+                  'type' => 'token',
+                ),
+
               ),
             );
             break;
@@ -82,7 +75,7 @@ function ubn_property_fields_property_fields($entity_type, $bundle_name) {
   }
   return $ubn_property_fields;
 }
-
+//TODO: why is this called twice? In memory cache? do debug backtrace
 function ubn_property_fields_get_property_fields($entity, array $options, $name, $entity_type, $info) {
   $property_fields = array();
   list(, , $bundle_name) = entity_extract_ids($entity_type, $entity);
@@ -90,15 +83,23 @@ function ubn_property_fields_get_property_fields($entity, array $options, $name,
   if(!empty($fields)) {
     $wrapper = entity_metadata_wrapper($entity_type, $entity);
     foreach($fields as $field) {
-      $field_wrapper = $wrapper->get($field['name']);
       $property_field = array();
-      //Get label
+
+      //Set label
       $key = array('field', $field['name'], $bundle_name, 'label');
       $property_field['label'] = entity_i18n_string(implode($key, ':'), $field['label']);
+
+      // Set name and type
       $property_field['name'] = $field['name'];
       $property_field['type'] = $field['type'];
+
+      //Set value
       $field_wrapper = $wrapper->get($field['name']);
       $property_field['value'] = ubn_property_fields_field_get_value($field_wrapper, $field['type']);
+
+      //Set language
+      $property_field['language'] = $options['language']->language;
+
       $property_fields[] = $property_field;
     }
   }
@@ -106,10 +107,29 @@ function ubn_property_fields_get_property_fields($entity, array $options, $name,
 }
 
 //TODO: improve
-function ubn_property_fields_field_get_value($wrapper, $type) {
-  return $wrapper->value();
+function ubn_property_fields_field_get_value($wrapper, $property_type) {
+  switch($property_type) {
+    //TODO: support entity-reference with links?
+    case 'taxonomy_term':
+      $terms_names = array();
+      //Is this really best practice figuring out cardinality?
+      if($wrapper instanceof EntityListWrapper) {
+        foreach($wrapper as $term) {
+          $term_names[] = $term->name->value();
+        }
+      }
+      else {
+        $term_names = array($wrapper->name->value());
+      }
+      return implode(', ', $term_names);
+    default:
+      return $wrapper->value();
+  }
 }
 
+/**
+ * Implements hook_form_FORM_ID_alter()
+ */
 function ubn_property_fields_form_field_ui_field_edit_form_alter(&$form, &$form_state) {
   $instance = $form['#instance'];
   if(isset($instance['settings']['ubn_property_field'])) {
@@ -123,15 +143,19 @@ function ubn_property_fields_form_field_ui_field_edit_form_alter(&$form, &$form_
 }
 
 //This could be implemented as hook, but no need for that now
-function _ubn_property_fields_supported_field_types() {
+function _ubn_property_fields_supported_field_property_types() {
   //TODO: add more list_-types?
-  return array('list_boolean', 'number_integer', 'number_decimal', 'number_float', 'text', 'taxonomy_term_reference');
+  //TODO: use property type instead of field type, and value callbacks here?
+  return array('boolean', 'integer', 'decimal', 'taxonomy_term', 'text');
 }
 
+/**
+ * Implements hook_field_info_alter()
+ */
 function ubn_property_fields_field_info_alter(&$info) {
-  $supported_field_types = _ubn_property_fields_supported_field_types();
+  $supported_field_types = _ubn_property_fields_supported_field_property_types();
   foreach ($info as $field_type => $field_type_info) {
-    if(in_array($field_type, $supported_field_types)) {
+    if(isset($field_type_info['property_type']) && in_array($field_type_info['property_type'], $supported_field_types)) {
       $info[$field_type]['instance_settings'] += array(
         'ubn_property_field' => FALSE,
       );
