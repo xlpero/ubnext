@@ -2,9 +2,9 @@
   name = Library opening hours
   models[library] = entity:node
 #}
-<h2>{{ t("Opening hours for !location", {"!location" : library.title_field.value}) }}</h2>
 <div class="row">
   <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <h2>{{ t("Opening hours for !location", {"!location" : library.title_field.value}) }}</h2>
     <ul class="list-unstyled ub-list-of-links">
     {% for opening_hours in ubn_opening_hours_items(library.field_referenced_opening_hours) %}
       <li>
