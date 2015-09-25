@@ -1,0 +1,29 @@
+{% macro properties(title, ubn_property_fields, namespace) %}
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2">
+  <h2>{{ title }}</h2>
+  <ul class="list-unstyled ub-list-of-links">
+  {% for property in ubn_property_fields %}
+    {% if not property.value.value is null %}
+      <li>
+        <div class="row">
+          <div class="col-sm-8">{{ property.label.value }}</div>
+          <div class="col-sm-4">{{ _self.property_value(property.value.value, property.type.value, property.language.value) }}</div>
+        </div>
+      </li>
+    {% endif %}
+  {% endfor %}
+  </ul>
+</div>
+{% endmacro %}
+
+
+{% macro property_value(value, type, language) %}
+  {% if type == 'boolean' %}
+    {{ value ? t('Yes') : t('No') }}
+  {% elseif type == 'integer' and language == 'sv' %}
+    {{ value ~ ' st' }}
+  {% else %}
+    {{ value }}
+  {% endif%}
+{% endmacro %}
