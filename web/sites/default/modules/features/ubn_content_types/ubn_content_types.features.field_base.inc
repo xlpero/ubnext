@@ -260,18 +260,15 @@ function ubn_content_types_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-<<<<<<< HEAD
-  // Exported field_base: 'field_location'
-  $field_bases['field_location'] = array(
-=======
+
+
+
   // Exported field_base: 'field_mailing_address'
   $field_bases['field_mailing_address'] = array(
->>>>>>> master
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-<<<<<<< HEAD
     'field_name' => 'field_location',
     'foreign keys' => array(),
     'indexes' => array(
@@ -316,7 +313,6 @@ function ubn_content_types_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'geofield',
-=======
     'field_name' => 'field_mailing_address',
     'foreign keys' => array(),
     'indexes' => array(),
@@ -327,7 +323,6 @@ function ubn_content_types_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'addressfield',
->>>>>>> master
   );
 
   // Exported field_base: 'field_opening_hours'
