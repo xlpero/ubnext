@@ -7,11 +7,7 @@
 <div class="container fullwidth-on-xs">
 {% if library.field_hero_image.value %}
 	<div class="hero-image">
-		<div class="row">
-			<div class="col-xs-12">
-	    	{{ images.style('library_hero', library.field_hero_image, true) }}
-	    	</div>
-	    </div>
+	    {{ images.style('library_hero', library.field_hero_image, true) }}
     </div>
 {% endif %}
 </div>
