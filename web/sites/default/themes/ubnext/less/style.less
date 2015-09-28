@@ -1,8 +1,6 @@
-
 body {
 	overflow-y: scroll;
 }
-
 
 .container {
 	max-width: 960px;
@@ -25,14 +23,14 @@ body {
 @import "pane.less";
 
 
-@import "custom-variables.less";
+@import "custom-variables.less"; //should not be higher up?
 @import "gu-font.less";
 @import "fontawesome/less/font-awesome.less";
 
 @import "type.less";
 @import "general.less";
 
-@import "type.less";
+@import "type.less"; //duplicate?
 @import "navigation.less";
 @import "header.less";
 @import "footer.less";
@@ -46,10 +44,6 @@ body {
 @import "guide.less";
 @import "az.less";
 @import "library.less";
-@import "contact-library.less";
+@import "library-contact.less";
 @import "resources-library.less";
 @import "page.less";
-		
-
-
-
