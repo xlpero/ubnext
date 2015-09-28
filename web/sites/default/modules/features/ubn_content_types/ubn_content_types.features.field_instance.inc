@@ -91,6 +91,7 @@ function ubn_content_types_field_default_field_instances() {
       'min' => '',
       'prefix' => '',
       'suffix' => '',
+      'ubn_property_field' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -126,12 +127,14 @@ function ubn_content_types_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_book_return_box',
     'label' => 'Book return box (bokinkast)',
-    'required' => FALSE,
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
+      'active' => 1,
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
@@ -166,6 +169,7 @@ function ubn_content_types_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -174,6 +178,64 @@ function ubn_content_types_field_default_field_instances() {
       'settings' => array(),
       'type' => 'options_buttons',
       'weight' => 13,
+    ),
+  );
+
+  // Exported field_instance: 'node-library-field_delivery_address'
+  $field_instances['node-library-field_delivery_address'] = array(
+    'bundle' => 'library',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'addressfield',
+        'settings' => array(
+          'format_handlers' => array(
+            0 => 'address',
+          ),
+          'use_widget_handlers' => 1,
+        ),
+        'type' => 'addressfield_default',
+        'weight' => 13,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_delivery_address',
+    'label' => 'Delivery address',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'addressfield',
+      'settings' => array(
+        'available_countries' => array(
+          'SE' => 'SE',
+        ),
+        'default_country' => 'SE',
+        'format_handlers' => array(
+          'address' => 'address',
+          'address-hide-country' => 'address-hide-country',
+          'organisation' => 'organisation',
+          'address-hide-postal-code' => 0,
+          'address-hide-street' => 0,
+          'name-full' => 0,
+          'name-oneline' => 0,
+          'address-optional' => 0,
+        ),
+      ),
+      'type' => 'addressfield_standard',
+      'weight' => 17,
     ),
   );
 
@@ -204,6 +266,7 @@ function ubn_content_types_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -251,6 +314,7 @@ function ubn_content_types_field_default_field_instances() {
       'min' => '',
       'prefix' => '',
       'suffix' => '',
+      'ubn_property_field' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -289,6 +353,7 @@ function ubn_content_types_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -379,6 +444,7 @@ function ubn_content_types_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'text_processing' => 0,
+      'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -389,6 +455,106 @@ function ubn_content_types_field_default_field_instances() {
       ),
       'type' => 'text_textarea',
       'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'node-library-field_mailing_address'
+  $field_instances['node-library-field_mailing_address'] = array(
+    'bundle' => 'library',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'addressfield',
+        'settings' => array(
+          'format_handlers' => array(
+            0 => 'address',
+          ),
+          'use_widget_handlers' => 1,
+        ),
+        'type' => 'addressfield_default',
+        'weight' => 14,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_mailing_address',
+    'label' => 'Mailing address',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'addressfield',
+      'settings' => array(
+        'available_countries' => array(
+          'SE' => 'SE',
+        ),
+        'default_country' => 'SE',
+        'format_handlers' => array(
+          'address' => 'address',
+          'address-hide-country' => 'address-hide-country',
+          'organisation' => 'organisation',
+          'address-hide-postal-code' => 0,
+          'address-hide-street' => 0,
+          'name-full' => 0,
+          'name-oneline' => 0,
+          'address-optional' => 0,
+        ),
+      ),
+      'type' => 'addressfield_standard',
+      'weight' => 15,
+    ),
+  );
+
+  // Exported field_instance: 'node-library-field_phone'
+  $field_instances['node-library-field_phone'] = array(
+    'bundle' => 'library',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 16,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_phone',
+    'label' => 'Phone',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 18,
     ),
   );
 
@@ -427,6 +593,7 @@ function ubn_content_types_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -525,6 +692,7 @@ function ubn_content_types_field_default_field_instances() {
       'min' => '',
       'prefix' => '',
       'suffix' => '',
+      'ubn_property_field' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -533,6 +701,64 @@ function ubn_content_types_field_default_field_instances() {
       'settings' => array(),
       'type' => 'number',
       'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'node-library-field_visiting_address'
+  $field_instances['node-library-field_visiting_address'] = array(
+    'bundle' => 'library',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'addressfield',
+        'settings' => array(
+          'format_handlers' => array(
+            0 => 'address',
+          ),
+          'use_widget_handlers' => 1,
+        ),
+        'type' => 'addressfield_default',
+        'weight' => 15,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_visiting_address',
+    'label' => 'Visiting address',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'addressfield',
+      'settings' => array(
+        'available_countries' => array(
+          'SE' => 'SE',
+        ),
+        'default_country' => 'SE',
+        'format_handlers' => array(
+          'address' => 'address',
+          'address-hide-country' => 'address-hide-country',
+          'address-hide-postal-code' => 0,
+          'address-hide-street' => 0,
+          'organisation' => 0,
+          'name-full' => 0,
+          'name-oneline' => 0,
+          'address-optional' => 0,
+        ),
+      ),
+      'type' => 'addressfield_standard',
+      'weight' => 16,
     ),
   );
 
@@ -563,6 +789,7 @@ function ubn_content_types_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 1,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -605,6 +832,7 @@ function ubn_content_types_field_default_field_instances() {
         'page' => FALSE,
       ),
       'text_processing' => 0,
+      'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -756,6 +984,7 @@ function ubn_content_types_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -794,6 +1023,7 @@ function ubn_content_types_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -836,6 +1066,7 @@ function ubn_content_types_field_default_field_instances() {
         'page' => FALSE,
       ),
       'text_processing' => 0,
+      'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -912,6 +1143,7 @@ function ubn_content_types_field_default_field_instances() {
         'page' => FALSE,
       ),
       'text_processing' => 0,
+      'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -935,20 +1167,24 @@ function ubn_content_types_field_default_field_instances() {
   t('Location');
   t('Book return box (bokinkast)');
   t('Cafe');
+  t('Delivery address');
   t('Description');
   t('GU-print');
   t('Group study rooms');
   t('Is exception');
   t('Is open');
   t('Lead');
+  t('Mailing address');
   t('Name');
   t('Opening hours');
   t('Opening hours date');
+  t('Phone');
   t('Possible to heat food');
   t('Quiet reading room');
   t('Study seats');
   t('Title');
   t('Upload and store the header image for this library. ');
+  t('Visiting address');
   t('WLAN');
 
 

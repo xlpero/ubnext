@@ -116,7 +116,7 @@ class SlateModelPluginEntityWrapperStructure extends EntityStructureWrapper {
       $value = new SlateModelPluginEntityWrapper($value);
     }
     else if ($value instanceof EntityStructureWrapper) {
-      $value = new SlateModelPluginEntityWrapperStructure2($value);
+      $value = new SlateModelPluginEntityWrapperStructure($value);
     }
     else if ($value instanceof EntityListWrapper) {
       $value = new SlateModelPluginEntityWrapperList($value);
@@ -177,7 +177,7 @@ class SlateModelPluginEntityWrapperList extends EntityListWrapper {
       $value = new SlateModelPluginEntityWrapper($value);
     }
     else if ($value instanceof EntityStructureWrapper) {
-      $value = new SlateModelPluginEntityWrapperStructure2($value);
+      $value = new SlateModelPluginEntityWrapperStructure($value);
     }
     else if ($value instanceof EntityListWrapper) {
       $value = new SlateModelPluginEntityWrapperList($value);

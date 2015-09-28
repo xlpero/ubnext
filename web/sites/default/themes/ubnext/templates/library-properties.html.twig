@@ -1,0 +1,6 @@
+{# slate
+  name = Library properties/features
+  models[library] = entity:node
+#}
+{% import "properties.html.twig" as properties %}
+{{ properties.properties(t("On !location", {'!location' : library.title_field.value}), library.ubn_property_fields) }}
