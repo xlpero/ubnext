@@ -6372,6 +6372,14 @@ button.close {
 #message-box {
   margin-top: 20px;
 }
+.library-opening-hours-banner .library-opening-hours-banner-item {
+  background-color: #025da6;
+  color: #ffffff;
+  padding: 10px;
+}
+.library-opening-hours-banner .library-opening-hours-banner-item .library-opening-hours-banner-hours {
+  font-size: 1.2em;
+}
 .ub-list-of-links li {
   padding: 10px 0;
   border-bottom: 1px solid #eeeeee;
@@ -8185,6 +8193,9 @@ h6,
 .vertical-align {
   display: flex;
   align-items: center;
+}
+.center {
+  text-align: center;
 }
 @media (max-width: 767px) {
   .container.fullwidth-on-xs {
