@@ -59,7 +59,33 @@ function ubn_content_types_default_page_manager_handlers() {
   $display->uuid = 'adfea7ec-d162-4654-924b-c8f3de79e664';
   $display->content = array();
   $display->panels = array();
-  $display->hide_title = PANELS_TITLE_FIXED;
+    $pane = new stdClass();
+    $pane->pid = 'new-8e9b4850-b148-48e1-972b-0f5c45533bb6';
+    $pane->panel = 'main';
+    $pane->type = 'slate_render';
+    $pane->subtype = 'slate_render:page-head';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'argument_entity_id:node_1',
+      ),
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '8e9b4850-b148-48e1-972b-0f5c45533bb6';
+    $display->content['new-8e9b4850-b148-48e1-972b-0f5c45533bb6'] = $pane;
+    $display->panels['main'][0] = 'new-8e9b4850-b148-48e1-972b-0f5c45533bb6';
+  $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $export['node_view__panel_context_82ceb8b0-698d-46b3-be21-84443486cc68'] = $handler;
