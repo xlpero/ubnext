@@ -6067,10 +6067,8 @@ button.close {
 .main-cms .library .contact-library .wrap .adress-container:after,
 .main-cms .library .contact-library .wrap .adress-container .wrap:before,
 .main-cms .library .contact-library .wrap .adress-container .wrap:after,
-.main-cms .contact-library .wrap .adress-container:before,
-.main-cms .contact-library .wrap .adress-container:after,
-.main-cms .contact-library .wrap .adress-container .wrap:before,
-.main-cms .contact-library .wrap .adress-container .wrap:after,
+.main-cms .library-contact-pane:before,
+.main-cms .library-contact-pane:after,
 .main-cms .library-resources:before,
 .main-cms .library-resources:after,
 .one-col-wide .page:before,
@@ -6099,8 +6097,7 @@ button.close {
 .main-cms .library .library-resources:after,
 .main-cms .library .contact-library .wrap .adress-container:after,
 .main-cms .library .contact-library .wrap .adress-container .wrap:after,
-.main-cms .contact-library .wrap .adress-container:after,
-.main-cms .contact-library .wrap .adress-container .wrap:after,
+.main-cms .library-contact-pane:after,
 .main-cms .library-resources:after,
 .one-col-wide .page:after {
   clear: both;
@@ -6352,6 +6349,9 @@ button.close {
 .element-invisible {
   display: none;
 }
+.panel-separator {
+  margin-top: 20px;
+}
 #tabs {
   float: right !important;
   float: right;
@@ -6404,12 +6404,8 @@ button.close {
 .library-map #ub-map-canvas {
   height: 250px;
 }
-.pane-title {
-  text-align: center;
-  margin-bottom: 10px;
-}
-.panel-separator {
-  margin-bottom: 50px;
+.ubn-pane {
+  margin-top: 48px;
 }
 @font-face {
   font-family: 'NimbusSanNovCon-Bol';
@@ -9391,216 +9387,26 @@ fieldset[disabled] .main-cms .library .contact-library .wrap .adress-container .
 .main-cms .library .contact-library .wrap .adress-container .wrap .contact-form form textarea {
   resize: none;
 }
-.main-cms .contact-library .wrap .header {
-  width: 100%;
-  margin: 0;
-  z-index: 10;
-  position: relative;
-  text-align: center;
-  padding: 20px 0;
-  background: #000000;
-  color: #ffffff;
-}
-.main-cms .contact-library .wrap .header:after {
-  content: ' ';
-  border: solid 9px transparent;
-  border-top-color: #000000;
-  position: absolute;
-  right: 50%;
-  bottom: -17px;
-}
-.main-cms .contact-library .wrap .adress-container {
-  max-width: 960px;
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-@media (min-width: 768px) {
-  .main-cms .contact-library .wrap .adress-container {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  .main-cms .contact-library .wrap .adress-container {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  .main-cms .contact-library .wrap .adress-container {
-    width: 1170px;
-  }
-}
-.main-cms .contact-library .wrap .adress-container > .navbar-header,
-.main-cms .contact-library .wrap .adress-container > .navbar-collapse {
-  margin-right: -15px;
-  margin-left: -15px;
-}
-@media (min-width: 768px) {
-  .main-cms .contact-library .wrap .adress-container > .navbar-header,
-  .main-cms .contact-library .wrap .adress-container > .navbar-collapse {
-    margin-right: 0;
-    margin-left: 0;
-  }
-}
-@media (max-width: 767px) {
-  .main-cms .contact-library .wrap .adress-container.fullwidth-on-xs {
-    padding: 0;
-  }
-  .main-cms .contact-library .wrap .adress-container.fullwidth-on-xs .row {
-    margin-left: 0;
-    margin-right: 0;
-  }
-}
-.main-cms .contact-library .wrap .adress-container .wrap {
+.main-cms .library-contact-pane {
   margin-left: -15px;
   margin-right: -15px;
-  padding-top: 20px;
 }
-.main-cms .contact-library .wrap .adress-container .wrap .adress {
+.main-cms .library-contact-pane .library-contact {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
 }
 @media (min-width: 768px) {
-  .main-cms .contact-library .wrap .adress-container .wrap .adress {
+  .main-cms .library-contact-pane .library-contact {
     float: left;
-    width: 33.33333333%;
+    width: 66.66666667%;
   }
 }
 @media (min-width: 768px) {
-  .main-cms .contact-library .wrap .adress-container .wrap .adress {
+  .main-cms .library-contact-pane .library-contact {
     margin-left: 16.66666667%;
   }
-}
-.main-cms .contact-library .wrap .adress-container .wrap .adress .header-field {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  font-weight: bold;
-}
-.main-cms .contact-library .wrap .adress-container .wrap .adress .body-field {
-  margin-bottom: 10px;
-}
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form {
-  margin-top: 20px;
-  position: relative;
-  min-height: 1px;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-@media (min-width: 768px) {
-  .main-cms .contact-library .wrap .adress-container .wrap .contact-form {
-    margin-top: 0;
-  }
-}
-@media (min-width: 768px) {
-  .main-cms .contact-library .wrap .adress-container .wrap .contact-form {
-    float: left;
-    width: 33.33333333%;
-  }
-}
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn {
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: normal;
-  text-align: center;
-  vertical-align: middle;
-  touch-action: manipulation;
-  cursor: pointer;
-  background-image: none;
-  border: 1px solid transparent;
-  white-space: nowrap;
-  padding: 6px 12px;
-  font-size: 16px;
-  line-height: 1.5;
-  border-radius: 6px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  font-family: NimbusSanNovCon-SemBol, "Arial Narrow", Arial, sans-serif;
-  color: #ffffff;
-  background-color: #025da6;
-  border-color: #024f8d;
-  display: block;
-  width: 100%;
-}
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn:focus,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn:active:focus,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.active:focus,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.focus,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn:active.focus,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.active.focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn:hover,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn:focus,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.focus {
-  color: #333333;
-  text-decoration: none;
-}
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn:active,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.active {
-  outline: 0;
-  background-image: none;
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-}
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.disabled,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn[disabled],
-fieldset[disabled] .main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn {
-  cursor: not-allowed;
-  pointer-events: none;
-  opacity: 0.65;
-  filter: alpha(opacity=65);
-  -webkit-box-shadow: none;
-  box-shadow: none;
-}
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn:hover,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn:focus,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.focus,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn:active,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.active,
-.open > .dropdown-toggle.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn {
-  color: #ffffff;
-  background-color: #014174;
-  border-color: #012d50;
-}
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn:active,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.active,
-.open > .dropdown-toggle.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn {
-  background-image: none;
-}
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.disabled,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn[disabled],
-fieldset[disabled] .main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.disabled:hover,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn[disabled]:hover,
-fieldset[disabled] .main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn:hover,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.disabled:focus,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn[disabled]:focus,
-fieldset[disabled] .main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn:focus,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.disabled.focus,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn[disabled].focus,
-fieldset[disabled] .main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.focus,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.disabled:active,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn[disabled]:active,
-fieldset[disabled] .main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn:active,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.disabled.active,
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn[disabled].active,
-fieldset[disabled] .main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn.active {
-  background-color: #025da6;
-  border-color: #024f8d;
-}
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form #send-form-btn .badge {
-  color: #025da6;
-  background-color: #ffffff;
-}
-.main-cms .contact-library .wrap .adress-container .wrap .contact-form form textarea {
-  resize: none;
 }
 .main-cms .library-resources {
   max-width: 960px;

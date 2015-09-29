@@ -1,7 +1,7 @@
 {% macro properties(title, ubn_property_fields, namespace) %}
 <div class="row">
   <div class="col-sm-8 col-sm-offset-2">
-  <h2>{{ title }}</h2>
+  <div class="center"><h2>{{ title }}</h2></div>
   <ul class="list-unstyled ub-list-of-links">
   {% for property in ubn_property_fields %}
     {% if not property.value.value is null %}

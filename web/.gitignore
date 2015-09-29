@@ -1,5 +1,6 @@
 # Ignore configuration files that may contain sensitive information.
 sites/*/secret.settings.php
+sites/default/themes/ubnext/css/ubnext.css
 
 # Ignore paths that contain user-generated content.
 sites/*/files
