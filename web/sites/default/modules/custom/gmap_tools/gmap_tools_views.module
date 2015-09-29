@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+/*
+function gmap_tools_views_theme($existing, $type, $theme, $path) {
+  return array(
+    'gmap_tools_views_map' => array(
+      'arguments' => array(
+        'map' => array(),
+        'title' => '',
+      ),
+      'file' => 'views/gmap_tools_views.views.theme.inc',
+    ),
+  );
+}
+ */
+
+function gmap_tools_views_init() {
+  drupal_add_js(drupal_get_path('module', 'gmap_tools_views') . '/js/gmap_tools_views.js');
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function gmap_tools_views_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'gmap_tools_views') .'/views',
+  );
+}
+
+?>

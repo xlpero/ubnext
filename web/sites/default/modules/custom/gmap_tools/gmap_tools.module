@@ -1,0 +1,429 @@
+<?php
+
+function gmap_tools_init() {
+  // Quick fix, remove as soon as gets view 'js' working in gmap_tools_views
+  //TODO: fix this so not need to include on every page?
+  $js_path = libraries_get_path('hoverintent') . '/jquery.hoverIntent.minified.js';
+  drupal_add_js($js_path);
+  gmap_tools_add_js(); 
+  drupal_add_js(array('gmap_tools' => array('maps' => array('imanobject' => ''))), 'setting');
+}
+
+function gmap_tools_gmap_options($option = NULL) {
+  $options = array(
+    'MapTypeId' => array(
+      'ROADMAP' => t('Roadmap'),
+      'SATTELITE' => t('Sattelite'),
+      'HYBRID' => t('Hybrid'),
+      'TERRAIN' => t('Terrain'),
+    ),
+    //'zoom' 
+  );
+
+  if($option) {
+    return isset($options[$option]) ? $options[$option] : NULL;
+  }
+  else {
+    return $options;
+  }
+}
+
+function gmap_tools_element_info() {
+  $types = array();
+  $types['gmap_tools_js_function'] = array(
+    '#input' => TRUE,
+    '#process' => array('gmap_tools_js_function_element_process', 'form_process_fieldset', 'ajax_process_form'),
+    '#validate' => array('gmap_tools_js_function_element_validate'),
+    '#theme_wrappers' => array('fieldset'),
+  );
+  return $types;
+}
+
+function gmap_tools_js_function_element_process($element) {
+  $element['#type'] = 'fieldset';
+  $element['#tree'] = TRUE;
+  $element['#collabsible'] = FALSE;
+
+  $element['arguments'] = array(
+    '#title' => t('Arguments'),
+    '#type' => 'fieldset',
+    //'#description' => t('The arguments of the javascript function'), //separated by comma 
+    '#collapsible' => FALSE,
+  );
+
+  foreach($element['#gmap_tools_js_function_arguments'] as $argument => $info) {
+    $element['arguments'][$argument] = array(
+      '#title' => $argument,
+      '#type' => 'item',
+      '#description' => isset($info['description']) ? $info['description'] : NULL,
+      //'#default_value' => isset($element['#default_value']['arguments'][$argument]) ? $element['#default_value']['arguments'][$argument] : '',
+    );
+  }
+  $element['body'] = array(
+    '#title' => t('Function body'),
+    '#type' => 'textarea',
+    //'#description' => 'TODO', 
+    '#default_value' => isset($element['#default_value']['body']) ? $element['#default_value']['body'] : '',
+  );
+  return $element;
+
+}
+
+function gmap_tools_js_data_type_js_value($value, $type_instance) {
+  $info = gmap_tools_data_type_instance_type_info($type_instance);
+
+  $has_value_callback = isset($info['has_value_callback']) ? $info['has_value_callback'] : 'gmap_tools_js_data_type_default_has_value_callback';
+
+  if($has_value_callback($value, $type_instance)) {
+    if(isset($info['value_callback'])) {
+      $value = $info['value_callback']($value, $type_instance);
+    }
+    $value = array(
+      'value' => $value,
+      'type' => $type_instance['type'],
+    );
+    return $value;
+  }
+
+  return NULL;
+}
+
+/*
+function gmap_tools_js_type_info($type_instance) {
+}
+*/
+
+function gmap_tools_data_type_instance_type_info($type_instance) {
+  $types = gmap_tools_js_data_types();
+  if(isset($types[$type_instance['type']])) {
+    return $types[$type_instance['type']];
+  }
+  else {
+    throw new Exception('Invalid type "' . $types[$type_instance['type']['name']] . '"');
+  }
+}
+
+function gmap_tools_js_data_type_form_element($type_instance, $default_value = NULL) {
+  $type_info = gmap_tools_data_type_instance_type_info($type_instance);
+  $element = array(
+    '#title' => $type_instance['label'],
+    '#type' => 'textfield', //TODO: default type or not?
+    '#description' => isset($type_instance['description']) ? $type_instance['description'] : NULL,
+    '#required' => isset($type_instance['required']) ? $type_instance['required'] : FALSE,
+    '#default_value' => $default_value,
+  );
+  if($type_info['form_element_process']) {
+    $element = $type_info['form_element_process']($element, $type_instance);
+  }
+  return $element;
+}
+
+function gmap_tools_js_function_element_validate(&$element, &$form_state) {
+  dsm('validate');
+  dsm($element);
+  dsm($element['#value']);
+  //form_error($element, t('Error text'));
+}
+
+// implements hook_gmap_tools_js_data_types
+// valid keys: form_api_type, form_api_process, value_process?
+function gmap_tools_gmap_tools_js_data_types() {
+  return array(
+    'integer' => array(
+      'form_element_process' => 'gmap_tools_js_data_type_integer_form_element_process',
+      'has_value_callback' => 'gmap_tools_js_data_type_numeric_has_value_callback',
+    ),
+    'string' => array(
+      'form_element_process' => 'gmap_tools_js_data_type_string_form_element_process',
+      'has_value_callback' => 'gmap_tools_js_data_type_string_has_value_callback',
+    ),
+    'boolean' => array(
+      'form_element_process' => 'gmap_tools_js_data_type_boolean_form_element_process',
+      'has_value_callback' => 'gmap_tools_js_data_type_boolean_has_value_callback',
+    ),
+    'function' => array(
+      'form_element_process' => 'gmap_tools_js_data_type_function_form_element_process',
+      'parameters' => array(
+        'arguments' => array(
+          'validate_callback' => 'todo',
+        ),
+      ),
+      //'parameter_default_values' => array(), ??
+      'value_callback' => 'gmap_tools_js_data_type_function_value_callback',
+      'has_value_callback' => 'gmap_tools_js_data_type_function_has_value_callback',
+    ),
+  );
+}
+
+function gmap_tools_js_data_type_integer_form_element_process($element, $type_instance) {
+  $element['#type'] = 'textfield';
+  return $element;
+}
+
+function gmap_tools_js_data_type_string_form_element_process($element, $type_instance) {
+  $element['#type'] = 'textfield';
+  return $element;
+}
+
+function gmap_tools_js_data_type_boolean_form_element_process($element, $type_instance) {
+  $element['#type'] = 'checkbox';
+  return $element;
+}
+
+function gmap_tools_js_data_type_function_form_element_process($element, $type_instance) {
+  $element['#type'] = 'gmap_tools_js_function';
+  $element['#gmap_tools_js_function_arguments'] = isset($type_instance['arguments']) ? $type_instance['arguments'] : array();
+  return $element;
+}
+
+function gmap_tools_js_data_type_function_value_callback($value, $type_instance) {
+  $value['arguments'] = array();
+  if(isset($type_instance['arguments'])) {
+    $value['arguments'] = array_keys($type_instance['arguments']);
+  }
+  return $value;
+}
+
+/*
+function gmap_tools_js_data_type_default_has_value_callback($value, $type_instance) {
+  return is_string($value) && $value !== ''  empty($value);
+}
+ */
+
+function gmap_tools_js_data_type_numeric_has_value_callback($value, $type_instance) {
+  return !empty($value) || $value === 0 || $value === 0.0;
+}
+
+function gmap_tools_js_data_type_string_has_value_callback($value, $type_instance) {
+  return $value !== '';
+}
+
+function gmap_tools_js_data_type_function_has_value_callback($value, $type_instance) {
+  return !empty($value['body']);
+}
+
+function gmap_tools_js_data_type_boolean_has_value_callback($value, $type_instance) {
+  return !empty($value) || $value === FALSE || $value === 0;
+}
+
+// implements hook_gmap_tools_behaviors
+function gmap_tools_gmap_tools_behaviors() {
+  $js_path = drupal_get_path('module', 'gmap_tools') . '/js';
+  return array(
+    'clustered' => array(
+      'label' => t('Clustered'),
+      'description' => t('Add marker-clustering to the map using markerClusterer.'),
+      'js' => array(
+        $js_path . '/dependencies/markerclusterer_packed.js',
+        $js_path . '/behaviors/clustered.js',
+      ),
+    ),
+    'info_windows' => array(
+      'label' => t('Info windows'), 
+      'description' => t('Adds info-windows to markers that will open on clicking the marker.'),
+      'js' => array($js_path . '/behaviors/info_windows.js'),
+    ),
+    'items_sidebar' => array(
+      'label' => t('Items sidebar'),
+      'description' => t('Add a sidebar displaying the visible items.'),
+      'js' => array($js_path . '/behaviors/items_sidebar.js'),
+      'options' => array(
+        'wrapper' => array(
+          'label' => t('Wrapper'),
+          'description' => 'TODO',
+          'type' => 'string',
+        ),
+        'limit' => array(
+          'label' => t('Limit'),
+          'description' => 'TODO',
+          'type' => 'integer',
+        ),
+        'bounce' => array(
+          'label' => t('Bounce'),
+          'description' => 'TODO',
+          'type' => 'boolean',
+        ),
+        'items_filter' => array(
+          'label' => t('Items filter'),
+          'description' => t('Filtering function for items in sidebar, if returning false the current item will be discarded.'),
+          'type' => 'function',
+          'arguments' => array(
+            'item' => array(
+              //'label' => t('$item'),
+              'description' => t('The gmap tools sidebar gmap-item (a javascript object).'),
+            ),
+          ),
+        ),
+      ),
+    ),
+    'fit_items_bounds' => array(
+      'label' => t('Fit items bounds'),
+      'description' => t('Set initial display to fit items bounds.'),
+      'options' => array(
+        'max_zoom' => array(
+          'label' => t('Max zoom'),
+          'description' => 'TODO',
+          'type' => 'integer',
+        ),
+        'min_zoom' => array(
+          'label' => t('Min zoom'),
+          'description' => 'TODO',
+          'type' => 'integer',
+        ),
+      ),
+      'js' => array($js_path . '/behaviors/fit_items_bounds.js'),
+    ),
+  );
+}
+
+function gmap_tools_js_data_types() {
+  $types = &drupal_static(__FUNCTION__);
+  if(!isset($types)) {
+    $types =  module_invoke_all('gmap_tools_js_data_types');
+  }
+  return $types;
+}
+
+function gmap_tools_behaviors() {
+  $behaviors = &drupal_static(__FUNCTION__);
+  if(!isset($behaviors)) {
+    $behaviors =  module_invoke_all('gmap_tools_behaviors');
+  }
+  return $behaviors;
+}
+
+function gmap_tools_init_behavior($behavior) {
+  $initialize_behaviors = &drupal_static(__FUNCTION__);
+  if(!isset($initialized_behaviors[$behavior])) {
+    $behaviors = gmap_tools_behaviors();
+    foreach($behaviors[$behavior]['js'] as $file) {
+      drupal_add_js($file);
+    }
+    $initialized_behaviors[$behavior] = TRUE;
+  }
+}
+
+//TODO: hook to add behaviors/plugins? require.js? dependencies?
+//TODO: prevent being called multiple times?
+function gmap_tools_add_js() {
+  $module_path = drupal_get_path('module', 'gmap_tools');
+  drupal_add_js($module_path . '/js/gmap_tools.js');
+  drupal_add_js($module_path . '/js/gmap_tools_js_data.js');
+
+  //TODO: verify for drupal 7
+
+   global $theme_info;
+
+  if(isset($theme_info->info['gmap_tools'])) {
+    $theme_settings = $theme_info->info['gmap_tools'];
+    if(isset($theme_settings['markers'])) {
+      //TODO: Don't support abolute paths
+      $assets_path = isset($theme_settings['assets_path']) ? dirname($theme_info->filename) . '/' . $theme_settings['assets_path'] : NULL;
+      gmap_tools_add_marker_settings($theme_settings['markers'], $assets_path);
+    }
+  }
+  if($markers_settings = variable_get('gmap_tools_markers', FALSE)) {
+    $assets_path = variable_get('gmap_tools_assets_path', FALSE);
+    if($assets_path) {
+      if(strpos($assets_path, '/') !== 0) {
+        $assets_path = conf_path() . '/' . $assets_path;
+      }
+    }
+    else {
+      $assets_path = conf_path();
+    }
+
+    gmap_tools_add_marker_settings($markers_settings, $assets_path);
+  }
+
+  gmap_tools_add_google_maps_js();
+}
+
+
+
+function gmap_tools_add_google_maps_js() {
+  //TODO: setting for api key
+  drupal_add_html_head(
+    array(
+      '#type' => 'markup',
+      '#markup' => '<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBqlnQ29_puUjyV9_udT42aiePgcH3pAMc&sensor=false"></script>',
+    ),
+    'gmap_tools'
+  );
+}
+
+
+function gmap_tools_add_item($key = NULL, $item = NULL) {
+  $items = &drupal_static(__FUNCTION__, array());
+  if (isset($key)) {
+    $items[$key] = $item;
+  }
+  return $items;
+}
+//TODO: This is shit and needs to be refactored/removed
+function gmap_tools_refresh_js() {
+  $items = gmap_tools_add_item();
+
+  //from drupal_get_js()
+
+  // For inline JavaScript to validate as XHTML, all JavaScript containing
+  // XHTML needs to be wrapped in CDATA. To make that backwards compatible
+  // with HTML 4, we need to comment out the CDATA-tag.
+  $embed_prefix = "\n<!--//--><![CDATA[//><!--\n";
+  $embed_suffix = "\n//--><!]]>\n";
+
+  $element = array(
+    '#value_prefix' => $embed_prefix,
+    '#value' => 'Drupal.behaviors.gmap_tools.refresh(' . drupal_json_encode(array_keys($items)) . ');',
+    '#value_suffix' => $embed_suffix,
+    '#tag' => 'script',
+    '#attributes' => array(
+      'type' => 'text/javascript',
+    ),
+  );
+  
+  return theme('html_tag', array('element' => $element));
+}
+
+function gmap_tools_menu() {
+  return array(
+    'gmap_tools_test' => array(
+      'title' => 'Gmap test',
+      'type' => MENU_CALLBACK,
+      'access arguments' => array('access content'),
+      'page callback' => 'gmap_tools_test',
+    ),
+  );
+}
+
+function gmap_tools_add_marker_settings($options = array(), $assets_path = NULL) {
+  global $base_url;
+
+  //$assets_path = $assets_path ? $assets_path : $base_url . '/' . drupal_get_path('module', 'gmap_tools') . '/resources';
+
+  //TODO: validation
+
+  //validate file exists?
+  if(isset($assets_path)) {
+    foreach(array('shadows', 'icons') as $prop) {
+      if(isset($options[$prop])) {
+        foreach(array_keys($options[$prop]) as $name) {
+          //TODO '/'-handling
+          if(strpos($options[$prop][$name]['url'], '/') !== 0) {
+            $options[$prop][$name]['url'] = '/' . $assets_path . '/' . $options[$prop][$name]['url'];
+          }
+          //$options[$prop][$name]['url'] = $base_url . '/' .$options[$prop][$name]['url'];
+          //dsm($options[$prop][$name]['url']);
+        }
+      }
+    }
+  }
+  drupal_add_js(array('gmap_tools' => array('markers' => $options)), 'setting');
+}
+
+function gmap_tools_test() {
+  drupal_add_js(drupal_get_path('module', 'gmap_tools') . '/gmap_tools_work.js');
+  drupal_add_js(drupal_get_path('module', 'gmap_tools') . '/markerclusterer_packed.js'); //replace with compiled
+  gmap_tools_add_google_maps_js();
+  return 'test';
+}

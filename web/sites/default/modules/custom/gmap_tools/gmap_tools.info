@@ -1,0 +1,6 @@
+name = GMap Tools
+description = TODO
+package = GMap Tools
+core = 7.x
+dependencies[] = views
+dependencies[] = libraries
