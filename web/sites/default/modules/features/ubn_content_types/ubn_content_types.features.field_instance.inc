@@ -567,12 +567,6 @@ function ubn_content_types_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'geofield',
-        'settings' => array(
-          'data' => 'full',
-        ),
-        'type' => 'geofield_wkt',
-        'weight' => 4,
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
@@ -586,8 +580,6 @@ function ubn_content_types_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_location',
-    'label' => 'Location',
     'field_name' => 'field_quiet_reading_room',
     'label' => 'Quiet reading room',
     'required' => 0,
@@ -598,17 +590,10 @@ function ubn_content_types_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'geofield',
-      'settings' => array(
-        'html5_geolocation' => 0,
-      ),
-      'type' => 'geofield_latlon',
-      'weight' => 33,
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
       'weight' => 9,
-
     ),
   );
 
@@ -1160,17 +1145,13 @@ function ubn_content_types_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Adapted study rooms (Lässtudios)');
   t('Body');
-  t('Header image for this library');
-  t('Is exception');
-  t('Is open');
-  t('Lead');
-  t('Location');
   t('Book return box (bokinkast)');
   t('Cafe');
   t('Delivery address');
   t('Description');
   t('GU-print');
   t('Group study rooms');
+  t('Header image for this library');
   t('Is exception');
   t('Is open');
   t('Lead');
@@ -1186,7 +1167,6 @@ function ubn_content_types_field_default_field_instances() {
   t('Upload and store the header image for this library. ');
   t('Visiting address');
   t('WLAN');
-
 
   return $field_instances;
 }
