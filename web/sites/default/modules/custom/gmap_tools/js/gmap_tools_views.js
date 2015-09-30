@@ -1,3 +1,5 @@
+//TODO: remove this file
+
 (function($) {
     Drupal.behaviors.gmap_tools_views = {
       'attach' : function(context, settings) {

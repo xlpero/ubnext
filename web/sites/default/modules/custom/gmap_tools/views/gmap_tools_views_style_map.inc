@@ -408,7 +408,7 @@ class gmap_tools_views_style_map extends views_plugin_style {
             //TODO: Views debugshit
           }
         }
-    
+
         //TODO: row_index?
         $this->view->row_index = $index;
         $set['rows'][$index] = $this->row_plugin->render($row);
@@ -472,7 +472,7 @@ class gmap_tools_views_style_map extends views_plugin_style {
 
     drupal_add_js(
       array(
-        'gmap_tools_views'=> array(
+        'gmap_tools'=> array(
           $this->options['gmap_tools_namespace'] => $js_settings,
         ),
       ),

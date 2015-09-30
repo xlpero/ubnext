@@ -6,15 +6,14 @@
     //TODO: items should not be required, switch argument order?
     $.fn.gmap_tools_gmap = function(conf) {
       var markers_options = {};
-
       var gmap_tools = this.data('gmap_tools');
-      
+
       if(gmap_tools) {
         return gmap_tools;
       }
 
       var conf = conf || {};
-      
+
       //This is a little shitty, but convenient
       //Compile marker type options
       if(typeof Drupal.settings.gmap_tools != 'undefined' && typeof Drupal.settings.gmap_tools.markers != 'undefined') {
@@ -31,6 +30,7 @@
       return gmap_tools ? gmap_tools : this;
     }
 })(jQuery, google.maps);
+
 //TODO: check gmaps for reference, to avoid all this.function() etc
 (function($, maps) {
 
@@ -161,7 +161,7 @@ Drupal.gmap_tools.gmap = function(map_wrapper, conf) {
 
   this.set_marker = function(item) {
     var latlng = new maps.LatLng(item.lat, item.lng);
-    
+
     //TODO: this smells?
     //TODO: correct to _marker
 
@@ -186,7 +186,7 @@ Drupal.gmap_tools.gmap = function(map_wrapper, conf) {
 
     marker_options.position = latlng;
     marker_options.title = item.title;
-    
+
     var marker = new maps.Marker(marker_options);
 
     marker.setMap(this.gmap);
@@ -239,7 +239,7 @@ Drupal.gmap_tools.gmap = function(map_wrapper, conf) {
   //or get items keys?
   this.empty_behavior = function() {
   };
-  
+
   this.update_view = function() {
     /*
     if ('set_zoom' in conf && conf.set_zoom) {
@@ -294,3 +294,62 @@ Drupal.gmap_tools.gmap = function(map_wrapper, conf) {
   maps.event.trigger(this.gmap, 'zoom_changed');
 }
 })(jQuery, google.maps);
+
+(function($) {
+    Drupal.behaviors.gmap_tools = {
+      'attach' : function(context, settings) {
+        if ('gmap_tools' in settings) {
+          for (namespace in settings.gmap_tools) {
+            var options = settings.gmap_tools[namespace];
+
+            //TODO: ajax and attach behaviors? Will this work?
+            if(!(namespace in settings.gmap_tools.maps)) {
+
+              $map_container = $('#' + options.container_id, context);
+
+              if($map_container.length) {
+                //Build  conf
+                //Clone?
+                var gmap_conf = options.gmap_options;
+                if('mapTypeId' in options.gmap_options) {
+                  gmap_conf.mapTypeId = google.maps.MapTypeId[options.gmap_options.mapTypeId];
+                }
+                if('center' in options.gmap_options) {
+                  gmap_conf.center = new google.maps.LatLng(
+                    options.gmap_options.center.lat,
+                    options.gmap_options.center.lng
+                  );
+                }
+                //TODO: provide gmap_tools specific settings
+                var conf = {
+                  gmap_conf : gmap_conf
+                };
+
+                if ('items' in options) {
+                  conf.items = options.items;
+                }
+                conf.behaviors = [];
+                for (behavior in options.behaviors) {
+                  if(behavior in Drupal.gmap_tools.behaviors) {
+                    var behavior_options = options.behaviors[behavior];
+
+                    //TODO: fix this kludy thing
+                    for(var behavior_option in behavior_options) {
+                      behavior_options[behavior_option] = Drupal.gmap_tools_js_data_process(behavior_options[behavior_option]);
+                    }
+
+                    conf.behaviors.push(new Drupal.gmap_tools.behaviors[behavior](behavior_options));
+                  }
+                  else {
+                    //TODO
+                    console.log('FAIL');
+                  }
+                }
+                $map_container.gmap_tools_gmap(conf);
+              }
+            }
+          }
+        }
+      }
+    };
+})(jQuery);

@@ -1,0 +1,10 @@
+<?php
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function gmap_tools_slate_ctools_plugin_directory($owner, $plugin_type) {
+  if (in_array($plugin_type, array('content_types'))) {
+    return "plugins/$plugin_type";
+  }
+}

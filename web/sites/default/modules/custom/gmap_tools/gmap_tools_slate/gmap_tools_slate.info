@@ -1,0 +1,8 @@
+name = GMap Tools Slate
+description = Slate integration for Gmap tools
+core = 7.x
+package = GMap Tools
+dependencies[] = ctools
+dependencies[] = geofield
+dependencies[] = gmap_tools
+dependencies[] = slate
