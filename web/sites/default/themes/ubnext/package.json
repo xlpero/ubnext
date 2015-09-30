@@ -1,6 +1,8 @@
 {
   "name": "UBNext",
   "version": "0.1.0",
+  "description" : "A packaged foo fooer for fooing foos",
+  "private": true,
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-contrib-jshint": "~0.10.0",
