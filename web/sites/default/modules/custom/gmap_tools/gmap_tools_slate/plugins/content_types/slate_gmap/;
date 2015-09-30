@@ -1,6 +1,0 @@
-{# slate
-  name = Library map
-  type = gmap_tools_slate_gmap
-  models[id] = item
-#}
-<div id="{{ id }}">{{ t("Loading map") }}</div>
