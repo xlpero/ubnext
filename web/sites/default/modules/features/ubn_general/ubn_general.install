@@ -1,5 +1,106 @@
 <?php
 
+/**
+ * Utility functions
+ */
+
+function ubn_general_entity_translation_fields_enable($field_names) {
+  foreach($field_names as $field_name) {
+    $field_info = field_info_field($field_name);
+    //For each non-translatable field enable translations
+
+    //TODO: warning?
+    if (!isset($field_info['translatable'])) {
+      continue;
+    }
+
+    if (!$field_info['translatable']) {
+      //Update field settings
+      $field_info['translatable'] = TRUE;
+      field_update_field($field_info);
+      field_cache_clear();
+    }
+
+    //Update entities
+    $query = new EntityFieldQuery();
+    $result = $query
+      ->fieldCondition($field_name)
+      ->entityOrderBy('entity_id')
+      ->execute();
+
+    foreach ($result as $entity_type => $entities) {
+      foreach (entity_load($entity_type, array_keys($entities)) as $entity) {
+        $handler = entity_translation_get_handler($entity_type, $entity);
+        $langcode = $handler->getLanguage();
+        // Skip process for language neutral entities.
+        if ($langcode == LANGUAGE_NONE) {
+          continue;
+        }
+
+        // We need a two-steps approach while updating field translations: given
+        // that field-specific update functions might rely on the stored values to
+        // perform their processing, see for instance file_field_update(), first
+        // we need to store the new translations and only after we can remove the
+        // old ones. Otherwise we might have data loss, since the removal of the
+        // old translations might occur before the new ones are stored.
+        if (isset($entity->{$field_name}[LANGUAGE_NONE])) {
+          // If the field is being switched to translatable and has data for
+          // LANGUAGE_NONE then we need to move the data to the right language.
+
+          $translations = $handler->getTranslations();
+
+          if (!empty($translations->data)) {
+            foreach ($translations->data as $translation) {
+              $entity->{$field_name}[$translation['language']] = $entity->{$field_name}[LANGUAGE_NONE];
+            }
+          }
+          else {
+            $entity->{$field_name}[$langcode] = $entity->{$field_name}[LANGUAGE_NONE];
+          }
+
+          // Store the original value.
+          _entity_translation_update_field($entity_type, $entity, $field_name);
+          $entity->{$field_name}[LANGUAGE_NONE] = array();
+          // Remove the language neutral value.
+          _entity_translation_update_field($entity_type, $entity, $field_name);
+        }
+      }
+    }
+  }
+  // (Don't really think this is necessary)
+  // This is needed for versions of Drupal core 7.10 and lower.
+  // See http://drupal.org/node/1380660 for details.
+  drupal_static_reset('field_available_languages');
+}
+
+/*
+function ubn_general_entity_translation_enable($entity_types) {
+  module_load_include('inc', 'entity_translation', 'entity_translation.admin');
+
+  $fields = field_info_fields();
+  $non_translatable_fields = array();
+  foreach($fields as $field_name => $info) {
+    foreach($entity_types as $key => $value) {
+      $bundles = array();
+      if(is_string($key)) {
+        $entity_type = $key;
+        $bundles = $value;
+      }
+      else {
+        $entity_type = $value;
+      }
+      if(
+        isset($info['translatable']) &&
+        isset($info['bundles'][$entity_type] &&
+        (empty($bundles) || count(array_intersect($bundles, array_keys($info['bundles'][$entity_type])))))
+      ) {
+        $non_translatable_fields[$field_name] = $info;
+      }
+    }
+  }
+}
+*/
+
 function ubn_general_install() {
 	theme_enable(array('ubnext'));
 	theme_disable(array('bartik'));
@@ -10,5 +111,22 @@ function ubn_general_install() {
 }
 
 function ubn_general_update_7100() {
+  //TODO: add as dependency instead
   module_enable(array('ubn_slate'));
 }
+// Enable entity translation for library
+/*
+function ubn_general_update_7101() {
+  module_load_include('inc', 'entity_translation', 'entity_translation.node');
+  foreach(
+    array(
+      'library',
+    ) as $type_name
+  ) {
+    variable_set("language_content_type_$type_name", ENTITY_TRANSLATION_ENABLED);
+  }
+  //Field phone?
+  ubn_general_entity_translation_fields_enable(array('title_field', 'field_lead'));
+}
+*/
+
