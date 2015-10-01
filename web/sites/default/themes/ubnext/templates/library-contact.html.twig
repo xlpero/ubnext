@@ -5,7 +5,7 @@
 
 <div class="ubn-pane library-contact-pane">
 <section class="library-contact">
-<div class="center"><h2>{{ t('Contact information') }}</h2></div>
+<h2>{{ t('Contact information') }}</h2>
 
 {% set mailing_address = library.field_mailing_address.value %}
 {% if not mailing_address is empty %}
@@ -13,8 +13,7 @@
   <h3>{{ mailing_address.organisation_name }}</h3>
   <p>
     {{ mailing_address.thoroughfare }}<br>
-    {{ mailing_address.postal_code }}<br>
-    {{ mailing_address.locality }}<br>
+    {{ mailing_address.postal_code }} {{ mailing_address.locality }}<br>
   </p>
   </section>
 {% endif %}
@@ -38,8 +37,7 @@
       {{ delivery_address.organisation_name }}<br>
     {% endif %}
     {{ (not delivery_address.premise is empty ? delivery_address.premise ~ ', ') ~ delivery_address.thoroughfare }}<br>
-    {{ delivery_address.postal_code }}<br>
-    {{ delivery_address.locality }}<br>
+    {{ delivery_address.postal_code }} {{ delivery_address.locality }}<br>
   </p>
   </section>
 {% endif %}
