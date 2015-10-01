@@ -1,19 +1,21 @@
 {% macro properties(title, ubn_property_fields, namespace) %}
-<div class="row">
-  <div class="col-sm-8 col-sm-offset-2">
-  <div class="center"><h2>{{ title }}</h2></div>
-  <ul class="list-unstyled ub-list-of-links">
-  {% for property in ubn_property_fields %}
-    {% if not property.value.value is null %}
-      <li>
-        <div class="row">
-          <div class="col-sm-8">{{ property.label.value }}</div>
-          <div class="col-sm-4">{{ _self.property_value(property.value.value, property.type.value, property.language.value) }}</div>
-        </div>
-      </li>
-    {% endif %}
-  {% endfor %}
-  </ul>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+    <div class="center"><h2>{{ title }}</h2></div>
+    <ul class="list-unstyled ub-list-of-links">
+    {% for property in ubn_property_fields %}
+      {% if not property.value.value is null %}
+        <li>
+          <div class="row">
+            <div class="col-sm-8">{{ property.label.value }}</div>
+            <div class="col-sm-4">{{ _self.property_value(property.value.value, property.type.value, property.language.value) }}</div>
+          </div>
+        </li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+    </div>
   </div>
 </div>
 {% endmacro %}
