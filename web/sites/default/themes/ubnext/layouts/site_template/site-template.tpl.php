@@ -10,7 +10,7 @@
 <header>      
   <div class="container">
     <div class="row">
-      <div class="col-sm-8">  
+      <div class="col-sm-10 col-xs-10">  
         <div class="siteNav-logo <?php echo $language->language; ?>">
           <div class="logo">
             <a href="<?php echo $GLOBALS['base_url']; ?>"><div class="logo-image"></div></a>  
@@ -22,7 +22,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-2 col-xs-2">
         <nav class="toplinks">
           <?php print render($content['toplinks']); ?>
         </nav>
