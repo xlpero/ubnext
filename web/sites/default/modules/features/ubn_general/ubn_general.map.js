@@ -16,9 +16,13 @@
 				var centerLatlng = new google.maps.LatLng(settings.ubMap[0].latitude * 1, settings.ubMap[0].longitude * 1);
 				
 				var mapOptions = {
-				  center: centerLatlng,
-				  scrollwheel: false,
-				  zoom: 15
+				  	center: centerLatlng,
+				    scrollwheel: false,
+				    navigationControl: false,
+				    mapTypeControl: false,
+				    scaleControl: false,
+				    draggable: false,
+				  	zoom: 15
 				};
 				var map = new google.maps.Map(document.getElementById('ub-map-canvas'), mapOptions);
 
