@@ -1,0 +1,29 @@
+{# slate
+  name = Library: Libraries list item
+  models[library] = entity:node
+#}
+  <section class="row">
+    <div class="col-sm-7">
+      <h3><a href="{{ library.url.value }}">{{library.title}}</a></h3>
+      <p>{{ library.field_description_short.value }}</p>
+    </div>
+    <div class="col-sm-5">
+      <div class="library-libraries-opening-hours-header visible-xs-block"><strong>{{ t("Opening hours") }}</strong></div>
+      {% for opening_hours in ubn_opening_hours_items(library.field_referenced_opening_hours, [t('Today'), t('Tomorrow')]) %}
+        <div class="row {{ 'libraries-list-item-opening-hours-' ~ drupal_html_class(opening_hours.weekday) }}">
+          <div class="col-xs-4 col-sm-5 libraries-list-item-opening-hours-label">{{ opening_hours.weekday }}</div>
+          <div class="col-xs-8 col-sm-7 libraries-list-item-opening-hours-hours">{{ opening_hours.hours }}</div>
+        </div>
+      {% endfor %}
+    </div>
+    <!--
+    <div class="col-sm-12">
+      <a class="libraries-list-item-show-on-map" data-gmap-tools-item="{{ "node-" ~ library.nid.value }}" href="{{ library.url.value ~ '#slate-gmap-node' }}">{{ t('Show on map') }}</a>
+    </div>
+    -->
+      <!--
+      <div class="indicator pull-right">
+        <i class="fa fa-chevron-right"></i>
+      </div>
+      -->
+  </section>

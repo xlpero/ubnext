@@ -28,7 +28,8 @@ function ubn_general_views_default_views() {
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['exposed_form']['type'] = 'basic';
-  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['row_plugin'] = 'slate';
   $handler->display->display_options['row_options']['slate'] = 'library_list_item';
@@ -43,7 +44,6 @@ function ubn_general_views_default_views() {
   $handler->display->display_options['sorts']['title']['id'] = 'title';
   $handler->display->display_options['sorts']['title']['table'] = 'node';
   $handler->display->display_options['sorts']['title']['field'] = 'title';
-  $handler->display->display_options['sorts']['title']['order'] = 'DESC';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -59,8 +59,20 @@ function ubn_general_views_default_views() {
     'library' => 'library',
   );
 
-  /* Display: Content pane */
-  $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  /* Display: Front */
+  $handler = $view->new_display('panel_pane', 'Front', 'panel_pane_1');
+
+  /* Display: Libraries */
+  $handler = $view->new_display('panel_pane', 'Libraries', 'libraries');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Our libraries';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'slate';
+  $handler->display->display_options['row_options']['slate'] = 'library-libraries-list-item';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
   $translatables['library_list'] = array(
     t('Master'),
     t('Todays openinghours'),
@@ -70,15 +82,10 @@ function ubn_general_views_default_views() {
     t('Sort by'),
     t('Asc'),
     t('Desc'),
-    t('Items per page'),
-    t('- All -'),
-    t('Offset'),
-    t('« first'),
-    t('‹ previous'),
-    t('next ›'),
-    t('last »'),
-    t('Content pane'),
+    t('Front'),
     t('View panes'),
+    t('Libraries'),
+    t('Our libraries'),
   );
   $export['library_list'] = $view;
 

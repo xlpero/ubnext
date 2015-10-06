@@ -1,7 +1,7 @@
 name = General
 core = 7.x
 package = UBNext
-version = 7.x-0.1
+version = 7.x-0.2
 project = ubn_general
 dependencies[] = ctools
 dependencies[] = diff
@@ -75,4 +75,4 @@ features[variable][] = site_frontpage
 features[variable][] = theme_default
 features[variable][] = user_default_timezone
 features[views_view][] = library_list
-mtime = 1443014078
+mtime = 1443453528
