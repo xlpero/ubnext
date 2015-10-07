@@ -86,10 +86,10 @@ function gmap_tools_slate_slate_gmap_content_type_settings($form, &$form_state) 
     '' =>  t('<None>'),
   );
   foreach(slate_get_slates() as $slate => $info) {
-    if($info['type'] === 'gmap_tools_slate_gmap') {
+    if(isset($info['type']) && $info['type'] === 'gmap_tools_slate_gmap') {
       $gmap_slates[$slate] = $info['name'];
     }
-    if($info['type'] === 'gmap_tools_slate_gmap_item_content') {
+    if(isset($info['type']) && $info['type'] === 'gmap_tools_slate_gmap_item_content') {
       $gmap_item_content_slates[$slate] = $info['name'];
     }
   }
@@ -132,7 +132,7 @@ function gmap_tools_slate_slate_gmap_content_type_settings($form, &$form_state) 
     '#options' => $bundles,
     '#title' => t('Bundles'),
     '#description' => t('Select bundles to filter on'),
-    '#default_value' => !empty($conf['bundles']) ? $conf['bundles'] : NULL,
+    '#default_value' => !empty($conf['bundles']) ? $conf['bundles'] : array(),
   );
 
   //Flatten array, we are only interested in geofields per entity_type
