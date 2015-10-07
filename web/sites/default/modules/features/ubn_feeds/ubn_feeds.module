@@ -5,3 +5,34 @@
  */
 
 include_once 'ubn_feeds.features.inc';
+
+/**
+ * Implements hook_cron()
+ */
+function ubn_feeds_cron() {
+  //Garbage collect expired opening hour nodes
+  $date_tz = date_default_timezone(FALSE);
+  $tz = new DateTimeZone($date_tz);
+  $datetime_today = new DateTime('now', $tz);
+  $query = new EntityFieldQuery();
+  $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'opening_hours')
+    //->addTag('efq_debug')
+    ->fieldCondition('field_opening_hours_date', 'value', $datetime_today->format('Y-m-d') . ' 00:00:00', '<');
+
+  $result = $query->execute();
+  if(isset($result['node'])) {
+    node_delete_multiple(array_keys($result['node']));
+  }
+
+}
+
+//TODO: Put in devel module?
+/*
+function ubn_feeds_query_alter($query) {
+  if($query->hasTag('efq_debug')) {
+    dsm((string)$query);
+  }
+}
+*/
