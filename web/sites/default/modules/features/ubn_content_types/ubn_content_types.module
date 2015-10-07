@@ -5,3 +5,14 @@
  */
 
 include_once 'ubn_content_types.features.inc';
+
+
+/**
+ * Implementation of hook_node_presave()
+ */
+function ubn_content_types_node_presave($node) {
+  $items = field_get_items('node', $node, 'field_location_override');
+  if(!empty($items)) {
+    $node->field_location = $node->field_location_override;
+  }
+}

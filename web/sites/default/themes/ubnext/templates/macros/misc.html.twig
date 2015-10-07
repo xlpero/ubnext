@@ -1,0 +1,58 @@
+{% macro property(label, value, suffix) %}
+  {% if value %}
+    <li class="prop{{ not label ? " no-label" }}">{% if label %}<span class="label">{{ label }}</span> {% endif %}{{ (value ~ suffix|default(''))|raw }}</li>
+  {% endif %}
+{% endmacro %}
+
+{% macro numeric_property(label, value, suffix, decimals) %}
+  {% if value and value != 0 %}
+    <li class="prop{{ not label ? " no-label" }}">{% if label %}<span class="label">{{ label }}</span> {% endif %}{{ transatlantic_slate_number_format(value, decimals|default(2)) ~ suffix|default('') }}</li>
+  {% endif %}
+{% endmacro %}
+
+{% macro date_property(label, value, format, translate, suffix) %}
+  {% if value %}
+    {% set formatted_value = translate ? t(value|date(format)) : value|date(format) %}
+      <li class="prop{{ not label ? " no-label" }}">{% if label %}<span class="label">{{ label }}</span> {% endif %}{{ formatted_value ~ suffix|default('') }}</li>
+  {% endif %}
+{% endmacro %}
+
+{% macro img(image_style, image, alt, title, class) %}
+  {% if not image is empty %}
+    {% set alt = alt ? alt : image.alt|default('') %}
+    {% set title = title ? title : image.title|default('') %}
+    <img class="{{ class }}" src="{{ image_style_url(image_style, image.uri) }}"{% if title %} title="{{ title }}"{% endif %}{% if alt %} alt="{{ alt }}"{% endif %}>
+  {% endif %}
+{% endmacro %}
+
+{% macro content_sections(sections) %}
+  {% if sections.value %}
+    {% for section in sections %}
+      {% if section.field_images.value %}
+      <div class="image-group">
+        {% for image in section.field_images %}
+          {{ _self.img('page_section_image', image.value) }}
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if section.field_title.value or section.field_body.value %}
+        <section class="page-section">
+         {% if section.field_title.value %}<h2 class="section-title">{{ section.field_title.value }}</h2>{% endif %}
+         {% if section.field_body.value %}<div class="field body prose">{{ section.field_body.value|raw }}</div>{% endif %}
+        </section>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endmacro %}
+
+{% macro content_header(title, preamble) %}
+  <h1 class="title">{{ title }}</h1>
+  {% if preamble %}
+    <p class="field preamble">{{ preamble }}</p>
+  {% endif %}
+{% endmacro %}
+
+{% macro link(text, url, class) %}
+  {% set url = url(url, { 'absolute' : true }) %}
+  <a class="{{ class }}" href="{{ url }}">{{ text }}</a>
+{% endmacro %}

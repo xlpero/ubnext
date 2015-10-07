@@ -390,7 +390,7 @@ function gmap_tools_gmap_tools_behaviors() {
       ),
     ),
     'info_windows' => array(
-      'label' => t('Info windows'), 
+      'label' => t('Info windows'),
       'description' => t('Adds info-windows to markers that will open on clicking the marker.'),
       'js' => array($js_path . '/behaviors/info_windows.js'),
     ),

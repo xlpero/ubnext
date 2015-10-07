@@ -111,7 +111,7 @@ function ubn_property_fields_field_get_value($wrapper, $property_type) {
   switch($property_type) {
     //TODO: support entity-reference with links?
     case 'taxonomy_term':
-      $terms_names = array();
+      $term_names = array();
       //Is this really best practice figuring out cardinality?
       if($wrapper instanceof EntityListWrapper) {
         foreach($wrapper as $term) {
