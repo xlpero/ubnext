@@ -15,6 +15,4 @@
   {% set opening_hours_today = ubn_opening_hours_items(library.field_referenced_opening_hours, [t('Today')])|first %}
   {{ property_list.property(opening_hours_today.hours, t('Open today') ~ ':') }}
 {{ property_list.property_list_end() }}
-<div class="library-map-item-link-wrap">
 <a href="{{ library.url.value }}">{{ t('More info') }}</a>
-</div>
