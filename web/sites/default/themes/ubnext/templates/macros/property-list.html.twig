@@ -16,7 +16,7 @@
 
 {% macro numeric_property(value, label, namespace, inline, suffix, decimals) %}
   {% if value and value != 0 %}
-    <li class="property-list-item{{ namespace ? " property-list-item__" ~ namespace }}{{ not label ? " property-list-item-no-label" }}">{% if label %}<span class="property-list-item-label{{ not inline ? " property-list-item-label-above"}}">{{ label }}</span>{% endif %}{{ value|ubn_number_format(decimals|default(2)) ~ suffix|default('') #}</li>
+    <li class="property-list-item{{ namespace ? " property-list-item__" ~ namespace }}{{ not label ? " property-list-item-no-label" }}">{% if label %}<span class="property-list-item-label{{ not inline ? " property-list-item-label-above"}}">{{ label }}</span>{% endif %}{{ value|ubn_number_format(decimals|default(2)) ~ suffix|default('') }}</li>
   {% endif %}
 {% endmacro %}
 
@@ -26,4 +26,3 @@
       <li class="property-list-item{{ namespace ? " property-list-item__" ~ namespace }}{{ not label ? " property-list-item-no-label" }}">{% if label %}<span class="property-list-item-label{{ not inline ? " property-list-item-label-above"}}">{{ label }}</span>{% endif %}{{ formatted_value ~ suffix|default('') }}</li>
   {% endif %}
 {% endmacro %}
-
