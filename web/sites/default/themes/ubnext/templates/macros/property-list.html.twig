@@ -1,0 +1,29 @@
+{% macro property_list_begin(namespace) %}
+  <ul class="list-unstyled {{ namespace ? " property-list__" ~ namespace }}">
+{% endmacro %}
+
+{% macro property_list_end() %}
+  </ul>
+{% endmacro %}
+
+{# todo: reduce code duplication #}
+
+{% macro property(value, label, namespace, inline, suffix) %}
+  {% if value %}
+    <li class="property-list-item{{ namespace ? " property-list-item__" ~ namespace }}{{ not label ? " property-list-item-no-label" }}">{% if label %}<span class="property-list-item-label{{ not inline ? " property-list-item-label-above"}}">{{ label }}</span>{% endif %}{{ (value|raw ~ suffix|default(''))|raw }}</li>
+  {% endif %}
+{% endmacro %}
+
+{% macro numeric_property(value, label, namespace, inline, suffix, decimals) %}
+  {% if value and value != 0 %}
+    <li class="property-list-item{{ namespace ? " property-list-item__" ~ namespace }}{{ not label ? " property-list-item-no-label" }}">{% if label %}<span class="property-list-item-label{{ not inline ? " property-list-item-label-above"}}">{{ label }}</span>{% endif %}{{ value|ubn_number_format(decimals|default(2)) ~ suffix|default('') #}</li>
+  {% endif %}
+{% endmacro %}
+
+{% macro date_property(value, label, namespace, inline, format, translate, suffix) %}
+  {% if value %}
+    {% set formatted_value = translate ? t(value|date(format)) : value|date(format) %}
+      <li class="property-list-item{{ namespace ? " property-list-item__" ~ namespace }}{{ not label ? " property-list-item-no-label" }}">{% if label %}<span class="property-list-item-label{{ not inline ? " property-list-item-label-above"}}">{{ label }}</span>{% endif %}{{ formatted_value ~ suffix|default('') }}</li>
+  {% endif %}
+{% endmacro %}
+
