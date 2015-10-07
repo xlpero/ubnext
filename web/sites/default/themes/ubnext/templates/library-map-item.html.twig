@@ -9,7 +9,7 @@
 {{ property_list.property_list_begin() }}
   {% set visiting_address = library.field_visiting_address.value %}
   {% if not visiting_address is empty %}
-    {{ property_list.property(visiting_address.thoroughfare, t('Address') ~ ':') }}
+    {{ property_list.property(visiting_address.thoroughfare, library.field_visiting_address._label ~ ':') }}
   {% endif %}
   {{ property_list.property(library.field_phone.value, library.field_phone._label ~ ':') }}
   {% set opening_hours_today = ubn_opening_hours_items(library.field_referenced_opening_hours, [t('Today')])|first %}
