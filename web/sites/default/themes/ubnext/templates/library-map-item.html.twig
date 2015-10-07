@@ -3,18 +3,18 @@
   type = gmap_tools_slate_gmap_item_content
   models[library] = entity:node
 #}
-{% import "macros/misc.html.twig" as misc %}
+{% import "macros/property-list.html.twig" as property_list %}
 
 <h3>{{ library.title.value }}</h3>
-{{ misc.property_list_begin() }}
+{{ property_list.property_list_begin() }}
   {% set visiting_address = library.field_visiting_address.value %}
   {% if not visiting_address is empty %}
-    {{ misc.property(visiting_address.thoroughfare, t('Address') ~ ':') }}
+    {{ property_list.property(visiting_address.thoroughfare, t('Address') ~ ':') }}
   {% endif %}
-  {{ misc.property(library.field_phone.value, library.field_phone._label ~ ':') }}
+  {{ property_list.property(library.field_phone.value, library.field_phone._label ~ ':') }}
   {% set opening_hours_today = ubn_opening_hours_items(library.field_referenced_opening_hours, [t('Today')])|first %}
-  {{ misc.property(opening_hours_today.hours, t('Open today') ~ ':') }}
-{{ misc.property_list_end() }}
+  {{ property_list.property(opening_hours_today.hours, t('Open today') ~ ':') }}
+{{ property_list.property_list_end() }}
 <div class="library-map-item-link-wrap">
 <a href="{{ library.url.value }}">{{ t('More info') }}</a>
 </div>
