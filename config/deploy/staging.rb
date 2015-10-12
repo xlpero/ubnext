@@ -15,7 +15,7 @@
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-# server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
+server 'm-staging.ub.gu.se', user: 'drupal-deploy', roles: %w{app}, deploy_to: '/var/www/drupal/staging'
 
 # Custom SSH Options
 # ==================

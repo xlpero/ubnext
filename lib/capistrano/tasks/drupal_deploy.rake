@@ -22,11 +22,13 @@ namespace :drupal do
   desc "Backup database"
   task :backup_database do
     #release_roles(:all) ?
-    on release_roles(fetch(:composer_roles)) do
-      within release_path.join(fetch(:app_path)) do
-        #TODO: exclude cache tables etc, just testing for now
-        #TODO: Promt instead of overwriting?
-        execute :drush, "sql-dump > #{release_path}/DATABASE.sql"
+    if fetch(:previous_revision)
+      on release_roles(fetch(:composer_roles)) do
+        within current_path.join(fetch(:app_path)) do
+          #TODO: exclude cache tables etc, just testing for now
+          #TODO: Promt instead of overwriting?
+          execute :drush, "sql-dump > #{current_path}/DATABASE.sql"
+        end
       end
     end
   end

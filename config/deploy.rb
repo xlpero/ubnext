@@ -11,7 +11,7 @@ set :repo_url, 'https://github.com/ub-digit/ubnext.git'
 set :branch, 'master'
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/srv/www/drupal7/ubnext'
+set :deploy_to, '/var/www/drupal/staging'
 
 set :scm, :git
 set :format, :pretty
@@ -23,7 +23,7 @@ set :pty, false
 set :linked_files, %w{web/sites/default/secret.settings.php}
 
 # Default value for linked_dirs is []
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs, %w{web/sites/default/files}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
