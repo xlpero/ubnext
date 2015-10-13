@@ -11,7 +11,7 @@ set :repo_url, 'https://github.com/ub-digit/ubnext.git'
 set :branch, 'master'
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, '/var/www/drupal/staging'
+# set :deploy_to, '/var/www/drupal/staging'
 
 set :scm, :git
 set :format, :pretty

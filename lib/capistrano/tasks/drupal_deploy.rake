@@ -10,7 +10,7 @@ end
 namespace :drush do
   desc "Install Drush"
   task :install do
-    on release_roles :all do
+    on release_roles :app do
       within shared_path do
         execute :composer, 'require drush/drush:7.*'
       end
@@ -23,7 +23,7 @@ namespace :drupal do
   task :backup_database do
     #release_roles(:all) ?
     if fetch(:previous_revision)
-      on release_roles(fetch(:composer_roles)) do
+      on release_roles :app do
         within current_path.join(fetch(:app_path)) do
           #TODO: exclude cache tables etc, just testing for now
           #TODO: Promt instead of overwriting?
@@ -35,7 +35,7 @@ namespace :drupal do
 
   desc "Clear all caches"
     task :clear_cache do
-    on release_roles(fetch(:composer_roles)) do
+    on release_roles :app do
       within release_path.join(fetch(:app_path)) do
         execute :drush, 'cache-clear all -y'
       end
@@ -44,7 +44,7 @@ namespace :drupal do
 
   desc "Put site in maintenance mode"
   task :site_offline do
-    on release_roles(fetch(:composer_roles)) do
+    on release_roles :app do
       within release_path.join(fetch(:app_path)) do
         execute :drush, 'vset maintenance_mode 1 -y'
         invoke "drupal:clear_cache"
@@ -54,7 +54,7 @@ namespace :drupal do
 
   desc "Take site off maintenance mode"
   task :site_online do
-    on release_roles(fetch(:composer_roles)) do
+    on release_roles :app do
       within release_path.join(fetch(:app_path)) do
         execute :drush, 'vset maintenance_mode 0 -y'
         invoke "drupal:clear_cache"
@@ -64,7 +64,7 @@ namespace :drupal do
 
   desc 'Apply any database updates required (as with running update.php).'
   task :updatedb do
-    on release_roles(fetch(:composer_roles)) do
+    on release_roles :app do
       within release_path.join(fetch(:app_path)) do
         execute :drush, 'updatedb -y'
       end
