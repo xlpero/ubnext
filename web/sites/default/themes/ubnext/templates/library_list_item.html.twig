@@ -3,17 +3,17 @@
   models[library] = entity:node
 #}
 
-<a href="{{library.url.value}}">
-  <div class="row vertical-align">
-    <div class="col-xs-7 col-sm-8">
-      {{library.title}}
-    </div>
-    <div class="col-xs-5 col-sm-4">
-      {% set opening_hours_today = ubn_opening_hours_items(library.field_referenced_opening_hours, [t("Today")])|first %}
-      {{ opening_hours_today.hours }}
-      <div class="indicator pull-right">
-        <i class="fa fa-chevron-right"></i>
-      </div>
+
+<div class="row vertical-align">
+  <div class="col-xs-7 col-sm-8">
+   <a href="{{library.url.value}}"> {{library.title}}</a>
+  </div>
+  <div class="col-xs-5 col-sm-4">
+    {% set opening_hours_today = ubn_opening_hours_items(library.field_referenced_opening_hours, [t("Today")])|first %}
+    {{ opening_hours_today.hours }}
+    <div class="indicator pull-right">
+      <i class="fa fa-chevron-right"></i>
     </div>
   </div>
-</a>
+</div>
+

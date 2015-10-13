@@ -1,7 +1,13 @@
 .ub-list-of-links {
+	p {
+		margin-bottom: 0;
+	}
 	li {
 		@media (max-width: @screen-xs-min) {
 			font-size: .8em;
+		}
+		@media (max-width: @screen-md-min) {
+			font-size: .9em;
 		}
 		&:first-child {
 			border-top: 1px solid @gray-lighter;
@@ -10,14 +16,13 @@
 		border-bottom: 1px solid @gray-lighter;
 	}
 	a {
-		color: @gray-dark;
+		// color: @gray-dark;
 		&:hover {
-			color: @brand-primary;
+			//color: @brand-primary;
 		}
-		.fa {
-			color: @brand-primary;
-
-		}
+	}
+	.fa {
+		color: @brand-primary;
 	}
 }	
 
