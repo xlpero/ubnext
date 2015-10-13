@@ -33,12 +33,31 @@ set :keep_releases, 5
 
 ## DRUPAL DEPLOY ##
 set :app_path, 'web'
+set :theme_path, 'sites/default/themes/ubnext'
+
+## Composer ##
+set :composer_roles, :app
+
+## NPM ##
+set :npm_roles, :app
+set :npm_target_path, -> { release_path.join(fetch(:app_path), fetch(:theme_path)) }
+set :npm_flags, '--silent --no-spin'
+set :npm_prune_flags, ''
 
 namespace :deploy do
+  before :starting, :set_command_map_paths do
+    SSHKit.config.command_map[:composer] = "php #{shared_path.join("composer.phar")}"
+    SSHKit.config.command_map[:drush] = "#{shared_path.join("vendor/drush/drush/drush")}"
+  end
+  after :updated, :grunt_less do
+    SSHKit.config.command_map[:grunt] = "#{release_path.join(fetch(:app_path), fetch(:theme_path), 'node_modules/.bin/grunt')}"
+    on roles :app do 
+      within release_path.join(fetch(:app_path), fetch(:theme_path)) do 
+        execute :grunt, 'less'
+      end
+    end
+  end
 end
-
-SSHKit.config.command_map[:composer] = "php #{shared_path.join("composer.phar")}"
-SSHKit.config.command_map[:drush] = "#{shared_path.join("vendor/drush/drush/drush")}"
 
 # We have no composer root level dependencies so far
 Rake::Task['deploy:updated'].prerequisites.delete('composer:install')
