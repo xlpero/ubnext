@@ -1,22 +1,3 @@
-{% macro property(label, value, suffix) %}
-  {% if value %}
-    <li class="prop{{ not label ? " no-label" }}">{% if label %}<span class="label">{{ label }}</span> {% endif %}{{ (value ~ suffix|default(''))|raw }}</li>
-  {% endif %}
-{% endmacro %}
-
-{% macro numeric_property(label, value, suffix, decimals) %}
-  {% if value and value != 0 %}
-    <li class="prop{{ not label ? " no-label" }}">{% if label %}<span class="label">{{ label }}</span> {% endif %}{{ transatlantic_slate_number_format(value, decimals|default(2)) ~ suffix|default('') }}</li>
-  {% endif %}
-{% endmacro %}
-
-{% macro date_property(label, value, format, translate, suffix) %}
-  {% if value %}
-    {% set formatted_value = translate ? t(value|date(format)) : value|date(format) %}
-      <li class="prop{{ not label ? " no-label" }}">{% if label %}<span class="label">{{ label }}</span> {% endif %}{{ formatted_value ~ suffix|default('') }}</li>
-  {% endif %}
-{% endmacro %}
-
 {% macro img(image_style, image, alt, title, class) %}
   {% if not image is empty %}
     {% set alt = alt ? alt : image.alt|default('') %}

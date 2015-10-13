@@ -16,7 +16,7 @@
 # used to set extended properties on the server.
 
 # server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
-server 'm-test.ub.gu.se', user: 'drupal-deploy', roles: %w{app}
+server 'm.ub.gu.se', user: 'drupal-deploy', roles: %w{app}, deploy_to: '/var/www/drupal/production'
 
 # Custom SSH Options
 # ==================

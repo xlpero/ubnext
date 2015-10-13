@@ -1,0 +1,4 @@
+name = UBN Summon
+description = Summon client etc
+package = UBNext
+core = 7.x

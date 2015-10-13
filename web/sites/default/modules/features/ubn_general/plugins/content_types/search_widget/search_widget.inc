@@ -54,11 +54,19 @@ function ubn_general_search_widget_content_type_settings_submit($form, &$form_st
 function ubn_general_search_widget_content_type_render($subtype, $conf, $panel_args, $context) {
   global $language;
   $block = new stdClass();
-  $number = '100 000 000'; // default number
+  $number = '100000000'; // default number
   if (!empty($conf['number_of_items'])) {
     $number = $conf['number_of_items'];
   }
-  $search_slogan = t('Search among <strong> @number </strong> books, articles, magazines and more...', array('@number' => $number));
+  elseif ($record_count = variable_get('ubn_general_summon_record_count', FALSE)) {
+    $number = $record_count;
+  }
+  $search_slogan = t(
+    'Search among <strong> @number </strong> books, articles, magazines and more...',
+    array(
+      '@number' => _ubn_slate_number_format($number)
+    )
+  );
   $lang =  $language->language;
   //dpm($lang);
   if ($lang == 'en') {

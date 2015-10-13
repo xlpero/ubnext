@@ -1,0 +1,90 @@
+<?php
+//TODO: integrate with libraries
+require_once dirname(__FILE__) . '/Summon.php/SerialsSolutions/Summon/CURL.php';
+
+/*
+function ubn_summon_init() {
+  //ubn_summon_request('http://api.summon.serialssolutions.com/2.0.0/search?s.dym=false&s.he=&s.hl=false&s.ho=true&s.hs=&s.l=en&s.pn=1&s.ps=25&s.q=&s.rec.topic.max=1&s.role=none');
+}
+*/
+
+function _ubn_summon_client($options = array()) {
+  static $client;
+  if(!isset($client)) {
+    $access_id = variable_get('ubn_summon_access_id', 'gothenburg');
+    $secret_key = variable_get('ubn_summon_secret_key', '');
+    $client = new SerialsSolutions_Summon_CURL(
+      $access_id,
+      $secret_key,
+      array(
+        //'debug' => TRUE,
+        'responseType' => 'json',
+      ) + $options
+    );
+  }
+  return $client;
+}
+
+function _ubn_summon_record_count() {
+  $client = _ubn_summon_client();
+  //How to exclude facets from returned result?
+  //Perform empty search
+  $query = new SerialsSolutions_Summon_Query('', array('pageSize' => 0, 'facets' => 'IsScholarly,or,1,2'));
+  try {
+    $result = $client->query($query);
+    return isset($result['recordCount']) ? $result['recordCount'] : NULL;
+  }
+  catch(Exception $e) {
+    watchdog_exception('ubn_summon', $e);
+  }
+  return NULL;
+}
+
+//TODO:
+//Place access id an secret id in secret settings
+
+//quick and dirty
+function ubn_summon_request($url) {
+  $url_parsed = parse_url($url);
+  $path = $url_parsed['path'];
+  $query_parts = array();
+  if(isset($url_parsed['query'])) {
+    //PHP can't handle dots in param names:
+    //parse_str($url_parsed['query'], $query);
+    $query_parts = explode('&', $url_parsed['query']);
+  }
+  $query_parts = array_map('urldecode', $query_parts);
+  sort($query_parts);
+
+  $query_sorted = implode('&', $query_parts);
+
+  $accept = 'application/json';
+  $x_summon_date = gmdate('D, d M Y H:i:s \G\M\T', time());
+  $host = $url_parsed['host'];
+  $digest_data = array(
+    $accept,
+    $x_summon_date,
+    $host,
+    $path,
+    $query_sorted,
+  );
+
+  $access_id = variable_get('ubn_summon_access_id', 'gothenburg');
+  $secret_key = variable_get('ubn_summon_secret_key', '');
+
+  $data = implode("\n", array_filter($digest_data)) . "\n";
+  $signature = base64_encode(hash_hmac("sha1", $data, $secret_key, true));
+
+  $headers = array(
+    'Accept' => $accept,
+    'x-summon-date' => $x_summon_date,
+    'Authorization' => "Summon $access_id;$signature",
+  );
+  $result = drupal_http_request($url, array('headers' => $headers));
+  //TODO: error handling
+  if(isset($result->data)) {
+    $json_result = drupal_json_decode($result->data);
+    return $json_result;
+  }
+  return NULL;
+}

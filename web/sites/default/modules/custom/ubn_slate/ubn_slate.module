@@ -71,6 +71,11 @@ function _ubn_slate_opening_hours_items($opening_hours_values, $weekdays = NULL,
   return array_values($opening_hours_items);
 }
 
+function _ubn_slate_number_format($number, $decimals = 2) {
+  return rtrim(rtrim(number_format($number, $decimals, ',', ' '), '0'), ',');
+}
+
+
 /**
  * Implements hook_slate_twig_alter().
  *
@@ -82,5 +87,11 @@ function ubn_slate_slate_twig_alter(&$twig) {
     '_ubn_slate_opening_hours_items'
   );
   $twig->addFunction($function);
+
+  $filter = new Twig_SimpleFilter(
+    'ubn_number_format',
+    '_ubn_slate_number_format'
+  );
+  $twig->addFilter($filter);
 }
 
