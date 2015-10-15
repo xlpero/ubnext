@@ -144,7 +144,7 @@ Drupal.gmap_tools.gmap = function(map_wrapper, conf) {
   //TODO: allow override of conf
   //jquery extend?
   var gmap_conf = conf.gmap_conf;
-
+  gmap_conf.minZoom = 2;
   this.gmap = new maps.Map(map_wrapper, gmap_conf);
 
   //save position (LatLng) directly on item?

@@ -20,6 +20,12 @@ function gmap_tools_settings_form_values_js_settings($values) {
 
   //TODO: watch out for array filter and 0-values?
   $gmap_options = array_filter($values['gmap_tools_gmap_options']);
+  $gmap_options['scrollwheel'] = false;
+  $gmap_options['navigationControl'] = false;
+  $gmap_options['scaleControl'] = false;
+  $gmap_options['draggable'] = false;
+
+  dsm($gmap_options);
 
   //TODO: Required or not?
   if(isset($gmap_options['zoom'])) {
@@ -83,7 +89,7 @@ function gmap_tools_gmap_settings_form($settings = array(), $form_settings = arr
     //TODO: GMap defaults for these? Check which are required, setting?
     'mapTypeId' => 'ROADMAP',
     'zoom' => NULL,
-    'min_zoom' => NULL,
+    'min_zoom' => 5,
     'max_zoom' => NULL,
     'center' => array(
       'lat' => 0,
