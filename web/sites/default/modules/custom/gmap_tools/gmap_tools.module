@@ -25,7 +25,7 @@ function gmap_tools_settings_form_values_js_settings($values) {
   $gmap_options['scaleControl'] = false;
   $gmap_options['draggable'] = false;
 
-  dsm($gmap_options);
+  //dsm($gmap_options);
 
   //TODO: Required or not?
   if(isset($gmap_options['zoom'])) {
