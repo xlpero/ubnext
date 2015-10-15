@@ -152,8 +152,7 @@ Drupal.gmap_tools.gmap = function(map_wrapper, conf) {
   maps.event.addDomListener(window, "resize", function() {
       var center = gmap.getCenter();
       maps.event.trigger(gmap, "resize");
-      gmap.setCenter(center);
-      
+      gmap.setCenter(center); 
   });
   //save position (LatLng) directly on item?
   this.get_items_bounds = function() {
