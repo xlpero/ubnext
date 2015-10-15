@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * Implementation of hook_feed_plugins (CTools plugin declarations)
+ */
+function ubn_databases_feeds_plugins() {
+  $path = drupal_get_path('module', 'ubn_databases') . '/plugins/feeds';
+  $info = array();
+  $info['UBNDatabasesFeedsFetcher'] = array(
+    'name' => 'UBN Database fetcher',
+    'description' => 'Fetch Academic Databases.',
+    'handler' => array(
+      'parent' => 'FeedsFetcher', // This is the key name, not the class name.
+      'class' => 'UBNDatabasesFeedsFetcher',
+      'file' => 'UBNDatabasesFeedsFetcher.inc',
+      'path' => $path,
+    ),
+  );
+  return $info;
+}
+
+function ubn_databases_ctools_plugin_api($owner, $api) {
+  if ($owner == 'feeds' && $api == 'plugins') {
+    return array('version' => 1);
+  }
+}
