@@ -162,6 +162,7 @@ function search_api_page_block_view($delta) {
     );
     return $block;
   }
+  return NULL;
 }
 
 /**
@@ -307,7 +308,7 @@ function search_api_page_search_api_page_insert(Entity $page) {
  * Rebuilds the menu table if a search page is edited.
  */
 function search_api_page_search_api_page_update(Entity $page) {
-  if ($page->enabled != $page->original->enabled || $page->path != $page->original->path) {
+  if ($page->enabled != $page->original->enabled || $page->name != $page->original->name || $page->path != $page->original->path) {
     menu_rebuild();
   }
 }

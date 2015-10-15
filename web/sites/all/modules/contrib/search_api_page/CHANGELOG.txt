@@ -1,3 +1,10 @@
+Search API Pages 1.x, dev (xx/xx/xxxx):
+---------------------------------------
+- #2528592 by marcingy: Fixed old search page titles being displayed until
+  manual menu rebuild.
+- #2315713 by pontus_nilsson, DamienMcKenna, drunken monkey, kallehauge: Added
+  Panels support for search pages.
+
 Search API Pages 1.2 (2015-06-03):
 ----------------------------------
 - #2425179 by DamienMcKenna, drunken monkey: Added a CTools plugin for the

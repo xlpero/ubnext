@@ -11,11 +11,20 @@
  *   The search page's machine name.
  * @param string|null $keys
  *   The keys to search for.
+ * @param array $overridden_options
+ *   An associative array of page options that should be overridden for this
+ *   search only.
  */
-function search_api_page_view($id, $keys = NULL) {
+function search_api_page_view($id, $keys = NULL, $overridden_options = array()) {
   $page = search_api_page_load($id);
   if (!$page) {
     return MENU_NOT_FOUND;
+  }
+
+  // Merge in overridden options.
+  if ($overridden_options) {
+    $page->original_options = $page->options;
+    $page->options = $overridden_options + $page->options;
   }
 
   // Pre-process keys (unescape \ and /).
@@ -59,7 +68,7 @@ function search_api_page_view($id, $keys = NULL) {
       return $ret;
     }
 
-    if (!$results) {
+    if (empty($results)) {
       return $ret;
     }
 
@@ -84,6 +93,10 @@ function search_api_page_view($id, $keys = NULL) {
     $ret['results']['#view_mode'] = isset($page->options['view_mode']) ? $page->options['view_mode'] : 'search_api_page_result';
     $ret['results']['#keys'] = $keys;
     $ret['results']['#page'] = $page;
+    // Add a clean-up function to reset page options to their original values.
+    if ($overridden_options) {
+      $ret['results']['#post_render'] = array('search_api_page_reset_original_options');
+    }
 
     // Load pager.
     if ($results['result count'] > $limit) {
@@ -206,6 +219,29 @@ function _search_api_page_map_languages($lang) {
       return language_default('language');
     }
     return $lang;
+}
+
+/**
+ * Resets the page's options, if they were overridden, to their original values.
+ *
+ * Used as a "#post_render" callback for the search page results in
+ * search_api_page_view().
+ *
+ * @param string $children
+ *   The rendered output of the element.
+ * @param array $element
+ *   The rendered element.
+ *
+ * @return array
+ *   The processed rendered output of the element.
+ */
+function search_api_page_reset_original_options($children, array $element) {
+  $page = $element['#page'];
+  if (!empty($page->original_options)) {
+    $page->options = $page->original_options;
+    unset($page->original_options);
+  }
+  return $children;
 }
 
 /**
