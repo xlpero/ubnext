@@ -1,4 +1,4 @@
-name = Search
+name = UBN Search
 description = UBNext
 core = 7.x
 package = Features
