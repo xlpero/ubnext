@@ -23,7 +23,7 @@ function gmap_tools_settings_form_values_js_settings($values) {
   $gmap_options['scrollwheel'] = false;
   $gmap_options['navigationControl'] = false;
   $gmap_options['scaleControl'] = false;
-  $gmap_options['draggable'] = false;
+  $gmap_options['draggable'] = true;
 
   //dsm($gmap_options);
 
