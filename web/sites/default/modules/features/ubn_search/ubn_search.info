@@ -1,7 +1,7 @@
 name = UBN Search
-description = UBNext
+description = UBN Search feature
 core = 7.x
-package = Features
+package = UBNext
 version = 7.x-0.1
 project = ubn_search
 dependencies[] = ctools
