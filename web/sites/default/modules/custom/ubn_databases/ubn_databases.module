@@ -6,13 +6,47 @@
 function ubn_databases_feeds_plugins() {
   $path = drupal_get_path('module', 'ubn_databases') . '/plugins/feeds';
   $info = array();
+
+  $info['UBNDatabasesFeedsFetcherBase'] = array(
+    'name' => 'UBN Database fetcher base class',
+    'description' => 'Hidden base class.',
+    'hidden' => TRUE,
+    'handler' => array(
+      'parent' => 'FeedsFetcher', // This is the key name, not the class name.
+      'class' => 'UBNDatabasesFeedsFetcherBase',
+      'file' => 'UBNDatabasesFeedsFetchers.inc',
+      'path' => $path,
+    ),
+  );
+
   $info['UBNDatabasesFeedsFetcher'] = array(
     'name' => 'UBN Database fetcher',
     'description' => 'Fetch Academic Databases.',
     'handler' => array(
-      'parent' => 'FeedsFetcher', // This is the key name, not the class name.
+      'parent' => 'UBNDatabasesFeedsFetcherBase', // This is the key name, not the class name.
       'class' => 'UBNDatabasesFeedsFetcher',
-      'file' => 'UBNDatabasesFeedsFetcher.inc',
+      'file' => 'UBNDatabasesFeedsFetchers.inc',
+      'path' => $path,
+    ),
+  );
+  $info['UBNDatabasesCategoriesFeedsFetcher'] = array(
+    'name' => 'UBN Databases categories fetcher',
+    'description' => 'Fetch Database categories.',
+    'handler' => array(
+      'parent' => 'UBNDatabasesFeedsFetcherBase', // This is the key name, not the class name.
+      'class' => 'UBNDatabasesCategoriesFeedsFetcher',
+      'file' => 'UBNDatabasesFeedsFetchers.inc',
+      'path' => $path,
+    ),
+  );
+
+  $info['UBNDatabasesKeywordsFeedsFetcher'] = array(
+    'name' => 'UBN Databases keywords fetcher',
+    'description' => 'Fetch Databases keywords.',
+    'handler' => array(
+      'parent' => 'UBNDatabasesFeedsFetcherBase', // This is the key name, not the class name.
+      'class' => 'UBNDatabasesKeywordsFeedsFetcher',
+      'file' => 'UBNDatabasesFeedsFetchers.inc',
       'path' => $path,
     ),
   );
