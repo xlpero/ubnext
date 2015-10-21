@@ -120,6 +120,13 @@ function ubn_general_update_7101() {
   module_enable(array('entitycache'));
 }
 
+/* Revert features */
+function ubn_general_update_7102() {
+  foreach(array('ubn_general', 'ubn_content_types', 'ubn_feeds') as $module) {
+    features_revert_module($module);
+  }
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {
