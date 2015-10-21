@@ -44,6 +44,11 @@ function ubn_general_strongarm() {
   $strongarm->name = 'entity_translation_entity_types';
   $strongarm->value = array(
     'node' => 'node',
+    'taxonomy_term' => 'taxonomy_term',
+    'field_collection_item' => 'field_collection_item',
+    'comment' => 0,
+    'file' => 0,
+    'user' => 0,
   );
   $export['entity_translation_entity_types'] = $strongarm;
 
@@ -99,6 +104,14 @@ function ubn_general_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'language_negotiation_language_content';
   $strongarm->value = array(
+    'locale-url' => array(
+      'callbacks' => array(
+        'language' => 'locale_language_from_url',
+        'switcher' => 'locale_language_switcher_url',
+        'url_rewrite' => 'locale_language_url_rewrite_url',
+      ),
+      'file' => 'includes/locale.inc',
+    ),
     'language-default' => array(
       'callbacks' => array(
         'language' => 'language_from_default',
