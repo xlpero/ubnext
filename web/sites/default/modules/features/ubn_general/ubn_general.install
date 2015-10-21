@@ -114,6 +114,12 @@ function ubn_general_update_7100() {
   //TODO: add as dependency instead
   module_enable(array('ubn_slate'));
 }
+
+/* Enable entitycache module */
+function ubn_general_update_7101() {
+  module_enable(array('entitycache'));
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {
