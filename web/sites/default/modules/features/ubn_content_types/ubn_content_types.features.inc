@@ -21,6 +21,14 @@ function ubn_content_types_ctools_plugin_api($module = NULL, $api = NULL) {
  */
 function ubn_content_types_node_info() {
   $items = array(
+    'database' => array(
+      'name' => t('Database'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
     'library' => array(
       'name' => t('Library'),
       'base' => 'node_content',
