@@ -6,8 +6,10 @@ body {
 	max-width: 960px;
 }
 
+
 @import "bootstrap/less/bootstrap.less";
 @import "bootstrap/less/mixins/gradients.less";
+@import "custom-variables.less"; 
 
 
 @import "drupal-classes.less";
@@ -19,19 +21,16 @@ body {
 @import "openinghours-banner.less";
 
 @import "lists.less";
-@import "maps.less";
 @import "pane.less";
+@import "library-map.less";
 @import "property-list.less";
 
-
-@import "custom-variables.less"; //should not be higher up?
-@import "gu-font.less";
+@import "gu-fontface.less";
 @import "fontawesome/less/font-awesome.less";
 
 @import "type.less";
 @import "general.less";
 
-@import "type.less"; //duplicate?
 @import "navigation.less";
 @import "header.less";
 @import "footer.less";
@@ -43,10 +42,6 @@ body {
 @import "layouts/site-template.less";
 
 @import "guide.less";
-@import "az.less";
-@import "library.less";
-@import "library-contact.less";
-@import "library-map.less";
+
 @import "resources-library.less";
 @import "library-libraries-list-item.less";
-@import "page.less";
