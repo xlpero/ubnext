@@ -3,6 +3,9 @@
 # Ignore git repositories
 .git
 
+# Ignore todo-files
+todo
+
 # Ignore temporary vim files
 *~
 *.swp
