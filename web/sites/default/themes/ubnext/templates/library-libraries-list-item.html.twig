@@ -16,7 +16,7 @@
           {% for opening_hours in ubn_opening_hours_items(library.field_referenced_opening_hours, [t('Today'), t('Tomorrow')]) %}
             <div class="row {{ 'libraries-list-item-opening-hours-' ~ drupal_html_class(opening_hours.weekday) }}">
               <div class="col-sm-4 libraries-list-item-opening-hours-label">{{ opening_hours.weekday }}</div>
-              <div class="col-sm-8 libraries-list-item-opening-hours-hours"><div class="pull-right">{{ opening_hours.hours }}</div></div>
+              <div class="col-sm-8 libraries-list-item-opening-hours-hours"><div class="pull-right-sm">{{ opening_hours.hours }}</div></div>
             </div>
           {% endfor %}
 
