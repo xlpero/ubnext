@@ -1,5 +1,25 @@
 <?php
 
+
+function _ubn_databases_access_description_process($info) {
+  $info_trimmed = trim($info);
+  $access_description = array();
+  if(!empty($info_trimmed)) {
+    $descriptions = array_map('trim', explode('/', $info_trimmed));
+    $per_language_access_descriptions = array_filter(array_combine(array('sv', 'en'), array_slice(array_pad($descriptions, 2, ''), 0, 2)));
+    $per_language_access_descriptions['und'] = $info_trimmed;
+    $access_description = array(
+      'access_description' => array(
+        'guid' => md5('ubn_databases_url_access_description:' . $info_trimmed),
+        'description' => $per_language_access_descriptions,
+        'bad_format' => count($descriptions) !== 3 || mb_ereg_search('/[åäöÅÄÖ]/', $per_language_access_descriptions['en']) !== FALSE
+      ),
+    );
+    //TODO: fix format
+  }
+  return $access_description;
+}
+
 abstract class UBNDatabasesFeedsFetcherBase extends FeedsFetcher {
 
   protected function ubnDatabasesPDO($source) {
@@ -74,7 +94,7 @@ class UBNDatabasesFeedsFetcher extends UBNDatabasesFeedsFetcherBase {
         'descriptions' => array(),
         'public_access' => NULL,
         'urls' => array(),
-        'categories' => array(),
+        'categories' => array(), //TODO: change names to media types etc?
         'keywords' => array(),
         'prioritized_keywords' => array(),
       );
@@ -94,27 +114,19 @@ class UBNDatabasesFeedsFetcher extends UBNDatabasesFeedsFetcherBase {
     foreach($pdo->query('SELECT db_id as id, description FROM descriptions', $pdo::FETCH_ASSOC) as $row) {
       $databases[$row['id']]['descriptions'][] = $row['description'];
     }
+
     $database_public_access = NULL;
     //Urls
     foreach($pdo->query('SELECT db_id as id, url, info, description FROM urls', $pdo::FETCH_ASSOC) as $row) {
       $public_access = strpos($row['url'], '.ezproxy.') === FALSE;
-      if(!isset($database_public_access)) {
-        $database_public_access = $public_access;
+      if(!isset($databases[$row['id']]['public_access']) || !$databases[$row['id']]['public_access'] && $public_access) {
+        $databases[$row['id']]['public_access'] = $public_access;
       }
-      $guid = md5('unb_databases_url:' . $row['url']);
-      $per_language_access_descriptions = array_combine(array('sv', 'en'), array_map('trim', explode('/', $row['info'])));
+      $guid = md5('ubn_databases_url:' . $row['id']);
       $databases[$row['id']]['urls'][] = array(
         'guid' => $guid,
-        'url' => $row['url'],
-        'access' => array(
-          'guid' => md5('ubn_databases_access_info:' . trim($row['info'])),
-          'description' => $per_language_access_descriptions,
-        ),
-        'public_access' => $public_access,
-        'description' => $row['description'],
       );
     }
-    $database['public_access'] = $database_public_access;
     /*
     $infos = array('sv' => array(), 'en' => array());
     foreach($databases as $item) {
@@ -129,7 +141,6 @@ class UBNDatabasesFeedsFetcher extends UBNDatabasesFeedsFetcherBase {
     }
     //dsm($infos);
     */
-
     foreach(array('en' => 'ind2:0'/*, 'sv' => 'ind2:4'*/) as $lang => $code) {
       //Categories
       $query = <<<EOD
@@ -188,6 +199,20 @@ EOD;
         );
       }
     }
+
+    //Kludge, add "uncategorized" terms
+    foreach($databases as &$database) {
+      if(empty($database['categories'])) {
+        $database['categories'][] = array(
+          'guid' => md5('ubn_databases_category:')
+        );
+      }
+      if(empty($database['keywords'])) {
+        $database['keywords'][] = array(
+          'guid' => md5('ubn_databases_keyword:')
+        );
+      }
+    }
     $raw = drupal_json_encode(array_values($databases));
     //file_put_contents('/tmp/databases.json', $raw);
     $fetcher_result = new FeedsFetcherResult($raw);
@@ -224,6 +249,16 @@ EOD;
         $categories[$delta]['name'][$lang] = $row['name'];
       }
     }
+
+    $categories[] = array(
+      'guid' => md5('ubn_databases_category:'),
+      'parent_guid' => NULL,
+      'name' => array(
+        'en' => 'Other',
+        'sv' => t('Other'),
+      ),
+    );
+
     $raw = drupal_json_encode(array_values($categories));
     $fetcher_result = new FeedsFetcherResult($raw);
     return $fetcher_result;
@@ -241,6 +276,7 @@ class UBNDatabasesKeywordsFeedsFetcher extends UBNDatabasesFeedsFetcherBase {
     //Keywords
     $keywords = array();
     foreach(array('en' => 'ind2:0'/*, 'sv' => 'ind2:4'*/) as $lang => $code) {
+      //TODO: Prepared statement instead
       $query = <<<EOD
         SELECT
           k.id as id,
@@ -267,7 +303,64 @@ EOD;
         $keywords[$delta]['name'][$lang] = $row['name'];
       }
     }
+    $keywords[] = array(
+      'guid' => md5('ubn_databases_keyword:'),
+      'parent_guid' => NULL,
+      'name' => array(
+        'en' => 'Other',
+        'sv' => t('Other'),
+      ),
+    );
     $raw = drupal_json_encode(array_values($keywords));
+    $fetcher_result = new FeedsFetcherResult($raw);
+    return $fetcher_result;
+  }
+}
+
+class UBNDatabasesUrlsFeedsFetcher extends UBNDatabasesFeedsFetcherBase {
+  /**
+   * Implements FeedsFetcher::fetch().
+   */
+  public function fetch(FeedsSource $source) {
+    $pdo = $this->UBNDatabasesPDO($source);
+    //Urls
+    $urls = array();
+    foreach($pdo->query('SELECT id, db_id as database_id, url, info, description FROM urls ORDER BY id DESC', $pdo::FETCH_ASSOC) as $row) {
+      $public_access = strpos($row['url'], '.ezproxy.') === FALSE;
+      $guid = md5('ubn_databases_url:' . $row['id']);
+      $access_description = _ubn_databases_access_description_process($row['info']);
+      $urls[] = array(
+        'guid' => $guid,
+        'id' => $row['id'],
+        'database_id' => $row['database_id'],
+        'database_guid' => md5('ubn_databases:' . $row['id']),
+        'url' => $row['url'],
+        'public_access' => $public_access,
+        'description' => $row['description'],
+      ) + $access_description;
+    }
+    $raw = drupal_json_encode($urls);
+    //file_put_contents('/tmp/databases_urls.json', $raw);
+    $fetcher_result = new FeedsFetcherResult($raw);
+    return $fetcher_result;
+  }
+}
+
+class UBNDatabasesUrlsAccessDescriptionsFeedsFetcher extends UBNDatabasesFeedsFetcherBase {
+  /**
+   * Implements FeedsFetcher::fetch().
+   */
+  public function fetch(FeedsSource $source) {
+    $pdo = $this->UBNDatabasesPDO($source);
+    $access_descriptions = array();
+    //UrlsAccessDescriptions
+    foreach($pdo->query('SELECT DISTINCT info FROM urls', $pdo::FETCH_ASSOC) as $row) {
+      $access_description = _ubn_databases_access_description_process($row['info']);
+      if(!empty($access_description)) {
+        $access_descriptions[] = $access_description['access_description'];
+      }
+    }
+    $raw = drupal_json_encode($access_descriptions);
     $fetcher_result = new FeedsFetcherResult($raw);
     return $fetcher_result;
   }
