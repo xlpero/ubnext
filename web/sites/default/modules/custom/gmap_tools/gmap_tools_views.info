@@ -4,5 +4,4 @@ package = GMap Tools
 core = 7.x
 dependencies[] = views
 dependencies[] = gmap_tools
-
 files[] = views/gmap_tools_views_style_map.inc
