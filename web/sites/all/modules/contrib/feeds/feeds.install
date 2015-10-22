@@ -101,6 +101,17 @@ function feeds_schema() {
   );
   $schema['feeds_source'] = array(
     'description' => 'Source definitions for feeds.',
+    'export' => array(
+      'key' => 'id',
+      'identifier' => 'feeds_source',
+      'default hook' => 'feeds_source_default',  // Function hook name.
+      'api' => array(
+        'owner' => 'feeds',
+        'api' => 'feeds_source_default',  // Base name for api include files.
+        'minimum_version' => 1,
+        'current_version' => 1,
+      ),
+    ),
     'fields' => array(
       'id' => array(
         'type' => 'varchar',
