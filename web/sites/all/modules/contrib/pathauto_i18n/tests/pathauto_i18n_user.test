@@ -44,9 +44,10 @@ class Pathautoi18nUserTest extends Pathautoi18nTest {
    * Test user alias.
    */
   public function testUserAlias() {
+    drupal_static_reset('pathauto_pattern_load_by_entity');
     $this->createUser();
     // Check aliases.
-    $this->drupalGet('admin/config/search/path');
+    $this->drupalGet('admin/config/search/path/list/users');
     foreach ($this->availableLanguges as $language) {
       $alias = $language . '/users/' . $this->title;
       $this->assertText($alias, 0, "Exist alias '$alias' for language '$language'.");

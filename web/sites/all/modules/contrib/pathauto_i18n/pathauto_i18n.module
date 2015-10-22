@@ -13,7 +13,7 @@ function pathauto_i18n_process_entity_object($entity, $entity_type, $pathauto_i1
   // Get entity properties.
   list($entity_id, , $bundle) = entity_extract_ids($entity_type, $entity);
   // Insert pathauto_i18n settings.
-  if (!empty($entity_id) && !empty($bundle) && !empty($pathauto_i18n_status) && !empty($entity_type)) {
+  if (!empty($entity_id) && !empty($bundle) && !empty($entity_type)) {
     pathauto_i18n_insert_settings($entity_id, $entity_type, $bundle, $pathauto_i18n_status);
     // Build aliases in it necessary.
     if ($pathauto_i18n_status) {
@@ -31,10 +31,11 @@ function pathauto_i18n_update_alias($entity, $entity_type, $bundle, $op) {
   // Generate aliases.
   module_load_include('inc', 'pathauto');
   $languages = language_list();
+  $langcode = pathauto_entity_language($entity_type, $entity);
   $uri = entity_uri($entity_type, $entity);
   foreach ($languages as $language) {
     // Skipping a creating alias for node language, it created automatically.
-    if ($entity_type != 'node' || $entity->language != $language->language) {
+    if (empty($entity->language) || $langcode != $language->language) {
       pathauto_create_alias(
         $entity_type,
         $op,
@@ -45,6 +46,20 @@ function pathauto_i18n_update_alias($entity, $entity_type, $bundle, $op) {
       );
     }
   }
+}
+
+/**
+ * Returns the configured default value for a bundle.
+ */
+function pathauto_i18n_get_bundle_default($entity_type, $bundle, $default = 1) {
+  return variable_get('pathauto_i18n_default_' . $entity_type . '_' . $bundle, $default);
+}
+
+/**
+ * Sets a default value for a bundle.
+ */
+function pathauto_i18n_set_bundle_default($entity_type, $bundle, $value) {
+  variable_set('pathauto_i18n_default_' . $entity_type . '_' . $bundle, $value);
 }
 
 /**
@@ -61,42 +76,41 @@ function pathauto_i18n_update_alias($entity, $entity_type, $bundle, $op) {
  *
  * @see pathauto_field_attach_form()
  */
-function pathauto_i18n_configuration_form(&$form, $entity, $entity_type) {
+function pathauto_i18n_configuration_form(&$form, $entity, $entity_type, $bundle) {
   if ($entity) {
+    $default = pathauto_i18n_get_bundle_default($entity_type, $bundle);
     $form['path']['pathauto_i18n_status'] = array(
       '#type' => 'checkbox',
       '#title' => t('Generate automatic URL alias for all languages'),
       '#description' => t('Allows you to generate aliases for all available languages.', array('@entity_type' => $entity_type)),
-      '#default_value' => isset($entity->path['pathauto_i18n_status']) ? $entity->path['pathauto_i18n_status'] : 1,
+      '#default_value' => isset($entity->path['pathauto_i18n_status']) ? $entity->path['pathauto_i18n_status'] : $default,
       '#weight' => -0.99,
     );
-    if ($entity_type == 'node') {
-      $form['path']['pathauto_i18n_undefined_language_tip'] = array(
-        '#type' => 'item',
-        '#markup' => t('URL alias for "Language neutral" <strong>won\'t be created</strong>, because you use automatic alias.') . '</strong>',
-        '#weight' => -0.98,
-        '#states' => array(
-          'visible' => array(
-            'select[name="language"]' => array('value' => LANGUAGE_NONE),
-            'input[name="path[pathauto]"]' => array('checked' => TRUE),
-            'input[name="path[pathauto_i18n_status]"]' => array('checked' => TRUE),
-          ),
+    $form['path']['pathauto_i18n_undefined_language_tip'] = array(
+      '#type' => 'item',
+      '#markup' => t('URL alias for "Language neutral" <strong>won\'t be created</strong>, because you use automatic alias.') . '</strong>',
+      '#weight' => -0.98,
+      '#states' => array(
+        'visible' => array(
+          'select[name="language"]' => array('value' => LANGUAGE_NONE),
+          'input[name="path[pathauto]"]' => array('checked' => TRUE),
+          'input[name="path[pathauto_i18n_status]"]' => array('checked' => TRUE),
         ),
-      );
+      ),
+    );
 
-      $form['path']['pathauto_i18n_undefined_language_custom_tip'] = array(
-        '#type' => 'item',
-        '#markup' => t('URL alias for "Language neutral" <strong>will be created</strong>, because you use custom alias.'),
-        '#weight' => -0.98,
-        '#states' => array(
-          'visible' => array(
-            'select[name="language"]' => array('value' => LANGUAGE_NONE),
-            'input[name="path[pathauto]"]' => array('checked' => FALSE),
-            'input[name="path[pathauto_i18n_status]"]' => array('checked' => TRUE),
-          ),
+    $form['path']['pathauto_i18n_undefined_language_custom_tip'] = array(
+      '#type' => 'item',
+      '#markup' => t('URL alias for "Language neutral" <strong>will be created</strong>, because you use custom alias.'),
+      '#weight' => -0.98,
+      '#states' => array(
+        'visible' => array(
+          'select[name="language"]' => array('value' => LANGUAGE_NONE),
+          'input[name="path[pathauto]"]' => array('checked' => FALSE),
+          'input[name="path[pathauto_i18n_status]"]' => array('checked' => TRUE),
         ),
-      );
-    }
+      ),
+    );
   }
 }
 
@@ -216,5 +230,21 @@ function pathauto_i18n_tokens_alter(&$replacements, array $context) {
         $replacements[$original] = pathauto_i18n_cleanstring($context['options']['language']->language, $replacements[$original]);
       }
     }
+  }
+}
+
+/**
+ * Init the property.
+ */
+function pathauto_i18n_init_property(&$entity, $type, $bundle) {
+  $default = pathauto_i18n_get_bundle_default($type, $bundle);
+  switch ($type) {
+    case 'user':
+      $entity->pathauto_i18n_status = isset($entity->pathauto_i18n_status) ? $entity->pathauto_i18n_status : $default;
+      break;
+
+    default:
+      $entity->path['pathauto_i18n_status'] = isset($entity->path['pathauto_i18n_status']) ? $entity->path['pathauto_i18n_status'] : $default;
+      break;
   }
 }

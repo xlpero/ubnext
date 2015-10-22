@@ -8,25 +8,23 @@
  * Implements hook_form_BASE_FORM_ID_alter().
  */
 function pathauto_i18n_form_node_form_alter(&$form, &$form_state) {
-  pathauto_i18n_configuration_form($form, $form_state['node'], 'node');
+  pathauto_i18n_configuration_form($form, $form_state['node'], 'node', $form['#node']->type);
 }
 
 /**
  * Implements hook_node_insert().
  */
 function pathauto_i18n_node_node_insert($node) {
-  if (!empty($node->path['pathauto_i18n_status'])) {
-    pathauto_i18n_process_entity_object($node, 'node', $node->path['pathauto_i18n_status'], 'insert');
-  }
+  pathauto_i18n_init_property($node, 'node', $node->type);
+  pathauto_i18n_process_entity_object($node, 'node', $node->path['pathauto_i18n_status'], 'insert');
 }
 
 /**
  * Implements hook_node_update().
  */
 function pathauto_i18n_node_node_update($node) {
-  if (!empty($node->path['pathauto_i18n_status'])) {
-    pathauto_i18n_process_entity_object($node, 'node', $node->path['pathauto_i18n_status'], 'update');
-  }
+  pathauto_i18n_init_property($node, 'node', $node->type);
+  pathauto_i18n_process_entity_object($node, 'node', $node->path['pathauto_i18n_status'], 'update');
 }
 
 /**
@@ -56,7 +54,7 @@ function pathauto_i18n_node_node_load($nodes, $types) {
         $nodes[$nid]->path['pathauto_i18n_status'] = $settings[$nid];
       }
       else {
-        $nodes[$nid]->path['pathauto_i18n_status'] = 0;
+        $nodes[$nid]->path['pathauto_i18n_status'] = pathauto_i18n_get_bundle_default('node', $node->type);
       }
     }
   }
@@ -78,7 +76,6 @@ function pathauto_i18n_node_pathauto_alias_alter(&$alias, &$context) {
 
     if (isset($entity->path['pathauto_i18n_status']) && $entity->path['pathauto_i18n_status'] && $context['language'] == LANGUAGE_NONE) {
       $alias = '';
-      $context = array();
     }
   }
 }
@@ -108,4 +105,76 @@ function pathauto_i18n_node_module_implements_alter(&$implementations, $hook) {
     unset($implementations['pathauto_i18n_node']);
     $implementations['pathauto_i18n_node'] = $group;
   }
+}
+
+/**
+ * Implements hook_action_info().
+ */
+function pathauto_i18n_node_action_info() {
+  return array(
+    'pathauto_i18n_node_generate_alias' => array(
+      'type' => 'node',
+      'label' => t('Enable generation of aliases for all languages'),
+      'configurable' => FALSE,
+      'behavior' => array('changes_property'),
+      'triggers' => array(
+        'node_presave',
+      ),
+    ),
+    'pathauto_i18n_node_remove_alias' => array(
+      'type' => 'node',
+      'label' => t('Disable generation of aliases for all languages'),
+      'configurable' => FALSE,
+      'behavior' => array('changes_property'),
+      'triggers' => array(
+        'node_presave',
+      ),
+    ),
+  );
+}
+
+/**
+ * Sets the status of a pathauto_i18n_status to 1.
+ *
+ * @param object $node
+ *   A node object.
+ * @param array $context
+ *   (optional) Array of additional information about what triggered the action.
+ *   Not used for this action.
+ *
+ * @ingroup actions
+ */
+function pathauto_i18n_node_generate_alias($node, $context = array()) {
+  $node->path['pathauto_i18n_status'] = 1;
+}
+
+/**
+ * Sets the status of a pathauto_i18n_status to 0.
+ *
+ * @param object $node
+ *   A node object.
+ * @param array $context
+ *   (optional) Array of additional information about what triggered the action.
+ *   Not used for this action.
+ *
+ * @ingroup actions
+ */
+function pathauto_i18n_node_remove_alias($node, $context = array()) {
+  $node->path['pathauto_i18n_status'] = 0;
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * This will add pathauto_i18n options to the node type form. These settings
+ * will be used as default for every node of this node type.
+ */
+function pathauto_i18n_node_form_node_type_form_alter(&$form, $form_state) {
+  // Add the pathauto i18n form.
+  $form['workflow']['pathauto_i18n_default_node'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Generate automatic URL alias for all languages by default'),
+    '#default_value' => pathauto_i18n_get_bundle_default('node', $form['#node_type']->type),
+    '#description' => t('Set the default behaviour generating aliases for all available languages.'),
+  );
 }

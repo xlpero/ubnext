@@ -902,7 +902,7 @@ class EntityTranslationDefaultHandler implements EntityTranslationHandlerInterfa
    */
   public static function isEntityTypeRevisionable($entity_type) {
     $entity_info = entity_get_info($entity_type);
-    return variable_get('entity_translation_revision_enabled', TRUE) && !empty($entity_info['entity keys']['revision']);
+    return variable_get('entity_translation_revision_enabled', FALSE) && !empty($entity_info['entity keys']['revision']);
   }
 
   /**
@@ -1303,7 +1303,8 @@ class EntityTranslationDefaultHandler implements EntityTranslationHandlerInterfa
         );
       }
 
-      $name = $new_translation ? $GLOBALS['user']->name : user_load($translations->data[$form_langcode]['uid'])->name;
+      $translation_author = $new_translation ? $GLOBALS['user'] : user_load($translations->data[$form_langcode]['uid']);
+      $name = isset($translation_author->name) ? $translation_author->name : '';
       $form['translation']['name'] = array(
         '#type' => 'textfield',
         '#title' => t('Authored by'),
@@ -1471,6 +1472,10 @@ class EntityTranslationDefaultHandler implements EntityTranslationHandlerInterfa
    * @see EntityTranslationHandlerInterface::entityFormLanguageWidgetSubmit()
    */
   public function entityFormLanguageWidgetSubmit($form, &$form_state) {
+    if (!entity_translation_enabled($this->entityType, $this->bundle)) {
+      return;
+    }
+
     $this->updateFormLanguage($form_state);
     $form_langcode = $this->getFormLanguage();
 

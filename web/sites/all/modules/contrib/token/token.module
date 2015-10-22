@@ -653,6 +653,10 @@ function token_get_invalid_tokens($type, $tokens) {
   $invalid_tokens = array();
 
   foreach ($tokens as $token => $full_token) {
+    if (isset($token_info['tokens'][$type][$token])) {
+      continue;
+    }
+
     // Split token up if it has chains.
     $parts = explode(':', $token, 2);
 

@@ -59,7 +59,14 @@ function feeds_cron() {
 
   // @todo Maybe we should queue this somehow as well. This could be potentially
   // very long.
-  $sources = db_query("SELECT feed_nid, id FROM {feeds_source} WHERE id IN (:ids)", array(':ids' => $importers));
+
+  if (function_exists('ctools_include') && FALSE) {
+    ctools_include('export');
+    $sources = ctools_export_load_object('feeds_source', 'all');
+  }
+  else {
+    $sources = db_query("SELECT feed_nid, id FROM {feeds_source} WHERE id IN (:ids)", array(':ids' => $importers));
+  }
 
   foreach ($sources as $source) {
     feeds_source($source->id, $source->feed_nid)->schedule();
