@@ -127,6 +127,11 @@ function ubn_general_update_7102() {
   }
 }
 
+/* "Fix" boolean fields */
+function ubn_general_update_7103() {
+  features_revert_module('ubn_content_types');
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {
