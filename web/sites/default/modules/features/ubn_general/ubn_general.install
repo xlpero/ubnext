@@ -132,6 +132,14 @@ function ubn_general_update_7103() {
   features_revert_module('ubn_content_types');
 }
 
+/** Disable core search module and truncate cache table to fix cached twig path
+ *  in slate
+ */
+function ubn_general_update_7104() {
+  db_truncate('cache')->execute();
+  module_disable(array('search'));
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {
