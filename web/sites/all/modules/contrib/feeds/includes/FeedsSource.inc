@@ -111,6 +111,11 @@ class FeedsState {
     $this->skipped =
     $this->failed = 0;
   }
+  //TODO: remove, but first check when/if called
+  public static function __set_state($properties) {
+    //Basically NOOP
+    return NULL;
+  }
 
   /**
    * Safely report progress.
@@ -590,21 +595,27 @@ class FeedsSource extends FeedsConfigurable {
    * @todo Patch CTools to move constants from export.inc to ctools.module.
    */
   public function load() {
-    if ($record = db_query("SELECT imported, config, state, fetcher_result FROM {feeds_source} WHERE id = :id AND feed_nid = :nid", array(':id' => $this->id, ':nid' => $this->feed_nid))->fetchObject()) {
+    $sources = ctools_export_load_object('feeds_source', 'conditions', array('id' => $this->id, 'feeds_nid' => $this->feed_nid));
+    $record = isset($sources[$this->id]) ? $sources[$this->id] : NULL;
+    //If NULL then ????
+    //if ($record = db_query("SELECT imported, config, state, fetcher_result FROM {feeds_source} WHERE id = :id AND feed_nid = :nid", array(':id' => $this->id, ':nid' => $this->feed_nid))->fetchObject()) {
+    if(isset($record)) {
       // While FeedsSource cannot be exported, we still use CTool's export.inc
       // export definitions.
-      ctools_include('export');
       $this->export_type = EXPORT_IN_DATABASE;
       $this->imported = $record->imported;
-      $this->config = unserialize($record->config);
+      //$this->config = unserialize($record->config);
+      $this->config = $record->config;
       if (!empty($record->state)) {
-        $this->state = unserialize($record->state);
+        //$this->state = unserialize($record->state;
+        $this->state = $record->state;
       }
       if (!is_array($this->state)) {
         $this->state = array();
       }
       if (!empty($record->fetcher_result)) {
-        $this->fetcher_result = unserialize($record->fetcher_result);
+        //$this->fetcher_result = unserialize($record->fetcher_result);
+        $this->fetcher_result = $record->fetcher_result;
       }
     }
   }
