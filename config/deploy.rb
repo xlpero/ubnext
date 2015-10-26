@@ -20,7 +20,7 @@ set :log_level, :debug
 # Default false
 set :pty, false
 
-set :linked_files, %w{web/sites/default/secret.settings.php}
+set :linked_files, %w{web/sites/default/secret.settings.php web/sites/default/site.settings.php}
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{web/sites/default/files}
