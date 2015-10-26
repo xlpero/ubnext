@@ -1,7 +1,7 @@
 name = General
 core = 7.x
 package = UBNext
-version = 7.x-0.5
+version = 7.x-0.6
 project = ubn_general
 dependencies[] = ctools
 dependencies[] = diff
@@ -36,6 +36,7 @@ dependencies[] = title
 dependencies[] = transliteration
 dependencies[] = ubn_property_fields
 dependencies[] = ubn_search
+dependencies[] = ubn_settings
 dependencies[] = ubn_slate
 dependencies[] = ubn_summon
 dependencies[] = views
