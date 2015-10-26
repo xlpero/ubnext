@@ -5,6 +5,10 @@ function ubn_settings_entity_load($entities, $type) {
       if($server->machine_name === 'solr') {
         $environment = ubn_settings_environment();
         $server->options['path'] = variable_get('ubn_settings_solr_path', '/solr/drupal7_ubnext_' . $environment);
+        $host = variable_get('ubn_settings_solr_host', NULL);
+        if(isset($host)) {
+          $server->options['host'] = $host;
+        }
       }
     }
   }
