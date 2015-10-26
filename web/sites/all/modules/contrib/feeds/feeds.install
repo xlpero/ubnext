@@ -145,6 +145,7 @@ function feeds_schema() {
         'not null' => FALSE,
         'description' => 'State of import or clearing batches.',
         'serialize' => TRUE,
+        'no export' => TRUE,
       ),
       'fetcher_result' => array(
         'type' => 'blob',
@@ -152,6 +153,7 @@ function feeds_schema() {
         'not null' => FALSE,
         'description' => 'Cache for fetcher result.',
         'serialize' => TRUE,
+        'no export' => TRUE,
       ),
       'imported' => array(
         'type' => 'int',
@@ -159,6 +161,7 @@ function feeds_schema() {
         'default' => 0,
         'unsigned' => TRUE,
         'description' => 'Timestamp when this source was imported last.',
+        'no export' => TRUE,
       ),
     ),
     'primary key' => array('id', 'feed_nid'),

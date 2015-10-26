@@ -18,6 +18,11 @@ class FeedsFetcherResult extends FeedsResult {
   public function __construct($raw) {
     $this->raw = $raw;
   }
+  //TODO: remove, but first check when/if called
+  public static function __set_state($properties) {
+    //NOOP
+    return new FeedsFetcherResult('');
+  }
 
   /**
    * @return
