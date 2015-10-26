@@ -1,0 +1,4 @@
+name = UBN Settings
+description = Provides per site instance setting variables for UBNext (for instance solr host)
+core = 7.x
+package = UBNext
