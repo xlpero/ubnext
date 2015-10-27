@@ -342,6 +342,7 @@ function ubn_page_default_page_manager_handlers() {
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
+      'style' => 'naked',
     );
     $pane->css = array();
     $pane->extras = array();
@@ -405,7 +406,7 @@ function ubn_page_default_page_manager_handlers() {
       'gmap_slate' => 'libraries-map',
       'gmap_item_content_slate' => 'library-map-item',
       'lat_lng_field' => 'field_location',
-      'context' => 'argument_entity_id:node_1',
+      'context' => 'empty',
       'override_title' => 1,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
@@ -413,6 +414,7 @@ function ubn_page_default_page_manager_handlers() {
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
+      'style' => 'naked',
     );
     $pane->css = array();
     $pane->extras = array();
