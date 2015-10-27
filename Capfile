@@ -11,7 +11,6 @@ require 'capistrano/composer'
 require 'capistrano/npm'
 
 # Require erb for settings files templating purposes
-require 'erb'
 require 'capistrano/capistrano_plugin_template'
 
 # Includes tasks from other gems included in your Gemfile
