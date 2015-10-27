@@ -278,6 +278,157 @@ function ubn_page_default_page_manager_handlers() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
+  $handler->name = 'node_view__panel_context_75e1767f-61d5-443b-9456-0e86608b78ce';
+  $handler->task = 'node_view';
+  $handler->subtask = '';
+  $handler->handler = 'panel_context';
+  $handler->weight = -25;
+  $handler->conf = array(
+    'title' => 'Libraries',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'name' => '',
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'entity_field_value:node:page:field_template',
+          'settings' => array(
+            'field_template' => array(
+              'und' => array(
+                0 => array(
+                  'value' => 'libraries',
+                ),
+              ),
+            ),
+            'field_template_value' => array(
+              0 => 'libraries',
+            ),
+          ),
+          'context' => 'argument_entity_id:node_1',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'onecol';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'main' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = '20a21b24-5ea9-4706-b757-2bb313975b11';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-376e1c75-6e4c-43c2-903d-0a3ce654c613';
+    $pane->panel = 'main';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'library_list-libraries';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '376e1c75-6e4c-43c2-903d-0a3ce654c613';
+    $display->content['new-376e1c75-6e4c-43c2-903d-0a3ce654c613'] = $pane;
+    $display->panels['main'][0] = 'new-376e1c75-6e4c-43c2-903d-0a3ce654c613';
+    $pane = new stdClass();
+    $pane->pid = 'new-b3b3304e-4b2b-4310-b0d8-913b909b9ac8';
+    $pane->panel = 'main';
+    $pane->type = 'slate_gmap';
+    $pane->subtype = 'slate_gmap:node';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'gmap_tools_settings' => array(
+        'container_id' => 'slate-gmap-node',
+        'gmap_tools_namespace' => 'slate_gmap_node',
+        'gmap_tools_gmap_create_gmap' => 1,
+        'gmap_tools_gmap_options' => array(
+          'mapTypeId' => 'ROADMAP',
+          'zoom' => '14',
+          'min_zoom' => '',
+          'max_zoom' => '',
+          'center' => array(
+            'lat' => '0',
+            'lng' => '0',
+          ),
+        ),
+        'gmap_tools_behaviors' => array(
+          'clustered' => array(
+            'enabled' => 0,
+          ),
+          'info_windows' => array(
+            'enabled' => 1,
+          ),
+          'items_sidebar' => array(
+            'enabled' => 0,
+            'options' => array(
+              'wrapper' => '',
+              'limit' => '',
+              'bounce' => 0,
+              'items_filter' => array(
+                'body' => '',
+              ),
+            ),
+          ),
+          'fit_items_bounds' => array(
+            'enabled' => 1,
+            'options' => array(
+              'max_zoom' => '',
+              'min_zoom' => '',
+            ),
+          ),
+        ),
+      ),
+      'bundles' => array(
+        'library' => 'library',
+      ),
+      'gmap_slate' => 'libraries-map',
+      'gmap_item_content_slate' => 'library-map-item',
+      'lat_lng_field' => 'field_location',
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'b3b3304e-4b2b-4310-b0d8-913b909b9ac8';
+    $display->content['new-b3b3304e-4b2b-4310-b0d8-913b909b9ac8'] = $pane;
+    $display->panels['main'][1] = 'new-b3b3304e-4b2b-4310-b0d8-913b909b9ac8';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = 'new-376e1c75-6e4c-43c2-903d-0a3ce654c613';
+  $handler->conf['display'] = $display;
+  $export['node_view__panel_context_75e1767f-61d5-443b-9456-0e86608b78ce'] = $handler;
+
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
   $handler->name = 'site_template_panel_context';
   $handler->task = 'site_template';
   $handler->subtask = '';

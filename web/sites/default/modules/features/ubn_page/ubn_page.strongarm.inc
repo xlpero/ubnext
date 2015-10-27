@@ -45,7 +45,7 @@ function ubn_page_strongarm() {
           'weight' => '4',
         ),
         'language' => array(
-          'weight' => '0',
+          'weight' => '1',
         ),
       ),
       'display' => array(),
