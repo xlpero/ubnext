@@ -140,6 +140,11 @@ function ubn_general_update_7104() {
   module_disable(array('search'));
 }
 
+/* Revert features */
+function ubn_general_update_7105() {
+  array_map('features_revert_module', array('ubn_content_types', 'ubn_page'));
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {
