@@ -15,7 +15,7 @@
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server 'm-demo.ub.gu.se', user: 'drupal-deploy', roles: %w{app}
+server 'm-demo.ub.gu.se', user: 'drupal-deploy', roles: %w{app},
   ubn_conf: { ubn_settings_solr_host: 'localhost' } 
 
 set :deploy_to, '/var/www/drupal/demo'
