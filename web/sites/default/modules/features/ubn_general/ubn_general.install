@@ -159,6 +159,11 @@ function ubn_general_update_7106() {
   ubn_general_entity_translation_fields_enable(array('field_mailing_address', 'field_delivery_address'));
 }
 
+/* Revert features */
+function ubn_general_update_7107() {
+  features_revert_module('ubn_content_types');
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {
