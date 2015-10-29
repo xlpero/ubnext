@@ -6,6 +6,9 @@ dependencies[] = ctools
 dependencies[] = features
 dependencies[] = gmap_tools_slate
 dependencies[] = page_manager
+; Why are these dependencies not autodetected by features?
+dependencies[] = panels
+dependencies[] = panels_everywhere
 dependencies[] = slate
 features[ctools][] = page_manager:pages_default:1
 features[features_api][] = api:2
