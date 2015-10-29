@@ -1,7 +1,7 @@
 name = UBN Page
 core = 7.x
 package = UBNext
-version = 7.x-0.7
+version = 7.x-0.8
 dependencies[] = ctools
 dependencies[] = features
 dependencies[] = gmap_tools_slate
@@ -20,4 +20,5 @@ features[variable][] = default_page_manager_handlers
 features[variable][] = default_page_manager_pages
 features[variable][] = page_manager_node_view_disabled
 features[variable][] = page_manager_search_disabled_node
+features[variable][] = panels_everywhere_site_template_enabled
 features_exclude[dependencies][strongarm] = strongarm
