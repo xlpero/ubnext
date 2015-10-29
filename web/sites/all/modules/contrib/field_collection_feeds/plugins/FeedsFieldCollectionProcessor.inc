@@ -139,17 +139,19 @@ class FeedsFieldCollectionProcessor extends FeedsProcessor {
           $query->propertyCondition($this->config['guid_field_name'], $value);
         }
         $result = $query->execute();
-        list($hostEntityType, $data) = each($result);
-        $entity_id = key($data);
-        //Load skipping cache with $reset = TRUE, or will static cache reset on
-        //save?
-        $host_entity = entity_load($hostEntityType, array($entity_id), array(), TRUE);
-        $host_entity = current($host_entity);
-        if(!$target_item->hostEntityId()) {
-          $target_item->setHostEntity($hostEntityType, $host_entity);
-        }
-        else {
-          $target_item->updateHostEntity($host_entity);
+        if(!empty($result)) {
+          list($hostEntityType, $data) = each($result);
+          $entity_id = key($data);
+          //Load skipping cache with $reset = TRUE, or will static cache reset on
+          //save?
+          $host_entity = entity_load($hostEntityType, array($entity_id), array(), TRUE);
+          $host_entity = current($host_entity);
+          if(!$target_item->hostEntityId()) {
+            $target_item->setHostEntity($hostEntityType, $host_entity);
+          }
+          else {
+            $target_item->updateHostEntity($host_entity);
+          }
         }
         break;
       default:

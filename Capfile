@@ -10,6 +10,9 @@ require 'capistrano/composer'
 # Npm/nodejs is needed for grunt etc
 require 'capistrano/npm'
 
+# Require erb for settings files templating purposes
+require 'capistrano/capistrano_plugin_template'
+
 # Includes tasks from other gems included in your Gemfile
 #
 # For documentation on these, see for example:

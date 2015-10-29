@@ -10,7 +10,8 @@
 function ubn_content_types_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'field_collection_item-field_database_urls-field_description_short'
+  // Exported field_instance:
+  // 'field_collection_item-field_database_urls-field_description_short'.
   $field_instances['field_collection_item-field_database_urls-field_description_short'] = array(
     'bundle' => 'field_database_urls',
     'default_value' => NULL,
@@ -46,7 +47,8 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_database_urls-field_public_access'
+  // Exported field_instance:
+  // 'field_collection_item-field_database_urls-field_public_access'.
   $field_instances['field_collection_item-field_database_urls-field_public_access'] = array(
     'bundle' => 'field_database_urls',
     'default_value' => NULL,
@@ -79,7 +81,8 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_database_urls-field_remote_id'
+  // Exported field_instance:
+  // 'field_collection_item-field_database_urls-field_remote_id'.
   $field_instances['field_collection_item-field_database_urls-field_remote_id'] = array(
     'bundle' => 'field_database_urls',
     'default_value' => NULL,
@@ -115,7 +118,8 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_database_urls-field_url'
+  // Exported field_instance:
+  // 'field_collection_item-field_database_urls-field_url'.
   $field_instances['field_collection_item-field_database_urls-field_url'] = array(
     'bundle' => 'field_database_urls',
     'default_value' => NULL,
@@ -167,7 +171,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-database-field_alternate_titles'
+  // Exported field_instance: 'node-database-field_alternate_titles'.
   $field_instances['node-database-field_alternate_titles'] = array(
     'bundle' => 'database',
     'default_value' => NULL,
@@ -209,7 +213,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-database-field_database_urls'
+  // Exported field_instance: 'node-database-field_database_urls'.
   $field_instances['node-database-field_database_urls'] = array(
     'bundle' => 'database',
     'default_value' => NULL,
@@ -254,7 +258,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-database-field_description_paragraphs'
+  // Exported field_instance: 'node-database-field_description_paragraphs'.
   $field_instances['node-database-field_description_paragraphs'] = array(
     'bundle' => 'database',
     'default_value' => NULL,
@@ -296,7 +300,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-database-field_media_types'
+  // Exported field_instance: 'node-database-field_media_types'.
   $field_instances['node-database-field_media_types'] = array(
     'bundle' => 'database',
     'default_value' => NULL,
@@ -338,7 +342,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-database-field_public_access'
+  // Exported field_instance: 'node-database-field_public_access'.
   $field_instances['node-database-field_public_access'] = array(
     'bundle' => 'database',
     'default_value' => NULL,
@@ -377,7 +381,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-database-field_publishers'
+  // Exported field_instance: 'node-database-field_publishers'.
   $field_instances['node-database-field_publishers'] = array(
     'bundle' => 'database',
     'default_value' => NULL,
@@ -419,7 +423,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-database-field_remote_id'
+  // Exported field_instance: 'node-database-field_remote_id'.
   $field_instances['node-database-field_remote_id'] = array(
     'bundle' => 'database',
     'default_value' => NULL,
@@ -461,7 +465,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-database-field_topics'
+  // Exported field_instance: 'node-database-field_topics'.
   $field_instances['node-database-field_topics'] = array(
     'bundle' => 'database',
     'default_value' => NULL,
@@ -503,7 +507,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-database-title_field'
+  // Exported field_instance: 'node-database-title_field'.
   $field_instances['node-database-title_field'] = array(
     'bundle' => 'database',
     'default_value' => NULL,
@@ -547,7 +551,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-body'
+  // Exported field_instance: 'node-library-body'.
   $field_instances['node-library-body'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -592,7 +596,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_adapted_study_rooms_count'
+  // Exported field_instance: 'node-library-field_adapted_study_rooms_count'.
   $field_instances['node-library-field_adapted_study_rooms_count'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -640,7 +644,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_book_return_box'
+  // Exported field_instance: 'node-library-field_book_return_box'.
   $field_instances['node-library-field_book_return_box'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -679,7 +683,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_cafe'
+  // Exported field_instance: 'node-library-field_cafe'.
   $field_instances['node-library-field_cafe'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -718,7 +722,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_delivery_address'
+  // Exported field_instance: 'node-library-field_delivery_address'.
   $field_instances['node-library-field_delivery_address'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -776,7 +780,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_description_short'
+  // Exported field_instance: 'node-library-field_description_short'.
   $field_instances['node-library-field_description_short'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -818,7 +822,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_food_heating_facilities'
+  // Exported field_instance: 'node-library-field_food_heating_facilities'.
   $field_instances['node-library-field_food_heating_facilities'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -857,7 +861,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_group_study_rooms_count'
+  // Exported field_instance: 'node-library-field_group_study_rooms_count'.
   $field_instances['node-library-field_group_study_rooms_count'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -905,7 +909,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_gu_print'
+  // Exported field_instance: 'node-library-field_gu_print'.
   $field_instances['node-library-field_gu_print'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -944,7 +948,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_hero_image'
+  // Exported field_instance: 'node-library-field_hero_image'.
   $field_instances['node-library-field_hero_image'] = array(
     'bundle' => 'library',
     'deleted' => 0,
@@ -995,7 +999,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_lead'
+  // Exported field_instance: 'node-library-field_lead'.
   $field_instances['node-library-field_lead'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -1037,7 +1041,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_location'
+  // Exported field_instance: 'node-library-field_location'.
   $field_instances['node-library-field_location'] = array(
     'bundle' => 'library',
     'default_value' => array(),
@@ -1093,7 +1097,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_location_override'
+  // Exported field_instance: 'node-library-field_location_override'.
   $field_instances['node-library-field_location_override'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -1135,7 +1139,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_mailing_address'
+  // Exported field_instance: 'node-library-field_mailing_address'.
   $field_instances['node-library-field_mailing_address'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -1193,7 +1197,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_phone'
+  // Exported field_instance: 'node-library-field_phone'.
   $field_instances['node-library-field_phone'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -1235,7 +1239,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_quiet_reading_room'
+  // Exported field_instance: 'node-library-field_quiet_reading_room'.
   $field_instances['node-library-field_quiet_reading_room'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -1274,7 +1278,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_referenced_opening_hours'
+  // Exported field_instance: 'node-library-field_referenced_opening_hours'.
   $field_instances['node-library-field_referenced_opening_hours'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -1318,7 +1322,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_study_seats_count'
+  // Exported field_instance: 'node-library-field_study_seats_count'.
   $field_instances['node-library-field_study_seats_count'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -1366,7 +1370,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_title_short'
+  // Exported field_instance: 'node-library-field_title_short'.
   $field_instances['node-library-field_title_short'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -1408,7 +1412,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_visiting_address'
+  // Exported field_instance: 'node-library-field_visiting_address'.
   $field_instances['node-library-field_visiting_address'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -1466,7 +1470,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_wlan'
+  // Exported field_instance: 'node-library-field_wlan'.
   $field_instances['node-library-field_wlan'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -1505,7 +1509,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-title_field'
+  // Exported field_instance: 'node-library-title_field'.
   $field_instances['node-library-title_field'] = array(
     'bundle' => 'library',
     'default_value' => NULL,
@@ -1549,7 +1553,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-opening_hours-field_opening_hours'
+  // Exported field_instance: 'node-opening_hours-field_opening_hours'.
   $field_instances['node-opening_hours-field_opening_hours'] = array(
     'bundle' => 'opening_hours',
     'deleted' => 0,
@@ -1605,7 +1609,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-opening_hours-field_opening_hours_date'
+  // Exported field_instance: 'node-opening_hours-field_opening_hours_date'.
   $field_instances['node-opening_hours-field_opening_hours_date'] = array(
     'bundle' => 'opening_hours',
     'deleted' => 0,
@@ -1661,7 +1665,8 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-opening_hours-field_opening_hours_is_exception'
+  // Exported field_instance:
+  // 'node-opening_hours-field_opening_hours_is_exception'.
   $field_instances['node-opening_hours-field_opening_hours_is_exception'] = array(
     'bundle' => 'opening_hours',
     'default_value' => NULL,
@@ -1700,7 +1705,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-opening_hours-field_opening_hours_is_open'
+  // Exported field_instance: 'node-opening_hours-field_opening_hours_is_open'.
   $field_instances['node-opening_hours-field_opening_hours_is_open'] = array(
     'bundle' => 'opening_hours',
     'default_value' => NULL,
@@ -1739,7 +1744,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-opening_hours-title_field'
+  // Exported field_instance: 'node-opening_hours-title_field'.
   $field_instances['node-opening_hours-title_field'] = array(
     'bundle' => 'opening_hours',
     'default_value' => NULL,
@@ -1783,7 +1788,133 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-library_properties-description_field'
+  // Exported field_instance: 'node-page-field_lead'.
+  $field_instances['node-page-field_lead'] = array(
+    'bundle' => 'page',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_lead',
+    'label' => 'Lead',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-page-field_template'.
+  $field_instances['node-page-field_template'] = array(
+    'bundle' => 'page',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 4,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_template',
+    'label' => 'Template',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 8,
+    ),
+  );
+
+  // Exported field_instance: 'node-page-title_field'.
+  $field_instances['node-page-title_field'] = array(
+    'bundle' => 'page',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'ubn_property_field' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'taxonomy_term-library_properties-description_field'.
   $field_instances['taxonomy_term-library_properties-description_field'] = array(
     'bundle' => 'library_properties',
     'default_value' => NULL,
@@ -1822,7 +1953,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-library_properties-name_field'
+  // Exported field_instance: 'taxonomy_term-library_properties-name_field'.
   $field_instances['taxonomy_term-library_properties-name_field'] = array(
     'bundle' => 'library_properties',
     'default_value' => NULL,
@@ -1860,7 +1991,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-media_types-description_field'
+  // Exported field_instance: 'taxonomy_term-media_types-description_field'.
   $field_instances['taxonomy_term-media_types-description_field'] = array(
     'bundle' => 'media_types',
     'default_value' => NULL,
@@ -1899,7 +2030,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-media_types-name_field'
+  // Exported field_instance: 'taxonomy_term-media_types-name_field'.
   $field_instances['taxonomy_term-media_types-name_field'] = array(
     'bundle' => 'media_types',
     'default_value' => NULL,
@@ -1937,7 +2068,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-topics-description_field'
+  // Exported field_instance: 'taxonomy_term-topics-description_field'.
   $field_instances['taxonomy_term-topics-description_field'] = array(
     'bundle' => 'topics',
     'default_value' => NULL,
@@ -1976,7 +2107,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'taxonomy_term-topics-name_field'
+  // Exported field_instance: 'taxonomy_term-topics-name_field'.
   $field_instances['taxonomy_term-topics-name_field'] = array(
     'bundle' => 'topics',
     'default_value' => NULL,
@@ -2047,6 +2178,7 @@ function ubn_content_types_field_default_field_instances() {
   t('Short description');
   t('Short title');
   t('Study seats');
+  t('Template');
   t('Title');
   t('Topics');
   t('Upload and store the header image for this library. ');

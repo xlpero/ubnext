@@ -5,6 +5,9 @@
  */
 
 function ubn_general_entity_translation_fields_enable($field_names) {
+  module_load_include('inc', 'entity_translation', 'entity_translation.node');
+  module_load_include('inc', 'entity_translation', 'entity_translation.admin');
+
   foreach($field_names as $field_name) {
     $field_info = field_info_field($field_name);
     //For each non-translatable field enable translations
@@ -29,6 +32,12 @@ function ubn_general_entity_translation_fields_enable($field_names) {
       ->execute();
 
     foreach ($result as $entity_type => $entities) {
+      $entity_translation_status = variable_get("language_content_type_$entity_type", NULL);
+      if($entity_translation_status !== ENTITY_TRANSLATION_ENABLED) {
+        //Set message?
+        variable_set("language_content_type_$entity_type", ENTITY_TRANSLATION_ENABLED);
+      }
+
       foreach (entity_load($entity_type, array_keys($entities)) as $entity) {
         $handler = entity_translation_get_handler($entity_type, $entity);
         $langcode = $handler->getLanguage();
@@ -138,6 +147,16 @@ function ubn_general_update_7103() {
 function ubn_general_update_7104() {
   db_truncate('cache')->execute();
   module_disable(array('search'));
+}
+
+/* Revert features */
+function ubn_general_update_7105() {
+  array_map('features_revert_module', array('ubn_content_types', 'ubn_page'));
+}
+
+/* Enable field translation for field_mailing_address and field_delivery_address */
+function ubn_general_update_7106() {
+  ubn_general_entity_translation_fields_enable(array('field_mailing_address', 'field_delivery_address'));
 }
 
 // Enable entity translation for library
