@@ -6,7 +6,6 @@ dependencies[] = ctools
 dependencies[] = features
 dependencies[] = gmap_tools_slate
 dependencies[] = page_manager
-dependencies[] = ubn_general
 dependencies[] = slate
 features[ctools][] = page_manager:pages_default:1
 features[features_api][] = api:2
