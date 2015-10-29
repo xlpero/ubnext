@@ -13,6 +13,7 @@ dependencies[] = taxonomy
 dependencies[] = ubn_content_types
 dependencies[] = ubn_databases
 dependencies[] = ubn_opening_hours
+dependencies[] = entityreference_feeds
 features[ctools][] = feeds:feeds_importer_default:1
 features[ctools][] = feeds:feeds_source_default:1
 features[features_api][] = api:2
