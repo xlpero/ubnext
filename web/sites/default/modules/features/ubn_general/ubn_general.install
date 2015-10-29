@@ -114,7 +114,7 @@ function ubn_general_install() {
 	theme_enable(array('ubnext'));
 	theme_disable(array('bartik'));
 	variable_set('theme_default', 'ubnext');
-	$modules = array('dashboard', 'overlay', 'shortcut', 'toolbar');
+	$modules = array('dashboard', 'overlay', 'shortcut', 'toolbar', 'search');
 	module_disable($modules);
 	drupal_uninstall_modules($modules);
 }
