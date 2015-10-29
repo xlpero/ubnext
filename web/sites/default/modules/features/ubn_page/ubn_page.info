@@ -4,6 +4,7 @@ package = UBNext
 version = 7.x-0.6
 dependencies[] = ctools
 dependencies[] = features
+dependencies[] = gmap_tools_slate
 dependencies[] = page_manager
 dependencies[] = ubn_general
 features[ctools][] = page_manager:pages_default:1
