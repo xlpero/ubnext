@@ -164,6 +164,13 @@ function ubn_general_update_7107() {
   features_revert_module('ubn_content_types');
 }
 
+/* Pathauto persist has been merged into Pathauto, disable and uninstall */
+function ubn_general_update_7108() {
+  $modules = array('pathauto_persist');
+  module_disable($modules);
+  drupal_uninstall_modules($modules);
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {
