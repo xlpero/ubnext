@@ -24,7 +24,6 @@ dependencies[] = node
 dependencies[] = pathauto
 dependencies[] = pathauto_i18n
 dependencies[] = pathauto_i18n_node
-dependencies[] = pathauto_persist
 dependencies[] = pathologic
 dependencies[] = redirect
 dependencies[] = restws
