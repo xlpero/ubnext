@@ -19,20 +19,6 @@ function field_collection_help($path, $arg) {
 }
 
 /**
- * Implements hook_form_alter().
- *
- * Checks for a value set by the embedded widget so fields are not displayed
- * with the 'all languages' hint incorrectly.
- */
-function field_collection_form_alter(&$form, &$form_state) {
-  if (!empty($form['#field_collection_translation_fields'])) {
-    foreach ($form['#field_collection_translation_fields'] as $address) {
-      drupal_array_set_nested_value($form, array_merge($address, array('#multilingual')), TRUE);
-    }
-  }
-}
-
-/**
  * Implements hook_ctools_plugin_directory().
  */
 function field_collection_ctools_plugin_directory($module, $plugin) {
@@ -71,12 +57,7 @@ function field_collection_entity_info() {
     ),
     'access callback' => 'field_collection_item_access',
     'deletion callback' => 'field_collection_item_delete',
-    'metadata controller class' => 'FieldCollectionItemMetadataController',
-    'translation' => array(
-      'entity_translation' => array(
-        'class' => 'EntityTranslationFieldCollectionItemHandler',
-      ),
-    ),
+    'metadata controller class' => 'FieldCollectionItemMetadataController'
   );
 
   // Add info about the bundles. We do not use field_info_fields() but directly
@@ -92,19 +73,6 @@ function field_collection_entity_info() {
         'access arguments' => array('administer field collections'),
       ),
     );
-
-    $path = field_collection_field_get_path($field) . '/%field_collection_item';
-    // Enable the first available path scheme as default one.
-    if (!isset($return['field_collection_item']['translation']['entity_translation']['base path'])) {
-      $return['field_collection_item']['translation']['entity_translation']['base path'] = $path;
-      $return['field_collection_item']['translation']['entity_translation']['path wildcard'] = '%field_collection_item';
-      $return['field_collection_item']['translation']['entity_translation']['default_scheme'] = $field_name;
-    }
-    else {
-      $return['field_collection_item']['translation']['entity_translation']['path schemes'][$field_name] = array(
-        'base path' => $path,
-      );
-    }
   }
 
   if (module_exists('entitycache')) {
@@ -113,30 +81,6 @@ function field_collection_entity_info() {
   }
 
   return $return;
-}
-
-/**
- * Provide the original entity language.
- *
- * If a language property is defined for the current entity we synchronize the
- * field value using the entity language, otherwise we fall back to
- * LANGUAGE_NONE.
- *
- * @param $entity_type
- * @param $entity
- *
- * @return
- *   A language code
- */
-function field_collection_entity_language($entity_type, $entity) {
-  if (module_exists('entity_translation') && entity_translation_enabled($entity_type)) {
-    $handler = entity_translation_get_handler($entity_type, $entity);
-    $langcode = $handler->getLanguage();
-  }
-  else {
-    $langcode = entity_language($entity_type, $entity);
-  }
-  return !empty($langcode) ? $langcode : LANGUAGE_NONE;
 }
 
 /**
@@ -347,7 +291,7 @@ function field_collection_item_access($op, FieldCollectionItemEntity $item = NUL
  */
 function field_collection_item_delete($id) {
   $fci = field_collection_item_load($id);
-  if (!empty($fci)) {
+  if ($fci) {
     $fci->delete();
   }
 }
@@ -431,6 +375,7 @@ function field_collection_field_get_path($field) {
  * Implements hook_field_settings_form().
  */
 function field_collection_field_settings_form($field, $instance) {
+
   $form['hide_blank_items'] = array(
     '#type' => 'checkbox',
     '#title' => t('Hide blank items'),
@@ -464,7 +409,7 @@ function field_collection_field_insert($host_entity_type, $host_entity, $field, 
         $entity = $new_entity;
       }
       if (!empty($entity->is_new)) {
-        $entity->setHostEntity($host_entity_type, $host_entity, field_collection_entity_language($host_entity_type, $host_entity), FALSE);
+        $entity->setHostEntity($host_entity_type, $host_entity, LANGUAGE_NONE, FALSE);
       }
       $entity->save(TRUE);
       $item = array(
@@ -479,38 +424,37 @@ function field_collection_field_insert($host_entity_type, $host_entity, $field, 
  * Implements hook_field_update().
  *
  * Care about removed field collection items.
- *
  * Support saving field collection items in @code $item['entity'] @endcode. This
  * may be used to seamlessly create field collection items during host-entity
  * creation or to save changes to the host entity and its collections at once.
  */
 function field_collection_field_update($host_entity_type, $host_entity, $field, $instance, $langcode, &$items) {
-  // When entity language is changed field values are moved to the new language
-  // and old values are marked as removed. We need to avoid processing them in
-  // this case.
-  $entity_langcode = field_collection_entity_language($host_entity_type, $host_entity);
-  $original = isset($host_entity->original) ? $host_entity->original : $host_entity;
-  $original_langcode = field_collection_entity_language($host_entity_type, $original);
-  $langcode = $langcode == $original_langcode ? $entity_langcode : $langcode;
-
   // Prevent workbench moderation from deleting field collections on node_save()
   // during workbench_moderation_store(), when $host_entity->revision == 0.
   if (!empty($host_entity->workbench_moderation['updating_live_revision'])) {
     return;
   }
 
-  // Load items from the original entity.
-  $items_original = !empty($original->{$field['field_name']}[$langcode]) ? $original->{$field['field_name']}[$langcode] : array();
+  $items_original = !empty($host_entity->original->{$field['field_name']}[$langcode]) ? $host_entity->original->{$field['field_name']}[$langcode] : array();
   $original_by_id = array_flip(field_collection_field_item_to_ids($items_original));
 
-  foreach ($items as $delta => &$item) {
+  foreach ($items as &$item) {
     // In case the entity has been changed / created, save it and set the id.
     // If the host entity creates a new revision, save new item-revisions as
     // well.
     if (isset($item['entity']) || !empty($host_entity->revision)) {
+
       if ($entity = field_collection_field_get_entity($item)) {
+
+        if (!empty($entity->is_new)) {
+          $entity->setHostEntity($host_entity_type, $host_entity, LANGUAGE_NONE, FALSE);
+        }
+        else {
+          $entity->updateHostEntity($host_entity);
+        }
+
         // If the host entity is saved as new revision, do the same for the item.
-        if (!empty($host_entity->revision) || !empty($host_entity->is_new_revision)) {
+        if (!empty($host_entity->revision)) {
           $entity->revision = TRUE;
           // Without this cache clear entity_revision_is_default will
           // incorrectly return false here when creating a new published revision
@@ -530,14 +474,6 @@ function field_collection_field_update($host_entity_type, $host_entity, $field, 
             $entity->default_revision = FALSE;
           }
         }
-
-        if (!empty($entity->is_new)) {
-          $entity->setHostEntity($host_entity_type, $host_entity, $langcode, FALSE);
-        }
-        else {
-          $entity->updateHostEntity($host_entity);
-        }
-
         $entity->save(TRUE);
 
         $item = array(
@@ -546,12 +482,7 @@ function field_collection_field_update($host_entity_type, $host_entity, $field, 
         );
       }
     }
-
     unset($original_by_id[$item['value']]);
-  }
-
-  if ($field['translatable'] && module_exists('entity_translation') && entity_translation_enabled($host_entity_type)) {
-    unset($host_entity->{$field['field_name']}[LANGUAGE_NONE]);
   }
 
   // If there are removed items, care about deleting the item entities.
@@ -567,17 +498,8 @@ function field_collection_field_update($host_entity_type, $host_entity, $field, 
         ->execute();
     }
     else {
-      // Load items from the original entity from all languages checking which
-      // are the unused items.
-      $current_items = array();
-      $languages = language_list();
-      foreach ($languages as $langcode_value) {
-        $current_items += !empty($host_entity->{$field['field_name']}[$langcode_value->language]) ? $host_entity->{$field['field_name']}[$langcode_value->language] : array();
-        $current_by_id = field_collection_field_item_to_ids($current_items);
-      }
-      $items_to_remove = array_diff($ids, $current_by_id);
       // Delete unused field collection items now.
-      foreach (field_collection_item_load_multiple($items_to_remove) as $un_item) {
+      foreach (field_collection_item_load_multiple($ids) as $un_item) {
         $un_item->updateHostEntity($host_entity);
         $un_item->deleteRevision(TRUE);
       }
@@ -589,8 +511,9 @@ function field_collection_field_update($host_entity_type, $host_entity, $field, 
  * Implements hook_field_delete().
  */
 function field_collection_field_delete($entity_type, $entity, $field, $instance, $langcode, &$items) {
+  $ids = field_collection_field_item_to_ids($items);
   // Also delete all embedded entities.
-  if ($ids = field_collection_field_item_to_ids($items)) {
+  if ($ids && field_info_field($field['field_name'])) {
     // We filter out entities that are still being referenced by other
     // host-entities. This should never be the case, but it might happened e.g.
     // when modules cloned a node without knowing about field-collection.
@@ -716,7 +639,6 @@ function field_collection_field_formatter_info() {
       'field types' => array('field_collection'),
       'settings' =>  array(
         'edit' => t('Edit'),
-        'translate' => t('Translate'),
         'delete' => t('Delete'),
         'add' => t('Add'),
         'description' => TRUE,
@@ -752,29 +674,22 @@ function field_collection_field_formatter_settings_form($field, $instance, $view
   $elements = array();
 
   if ($display['type'] != 'field_collection_fields') {
-    $elements['add'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Add link title'),
-      '#default_value' => $settings['add'],
-      '#description' => t('Leave the title empty, to hide the link.'),
-    );
     $elements['edit'] = array(
       '#type' => 'textfield',
       '#title' => t('Edit link title'),
       '#default_value' => $settings['edit'],
-      '#description' => t('Leave the title empty, to hide the link.'),
-      '#access' => field_collection_item_is_translatable(),
-    );
-    $elements['translate'] = array(
-      '#type' => 'textfield',
-      '#title' => t('Translate link title'),
-      '#default_value' => $settings['translate'],
       '#description' => t('Leave the title empty, to hide the link.'),
     );
     $elements['delete'] = array(
       '#type' => 'textfield',
       '#title' => t('Delete link title'),
       '#default_value' => $settings['delete'],
+      '#description' => t('Leave the title empty, to hide the link.'),
+    );
+    $elements['add'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Add link title'),
+      '#default_value' => $settings['add'],
       '#description' => t('Leave the title empty, to hide the link.'),
     );
     $elements['description'] = array(
@@ -815,7 +730,7 @@ function field_collection_field_formatter_settings_summary($field, $instance, $v
   $output = array();
 
   if ($display['type'] !== 'field_collection_fields') {
-    $links = field_collection_get_operations($settings, TRUE);
+    $links = array_filter(array_intersect_key($settings, array_flip(array('add', 'edit', 'delete'))));
     if ($links) {
       $output[] = t('Links: @links', array('@links' => check_plain(implode(', ', $links))));
     }
@@ -848,7 +763,7 @@ function field_collection_field_formatter_view($entity_type, $entity, $field, $i
         if ($field_collection = field_collection_field_get_entity($item)) {
           $output = l($field_collection->label(), $field_collection->path());
           $links = array();
-          foreach (field_collection_get_operations($settings) as $op => $label) {
+          foreach (array('edit', 'delete') as $op) {
             if ($settings[$op] && field_collection_item_access($op == 'edit' ? 'update' : $op, $field_collection)) {
               $title = entity_i18n_string("field:{$field['field_name']}:{$instance['bundle']}:setting_$op", $settings[$op]);
               $links[] = l($title, $field_collection->path() . '/' . $op, array('query' => drupal_get_destination()));
@@ -878,7 +793,7 @@ function field_collection_field_formatter_view($entity_type, $entity, $field, $i
             '#theme' => 'links__field_collection_view',
           );
           $links['#attributes']['class'][] = 'field-collection-view-links';
-          foreach (field_collection_get_operations($settings) as $op => $label) {
+          foreach (array('edit', 'delete') as $op) {
             if ($settings[$op] && field_collection_item_access($op == 'edit' ? 'update' : $op, $field_collection)) {
               $links['#links'][$op] = array(
                 'title' => entity_i18n_string("field:{$field['field_name']}:{$instance['bundle']}:setting_$op", $settings[$op]),
@@ -911,29 +826,6 @@ function field_collection_field_formatter_view($entity_type, $entity, $field, $i
 }
 
 /**
- * Returns an array of enabled operations.
- */
-function field_collection_get_operations($settings, $add = FALSE) {
-  $operations = array();
-
-  if ($add) {
-    $operations[] = 'add';
-  }
-  $operations[] = 'edit';
-  if (field_collection_item_is_translatable()) {
-    $operations[] = 'translate';
-  }
-  $operations[] = 'delete';
-
-  global $field_collection_operation_keys;
-  $field_collection_operation_keys = array_flip($operations);
-  $operations = array_filter(array_intersect_key($settings, $field_collection_operation_keys));
-  asort($operations);
-
-  return $operations;
-}
-
-/**
  * Helper function to add links to a field collection field.
  */
 function field_collection_field_formatter_links(&$element, $entity_type, $entity, $field, $instance, $langcode, $items, $display) {
@@ -943,7 +835,7 @@ function field_collection_field_formatter_links(&$element, $entity_type, $entity
   if ($settings['add'] && ($field['cardinality'] == FIELD_CARDINALITY_UNLIMITED || count($items) < $field['cardinality'])) {
     // Check whether the current is allowed to create a new item.
     $field_collection_item = entity_create('field_collection_item', array('field_name' => $field['field_name']));
-    $field_collection_item->setHostEntity($entity_type, $entity, $langcode, FALSE);
+    $field_collection_item->setHostEntity($entity_type, $entity, LANGUAGE_NONE, FALSE);
 
     if (field_collection_item_access('create', $field_collection_item)) {
       $allow_create_item = TRUE;
@@ -1067,56 +959,15 @@ function field_collection_field_widget_form(&$form, &$form_state, $field, $insta
         // load.
         if (empty($field_collection_item)) {
           $field_collection_item = entity_create('field_collection_item', array('field_name' => $field_name));
-          $field_collection_item->setHostEntity($element['#entity_type'], $element['#entity'], $langcode);
+          $field_collection_item->setHostEntity($element['#entity_type'], $element['#entity']);
         }
 
         // Put our entity in the form state, so FAPI callbacks can access it.
         $field_state['entity'][$delta] = $field_collection_item;
       }
 
-      // Register a child entity translation handler to properly deal with the
-      // entity form language.
-      if (field_collection_item_is_translatable()) {
-        $element['#host_entity_type'] = $element['#entity_type'];
-        $element['#host_entity'] = $element['#entity'];
-        // Give each field collection item a unique entity translation handler
-        // ID, otherwise an infinite loop occurs when adding values to nested
-        // field collection items.
-        if (!isset($field_collection_item->entity_translation_handler_id)) {
-          list($id, $revision_id) = entity_extract_ids('field_collection_item', $field_collection_item);
-          $revision_id = isset($revision_id) ? $revision_id : 0;
-          $field_collection_item->entity_translation_handler_id = 'field_collection_item' . '-' . (!empty($id) ? 'eid-' . $id . '-' . $revision_id : 'new-' . rand());
-        }
-        $element['#field_collection_item'] = $field_collection_item;
-        field_collection_add_child_translation_handler($element);
-        // Ensure this is executed even with cached forms. This is mainly useful
-        // when dealing with AJAX calls.
-        $element['#process'][] = 'field_collection_add_child_translation_handler';
-        // Flag the field to be processed in field_collection_form_alter to
-        // avoid adding incorrect translation hints.
-        $address = array_slice($element['#parents'], 0, -2);
-        if (empty($form['#field_collection_translation_fields']) || !in_array($address, $form['#field_collection_translation_fields'])) {
-          $form['#field_collection_translation_fields'][] = $address;
-        }
-      }
-
-      // Add the subform
       field_form_set_state($field_parents, $field_name, $language, $form_state, $field_state);
-      // Set the language to to parent entity language, because
-      // field_content_languages() will always set $language to LANGUAGE_NONE.
-      if (field_collection_item_is_translatable()) {
-        field_attach_form('field_collection_item', $field_collection_item, $element, $form_state, entity_language($element['#host_entity_type'], $element['#host_entity']));
-      }
-      else {
-        field_attach_form('field_collection_item', $field_collection_item, $element, $form_state, $language);
-      }
-
-      // Make sure subfields get translatable clues (like 'all languages')
-      if (field_collection_item_is_translatable() && variable_get('entity_translation_shared_labels', TRUE)) {
-        foreach (element_children($element) as $key) {
-          $element[$key]['#process'][] = 'entity_translation_element_translatability_clue';
-        }
-      }
+      field_attach_form('field_collection_item', $field_collection_item, $element, $form_state, $language);
 
       if (empty($element['#required'])) {
         $element['#after_build'][] = 'field_collection_field_widget_embed_delay_required_validation';
@@ -1143,15 +994,6 @@ function field_collection_field_widget_form(&$form, &$form_state, $field, $insta
       $recursion--;
       return $element;
   }
-}
-
-/**
- * Registers a child entity translation handler for the given element.
- */
-function field_collection_add_child_translation_handler($element) {
-  $handler = entity_translation_get_handler($element['#host_entity_type'], $element['#host_entity']);
-  $handler->addChild('field_collection_item', $element['#field_collection_item']);
-  return $element;
 }
 
 /**
@@ -1188,19 +1030,6 @@ function field_collection_field_attach_form($entity_type, $entity, &$form, &$for
         if (isset($form[$field_name][$element_langcode][$i]['remove_button'])) {
           $form[$field_name][$element_langcode][$i]['remove_button']['#ajax']['wrapper'] = $element_wrapper;
         }
-      }
-    }
-  }
-
-  // If FCs are translatable, make sure we mark any necessary sub-fields in the
-  // FC widget as translatable as well.
-  if ($entity_type == 'field_collection_item'
-      && field_collection_item_is_translatable()
-  ) {
-    foreach (field_info_instances($entity_type, $form['#bundle']) as $field_name => $instance) {
-      $field = field_info_field($field_name);
-      if (isset($field['translatable'])) {
-        $form[$field_name]['#multilingual'] = (boolean) $field['translatable'];
       }
     }
   }
@@ -1341,7 +1170,7 @@ function field_collection_field_get_entity(&$item, $field_name = NULL) {
   elseif (isset($item['value'])) {
     // By default always load the default revision, so caches get used.
     $entity = field_collection_item_load($item['value']);
-    if ($entity && $entity->revision_id != $item['revision_id']) {
+    if ($entity->revision_id != $item['revision_id']) {
       // A non-default revision is a referenced, so load this one.
       $entity = field_collection_item_revision_load($item['revision_id']);
     }
@@ -1401,28 +1230,7 @@ function field_collection_field_widget_embed_validate($element, &$form_state, $c
   $language = $element['#language'];
 
   $field_state = field_form_get_state($field_parents, $field_name, $language, $form_state);
-
-  // We have to populate the field_collection_item before we can attach it to
-  // the form.
-  if (isset($field_state['entity'][$element['#delta']])) {
-    $field_collection_item = $field_state['entity'][$element['#delta']];
-  }
-  elseif ($form_state['values'][$field_state['array_parents'][0]][$field_state['array_parents'][1]][$element['#delta']]) {
-    $field_collection_item = clone $field_state['entity'][0];
-    foreach ($form_state['values'][$field_state['array_parents'][0]][$field_state['array_parents'][1]][$element['#delta']] as $key => $value) {
-      if (property_exists($field_collection_item, $key)) {
-        $field_collection_item->{$key} = $value;
-      }
-    }
-  }
-
-  // Handle a possible language change.
-  if (field_collection_item_is_translatable()) {
-    $handler = entity_translation_get_handler('field_collection_item', $field_collection_item);
-    $element_values = &drupal_array_get_nested_value($form_state['values'], $field_state['array_parents']);
-    $element_form_state = array('values' => &$element_values[$element['#delta']]);
-    $handler->entityFormLanguageWidgetSubmit($element, $element_form_state);
-  }
+  $field_collection_item = $field_state['entity'][$element['#delta']];
 
   // Attach field API validation of the embedded form.
   field_attach_form_validate('field_collection_item', $field_collection_item, $element, $form_state);
@@ -1432,11 +1240,13 @@ function field_collection_field_widget_embed_validate($element, &$form_state, $c
     foreach ($element['#field_collection_required_elements'] as &$elements) {
 
       // Copied from _form_validate().
+      // #1676206: Modified to support options widget.
       if (isset($elements['#needs_validation'])) {
         $is_empty_multiple = (!count($elements['#value']));
         $is_empty_string = (is_string($elements['#value']) && drupal_strlen(trim($elements['#value'])) == 0);
         $is_empty_value = ($elements['#value'] === 0);
-        if ($is_empty_multiple || $is_empty_string || $is_empty_value) {
+        $is_empty_option = (isset($elements['#options']['_none']) && $elements['#value'] == '_none');
+        if ($is_empty_multiple || $is_empty_string || $is_empty_value || $is_empty_option) {
           if (isset($elements['#title'])) {
             form_error($elements, t('@name field is required.', array('@name' => $elements['#title'])));
           }
@@ -1447,9 +1257,6 @@ function field_collection_field_widget_embed_validate($element, &$form_state, $c
       }
     }
   }
-
-
-
 
   // Only if the form is being submitted, finish the collection entity and
   // prepare it for saving.
@@ -1466,17 +1273,12 @@ function field_collection_field_widget_embed_validate($element, &$form_state, $c
       $item['_weight'] = $element['_weight']['#value'];
     }
 
-    // Ensure field columns are poroperly populated.
-    $item['value'] = $field_collection_item->item_id;
-    $item['revision_id'] = $field_collection_item->revision_id;
-
     // Put the field collection item in $item['entity'], so it is saved with
     // the host entity via hook_field_presave() / field API if it is not empty.
     // @see field_collection_field_presave()
     $item['entity'] = $field_collection_item;
     form_set_value($element, $item, $form_state);
   }
-
 }
 
 /**
@@ -1523,15 +1325,11 @@ function field_collection_i18n_string_list_field_alter(&$properties, $type, $ins
 
       foreach ($instance['display'] as $view_mode => $display) {
         if ($display['type'] != 'field_collection_fields') {
-          $display['settings'] += array('edit' => 'edit', 'translate' => 'translate', 'delete' => 'delete', 'add' => 'add');
+          $display['settings'] += array('edit' => 'edit', 'delete' => 'delete', 'add' => 'add');
 
           $properties['field'][$instance['field_name']][$instance['bundle']]['setting_edit'] = array(
             'title' => t('Edit link title'),
             'string' => $display['settings']['edit'],
-          );
-          $properties['field'][$instance['field_name']][$instance['bundle']]['setting_translate'] = array(
-            'title' => t('Edit translate title'),
-            'string' => $display['settings']['translate'],
           );
           $properties['field'][$instance['field_name']][$instance['bundle']]['setting_delete'] = array(
             'title' => t('Delete link title'),
@@ -1623,10 +1421,7 @@ function field_collection_item_set_host_entity($item, $property_name, $wrapper) 
   if (!isset($wrapper->{$item->field_name})) {
     throw new EntityMetadataWrapperException('The specified entity has no such field collection field.');
   }
-  $entity_type = $wrapper->type();
-  $field = field_info_field($item->field_name);
-  $langcode = field_is_translatable($entity_type, $field) ? field_collection_entity_language($entity_type, $wrapper->value()) : LANGUAGE_NONE;
-  $item->setHostEntity($wrapper->type(), $wrapper->value(), $langcode);
+  $item->setHostEntity($wrapper->type(), $wrapper->value());
 }
 
 /**
@@ -1684,47 +1479,6 @@ function field_collection_devel_generate($object, $field, $instance, $bundle) {
 }
 
 /**
- * Determine if field collection items can be translated.
- *
- * @return
- *   Boolean indicating whether field collection items can be translated.
- */
-function field_collection_item_is_translatable() {
-  return (bool) module_invoke('entity_translation', 'enabled', 'field_collection_item');
-}
-
-/**
- * Implements hook_entity_translation_delete().
- */
-function field_collection_entity_translation_delete($entity_type, $entity, $langcode) {
-  if (field_collection_item_is_translatable()) {
-    list(, , $bundle) = entity_extract_ids($entity_type, $entity);
-
-    foreach (field_info_instances($entity_type, $bundle) as $instance) {
-      $field_name = $instance['field_name'];
-      $field = field_info_field($field_name);
-
-      if ($field['type'] == 'field_collection') {
-        $field_langcode = field_is_translatable($entity_type, $field) ? $langcode : LANGUAGE_NONE;
-
-        if (!empty($entity->{$field_name}[$field_langcode])) {
-          foreach ($entity->{$field_name}[$field_langcode] as $delta => $item) {
-            $field_collection_item = field_collection_field_get_entity($item);
-            $handler = entity_translation_get_handler('field_collection_item', $field_collection_item);
-            $translations = $handler->getTranslations();
-
-            if (isset($translations->data[$langcode])) {
-              $handler->removeTranslation($langcode);
-              $field_collection_item->save(TRUE);
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-/**
  * Determines if the additional blank items should be displayed or not.
  *
  * @param array $field
@@ -1749,44 +1503,5 @@ function field_collection_admin_menu_map() {
       ),
     );
     return $map;
-  }
-}
-
-/**
- * implements hook_entity_translation_insert
- */
-function field_collection_entity_translation_insert($entity_type, $entity, $translation, $values = array()) {
-  // Check if some of the values inserted are of a field_collection field
-  if (!empty($values)) {
-    foreach ($values as $field_name => $value) {
-      $field = field_info_field($field_name);
-
-      if ($field['type'] == 'field_collection') {
-        // We have found a field collection
-        $language = $translation['language'];
-        $source_language = $translation['source'];
-
-        if (!empty($value[$language])) {
-          $source_items = !empty($entity->{$field_name}[$source_language]) ? field_collection_field_item_to_ids($entity->{$field_name}[$source_language]) : array();
-          foreach ($value[$language] as $delta => $field_value) {
-            if (!isset($field_value['entity'])) {
-              if ($fc_entity = field_collection_field_get_entity($field_value)) {
-                // Check if this field collection item belongs to the source language
-                if (in_array($fc_entity->item_id, $source_items)) {
-                  // Clone the field collection item
-                  $new_fc_entity = clone $fc_entity;
-                  $new_fc_entity->item_id = NULL;
-                  $new_fc_entity->revision_id = NULL;
-                  $new_fc_entity->is_new = TRUE;
-
-                  // Set the new entity for saving it later
-                  $entity->{$field_name}[$language][$delta]['entity'] = $new_fc_entity;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
   }
 }
