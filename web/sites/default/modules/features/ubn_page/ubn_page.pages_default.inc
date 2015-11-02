@@ -485,6 +485,113 @@ function ubn_page_default_page_manager_handlers() {
   $handler = new stdClass();
   $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
   $handler->api_version = 1;
+  $handler->name = 'node_view__panel_context_f69415b1-e449-4cd0-859c-f2bea71148bb';
+  $handler->task = 'node_view';
+  $handler->subtask = '';
+  $handler->handler = 'panel_context';
+  $handler->weight = -24;
+  $handler->conf = array(
+    'title' => 'Page',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'name' => '',
+    'access' => array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'node_type',
+          'settings' => array(
+            'type' => array(
+              'page' => 'page',
+            ),
+          ),
+          'context' => 'argument_entity_id:node_1',
+          'not' => FALSE,
+        ),
+      ),
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'onecol';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'main' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = 'b6f36589-9536-420c-8d41-57a59f9d4348';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-ce69a7ac-895b-4e74-96e3-1054f934577b';
+    $pane->panel = 'main';
+    $pane->type = 'slate_render';
+    $pane->subtype = 'slate_render:page-head';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'argument_entity_id:node_1',
+      ),
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+      'style' => 'naked',
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'ce69a7ac-895b-4e74-96e3-1054f934577b';
+    $display->content['new-ce69a7ac-895b-4e74-96e3-1054f934577b'] = $pane;
+    $display->panels['main'][0] = 'new-ce69a7ac-895b-4e74-96e3-1054f934577b';
+    $pane = new stdClass();
+    $pane->pid = 'new-f5c386c1-afc9-4a08-96c3-2cd3ee33e780';
+    $pane->panel = 'main';
+    $pane->type = 'slate_render';
+    $pane->subtype = 'slate_render:content-sections';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'argument_entity_id:node_1',
+      ),
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'f5c386c1-afc9-4a08-96c3-2cd3ee33e780';
+    $display->content['new-f5c386c1-afc9-4a08-96c3-2cd3ee33e780'] = $pane;
+    $display->panels['main'][1] = 'new-f5c386c1-afc9-4a08-96c3-2cd3ee33e780';
+  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->title_pane = 'new-f5c386c1-afc9-4a08-96c3-2cd3ee33e780';
+  $handler->conf['display'] = $display;
+  $export['node_view__panel_context_f69415b1-e449-4cd0-859c-f2bea71148bb'] = $handler;
+
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
   $handler->name = 'site_template_panel_context';
   $handler->task = 'site_template';
   $handler->subtask = '';
