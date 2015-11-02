@@ -1,0 +1,8 @@
+{# slate
+  name = Page: content sections
+  models[page] = entity:node
+#}
+{% import "macros/misc.html.twig" as misc %}
+<div class="container">
+  {{ misc.content_sections(page.field_content_sections) }}
+</div>
