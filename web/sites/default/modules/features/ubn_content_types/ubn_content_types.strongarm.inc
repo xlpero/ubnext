@@ -471,5 +471,21 @@ function ubn_content_types_strongarm() {
   $strongarm->value = '[node:title-field]';
   $export['pathauto_node_page_pattern'] = $strongarm;
 
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'scald_custom_contexts';
+  $strongarm->value = array(
+    'page_content' => array(
+      'name' => 'page_content',
+      'title' => 'Page content',
+      'description' => '',
+      'render_language' => 'XHTML',
+      'parseable' => TRUE,
+      'formats' => array(),
+    ),
+  );
+  $export['scald_custom_contexts'] = $strongarm;
+
   return $export;
 }
