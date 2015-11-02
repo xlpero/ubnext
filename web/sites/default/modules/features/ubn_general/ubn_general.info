@@ -1,7 +1,7 @@
 name = General
 core = 7.x
 package = UBNext
-version = 7.x-0.7
+version = 7.x-0.8
 project = ubn_general
 dependencies[] = admin_menu
 dependencies[] = admin_menu_toolbar
@@ -45,7 +45,6 @@ features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2
 features[filter][] = markdown
-features[image][] = library_hero
 features[language][] = en
 features[language][] = sv
 features[menu_custom][] = main-menu

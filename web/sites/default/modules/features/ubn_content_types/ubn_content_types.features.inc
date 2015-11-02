@@ -40,6 +40,37 @@ function ubn_content_types_image_default_styles() {
     ),
   );
 
+  // Exported image style: library_hero.
+  $styles['library_hero'] = array(
+    'label' => 'library_hero',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 1000,
+          'height' => 300,
+          'upscale' => 1,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: page_content.
+  $styles['page_content'] = array(
+    'label' => 'Page content',
+    'effects' => array(
+      2 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 1024,
+          'height' => 576,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   return $styles;
 }
 
