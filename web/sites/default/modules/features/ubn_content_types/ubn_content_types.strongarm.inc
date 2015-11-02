@@ -264,10 +264,10 @@ function ubn_content_types_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '5',
+          'weight' => '4',
         ),
         'redirect' => array(
-          'weight' => '4',
+          'weight' => '3',
         ),
         'language' => array(
           'weight' => '1',
