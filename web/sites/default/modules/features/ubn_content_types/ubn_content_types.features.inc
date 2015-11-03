@@ -8,9 +8,70 @@
  * Implements hook_ctools_plugin_api().
  */
 function ubn_content_types_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "field_group" && $api == "field_group") {
+    return array("version" => "1");
+  }
+  if ($module == "scald" && $api == "context_config") {
+    return array("version" => "1");
+  }
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
+}
+
+/**
+ * Implements hook_image_default_styles().
+ */
+function ubn_content_types_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: content_admin.
+  $styles['content_admin'] = array(
+    'label' => 'Content admin',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 266,
+          'height' => 150,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: library_hero.
+  $styles['library_hero'] = array(
+    'label' => 'library_hero',
+    'effects' => array(
+      1 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 1000,
+          'height' => 300,
+          'upscale' => 1,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: page_content.
+  $styles['page_content'] = array(
+    'label' => 'Page content',
+    'effects' => array(
+      2 => array(
+        'name' => 'image_scale_and_crop',
+        'data' => array(
+          'width' => 1024,
+          'height' => 576,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  return $styles;
 }
 
 /**

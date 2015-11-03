@@ -21,9 +21,6 @@ function ubn_feeds_feeds_source_default() {
     ),
   );
   $feeds_source->source = 'pgsql:host=130.241.16.44;port=5432;dbname=librisdb;user=xgudav';
-  $feeds_source->state = FALSE;
-  $feeds_source->fetcher_result = FALSE;
-  $feeds_source->imported = 1445432092;
   $export['database_urls_field_collection'] = $feeds_source;
 
   $feeds_source = new stdClass();
@@ -37,9 +34,6 @@ function ubn_feeds_feeds_source_default() {
     ),
   );
   $feeds_source->source = 'pgsql:host=130.241.16.44;port=5432;dbname=librisdb;user=xgudav';
-  $feeds_source->state = FALSE;
-  $feeds_source->fetcher_result = FALSE;
-  $feeds_source->imported = 1445499439;
   $export['databases'] = $feeds_source;
 
   $feeds_source = new stdClass();
@@ -53,9 +47,6 @@ function ubn_feeds_feeds_source_default() {
     ),
   );
   $feeds_source->source = 'pgsql:host=130.241.16.44;port=5432;dbname=librisdb;user=xgudav';
-  $feeds_source->state = FALSE;
-  $feeds_source->fetcher_result = FALSE;
-  $feeds_source->imported = 1445417103;
   $export['databases_categories'] = $feeds_source;
 
   $feeds_source = new stdClass();
@@ -69,9 +60,6 @@ function ubn_feeds_feeds_source_default() {
     ),
   );
   $feeds_source->source = 'pgsql:host=130.241.16.44;port=5432;dbname=librisdb;user=xgudav';
-  $feeds_source->state = FALSE;
-  $feeds_source->fetcher_result = FALSE;
-  $feeds_source->imported = 1445499216;
   $export['databases_topics'] = $feeds_source;
 
   $feeds_source = new stdClass();
@@ -85,9 +73,6 @@ function ubn_feeds_feeds_source_default() {
     ),
   );
   $feeds_source->source = 'http://130.241.35.161:3014/locations';
-  $feeds_source->state = FALSE;
-  $feeds_source->fetcher_result = FALSE;
-  $feeds_source->imported = 1445499221;
   $export['libraries_opening_hours'] = $feeds_source;
 
   return $export;

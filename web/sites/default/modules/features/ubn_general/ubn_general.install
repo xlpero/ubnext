@@ -114,7 +114,7 @@ function ubn_general_install() {
 	theme_enable(array('ubnext'));
 	theme_disable(array('bartik'));
 	variable_set('theme_default', 'ubnext');
-	$modules = array('dashboard', 'overlay', 'shortcut', 'toolbar');
+	$modules = array('dashboard', 'overlay', 'shortcut', 'toolbar', 'search');
 	module_disable($modules);
 	drupal_uninstall_modules($modules);
 }
@@ -158,6 +158,24 @@ function ubn_general_update_7105() {
 function ubn_general_update_7106() {
   ubn_general_entity_translation_fields_enable(array('field_mailing_address', 'field_delivery_address'));
 }
+
+/* Revert features */
+function ubn_general_update_7107() {
+  features_revert_module('ubn_content_types');
+}
+
+/* Pathauto persist has been merged into Pathauto, disable and uninstall */
+function ubn_general_update_7108() {
+  $modules = array('pathauto_persist');
+  module_disable($modules);
+  drupal_uninstall_modules($modules);
+}
+
+/* Revert features */
+function ubn_general_update_7109() {
+  array_map('features_revert_module', array('ubn_content_types', 'ubn_page'));
+}
+
 
 // Enable entity translation for library
 /*

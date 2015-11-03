@@ -1,9 +1,10 @@
 name = UBN Feeds
 core = 7.x
 package = UBNext
-version = 7.x-0.4
+version = 7.x-0.6
 project = ubn_feeds
 dependencies[] = ctools
+dependencies[] = entityreference_feeds
 dependencies[] = feeds
 dependencies[] = feeds_jsonpath_parser
 dependencies[] = feeds_ui
@@ -26,5 +27,4 @@ features[feeds_source][] = databases
 features[feeds_source][] = databases_categories
 features[feeds_source][] = databases_topics
 features[feeds_source][] = libraries_opening_hours
-mtime = 1445433063
 project path = sites/default/modules/features

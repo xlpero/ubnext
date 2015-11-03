@@ -85,22 +85,24 @@ function ubn_property_fields_get_property_fields($entity, array $options, $name,
     foreach($fields as $field) {
       $property_field = array();
 
-      //Set label
-      $key = array('field', $field['name'], $bundle_name, 'label');
-      $property_field['label'] = entity_i18n_string(implode($key, ':'), $field['label']);
-
-      // Set name and type
-      $property_field['name'] = $field['name'];
-      $property_field['type'] = $field['type'];
-
       //Set value
       $field_wrapper = $wrapper->get($field['name']);
       $property_field['value'] = ubn_property_fields_field_get_value($field_wrapper, $field['type']);
 
-      //Set language
-      $property_field['language'] = $options['language']->language;
+      if(drupal_strlen($property_field['value'])) {
+        //Set label
+        $key = array('field', $field['name'], $bundle_name, 'label');
+        $property_field['label'] = entity_i18n_string(implode($key, ':'), $field['label']);
 
-      $property_fields[] = $property_field;
+        // Set name and type
+        $property_field['name'] = $field['name'];
+        $property_field['type'] = $field['type'];
+
+        //Set language
+        $property_field['language'] = $options['language']->language;
+
+        $property_fields[] = $property_field;
+      }
     }
   }
   return $property_fields;

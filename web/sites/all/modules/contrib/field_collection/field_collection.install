@@ -328,3 +328,32 @@ function field_collection_update_7006() {
     }
   }
 }
+
+/**
+ * Update fields in field collections already set to use Entity Translation.
+ */
+function field_collection_update_7007() {
+  // Include FieldCollectionItemEntity class.
+  module_load_include('inc', 'field_collection', 'field_collection.entity');
+
+  $results = array();
+  foreach (field_info_fields() as $f_name => $field) {
+    if ($field['translatable'] == 1 && isset($field['bundles']['field_collection_item'])) {
+      $query = new EntityFieldQuery();
+      $query->entityCondition('entity_type', 'field_collection_item')
+            ->fieldLanguageCondition($f_name, LANGUAGE_NONE);
+      $query_result = $query->execute();
+      if (isset($query_result['field_collection_item'])) {
+        $results = $results + $query_result['field_collection_item'];
+      }
+    }
+  }
+  if (count($results)) {
+    $ids = array_keys($results);
+    $field_collection_items = entity_load('field_collection_item', $ids);
+    foreach ($field_collection_items as $item) {
+      $item->copyTranslations(LANGUAGE_NONE);
+      $item->save();
+    }
+  }
+}

@@ -97,6 +97,9 @@ class UBNDatabasesFeedsFetcher extends UBNDatabasesFeedsFetcherBase {
         'categories' => array(), //TODO: change names to media types etc?
         'keywords' => array(),
         'prioritized_keywords' => array(),
+        //Tmp fix: static dummy values to set language
+        'language_sv' => 'sv',
+        'language_en' => 'en',
       );
     }
 

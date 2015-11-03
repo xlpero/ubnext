@@ -6,24 +6,30 @@
   {% endif %}
 {% endmacro %}
 
-{% macro content_sections(sections) %}
+{% macro media_atom(atom, context) %}
+  {{ scald_render(atom.value, context)|raw }}
+{% endmacro %}
+
+{% macro content_sections(sections, namespace) %}
+  <div class="content-sections">
   {% if sections.value %}
     {% for section in sections %}
-      {% if section.field_images.value %}
-      <div class="image-group">
-        {% for image in section.field_images %}
-          {{ _self.img('page_section_image', image.value) }}
+      {% if section.field_media_atoms.value %}
+      <div class="content-section-media">
+        {% for atom in section.field_media_atoms %}
+          {{ _self.media_atom(atom, 'page_content') }}
         {% endfor %}
       </div>
       {% endif %}
       {% if section.field_title.value or section.field_body.value %}
-        <section class="page-section">
-         {% if section.field_title.value %}<h2 class="section-title">{{ section.field_title.value }}</h2>{% endif %}
-         {% if section.field_body.value %}<div class="field body prose">{{ section.field_body.value|raw }}</div>{% endif %}
+        <section class="content-sections-section">
+         {% if section.field_title.value %}<h2 class="content-sections-section-title">{{ section.field_title.value }}</h2>{% endif %}
+         {% if section.field_body.value %}<div class="content-sections-section-body">{{ section.field_body.value|raw }}</div>{% endif %}
         </section>
       {% endif %}
     {% endfor %}
   {% endif %}
+  </div>
 {% endmacro %}
 
 {% macro content_header(title, preamble) %}

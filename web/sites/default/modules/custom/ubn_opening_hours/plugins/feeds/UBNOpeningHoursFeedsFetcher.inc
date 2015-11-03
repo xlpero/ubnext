@@ -15,10 +15,12 @@ class UBNOpeningHoursFeedsFetcher extends FeedsFetcher {
     $tz = new DateTimeZone('Europe/Stockholm');
     $now = new DateTime('now', $tz);
 
+    $source_language = 'en';
+
     $query = array(
       'start_date' => $now->format('Y-m-d'),
       'days' => 7, //setting for this?
-      'lang' => 'sv', //hmmm
+      'lang' => $source_language,
     );
 
     //TODO: use drupal_http_build_query instead to get rid of potential url
@@ -47,6 +49,7 @@ class UBNOpeningHoursFeedsFetcher extends FeedsFetcher {
       throw new Exception('Invalid json');
     }
     foreach($result_json['locations'] as &$location) {
+      $location['lang'] = $source_language;
       foreach(array('swedish_name', 'english_name', 'name') as $key) {
         // Also fix encoding
         $location[$key] = html_entity_decode($location[$key], ENT_COMPAT | ENT_HTML401, 'UTF-8');

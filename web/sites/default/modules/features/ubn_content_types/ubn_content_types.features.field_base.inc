@@ -93,6 +93,27 @@ function ubn_content_types_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_body'.
+  $field_bases['field_body'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_body',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'text_long',
+  );
+
   // Exported field_base: 'field_book_return_box'.
   $field_bases['field_book_return_box'] = array(
     'active' => 1,
@@ -143,6 +164,29 @@ function ubn_content_types_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'list_boolean',
+  );
+
+  // Exported field_base: 'field_content_sections'.
+  $field_bases['field_content_sections'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_content_sections',
+    'indexes' => array(
+      'revision_id' => array(
+        0 => 'revision_id',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'field_collection',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_blank_items' => 1,
+      'path' => '',
+    ),
+    'translatable' => 1,
+    'type' => 'field_collection',
   );
 
   // Exported field_base: 'field_database_urls'.
@@ -459,6 +503,27 @@ function ubn_content_types_field_default_field_bases() {
     ),
     'translatable' => 1,
     'type' => 'addressfield',
+  );
+
+  // Exported field_base: 'field_media_atoms'.
+  $field_bases['field_media_atoms'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_media_atoms',
+    'indexes' => array(
+      'sid' => array(
+        0 => 'sid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'atom_reference',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'atom_reference',
   );
 
   // Exported field_base: 'field_media_types'.
@@ -801,6 +866,28 @@ function ubn_content_types_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_title'.
+  $field_bases['field_title'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_title',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
   );
 
   // Exported field_base: 'field_title_short'.

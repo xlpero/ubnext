@@ -14,6 +14,9 @@ function ubn_search_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "page_manager" && $api == "pages_default") {
     return array("version" => "1");
   }
+  if ($module == "strongarm" && $api == "strongarm") {
+    return array("version" => "1");
+  }
 }
 
 /**
@@ -33,7 +36,7 @@ function ubn_search_default_search_api_index() {
       "cron_limit" : "50",
       "fields" : {
         "field_alternate_titles" : { "type" : "list\\u003Ctext\\u003E" },
-        "field_description_paragraphs" : { "type" : "text" },
+        "field_description_paragraphs" : { "type" : "list\\u003Ctext\\u003E" },
         "field_media_types" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_public_access" : { "type" : "boolean" },
         "field_publishers" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
@@ -97,7 +100,7 @@ function ubn_search_default_search_api_server() {
       "scheme" : "http",
       "host" : "130.241.35.208",
       "port" : "8080",
-      "path" : "\\/solr\\/drupal7_ubnext",
+      "path" : "\\/solr\\/drupal7_ubnext_xgudav",
       "http_user" : "",
       "http_pass" : "",
       "excerpt" : 1,

@@ -19,28 +19,3 @@ function ubn_general_ctools_plugin_api($module = NULL, $api = NULL) {
 function ubn_general_views_api($module = NULL, $api = NULL) {
   return array("api" => "3.0");
 }
-
-/**
- * Implements hook_image_default_styles().
- */
-function ubn_general_image_default_styles() {
-  $styles = array();
-
-  // Exported image style: library_hero.
-  $styles['library_hero'] = array(
-    'label' => 'library_hero',
-    'effects' => array(
-      1 => array(
-        'name' => 'image_scale',
-        'data' => array(
-          'width' => 1000,
-          'height' => 300,
-          'upscale' => 1,
-        ),
-        'weight' => 1,
-      ),
-    ),
-  );
-
-  return $styles;
-}

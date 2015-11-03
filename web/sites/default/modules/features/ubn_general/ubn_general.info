@@ -1,9 +1,13 @@
 name = General
 core = 7.x
 package = UBNext
-version = 7.x-0.7
+version = 7.x-0.8
 project = ubn_general
 dependencies[] = admin_menu
+<<<<<<< HEAD
+=======
+dependencies[] = admin_menu_toolbar
+>>>>>>> master
 dependencies[] = ctools
 dependencies[] = diff
 dependencies[] = entity
@@ -23,7 +27,6 @@ dependencies[] = node
 dependencies[] = pathauto
 dependencies[] = pathauto_i18n
 dependencies[] = pathauto_i18n_node
-dependencies[] = pathauto_persist
 dependencies[] = pathologic
 dependencies[] = redirect
 dependencies[] = restws
@@ -32,6 +35,8 @@ dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = title
 dependencies[] = transliteration
+dependencies[] = ubn_feeds
+dependencies[] = ubn_page
 dependencies[] = ubn_property_fields
 dependencies[] = ubn_search
 dependencies[] = ubn_settings
@@ -43,7 +48,6 @@ features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
 features[features_api][] = api:2
 features[filter][] = markdown
-features[image][] = library_hero
 features[language][] = en
 features[language][] = sv
 features[menu_custom][] = main-menu
