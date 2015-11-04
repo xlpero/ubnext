@@ -4,10 +4,10 @@
 #}
 
 {% import "macros/images.html.twig" as images %}
-<div class="container fullwidth-on-xs">
-{% if library.field_hero_image.value %}
-	<div class="hero-image">
-	    {{ images.style('library_hero', library.field_hero_image, true) }}
-    </div>
-{% endif %}
+<div class="container fullwidth-on-xs ub-panel-separator">
+	{% if library.field_hero_image.value %}
+		<div class="hero-image">
+		    {{ images.style('library_hero', library.field_hero_image, true) }}
+	    </div>
+	{% endif %}
 </div>

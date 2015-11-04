@@ -12,12 +12,12 @@
 
 
 
-<div class="container">
+<div class="container ub-panel-separator">
 	<div class="row">
 		<div class="col-xs-12 col-sm-8 col-sm-offset-2">
 			<h2 class="center"><?php print $view->get_title(); ?></h2>
 			<div class="row">
-					<div class="col-sm-11">
+					<div class="col-sm-12">
 						<div class="row">
 							<div class="col-sm-offset-6 col-sm-6 hidden-xs library-libraries-opening-hours-header">
 								<div class="row">

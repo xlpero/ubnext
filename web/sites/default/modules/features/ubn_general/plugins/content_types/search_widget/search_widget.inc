@@ -62,7 +62,7 @@ function ubn_general_search_widget_content_type_render($subtype, $conf, $panel_a
     $number = $record_count;
   }
   $search_slogan = t(
-    'Search among <strong> @number </strong> books, articles, magazines and more...',
+    'Search among <strong class="hidden-xs"> @number </strong> books, articles, magazines and more...',
     array(
       '@number' => _ubn_slate_number_format($number)
     )
