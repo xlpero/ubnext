@@ -1,11 +1,22 @@
 name = UBNext
 core = 7.x
 
+; CSS
 stylesheets[all][] = css/ubnext.css
 
+; Javascripts
 scripts[] = js/main.js
 
-
+; Panels
 api[panels][styles][version] = 3
 plugins[panels][layouts] = layouts
 plugins[panels][styles] = styles
+
+; Breakpoints
+breakpoints[large] = (min-width: 1200px)
+breakpoints[medium] = (min-width: 992px)
+breakpoints[small] = (min-width: 750px)
+breakpoints[extra_small] = (min-width: 0px)
+
+; multipliers[extra_small][] = 1.5x
+; multipliers[extra_small][] = 2x
