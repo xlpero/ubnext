@@ -4,10 +4,7 @@ package = UBNext
 version = 7.x-0.8
 project = ubn_general
 dependencies[] = admin_menu
-<<<<<<< HEAD
-=======
 dependencies[] = admin_menu_toolbar
->>>>>>> master
 dependencies[] = ctools
 dependencies[] = diff
 dependencies[] = entity
