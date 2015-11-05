@@ -13,7 +13,6 @@ dependencies[] = entity_translation_i18n_menu
 dependencies[] = features
 dependencies[] = feeds
 dependencies[] = filter
-dependencies[] = globalredirect
 dependencies[] = i18n_field
 dependencies[] = i18n_string
 dependencies[] = image
