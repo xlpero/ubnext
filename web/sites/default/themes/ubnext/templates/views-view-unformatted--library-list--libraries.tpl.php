@@ -19,7 +19,7 @@
 			<div class="row">
 					<div class="col-sm-12">
 						<div class="row">
-							<div class="col-sm-offset-6 col-sm-6 hidden-xs library-libraries-opening-hours-header">
+							<div class="col-sm-offset-7 col-sm-6 hidden-xs library-libraries-opening-hours-header">
 								<div class="row">
 									<div class="col-xs-12">
 										<strong><?php print t('Opening hours'); ?></strong>

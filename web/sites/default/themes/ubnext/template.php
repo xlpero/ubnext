@@ -13,7 +13,7 @@ function ubnext_links__locale_block($variables) {
 /**
  *
  */
-function ubnext_preprocess_html(&$vars) {
+function §(&$vars) {
   global $is_https;
   drupal_add_css(($is_https ? 'https' : 'http') . '://fonts.googleapis.com/css?family=Open+Sans:700,400', array('type' => 'external'));
 
@@ -70,6 +70,68 @@ function ubnext_pre_render_styles($elements) {
   }
 
   return $elements;
+}
+
+
+
+
+
+function ubnext_theme() {
+  $items = array();
+    
+  $items['user_login'] = array(
+    'render element' => 'form',
+    'path' => drupal_get_path('theme', 'ubnext') . '/templates',
+    'template' => 'user-login',
+    'preprocess functions' => array(
+       'ubnext_preprocess_user_login'
+    ),
+  );
+  $items['user_register_form'] = array(
+    'render element' => 'form',
+    'path' => drupal_get_path('theme', 'ubnext') . '/templates',
+    'template' => 'user-register-form',
+    'preprocess functions' => array(
+      'ubnext_preprocess_user_register_form'
+    ),
+  );
+  $items['user_pass'] = array(
+    'render element' => 'form',
+    'path' => drupal_get_path('theme', 'ubnext') . '/templates',
+    'template' => 'user-pass',
+    'preprocess functions' => array(
+      'ubnext_preprocess_user_pass'
+    ),
+  );
+  return $items;
+}
+
+function ubnext_user_login_block($form) {
+
+  $output = drupal_render($form);
+
+  return $output;
+
+}
+
+function ubnext_preprocess_user_login(&$vars) {
+  dpm($vars[form]);
+  $vars[form]['name']['#attributes']['class'][] = 'form-control';  
+  $vars[form]['pass']['#attributes']['class'][] = 'form-control';
+  $vars[form][actions][submit]['#attributes']['class'][] = 'btn btn-primary';
+  $vars['intro_text'] = t('Please login.');
+
+}
+
+function ubnext_preprocess_user_register_form(&$vars) {
+  $vars['intro_text'] = t('This is my super awesome reg form');
+}
+
+function ubnext_preprocess_user_pass(&$vars) {
+  dpm($vars[form]);
+  $vars[form]['name']['#attributes']['class'][] = 'form-control';  
+  $vars[form][actions][submit]['#attributes']['class'][] = 'btn btn-primary';
+  $vars['intro_text'] = t('Please login.');
 }
 
 /**
