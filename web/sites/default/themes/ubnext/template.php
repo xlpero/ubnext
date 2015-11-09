@@ -115,7 +115,6 @@ function ubnext_user_login_block($form) {
 }
 
 function ubnext_preprocess_user_login(&$vars) {
-  dpm($vars[form]);
   $vars[form]['name']['#attributes']['class'][] = 'form-control';  
   $vars[form]['pass']['#attributes']['class'][] = 'form-control';
   $vars[form][actions][submit]['#attributes']['class'][] = 'btn btn-primary';
