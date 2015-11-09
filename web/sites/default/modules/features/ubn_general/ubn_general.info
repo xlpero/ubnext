@@ -4,10 +4,7 @@ package = UBNext
 version = 7.x-0.8
 project = ubn_general
 dependencies[] = admin_menu
-<<<<<<< HEAD
-=======
 dependencies[] = admin_menu_toolbar
->>>>>>> master
 dependencies[] = ctools
 dependencies[] = diff
 dependencies[] = entity
@@ -16,7 +13,6 @@ dependencies[] = entity_translation_i18n_menu
 dependencies[] = features
 dependencies[] = feeds
 dependencies[] = filter
-dependencies[] = globalredirect
 dependencies[] = i18n_field
 dependencies[] = i18n_string
 dependencies[] = image
