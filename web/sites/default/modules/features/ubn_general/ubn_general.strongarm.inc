@@ -47,6 +47,7 @@ function ubn_general_strongarm() {
     'taxonomy_term' => 'taxonomy_term',
     'field_collection_item' => 'field_collection_item',
     'comment' => 0,
+    'file' => 0,
     'user' => 0,
   );
   $export['entity_translation_entity_types'] = $strongarm;

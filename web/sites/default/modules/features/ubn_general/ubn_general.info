@@ -17,6 +17,7 @@ dependencies[] = i18n_field
 dependencies[] = i18n_string
 dependencies[] = image
 dependencies[] = locale
+dependencies[] = login_destination
 dependencies[] = markdown
 dependencies[] = menu
 dependencies[] = node
