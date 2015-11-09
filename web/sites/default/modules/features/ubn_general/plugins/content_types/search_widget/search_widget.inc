@@ -85,6 +85,7 @@ function ubn_general_search_widget_content_type_render($subtype, $conf, $panel_a
 
   //$block->title = "detta är titel";
   $block->content = slate_render('search-widget', array('list' => $search_list));//drupal_get_form('ubn_general_super_search_form');
+  drupal_add_js(drupal_get_path('module', 'ubn_general') . '/plugins/content_types/search_widget/search-widget.js');
 
   return $block;
 }
