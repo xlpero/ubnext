@@ -70,6 +70,33 @@ function ubn_content_types_default_scald_context_config() {
   $context_config = new stdClass();
   $context_config->disabled = FALSE; /* Edit this to true to make a default context_config disabled initially */
   $context_config->api_version = 1;
+  $context_config->context = 'page_content_portrait';
+  $context_config->transcoder = array(
+    'image' => array(
+      '*' => 'style-page_content_portrait',
+    ),
+    'video' => array(
+      '*' => 'passthrough',
+    ),
+  );
+  $context_config->player = array(
+    'image' => array(
+      '*' => 'default',
+      'settings' => array(),
+    ),
+    'video' => array(
+      '*' => 'default',
+    ),
+  );
+  $context_config->data = array(
+    'width' => '',
+    'height' => '',
+  );
+  $export['page_content_portrait'] = $context_config;
+
+  $context_config = new stdClass();
+  $context_config->disabled = FALSE; /* Edit this to true to make a default context_config disabled initially */
+  $context_config->api_version = 1;
   $context_config->context = 'sdl_editor_representation';
   $context_config->transcoder = array(
     'image' => array(
