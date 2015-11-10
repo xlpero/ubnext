@@ -1,7 +1,7 @@
 name = General
 core = 7.x
 package = UBNext
-version = 7.x-0.8
+version = 7.x-0.9
 project = ubn_general
 dependencies[] = admin_menu
 dependencies[] = admin_menu_toolbar
@@ -16,6 +16,7 @@ dependencies[] = filter
 dependencies[] = i18n_field
 dependencies[] = i18n_string
 dependencies[] = image
+dependencies[] = jquery_update
 dependencies[] = locale
 dependencies[] = login_destination
 dependencies[] = markdown
