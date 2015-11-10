@@ -43,7 +43,7 @@ function ubn_content_types_default_scald_context_config() {
   $context_config->context = 'page_content';
   $context_config->transcoder = array(
     'image' => array(
-      '*' => 'style-page_content',
+      '*' => 'group-page_content',
     ),
     'video' => array(
       '*' => 'passthrough',
