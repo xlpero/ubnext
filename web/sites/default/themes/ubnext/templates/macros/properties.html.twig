@@ -2,7 +2,9 @@
 <div class="container ub-panel-separator">
   <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
-    <div class="center"><h2>{{ title }}</h2></div>
+    {% if ubn_property_fields.count > 0 %}
+      <div class="center"><h2>{{ title }}</h2></div>
+    {% endif %}
     <ul class="list-unstyled ub-list-of-links">
     {% for property in ubn_property_fields %}
       {% if not property.value.value is null %}

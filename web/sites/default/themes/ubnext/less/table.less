@@ -1,0 +1,26 @@
+.table {
+	font-size: 0.75em;
+	margin: 20px 0;
+	width: 100%;
+	@media (min-width: @screen-sm-min) {
+		font-size: 1em;
+	}
+
+	> thead > tr > th {
+		border-width: 1px;
+	}
+	tr {
+		border-top: 1px solid @table-border-color;
+		border-bottom: 1px solid @table-border-color;
+		border-collapse: collapse;
+		td, th {
+		  padding: 5px;
+	}
+	}
+}
+
+
+table {
+	.table();
+}
+
