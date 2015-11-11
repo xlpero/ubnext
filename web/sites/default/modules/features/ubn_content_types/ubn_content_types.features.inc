@@ -8,8 +8,14 @@
  * Implements hook_ctools_plugin_api().
  */
 function ubn_content_types_ctools_plugin_api($module = NULL, $api = NULL) {
+  if ($module == "breakpoints" && $api == "default_breakpoint_group") {
+    return array("version" => "1");
+  }
   if ($module == "field_group" && $api == "field_group") {
     return array("version" => "1");
+  }
+  if ($module == "picture" && $api == "default_picture_mapping") {
+    return array("version" => "2");
   }
   if ($module == "scald" && $api == "context_config") {
     return array("version" => "1");
@@ -42,16 +48,19 @@ function ubn_content_types_image_default_styles() {
 
   // Exported image style: library_hero.
   $styles['library_hero'] = array(
-    'label' => 'library_hero',
+    'label' => 'Library hero',
     'effects' => array(
-      1 => array(
-        'name' => 'image_scale',
+      12 => array(
+        'name' => 'manualcrop_crop_and_scale',
         'data' => array(
-          'width' => 1000,
+          'width' => 930,
           'height' => 300,
-          'upscale' => 1,
+          'upscale' => 0,
+          'respectminimum' => 1,
+          'onlyscaleifcrop' => 0,
+          'style_name' => 'library_hero',
         ),
-        'weight' => 1,
+        'weight' => 0,
       ),
     ),
   );
@@ -60,13 +69,55 @@ function ubn_content_types_image_default_styles() {
   $styles['page_content'] = array(
     'label' => 'Page content',
     'effects' => array(
-      2 => array(
-        'name' => 'image_scale_and_crop',
+      8 => array(
+        'name' => 'manualcrop_crop_and_scale',
         'data' => array(
           'width' => 1024,
           'height' => 576,
+          'upscale' => 0,
+          'respectminimum' => 1,
+          'onlyscaleifcrop' => 0,
+          'style_name' => 'page_content',
         ),
-        'weight' => 1,
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  // Exported image style: page_content_extra_small.
+  $styles['page_content_extra_small'] = array(
+    'label' => 'Page content extra small',
+    'effects' => array(
+      10 => array(
+        'name' => 'manualcrop_crop_and_scale',
+        'data' => array(
+          'width' => 750,
+          'height' => 422,
+          'upscale' => 0,
+          'respectminimum' => 1,
+          'onlyscaleifcrop' => 0,
+          'style_name' => 'page_content_extra_small',
+        ),
+        'weight' => 0,
+      ),
+    ),
+  );
+
+  // Exported image style: page_content_portrait.
+  $styles['page_content_portrait'] = array(
+    'label' => 'Page content portrait',
+    'effects' => array(
+      13 => array(
+        'name' => 'manualcrop_crop_and_scale',
+        'data' => array(
+          'width' => 465,
+          'height' => 576,
+          'upscale' => 0,
+          'respectminimum' => 1,
+          'onlyscaleifcrop' => 0,
+          'style_name' => 'page_content_portrait',
+        ),
+        'weight' => 0,
       ),
     ),
   );

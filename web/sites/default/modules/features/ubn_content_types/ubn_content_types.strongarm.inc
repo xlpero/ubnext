@@ -484,6 +484,14 @@ function ubn_content_types_strongarm() {
       'parseable' => TRUE,
       'formats' => array(),
     ),
+    'page_content_portrait' => array(
+      'name' => 'page_content_portrait',
+      'title' => 'Page content portrait',
+      'description' => '',
+      'render_language' => 'XHTML',
+      'parseable' => TRUE,
+      'formats' => array(),
+    ),
   );
   $export['scald_custom_contexts'] = $strongarm;
 
