@@ -166,3 +166,393 @@ function ubn_content_types_node_info() {
   drupal_alter('node_info', $items);
   return $items;
 }
+
+/**
+ * Implements hook_scald_default_context_types().
+ */
+function ubn_content_types_scald_default_context_types() {
+  $contexts = array();
+  $contexts['deleted-file'] = array(
+    'player' => array(
+      'file' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'file' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['deleted-image'] = array(
+    'player' => array(
+      'image' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'image' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['deleted-video'] = array(
+    'player' => array(
+      'video' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'video' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['file_representation-file'] = array(
+    'player' => array(
+      'file' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'file' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['file_representation-image'] = array(
+    'player' => array(
+      'image' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'image' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['file_representation-video'] = array(
+    'player' => array(
+      'video' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'video' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['full-file'] = array(
+    'player' => array(
+      'file' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'file' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['full-image'] = array(
+    'player' => array(
+      'image' => array(
+        '*' => 'default',
+        'settings' => array(),
+      ),
+    ),
+    'transcoder' => array(
+      'image' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['full-video'] = array(
+    'player' => array(
+      'video' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'video' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['invalid-id-file'] = array(
+    'player' => array(
+      'file' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'file' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['invalid-id-image'] = array(
+    'player' => array(
+      'image' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'image' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['invalid-id-video'] = array(
+    'player' => array(
+      'video' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'video' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['no-access-file'] = array(
+    'player' => array(
+      'file' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'file' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['no-access-image'] = array(
+    'player' => array(
+      'image' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'image' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['no-access-video'] = array(
+    'player' => array(
+      'video' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'video' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['page_content-file'] = array(
+    'player' => array(
+      'file' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'file' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['page_content-image'] = array(
+    'player' => array(
+      'image' => array(
+        '*' => 'default',
+        'settings' => array(
+          'classes' => 'img-responsive',
+          'caption' => '[atom:title], by [atom:author]',
+        ),
+      ),
+    ),
+    'transcoder' => array(
+      'image' => array(
+        '*' => 'group-page_content',
+      ),
+    ),
+  );
+  $contexts['page_content-video'] = array(
+    'player' => array(
+      'video' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'video' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['page_content_portrait-image'] = array(
+    'player' => array(
+      'image' => array(
+        '*' => 'default',
+        'settings' => array(),
+      ),
+    ),
+    'transcoder' => array(
+      'image' => array(
+        '*' => 'style-page_content_portrait',
+      ),
+    ),
+  );
+  $contexts['sdl_editor_representation-file'] = array(
+    'player' => array(
+      'file' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'file' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['sdl_editor_representation-image'] = array(
+    'player' => array(
+      'image' => array(
+        '*' => 'default',
+        'settings' => array(),
+      ),
+    ),
+    'transcoder' => array(
+      'image' => array(
+        '*' => 'style-content_admin',
+      ),
+    ),
+  );
+  $contexts['sdl_editor_representation-video'] = array(
+    'player' => array(
+      'video' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'video' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['sdl_library_item-file'] = array(
+    'player' => array(
+      'file' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'file' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['sdl_library_item-image'] = array(
+    'player' => array(
+      'image' => array(
+        '*' => 'default',
+        'settings' => array(),
+      ),
+    ),
+    'transcoder' => array(
+      'image' => array(
+        '*' => 'style-Library',
+      ),
+    ),
+  );
+  $contexts['sdl_library_item-video'] = array(
+    'player' => array(
+      'video' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'video' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['sdl_preview-file'] = array(
+    'player' => array(
+      'file' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'file' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['sdl_preview-image'] = array(
+    'player' => array(
+      'image' => array(
+        '*' => 'default',
+        'settings' => array(),
+      ),
+    ),
+    'transcoder' => array(
+      'image' => array(
+        '*' => 'style-content_admin',
+      ),
+    ),
+  );
+  $contexts['sdl_preview-video'] = array(
+    'player' => array(
+      'video' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'video' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['title-file'] = array(
+    'player' => array(
+      'file' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'file' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['title-image'] = array(
+    'player' => array(
+      'image' => array(
+        '*' => 'default',
+        'settings' => array(),
+      ),
+    ),
+    'transcoder' => array(
+      'image' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  $contexts['title-video'] = array(
+    'player' => array(
+      'video' => array(
+        '*' => 'default',
+      ),
+    ),
+    'transcoder' => array(
+      'video' => array(
+        '*' => 'passthrough',
+      ),
+    ),
+  );
+  return $contexts;
+}
