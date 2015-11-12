@@ -1,0 +1,155 @@
+<?php
+
+/**
+ * Implements hook_scald_render().
+ */
+function ubn_scald_scald_render($atom, $context, $options = array()) {
+  $callback ='_ubn_scald_' . $context . '_render';
+  if(function_exists($callback)) {
+    return $callback($atom, $context, $options);
+  }
+  else {
+    return scald_scald_render($atom, $context, $options);
+  }
+}
+
+// Render callbacks
+
+function _ubn_scald_page_content_attachments_render($atom, $options) {
+  $result = slate_render('scald-file-page-content-attachments', array(
+    'atom' => $atom,
+    'file_url' => file_create_url($atom->base_entity->uri),
+    'file_size' => format_size($atom->base_entity->filesize),
+    'file_mime' => $atom->base_entity->filemime,
+    'file_extension' => _ubn_scald_file_extension($atom->base_entity->filename),
+    'font_awesome_icon' => _ubn_scald_font_awesome_icon($atom->base_entity->filemime),
+  ));
+  return $result;
+}
+
+
+function _ubn_scald_file_extension($filename) {
+  $parts = explode('.', $filename);
+  if(count($parts) > 1) {
+    $extension = end($parts);
+    //TODO: factor in mimetype instead?
+    if(strlen($extension) < 5) {
+      return $extension;
+    }
+  }
+  return NULL;
+}
+
+
+function _ubn_scald_font_awesome_icon($filemime) {
+  static $regexp_icon_mapping = array(
+    '@
+      ^application/vnd\.
+        (openxmlformats-officedocument\.spreadsheetml)|
+        (ms-excel)
+    @xi' => 'fa-file-excel-o',
+    '@
+      ^application/
+        (vnd\.openxmlformats-officedocument\.wordprocessingml)|
+        (msword)
+    @xi' => 'fa-file-word-o',
+    '@
+      ^application/vnd\.
+        (openxmlformats-officedocumenti\.presentationml)|
+        (ms-powerpoint)
+    @xi' => 'fa-file-powerpoint-o',
+    '@
+      ^application/(x-)?pdf
+    @xi' => 'fa-file-pdf-o',
+    '@
+      ^audio/
+    @xi' => 'fa-file-audio-o',
+    '@
+      ^image/
+    @xi' => 'fa-file-image-o',
+    '@
+      ^video/
+    @xi' => 'fa-file-video-o',
+    /* TODO:
+    '@
+      ()|
+      @x' => 'file-code-o',
+    */
+    '@
+      ^application/
+        (x-gzip)|
+        (x-bzip2?)|
+        (x-g?tar)|
+        (gnutar)|
+        (x-cpio)|
+        (x-shar)|
+        (x-lzip)|
+        (x-lzma)|
+        (x-lzop)|
+        (x-snappy-framed)|
+        (x-xz)|
+        (x-compress)|
+        (x-7z-compressed)|
+        (x-ace-compressed)|
+        (x-astrotite-afa)|
+        (x-alz-compressed)|
+        (vnd\.android\.package-archive)|
+        (x-arj)|
+        (x-b1)|
+        (vnd\.ms-cab-compressed)|
+        (x-cfs-compressed)|
+        (x-dar)|
+        (x-dgc-compressed)|
+        (x-apple-diskimage)|
+        (x-gca-compressed)|
+        (x-lzh)|
+        (x-lzx)|
+        (x-rar-compressed)|
+        (x-stuffitx?)|
+        (zip)|
+        (application/x-par2)
+    @x' => 'fa-file-archive-o',
+    '@
+      ^text/plain
+    @xi' => 'fa-file-text-o',
+  );
+
+  foreach($regexp_icon_mapping as $pattern => $icon) {
+    if(preg_match($pattern, $filemime)) {
+      return $icon;
+    }
+  }
+  // No match found, return generic file icon
+  return 'fa-file-o';
+}
+
+
+/**
+ * Implements hook_scald_contexts().
+ *
+ * Defines UBN scald contexts
+ */
+function ubn_scald_scald_contexts() {
+  $contexts['page_content'] = array(
+    'title' => t('Page content'),
+    'description' => t('Page content'),
+    'render_language' => 'XHTML',
+    'parseable' => TRUE,
+    'formats' => array(
+      'image' => array('passthrough'),
+      'video' => array('passthrough'),
+    ),
+  );
+  $contexts['page_content_attachments'] = array(
+    'title' => t('Page content attachments'),
+    'description' => t('Page content attachments'),
+    'render_language' => 'XHTML',
+    'parseable' => TRUE,
+    'formats' => array(
+      'file' => array('passthrough'),
+      'image' => array('passthrough'),
+    ),
+  );
+  return $contexts;
+}
+
