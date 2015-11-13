@@ -123,7 +123,6 @@ function _ubn_scald_font_awesome_icon($filemime) {
   return 'fa-file-o';
 }
 
-
 /**
  * Implements hook_scald_contexts().
  *
@@ -152,4 +151,3 @@ function ubn_scald_scald_contexts() {
   );
   return $contexts;
 }
-
