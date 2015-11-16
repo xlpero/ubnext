@@ -183,6 +183,10 @@ function ubn_general_update_7110() {
   drupal_uninstall_modules($modules);
 }
 
+function ubn_general_update_7111() {
+  features_revert_module('ubn_general');
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {

@@ -18,18 +18,23 @@ function ubn_general_filter_default_formats() {
     'status' => 1,
     'weight' => 0,
     'filters' => array(
+      'ubn_markdown' => array(
+        'weight' => -44,
+        'status' => 1,
+        'settings' => array(),
+      ),
       'filter_markdown' => array(
-        'weight' => 0,
+        'weight' => -43,
         'status' => 1,
         'settings' => array(),
       ),
       'filter_htmlcorrector' => array(
-        'weight' => 10,
+        'weight' => -42,
         'status' => 1,
         'settings' => array(),
       ),
       'pathologic' => array(
-        'weight' => 50,
+        'weight' => -41,
         'status' => 1,
         'settings' => array(
           'local_paths' => '',
