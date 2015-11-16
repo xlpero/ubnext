@@ -3,7 +3,21 @@
   models[title] = item
   models[content] = item
   models[link_href] = item
-  models[link_title] = item
   models[link_text] = item
+  models[link_title] = item
 #}
-
+{# Spaceless needed to avoid markdown quirks where indented html is enterpreted as "code" etc #}
+{% spaceless %}
+<div markdown="1" class="ubn-call-to-action">
+{% if not title is empty %}
+  <div class="ubn-call-to-action-heading"><h4>{{ title }}</h4></div>
+{% endif %}
+  <div markdown="1" class="ubn-call-to-action-content">{{ content|raw }}</div>
+  {% if not link_href is empty and not link_text is empty %}
+{# Wrap in div to prevent markdown from wrapping in p (better fix possible? #}
+    <div class="ubn-call-to-action-link">
+      <a href="{{ link_href }}"{% if not link_title is empty %} title="{{ link_title }}"{% endif %}>{{ link_text }}</a>
+    </div>
+  {% endif %}
+</div>
+{% endspaceless %}
