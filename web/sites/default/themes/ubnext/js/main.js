@@ -1,17 +1,8 @@
 (function ($) {
-    //add drupal 7 code
-    Drupal.behaviors.myfunction = {
-        attach: function(context, settings) {
-		//some jquery goodness here...
-			$("#menu-toggler-btn").bind( "click", function() {
-				var itemToDisplay = $(".mega-menu");
-				itemToDisplay.animate({
-		            height: "toggle",
-		            opacity: "toggle"
-		        }, 200, function() {
-		        	itemToDisplay.css("overflow", "visible");
-		        });
-			});
-	 	 }
- 	 }
+  Drupal.behaviors.ubnext_fitvids = {
+    attach: function(context, settings) {
+      $('.ubn-video', context).fitVids();
+    }
+  }
+}
 })(jQuery);
