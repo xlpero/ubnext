@@ -48,6 +48,50 @@ function ubn_content_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'field_collection_item-field_content_sections-field_file_atoms'.
+  $field_instances['field_collection_item-field_content_sections-field_file_atoms'] = array(
+    'bundle' => 'field_content_sections',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'atom_reference',
+        'settings' => array(
+          'link' => 0,
+          'override' => 0,
+        ),
+        'type' => 'title',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_file_atoms',
+    'label' => 'Files',
+    'required' => 0,
+    'settings' => array(
+      'allow_override' => 0,
+      'entity_translation_sync' => FALSE,
+      'referencable_types' => array(
+        'file' => 'file',
+        'image' => 0,
+        'video' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'atom_reference',
+      'settings' => array(
+        'context' => 'sdl_editor_representation',
+      ),
+      'type' => 'atom_reference_textfield',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance:
   // 'field_collection_item-field_content_sections-field_media_atoms'.
   $field_instances['field_collection_item-field_content_sections-field_media_atoms'] = array(
     'bundle' => 'field_content_sections',
@@ -2548,6 +2592,7 @@ function ubn_content_types_field_default_field_instances() {
   t('Delivery address');
   t('Description');
   t('Descriptions');
+  t('Files');
   t('GU-print');
   t('Group study rooms');
   t('Image');

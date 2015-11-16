@@ -221,13 +221,13 @@ function ubn_content_types_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '12',
+          'weight' => '10',
         ),
         'redirect' => array(
-          'weight' => '13',
+          'weight' => '11',
         ),
         'language' => array(
-          'weight' => '9',
+          'weight' => '8',
         ),
       ),
       'display' => array(),
@@ -533,9 +533,9 @@ function ubn_content_types_strongarm() {
       'parseable' => TRUE,
       'formats' => array(),
     ),
-    'hero_area' => array(
-      'name' => 'hero_area',
-      'title' => 'hero area',
+    'page_content_portrait' => array(
+      'name' => 'page_content_portrait',
+      'title' => 'Page content portrait',
       'description' => '',
       'render_language' => 'XHTML',
       'parseable' => TRUE,
@@ -548,7 +548,7 @@ function ubn_content_types_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'scald_switch_feature_export';
-  $strongarm->value = FALSE;
+  $strongarm->value = TRUE;
   $export['scald_switch_feature_export'] = $strongarm;
 
   return $export;
