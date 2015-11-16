@@ -75,7 +75,7 @@ function ubn_content_types_field_default_field_instances() {
       'entity_translation_sync' => FALSE,
       'referencable_types' => array(
         'file' => 'file',
-        'image' => 0,
+        'image' => 'image',
         'video' => 0,
       ),
       'user_register_form' => FALSE,
