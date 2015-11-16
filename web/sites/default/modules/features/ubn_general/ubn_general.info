@@ -1,7 +1,7 @@
 name = General
 core = 7.x
 package = UBNext
-version = 7.x-0.8
+version = 7.x-0.9
 project = ubn_general
 dependencies[] = admin_menu
 dependencies[] = admin_menu_toolbar
@@ -34,6 +34,7 @@ dependencies[] = taxonomy
 dependencies[] = title
 dependencies[] = transliteration
 dependencies[] = ubn_feeds
+dependencies[] = ubn_markdown
 dependencies[] = ubn_page
 dependencies[] = ubn_property_fields
 dependencies[] = ubn_search

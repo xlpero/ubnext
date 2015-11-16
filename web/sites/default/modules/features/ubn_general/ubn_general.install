@@ -183,6 +183,7 @@ function ubn_general_update_7110() {
   drupal_uninstall_modules($modules);
 }
 
+
 // remove hero_image_field on library contenttype
 function ubn_general_update_7111() {
   $fieldname = 'field_hero_image';
@@ -192,7 +193,9 @@ function ubn_general_update_7111() {
 }
 
 
-
+function ubn_general_update_7112() {
+  features_revert_module('ubn_general');
+}
 
 // Enable entity translation for library
 /*

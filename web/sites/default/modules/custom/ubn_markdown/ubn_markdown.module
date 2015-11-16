@@ -13,22 +13,13 @@ function ubn_markdown_filter_info() {
 }
 // TODO: use slate instead? 
 function _ubn_markdown_replace_callback($matches) {
-  $output = '<div markdown="1" class="ubn-call-to-action">';
-  if(!empty($matches['title'])) {
-    $output .= '<h4 class="ubn-call-to-action-title">' . $matches['title'] . '</h4>';
-  }
-  $output .= '<div markdown="1" class="ubn-call-to-action-content">' . $matches['content'] . '</div>';
-  if(!empty($matches['link_text'])) {
-    // Wrap in div to prevent markdown from wrapping in p (better fix possible?)
-    $output .= '<div><a class="ubn-call-to-action-link"';
-    $output .= ' href="' . $matches['link_href'] . '"';
-    if(!empty($matches['link_title'])) {
-      $output .= ' title = "' . $matches['link_title'] . '"';
-    }
-    $output .= '>' . $matches['link_text'] . '</a></div>';
-  }
-  $output .= '</div>';
-  return $output;
+  return slate_render('ubn-markdown-call-to-action', array(
+    'title' => $matches['title'],
+    'content' => $matches['content'],
+    'link_href' => $matches['link_href'],
+    'link_text' => $matches['link_text'],
+    'link_title' => $matches['link_title'],
+  ));
 }
 
 function _ubn_markdown($text, $format) {
@@ -37,7 +28,7 @@ function _ubn_markdown($text, $format) {
   return preg_replace_callback('/
     ^\!{3,}\h*$           # Begin call to action block (!!!)
     \s*
-    (?:^\#+(?P<title>[^\r\n]+))?
+    (?:^\#+\h*(?P<title>[^\r\n]+))?
     (?P<content>.+?)
     \s*
     (?:
