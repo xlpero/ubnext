@@ -1,0 +1,12 @@
+{# slate
+  name = Scald file: page_content_attachments
+  models[atom] = entity:scald_atom
+  models[file_url] = item
+  models[file_size] = item
+  models[file_mime] = item
+  models[file_extension] = item
+  models[font_awesome_icon] = item
+#}
+<i class="fa {{ font_awesome_icon }}"></i>
+<a class="file-link" target="_blank" href="{{ file_url }}" title="{{ atom.title.value }}">{{ atom.title.value }}</a>
+<span class="file-extension">({{ file_extension }}, </span><span class="file-size">{{ file_size }})</span>

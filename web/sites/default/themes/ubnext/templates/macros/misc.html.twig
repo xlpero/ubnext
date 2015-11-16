@@ -1,16 +1,20 @@
-
 {% macro media_atom(atom, context) %}
+  {{ scald_render(atom.value, context)|raw }}
+{% endmacro %}
+
+{%macro file_atom(atom, context) %}
   {{ scald_render(atom.value, context)|raw }}
 {% endmacro %}
 
 {% macro content_sections(sections, namespace) %}
   <div class="content-sections">
-  {% if sections.value %}
+  {% if not sections.value is empty %}
     {% for section in sections %}
-      {% if section.field_media_atoms.value %}
+      {% set context = count(section.field_media_atoms) > 1 ? 'page_content_portrait' : 'page_content' %}
+      {% if not section.field_media_atoms.value is empty %}
       <div class="content-section-media">
         {% for atom in section.field_media_atoms %}
-          {{ _self.media_atom(atom, 'page_content') }}
+          {{ _self.media_atom(atom, context) }}
         {% endfor %}
       </div>
       {% endif %}
@@ -19,6 +23,15 @@
          {% if section.field_title.value %}<h2 class="content-sections-section-title">{{ section.field_title.value }}</h2>{% endif %}
          {% if section.field_body.value %}<div class="content-sections-section-body">{{ section.field_body.value|raw }}</div>{% endif %}
         </section>
+      {% endif %}
+      {% if not section.field_file_atoms.value is empty %}
+        <div class="row">
+        <ul class="list-unstyled content-sections-section-attached-files">
+        {% for atom in section.field_file_atoms %}
+          <li class="col-xs-12">{{ _self.file_atom(atom, 'page_content_attachments') }}</li>
+        {% endfor %}
+        </ul>
+        </div>
       {% endif %}
     {% endfor %}
   {% endif %}
