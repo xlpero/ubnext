@@ -221,13 +221,13 @@ function ubn_content_types_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '10',
+          'weight' => '12',
         ),
         'redirect' => array(
-          'weight' => '11',
+          'weight' => '13',
         ),
         'language' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
       ),
       'display' => array(),
@@ -467,9 +467,58 @@ function ubn_content_types_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_library_en_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_library_en_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_library_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_library_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_library_sv_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_library_sv_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_library_und_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_library_und_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_opening_hours_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_opening_hours_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_page_pattern';
   $strongarm->value = '[node:title-field]';
   $export['pathauto_node_page_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_library_properties_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_library_properties_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_wlan_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_wlan_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -484,9 +533,9 @@ function ubn_content_types_strongarm() {
       'parseable' => TRUE,
       'formats' => array(),
     ),
-    'page_content_portrait' => array(
-      'name' => 'page_content_portrait',
-      'title' => 'Page content portrait',
+    'hero_area' => array(
+      'name' => 'hero_area',
+      'title' => 'hero area',
       'description' => '',
       'render_language' => 'XHTML',
       'parseable' => TRUE,
@@ -499,7 +548,7 @@ function ubn_content_types_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'scald_switch_feature_export';
-  $strongarm->value = TRUE;
+  $strongarm->value = FALSE;
   $export['scald_switch_feature_export'] = $strongarm;
 
   return $export;

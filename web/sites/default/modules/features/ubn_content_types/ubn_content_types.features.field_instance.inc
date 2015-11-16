@@ -668,6 +668,51 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-library-body'.
+  $field_instances['node-library-body'] = array(
+    'bundle' => 'library',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 600,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'body',
+    'label' => 'Body',
+    'required' => FALSE,
+    'settings' => array(
+      'display_summary' => TRUE,
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => 7,
+    ),
+  );
+
   // Exported field_instance: 'node-library-field_adapted_study_rooms_count'.
   $field_instances['node-library-field_adapted_study_rooms_count'] = array(
     'bundle' => 'library',
@@ -712,7 +757,7 @@ function ubn_content_types_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 8,
+      'weight' => 18,
     ),
   );
 
@@ -751,7 +796,7 @@ function ubn_content_types_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 14,
+      'weight' => 24,
     ),
   );
 
@@ -790,7 +835,7 @@ function ubn_content_types_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 13,
+      'weight' => 23,
     ),
   );
 
@@ -934,7 +979,7 @@ function ubn_content_types_field_default_field_instances() {
         'rows' => 2,
       ),
       'type' => 'text_textarea',
-      'weight' => 3,
+      'weight' => 2,
     ),
   );
 
@@ -973,7 +1018,7 @@ function ubn_content_types_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 12,
+      'weight' => 22,
     ),
   );
 
@@ -1021,7 +1066,7 @@ function ubn_content_types_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 7,
+      'weight' => 17,
     ),
   );
 
@@ -1060,25 +1105,26 @@ function ubn_content_types_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 10,
+      'weight' => 20,
     ),
   );
 
-  // Exported field_instance: 'node-library-field_hero_image'.
-  $field_instances['node-library-field_hero_image'] = array(
+  // Exported field_instance: 'node-library-field_image_atom'.
+  $field_instances['node-library-field_image_atom'] = array(
     'bundle' => 'library',
+    'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'Upload and store the header image for this library. ',
+    'description' => '',
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'image',
+        'module' => 'atom_reference',
         'settings' => array(
-          'image_link' => '',
-          'image_style' => '',
+          'link' => 0,
+          'override' => 0,
         ),
-        'type' => 'image',
-        'weight' => 2,
+        'type' => 'title',
+        'weight' => 24,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -1088,42 +1134,27 @@ function ubn_content_types_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_hero_image',
-    'label' => 'Header image for this library',
+    'field_name' => 'field_image_atom',
+    'label' => 'hero image',
     'required' => 0,
     'settings' => array(
-      'alt_field' => 0,
-      'default_image' => 0,
+      'allow_override' => 0,
       'entity_translation_sync' => FALSE,
-      'file_directory' => '',
-      'file_extensions' => 'png gif jpg jpeg',
-      'max_filesize' => '2 mb',
-      'max_resolution' => '',
-      'min_resolution' => '1000x300',
-      'title_field' => 0,
+      'referencable_types' => array(
+        'file' => 0,
+        'image' => 'image',
+        'video' => 0,
+      ),
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
-      'module' => 'image',
+      'module' => 'atom_reference',
       'settings' => array(
-        'manualcrop_crop_info' => 1,
-        'manualcrop_default_crop_area' => 1,
-        'manualcrop_enable' => 1,
-        'manualcrop_inline_crop' => 0,
-        'manualcrop_instant_crop' => 0,
-        'manualcrop_instant_preview' => 1,
-        'manualcrop_keyboard' => 1,
-        'manualcrop_maximize_default_crop_area' => 0,
-        'manualcrop_require_cropping' => array(),
-        'manualcrop_styles_list' => array(),
-        'manualcrop_styles_mode' => 'include',
-        'manualcrop_thumblist' => 0,
-        'preview_image_style' => 'thumbnail',
-        'progress_indicator' => 'throbber',
+        'context' => 'sdl_editor_representation',
       ),
-      'type' => 'image_image',
-      'weight' => 1,
+      'type' => 'atom_reference_textfield',
+      'weight' => 4,
     ),
   );
 
@@ -1165,7 +1196,7 @@ function ubn_content_types_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 4,
+      'weight' => 3,
     ),
   );
 
@@ -1221,7 +1252,7 @@ function ubn_content_types_field_default_field_instances() {
         ),
       ),
       'type' => 'geocoder',
-      'weight' => 8,
+      'weight' => 10,
     ),
   );
 
@@ -1363,7 +1394,7 @@ function ubn_content_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 9,
+      'weight' => 11,
     ),
   );
 
@@ -1402,7 +1433,7 @@ function ubn_content_types_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 9,
+      'weight' => 19,
     ),
   );
 
@@ -1446,7 +1477,46 @@ function ubn_content_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 12,
+      'weight' => 14,
+    ),
+  );
+
+  // Exported field_instance: 'node-library-field_special_collections'.
+  $field_instances['node-library-field_special_collections'] = array(
+    'bundle' => 'library',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 22,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_special_collections',
+    'label' => 'Special collections',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 15,
     ),
   );
 
@@ -1494,7 +1564,7 @@ function ubn_content_types_field_default_field_instances() {
       'module' => 'number',
       'settings' => array(),
       'type' => 'number',
-      'weight' => 6,
+      'weight' => 16,
     ),
   );
 
@@ -1536,7 +1606,7 @@ function ubn_content_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 2,
+      'weight' => 1,
     ),
   );
 
@@ -1633,7 +1703,7 @@ function ubn_content_types_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 11,
+      'weight' => 21,
     ),
   );
 
@@ -1916,6 +1986,51 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-page-body'.
+  $field_instances['node-page-body'] = array(
+    'bundle' => 'page',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 600,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'body',
+    'label' => 'Body',
+    'required' => FALSE,
+    'settings' => array(
+      'display_summary' => TRUE,
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => -4,
+    ),
+  );
+
   // Exported field_instance: 'node-page-field_content_sections'.
   $field_instances['node-page-field_content_sections'] = array(
     'bundle' => 'page',
@@ -2101,7 +2216,7 @@ function ubn_content_types_field_default_field_instances() {
     'entity_type' => 'scald_atom',
     'field_name' => 'scald_thumbnail',
     'label' => 'Image',
-    'required' => 0,
+    'required' => FALSE,
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
@@ -2115,21 +2230,20 @@ function ubn_content_types_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
       'module' => 'image',
       'settings' => array(
-        'manualcrop_crop_info' => 1,
-        'manualcrop_default_crop_area' => 1,
-        'manualcrop_enable' => 1,
-        'manualcrop_inline_crop' => 0,
-        'manualcrop_instant_crop' => 0,
-        'manualcrop_instant_preview' => 1,
-        'manualcrop_keyboard' => 1,
-        'manualcrop_maximize_default_crop_area' => 0,
+        'manualcrop_crop_info' => TRUE,
+        'manualcrop_default_crop_area' => TRUE,
+        'manualcrop_enable' => FALSE,
+        'manualcrop_inline_crop' => FALSE,
+        'manualcrop_instant_crop' => FALSE,
+        'manualcrop_instant_preview' => TRUE,
+        'manualcrop_keyboard' => TRUE,
+        'manualcrop_maximize_default_crop_area' => FALSE,
         'manualcrop_require_cropping' => array(),
         'manualcrop_styles_list' => array(),
         'manualcrop_styles_mode' => 'include',
-        'manualcrop_thumblist' => 0,
+        'manualcrop_thumblist' => FALSE,
         'preview_image_style' => 'thumbnail',
         'progress_indicator' => 'throbber',
       ),
@@ -2436,7 +2550,6 @@ function ubn_content_types_field_default_field_instances() {
   t('Descriptions');
   t('GU-print');
   t('Group study rooms');
-  t('Header image for this library');
   t('Image');
   t('Is exception');
   t('Is open');
@@ -2457,15 +2570,16 @@ function ubn_content_types_field_default_field_instances() {
   t('Remote id');
   t('Short description');
   t('Short title');
+  t('Special collections');
   t('Study seats');
   t('Template');
   t('Thumbnail');
   t('Title');
   t('Topics');
-  t('Upload and store the header image for this library. ');
   t('Url');
   t('Visiting address');
   t('WLAN');
+  t('hero image');
 
   return $field_instances;
 }

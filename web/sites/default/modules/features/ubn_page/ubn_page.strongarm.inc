@@ -25,6 +25,7 @@ function ubn_page_strongarm() {
   $strongarm->name = 'default_page_manager_pages';
   $strongarm->value = array(
     'site_search' => TRUE,
+    'libraries' => TRUE,
   );
   $export['default_page_manager_pages'] = $strongarm;
 

@@ -21,7 +21,7 @@ function ubn_content_types_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Address information',
-    'weight' => '7',
+    'weight' => '8',
     'children' => array(
       0 => 'field_delivery_address',
       1 => 'field_mailing_address',
@@ -54,15 +54,16 @@ function ubn_content_types_field_group_info() {
     'label' => 'Library resources',
     'weight' => '6',
     'children' => array(
-      0 => 'field_study_seats_count',
-      1 => 'field_group_study_rooms_count',
-      2 => 'field_adapted_study_rooms_count',
-      3 => 'field_gu_print',
-      4 => 'field_quiet_reading_room',
-      5 => 'field_wlan',
-      6 => 'field_food_heating_facilities',
-      7 => 'field_cafe',
-      8 => 'field_book_return_box',
+      0 => 'field_adapted_study_rooms_count',
+      1 => 'field_book_return_box',
+      2 => 'field_cafe',
+      3 => 'field_food_heating_facilities',
+      4 => 'field_group_study_rooms_count',
+      5 => 'field_gu_print',
+      6 => 'field_quiet_reading_room',
+      7 => 'field_study_seats_count',
+      8 => 'field_wlan',
+      9 => 'field_special_collections',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
