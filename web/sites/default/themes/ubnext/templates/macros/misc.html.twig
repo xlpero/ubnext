@@ -28,7 +28,7 @@
         <div class="row">
         <ul class="list-unstyled content-sections-section-attached-files">
         {% for atom in section.field_file_atoms %}
-          <li>{{ _self.file_atom(atom, 'page_content_attachments') }}</li>
+          <li class="col-xs-12">{{ _self.file_atom(atom, 'page_content_attachments') }}</li>
         {% endfor %}
         </ul>
         </div>
