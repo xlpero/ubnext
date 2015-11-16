@@ -186,10 +186,7 @@ function ubn_general_update_7110() {
 
 // remove hero_image_field on library contenttype
 function ubn_general_update_7111() {
-  $fieldname = 'field_hero_image';
-  if ($field = field_info_field($fieldname)) {
-    field_delete_field($field);
-  }
+  field_delete_field('field_hero_image');
 }
 
 
