@@ -52,7 +52,6 @@ features[field_base][] = field_description_short
 features[field_base][] = field_food_heating_facilities
 features[field_base][] = field_group_study_rooms_count
 features[field_base][] = field_gu_print
-features[field_base][] = field_hero_image
 features[field_base][] = field_image_atom
 features[field_base][] = field_lead
 features[field_base][] = field_location

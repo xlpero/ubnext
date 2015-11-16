@@ -1154,7 +1154,7 @@ function ubn_content_types_field_default_field_instances() {
         'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
-      'weight' => 4,
+      'weight' => 3,
     ),
   );
 
@@ -1196,7 +1196,7 @@ function ubn_content_types_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 3,
+      'weight' => 4,
     ),
   );
 
