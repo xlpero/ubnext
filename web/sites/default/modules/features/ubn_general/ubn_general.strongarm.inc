@@ -45,9 +45,9 @@ function ubn_general_strongarm() {
   $strongarm->value = array(
     'node' => 'node',
     'taxonomy_term' => 'taxonomy_term',
-    'scald_atom' => 'scald_atom',
     'field_collection_item' => 'field_collection_item',
     'comment' => 0,
+    'file' => 0,
     'user' => 0,
   );
   $export['entity_translation_entity_types'] = $strongarm;

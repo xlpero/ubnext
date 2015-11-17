@@ -1,35 +1,15 @@
 .main-cms {
   .ubn-call-to-action {
-    .panel();
-    .panel-default();
-    .ubn-call-to-action-content {
-      .panel-body();
-      padding-bottom: 0;
-      p {
-        font-size: @font-size-small;
-        line-height: @line-height-small;
-        color: @gray;
-      }
+    padding: 20px;
+    background: #f5f5f5;
+    a {
+      text-decoration: none;
+      &.btn {
+        border-radius: @border-radius-large;
+        padding-left: 16px;
+        padding-right: 16px;
+      } 
     }
-    .ubn-call-to-action-heading {
-      .panel-heading();
-      padding-left: 15px;
-      padding-top: 7px;
-      padding-bottom: 7px;
-      h3, h4 {
-        margin: 0;
-      }
-    }
-    .ubn-call-to-action-link {
-      .panel-body();
-      padding-top: 0;
-      a {
-        .btn();
-        .btn-primary();
-        text-decoration: none;
-        font-size: @font-size-small;
-        line-height: @line-height-small;
-      }
-    }
+
   }
 }

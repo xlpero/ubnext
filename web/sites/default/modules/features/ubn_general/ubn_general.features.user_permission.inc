@@ -28,5 +28,16 @@ function ubn_general_user_default_permissions() {
     'module' => 'filter',
   );
 
+  // Exported permission: 'view any atom'.
+  $permissions['view any atom'] = array(
+    'name' => 'view any atom',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'scald',
+  );
+
   return $permissions;
 }
