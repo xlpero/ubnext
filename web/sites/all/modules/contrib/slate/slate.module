@@ -277,7 +277,7 @@ function slate_slate_info() {
   foreach (_slate_template_files() as $file) {
     $data = file_get_contents($file->uri);
 
-    if (preg_match('@{#\s+slate\s+(.*)#}\s*$@ims', $data, $matches)) {
+    if (preg_match('@{#\s+slate\s+(.*?)#}\s*$@ims', $data, $matches)) {
       $info = drupal_parse_info_format($matches[1]);
 
       if (empty($info['name'])) {
