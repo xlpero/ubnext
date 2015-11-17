@@ -14,11 +14,11 @@ function ubn_markdown_filter_info() {
 // TODO: use slate instead? 
 function _ubn_markdown_replace_callback($matches) {
   return slate_render('ubn-markdown-call-to-action', array(
-    'title' => $matches['title'],
+    'title' => isset($matches['title']) ? $matches['title'] : '',
     'content' => $matches['content'],
-    'link_href' => $matches['link_href'],
-    'link_text' => $matches['link_text'],
-    'link_title' => $matches['link_title'],
+    'link_href' => isset($matches['link_href']) ? $matches['link_href'] : '',
+    'link_text' => isset($matches['link_text']) ? $matches['link_text'] : '',
+    'link_title' => isset($matches['link_title']) ? $matches['link_title'] : '',
   ));
 }
 
@@ -47,6 +47,6 @@ function _ubn_markdown($text, $format) {
 
 function _ubn_markdown_tips($filter, $format, $long = FALSE) {
   return $long ?
-    'Long description text wrapped in t' :
-    'Short description';
+    'Long description todo' :
+    'Short description todo';
 }
