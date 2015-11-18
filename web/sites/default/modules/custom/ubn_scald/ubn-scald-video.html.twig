@@ -1,0 +1,9 @@
+{# slate
+  name = UBN Scald: video
+  models[atom] = entity:scald_atom
+  models[player] = item
+#}
+<div class="ubn-video" data-player-html="{{ player|e('html') }}">
+  <img class="img-responsive" src="{{ atom.value.rendered.file_transcoded_url }}" alt="{{ atom.title.value }}">
+  <div class="ubn-video-play-button"></div>
+</div>
