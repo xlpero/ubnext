@@ -5,11 +5,16 @@
     }
 
     .content-attachments {
-    	font-size: 1em;
     	table {
+    		font-size: 1em !important;
+    		table-layout: fixed;
 			border: none !important;
+
     		tr {
     			border: none !important;
+    			td:first-child {
+    				width: 36px;
+    			}
     			td {
 	    			border: none !important;
 	    			.fa {
