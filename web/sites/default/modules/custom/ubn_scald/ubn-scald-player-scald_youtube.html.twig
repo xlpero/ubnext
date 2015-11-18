@@ -1,0 +1,10 @@
+{# slate
+  name = UBN Scald: video
+  models[atom] = entity:scald_atom
+  models[video_url] = item
+  models[video_width] = item
+  models[video_height] = item
+#}
+<div class="ubn-video-player ubn-video-player-youtube">
+  <iframe title="{{ atom.title }}" width="{{ video_width }}" height="{{ video_height }}" src="{{ video_url ~ '?autoplay=1' }}" frameborder="0" allowfullscreen></iframe>
+</div>

@@ -1,12 +1,23 @@
 <?php
+function ubn_scald_page_build(&$page) {
+  drupal_add_js(drupal_get_path('module', 'ubn_scald') . '/ubn_scald.js');
+}
 
 /**
  * Implements hook_scald_render().
  */
 function ubn_scald_scald_render($atom, $context, $options = array()) {
-  $callback ='_ubn_scald_' . $context . '_render';
+  $callback = "_ubn_scald_{$context}_render";
+  $atom_type_callback = "_ubn_scald_atom_type_{$atom->type}_render";
+  $context_atom_type_callback = "_ubn_scald_{$context}_atom_type_{$atom->type}_render";
   if(function_exists($callback)) {
-    return $callback($atom, $context, $options);
+    return $callback($atom, $options);
+  }
+  else if(function_exists($atom_type_callback)) {
+    return $atom_type_callback($atom, $context, $options);
+  }
+  else if(function_exists($context_atom_type_callback)) {
+    return $atom_type_callback($atom, $options);
   }
   else {
     return scald_scald_render($atom, $context, $options);
@@ -27,6 +38,24 @@ function _ubn_scald_page_content_attachments_render($atom, $options) {
   return $result;
 }
 
+function _ubn_scald_atom_type_video_render($atom, $context, $options) {
+  //TODO: fix scald transcoder for picture, for now use ordinary image styles
+  $video_width = (!empty($atom->data['video_width'])) ? $atom->data['video_width'] : 480;
+  $video_height = (!empty($atom->data['video_height'])) ? $atom->data['video_height'] : 365;
+
+  $player = slate_render('ubn-scald-player-' . $atom->provider, array(
+    'atom' => $atom,
+    'video_url' => url(SCALD_YOUTUBE_EMBED . $atom->base_id),
+    'video_width' => $video_width,
+    'video_height' => $video_height,
+  ));
+  $video = slate_render('ubn-scald-video', array(
+    'atom' => $atom,
+    'player' => $player,
+  ));
+
+  return $video;
+}
 
 function _ubn_scald_file_extension($filename) {
   $parts = explode('.', $filename);
