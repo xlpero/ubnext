@@ -63,7 +63,7 @@ function _ubn_scald_file_extension($filename) {
     $extension = end($parts);
     //TODO: factor in mimetype instead?
     if(strlen($extension) < 5) {
-      return $extension;
+      return strtoupper($extension);
     }
   }
   return NULL;
