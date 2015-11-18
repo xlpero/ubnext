@@ -7,6 +7,15 @@
   models[file_extension] = item
   models[font_awesome_icon] = item
 #}
-<i class="fa {{ font_awesome_icon }}"></i>
-<a class="file-link" target="_blank" href="{{ file_url }}" title="{{ atom.title.value }}">{{ atom.title.value }}</a>
-<span class="file-extension">({{ file_extension }}, </span><span class="file-size">{{ file_size }})</span>
+<div class="content-attachments">
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<i class="fa fa-2x {{ font_awesome_icon }}"></i>&nbsp;<a class="file-link" target="_blank" href="{{ file_url }}" title="{{ atom.title.value }}">{{ atom.title.value }}</a><span class="file-extension">&nbsp;({{ file_extension }}, </span><span class="file-size">{{ file_size }})</span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
