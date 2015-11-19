@@ -1244,55 +1244,6 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_library_hero_image'.
-  $field_instances['node-library-field_library_hero_image'] = array(
-    'bundle' => 'library',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'atom_reference',
-        'settings' => array(
-          'link' => 0,
-          'override' => 0,
-        ),
-        'type' => 'title',
-        'weight' => 25,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_library_hero_image',
-    'label' => 'Library hero image',
-    'required' => 0,
-    'settings' => array(
-      'allow_override' => 0,
-      'entity_translation_sync' => FALSE,
-      'referencable_types' => array(
-        'file' => 0,
-        'image' => 'image',
-        'video' => 0,
-      ),
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'atom_reference',
-      'settings' => array(
-        'context' => 'hero_area_banner',
-      ),
-      'type' => 'atom_reference_textfield',
-      'weight' => 4,
-    ),
-  );
-
   // Exported field_instance: 'node-library-field_location'.
   $field_instances['node-library-field_location'] = array(
     'bundle' => 'library',
@@ -2648,7 +2599,6 @@ function ubn_content_types_field_default_field_instances() {
   t('Is exception');
   t('Is open');
   t('Lead');
-  t('Library hero image');
   t('Location');
   t('Location override');
   t('Mailing address');
