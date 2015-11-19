@@ -24,7 +24,6 @@ features[field_instance][] = node-app-field_app_properties
 features[field_instance][] = node-app-title_field
 features[node][] = app
 features[page_manager_handlers][] = node_view_panel_context_3
-features[variable][] = entity_translation_settings_field_collection_item__field_app_properties
 features[variable][] = field_bundle_settings_node__app
 features[variable][] = language_content_type_app
 features[variable][] = menu_options_app
