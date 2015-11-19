@@ -228,8 +228,8 @@ function ubn_content_types_default_scald_context_config() {
     ),
   );
   $context_config->data = array(
-    'width' => '',
-    'height' => '',
+    'width' => '1024',
+    'height' => '576',
   );
   $export['page_content'] = $context_config;
 
@@ -330,8 +330,8 @@ function ubn_content_types_default_scald_context_config() {
     ),
   );
   $context_config->data = array(
-    'width' => '',
-    'height' => '',
+    'width' => '266',
+    'height' => '150',
   );
   $export['sdl_editor_representation'] = $context_config;
 
