@@ -110,6 +110,30 @@ function ubn_general_entity_translation_enable($entity_types) {
 }
 */
 
+function ubn_general_toggle_field_replacement($entity_type, $legacy_field, $bundles = array()) {
+  if(empty($bundles)) {
+    $info = entity_get_info($entity_type);
+    if($info['bundles']) {
+      $bundles = array_keys($info['bundles']);
+    }
+  }
+  foreach($bundles as $bundle) {
+    if(title_field_replacement_toggle($entity_type, $bundle, $legacy_field)) {
+      $query = new EntityFieldQuery();
+      $query->entityCondition('entity_type', $entity_type);
+
+      if (!empty($info['efq bundle conditions']) && isset($bundle)) {
+        $query->entityCondition('bundle', $bundle);
+      }
+      $result = $query->execute();
+      if($result[$entity_type]) {
+        $ids = array_keys($result[$entity_type]);
+        title_field_replacement_init($entity_type, $bundle, $legacy_field, $ids);
+      }
+    }
+  }
+}
+
 function ubn_general_install() {
 	theme_enable(array('ubnext'));
 	theme_disable(array('bartik'));
@@ -196,6 +220,11 @@ function ubn_general_update_7112() {
 
 function ubn_general_update_7113() {
   features_revert_module('ubn_content_types');
+}
+
+// Replace title with title_field for scald atoms
+function ubn_general_update_7114() {
+  ubn_general_toggle_field_replacement('scald_atom', 'title');
 }
 
 // Enable entity translation for library
