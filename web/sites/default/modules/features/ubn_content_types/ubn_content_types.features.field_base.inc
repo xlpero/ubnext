@@ -403,27 +403,6 @@ function ubn_content_types_field_default_field_bases() {
     'type' => 'text_long',
   );
 
-  // Exported field_base: 'field_library_hero_image'.
-  $field_bases['field_library_hero_image'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_library_hero_image',
-    'indexes' => array(
-      'sid' => array(
-        0 => 'sid',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'atom_reference',
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-    ),
-    'translatable' => 0,
-    'type' => 'atom_reference',
-  );
-
   // Exported field_base: 'field_location'.
   $field_bases['field_location'] = array(
     'active' => 1,
