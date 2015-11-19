@@ -221,13 +221,13 @@ function ubn_content_types_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '10',
-        ),
-        'redirect' => array(
           'weight' => '11',
         ),
+        'redirect' => array(
+          'weight' => '13',
+        ),
         'language' => array(
-          'weight' => '8',
+          'weight' => '9',
         ),
       ),
       'display' => array(),

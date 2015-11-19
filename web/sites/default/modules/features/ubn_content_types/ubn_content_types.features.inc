@@ -282,7 +282,7 @@ function ubn_content_types_scald_default_context_types() {
       ),
     ),
   );
-  $contexts['hero_area-file'] = array(
+  $contexts['hero_area_banner-file'] = array(
     'player' => array(
       'file' => array(
         '*' => 'default',
@@ -294,7 +294,7 @@ function ubn_content_types_scald_default_context_types() {
       ),
     ),
   );
-  $contexts['hero_area-image'] = array(
+  $contexts['hero_area_banner-image'] = array(
     'player' => array(
       'image' => array(
         '*' => 'default',
@@ -307,7 +307,7 @@ function ubn_content_types_scald_default_context_types() {
       ),
     ),
   );
-  $contexts['hero_area-video'] = array(
+  $contexts['hero_area_banner-video'] = array(
     'player' => array(
       'video' => array(
         '*' => 'default',
@@ -444,6 +444,7 @@ function ubn_content_types_scald_default_context_types() {
     'player' => array(
       'image' => array(
         '*' => 'default',
+        'settings' => array(),
       ),
     ),
     'transcoder' => array(

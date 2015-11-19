@@ -21,7 +21,7 @@ function ubn_content_types_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Address information',
-    'weight' => '8',
+    'weight' => '10',
     'children' => array(
       0 => 'field_delivery_address',
       1 => 'field_mailing_address',
@@ -80,7 +80,7 @@ function ubn_content_types_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Library resources',
-    'weight' => '6',
+    'weight' => '7',
     'children' => array(
       0 => 'field_adapted_study_rooms_count',
       1 => 'field_book_return_box',
