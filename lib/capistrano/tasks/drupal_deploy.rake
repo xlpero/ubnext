@@ -70,6 +70,16 @@ namespace :drupal do
       end
     end
   end
+
+  desc 'Clear all caches.'
+  task :clearcache do
+    on release_roles :app do
+      within release_path.join(fetch(:app_path)) do
+        execute :drush, 'cache-clear all'
+      end
+    end
+  end
+
   #TODO restore/revert/import?
   #task :restore_database
 end
@@ -79,6 +89,7 @@ namespace :deploy do
   after :starting, 'drush:install'
   after :starting, 'drupal:backup_database'
   after :publishing, 'drupal:site_offline'
+  after :publishing, 'drupal:clearcache'
   after :publishing, 'drupal:updatedb'
   after :publishing, 'drupal:site_online'
 end
