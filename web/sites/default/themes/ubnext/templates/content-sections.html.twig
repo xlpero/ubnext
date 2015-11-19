@@ -3,6 +3,8 @@
   models[page] = entity:node
 #}
 {% import "macros/misc.html.twig" as misc %}
+
+{% if not page.field_content_sections is empty %}
 <div class="container ub-panel-separator">
 	<div class="row">
 		<div class="col-sm-8 col-sm-offset-2">
@@ -10,3 +12,4 @@
 	  	</div>
   	</div>
 </div>
+{% endif %}

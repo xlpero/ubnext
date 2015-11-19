@@ -23,13 +23,14 @@ function _ubn_summon_client($options = array()) {
     );
   }
   return $client;
+
 }
 
 function _ubn_summon_record_count() {
   $client = _ubn_summon_client();
   //How to exclude facets from returned result?
   //Perform empty search
-  $query = new SerialsSolutions_Summon_Query('', array('pageSize' => 0, 'facets' => 'IsScholarly,or,1,2'));
+  $query = new SerialsSolutions_Summon_Query('', array('pageSize' => 0)); //, 'facets' => 'IsScholarly,or,1,2'
   try {
     $result = $client->query($query);
     return isset($result['recordCount']) ? $result['recordCount'] : NULL;
