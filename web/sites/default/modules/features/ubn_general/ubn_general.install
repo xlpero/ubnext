@@ -227,6 +227,13 @@ function ubn_general_update_7114() {
   ubn_general_toggle_field_replacement('scald_atom', 'title');
 }
 
+// disable login_destination module
+function ubn_general_update_7115() {
+  $modules = array('login_destination');
+  module_disable($modules);
+  drupal_uninstall_modules($modules);
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {
