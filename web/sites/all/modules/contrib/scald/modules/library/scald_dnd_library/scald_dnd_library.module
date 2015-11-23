@@ -217,9 +217,7 @@ function theme_sdl_library_item($variables) {
     $links[$action]['attributes']['target'] = '_blank';
     // The 'edit' action supports CTools Modal.
     if ($action == 'edit' || $action == 'delete') {
-      $links[$action]['attributes'] = array(
-        'class' => array('ctools-use-modal', 'ctools-modal-custom-style'),
-      );
+      $links[$action]['attributes']['class'] = array('ctools-use-modal', 'ctools-modal-custom-style');
       $links[$action]['href'] .= '/nojs';
     }
   }

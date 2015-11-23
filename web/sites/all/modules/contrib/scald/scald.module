@@ -2675,6 +2675,7 @@ function scald_atom_user_build_actions_links($atom, $query = NULL) {
       $links[$action] = array(
         'title' => $actions[$action]['title'],
         'href' => 'atom/' . $atom->sid . ($action == 'view' ? '' : "/$action"),
+        'attributes' => array(),
       );
       if ($query) {
         $links[$action]['query'] = $query;
