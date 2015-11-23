@@ -1527,9 +1527,37 @@ function _scald_system_contexts() {
       'parseable'       => TRUE,
       'formats'         => array(),
     ),
+    'library'    => array(
+      'title' => t('Library'),
+      'description'     => t('Built-in Context for a compact teaser view of an atom in the atoms library view.'),
+      'render_language' => 'XHTML',
+      'parseable'       => TRUE,
+      'formats'         => array(),
+    ),
   );
 }
 
+/**
+ * Implements hook_image_default_styles().
+ */
+function scald_image_default_styles() {
+  $styles = array();
+  $styles['scald_library_atom'] = array(
+    'label' => 'Scald Library',
+    'effects' => array(
+      array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => '96',
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => '0',
+      ),
+    ),
+  );
+  return $styles;
+}
 
 /*******************************************************************************
  * SCALD HOOK IMPLEMENTATIONS
@@ -1635,6 +1663,20 @@ function scald_scald_render($atom, $context, $options = array()) {
       $output = theme('scald_render_error', array('context' => $context, 'message' => t('Atom deleted!'), 'atom' => $atom));
       break;
 
+    case 'library':
+      if (!empty($atom->rendered->thumbnail_transcoded_url)) {
+        $thumbnail_url = $atom->rendered->thumbnail_transcoded_url;
+      }
+      else {
+        if(file_valid_uri($atom->thumbnail_source)) {
+          $thumbnail_url = image_style_url('scald_library_atom', $atom->thumbnail_source);
+        }
+        else {
+          $thumbnail_url = file_create_url($atom->thumbnail_source);
+        }
+      }
+      $output = theme('scald_library_atom', array('atom' => $atom, 'thumbnail_url' => $thumbnail_url));
+      break;
     default:
       // If this is a custom context created through the UI, we use a special
       // render.
@@ -2437,6 +2479,9 @@ function scald_theme($existing, $type, $theme, $path) {
     'scald_render_error' => array(
       'arguments' => array('type' => NULL, 'message' => NULL, 'atom' => NULL),
     ),
+    'scald_library_atom' => array(
+      'arguments' => array('atom' => NULL, 'thumbnail_url' => NULL),
+    ),
   );
 }
 
@@ -2462,6 +2507,17 @@ function scald_flush_caches() {
  */
 function theme_scald_render_error($vars) {
   return '<h3>' . $vars['message'] . '</h3>';
+}
+
+/**
+ * Renders a scald library atom representation.
+ */
+function theme_scald_library_atom($vars) {
+  return theme('image', array(
+    'path' => $vars['thumbnail_url'],
+    'alt' => $vars['atom']->title,
+    'title' => $vars['atom']->title,
+  ));
 }
 
 /**
@@ -2620,15 +2676,6 @@ function scald_atom_user_build_actions_links($atom, $query = NULL) {
         'title' => $actions[$action]['title'],
         'href' => 'atom/' . $atom->sid . ($action == 'view' ? '' : "/$action"),
       );
-
-      // The 'edit' action supports CTools Modal.
-      if ($action == 'edit' || $action == 'delete') {
-        $links[$action]['attributes'] = array(
-          'class' => array('ctools-use-modal', 'ctools-modal-custom-style'),
-        );
-        $links[$action]['href'] .= '/nojs';
-      }
-
       if ($query) {
         $links[$action]['query'] = $query;
       }
