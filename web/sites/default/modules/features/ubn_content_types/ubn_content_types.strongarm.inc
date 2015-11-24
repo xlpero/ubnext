@@ -167,6 +167,13 @@ function ubn_content_types_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'dnd_context_default';
+  $strongarm->value = 'page_content_inline_large';
+  $export['dnd_context_default'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_comment_filter_database';
   $strongarm->value = 0;
   $export['entity_translation_comment_filter_database'] = $strongarm;
@@ -995,6 +1002,38 @@ function ubn_content_types_strongarm() {
       'parseable' => TRUE,
       'formats' => array(),
     ),
+    'page_content_inline_medium' => array(
+      'name' => 'page_content_inline_medium',
+      'title' => 'Page content inline medium',
+      'description' => '',
+      'render_language' => 'XHTML',
+      'parseable' => TRUE,
+      'formats' => array(),
+    ),
+    'page_content_inline_small' => array(
+      'name' => 'page_content_inline_small',
+      'title' => 'Page content inline small',
+      'description' => '',
+      'render_language' => 'XHTML',
+      'parseable' => TRUE,
+      'formats' => array(),
+    ),
+    'page_content_inline_extra_small' => array(
+      'name' => 'page_content_inline_extra_small',
+      'title' => 'Page content inline extra small',
+      'description' => '',
+      'render_language' => 'XHTML',
+      'parseable' => TRUE,
+      'formats' => array(),
+    ),
+    'page_content_inline_large' => array(
+      'name' => 'page_content_inline_large',
+      'title' => 'Page content inline large',
+      'description' => '',
+      'render_language' => 'XHTML',
+      'parseable' => TRUE,
+      'formats' => array(),
+    ),
   );
   $export['scald_custom_contexts'] = $strongarm;
 
@@ -1002,7 +1041,7 @@ function ubn_content_types_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'scald_switch_feature_export';
-  $strongarm->value = 0;
+  $strongarm->value = FALSE;
   $export['scald_switch_feature_export'] = $strongarm;
 
   return $export;
