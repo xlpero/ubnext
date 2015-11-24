@@ -1,4 +1,7 @@
-jQuery(document).ready(function() {
-	// simple set focus on search in summon 
-    jQuery('input[name="q"]').focus();
-});
+(function ($) {
+  Drupal.behaviors.searchWidget = {
+    attach: function (context, settings) {
+   		$('input[name="q"]', context).focus();
+    }
+  };
+})(jQuery);
