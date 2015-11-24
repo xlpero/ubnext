@@ -375,7 +375,7 @@ function ubn_content_types_default_scald_context_config() {
   $context_config->context = 'sdl_preview';
   $context_config->transcoder = array(
     'image' => array(
-      '*' => 'passthrough',
+      '*' => 'style-medium',
     ),
     'video' => array(
       '*' => 'passthrough',
@@ -398,8 +398,8 @@ function ubn_content_types_default_scald_context_config() {
     ),
   );
   $context_config->data = array(
-    'width' => '',
-    'height' => '',
+    'width' => '220',
+    'height' => '220',
   );
   $export['sdl_preview'] = $context_config;
 

@@ -31,7 +31,10 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Body',
     'required' => 1,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 1,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
@@ -155,7 +158,10 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Title',
     'required' => 0,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
@@ -192,7 +198,10 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Short description',
     'required' => 0,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
@@ -263,7 +272,10 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Remote id',
     'required' => 0,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
@@ -358,7 +370,10 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Alternate titles',
     'required' => 0,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
@@ -445,7 +460,10 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Descriptions',
     'required' => 0,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
@@ -610,7 +628,10 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Remote id',
     'required' => 0,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
@@ -693,11 +714,14 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Title',
     'required' => TRUE,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'hide_label' => array(
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
@@ -741,8 +765,11 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Body',
     'required' => FALSE,
     'settings' => array(
+      'context' => '',
       'display_summary' => TRUE,
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -1011,7 +1038,10 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Short description',
     'required' => 1,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
@@ -1228,7 +1258,10 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Lead',
     'required' => 0,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
@@ -1426,7 +1459,10 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Phone',
     'required' => 0,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
@@ -1638,7 +1674,10 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Short title',
     'required' => 0,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
@@ -1776,11 +1815,14 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Title',
     'required' => TRUE,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'hide_label' => array(
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
@@ -2011,11 +2053,14 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Title',
     'required' => TRUE,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'hide_label' => array(
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
@@ -2059,8 +2104,11 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Body',
     'required' => FALSE,
     'settings' => array(
+      'context' => '',
       'display_summary' => TRUE,
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -2145,7 +2193,10 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Lead',
     'required' => 0,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
@@ -2225,11 +2276,14 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Title',
     'required' => TRUE,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'hide_label' => array(
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
@@ -2241,6 +2295,297 @@ function ubn_content_types_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance: 'scald_atom-file-scald_authors'.
+  $field_instances['scald_atom-file-scald_authors'] = array(
+    'bundle' => 'file',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+      'page_content' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'scald_atom',
+    'field_name' => 'scald_authors',
+    'label' => 'Authors',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'scald_atom-file-scald_file'.
+  $field_instances['scald_atom-file-scald_file'] = array(
+    'bundle' => 'file',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
+      'page_content' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'scald_atom',
+    'field_name' => 'scald_file',
+    'label' => 'File',
+    'required' => TRUE,
+    'settings' => array(
+      'description_field' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => 'atoms/files',
+      'file_extensions' => 'ppt pptx xls xlsx doc docx odt pdf txt csv odg sxw ods rtf zip rar gz 7z tar',
+      'max_filesize' => '',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'file',
+      'settings' => array(
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => -4,
+    ),
+  );
+
+  // Exported field_instance: 'scald_atom-file-scald_tags'.
+  $field_instances['scald_atom-file-scald_tags'] = array(
+    'bundle' => 'file',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+      'page_content' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'scald_atom',
+    'field_name' => 'scald_tags',
+    'label' => 'Tags',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance: 'scald_atom-file-scald_thumbnail'.
+  $field_instances['scald_atom-file-scald_thumbnail'] = array(
+    'bundle' => 'file',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+      'page_content' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 4,
+      ),
+    ),
+    'entity_type' => 'scald_atom',
+    'field_name' => 'scald_thumbnail',
+    'label' => 'Thumbnail',
+    'required' => 0,
+    'settings' => array(
+      'alt_field' => 0,
+      'default_image' => 0,
+      'entity_translation_sync' => FALSE,
+      'file_directory' => 'thumbnails/file',
+      'file_extensions' => 'png gif jpg jpeg',
+      'max_filesize' => '',
+      'max_resolution' => '',
+      'min_resolution' => '',
+      'title_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'image',
+      'settings' => array(
+        'manualcrop_crop_info' => 1,
+        'manualcrop_default_crop_area' => 1,
+        'manualcrop_enable' => 1,
+        'manualcrop_inline_crop' => 0,
+        'manualcrop_instant_crop' => 0,
+        'manualcrop_instant_preview' => 1,
+        'manualcrop_keyboard' => 1,
+        'manualcrop_maximize_default_crop_area' => 0,
+        'manualcrop_require_cropping' => array(),
+        'manualcrop_styles_list' => array(),
+        'manualcrop_styles_mode' => 'include',
+        'manualcrop_thumblist' => 0,
+        'preview_image_style' => 'thumbnail',
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'image_image',
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance: 'scald_atom-file-title_field'.
+  $field_instances['scald_atom-file-title_field'] = array(
+    'bundle' => 'file',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'scald_atom',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => TRUE,
+    'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'ubn_property_field' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance: 'scald_atom-image-scald_authors'.
+  $field_instances['scald_atom-image-scald_authors'] = array(
+    'bundle' => 'image',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'scald_atom',
+    'field_name' => 'scald_authors',
+    'label' => 'Authors',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 32,
+    ),
+  );
+
+  // Exported field_instance: 'scald_atom-image-scald_tags'.
+  $field_instances['scald_atom-image-scald_tags'] = array(
+    'bundle' => 'image',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'scald_atom',
+    'field_name' => 'scald_tags',
+    'label' => 'Tags',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 33,
     ),
   );
 
@@ -2297,6 +2642,117 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'scald_atom-image-title_field'.
+  $field_instances['scald_atom-image-title_field'] = array(
+    'bundle' => 'image',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'scald_atom',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => TRUE,
+    'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'ubn_property_field' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance: 'scald_atom-video-scald_authors'.
+  $field_instances['scald_atom-video-scald_authors'] = array(
+    'bundle' => 'video',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'scald_atom',
+    'field_name' => 'scald_authors',
+    'label' => 'Authors',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'scald_atom-video-scald_tags'.
+  $field_instances['scald_atom-video-scald_tags'] = array(
+    'bundle' => 'video',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'scald_atom',
+    'field_name' => 'scald_tags',
+    'label' => 'Tags',
+    'required' => FALSE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'taxonomy',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'taxonomy_autocomplete',
+      'weight' => 2,
+    ),
+  );
+
   // Exported field_instance: 'scald_atom-video-scald_thumbnail'.
   $field_instances['scald_atom-video-scald_thumbnail'] = array(
     'bundle' => 'video',
@@ -2350,6 +2806,47 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'scald_atom-video-title_field'.
+  $field_instances['scald_atom-video-title_field'] = array(
+    'bundle' => 'video',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'scald_atom',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => TRUE,
+    'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'ubn_property_field' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -5,
+    ),
+  );
+
   // Exported field_instance:
   // 'taxonomy_term-library_properties-description_field'.
   $field_instances['taxonomy_term-library_properties-description_field'] = array(
@@ -2370,12 +2867,15 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Description',
     'required' => FALSE,
     'settings' => array(
+      'context' => '',
       'display_summary' => 0,
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'hide_label' => array(
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'mee_enabled' => 0,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -2409,11 +2909,14 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Name',
     'required' => TRUE,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'hide_label' => array(
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
@@ -2447,12 +2950,15 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Description',
     'required' => FALSE,
     'settings' => array(
+      'context' => '',
       'display_summary' => 0,
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'hide_label' => array(
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'mee_enabled' => 0,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -2486,11 +2992,14 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Name',
     'required' => TRUE,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'hide_label' => array(
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
@@ -2502,6 +3011,44 @@ function ubn_content_types_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-scald_authors-scald_author_url'.
+  $field_instances['taxonomy_term-scald_authors-scald_author_url'] = array(
+    'bundle' => 'scald_authors',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Homepage of the Author',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'scald_author_url',
+    'label' => 'URL',
+    'required' => FALSE,
+    'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 0,
+      'ubn_property_field' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 31,
     ),
   );
 
@@ -2524,12 +3071,15 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Description',
     'required' => FALSE,
     'settings' => array(
+      'context' => '',
       'display_summary' => 0,
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'hide_label' => array(
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'mee_enabled' => 0,
       'text_processing' => 1,
       'user_register_form' => FALSE,
     ),
@@ -2563,11 +3113,14 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Name',
     'required' => TRUE,
     'settings' => array(
+      'context' => '',
+      'dnd_enabled' => 0,
       'entity_translation_sync' => FALSE,
       'hide_label' => array(
         'entity' => FALSE,
         'page' => FALSE,
       ),
+      'mee_enabled' => 0,
       'text_processing' => 0,
       'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
@@ -2586,6 +3139,7 @@ function ubn_content_types_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Adapted study rooms (Lässtudios)');
   t('Alternate titles');
+  t('Authors');
   t('Body');
   t('Book return box (bokinkast)');
   t('Cafe');
@@ -2594,9 +3148,11 @@ function ubn_content_types_field_default_field_instances() {
   t('Delivery address');
   t('Description');
   t('Descriptions');
+  t('File');
   t('Files');
   t('GU-print');
   t('Group study rooms');
+  t('Homepage of the Author');
   t('Image');
   t('Is exception');
   t('Is open');
@@ -2619,10 +3175,12 @@ function ubn_content_types_field_default_field_instances() {
   t('Short title');
   t('Special collections');
   t('Study seats');
+  t('Tags');
   t('Template');
   t('Thumbnail');
   t('Title');
   t('Topics');
+  t('URL');
   t('Url');
   t('Visiting address');
   t('WLAN');
