@@ -133,3 +133,10 @@ function ubn_general_cron() {
     variable_set('ubn_general_summon_record_count', $record_count);
   }
 }
+
+function ubn_general_admin_paths() {
+  return array(
+    'atom/*/edit' => TRUE,
+    'atom/*/edit/*' => TRUE,
+  );
+}
