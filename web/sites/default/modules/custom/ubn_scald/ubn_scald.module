@@ -14,7 +14,10 @@ function ubn_scald_scald_render($atom, $context, $options = array()) {
   //Special case for inline contexts
 
   if(strpos($context, 'page_content_inline_') === 0) {
-    return _ubn_scald_page_content_inline_render($atom, $context, substr($context, 20), $options);
+    $inline_atom_type_callback = "_ubn_scald_atom_type_{$atom->type}_page_content_inline_render";
+    if(function_exists($inline_atom_type_callback)) {
+      return $inline_atom_type_callback($atom, $context, substr($context, 20), $options);
+    }
   }
 
   if(function_exists($callback)) {
@@ -32,18 +35,28 @@ function ubn_scald_scald_render($atom, $context, $options = array()) {
 }
 
 
-function _ubn_scald_page_content_inline_render($atom, $context, $size, $options) {
-  $atom_rendered = scald_scald_render($atom, $context, $options);
-  if(is_array($atom_rendered)) {
-    $atom_rendered = drupal_render($atom_rendered);
-  }
-  //TODO: consistent template file names
+function _ubn_scald_page_content_inline_render($atom_rendered, $context, $size, $options) {
+   //TODO: consistent template file names
   $rendered = slate_render('ubn-scald-inline-atoms-atom', array(
     'atom_rendered' => $atom_rendered,
     'context' => $context,
     'bootstrap_classes' => _ubn_scald_inline_atoms_size_bootstrap_classes($size),
   ));
   return $rendered;
+}
+
+function _ubn_scald_atom_type_image_page_content_inline_render($atom, $context, $size, $options) {
+  $atom_rendered = scald_scald_render($atom, $context, $options);
+  if(is_array($atom_rendered)) {
+    $atom_rendered = drupal_render($atom_rendered);
+  }
+  return _ubn_scald_page_content_inline_render($atom_rendered, $context, $size, $options);
+}
+
+function _ubn_scald_atom_type_video_page_content_inline_render($atom, $context, $size, $options) {
+  //TODO: perhaps remap some contexts for video?
+  $atom_rendered = _ubn_scald_atom_type_video_render($atom, $context, $options);
+  return _ubn_scald_page_content_inline_render($atom_rendered, $context, $size, $options);
 }
 
 function _ubn_scald_inline_atoms_size_bootstrap_classes($size) {
