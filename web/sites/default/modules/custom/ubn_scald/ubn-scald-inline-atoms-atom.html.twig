@@ -1,0 +1,7 @@
+{# slate
+  name = UBN Scald: inline atom
+  models[atom_rendered] = item
+  models[context] = item
+  models[bootstrap_classes] = item
+#}
+<div class="{{ bootstrap_classes }} ubn-inline-atoms-atom ubn-inline-atoms-atom-{{ drupal_html_class(context) }}">{{ atom_rendered|raw }}</div>
