@@ -1,4 +1,129 @@
 <?php
+
+function ubn_scald_media_atoms_layout($wrapped_atoms, $context_override = NULL, $media_layout_override = NULL) {
+  //$atom_types = array();
+  $context_groups = array();
+
+  if($context_override === 'auto') {
+    $context_override = NULL;
+  }
+  if($media_layout_override === 'auto') {
+    $media_layout_override = NULL;
+  }
+
+  $atoms_array = iterator_to_array($wrapped_atoms);
+
+  if(!empty($context_override)) {
+    $context_groups[] = array(
+      'context' => $context_override,
+      'count' => count($atoms_array),
+      'atoms' => $atoms_array,
+    );
+  }
+  else {
+    $context_group_atoms = array();
+    $atoms_last_i = count($atoms_array) - 1;
+    foreach($atoms_array as $i => $wrapped_atom) {
+      $context = _ubn_scald_atom_context($wrapped_atom);
+      //$atom = $wrapped_atom->value();
+
+      //TODO: types if override, do we need types?
+      //$atom_types[$atom->type] = $atom->type;
+      $context_group_atoms[$wrapped_atom->getIdentifier()] = $wrapped_atom;
+      $next_i = $i + 1;
+      if(
+        (
+          isset($atoms_array[$next_i]) &&
+          $context !== _ubn_scald_atom_context($atoms_array[$next_i])
+        ) ||
+        $i === $atoms_last_i
+      ) {
+        $context_groups[] = array(
+          'context' => $context,
+          'count' => count($context_group_atoms),
+          'atoms' => $context_group_atoms,
+        );
+        $context_group_atoms = array();
+      }
+    }
+  }
+
+  $layouts = array();
+  foreach($context_groups as $group) {
+    if(!empty($media_layout_override)) {
+      $media_layout = $media_layout_override;
+    }
+    else {
+      $media_layout = _ubn_scald_context_layout($group['context']);
+    }
+
+    if($media_layout === '1_col') {
+      foreach($group['atoms'] as $atom) {
+        $layouts[] = array(
+          'type' => 'atom',
+          'context' => $group['context'],
+          'data' => $atom,
+        );
+      }
+    }
+    elseif($media_layout == '2_col') {
+      if($group['count'] % 2) {
+        $odd_atom = array_pop($group['atoms']);
+      }
+      if(!empty($group['atoms'])) {
+        $layouts[] = array(
+          'type' => $media_layout,
+          'data' => $group['atoms'],
+          'context' => $group['context'],
+        );
+      }
+      if($group['count'] % 2) {
+        $layouts[] = array(
+          'type' => 'atom',
+          'data' => $odd_atom,
+          'context' => $group['context'],
+        );
+      }
+    }
+  }
+  return $layouts;
+}
+
+function _ubn_scald_atom_context($wrapped_atom) {
+  return _ubn_scald_aspect_ratio_context(
+    _ubn_scald_atom_aspect_ratio($wrapped_atom)
+  );
+}
+
+
+function _ubn_scald_atom_aspect_ratio($wrapped_atom) {
+  if(isset($wrapped_atom->scald_thumbnail)) {
+    $image = $wrapped_atom->scald_thumbnail->value();
+    return $image['width'] / $image['height'];
+  }
+  return NULL;
+}
+
+function _ubn_scald_aspect_ratio_context($aspect_ratio) {
+  if($aspect_ratio > 1.0) {
+    return 'page_content';
+  }
+  else {
+    return 'page_content_portrait';
+  }
+  return 'page_content';
+}
+
+function _ubn_scald_context_layout($context) {
+  if($context === 'page_content') {
+    return '1_col';
+  }
+  else if($context === 'page_content_portrait') {
+    return '2_col';
+  }
+  return '1_col';
+}
+
 function ubn_scald_page_build(&$page) {
   drupal_add_js(drupal_get_path('module', 'ubn_scald') . '/ubn_scald.js');
 }
