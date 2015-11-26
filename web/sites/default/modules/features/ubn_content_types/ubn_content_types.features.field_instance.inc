@@ -11,6 +11,48 @@ function ubn_content_types_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
+  // 'field_collection_item-field_content_sections-field_body'.
+  $field_instances['field_collection_item-field_content_sections-field_body'] = array(
+    'bueditor_profile' => -1,
+    'bundle' => 'field_content_sections',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_body',
+    'label' => 'Body',
+    'required' => 1,
+    'settings' => array(
+      'context' => 'title',
+      'context_default' => 'title',
+      'dnd_enabled' => 1,
+      'entity_translation_sync' => FALSE,
+      'mee_enabled' => 0,
+      'text_processing' => 1,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 10,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance:
   // 'field_collection_item-field_content_sections-field_file_atoms'.
   $field_instances['field_collection_item-field_content_sections-field_file_atoms'] = array(
     'bundle' => 'field_content_sections',
@@ -93,6 +135,82 @@ function ubn_content_types_field_default_field_instances() {
         'context' => 'sdl_editor_representation',
       ),
       'type' => 'atom_reference_textfield',
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'field_collection_item-field_content_sections-field_media_context'.
+  $field_instances['field_collection_item-field_content_sections-field_media_context'] = array(
+    'bundle' => 'field_content_sections',
+    'default_value' => array(
+      0 => array(
+        'value' => 'auto',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 8,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_media_context',
+    'label' => 'Media aspect ratio',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 0,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'field_collection_item-field_content_sections-field_media_layout'.
+  $field_instances['field_collection_item-field_content_sections-field_media_layout'] = array(
+    'bundle' => 'field_content_sections',
+    'default_value' => array(
+      0 => array(
+        'value' => 'auto',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_media_layout',
+    'label' => 'Media layout',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
       'weight' => 0,
     ),
   );
@@ -674,7 +792,7 @@ function ubn_content_types_field_default_field_instances() {
       'weight' => -5,
     ),
   );
- 
+
   // Exported field_instance: 'node-library-field_adapted_study_rooms_count'.
   $field_instances['node-library-field_adapted_study_rooms_count'] = array(
     'bundle' => 'library',
@@ -2951,7 +3069,9 @@ function ubn_content_types_field_default_field_instances() {
   t('Location');
   t('Location override');
   t('Mailing address');
+  t('Media aspect ratio');
   t('Media atoms');
+  t('Media layout');
   t('Media types');
   t('Name');
   t('Opening hours');
