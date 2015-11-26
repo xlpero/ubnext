@@ -48,6 +48,7 @@
 <head profile="<?php print $grddl_profile; ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name = "format-detection" content = "telephone=no">
+  <link rel="shortcut icon" href="/1479536_goteborgsuniversitet_16px.ico">
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
