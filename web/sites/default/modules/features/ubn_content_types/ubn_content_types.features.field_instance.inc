@@ -13,7 +13,6 @@ function ubn_content_types_field_default_field_instances() {
   // Exported field_instance:
   // 'field_collection_item-field_content_sections-field_body'.
   $field_instances['field_collection_item-field_content_sections-field_body'] = array(
-    'bueditor_profile' => -1,
     'bundle' => 'field_content_sections',
     'default_value' => NULL,
     'deleted' => 0,
@@ -32,11 +31,7 @@ function ubn_content_types_field_default_field_instances() {
     'label' => 'Body',
     'required' => 1,
     'settings' => array(
-      'context' => 'title',
-      'context_default' => 'title',
-      'dnd_enabled' => 1,
       'entity_translation_sync' => FALSE,
-      'mee_enabled' => 0,
       'text_processing' => 1,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
@@ -2035,51 +2030,6 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-page-body'.
-  $field_instances['node-page-body'] = array(
-    'bundle' => 'page',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'hidden',
-        'module' => 'text',
-        'settings' => array(
-          'trim_length' => 600,
-        ),
-        'type' => 'text_summary_or_trimmed',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'body',
-    'label' => 'Body',
-    'required' => FALSE,
-    'settings' => array(
-      'display_summary' => TRUE,
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 20,
-        'summary_rows' => 5,
-      ),
-      'type' => 'text_textarea_with_summary',
-      'weight' => -4,
-    ),
-  );
-
   // Exported field_instance: 'node-page-field_content_sections'.
   $field_instances['node-page-field_content_sections'] = array(
     'bundle' => 'page',
@@ -2258,14 +2208,9 @@ function ubn_content_types_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
+        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 1,
-      ),
-      'page_content' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'taxonomy_term_reference_link',
         'weight' => 1,
       ),
     ),
@@ -2297,15 +2242,10 @@ function ubn_content_types_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
+        'module' => 'file',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
-      ),
-      'page_content' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 2,
+        'type' => 'file_default',
+        'weight' => 3,
       ),
     ),
     'entity_type' => 'scald_atom',
@@ -2339,15 +2279,10 @@ function ubn_content_types_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
+        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 3,
-      ),
-      'page_content' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 3,
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 2,
       ),
     ),
     'entity_type' => 'scald_atom',
@@ -2380,19 +2315,13 @@ function ubn_content_types_field_default_field_instances() {
         'label' => 'above',
         'settings' => array(),
         'type' => 'hidden',
-        'weight' => 4,
-      ),
-      'page_content' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 4,
+        'weight' => 0,
       ),
     ),
     'entity_type' => 'scald_atom',
     'field_name' => 'scald_thumbnail',
     'label' => 'Thumbnail',
-    'required' => 0,
+    'required' => FALSE,
     'settings' => array(
       'alt_field' => 0,
       'default_image' => 0,
@@ -2406,64 +2335,25 @@ function ubn_content_types_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
       'module' => 'image',
       'settings' => array(
-        'manualcrop_crop_info' => 1,
-        'manualcrop_default_crop_area' => 1,
-        'manualcrop_enable' => 1,
-        'manualcrop_inline_crop' => 0,
-        'manualcrop_instant_crop' => 0,
-        'manualcrop_instant_preview' => 1,
-        'manualcrop_keyboard' => 1,
-        'manualcrop_maximize_default_crop_area' => 0,
+        'manualcrop_crop_info' => TRUE,
+        'manualcrop_default_crop_area' => TRUE,
+        'manualcrop_enable' => FALSE,
+        'manualcrop_inline_crop' => FALSE,
+        'manualcrop_instant_crop' => FALSE,
+        'manualcrop_instant_preview' => TRUE,
+        'manualcrop_keyboard' => TRUE,
+        'manualcrop_maximize_default_crop_area' => FALSE,
         'manualcrop_require_cropping' => array(),
         'manualcrop_styles_list' => array(),
         'manualcrop_styles_mode' => 'include',
-        'manualcrop_thumblist' => 0,
+        'manualcrop_thumblist' => FALSE,
         'preview_image_style' => 'thumbnail',
         'progress_indicator' => 'throbber',
       ),
       'type' => 'image_image',
       'weight' => 0,
-    ),
-  );
-
-  // Exported field_instance: 'scald_atom-file-title_field'.
-  $field_instances['scald_atom-file-title_field'] = array(
-    'bundle' => 'file',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 5,
-      ),
-    ),
-    'entity_type' => 'scald_atom',
-    'field_name' => 'title_field',
-    'label' => 'Title',
-    'required' => TRUE,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
-      ),
-      'text_processing' => 0,
-      'ubn_property_field' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => -5,
     ),
   );
 
@@ -2476,8 +2366,9 @@ function ubn_content_types_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
+        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'taxonomy_term_reference_link',
         'weight' => 1,
       ),
     ),
@@ -2510,8 +2401,9 @@ function ubn_content_types_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
+        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'taxonomy_term_reference_link',
         'weight' => 2,
       ),
     ),
@@ -2588,47 +2480,6 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'scald_atom-image-title_field'.
-  $field_instances['scald_atom-image-title_field'] = array(
-    'bundle' => 'image',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 3,
-      ),
-    ),
-    'entity_type' => 'scald_atom',
-    'field_name' => 'title_field',
-    'label' => 'Title',
-    'required' => TRUE,
-    'settings' => array(
-      'context' => '',
-      'dnd_enabled' => 0,
-      'entity_translation_sync' => FALSE,
-      'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
-      ),
-      'mee_enabled' => 0,
-      'text_processing' => 0,
-      'ubn_property_field' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => -5,
-    ),
-  );
-
   // Exported field_instance: 'scald_atom-video-scald_authors'.
   $field_instances['scald_atom-video-scald_authors'] = array(
     'bundle' => 'video',
@@ -2638,8 +2489,9 @@ function ubn_content_types_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
+        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'taxonomy_term_reference_link',
         'weight' => 1,
       ),
     ),
@@ -2672,8 +2524,9 @@ function ubn_content_types_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
+        'module' => 'taxonomy',
         'settings' => array(),
-        'type' => 'hidden',
+        'type' => 'taxonomy_term_reference_link',
         'weight' => 2,
       ),
     ),
@@ -2747,47 +2600,6 @@ function ubn_content_types_field_default_field_instances() {
       ),
       'type' => 'image_image',
       'weight' => 0,
-    ),
-  );
-
-  // Exported field_instance: 'scald_atom-video-title_field'.
-  $field_instances['scald_atom-video-title_field'] = array(
-    'bundle' => 'video',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 3,
-      ),
-    ),
-    'entity_type' => 'scald_atom',
-    'field_name' => 'title_field',
-    'label' => 'Title',
-    'required' => TRUE,
-    'settings' => array(
-      'context' => '',
-      'dnd_enabled' => 0,
-      'entity_translation_sync' => FALSE,
-      'hide_label' => array(
-        'entity' => FALSE,
-        'page' => FALSE,
-      ),
-      'mee_enabled' => 0,
-      'text_processing' => 0,
-      'ubn_property_field' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => -5,
     ),
   );
 
