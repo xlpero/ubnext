@@ -75,6 +75,13 @@ function ubnext_pre_render_styles($elements) {
 
 
 
+/**
+ * Implements hook_html_head_alter().
+ */
+function ubnext_html_head_alter(&$head_elements) {
+  dsm($head_elements);
+}
+
 
 function ubnext_theme() {
   $items = array();
