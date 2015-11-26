@@ -234,6 +234,16 @@ function ubn_general_update_7115() {
   drupal_uninstall_modules($modules);
 }
 
+
+// remove body on page
+function ubn_general_update_7116() {
+  field_delete_field('body');
+  features_revert_module('ubn_content_types');
+}
+
+
+
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {
