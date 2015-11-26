@@ -1,4 +1,129 @@
 <?php
+
+function ubn_scald_media_atoms_layout($wrapped_atoms, $context_override = NULL, $media_layout_override = NULL) {
+  //$atom_types = array();
+  $context_groups = array();
+
+  if($context_override === 'auto') {
+    $context_override = NULL;
+  }
+  if($media_layout_override === 'auto') {
+    $media_layout_override = NULL;
+  }
+
+  $atoms_array = iterator_to_array($wrapped_atoms);
+
+  if(!empty($context_override)) {
+    $context_groups[] = array(
+      'context' => $context_override,
+      'count' => count($atoms_array),
+      'atoms' => $atoms_array,
+    );
+  }
+  else {
+    $context_group_atoms = array();
+    $atoms_last_i = count($atoms_array) - 1;
+    foreach($atoms_array as $i => $wrapped_atom) {
+      $context = _ubn_scald_atom_context($wrapped_atom);
+      //$atom = $wrapped_atom->value();
+
+      //TODO: types if override, do we need types?
+      //$atom_types[$atom->type] = $atom->type;
+      $context_group_atoms[$wrapped_atom->getIdentifier()] = $wrapped_atom;
+      $next_i = $i + 1;
+      if(
+        (
+          isset($atoms_array[$next_i]) &&
+          $context !== _ubn_scald_atom_context($atoms_array[$next_i])
+        ) ||
+        $i === $atoms_last_i
+      ) {
+        $context_groups[] = array(
+          'context' => $context,
+          'count' => count($context_group_atoms),
+          'atoms' => $context_group_atoms,
+        );
+        $context_group_atoms = array();
+      }
+    }
+  }
+
+  $layouts = array();
+  foreach($context_groups as $group) {
+    if(!empty($media_layout_override)) {
+      $media_layout = $media_layout_override;
+    }
+    else {
+      $media_layout = _ubn_scald_context_layout($group['context']);
+    }
+
+    if($media_layout === '1_col') {
+      foreach($group['atoms'] as $atom) {
+        $layouts[] = array(
+          'type' => 'atom',
+          'context' => $group['context'],
+          'data' => $atom,
+        );
+      }
+    }
+    elseif($media_layout == '2_col') {
+      if($group['count'] % 2) {
+        $odd_atom = array_pop($group['atoms']);
+      }
+      if(!empty($group['atoms'])) {
+        $layouts[] = array(
+          'type' => $media_layout,
+          'data' => $group['atoms'],
+          'context' => $group['context'],
+        );
+      }
+      if($group['count'] % 2) {
+        $layouts[] = array(
+          'type' => 'atom',
+          'data' => $odd_atom,
+          'context' => $group['context'],
+        );
+      }
+    }
+  }
+  return $layouts;
+}
+
+function _ubn_scald_atom_context($wrapped_atom) {
+  return _ubn_scald_aspect_ratio_context(
+    _ubn_scald_atom_aspect_ratio($wrapped_atom)
+  );
+}
+
+
+function _ubn_scald_atom_aspect_ratio($wrapped_atom) {
+  if(isset($wrapped_atom->scald_thumbnail)) {
+    $image = $wrapped_atom->scald_thumbnail->value();
+    return $image['width'] / $image['height'];
+  }
+  return NULL;
+}
+
+function _ubn_scald_aspect_ratio_context($aspect_ratio) {
+  if($aspect_ratio > 1.0) {
+    return 'page_content';
+  }
+  else {
+    return 'page_content_portrait';
+  }
+  return 'page_content';
+}
+
+function _ubn_scald_context_layout($context) {
+  if($context === 'page_content') {
+    return '1_col';
+  }
+  else if($context === 'page_content_portrait') {
+    return '2_col';
+  }
+  return '1_col';
+}
+
 function ubn_scald_page_build(&$page) {
   drupal_add_js(drupal_get_path('module', 'ubn_scald') . '/ubn_scald.js');
 }
@@ -10,8 +135,18 @@ function ubn_scald_scald_render($atom, $context, $options = array()) {
   $callback = "_ubn_scald_{$context}_render";
   $atom_type_callback = "_ubn_scald_atom_type_{$atom->type}_render";
   $context_atom_type_callback = "_ubn_scald_{$context}_atom_type_{$atom->type}_render";
+  
+  //Special case for inline contexts
+
+  if(strpos($context, 'page_content_inline_') === 0) {
+    $inline_atom_type_callback = "_ubn_scald_atom_type_{$atom->type}_page_content_inline_render";
+    if(function_exists($inline_atom_type_callback)) {
+      return $inline_atom_type_callback($atom, $context, substr($context, 20), $options);
+    }
+  }
+
   if(function_exists($callback)) {
-    return $callback($atom, $options);
+    return $callback($atom, $context, $options);
   }
   else if(function_exists($atom_type_callback)) {
     return $atom_type_callback($atom, $context, $options);
@@ -24,10 +159,45 @@ function ubn_scald_scald_render($atom, $context, $options = array()) {
   }
 }
 
+
+function _ubn_scald_page_content_inline_render($atom_rendered, $context, $size, $options) {
+   //TODO: consistent template file names
+  $rendered = slate_render('ubn-scald-inline-atoms-atom', array(
+    'atom_rendered' => $atom_rendered,
+    'context' => $context,
+    'bootstrap_classes' => _ubn_scald_inline_atoms_size_bootstrap_classes($size),
+  ));
+  return $rendered;
+}
+
+function _ubn_scald_atom_type_image_page_content_inline_render($atom, $context, $size, $options) {
+  $atom_rendered = scald_scald_render($atom, $context, $options);
+  if(is_array($atom_rendered)) {
+    $atom_rendered = drupal_render($atom_rendered);
+  }
+  return _ubn_scald_page_content_inline_render($atom_rendered, $context, $size, $options);
+}
+
+function _ubn_scald_atom_type_video_page_content_inline_render($atom, $context, $size, $options) {
+  //TODO: perhaps remap some contexts for video?
+  $atom_rendered = _ubn_scald_atom_type_video_render($atom, $context, $options);
+  return _ubn_scald_page_content_inline_render($atom_rendered, $context, $size, $options);
+}
+
+function _ubn_scald_inline_atoms_size_bootstrap_classes($size) {
+  $sizes_classes = array(
+    'large' => 'col-xs-12',
+    'medium' => 'col-xs-12 col-sm-9',
+    'small' => 'col-xs-9 col-sm-6',
+    'extra_small' => 'col-xs-6 col-sm-4',
+  );
+  return isset($sizes_classes[$size]) ? $sizes_classes[$size] : 'col-xs-12';
+}
+
 // Render callbacks
 
-function _ubn_scald_page_content_attachments_render($atom, $options) {
-  $result = slate_render('scald-file-page-content-attachments', array(
+function _ubn_scald_page_content_attachments_render($atom, $context, $options) {
+  return slate_render('scald-file-page-content-attachments', array(
     'atom' => $atom,
     'file_url' => file_create_url($atom->base_entity->uri),
     'file_size' => format_size($atom->base_entity->filesize),
@@ -35,7 +205,6 @@ function _ubn_scald_page_content_attachments_render($atom, $options) {
     'file_extension' => _ubn_scald_file_extension($atom->base_entity->filename),
     'font_awesome_icon' => _ubn_scald_font_awesome_icon($atom->base_entity->filemime),
   ));
-  return $result;
 }
 
 function _ubn_scald_atom_type_video_render($atom, $context, $options) {
@@ -168,6 +337,47 @@ function ubn_scald_scald_contexts() {
       'video' => array('passthrough'),
     ),
   );
+ $contexts['page_content_inline_large'] = array(
+    'title' => t('Page content inline large'),
+    'description' => t('Page content'),
+    'render_language' => 'XHTML',
+    'parseable' => TRUE,
+    'formats' => array(
+      'image' => array('passthrough'),
+      'video' => array('passthrough'),
+    ),
+  );
+ $contexts['page_content_inline_medium'] = array(
+    'title' => t('Page content inline medium'),
+    'description' => t('Page content'),
+    'render_language' => 'XHTML',
+    'parseable' => TRUE,
+    'formats' => array(
+      'image' => array('passthrough'),
+      'video' => array('passthrough'),
+    ),
+  );
+ $contexts['page_content_inline_small'] = array(
+    'title' => t('Page content inline small'),
+    'description' => t('Page content'),
+    'render_language' => 'XHTML',
+    'parseable' => TRUE,
+    'formats' => array(
+      'image' => array('passthrough'),
+      'video' => array('passthrough'),
+    ),
+  );
+ $contexts['page_content_inline_extra_small'] = array(
+    'title' => t('Page content inline extra small'),
+    'description' => t('Page content'),
+    'render_language' => 'XHTML',
+    'parseable' => TRUE,
+    'formats' => array(
+      'image' => array('passthrough'),
+      'video' => array('passthrough'),
+    ),
+  );
+
   $contexts['page_content_attachments'] = array(
     'title' => t('Page content attachments'),
     'description' => t('Page content attachments'),
@@ -179,4 +389,64 @@ function ubn_scald_scald_contexts() {
     ),
   );
   return $contexts;
+}
+
+//TODO: also define image styles? Probably
+
+function ubn_scald_filter_info() {
+  return array(
+    'ubn_scald_wrap_sas_atoms' => array(
+      'title' => t('UBN Scald: Wrap SAS atoms'),
+      'description' => t("Wraps SAS atoms to protect them from markdown"),
+      'process callback' => '_ubn_scald_wrap_sas_atoms',
+      //'settings callback' => '_ubn_markdown_settings',
+      //'default settings' => array(),
+      'tips callback' => '_ubn_scald_filter_tips',
+    ),
+    'ubn_scald_render_sas_atoms' => array(
+      'title' => t('UBN Scald: Render SAS atoms'),
+      'description' => t("Renders SAS atoms "),
+      'process callback' => '_ubn_scald_render_sas_atoms',
+      //'settings callback' => '_ubn_markdown_settings',
+      //'default settings' => array(),
+      'tips callback' => '_ubn_scald_filter_tips',
+    ),
+
+  );
+}
+
+function _ubn_scald_wrap_sas_atoms($text) {
+  //TODO: extract first/last char instead
+  $matches = array();
+  if(preg_match('/^(.)(.+?)\1\w*$/', SCALD_SAS_MATCH_PATTERN, $matches)) {
+    //TODO: warning/exception if no matches?
+    //TODO: Will not work for "{...}" style delimiters etc, good enough?
+    $delimiter = $matches[1];
+    $atoms_pattern = $delimiter . '(' . $matches[2] . '\s*)+' . $delimiter . 'm';
+    $text = preg_replace_callback(
+      $atoms_pattern ,
+      '_ubn_scald_wrap_sas_atoms_callback',
+      $text
+    );
+  }
+  return $text;
+}
+
+
+function _ubn_scald_wrap_sas_atoms_callback($matches) {
+  //TODO: slate
+  //TODO: atoms_raw/atoms/atoms_sas instead of atoms_renderd?
+  return slate_render('ubn-scald-inline-atoms', array('atoms_rendered' => $matches[0]));
+}
+
+function _ubn_scald_render_sas_atoms($text) {
+  $text = scald_sas_to_rendered($text, 'page_content_inline', FALSE, dnd_scald_wysiwyg_context_slugs());
+  return $text;
+}
+
+
+function _ubn_scald_filter_tips($filter, $format, $long = FALSE) {
+  return $long ?
+    'todo' :
+    'todo';
 }

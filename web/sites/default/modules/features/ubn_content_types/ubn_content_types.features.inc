@@ -103,6 +103,70 @@ function ubn_content_types_image_default_styles() {
     ),
   );
 
+  // Exported image style: page_content_inline_extra_small.
+  $styles['page_content_inline_extra_small'] = array(
+    'label' => 'Page content inline extra small',
+    'effects' => array(
+      17 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 325,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: page_content_inline_large.
+  $styles['page_content_inline_large'] = array(
+    'label' => 'Page content inline large',
+    'effects' => array(
+      14 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 1024,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: page_content_inline_medium.
+  $styles['page_content_inline_medium'] = array(
+    'label' => 'Page content inline medium',
+    'effects' => array(
+      15 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 768,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
+  // Exported image style: page_content_inline_small.
+  $styles['page_content_inline_small'] = array(
+    'label' => 'Page content inline small',
+    'effects' => array(
+      16 => array(
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => 512,
+          'height' => '',
+          'upscale' => 0,
+        ),
+        'weight' => 1,
+      ),
+    ),
+  );
+
   // Exported image style: page_content_portrait.
   $styles['page_content_portrait'] = array(
     'label' => 'Page content portrait',

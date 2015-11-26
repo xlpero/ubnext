@@ -18,6 +18,11 @@ function ubn_general_filter_default_formats() {
     'status' => 1,
     'weight' => 0,
     'filters' => array(
+      'ubn_scald_wrap_sas_atoms' => array(
+        'weight' => -48,
+        'status' => 1,
+        'settings' => array(),
+      ),
       'ubn_markdown' => array(
         'weight' => -44,
         'status' => 1,
@@ -40,6 +45,11 @@ function ubn_general_filter_default_formats() {
           'local_paths' => '',
           'protocol_style' => 'path',
         ),
+      ),
+      'ubn_scald_render_sas_atoms' => array(
+        'weight' => -40,
+        'status' => 1,
+        'settings' => array(),
       ),
     ),
   );
