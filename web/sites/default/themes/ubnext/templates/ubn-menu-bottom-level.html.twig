@@ -9,7 +9,7 @@
       {% for link in links %}
         {% set options = {} %}
         {% if link.has_children %}
-          {% set options = {'fa_icon' : link.expanded ? 'angle-down' : 'angle-right'} %}
+          {% set options = {'fa_icon' : link.expanded ? 'caret-down' : 'caret-right'} %}
         {% endif %}
         {{ menus.menu_item(link, options) }}
       {% endfor %}
