@@ -1,13 +1,22 @@
 .main-nav-cms {
 	border-bottom: 1px solid #ccc;
 	.nav-primary {
+    .clearfix();
 		@media (min-width: @screen-sm-min) {
 			margin-top: -20px;
 		}
-		
+
+    .ubn-menu {
+			.pull-right();
+    }
+
+    .ubn-menu-level {
+      float: right;
+      clear: both;
+    }
+
 		.menu {
 			font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
-			.pull-right();
 			.list-unstyled();
 			li {
 				float: left;
@@ -25,7 +34,3 @@
 		}
 	}
 }
-
-
-
-	
