@@ -98,7 +98,6 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       // First unshift top-level
       array_shift($page_tree_by_level);
       $menu_bottom_level = array_pop($page_tree_by_level);
-      $links = _ubn_menu_menu_tree_links($menu_bottom_level);
       //TODO: implement menu-name wild card
       if(!empty($menu_bottom_level)) {
         $links = _ubn_menu_menu_tree_links($menu_bottom_level);

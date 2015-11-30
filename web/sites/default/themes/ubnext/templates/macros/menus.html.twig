@@ -1,4 +1,5 @@
-{% macro menu_item(link) %}
+{% macro menu_item(link, options) %}
+  {% spaceless %}
   {% if link.in_active_trail %}
     {% set classes = 'active-trail' %}
   {% endif %}
@@ -7,7 +8,13 @@
   {% else %}
     {% set classes = classes ~ ' leaf' %}
   {% endif %}
-  <li class="{{ classes|trim }}"><a href="{{ link.href }}">{{ link.title }}</a></li>
+  <li class="{{ classes|trim }}">
+    <a href="{{ link.href }}">{{ link.title }}</a>
+    {% if options.fa_icon is defined %}
+      <i class="fa fa-{{ options.fa_icon }}"></i>
+    {% endif %}
+  </li>
+  {% endspaceless %}
 {% endmacro %}
 
 {% macro menu(links, namespace) %}

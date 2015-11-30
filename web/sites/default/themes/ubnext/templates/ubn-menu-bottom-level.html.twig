@@ -7,7 +7,11 @@
   <div class="ubn-menu-level ubn-menu-level-bottom">
     <ul class="menu">
       {% for link in links %}
-        {{ menus.menu_item(link) }}
+        {% set options = {} %}
+        {% if link.has_children %}
+          {% set options = {'fa_icon' : link.expanded ? 'angle-down' : 'angle-right'} %}
+        {% endif %}
+        {{ menus.menu_item(link, options) }}
       {% endfor %}
     </ul>
   </div>
