@@ -14,7 +14,6 @@ $plugin = array(
   'category' => 'UBN Menu',
 );
 
-
 function ubn_menu_ubn_menu_content_type_content_types() {
   $types = array();
   //TODO: Perhaps don't hard code
@@ -26,7 +25,6 @@ function ubn_menu_ubn_menu_content_type_content_types() {
   $types['ubn_menu:main-menu'] = $plugin;
   return $types;
 }
-
 
 /**
  * Settings callback.
@@ -71,8 +69,16 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
     $menu_output_by_level[$level] = drupal_render($menu_output_by_level[$level]);
   }
 
+  $menu_top_level = array_shift($menu_output_by_level);
+  $menu_bottom_level = !empty($menu_output_by_level) ? array_pop($menu_output_by_level) : '';
+  $menu_trail = !empty($menu_output_by_level) ? $menu_output_by_level : array();
+
   $block->content = slate_render('ubn-menu-main-menu',
-    array('menu_by_level' => $menu_output_by_level)
+    array(
+      'menu_top_level' => $menu_top_level,
+      'menu_trail' => $menu_trail,
+      'menu_bottom_level' => $menu_bottom_level,
+    )
   );
 
   return $block;
