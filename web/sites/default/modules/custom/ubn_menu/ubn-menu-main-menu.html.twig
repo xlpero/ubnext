@@ -1,0 +1,18 @@
+{# slate
+  name = UBN menu: main-menu
+  models[menu_by_level] = item
+#}
+<div class="ubn-menu ubn-menu-main-menu">
+{% for menu in menu_by_level %}
+  {% if loop.first %}
+    {% set classes = 'ubn-menu-level-top' %}
+  {% elseif loop.last %}
+    {% set classes = 'ubn-menu-level-bottom' %}
+  {% else %}
+    {% set classes = 'ubn-menu-trail' %}
+  {% endif %}
+  <div class="{{ classes }}">
+    {{ menu|raw }}
+  </div>
+{% endfor %}
+</div>
