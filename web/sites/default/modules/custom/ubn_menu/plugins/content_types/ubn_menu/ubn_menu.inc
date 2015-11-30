@@ -18,11 +18,16 @@ function ubn_menu_ubn_menu_content_type_content_types() {
   $types = array();
   //TODO: Perhaps don't hard code
   $plugin = array(
-    'title' => "UBN Menu: Main menu",
     'category' => 'UBNext',
     //'edit form' => 'ubn_menu_slate_slate_gmap_content_type_settings',
   );
-  $types['ubn_menu:main-menu'] = $plugin;
+  $menu_name = 'main-menu';
+  $menu_label = 'Main menu';
+  //TODO: full instead of all
+  foreach(array('all', 'top-level', 'menu-trail', 'bottom-level') as $variant) { 
+    $types['ubn_menu:' . $menu_name . ':' . $variant ] = $plugin + array('title' => 'UBN Menu: ' .  $menu_label . ' (' . $variant . ')'); //t?
+  }
+
   return $types;
 }
 
@@ -44,44 +49,138 @@ function ubn_menu_ubn_menu_content_type_settings_submit($form, &$form_state) {
  * Render callback.
  */
 function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $context) {
+
+  list(, $menu_name, $type) = explode(':', $subtype);
+
+  $cache = drupal_static(__FUNCTION__);
+  $menu_name = 'main-menu';
+
+  if(!isset($cache[$menu_name . ':page_tree_by_level'])) {
+    $page_tree = menu_tree_page_data($menu_name);
+    _ubn_menu_prune($page_tree);
+    $page_tree_by_level = _ubn_menu_menu_tree_by_level($page_tree);
+    $cache[$menu_name . ':page_tree_by_level'] = $page_tree_by_level;
+  }
+  $page_tree_by_level = $cache[$menu_name . ':page_tree_by_level'];
+
   $block = new stdClass();
-  $block->title = t('UBN Menu');
-  $page_tree = menu_tree_page_data('main-menu');
-  _ubn_menu_prune($page_tree);
+  $block->title = t('UBN Menu'); //title?, none?
 
-  $page_tree_by_level = array();
-  $level = 0;
-  do {
-    $next_level_page_tree = array();
-    foreach($page_tree as &$item) {
-      if(!empty($item['below'])) {
-        $next_level_page_tree += $item['below'];
-        $item['below'] = array();
+  switch($type) {
+    case 'all':
+      $menu_output_by_level = array();
+      foreach($page_tree_by_level as $level => $tree) {
+        $menu_output_by_level[$level] = menu_tree_output($tree);
+        $menu_output_by_level[$level] = drupal_render($menu_output_by_level[$level]);
       }
-    }
-    $page_tree_by_level[$level++] = $page_tree;
-    $page_tree = $next_level_page_tree;
-  } while(!empty($page_tree));
 
-  $menu_output_by_level = array();
-  foreach($page_tree_by_level as $level => $tree) {
-    $menu_output_by_level[$level] = menu_tree_output($tree);
-    $menu_output_by_level[$level] = drupal_render($menu_output_by_level[$level]);
+      $menu_top_level = array_shift($menu_output_by_level);
+      $menu_bottom_level = !empty($menu_output_by_level) ? array_pop($menu_output_by_level) : '';
+      $menu_trail = !empty($menu_output_by_level) ? $menu_output_by_level : array();
+
+      $block->content = slate_render('ubn-menu-main-menu',
+        array(
+          'menu_top_level' => $menu_top_level,
+          'menu_trail' => $menu_trail,
+          'menu_bottom_level' => $menu_bottom_level,
+        )
+      );
+      break;
+    case 'top-level':
+      $menu_top_level = array_shift($page_tree_by_level);
+      $links = _ubn_menu_menu_tree_links($menu_top_level);
+      //TODO: implement menu-name wild card
+      $block->content = slate_render('ubn-menu-top-level', array(
+        'links' => $links
+      ));
+      break;
+    case 'bottom-level':
+      // First unshift top-level
+      array_shift($page_tree_by_level);
+      $menu_bottom_level = array_pop($page_tree_by_level);
+      $links = _ubn_menu_menu_tree_links($menu_bottom_level);
+      //TODO: implement menu-name wild card
+      if(!empty($menu_bottom_level)) {
+        $links = _ubn_menu_menu_tree_links($menu_bottom_level);
+        //TODO: implement menu-name wild card
+        $block->content = slate_render('ubn-menu-bottom-level', array(
+          'links' => $links
+        ));
+      }
+      else {
+        $block->content = '';
+      }
+      break;
+    case 'menu-trail':
+      $trail = array();
+      foreach($page_tree_by_level as $level) {
+        $links = _ubn_menu_menu_tree_links($level);
+        foreach($links as $link) {
+          if($link['in_active_trail']) {
+            $trail[] = $link;
+            break;
+          }
+        }
+      }
+      if(!empty($trail)) {
+        $block->content = slate_render('ubn-menu-menu-trail', array(
+          'links' => $trail,
+        ));
+      }
+      else {
+        $block->content = '';
+      }
+      break;
   }
 
-  $menu_top_level = array_shift($menu_output_by_level);
-  $menu_bottom_level = !empty($menu_output_by_level) ? array_pop($menu_output_by_level) : '';
-  $menu_trail = !empty($menu_output_by_level) ? $menu_output_by_level : array();
-
-  $block->content = slate_render('ubn-menu-main-menu',
-    array(
-      'menu_top_level' => $menu_top_level,
-      'menu_trail' => $menu_trail,
-      'menu_bottom_level' => $menu_bottom_level,
-    )
-  );
-
   return $block;
+}
+
+function _ubn_menu_menu_tree_links($tree) {
+  $items = array();
+  // Pull out just the menu links we are going to render so that we
+  // get an accurate count for the first/last classes.
+  foreach ($tree as $data) {
+    if ($data['link']['access'] && !$data['link']['hidden']) {
+      $items[] = $data;
+    }
+  }
+  $links = array();
+  foreach($tree as $item) {
+    $link = array();
+    //url options?
+    $link['href'] = url($item['link']['href']);
+    $link['title'] = $item['link']['title'];
+    $link['in_active_trail'] = $item['link']['in_active_trail'];
+    $link['has_children'] = $item['link']['has_children'];
+    // Since $item['below'] may contain local
+    // tasks, only set 'expanded' if the link also has children
+    // within the current menu.
+    $link['expanded'] = $item['link']['has_children'] && !empty($item['ubn_menu_item_has_below']);
+    $links[] = $link;
+  }
+  return $links;
+}
+
+function _ubn_menu_menu_tree_by_level($menu_tree) {
+  $menu_tree_by_level = array();
+  $level = 0;
+  do {
+    $next_level_menu_tree = array();
+    foreach($menu_tree as &$item) {
+      if(!empty($item['below'])) {
+        $next_level_menu_tree += $item['below'];
+        $item['below'] = array();
+        //Leave marker that this item is expanded as 'below'
+        //will not indicat this any more
+        $item['ubn_menu_item_has_below'] = TRUE; //? in active-trail
+        // enough?
+      }
+    }
+    $menu_tree_by_level[$level++] = $menu_tree;
+    $menu_tree = $next_level_menu_tree;
+  } while(!empty($menu_tree));
+  return $menu_tree_by_level;
 }
 
 function _ubn_menu_prune(&$tree) {

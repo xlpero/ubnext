@@ -1,0 +1,14 @@
+{# slate
+  name = UBN menu: main-menu (bottom-level)
+  models[links] = item
+#}
+{% import "macros/menus.html.twig" as menus %}
+<div class="ubn-menu">
+  <div class="ubn-menu-level ubn-menu-level-bottom">
+    <ul class="menu">
+      {% for link in links %}
+        {{ menus.menu_item(link) }}
+      {% endfor %}
+    </ul>
+  </div>
+</div>
