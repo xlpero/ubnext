@@ -1,0 +1,39 @@
+<?php
+
+function ubn_menu_position_form_node_form_alter(&$form, $form_state, $form_id) {
+  if($form_id === 'library_node_form') {
+    $form['menu']['#access'] = FALSE;
+  }
+}
+
+function ubn_menu_position_node_presave($node) {
+  if($node->type === 'library') {
+    $parent_link = _ubn_menu_position_page_template_menu_link('libraries');
+    if(isset($parent_link) && isset($node->menu)) {
+      $link = &$node->menu;
+      $link['enabled'] = TRUE;
+      $link['link_title'] = trim($node->title);
+      $link['link_path'] = "node/{$node->nid}";
+      $link['menu_name'] = $parent_link['menu_name'];
+      $link['plid'] = $parent_link['mlid'];
+    }
+  }
+}
+
+function _ubn_menu_position_page_template_menu_link($page_template_value) {
+  $query = new EntityFieldQuery();
+  $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'page')
+    ->fieldCondition('field_template', 'value', $page_template_value);
+  $result = $query->execute();
+
+  if(!empty($result['node'])) {
+    $nid = key($result['node']);
+    $link = menu_link_get_preferred("node/$nid");
+    if($link) {
+      return $link;
+    }
+  }
+  return NULL;
+}

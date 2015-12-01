@@ -1,0 +1,4 @@
+name = UBN Menu position
+description = Custom menu position rules for UBN
+core = 7.x
+dependencies[] = menu
