@@ -1,0 +1,18 @@
+{# slate
+  name = UBN menu: main-menu (bottom-level)
+  models[links] = item
+#}
+{% import "macros/menus.html.twig" as menus %}
+<div class="ubn-menu">
+  <div class="ubn-menu-level ubn-menu-level-bottom">
+    <ul class="menu">
+      {% for link in links %}
+        {% set options = {} %}
+        {% if link.has_children %}
+          {% set options = {'fa_icon' : link.expanded ? 'caret-down' : 'caret-right'} %}
+        {% endif %}
+        {{ menus.menu_item(link, options) }}
+      {% endfor %}
+    </ul>
+  </div>
+</div>

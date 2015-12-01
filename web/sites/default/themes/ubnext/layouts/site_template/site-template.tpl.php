@@ -7,13 +7,13 @@
 <?php endif; ?>
 
 <!-- ### HEADER ### -->
-<header>      
+<header>
   <div class="container">
     <div class="row">
-      <div class="col-sm-10 col-xs-10">  
+      <div class="col-sm-10 col-xs-10">
         <div class="siteNav-logo <?php echo $language->language; ?>">
           <div class="logo">
-            <a href="<?php echo $GLOBALS['base_url']; ?>"><div class="logo-image"></div></a>  
+            <a href="<?php echo $GLOBALS['base_url']; ?>"><div class="logo-image"></div></a>
           </div>
         </div>
         <div class="site-headers">
@@ -33,21 +33,35 @@
 
 <!-- ### END HEADER ### -->
 
-
 <!-- ### MAIN NAVIGATION ### --> 
-<div class="main-nav-cms">
+<div class="nav-cms main-nav-cms">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
         <nav class="nav-primary">
           <!-- PRIMARY NAV -->
-            <?php print render($content['navigation']); ?>
+          <?php print render($content['navigation']); ?>
           <!-- END PRIMARY NAV --> 
         </nav>
       </div>
     </div>
   </div>
 </div>
+<?php if(!empty($content['navigation_secondary'])): ?>
+<div class="nav-cms secondary-nav-cms">
+ <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <nav class="nav-secondary">
+          <!-- SECONDARY NAV -->
+          <?php print render($content['navigation_secondary']); ?>
+          <!-- END SECONDARY NAV -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<?php endif; ?>
 <!-- ### END NAVIGATION ### -->
 
 <?php if (!empty($content['tabs'])): ?>
@@ -91,25 +105,25 @@
 <div class="footer-cms">
   <!-- ### FOOTER ### -->
   <div class="footer-area">
-    <footer id="footer" class="container">  
+    <footer id="footer" class="container">
       <div class="row">
         <div class="col-xs-12">
 
         </div>
       </div>
     </footer>
-  </div> 
+  </div>
   <!-- ### END FOOTER ### -->
 
-  <!-- ### SITE BOTTOM ### --> 
+  <!-- ### SITE BOTTOM ### -->
   <div class="site-bottom-area">
-    <div class="site-bottom container"> 
+    <div class="site-bottom container">
       <div class="copyright">
         &copy; <?php print variable_get('site_name'); ?>  <?php echo date("Y"); ?>
       </div>
     </div>
   </div>
-  <!-- ### END SITE BOTTOM ### --> 
+  <!-- ### END SITE BOTTOM ### -->
 </div> <!-- ### END FOOTER-CMS -->
 
 

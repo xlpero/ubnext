@@ -2,4 +2,4 @@ name = UBN Menu
 description = UBN Custom menu
 core = 7.x
 package = UBNext
-dependencies[] = menu_block
+dependencies[] = slate

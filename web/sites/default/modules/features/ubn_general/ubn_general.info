@@ -37,6 +37,7 @@ dependencies[] = transliteration
 dependencies[] = trigger
 dependencies[] = ubn_feeds
 dependencies[] = ubn_markdown
+dependencies[] = ubn_menu
 dependencies[] = ubn_page
 dependencies[] = ubn_property_fields
 dependencies[] = ubn_scald

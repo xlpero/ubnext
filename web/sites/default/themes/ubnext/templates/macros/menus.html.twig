@@ -1,0 +1,18 @@
+{% macro menu_item(link, options) %}
+  {% spaceless %}
+  {% if link.in_active_trail %}
+    {% set classes = 'active-trail' %}
+  {% endif %}
+  {% if link.has_children %}
+    {% set classes = classes ~ (link.expanded ? ' expanded' : ' collapsed') %}
+  {% else %}
+    {% set classes = classes ~ ' leaf' %}
+  {% endif %}
+  <li class="{{ classes|trim }}">
+    <a href="{{ link.href }}">{{ link.title }}{% if options.fa_icon is defined %}<i class="fa fa-{{ options.fa_icon }}"></i>{% endif %}</a>
+  </li>
+  {% endspaceless %}
+{% endmacro %}
+
+{% macro menu(links, namespace) %}
+{% endmacro %}
