@@ -13,6 +13,7 @@ $plugin = array(
     'topbar' => t('Top bar'),
     'navigation' => t('Navigation'),
     'navigation_secondary' => t('Secondary navigation'),
+    'breadcrumb' => t("Breadcrumb"),
     'tabs' => t("Tabs"),
     'pagetitle' => t('Page title'), /* put title and lead paragraphs here */ 
     'messages' => t('Messages'),

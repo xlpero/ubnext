@@ -47,6 +47,24 @@
     </div>
   </div>
 </div>
+
+<?php if(!empty($content['breadcrumb'])): ?>
+<div class="nav-cms breadcrumb-nav-cms">
+ <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <nav class="nav-breadcrumb">
+          <!-- SECONDARY NAV -->
+          <?php print render($content['breadcrumb']); ?>
+          <!-- END SECONDARY NAV -->
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<?php endif; ?>
+
+
 <?php if(!empty($content['navigation_secondary'])): ?>
 <div class="nav-cms secondary-nav-cms">
  <div class="container">
