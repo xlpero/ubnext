@@ -9,12 +9,16 @@ function ubn_menu_position_form_node_form_alter(&$form, $form_state, $form_id) {
 function ubn_menu_position_node_presave($node) {
   if($node->type === 'library') {
     $parent_link = _ubn_menu_position_page_template_menu_link('libraries');
-    if(isset($parent_link) && isset($node->menu)) {
+    if(isset($parent_link)) {
+      if(!isset($node->menu)) {
+        menu_node_prepare($node);
+      }
       $link = &$node->menu;
       $link['enabled'] = TRUE;
       $link['link_title'] = trim($node->title);
       $link['link_path'] = "node/{$node->nid}";
       $link['menu_name'] = $parent_link['menu_name'];
+      $link['description'] = '';
       $link['plid'] = $parent_link['mlid'];
     }
   }
