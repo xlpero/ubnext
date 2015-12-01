@@ -753,7 +753,37 @@ function ubn_page_default_page_manager_handlers() {
     $pane->type = 'ubn_menu';
     $pane->subtype = 'ubn_menu:main-menu:bottom-level';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'node_type',
+          'settings' => array(
+            'type' => array(
+              'library' => 'library',
+            ),
+          ),
+          'context' => 'node',
+          'not' => TRUE,
+        ),
+        1 => array(
+          'name' => 'entity_field_value:node:page:field_template',
+          'settings' => array(
+            'field_template' => array(
+              'und' => array(
+                0 => array(
+                  'value' => 'libraries',
+                ),
+              ),
+            ),
+            'field_template_value' => array(
+              0 => 'libraries',
+            ),
+          ),
+          'context' => 'node',
+          'not' => TRUE,
+        ),
+      ),
+    );
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
