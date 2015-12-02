@@ -3,3 +3,4 @@ description = UBN Custom menu
 core = 7.x
 package = UBNext
 dependencies[] = slate
+scripts[] = js/ubn_menu.js

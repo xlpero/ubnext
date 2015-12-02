@@ -12,6 +12,7 @@ $plugin = array(
     'toplinks' => t('Top links'),
     'topbar' => t('Top bar'),
     'navigation' => t('Navigation'),
+    'dropdown_navigation' => t('Dropdown navigation used on mobile'),
     'navigation_secondary' => t('Secondary navigation'),
     'breadcrumb' => t("Breadcrumb"),
     'tabs' => t("Tabs"),

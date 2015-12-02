@@ -24,7 +24,7 @@ function ubn_menu_ubn_menu_content_type_content_types() {
   $menu_name = 'main-menu';
   $menu_label = 'Main menu';
   //TODO: full instead of all
-  foreach(array('all', 'top-level', 'menu-trail', 'bottom-level') as $variant) { 
+  foreach(array('all', 'top-level', 'menu-trail', 'bottom-level', 'bottom-level-dropdown') as $variant) { 
     $types['ubn_menu:' . $menu_name . ':' . $variant ] = $plugin + array('title' => 'UBN Menu: ' .  $menu_label . ' (' . $variant . ')'); //t?
   }
 
@@ -49,9 +49,7 @@ function ubn_menu_ubn_menu_content_type_settings_submit($form, &$form_state) {
  * Render callback.
  */
 function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $context) {
-
   list(, $menu_name, $type) = explode(':', $subtype);
-
   $cache = drupal_static(__FUNCTION__);
   $menu_name = 'main-menu';
 
@@ -62,7 +60,6 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
     $cache[$menu_name . ':page_tree_by_level'] = $page_tree_by_level;
   }
   $page_tree_by_level = $cache[$menu_name . ':page_tree_by_level'];
-
   $block = new stdClass();
   $block->title = t('UBN Menu'); //title?, none?
 
@@ -109,6 +106,14 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       else {
         $block->content = '';
       }
+      break;
+    case 'bottom-level-dropdown':
+      $menu_top_level = array_shift($page_tree_by_level);
+      $links = _ubn_menu_menu_tree_links($menu_top_level);
+      //TODO: implement menu-name wild card
+      $block->content = slate_render('ubn-menu-top-level-dropdown', array(
+        'links' => $links
+      ));
       break;
     case 'menu-trail':
       $trail = array();

@@ -1,0 +1,15 @@
+{# slate
+  name = UBN menu: main-menu (bottom-level-dropdown)
+  models[links] = item
+#}
+{% import "macros/menus.html.twig" as menus %}
+<div class="ubn-mobile-menu">
+    <ul class="menu menu-mobile">
+      {% for link in links %}
+        {{ menus.menu_item(link) }}
+      {% endfor %}
+      <li class="lang-switch-link">
+      	<a href="#">Switch Lang here</a>
+      </li>
+    </ul>
+</div>

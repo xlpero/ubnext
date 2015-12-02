@@ -1,64 +1,179 @@
 .main-nav-cms {
-  border-bottom: 1px solid #ccc;
-  .clearfix();
-  @media (min-width: @screen-sm-min) {
-    margin-top: -20px;
-  }
+
+}
+
+// applies to all 
+.menu {
+	.clearfix();
+	.list-unstyled();
+	li {
+		  float: left;
+	}
+}
+
+.primary-nav-cms {
+	border-bottom: 1px solid @gray-light;
+	@media (min-width: @screen-sm-min) {
+		margin-top: -20px;
+	}
+
+	.ubn-menu-level-top {
+		.clearfix();
+		.menu-toggle {
+			@media (min-width: @screen-sm-min) {
+				display: none !important;
+			}	
+			margin-left: 20px;
+			#toggle-menu-btn {
+				min-width: 80px;
+				font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
+				text-transform: uppercase;
+				text-decoration: none;
+				margin-bottom: 10px;
+				&.btn {
+					border-radius: 1px;
+					&:focus {
+						background: none;
+					}
+				}
+				.fa-bars {
+					display: inline-block;
+				}
+				.fa-close {
+					display: none;
+				}
+				&.open {
+					.fa-bars {
+						display: none;
+					}
+					.fa-close {
+						display: inline-block;
+					}
+				}
+			}
+		}
+		.menu {
+			@media (max-width: @screen-sm-min) {
+				display: none !important;
+			}
+			margin-bottom: 10px;
+			font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
+			.pull-right();
+			li {
+				margin-left: 10px;
+				a {
+				  text-decoration: none;
+				  text-transform: uppercase;
+				  color: @gray-darker;
+				  font-size: 1.125em;
+				}
+				&:not(:last-child) {
+				    a {
+				    	border-right: 1px solid @gray-dark;
+				    	padding-right: 10px;
+				    }
+				}
+				&.active-trail {
+					a {
+					  /*text-decoration: underline; */ // maybe we should use this 
+					  color: @brand-primary;
+
+					}
+				}
+			}
+		}
+	}
+}
+
+.primary-nav-cms-dropdown {
+	.ubn-mobile-menu {
+		@media (min-width: @screen-sm-min) {
+			display: none !important;
+		}		
+		background: @gray-darker;
+		.clearfix();
+		.menu-mobile {
+			margin-bottom: 0;
+			padding: 10px 20px;
+			li {
+				display: block;
+				width: 100%;
+				a {
+					font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
+					display: block;
+					width: 100%;
+					text-decoration: none;
+				  	text-transform: uppercase;
+				  	color: @gray-lighter;
+				  	font-size: 1.125em;
+
+				}
+
+				&.active-trail {
+					a {
+					  /*text-decoration: underline; */ // maybe we should use this 
+					  color: @brand-primary;
+
+					}
+				}
+				&.lang-switch-link {
+					border-top: 1px solid @gray;
+					padding-top: 10px;
+
+					a {
+						font-size: .8em;
+						font-family: @font-family-sans-serif;
+						text-transform: lowercase;
+					}
+				}
+			}
+		}
+	}
 }
 
 .secondary-nav-cms {
+	.menu {
+		margin-top: 7px;
+		li {
+			margin-right: 15px;
+			.fa {
+				margin-left: 5px;
+			}
+			a {
+				text-decoration: none;
+				color: @gray-darker;
+			}
+
+			&.active-trail {
+				a {
+					color: @brand-primary;
+
+				}
+			}
+		}
+	}
 }
 
-.nav-cms {
-  .ubn-menu-level-top {
-    .clearfix();
-    .menu {
-      .pull-right();
-      li {
-        margin-left: 10px;
-      }
-    }
-  }
 
-  .ubn-menu-level-bottom .menu {
-    margin-top: 7px;
-    li {
-      margin-right: 15px;
-      .fa {
-        margin-left: 5px;
-      }
-    }
-  }
-
-  .menu-trail {
-    .clearfix();
-    .list-unstyled();
-    li {
-      float: left;
-      margin-right: 10px;
-      .fa {
-        margin-left: 10px;
-      }
-    }
-    margin-bottom: 10px;
-  }
-
-  .menu {
-    .clearfix();
-    font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
-    .list-unstyled();
-    li {
-      float: left;
-    }
-
-    li.active-trail a {
-      text-decoration: underline;
-    }
-    a {
-      text-decoration: none;
-      text-transform: uppercase;
-      color: @gray-darker;
-      font-size: 1.125em;
-    }
-  }
+.breadcrumb-nav-cms {
+	margin-top: 20px;
+	font-size: .8em;
+	.menu-trail {
+		.clearfix();
+		.list-unstyled();
+		li {
+		  float: left;
+		  margin-right: 10px;
+		  .fa {
+		    margin-left: 10px;
+		  }
+		  a {
+		  	text-decoration: none;
+		  }
+		}
+		margin-bottom: 10px;
+	}
 }
+
+
+

@@ -10,7 +10,7 @@
 <header>
   <div class="container">
     <div class="row">
-      <div class="col-sm-10 col-xs-10">
+      <div class="col-sm-10 col-xs-12">
         <div class="siteNav-logo <?php echo $language->language; ?>">
           <div class="logo">
             <a href="<?php echo $GLOBALS['base_url']; ?>"><div class="logo-image"></div></a>
@@ -22,7 +22,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-2 col-xs-2">
+      <div class="col-sm-2">
         <nav class="toplinks">
           <?php print render($content['toplinks']); ?>
         </nav>
@@ -34,7 +34,7 @@
 <!-- ### END HEADER ### -->
 
 <!-- ### MAIN NAVIGATION ### --> 
-<div class="nav-cms main-nav-cms">
+<div class="nav-cms primary-nav-cms">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
@@ -47,6 +47,17 @@
     </div>
   </div>
 </div>
+
+<div class="nav-cms primary-nav-cms-dropdown">
+    <nav class="nav-primary-dropdown">
+      <!-- PRIMARY NAV -->
+      <?php print render($content['dropdown_navigation']); ?>
+      <!-- END PRIMARY NAV --> 
+    </nav>
+</div>
+
+
+
 
 <?php if(!empty($content['breadcrumb'])): ?>
 <div class="nav-cms breadcrumb-nav-cms">

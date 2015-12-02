@@ -1,17 +1,28 @@
 
 header {
+	margin-bottom: 10px;
 	.logo {
-		width: 127px;
-		height: 129px;
-		padding-top: 31px;
+		width: 64px;
+		height: 65px;
+		padding-top: 14px;
+		@media (min-width: @screen-sm-min) {
+			width: 127px;
+			height: 129px;
+			padding-top: 31px;
+		}
 		background-repeat: no-repeat;
 		#gradient > .vertical(#004d8e; #004278);
 		.border-bottom-radius(4px);
 		box-shadow: 0 2px 2px rgba(0,0,0,.3);
 		.logo-image {
 			margin:0 auto;
-			width: 94px;
-			height: 75px;
+			width: 47px;
+			height: 37px;
+			@media (min-width: @screen-sm-min) {
+				margin:0 auto;
+				width: 94px;
+				height: 75px;
+			}
 			background-image: url("img/gu-mark-neg-sv.svg");
 			background-size: 100%;
 			background-repeat: no-repeat;
@@ -19,11 +30,19 @@ header {
 	}
 	.en .logo {
 		.logo-image {
-			width: 101px;
+			@media (min-width: @screen-sm-min) {
+				width: 101px;
+			}
+			
 			background-image: url("img/gu-mark-neg-en.svg");
 		}
 	}
 	.toplinks {
+		display: none;
+		@media (min-width: @screen-sm-min) {
+			display:block;
+		}
+
 		.pull-right();
 		ul {
 			.list-unstyled();
@@ -46,15 +65,18 @@ header {
 
 	.siteNav-logo {
 		float: left;
-		display: none;
+		display: block;
 		@media (min-width: @screen-sm-min) {
 			display:block;
 		}
 	}
 	.site-headers {
-		float: left;
-		margin-top: 20px;
+		float: none;
+		margin-left: 75px;
+		margin-top: 10px;
 		@media(min-width: @screen-sm-min) {
+			float: left;
+			margin-left: 20px;
 			margin-top: 35px;
 		}
 		max-width: 300px;
@@ -64,7 +86,10 @@ header {
 			a {
 				text-decoration: none;
 				font-family: NimbusSanNovCon-Bol;
-				font-size: 28px;
+				font-size: 1.3em;
+				@media (min-width: @screen-sm-min) {
+					font-size: 2em;
+				}
 				color: @black;
 				&:hover {
 					text-decoration:underline;
