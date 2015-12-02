@@ -245,6 +245,22 @@ function ubn_general_update_7117() {
   features_revert_module('ubn_page');
 }
 
+function ubn_general_update_7118() {
+  $query = new EntityFieldQuery();
+  $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'library');
+  $result = $query->execute();
+  // Re-save library nodes to make sure
+  // menu items are assigned by ubn_menu_position
+  if(!empty($result['node'])) {
+    foreach(array_keys($result['node']) as $nid) {
+      $node = node_load($nid);
+      node_save($node);
+    }
+  }
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {
