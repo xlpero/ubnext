@@ -116,7 +116,7 @@ function ubn_content_types_default_scald_context_config() {
       '*' => 'passthrough',
     ),
     'image' => array(
-      '*' => 'style-library_hero',
+      '*' => 'group-library_hero',
     ),
     'video' => array(
       '*' => 'passthrough',
