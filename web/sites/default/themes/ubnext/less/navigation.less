@@ -8,6 +8,11 @@
 	.list-unstyled();
 	li {
 		  float: left;
+		  a {
+		  	&:hover {
+		  		text-decoration: underline !important;
+		  	}
+		  }
 	}
 }
 
@@ -99,6 +104,7 @@
 				display: block;
 				width: 100%;
 				a {
+					padding-bottom: 10px;
 					font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
 					display: block;
 					width: 100%;
@@ -141,6 +147,7 @@
 			}
 			a {
 				text-decoration: none;
+				font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
 				color: @gray-darker;
 			}
 
@@ -169,6 +176,7 @@
 		  }
 		  a {
 		  	text-decoration: none;
+
 		  }
 		}
 		margin-bottom: 10px;
