@@ -65,25 +65,6 @@ function ubn_content_types_image_default_styles() {
     ),
   );
 
-  // Exported image style: library_hero_extra_small.
-  $styles['library_hero_extra_small'] = array(
-    'label' => 'Library hero extra small',
-    'effects' => array(
-      2 => array(
-        'name' => 'manualcrop_crop_and_scale',
-        'data' => array(
-          'width' => 750,
-          'height' => 242,
-          'upscale' => 0,
-          'respectminimum' => 1,
-          'onlyscaleifcrop' => 0,
-          'style_name' => 'library_hero_extra_small',
-        ),
-        'weight' => 0,
-      ),
-    ),
-  );
-
   // Exported image style: page_content.
   $styles['page_content'] = array(
     'label' => 'Page content',
