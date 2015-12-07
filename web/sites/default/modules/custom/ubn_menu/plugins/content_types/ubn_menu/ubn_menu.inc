@@ -93,9 +93,9 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       break;
     case 'bottom-level':
       // First unshift top-level
-      array_shift($page_tree_by_level);
-      $menu_bottom_level = array_pop($page_tree_by_level);
-      //TODO: implement menu-name wild card
+      //array_shift($page_tree_by_level);
+      //$menu_bottom_level = array_pop($page_tree_by_level);
+      $menu_bottom_level = _ubn_menu_menu_tree_expanded_level($page_tree_by_level);
       if(!empty($menu_bottom_level)) {
         $links = _ubn_menu_menu_tree_links($menu_bottom_level);
         //TODO: implement menu-name wild card
@@ -110,7 +110,6 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
     case 'bottom-level-dropdown':
       $menu_top_level = array_shift($page_tree_by_level);
       $links = _ubn_menu_menu_tree_links($menu_top_level);
-      //TODO: implement menu-name wild card
       $block->content = slate_render('ubn-menu-top-level-dropdown', array(
         'links' => $links
       ));
@@ -164,6 +163,21 @@ function _ubn_menu_menu_tree_links($tree) {
     $links[] = $link;
   }
   return $links;
+}
+
+//TODO: naming etc, I'm confusing even myself
+// this code smells
+function _ubn_menu_menu_tree_expanded_level($menu_tree_by_level) {
+  if(count($menu_tree_by_level) > 1) {
+    $last_level = array_pop($menu_tree_by_level);
+    foreach($last_level as $item) {
+      if($item['link']['in_active_trail']) {
+        return array();
+      }
+    }
+    return $last_level;
+  }
+  return array();
 }
 
 function _ubn_menu_menu_tree_by_level($menu_tree) {
