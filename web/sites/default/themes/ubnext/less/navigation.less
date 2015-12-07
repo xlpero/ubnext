@@ -99,10 +99,24 @@
 		.clearfix();
 		.menu-mobile {
 			margin-bottom: 0;
-			padding: 10px 20px;
+			padding:20px;
 			li {
 				display: block;
 				width: 100%;
+				&.ubn-mobile-menu-lang-switch-block {
+					border-top: 1px solid @gray;
+					padding-top: 10px;
+					.language-switcher-locale-url {
+						padding-left: 0;
+						a {
+							font-size: 1em;
+							text-transform: none;
+							font-family: @font-family-sans-serif;
+							padding-bottom: 0;
+						}
+					}
+				}
+
 				a {
 					padding-bottom: 10px;
 					font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;

@@ -44,6 +44,28 @@ function §(&$vars) {
   $vars['classes_array'][] = 'new-class';
 }
 
+function ubnext_language_switch_links_alter(array &$links, $type, $path) {
+  global $language;
+
+  $links['en']['title'] = t('In ') . $links['en']['title'];
+  $links['sv']['title'] = t('På ') . $links['sv']['title'];
+
+}
+
+/**
+ * make the langswitcher availible in template
+ */
+
+function block_render($module, $block_id) {
+  $block = block_load($module, $block_id);
+  $block_content = _block_render_blocks(array($block));
+  $build = _block_get_renderable_array($block_content);
+  $build['locale_language']['#block']->subject = null;
+  $build['locale_language']['#contextual_links'] = null;
+  $block_rendered = drupal_render($build);
+  return $block_rendered;
+}
+
 /**
  * Change the CSS @import rules to <link> tags.
  */

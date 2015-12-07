@@ -8,8 +8,8 @@
       {% for link in links %}
         {{ menus.menu_item(link) }}
       {% endfor %}
-      <li class="lang-switch-link">
-      	<a href="#">Switch Lang here</a>
+      <li class="ubn-mobile-menu-lang-switch-block">
+        {{ block_render('locale', 'language') | raw }}
       </li>
     </ul>
 </div>

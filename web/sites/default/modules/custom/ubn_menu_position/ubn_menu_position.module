@@ -2,6 +2,7 @@
 
 function ubn_menu_position_form_node_form_alter(&$form, $form_state, $form_id) {
   if($form_id === 'library_node_form') {
+    dsm($form);
     $form['menu']['#access'] = FALSE;
   }
 }
@@ -10,6 +11,7 @@ function ubn_menu_position_node_presave($node) {
   if($node->type === 'library') {
     $parent_link = _ubn_menu_position_page_template_menu_link('libraries');
     if(isset($parent_link)) {
+
       if(!isset($node->menu)) {
         menu_node_prepare($node);
       }
