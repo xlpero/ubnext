@@ -5,6 +5,12 @@
 
 
 
+
+function ubnext_get_base_url() {
+  global $base_url;
+  return $base_url;
+}
+
 function ubnext_links__locale_block($variables) {
   global $language;
   unset($variables['links'][$language->language]);
