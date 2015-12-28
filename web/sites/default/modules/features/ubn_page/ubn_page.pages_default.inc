@@ -908,6 +908,87 @@ function ubn_page_default_page_manager_pages() {
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
+  $page->name = '404';
+  $page->task = 'page';
+  $page->admin_title = 'error';
+  $page->admin_description = '';
+  $page->path = 'error-404';
+  $page->access = array();
+  $page->menu = array();
+  $page->arguments = array();
+  $page->conf = array(
+    'admin_paths' => FALSE,
+  );
+  $page->default_handlers = array();
+  $handler = new stdClass();
+  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
+  $handler->api_version = 1;
+  $handler->name = 'page_404__panel';
+  $handler->task = 'page';
+  $handler->subtask = '404';
+  $handler->handler = 'panel_context';
+  $handler->weight = 0;
+  $handler->conf = array(
+    'title' => 'Panel',
+    'no_blocks' => 0,
+    'pipeline' => 'standard',
+    'body_classes_to_remove' => '',
+    'body_classes_to_add' => '',
+    'css_id' => '',
+    'css' => '',
+    'contexts' => array(),
+    'relationships' => array(),
+    'name' => 'panel',
+    'access' => array(
+      'logic' => 'and',
+    ),
+  );
+  $display = new panels_display();
+  $display->layout = 'onecol_full';
+  $display->layout_settings = array();
+  $display->panel_settings = array(
+    'style_settings' => array(
+      'default' => NULL,
+      'main' => NULL,
+    ),
+  );
+  $display->cache = array();
+  $display->title = '';
+  $display->uuid = '33096873-9ea6-47d4-9f87-ff1fc7f0fb47';
+  $display->content = array();
+  $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-3c66fbab-23e5-4c3b-a3c9-4e687cc0fef7';
+    $pane->panel = 'main';
+    $pane->type = 'slate_render';
+    $pane->subtype = 'slate_render:0';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '3c66fbab-23e5-4c3b-a3c9-4e687cc0fef7';
+    $display->content['new-3c66fbab-23e5-4c3b-a3c9-4e687cc0fef7'] = $pane;
+    $display->panels['main'][0] = 'new-3c66fbab-23e5-4c3b-a3c9-4e687cc0fef7';
+  $display->hide_title = PANELS_TITLE_NONE;
+  $display->title_pane = '0';
+  $handler->conf['display'] = $display;
+  $page->default_handlers[$handler->name] = $handler;
+  $pages['404'] = $page;
+
+  $page = new stdClass();
+  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->api_version = 1;
   $page->name = 'front';
   $page->task = 'page';
   $page->admin_title = 'front';
