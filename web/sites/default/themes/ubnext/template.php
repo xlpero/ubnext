@@ -53,7 +53,8 @@ function ubnext_language_switch_links_alter(array &$links, $type, $path) {
 }
 
 /**
- * make the langswitcher availible in template
+ * make the langswitcher availible in template 
+ * and remove stuff not wanted
  */
 
 function block_render($module, $block_id) {
