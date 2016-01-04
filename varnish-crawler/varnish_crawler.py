@@ -22,32 +22,31 @@ pp = pprint.PrettyPrinter(indent=4)
 # Kills potential gevent zombies on termination signal
 gevent.signal(signal.SIGQUIT, gevent.kill)
 
-conn = sqlite3.connect('storage.db')
-c = conn.cursor()
-crawl_date = datetime.datetime.now()
-c.execute('''CREATE TABLE IF NOT EXISTS request_log(
-    crawl_date datetime,
-    date datetime,
-    url text,
-    response_code integer,
-    response_varnish_cache text,
-    response_varnish_hits integer,
-    duration integer,
-    request_headers text,
-    response_headers text
-)''')
+
 
 # TODO: Create settings/variable table, persistant key/value storage
-# def variable_get(key, default_value)
-# def variable_set(key, value)
-# Implement varnish state page, ubn_varnish?
+def variable_get(name, default_value=None):
+    c.execute("SELECT value FROM variable WHERE name=?", (name,))
+    result = c.fetchone()
+    return default_value if result is None else result[0]
+
+def variable_set(name, value):
+    c.execute("""
+        INSERT OR REPLACE INTO variable(name, value) VALUES(?,?)
+    """, (name, value)
+    )
+    conn.commit()
 
 # TODO: settings file
-xml_sitemap_urls = ['http://drupal7.ubnvm.dev/en/sitemap.xml']
+# TODO: multisite configuration?
+xml_sitemap_urls = [
+    'http://drupal7.ubnvm.dev/en/sitemap.xml',
+    'http://drupal7.ubnvm.dev/sv/sitemap.xml'
+]
+varnish_last_purge_url = 'http://drupal7.ubnvm.dev/en/ubn_varnish/last_purge'
 
 # TODO: Brainfuck, check order
-
-def xml_sitemap_locs(url):
+def xml_sitemap_urlset_loc_urls(url):
     sitemap_locs = []
     urlset_locs = []
     r = requests.get(url)
@@ -58,14 +57,12 @@ def xml_sitemap_locs(url):
         request_pool = Pool(5)
         for sitemap in sitemap_root.findall('sm:sitemap', ns):
             sitemap_locs.append(sitemap.find('sm:loc', ns).text)
-        print("Downloaded sitemap, calling recursively")
         return itertools.chain.from_iterable(
-            request_pool.imap_unordered(xml_sitemap_locs, sitemap_locs)
+            request_pool.imap_unordered(xml_sitemap_urlset_loc_urls, sitemap_locs)
         )
     elif sitemap_root.tag == '{http://www.sitemaps.org/schemas/sitemap/0.9}urlset':
         for urlset in sitemap_root.findall('sm:url', ns):
             urlset_locs.append(urlset.find('sm:loc', ns).text)
-        print("Returning locs")
         return urlset_locs
     else:
         print('invalid format')
@@ -75,19 +72,19 @@ def xml_sitemap_locs(url):
 # Temporary fix to prevent crawling url more than once
 # since xmlsitemap generates duplicate urls
 
-call_limit = 10
 fetched_urls = Set()
 def fetch_url(url):
-    global call_limit
-    call_limit -= 1
-    #if call_limit == 0:
-        #exit()
-    print("Fetching url")
+    print("Fetching")
+    print(url)
     if not url in fetched_urls:
         r = requests.get(url, cookies={'has_js' : '1'})
-        #pp.pprint(r.headers)
         request_headers = json.dumps(dict(r.request.headers), indent=4) if not r.status_code == 200 else ''
         response_headers = json.dumps(dict(r.headers), indent=4) if not r.status_code == 200 else ''
+
+        if(r.status_code != 200):
+            print("Non 200")
+            print(r.status_code)
+            print(url)
 
         c.execute("""
             INSERT INTO request_log(
@@ -108,8 +105,8 @@ def fetch_url(url):
                 datetime.datetime.now(),
                 r.url, #Original url also? is_redirect?
                 r.status_code,
-                r.headers['X-Varnish-Cache'],
-                r.headers['X-Varnish-Hits'],
+                r.headers.get('X-Varnish-Cache', 'None'),
+                r.headers.get('X-Varnish-Hits', 'None'),
                 int(round(r.elapsed.total_seconds() * 1000)),
                 request_headers,
                 response_headers
@@ -122,17 +119,50 @@ def fetch_url(url):
         print(url)
         return None
 
+if __name__ == "__main__":
 
-# Possible to use same, global, request pool?
-# Implications?
-request_pool = Pool(5)
-urlset_locs = itertools.chain.from_iterable(
-    request_pool.imap_unordered(xml_sitemap_locs, xml_sitemap_urls)
-)
+    conn = sqlite3.connect('storage.db')
+    c = conn.cursor()
+    crawl_date = datetime.datetime.now()
 
-status_codes = request_pool.imap_unordered(fetch_url, urlset_locs)
-print(list(status_codes))
+    # Place in installation script?
+    c.execute('''CREATE TABLE IF NOT EXISTS request_log(
+        crawl_date datetime,
+        date datetime,
+        url text,
+        response_code integer,
+        response_varnish_cache text,
+        response_varnish_hits integer,
+        duration integer,
+        request_headers text,
+        response_headers text
+    )''')
 
-# TODO: Check if performance can be improved by other commit strategy 
-conn.commit()
-conn.close()
+    c.execute('''CREATE TABLE IF NOT EXISTS variable(
+        name text PRIMARY KEY,
+        value text
+    )''')
+
+    last_purge = variable_get('varnish_last_purge')
+
+    r = requests.get(varnish_last_purge_url)
+    remote_last_purge = r.text
+
+    if(last_purge is not None and last_purge == remote_last_purge):
+        print("Last purge same as last time, exiting")
+        exit()
+
+    # Possible to use same, global, request pool?
+    # Implications?
+    request_pool = Pool(5)
+    urlset_loc_urls = itertools.chain.from_iterable(
+       request_pool.imap_unordered(xml_sitemap_urlset_loc_urls, xml_sitemap_urls)
+    )
+
+    status_codes = request_pool.imap_unordered(fetch_url, urlset_loc_urls)
+    print(list(status_codes))
+
+    # TODO: Check if performance can be improved by other commit strategy 
+    conn.commit()
+    variable_set('varnish_last_purge', remote_last_purge)
+    conn.close()
