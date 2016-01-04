@@ -1,0 +1,30 @@
+<?php
+
+function ubn_varnish_menu() {
+  $items = array(
+    'ubn_varnish/last_purge' => array(
+      'title' => 'Varnish last purge',
+      'page callback' => 'ubn_varnish_last_purge_page',
+      'access arguments' => array('access content'),
+      'delivery callback' => 'drupal_json_encode',
+      'type' => MENU_CALLBACK,
+    ),
+  );
+  return $items;
+}
+
+function ubn_varnish_last_purge_page() {
+  //drupal_add_http_header('Content-Type', 'application/json; charset=utf-8');
+  drupal_add_http_header('Content-Type', 'text/html; charset=utf-8');
+  drupal_add_http_header('X-Varnish-Cacheable', '0');
+  print ubn_varnish_last_purge();
+  ajax_footer();
+}
+
+function ubn_varnish_last_purge() {
+  return variable_get('ubn_varnish_last_purge', 0);
+}
+
+function ubn_varnish_varnish_purge($host, $pattern) {
+  variable_set('ubn_varnish_last_purge', REQUEST_TIME);
+}
