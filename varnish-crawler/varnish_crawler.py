@@ -19,11 +19,6 @@ import json
 
 pp = pprint.PrettyPrinter(indent=4)
 
-# Kills potential gevent zombies on termination signal
-gevent.signal(signal.SIGQUIT, gevent.kill)
-
-
-
 # TODO: Create settings/variable table, persistant key/value storage
 def variable_get(name, default_value=None):
     c.execute("SELECT value FROM variable WHERE name=?", (name,))
@@ -121,6 +116,9 @@ def fetch_url(url):
 
 if __name__ == "__main__":
 
+   # Kills potential gevent zombies on termination signal
+    gevent.signal(signal.SIGQUIT, gevent.kill)
+
     conn = sqlite3.connect('storage.db')
     c = conn.cursor()
     crawl_date = datetime.datetime.now()
@@ -136,6 +134,12 @@ if __name__ == "__main__":
         duration integer,
         request_headers text,
         response_headers text
+    )''')
+
+    # TODO:
+    c.execute('''CREATE TABLE IF NOT EXISTS crawl_log(
+        date datetime,
+        duration integer
     )''')
 
     c.execute('''CREATE TABLE IF NOT EXISTS variable(
@@ -161,6 +165,12 @@ if __name__ == "__main__":
 
     status_codes = request_pool.imap_unordered(fetch_url, urlset_loc_urls)
     print(list(status_codes))
+
+    crawl_duration = datetime.datetime.now() - crawl_date
+    c.execute("""
+        INSERT INTO crawl_log(date, duration) VALUES(?,?)
+    """, (crawl_date, int(round(crawl_duration.total_seconds() * 1000))),
+    )
 
     # TODO: Check if performance can be improved by other commit strategy 
     conn.commit()
