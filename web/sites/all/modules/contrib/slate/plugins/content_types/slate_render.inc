@@ -78,6 +78,10 @@ function slate_slate_render_content_type_render($subtype, $conf, $panel_args, $c
   $slate_info = slate_get_slate($slate);
 
   $models = array();
+  if(isset($slate_info['models']['conf'])) {
+    $models['conf'] = $conf;
+    unset($slate_info['models']['conf']);
+  }
 
   foreach ($slate_info['models'] as $model => $model_type) {
     $models[$model] = array_shift($context)->data;

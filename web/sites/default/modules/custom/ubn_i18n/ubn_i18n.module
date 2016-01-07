@@ -32,6 +32,11 @@ function ubn_i18n_ubn_i18n_panes() {
         'settings form' => 'ubn_i18n_library_list_libraries_settings_form',
       ),
     ),
+    'slate_render' => array(
+      'slate_render:error-404' => array(
+        'settings form' => 'ubn_i18n_slate_render_error_404_settings_form',
+      ),
+    ),
   );
 }
 
@@ -45,6 +50,26 @@ function ubn_i18n_library_list_libraries_settings_form($form_state, $conf) {
   );
 }
 
+function ubn_i18n_slate_render_error_404_settings_form($form_state, $conf) {
+  return array(
+   'title' => array(
+      '#title' => t('Title'),
+      '#type' => 'textfield',
+      '#default_value' => isset($conf['title']) ? $conf['title'] : '404 - the page was not found',
+    ),
+    'message' => array(
+      '#title' => t('Message'),
+      '#type' => 'textarea',
+      '#default_value' => isset($conf['message']) ? $conf['message'] : 'Sorry! Nothing exists here.',
+    ),
+    'front_page_link_text' => array(
+      '#title' => t('Front page link text'),
+      '#type' => 'textfield',
+      '#default_value' => isset($conf['front_page_link_text']) ? $conf['front_page_link_text'] : 'To go back to the start page click here',
+    ),
+  );
+}
+
 function _ubn_i18n_ubn_i18n_panes() {
   static $panes;
   if(!isset($panes)) {
@@ -53,9 +78,21 @@ function _ubn_i18n_ubn_i18n_panes() {
   return $panes;
 }
 
+function ubn_i18n_form_slate_slate_render_content_type_content_type_settings_alter(&$form, &$form_state) {
+  _ubn_i18n_content_type_form_alter($form, $form_state);
+}
+
+/*
+function ubn_i18n_form_alter($form, $state, $id) {
+}
+*/
 
 //TODO: Possible with general content type form alter and check plugin?
 function ubn_i18n_form_views_content_views_panes_content_type_edit_form_alter(&$form, &$form_state) {
+  _ubn_i18n_content_type_form_alter($form, $form_state);
+}
+
+function _ubn_i18n_content_type_form_alter(&$form, &$form_state) {
   $panes = _ubn_i18n_ubn_i18n_panes();
   if(isset($panes[$form_state['plugin']['name']])) {
     $i18n_pane_info = $panes[$form_state['plugin']['name']];
