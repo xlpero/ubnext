@@ -1,0 +1,98 @@
+<?php
+
+function ubn_i18n_ctools_plugin_post_alter(&$plugin, $plugin_type_info) {
+  if($plugin_type_info['type'] == 'content_types') {
+    //TODO: hook instead? Plugin name and subtype name(s)
+    $panes = _ubn_i18n_ubn_i18n_panes();
+    if(isset($panes[$plugin['name']])) {
+      $plugin['i18n_settings'] = 'ubn_i18n_i18n_settings';
+    }
+  }
+}
+
+function ubn_i18n_i18n_settings($conf) {
+  if(isset($conf['ubn_i18n']) && !empty($conf['ubn_i18n'])) {
+    $i18n_settings = array();
+    //TODO: Support more than 1 depth?
+    foreach(array_keys($conf['ubn_i18n']) as $setting) {
+      $i18n_settings[] = 'ubn_i18n|' . $setting;
+    }
+    return $i18n_settings;
+  }
+  return array();
+}
+
+/**
+ * Implementation of hook_ubn_i18n_panes()
+ */
+function ubn_i18n_ubn_i18n_panes() {
+  return array(
+    'views_panes' => array(
+      'library_list-libraries' => array(
+        'settings form' => 'ubn_i18n_library_list_libraries_settings_form',
+      ),
+    ),
+  );
+}
+
+function ubn_i18n_library_list_libraries_settings_form($form_state, $conf) {
+  return array(
+    'opening_hours_title' => array(
+      '#title' => t('Opening hours title'),
+      '#type' => 'textfield',
+      '#default_value' => isset($conf['opening_hours_title']) ? $conf['opening_hours_title'] : 'Opening hours',
+    ),
+  );
+}
+
+function _ubn_i18n_ubn_i18n_panes() {
+  static $panes;
+  if(!isset($panes)) {
+    $panes = module_invoke_all('ubn_i18n_panes');
+  }
+  return $panes;
+}
+
+
+//TODO: Possible with general content type form alter and check plugin?
+function ubn_i18n_form_views_content_views_panes_content_type_edit_form_alter(&$form, &$form_state) {
+  $panes = _ubn_i18n_ubn_i18n_panes();
+  if(isset($panes[$form_state['plugin']['name']])) {
+    $i18n_pane_info = $panes[$form_state['plugin']['name']];
+    if(
+      isset($i18n_pane_info[$form_state['subtype_name']]) &&
+      isset($i18n_pane_info[$form_state['subtype_name']]['settings form']) &&
+      function_exists($i18n_pane_info[$form_state['subtype_name']]['settings form'])
+    ) {
+      $conf = isset($form_state['conf']['ubn_i18n']) ? $form_state['conf']['ubn_i18n'] : array();
+      $form['ubn_i18n'] = array(
+        '#title' => t('Translatable content'), //TODO: better title
+        '#type' => 'fieldset',
+        '#collapsible' => FALSE,
+        '#tree' => TRUE,
+      );
+      $form['ubn_i18n'] += $i18n_pane_info[$form_state['subtype_name']]['settings form']($form_state, $conf);
+      $form['#submit'][] = 'ubn_i18n_content_type_edit_form_submit';
+    }
+  }
+}
+
+//TODO: Consistent naming, pane or content type??
+function ubn_i18n_content_type_edit_form_submit($form, &$form_state) {
+  $form_state['conf']['ubn_i18n'] = $form_state['values']['ubn_i18n'];
+}
+
+/**
+ * Implements hook_i18n_string_info()
+ */
+/*
+function ubn_i18n_i18n_string_info() {
+  $groups['ubn'] = array(
+    'title' => t('UBNext'),
+    'description' => t('UBNext Summon translatable strings'),
+    'format' => FALSE,
+    'list' => TRUE,
+  );
+  return $groups;
+}
+*/

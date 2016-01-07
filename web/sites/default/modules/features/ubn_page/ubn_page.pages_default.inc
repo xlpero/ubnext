@@ -418,7 +418,11 @@ function ubn_page_default_page_manager_handlers() {
     $pane->subtype = 'library_list-libraries';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'ubn_i18n' => array(
+        'opening_hours_title' => 'Opening hours',
+      ),
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -1045,6 +1049,10 @@ function ubn_page_default_page_manager_pages() {
       'override_title' => 0,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
+      'slogan' => 'Search among <strong class="hidden-xs"> @number </strong> books, articles, magazines and more...',
+      'placeholder' => 'Search for...',
+      'aria_label' => 'Search terms',
+      'number_of_items' => '100000',
     );
     $pane->cache = array();
     $pane->style = array(

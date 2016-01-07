@@ -22,7 +22,7 @@ function ubn_general_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Todays openinghours';
+  $handler->display->display_options['title'] = 'Todays opening hours';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -75,7 +75,7 @@ function ubn_general_views_default_views() {
   $handler->display->display_options['defaults']['row_options'] = FALSE;
   $translatables['library_list'] = array(
     t('Master'),
-    t('Todays openinghours'),
+    t('Todays opening hours'),
     t('more'),
     t('Apply'),
     t('Reset'),
