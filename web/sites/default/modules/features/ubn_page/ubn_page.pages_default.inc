@@ -965,7 +965,7 @@ function ubn_page_default_page_manager_pages() {
     $pane->pid = 'new-3c66fbab-23e5-4c3b-a3c9-4e687cc0fef7';
     $pane->panel = 'main';
     $pane->type = 'slate_render';
-    $pane->subtype = 'slate_render:0';
+    $pane->subtype = 'slate_render:error-404';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
