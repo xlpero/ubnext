@@ -1,20 +1,21 @@
-.log-in-form {
-	margin-top:20px;
-	.form-item {
-		margin-bottom: 10px;
-		.description {
-			font-size: .8em;
+.main-cms {
+	.log-in-form {
+		margin-top:20px;
+		.form-item {
+			margin-bottom: 10px;
+			.description {
+				font-size: .8em;
+			}
+		}
+		@media (max-width: @screen-sm-min) {
+			.btn {
+				width: 100% !important;
+			}
+		}
+		@media (min-width: @screen-sm-min) {
+			.btn {
+				float: right;
+			}
 		}
 	}
-	@media (max-width: @screen-sm-min) {
-		.btn {
-			width: 100% !important;
-		}
-	}
-	@media (min-width: @screen-sm-min) {
-		.btn {
-			float: right;
-		}
-	}
-
 }

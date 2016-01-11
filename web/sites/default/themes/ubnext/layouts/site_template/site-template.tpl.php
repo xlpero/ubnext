@@ -7,33 +7,35 @@
 <?php endif; ?>
 
 <!-- ### HEADER ### -->
-<header>
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-10 col-xs-12">
-        <div class="siteNav-logo <?php echo $language->language; ?>">
-          <div class="logo">
-            <a href="<?php echo $GLOBALS['base_url']; ?>"><div class="logo-image"></div></a>
+<div class="header-cms">
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-10 col-xs-12">
+          <div class="siteNav-logo <?php echo $language->language; ?>">
+            <div class="logo">
+              <a href="<?php echo $GLOBALS['base_url']; ?>"><div class="logo-image"></div></a>
+            </div>
+          </div>
+          <div class="site-headers">
+            <div class="site-title">
+              <a href="<?php echo $GLOBALS['base_url']; ?>"><?php print variable_get('site_name'); ?></a>
+            </div>
           </div>
         </div>
-        <div class="site-headers">
-          <div class="site-title">
-            <a href="<?php echo $GLOBALS['base_url']; ?>"><?php print variable_get('site_name'); ?></a>
-          </div>
+        <div class="col-sm-2">
+          <nav class="toplinks">
+            <?php print render($content['toplinks']); ?>
+          </nav>
         </div>
-      </div>
-      <div class="col-sm-2">
-        <nav class="toplinks">
-          <?php print render($content['toplinks']); ?>
-        </nav>
       </div>
     </div>
+  </header>
   </div>
-</header>
 
 <!-- ### END HEADER ### -->
 
-<!-- ### MAIN NAVIGATION ### --> 
+<!-- ### MAIN NAVIGATION ### -->
 <div class="nav-cms primary-nav-cms">
   <div class="container">
     <div class="row">
@@ -41,7 +43,7 @@
         <nav class="nav-primary">
           <!-- PRIMARY NAV -->
           <?php print render($content['navigation']); ?>
-          <!-- END PRIMARY NAV --> 
+          <!-- END PRIMARY NAV -->
         </nav>
       </div>
     </div>
@@ -52,7 +54,7 @@
     <nav class="nav-primary-dropdown">
       <!-- PRIMARY NAV -->
       <?php print render($content['dropdown_navigation']); ?>
-      <!-- END PRIMARY NAV --> 
+      <!-- END PRIMARY NAV -->
     </nav>
 </div>
 
@@ -105,7 +107,7 @@
 
 <?php if (!empty($content['messages'])): ?>
   <div class="container">
-    <div id="message-box" class="row">
+    <div class="message-box-cms" class="row">
       <div class="col-xs-12">
         <div class="alert alert-info" role="alert">
           <?php print render($content['messages']); ?>
@@ -166,5 +168,3 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-NR65TR');</script>
 <!-- End Google Tag Manager -->
-
-
