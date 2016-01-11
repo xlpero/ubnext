@@ -418,7 +418,11 @@ function ubn_page_default_page_manager_handlers() {
     $pane->subtype = 'library_list-libraries';
     $pane->shown = TRUE;
     $pane->access = array();
-    $pane->configuration = array();
+    $pane->configuration = array(
+      'ubn_i18n' => array(
+        'opening_hours_title' => 'Opening hours',
+      ),
+    );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
@@ -908,7 +912,7 @@ function ubn_page_default_page_manager_pages() {
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
-  $page->name = '404';
+  $page->name = 'error_404';
   $page->task = 'page';
   $page->admin_title = 'error';
   $page->admin_description = '';
@@ -925,7 +929,7 @@ function ubn_page_default_page_manager_pages() {
   $handler->api_version = 1;
   $handler->name = 'page_404__panel';
   $handler->task = 'page';
-  $handler->subtask = '404';
+  $handler->subtask = 'error_404';
   $handler->handler = 'panel_context';
   $handler->weight = 0;
   $handler->conf = array(
@@ -961,13 +965,18 @@ function ubn_page_default_page_manager_pages() {
     $pane->pid = 'new-3c66fbab-23e5-4c3b-a3c9-4e687cc0fef7';
     $pane->panel = 'main';
     $pane->type = 'slate_render';
-    $pane->subtype = 'slate_render:0';
+    $pane->subtype = 'slate_render:error-404';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
       'override_title' => 1,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
+      'ubn_i18n' => array(
+        'title' => '404 - the page was not found',
+        'message' => 'Sorry! Nothing exists here.',
+        'front_page_link_text' => 'To go back to the start page click here',
+      ),
     );
     $pane->cache = array();
     $pane->style = array(
@@ -984,7 +993,7 @@ function ubn_page_default_page_manager_pages() {
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
-  $pages['404'] = $page;
+  $pages['error_404'] = $page;
 
   $page = new stdClass();
   $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
@@ -1045,6 +1054,10 @@ function ubn_page_default_page_manager_pages() {
       'override_title' => 0,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
+      'slogan' => 'Search among <strong class="hidden-xs"> @number </strong> books, articles, magazines and more...',
+      'placeholder' => 'Search for...',
+      'aria_label' => 'Search terms',
+      'number_of_items' => '100000',
     );
     $pane->cache = array();
     $pane->style = array(
@@ -1083,166 +1096,6 @@ function ubn_page_default_page_manager_pages() {
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['front'] = $page;
-
-  $page = new stdClass();
-  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
-  $page->api_version = 1;
-  $page->name = 'libraries';
-  $page->task = 'page';
-  $page->admin_title = 'Libraries';
-  $page->admin_description = 'admin desc';
-  $page->path = 'libraries';
-  $page->access = array();
-  $page->menu = array(
-    'type' => 'none',
-    'title' => '',
-    'name' => 'navigation',
-    'weight' => '0',
-    'parent' => array(
-      'type' => 'none',
-      'title' => '',
-      'name' => 'navigation',
-      'weight' => '0',
-    ),
-  );
-  $page->arguments = array();
-  $page->conf = array(
-    'admin_paths' => FALSE,
-  );
-  $page->default_handlers = array();
-  $handler = new stdClass();
-  $handler->disabled = FALSE; /* Edit this to true to make a default handler disabled initially */
-  $handler->api_version = 1;
-  $handler->name = 'page_libraries__panel';
-  $handler->task = 'page';
-  $handler->subtask = 'libraries';
-  $handler->handler = 'panel_context';
-  $handler->weight = 0;
-  $handler->conf = array(
-    'title' => 'Panel',
-    'no_blocks' => 0,
-    'pipeline' => 'standard',
-    'body_classes_to_remove' => '',
-    'body_classes_to_add' => '',
-    'css_id' => '',
-    'css' => '',
-    'contexts' => array(),
-    'relationships' => array(),
-    'name' => 'panel',
-    'access' => array(
-      'logic' => 'and',
-    ),
-  );
-  $display = new panels_display();
-  $display->layout = 'onecol_full';
-  $display->layout_settings = array();
-  $display->panel_settings = array(
-    'style_settings' => array(
-      'default' => NULL,
-      'main' => NULL,
-    ),
-  );
-  $display->cache = array();
-  $display->title = '';
-  $display->uuid = '018d4a83-41ac-4354-af21-e7cc5a6ec32e';
-  $display->content = array();
-  $display->panels = array();
-    $pane = new stdClass();
-    $pane->pid = 'new-3fd60d5d-6435-460d-b7e4-c0f9d64660cd';
-    $pane->panel = 'main';
-    $pane->type = 'views_panes';
-    $pane->subtype = 'library_list-libraries';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array();
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-      'style' => 'naked',
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = '3fd60d5d-6435-460d-b7e4-c0f9d64660cd';
-    $display->content['new-3fd60d5d-6435-460d-b7e4-c0f9d64660cd'] = $pane;
-    $display->panels['main'][0] = 'new-3fd60d5d-6435-460d-b7e4-c0f9d64660cd';
-    $pane = new stdClass();
-    $pane->pid = 'new-6732628d-c431-47c3-ac46-6af4ca875899';
-    $pane->panel = 'main';
-    $pane->type = 'slate_gmap';
-    $pane->subtype = 'slate_gmap:node';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'gmap_tools_settings' => array(
-        'container_id' => 'slate-gmap-node',
-        'gmap_tools_namespace' => 'slate_gmap_node',
-        'gmap_tools_gmap_create_gmap' => 1,
-        'gmap_tools_gmap_options' => array(
-          'mapTypeId' => 'ROADMAP',
-          'zoom' => '14',
-          'min_zoom' => '',
-          'max_zoom' => '',
-          'center' => array(
-            'lat' => '0',
-            'lng' => '0',
-          ),
-        ),
-        'gmap_tools_behaviors' => array(
-          'clustered' => array(
-            'enabled' => 0,
-          ),
-          'info_windows' => array(
-            'enabled' => 1,
-          ),
-          'items_sidebar' => array(
-            'enabled' => 0,
-            'options' => array(
-              'wrapper' => '',
-              'limit' => '',
-              'bounce' => 0,
-              'items_filter' => array(
-                'body' => '',
-              ),
-            ),
-          ),
-          'fit_items_bounds' => array(
-            'enabled' => 1,
-            'options' => array(
-              'max_zoom' => '',
-              'min_zoom' => '',
-            ),
-          ),
-        ),
-      ),
-      'bundles' => array(
-        'library' => 'library',
-      ),
-      'gmap_slate' => 'libraries-map',
-      'gmap_item_content_slate' => 'library-map-item',
-      'lat_lng_field' => 'field_location',
-      'context' => 'empty',
-      'override_title' => 1,
-      'override_title_text' => '',
-      'override_title_heading' => 'h2',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 1;
-    $pane->locks = array();
-    $pane->uuid = '6732628d-c431-47c3-ac46-6af4ca875899';
-    $display->content['new-6732628d-c431-47c3-ac46-6af4ca875899'] = $pane;
-    $display->panels['main'][1] = 'new-6732628d-c431-47c3-ac46-6af4ca875899';
-  $display->hide_title = PANELS_TITLE_NONE;
-  $display->title_pane = '0';
-  $handler->conf['display'] = $display;
-  $page->default_handlers[$handler->name] = $handler;
-  $pages['libraries'] = $page;
 
   return $pages;
 

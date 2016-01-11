@@ -8,9 +8,10 @@
  * - $options['type'] will either be ul or ol.
  * @ingroup views_templates
  */
+//Preprocess?
+$ubn_i18n = isset($view->display_handler->options['pane_conf']['ubn_i18n']) ?
+$view->display_handler->options['pane_conf']['ubn_i18n'] : array();
 ?>
-
-
 
 <div class="container ub-panel-separator">
 	<div class="row">
@@ -22,7 +23,7 @@
 							<div class="col-sm-offset-7 col-sm-6 hidden-xs library-libraries-opening-hours-header">
 								<div class="row">
 									<div class="col-xs-12">
-										<strong><?php print t('Opening hours'); ?></strong>
+										<strong><?php print $ubn_i18n['opening_hours_title'] ? $ubn_i18n['opening_hours_title'] : t('Opening hours'); ?></strong>
 									</div>
 								</div>
 							</div>

@@ -1,0 +1,7 @@
+name = UBNext i18n
+description = i18n customizations for UBNext
+core = 7.x
+package = UBNext
+dependencies[] = i18n
+dependencies[] = i18n_variable
+dependencies[] = i18n_panels

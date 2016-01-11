@@ -2,7 +2,6 @@
 
 function ubn_menu_position_form_node_form_alter(&$form, $form_state, $form_id) {
   if($form_id === 'library_node_form') {
-    dsm($form);
     $form['menu']['#access'] = FALSE;
   }
 }

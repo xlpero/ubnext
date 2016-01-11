@@ -1,0 +1,5 @@
+name = UBN Varnish
+description = Varnish customizations for UBNext
+core = 7.x
+package = UBNext
+dependencies[] = varnish
