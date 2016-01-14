@@ -3,9 +3,6 @@
  * @file
  */
 
-
-
-
 function ubnext_get_base_url() {
   global $base_url;
   return $base_url;
@@ -113,7 +110,11 @@ function ubnext_html_head_alter(&$head_elements) {
 
 function ubnext_theme() {
   $items = array();
-    
+
+  $items['bootstrap_search_api_page_search_form'] = array(
+    'render element' => 'element',
+  );
+
   $items['user_login'] = array(
     'render element' => 'form',
     'path' => drupal_get_path('theme', 'ubnext') . '/templates',
@@ -150,9 +151,9 @@ function ubnext_user_login_block($form) {
 }
 
 function ubnext_preprocess_user_login(&$vars) {
-  $vars[form]['name']['#attributes']['class'][] = 'form-control';  
-  $vars[form]['pass']['#attributes']['class'][] = 'form-control';
-  $vars[form][actions][submit]['#attributes']['class'][] = 'btn btn-primary';
+  $vars['form']['name']['#attributes']['class'][] = 'form-control';  
+  $vars['form']['pass']['#attributes']['class'][] = 'form-control';
+  $vars['form']['actions']['submit']['#attributes']['class'][] = 'btn btn-primary';
   $vars['intro_text'] = t('Please login.');
 
 }
@@ -162,9 +163,8 @@ function ubnext_preprocess_user_register_form(&$vars) {
 }
 
 function ubnext_preprocess_user_pass(&$vars) {
-  dpm($vars[form]);
-  $vars[form]['name']['#attributes']['class'][] = 'form-control';  
-  $vars[form][actions][submit]['#attributes']['class'][] = 'btn btn-primary';
+  $vars['form']['name']['#attributes']['class'][] = 'form-control';  
+  $vars['form']['actions']['submit']['#attributes']['class'][] = 'btn btn-primary';
   $vars['intro_text'] = t('Please login.');
 }
 
@@ -219,4 +219,173 @@ function ubnext_css_alter(&$css) {
     $css['modules/contextual/contextual.css']['group'] = CSS_THEME;
     $css['modules/contextual/contextual.css']['weight'] = 100;
   }
+}
+
+function ubnext_bootstrap_search_api_page_search_form($variables) {
+  $element = $variables['element'];
+  if (isset($element['#action'])) {
+    $element['#attributes']['action'] = drupal_strip_dangerous_protocols($element['#action']);
+  }
+  element_set_attributes($element, array('method', 'id'));
+  if (empty($element['#attributes']['accept-charset'])) {
+    $element['#attributes']['accept-charset'] = "UTF-8";
+  }
+
+
+  $search_submit = drupal_render($element['submit_1']);
+  $search_input = drupal_render($element['keys_1']);
+
+  foreach(element_children($element, TRUE) as $key) {
+    $element['#children'] .= drupal_render($element[$key]);
+  }
+  // Anonymous DIV to satisfy XHTML compliance.
+  return '<form' . drupal_attributes($element['#attributes']) . '><div>'
+    . $element['#children'] .
+    '<div class="input-group">' . $search_input .
+      '<span class="input-group-btn"><div>' . $search_submit . '</div></span>' .
+    '</div></form>';
+}
+
+function ubnext_bootstrap_form_element_pre_render($elements) {
+  //TODO: instead we should search for 'form_element' and remove that
+  //array_search
+  unset($elements['#theme_wrappers']);
+  return $elements;
+}
+
+function ubnext_form_search_api_page_search_form_site_alter(&$form, &$form_state, $form_id) {
+  // Add bootstrap classes
+  $form['keys_1']['#attributes']['class'][] = 'form-control';
+  if(!isset($form['submit_1']['#attributes'])) {
+    $form['submit_1']['#attributes'] = array();
+  }
+  if(!isset($form['submit_1']['#attributes']['class'])) {
+    $form['submit_1']['#attributes']['class'] = array();
+  }
+  $form['submit_1']['#attributes']['class'][] = 'btn';
+  $form['submit_1']['#attributes']['class'][] = 'btn-primary';
+
+  if(!isset($form['keys_1']['#pre_render'])) {
+    $form['keys_1']['#pre_render'] = array();
+  }
+
+  $form['keys_1']['#pre_render'][] = 'ubnext_bootstrap_form_element_pre_render';
+
+  $form['#theme_wrappers'] = array();
+  $form['#theme'] = array('bootstrap_search_api_page_search_form');
+}
+
+/** Facet-API **/
+
+/**
+ * Theme functions for the Facet API module.
+ */
+
+/**
+ * Returns HTML for an inactive facet item.
+ *
+ * @param $variables
+ *   An associative array containing the keys 'text', 'path', 'options', and
+ *   'count'. See the l() and theme_facetapi_count() functions for information
+ *   about these variables.
+ *
+ * @ingroup themeable
+ */
+function ubnext_facetapi_link_inactive($variables) {
+  // Builds accessible markup.
+  // @see http://drupal.org/node/1316580
+  $accessible_vars = array(
+    'text' => $variables['text'],
+    'active' => FALSE,
+  );
+  $accessible_markup = theme('facetapi_accessible_markup', $accessible_vars);
+
+  // Sanitizes the link text if necessary.
+  $sanitize = empty($variables['options']['html']);
+  $variables['text'] = ($sanitize) ? check_plain($variables['text']) : $variables['text'];
+
+  // Resets link text, sets to options to HTML since we already sanitized the
+  // link text and are providing additional markup for accessibility.
+  $variables['text'] .= $accessible_markup;
+  $variables['options']['html'] = TRUE;
+
+  if(!$variables['hide_inactive_items']) {
+    $widget = $variables['operator'] === FACETAPI_OPERATOR_OR ?
+      '<span class="fa fa-square-o"></span>' :
+      '<span class="fa fa-circle-o"></span>';
+    $variables['text'] = $widget . $variables['text'];
+  }
+
+  $output = theme_link($variables);
+
+  // Adds count to link if one was passed.
+  if (isset($variables['count'])) {
+    $output .= theme('facetapi_count', $variables);
+  }
+
+  return $output;
+}
+
+/**
+ * Returns HTML for the active facet item's count.
+ *
+ * @param $variables
+ *   An associative array containing:
+ *   - count: The item's facet count.
+ *
+ * @ingroup themeable
+ */
+function ubnext_facetapi_count($variables) {
+  return '<span class="ubn-facet-items-item-count">' . (int) $variables['count'] . '</span>';
+}
+
+/**
+ * Returns HTML for an active facet item.
+ *
+ * @param $variables
+ *   An associative array containing the keys 'text', 'path', and 'options'. See
+ *   the l() function for information about these variables.
+ *
+ * @see l()
+ *
+ * @ingroup themeable
+ */
+function ubnext_facetapi_link_active($variables) {
+
+  // Sanitizes the link text if necessary.
+  $sanitize = empty($variables['options']['html']);
+  $link_text = ($sanitize) ? check_plain($variables['text']) : $variables['text'];
+
+  // Theme function variables fro accessible markup.
+  // @see http://drupal.org/node/1316580
+  $accessible_vars = array(
+    'text' => $variables['text'],
+    'active' => TRUE,
+  );
+
+  $widget = $variables['operator'] === FACETAPI_OPERATOR_OR ?
+    '<span class="fa fa-check-square-o"></span>' :
+    '<span class="fa fa-dot-circle-o"></span>';
+
+  $variables['text'] = $widget . theme('facetapi_accessible_markup', $accessible_vars);
+  $variables['options']['html'] = TRUE;
+
+  return theme_link($variables) . $link_text;
+}
+
+/**
+ * Returns HTML for the deactivation widget.
+ *
+ * @param $variables
+ *   An associative array containing the keys 'text', 'path', and 'options'. See
+ *   the l() function for information about these variables.
+ *
+ * @see l()
+ * @see theme_facetapi_link_active()
+ *
+ * @ingroup themable
+ */
+//NOT CURRENTLY USED
+function ubnext_facetapi_deactivate_widget($variables) {
+  return '<span class="fa fa-check-square-o"></span>';
 }
