@@ -16,12 +16,30 @@ function ubnext_links__locale_block($variables) {
   unset($variables['links'][$language->language]);
   return theme('links', $variables);
 }
+
+
+
+function ubnext_preprocess_node(&$vars) {
+
+}
+
+function ubnext_preprocess_panels_pane(&$vars) {
+  drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-search.js");
+}
+
+function ubnext_preprocess_page(&$vars, $hook) {
+
+}
+
+
+
 /**
  *
  */
-function §(&$vars) {
+function ubnext_preprocess_html(&$vars) {
   global $is_https;
   drupal_add_css(($is_https ? 'https' : 'http') . '://fonts.googleapis.com/css?family=Open+Sans:700,400', array('type' => 'external'));
+
 
   // If the Guide feature is enabled, add chapter-1 class to body if the first
   // chapter on a guide is active.
@@ -59,7 +77,7 @@ function ubnext_language_switch_links_alter(array &$links, $type, $path) {
 }
 
 /**
- * make the langswitcher availible in template 
+ * make the langswitcher availible in template
  * and remove stuff not wanted
  */
 
@@ -113,7 +131,7 @@ function ubnext_html_head_alter(&$head_elements) {
 
 function ubnext_theme() {
   $items = array();
-    
+
   $items['user_login'] = array(
     'render element' => 'form',
     'path' => drupal_get_path('theme', 'ubnext') . '/templates',
@@ -150,7 +168,7 @@ function ubnext_user_login_block($form) {
 }
 
 function ubnext_preprocess_user_login(&$vars) {
-  $vars[form]['name']['#attributes']['class'][] = 'form-control';  
+  $vars[form]['name']['#attributes']['class'][] = 'form-control';
   $vars[form]['pass']['#attributes']['class'][] = 'form-control';
   $vars[form][actions][submit]['#attributes']['class'][] = 'btn btn-primary';
   $vars['intro_text'] = t('Please login.');
@@ -163,7 +181,7 @@ function ubnext_preprocess_user_register_form(&$vars) {
 
 function ubnext_preprocess_user_pass(&$vars) {
   dpm($vars[form]);
-  $vars[form]['name']['#attributes']['class'][] = 'form-control';  
+  $vars[form]['name']['#attributes']['class'][] = 'form-control';
   $vars[form][actions][submit]['#attributes']['class'][] = 'btn btn-primary';
   $vars['intro_text'] = t('Please login.');
 }

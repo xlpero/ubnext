@@ -1,0 +1,82 @@
+#database-filter-widget, .database-filter-widget {
+  border: 1px solid @gray-light;
+  border-radius: @border-radius-small;
+
+  ul {
+    .list-unstyled();
+    margin-bottom: 0;
+    li {
+      a {
+        padding: 10px;
+        text-decoration: none;
+        color: @gray-dark;
+      }
+      ul {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid @gray-light;
+        li {
+          a {
+            padding-top: 0;
+            padding-bottom: 0;
+          }
+        }
+      }
+      a {
+        display: inline-block;
+        width: 100%;
+      }
+      &.parent-link {
+        background: @gray-lighter;
+        border-bottom: 1px solid @gray-light;
+        a {
+          margin-right: -20px;
+        }
+        &.collapsed {
+          + li {
+             display: none;
+           }
+          &::after {
+            font-family: FontAwesome;
+            content: "\f078";
+          }
+        }
+        &.expanded {
+         + li {
+            display: block;
+          }
+          &::after {
+            font-family: FontAwesome;
+            content: "\f077";
+          }
+        }
+      }
+    }
+  }
+
+  .simulate-checkbox {
+    li {
+      &.active {
+        a {
+          &::before {
+            .icon-setting();
+            content: "\f046";
+          }
+        }
+      }
+      a {
+        &::before {
+          .icon-setting();
+          content: "\f096";
+        }
+      }
+    }
+  }
+}
+
+.icon-setting {
+  font-family: FontAwesome;
+  display: inline-block;
+  padding-right: 3px;
+  vertical-align: middle;
+}
