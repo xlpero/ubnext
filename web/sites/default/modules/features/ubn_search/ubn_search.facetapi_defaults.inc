@@ -177,7 +177,7 @@ function ubn_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'markdown',
     ),
-    'hide_inactive_items' => 1,
+    'hide_inactive_items' => 0,
   );
   $export['search_api@databases:block:field_media_types'] = $facet;
 

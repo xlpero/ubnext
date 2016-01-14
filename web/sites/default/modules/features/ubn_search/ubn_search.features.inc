@@ -75,6 +75,7 @@ function ubn_search_default_search_api_index() {
       "cron_limit" : "50",
       "fields" : {
         "field_alternate_titles" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_description_paragraphs" : { "type" : "list\\u003Ctext\\u003E" },
         "field_media_types" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_public_access" : { "type" : "boolean" },
         "field_publishers" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },

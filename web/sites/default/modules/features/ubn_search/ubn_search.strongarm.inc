@@ -33,6 +33,7 @@ function ubn_search_strongarm() {
       'search_api_page:site' => 'search_api_page:site',
       'search_api_page:search' => 'search_api_page:search',
       'search_api_autocomplete:search_api_page_site' => 'search_api_autocomplete:search_api_page_site',
+      'search_api_page:search/site' => 'search_api_page:search/site',
     ),
     'databases' => array(
       'search_api_page:search/databases' => 'search_api_page:search/databases',
