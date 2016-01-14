@@ -13,6 +13,13 @@ function ubn_search_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'facetapi:block_cache:search_api@databases';
+  $strongarm->value = '-1';
+  $export['facetapi:block_cache:search_api@databases'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'facetapi:block_cache:search_api@default_node_index';
   $strongarm->value = -1;
   $export['facetapi:block_cache:search_api@default_node_index'] = $strongarm;
@@ -32,6 +39,13 @@ function ubn_search_strongarm() {
     ),
   );
   $export['search_api_facets_search_ids'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'search_api_page_search_api_page_disabled_databases';
+  $strongarm->value = FALSE;
+  $export['search_api_page_search_api_page_disabled_databases'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
