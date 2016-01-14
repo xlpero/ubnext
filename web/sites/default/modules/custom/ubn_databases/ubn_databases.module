@@ -75,3 +75,45 @@ function ubn_databases_ctools_plugin_api($owner, $api) {
     return array('version' => 1);
   }
 }
+
+function ubn_databases_form_node_form_alter(&$form, $form_state, $form_id) {
+  if($form_id === 'database_node_form') {
+    $form['field_topics']['und']['#size'] = 25; //Field widget setting for this?
+    $form['field_topics_depth_0']['#access'] = FALSE;
+    $form['field_topics_depth_1']['#access'] = FALSE;
+  }
+}
+
+function ubn_databases_node_presave($node) {
+  if($node->type === 'database') {
+    //TODO: require entity api
+    $terms_by_depth = array();
+    $wrapper = entity_metadata_wrapper('node', $node);
+    if(!empty($wrapper->field_topics)) {
+      foreach($wrapper->field_topics as $term) {
+        // parents_all also include the term itself
+        $parents_terms = array();
+        foreach($term->parents_all as $parent) {
+          $parents_terms[] = $parent;
+        }
+        foreach(array_reverse($parents_terms) as $depth => $term) {
+          if(!isset($terms_by_depth[$depth])) {
+            $terms_by_depth[$depth] = array();
+          }
+          $terms_by_depth[$depth][$term->getIdentifier()] = $term;
+        }
+      }
+    }
+    foreach($terms_by_depth as $depth => $terms) {
+      $field = 'field_topics_depth_' . $depth;
+      $tids = array();
+      foreach($terms as $term) {
+        $tids[] = $term->getIdentifier();
+      }
+      if($wrapper->get($field)) {
+        $wrapper->get($field)->set($tids);
+      }
+    }
+  }
+}
+

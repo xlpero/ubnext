@@ -549,6 +549,9 @@ function ubn_content_types_strongarm() {
         'redirect' => array(
           'weight' => '30',
         ),
+        'xmlsitemap' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(),
     ),

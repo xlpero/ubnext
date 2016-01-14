@@ -26,7 +26,7 @@ function ubn_content_types_default_picture_mapping() {
     'breakpoints.theme.ubnext.extra_small' => array(
       '1x' => array(
         'mapping_type' => 'image_style',
-        'image_style' => 'page_content_extra_small',
+        'image_style' => 'library_hero_extra_small',
       ),
     ),
   );
