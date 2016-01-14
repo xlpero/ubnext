@@ -63,6 +63,31 @@ function ubn_search_default_search_api_autocomplete_search() {
  */
 function ubn_search_default_search_api_index() {
   $items = array();
+  $items['databases'] = entity_import('search_api_index', '{
+    "name" : "Databases",
+    "machine_name" : "databases",
+    "description" : null,
+    "server" : "solr",
+    "item_type" : "node",
+    "options" : {
+      "datasource" : { "bundles" : [ "database" ] },
+      "index_directly" : 0,
+      "cron_limit" : "50",
+      "fields" : {
+        "field_alternate_titles" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_media_types" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_public_access" : { "type" : "boolean" },
+        "field_publishers" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_topics_depth_0" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_topics_depth_1" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "search_api_language" : { "type" : "string" },
+        "title_field" : { "type" : "text" }
+      }
+    },
+    "enabled" : "1",
+    "read_only" : "0",
+    "rdf_mapping" : []
+  }');
   $items['default_node_index'] = entity_import('search_api_index', '{
     "name" : "Default node index",
     "machine_name" : "default_node_index",
