@@ -1,0 +1,6 @@
+name = UBN FacetAPI
+description = FacetAPI customizations for UBNext
+core = 7.x
+package = UBNext
+dependencies[] = facetapi
+files[] = plugins/facetapi/ubn_widget_links.inc
