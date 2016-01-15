@@ -328,7 +328,7 @@ function ubnext_facetapi_link_inactive($variables) {
   $variables['options']['html'] = TRUE;
 
   if(!$variables['hide_inactive_items']) {
-    $widget = $variables['operator'] === FACETAPI_OPERATOR_OR ?
+    $widget = $variables['operator'] === FACETAPI_OPERATOR_OR && !$variables['limit_active_items'] ?
       '<span class="fa fa-square-o"></span>' :
       '<span class="fa fa-circle-o"></span>';
     $variables['text'] = $widget . $variables['text'];
@@ -381,7 +381,7 @@ function ubnext_facetapi_link_active($variables) {
     'active' => TRUE,
   );
 
-  $widget = $variables['operator'] === FACETAPI_OPERATOR_OR ?
+  $widget = $variables['operator'] === FACETAPI_OPERATOR_OR && !$variables['limit_active_items'] ?
     '<span class="fa fa-check-square-o"></span>' :
     '<span class="fa fa-dot-circle-o"></span>';
 
