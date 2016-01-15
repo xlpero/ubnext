@@ -72,7 +72,8 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
       '#theme' => 'ubn_facetapi_item_list', //UBN widget links item list
       '#items' => $facet_items,
       '#attributes' => $this->build['#attributes'],
-      '#container_attributes' => array('class' => array('ubn-facet', 'ubn-facet-' . $operator)),
+      //TODO: class with field/facet name/key/alias?
+      '#container_attributes' => array('class' => array('ubn-facet', 'ubn-facet-' . $operator, 'ubn-facet-links')),
       '#title' => $facet_title,
     );
   }

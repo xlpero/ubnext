@@ -12,6 +12,16 @@ function ubn_facetapi_facetapi_widgets() {
         'query types' => array('term', 'date'), // Same as parent default?
       ),
     ),
+    //Quick and diry for now, how restrict to certain fields?
+    //query type boolean, no?
+    'ubn_facetapi_checkbox' => array(
+      'handler' => array(
+        'label' => t('UBN Checkbox'),
+        'class' => 'UBNFacetapiWidgetCheckbox',
+        'parent' => 'FacetapiWidget',
+        'query types' => array('term'), // Same as parent default?
+      ),
+    ),
   );
 }
 
@@ -43,6 +53,9 @@ function ubn_facetapi_theme() {
     'ubn_facetapi_active_header_item' => array(
       'variables' => array('text' => '', 'path' => '', 'options' => array(), 'container_attributes' => array()),
     ),
+    'ubn_facetapi_checkbox_widget_item' => array(
+      'variables' => array('text' => '', 'active' => NULL, 'path' => '', 'options' => array(), 'container_attributes' => array()),
+    ),
   );
 }
 
@@ -61,11 +74,28 @@ function theme_ubn_facetapi_active_header_item($variables) {
     '</span>';
 }
 
+function theme_ubn_facetapi_checkbox_widget_item($variables) {
+  return '<span' . drupal_attributes($variables['container_attributes']) . '>' .
+    $variables['text'] .
+    theme(
+      'link', array(
+        'text' => $variables['active'] ? '<span class="fa fa-check-square-o"></span>' : '<span class="fa fa-square-o"></span>',
+        'path' => $variables['path'],
+        'options' => array(
+          'html' => TRUE,
+        ) + $variables['options'],
+      )
+    ) .
+    '</span>';
+}
+
 function theme_ubn_facetapi_item_list_wrapper($elements) {
   $element = $elements['element'];
   return '<div class="ubn-facet">' .  $element['#children'] . '</div>';
 }
 
+
+//TODO: Break up in container/wrapper theme function and theme_links
 /**
  * Returns HTML for a list or nested list of items.
  * Base on theme_item_list
