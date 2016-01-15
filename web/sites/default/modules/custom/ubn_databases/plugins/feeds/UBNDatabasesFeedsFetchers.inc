@@ -204,6 +204,7 @@ EOD;
     }
 
     //Kludge, add "uncategorized" terms
+    /*
     foreach($databases as &$database) {
       if(empty($database['categories'])) {
         $database['categories'][] = array(
@@ -216,6 +217,7 @@ EOD;
         );
       }
     }
+    */
     $raw = drupal_json_encode(array_values($databases));
     //file_put_contents('/tmp/databases.json', $raw);
     $fetcher_result = new FeedsFetcherResult($raw);
@@ -252,7 +254,7 @@ EOD;
         $categories[$delta]['name'][$lang] = $row['name'];
       }
     }
-
+    /*
     $categories[] = array(
       'guid' => md5('ubn_databases_category:'),
       'parent_guid' => NULL,
@@ -261,6 +263,7 @@ EOD;
         'sv' => t('Other'),
       ),
     );
+    */
 
     $raw = drupal_json_encode(array_values($categories));
     $fetcher_result = new FeedsFetcherResult($raw);
@@ -290,7 +293,7 @@ class UBNDatabasesKeywordsFeedsFetcher extends UBNDatabasesFeedsFetcherBase {
         LEFT JOIN keywords kp
         ON k.parent_id = kp.id
         WHERE k.keyword_source_id in (SELECT id FROM keyword_sources where code = '$code')
-        ORDER BY id DESC
+        ORDER BY k.parent_id DESC
 EOD;
       foreach($pdo->query($query, $pdo::FETCH_ASSOC) as $delta => $row) {
         if($lang == 'en') {
@@ -306,6 +309,7 @@ EOD;
         $keywords[$delta]['name'][$lang] = $row['name'];
       }
     }
+    /*
     $keywords[] = array(
       'guid' => md5('ubn_databases_keyword:'),
       'parent_guid' => NULL,
@@ -314,6 +318,7 @@ EOD;
         'sv' => t('Other'),
       ),
     );
+    */
     $raw = drupal_json_encode(array_values($keywords));
     $fetcher_result = new FeedsFetcherResult($raw);
     return $fetcher_result;
