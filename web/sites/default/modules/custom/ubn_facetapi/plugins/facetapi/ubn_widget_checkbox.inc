@@ -29,26 +29,24 @@ class UBNFacetapiWidgetCheckbox extends FacetapiWidget {
     // for now assuming "1"
     if(!empty($build) && isset($build[1])) {
       $checkbox_item = $build[1];
-      $label = !empty($settings['checkbox_label']) ? $settings['checkbox_label'] : $checkbox_item['#markup'];
+      $facet_title = !empty($settings['checkbox_label']) ? $settings['checkbox_label'] : $checkbox_item['#markup'];
       $variables = array(
-        'text' => $label,
         'active' => $checkbox_item['#active'],
         'path' => $checkbox_item['#path'],
-        'container_attributes' => array('class' => 'ubn-facetapi-checkbox-item'),
         'options' => array(
           'attributes' => array('class' => 'ubn-facetapi-checkbox-item-link', 'rel' => 'nofollow'), //id?
           'html' => $checkbox_item['#html'],
           'query' => $checkbox_item['#query'],
         ),
       );
-      $facet_title = theme('ubn_facetapi_checkbox_widget_item', $variables);
-
+      $this->build['#attributes']['class'][] = 'ubn-facet';
+      $this->build['#attributes']['class'][] = 'ubn-facet-checkbox';
       $build = array(
-        '#theme' => 'ubn_facetapi_item_list',
+        '#theme' => 'ubn_facetapi_facet',
         '#items' => array(),
         '#attributes' => $this->build['#attributes'],
-        '#container_attributes' => array('class' => array('ubn-facet', 'ubn-facet-checkbox')),
         '#title' => $facet_title,
+        '#handle' => theme('ubn_facetapi_widget_checkbox_handle', $variables),
       );
     }
     else {

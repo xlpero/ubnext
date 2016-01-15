@@ -46,19 +46,30 @@ function ubn_facetapi_theme_registry_alter(&$theme_registry) {
 //TODO: template?
 function ubn_facetapi_theme() {
   return array(
-    'ubn_facetapi_item_list' => array(
-      'variables' => array('items' => array(), 'title' => NULL, 'type' => 'ul', 'attributes' => array(), 'container_attributes' => array()),
+    'ubn_facetapi_facet' => array(
+      'variables' => array('items' => array(), 'title' => NULL, 'handle' => NULL, 'attributes' => array()),
     ),
-    //Better template name???
+    'ubn_facetapi_header_item' => array(
+      'variables' => array('text' => '', 'handle' => ''),
+    ),
+    /*
     'ubn_facetapi_active_header_item' => array(
       'variables' => array('text' => '', 'path' => '', 'options' => array(), 'container_attributes' => array()),
     ),
-    'ubn_facetapi_checkbox_widget_item' => array(
-      'variables' => array('text' => '', 'active' => NULL, 'path' => '', 'options' => array(), 'container_attributes' => array()),
+    */
+    'ubn_facetapi_active_header_item_handle' => array(
+      'variables' => array('path' => '', 'options' => array()),
+    ),
+    'ubn_facetapi_widget_links_handle' => array(
+      'variables' => array(),
+    ),
+    'ubn_facetapi_widget_checkbox_handle' => array(
+      'variables' => array('active' => NULL, 'path' => '', 'options' => array()),
     ),
   );
 }
 
+/*
 function theme_ubn_facetapi_active_header_item($variables) {
   return '<span' . drupal_attributes($variables['container_attributes']) . '>' .
     $variables['text'] .
@@ -73,27 +84,85 @@ function theme_ubn_facetapi_active_header_item($variables) {
     ) .
     '</span>';
 }
+*/
 
-function theme_ubn_facetapi_checkbox_widget_item($variables) {
-  return '<span' . drupal_attributes($variables['container_attributes']) . '>' .
-    $variables['text'] .
-    theme(
-      'link', array(
-        'text' => $variables['active'] ? '<span class="fa fa-check-square-o"></span>' : '<span class="fa fa-square-o"></span>',
-        'path' => $variables['path'],
-        'options' => array(
-          'html' => TRUE,
-        ) + $variables['options'],
-      )
-    ) .
-    '</span>';
+function theme_ubn_facetapi_active_header_item_handle($variables) {
+  return theme(
+    'link', array(
+      'text' => '<span class="fa fa-times"></span>',
+      'path' => $variables['path'],
+      'options' => array(
+        'html' => TRUE,
+      ) + $variables['options'],
+    )
+  );
 }
 
+function theme_ubn_facetapi_widget_links_handle() {
+  return '<span class="fa fa-chevron-down"></span>';
+}
+
+//bun-facetapi-checkbox item
+//facet-title, facet-label?
+//ubn-facet-label
+//ubn-facet-handle?
+function theme_ubn_facetapi_header_item($variables) {
+  return '<span class="ubn-facet-title-text">' . $variables['text'] . '</span>' .
+    '<span class="ubn-facet-title-handle">' . $variables['handle'] . '</span>';
+}
+
+function theme_ubn_facetapi_widget_checkbox_handle($variables) {
+  return theme(
+    'link', array(
+      'text' => $variables['active'] ? '<span class="fa fa-check-square-o"></span>' : '<span class="fa fa-square-o"></span>',
+      'path' => $variables['path'],
+      'options' => array(
+        'html' => TRUE,
+      ) + $variables['options'],
+    )
+  );
+}
+
+//TODO: remove?
+/*
 function theme_ubn_facetapi_item_list_wrapper($elements) {
   $element = $elements['element'];
+  $container_attributes = $variables['container_attributes'];
   return '<div class="ubn-facet">' .  $element['#children'] . '</div>';
 }
+*/
 
+function theme_ubn_facetapi_facet($variables) {
+  $title = $variables['title'];
+  if(!isset($variables['attributes']['class'])) {
+    $variables['attributes']['class'] = array();
+  }
+  if(empty($variables['items'])) {
+    $variables['attributes']['class'][] = 'ubn-facet-no-items';
+  }
+
+  $output = '<div' . drupal_attributes($variables['attributes']) . '>';
+
+  $output .= '<div class="ubn-facet-header">';
+  if (isset($title) && $title !== '') {
+    $output .= '<h3 class="ubn-facet-header-title">' . $title . '</h3>';
+  }
+  $output .= '<span class="ubn-facet-header-handle">' . $variables['handle'] . '</span>';
+  $output .= '</div>';
+
+  if(!empty($variables['items'])) {
+    $output .= theme_item_list(
+      array(
+        'items' => $variables['items'],
+        'title' => NULL,
+        'type' => 'ul',
+        'attributes' => array('class' => array('ubn-facet-items', 'list-unstyled')),
+      )
+    );
+  }
+  $output .= '</div>';
+  return $output;
+}
 
 //TODO: Break up in container/wrapper theme function and theme_links
 /**
@@ -117,7 +186,6 @@ function theme_ubn_facetapi_item_list($variables) {
   $title = $variables['title'];
   $type = $variables['type'];
   $attributes = $variables['attributes'];
-  $container_attributes = $variables['container_attributes'];
 
   // Only output the list container and title, if there are any list items.
   // Check to see whether the block title exists before adding a header.
