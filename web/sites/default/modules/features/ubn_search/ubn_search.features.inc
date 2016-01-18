@@ -81,8 +81,112 @@ function ubn_search_default_search_api_index() {
         "field_publishers" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_topics_depth_0" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_topics_depth_1" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "search_api_aggregation_1" : { "type" : "string" },
         "search_api_language" : { "type" : "string" },
         "title_field" : { "type" : "text" }
+      },
+      "data_alter_callbacks" : {
+        "search_api_alter_bundle_filter" : {
+          "status" : 0,
+          "weight" : "-10",
+          "settings" : { "default" : "1", "bundles" : [] }
+        },
+        "search_api_alter_node_access" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_node_status" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_language_control" : {
+          "status" : 0,
+          "weight" : "0",
+          "settings" : { "lang_field" : "", "languages" : [] }
+        },
+        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
+        "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] },
+        "search_api_alter_add_aggregation" : {
+          "status" : 1,
+          "weight" : "0",
+          "settings" : { "fields" : { "search_api_aggregation_1" : {
+                "name" : "A-Z",
+                "type" : "first_char",
+                "fields" : [ "title_field" ],
+                "description" : "A First letter aggregation of the following fields: Title."
+              }
+            }
+          }
+        },
+        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } }
+      },
+      "processors" : {
+        "search_api_case_ignore" : {
+          "status" : 0,
+          "weight" : "0",
+          "settings" : { "fields" : {
+              "title_field" : true,
+              "field_description_paragraphs" : true,
+              "field_alternate_titles" : true
+            }
+          }
+        },
+        "search_api_html_filter" : {
+          "status" : 0,
+          "weight" : "10",
+          "settings" : {
+            "fields" : {
+              "title_field" : true,
+              "field_description_paragraphs" : true,
+              "field_alternate_titles" : true
+            },
+            "title" : 0,
+            "alt" : 1,
+            "tags" : "h1 = 5\\r\\nh2 = 3\\r\\nh3 = 2\\r\\nstrong = 2\\r\\nb = 2\\r\\nem = 1.5\\r\\nu = 1.5"
+          }
+        },
+        "search_api_transliteration" : {
+          "status" : 0,
+          "weight" : "15",
+          "settings" : { "fields" : {
+              "title_field" : true,
+              "field_description_paragraphs" : true,
+              "field_alternate_titles" : true
+            }
+          }
+        },
+        "search_api_tokenizer" : {
+          "status" : 0,
+          "weight" : "20",
+          "settings" : {
+            "fields" : {
+              "title_field" : true,
+              "field_description_paragraphs" : true,
+              "field_alternate_titles" : true
+            },
+            "spaces" : "[^[:alnum:]]",
+            "ignorable" : "[\\u0027]"
+          }
+        },
+        "search_api_stopwords" : {
+          "status" : 0,
+          "weight" : "30",
+          "settings" : {
+            "fields" : {
+              "title_field" : true,
+              "field_description_paragraphs" : true,
+              "field_alternate_titles" : true
+            },
+            "file" : "",
+            "stopwords" : "but\\r\\ndid\\r\\nthe this that those\\r\\netc"
+          }
+        },
+        "search_api_highlighting" : {
+          "status" : 0,
+          "weight" : "35",
+          "settings" : {
+            "prefix" : "\\u003Cstrong\\u003E",
+            "suffix" : "\\u003C\\/strong\\u003E",
+            "excerpt" : 1,
+            "excerpt_length" : "256",
+            "exclude_fields" : [],
+            "highlight" : "always"
+          }
+        }
       }
     },
     "enabled" : "1",

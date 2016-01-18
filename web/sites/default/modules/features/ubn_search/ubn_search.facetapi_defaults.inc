@@ -115,12 +115,32 @@ function ubn_search_facetapi_default_facet_settings() {
     'operator' => 'or',
     'hard_limit' => '50',
     'dependencies' => array(
-      'facets' => array(),
-      'force_deactivation' => TRUE,
-      'regex' => FALSE,
-      'roles' => array(),
+      'roles' => array(
+        1 => 0,
+        2 => 0,
+        3 => 0,
+      ),
       'bundle' => 'none',
-      'bundle_selected' => array(),
+      'bundle_selected' => array(
+        'app' => 0,
+        'article' => 0,
+        'page' => 0,
+        'database' => 0,
+        'database_url' => 0,
+        'dictionary_term' => 0,
+        'library' => 0,
+        'opening_hours' => 0,
+      ),
+      'facets' => array(
+        'field_topics_depth_0' => 'field_topics_depth_0',
+        'field_public_access' => 0,
+        'field_media_types' => 0,
+      ),
+      'force_deactivation' => 1,
+      'regex' => 0,
+      'facet_items_field_topics_depth_0' => '',
+      'facet_items_field_public_access' => '',
+      'facet_items_field_media_types' => '',
     ),
     'facet_mincount' => '1',
     'facet_missing' => '0',
@@ -191,7 +211,7 @@ function ubn_search_facetapi_default_facet_settings() {
   $facet->enabled = TRUE;
   $facet->settings = array(
     'weight' => 0,
-    'widget' => 'ubn_facetapi_links',
+    'widget' => 'ubn_facetapi_checkbox',
     'filters' => array(),
     'active_sorts' => array(
       'display' => 'display',
@@ -224,6 +244,8 @@ function ubn_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'markdown',
     ),
+    'hide_inactive_items' => 0,
+    'checkbox_label' => 'Free databases only',
   );
   $export['search_api@databases:block:field_public_access'] = $facet;
 
@@ -317,6 +339,7 @@ function ubn_search_facetapi_default_facet_settings() {
       'value' => '',
       'format' => 'markdown',
     ),
+    'hide_inactive_items' => FALSE,
   );
   $export['search_api@databases:block:field_topics_depth_1'] = $facet;
 

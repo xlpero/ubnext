@@ -47,9 +47,8 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
       $active_item = current($active_items);
       //Query?
       $variables = array(
-        'text' => $active_item['#markup'],
         'path' => $active_item['#path'],
-        'container_attributes' => array('class' => 'ubn-facetapi-active-header-item'),
+        //'container_attributes' => array('class' => 'ubn-facetapi-active-header-item'),
         //Link options? rename?
         'options' => array(
           'attributes' => array('class' => 'ubn-facetapi-active-header-item-link', 'rel' => 'nofollow'), //id?
@@ -57,23 +56,28 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
           'query' => $active_item['#query'],
         ),
       );
-      $facet_title = theme('ubn_facetapi_active_header_item', $variables);
+      $facet_title = $active_item['#markup'];
+      $facet_handle = theme('ubn_facetapi_active_header_item_handle', $variables);
     }
     else {
       $facet_title = $this->build['#title'];
+      //TODO: theme function
+      $facet_handle = theme('ubn_facetapi_widget_links_handle');
       $this->setThemeHooks($element);
       $facet_items = $this->buildListItems($element);
     }
 
     $operator = $global_settings['operator'];
-    //Or append?
-    $this->build['#attributes']['class'] = array('ubn-facet-items', 'list-unstyled');
+    $this->build['#attributes']['class'][] = 'ubn-facet';
+    $this->build['#attributes']['class'][] = 'ubn-facet-' . $operator;
+    $this->build['#attributes']['class'][] = 'ubn-facet-links';
     $element = array(
-      '#theme' => 'ubn_facetapi_item_list', //UBN widget links item list
+      '#theme' => 'ubn_facetapi_facet', //UBN widget links item list
       '#items' => $facet_items,
       '#attributes' => $this->build['#attributes'],
-      '#container_attributes' => array('class' => array('ubn-facet', 'ubn-facet-' . $operator)),
+      //TODO: class with field/facet name/key/alias?
       '#title' => $facet_title,
+      '#handle' => $facet_handle,
     );
   }
 
