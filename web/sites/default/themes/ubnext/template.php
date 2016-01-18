@@ -354,7 +354,7 @@ function ubnext_facetapi_link_inactive($variables) {
  * @ingroup themeable
  */
 function ubnext_facetapi_count($variables) {
-  return '<span class="ubn-facet-items-item-count">' . (int) $variables['count'] . '</span>';
+  return '<span class="ubn-facet-items-item-count">(' . (int) $variables['count'] . ')</span>';
 }
 
 /**

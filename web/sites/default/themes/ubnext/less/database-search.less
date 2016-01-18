@@ -1,3 +1,36 @@
+
+.page-search-databases {
+  .ubn-facet {
+    h3 {
+      background: @gray-lighter;
+      font-size: 1.2em;
+      padding: 10px;
+      margin-bottom: 0;
+      cursor: pointer;
+      &::after {
+        display: inline-block;
+        font-family: FontAwesome;
+        content: "\f078";
+
+      }
+    }
+    .ubn-facet-items {
+      padding: 5px 10px;
+    }
+    &.ubn-facet-or {
+      .leaf {
+        span {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
 #database-filter-widget, .database-filter-widget {
   border: 1px solid @gray-light;
   border-radius: @border-radius-small;
