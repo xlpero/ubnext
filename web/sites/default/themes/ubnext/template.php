@@ -254,26 +254,38 @@ function ubnext_bootstrap_form_element_pre_render($elements) {
 }
 
 function ubnext_form_search_api_page_search_form_site_alter(&$form, &$form_state, $form_id) {
+  _ubnext_search_form_alter($form, $form_state, $form_id);
+}
+
+function ubnext_form_search_api_page_search_form_databases_alter(&$form, &$form_state, $form_id) {
+  return;
+  _ubnext_search_form_alter($form, $form_state, $form_id);
+}
+
+
+function _ubnext_search_form_alter(&$form, &$form_state, $form_id) {
   // Add bootstrap classes
-  $form['keys_1']['#attributes']['class'][] = 'form-control';
+  $suffix = '_' . $form['id']['#value'];
+  $form['keys' . $suffix]['#attributes']['class'][] = 'form-control';
   if(!isset($form['submit_1']['#attributes'])) {
     $form['submit_1']['#attributes'] = array();
   }
-  if(!isset($form['submit_1']['#attributes']['class'])) {
-    $form['submit_1']['#attributes']['class'] = array();
+  if(!isset($form['submit' . $suffix]['#attributes']['class'])) {
+    $form['submit' . $suffix]['#attributes']['class'] = array();
   }
-  $form['submit_1']['#attributes']['class'][] = 'btn';
-  $form['submit_1']['#attributes']['class'][] = 'btn-primary';
+  $form['submit' . $suffix]['#attributes']['class'][] = 'btn';
+  $form['submit' . $suffix]['#attributes']['class'][] = 'btn-primary';
 
-  if(!isset($form['keys_1']['#pre_render'])) {
-    $form['keys_1']['#pre_render'] = array();
+  if(!isset($form['keys' . $suffix]['#pre_render'])) {
+    $form['keys' . $suffix]['#pre_render'] = array();
   }
 
-  $form['keys_1']['#pre_render'][] = 'ubnext_bootstrap_form_element_pre_render';
+  $form['keys' . $suffix]['#pre_render'][] = 'ubnext_bootstrap_form_element_pre_render';
 
   $form['#theme_wrappers'] = array();
   $form['#theme'] = array('bootstrap_search_api_page_search_form');
 }
+
 
 /** Facet-API **/
 
@@ -388,4 +400,35 @@ function ubnext_facetapi_link_active($variables) {
 //NOT CURRENTLY USED
 function ubnext_facetapi_deactivate_widget($variables) {
   return '<span class="fa fa-check-square-o"></span>';
+}
+
+/**
+ * Prefix function with "_" to exclude from normal hook detection
+ * We add this in ubnext_theme_registry_alter instead
+ * (Because we need it to run before
+ * template_preprocess_search_api_page_results)
+ *
+ * Attach "search result items" (with snippets etc) to search result entities 
+ */
+//TODO: entity api entity metadata shit alter and add ubn_search_result_item
+//property??
+function _ubnext_preprocess_search_api_page_results(array &$variables) {
+  if(!empty($variables['results']['results'])) {
+    $variables['items'] = $variables['index']->loadItems(array_keys($variables['results']['results']));
+    // Overlay item entities with "result item" data (so we can access it in
+    // slate view mode templates)
+    foreach($variables['results']['results'] as $id => $item) {
+      if(isset($variables['items'][$id])) {
+        $variables['items'][$id]->ubn_search_result_item = $item;
+      }
+    }
+  }
+}
+
+function ubnext_theme_registry_alter(&$theme_registry) {
+  array_unshift(
+    $theme_registry['search_api_page_results']['preprocess functions'],
+    '_ubnext_preprocess_search_api_page_results'
+  );
+  dsm($theme_registry);
 }

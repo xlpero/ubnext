@@ -1,0 +1,13 @@
+{# slate
+  name = Database: View mode 'UBN search result'
+  models[database] = entity:node
+  view_mode[node][database] = ubn_search_result
+#}
+<div class="database">
+  {%
+    set excerpt = database.value.ubn_search_result_item.excerpt ?
+    database.value.ubn_search_result_item.excerpt :
+    database.field_description_paragraphs[0].value
+  %}
+  {{ excerpt | raw }}
+</div>
