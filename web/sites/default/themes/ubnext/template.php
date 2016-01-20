@@ -21,7 +21,7 @@ function ubnext_preprocess_node(&$vars) {
 }
 
 function ubnext_preprocess_panels_pane(&$vars) {
-  drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-search.js");
+
 }
 
 function ubnext_preprocess_page(&$vars, $hook) {
@@ -36,7 +36,7 @@ function ubnext_preprocess_page(&$vars, $hook) {
 function ubnext_preprocess_html(&$vars) {
   global $is_https;
   drupal_add_css(($is_https ? 'https' : 'http') . '://fonts.googleapis.com/css?family=Open+Sans:700,400', array('type' => 'external'));
-
+  drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-search.js");
 
   // If the Guide feature is enabled, add chapter-1 class to body if the first
   // chapter on a guide is active.
@@ -330,7 +330,7 @@ function ubnext_facetapi_link_inactive($variables) {
   if(!$variables['hide_inactive_items']) {
     $widget = $variables['operator'] === FACETAPI_OPERATOR_OR && !$variables['limit_active_items'] ?
       '<span class="fa fa-square-o"></span>' :
-      '<span class="fa fa-circle-o"></span>';
+      '';
     $variables['text'] = $widget . $variables['text'];
   }
 
@@ -383,12 +383,12 @@ function ubnext_facetapi_link_active($variables) {
 
   $widget = $variables['operator'] === FACETAPI_OPERATOR_OR && !$variables['limit_active_items'] ?
     '<span class="fa fa-check-square-o"></span>' :
-    '<span class="fa fa-dot-circle-o"></span>';
+    '';
 
-  $variables['text'] = $widget . theme('facetapi_accessible_markup', $accessible_vars);
+  $variables['text'] = $widget . theme('facetapi_accessible_markup', $accessible_vars) . $link_text;
   $variables['options']['html'] = TRUE;
 
-  return theme_link($variables) . $link_text;
+  return theme_link($variables) ;
 }
 
 /**

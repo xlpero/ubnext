@@ -3,19 +3,27 @@ var myModule = (function ($) {
     init: function(selector) {
       var $selector = $(selector);
       if ($selector) {
-        $selector.find("a").bind( "click", function() {
-          var $parent = $(this).parent();
-          if ($parent.hasClass("parent-link")) {
-              if ($parent.hasClass("expanded")) {
-                $parent.removeClass("expanded");
-                $parent.addClass("collapsed");
+        $selector.find(".ubn-facet-header").bind( "click", function() {
+          var $next = $(this).next();
+          if ($next.hasClass("item-list")) {
+            if ($next.hasClass("expanded")) {
+                $next.removeClass("expanded")
+                var $fa = $(this).find(".fa")
+                if ($fa.hasClass("fa-chevron-up")) {
+                  $fa.removeClass("fa-chevron-up");
+                  $fa.addClass("fa-chevron-down");
+                }
+            }
+            else {
+              $next.addClass("expanded");
+              var $fa = $(this).find(".fa")
+              if ($fa.hasClass("fa-chevron-down")) {
+                $fa.removeClass("fa-chevron-down");
+                $fa.addClass("fa-chevron-up");
               }
-              else {
-                $parent.removeClass("collapsed");
-                $parent.addClass("expanded");
-              }
-          }
 
+            }
+          }
         });
 
       }
@@ -25,5 +33,5 @@ var myModule = (function ($) {
 })(jQuery);
 
 jQuery(document).ready(function() {
-  myModule.init("#database-filter-widget");
+  myModule.init(".page-search-databases");
 })

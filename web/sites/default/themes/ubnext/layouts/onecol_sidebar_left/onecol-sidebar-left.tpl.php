@@ -1,9 +1,18 @@
 <div class="container">
-  <aside class="sidebar col-sm-4">
-    <?php print render($content['sidebar']); ?>
-  </aside>
-  <section class="main col-sm-8">
-    Main
-  	<?php print render($content['main']); ?>
-  </section>
+  <div class="row">
+    <div class="searchbar-top col-xs-12 col-sm-8 col-sm-offset-2">
+      <?php print render($content['searchbartop']); ?>
+    </div>
+  </div>
+  <div class="row">
+    <aside class="sidebar col-xs-12 col-sm-4">
+      <div class="facet-filter">
+        <?php print render($content['sidebar']); ?>
+      </div>
+    </aside>
+    <section class="main col-xs-12 col-sm-8">
+      Main
+    	<?php print render($content['main']); ?>
+    </section>
+  </div>
 </div>

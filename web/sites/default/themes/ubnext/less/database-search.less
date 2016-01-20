@@ -1,22 +1,104 @@
 
 .page-search-databases {
-  .ubn-facet {
-    h3 {
-      background: @gray-lighter;
-      font-size: 1.2em;
-      padding: 10px;
-      margin-bottom: 0;
-      cursor: pointer;
-      &::after {
-        display: inline-block;
-        font-family: FontAwesome;
-        content: "\f078";
-
+  .facet-filter {
+    overflow: hidden;
+    float: left;
+    width:100%;
+    border: 1px solid @gray-lighter;
+    border-radius: @border-radius-small;
+    [class~='ubn-facet']:last-of-type {
+      .ubn-facet-header {
+        border-bottom: none;
       }
     }
-    .ubn-facet-items {
-      padding: 5px 10px;
+  }
+
+
+  .ubn-facet {
+    .item-list {
+      .ubn-facet-items {
+        float:left;
+      }
+      display: none;
+      &.expanded {
+        display: block;
+      }
     }
+
+    &.facetapi-facet-field-topics-depth-0, &.facetapi-facet-field-media-types {
+        &.ubn-facet-no-items,  {
+          .ubn-facet-header {
+            background: @brand-primary;
+            color: #fff;
+          }
+          .fa {
+            color: #fff;
+          }
+        }
+    }
+
+    &.facetapi-facet-field-public-access {
+      &.ubn-facet-checkbox-checked {
+        .ubn-facet-header {
+          background: @brand-primary;
+          color: #fff;
+        }
+        .fa {
+          color: #fff;
+        }
+      }
+    }
+
+    .ubn-facet-header {
+      float: left;
+      width: 100%;
+      cursor: pointer;
+      background: @gray-lighter;
+      padding: 5px 10px;
+      border-bottom: 1px solid @gray-light;
+      .ubn-facet-header-title {
+        max-width: 90%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        float: left;
+        margin-bottom: 0;
+        font-size: 1em;
+      }
+      .ubn-facet-header-handle {
+        float:right;
+      }
+    }
+
+    &.facetapi-facet-field-public-access {
+      .ubn-facet-header-handle {
+        a {
+          color: @gray-dark;
+        }
+      }
+    }
+
+
+    &.ubn-facet-or {
+      .ubn-facet-items {
+        margin-bottom: 5px;
+        a {
+          text-decoration: none;
+          color: @gray-dark;
+        }
+      }
+    }
+
+
+    .ubn-facet-items {
+      border-left: @gray-light;
+      border-right: @gray-light;
+      padding: 5px 10px;
+      .ubn-facet-items-item-count {
+        margin-left: 5px;
+      }
+    }
+
     &.ubn-facet-or {
       .leaf {
         span {
@@ -25,91 +107,19 @@
       }
     }
   }
-}
 
 
+  /* search result */
+  .search-api-page-results {
+    h2 {
+      display: none;
+    }
 
-
-
-#database-filter-widget, .database-filter-widget {
-  border: 1px solid @gray-light;
-  border-radius: @border-radius-small;
-
-  ul {
-    .list-unstyled();
-    margin-bottom: 0;
-    li {
-      a {
-        padding: 10px;
-        text-decoration: none;
-        color: @gray-dark;
-      }
-      ul {
-        padding-top: 5px;
-        padding-bottom: 5px;
-        border-bottom: 1px solid @gray-light;
-        li {
-          a {
-            padding-top: 0;
-            padding-bottom: 0;
-          }
-        }
-      }
-      a {
-        display: inline-block;
-        width: 100%;
-      }
-      &.parent-link {
-        background: @gray-lighter;
-        border-bottom: 1px solid @gray-light;
-        a {
-          margin-right: -20px;
-        }
-        &.collapsed {
-          + li {
-             display: none;
-           }
-          &::after {
-            font-family: FontAwesome;
-            content: "\f078";
-          }
-        }
-        &.expanded {
-         + li {
-            display: block;
-          }
-          &::after {
-            font-family: FontAwesome;
-            content: "\f077";
-          }
-        }
-      }
+    .search-results {
+      padding-left: 0px;
+    }
+    .search-info {
+      display: none;
     }
   }
-
-  .simulate-checkbox {
-    li {
-      &.active {
-        a {
-          &::before {
-            .icon-setting();
-            content: "\f046";
-          }
-        }
-      }
-      a {
-        &::before {
-          .icon-setting();
-          content: "\f096";
-        }
-      }
-    }
-  }
-}
-
-.icon-setting {
-  font-family: FontAwesome;
-  display: inline-block;
-  padding-right: 3px;
-  vertical-align: middle;
 }
