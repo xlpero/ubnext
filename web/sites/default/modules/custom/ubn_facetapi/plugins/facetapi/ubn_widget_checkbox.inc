@@ -41,6 +41,9 @@ class UBNFacetapiWidgetCheckbox extends FacetapiWidget {
       );
       $this->build['#attributes']['class'][] = 'ubn-facet';
       $this->build['#attributes']['class'][] = 'ubn-facet-checkbox';
+      if ($checkbox_item['#active']) {
+        $this->build['#attributes']['class'][] = 'ubn-facet-checkbox-checked';
+      }
       $build = array(
         '#theme' => 'ubn_facetapi_facet',
         '#items' => array(),
