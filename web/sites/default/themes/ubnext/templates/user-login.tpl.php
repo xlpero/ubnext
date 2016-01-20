@@ -8,7 +8,7 @@
 			<?php print render($form['name']); ?>
 			<?php print render($form['pass']); ?>
 
-			<?php print render($form[actions][submit]); ?>
+			<?php print render($form['actions']['submit']); ?>
 
 			<div class="ubnext-user-login-form-wrapper">
 			  <?php print drupal_render_children($form) ?>
