@@ -155,3 +155,11 @@ function ubn_general_field_collection_is_empty_alter(&$is_empty, FieldCollection
     $is_empty = TRUE;
   }
 }
+
+//Must be run before slate entity_info_alter?
+function ubn_general_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['ubn_search_result'] = array(
+    'label' => t('UBN search result'),
+    'custom settings' => TRUE,
+  );
+}
