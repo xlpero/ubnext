@@ -344,7 +344,7 @@ function ubn_search_default_search_api_page() {
       "per_page" : "30",
       "result_page_search_form" : 1,
       "get_per_page" : 0,
-      "view_mode" : "search_api_page_result",
+      "view_mode" : "ubn_search_result",
       "language_filter" : { "current" : "current", "und" : "und" },
       "empty_behavior" : "results"
     },
@@ -393,15 +393,17 @@ function ubn_search_default_search_api_server() {
       "scheme" : "http",
       "host" : "130.241.35.208",
       "port" : "8080",
-      "path" : "\\/solr\\/drupal7_ubnext_xgudav",
-      "http_user" : "",
-      "http_pass" : "",
+      "path" : "\\/solr\\/drupal7_ubnext_xljoha",
+      "http_user" : "admin",
+      "http_pass" : "admin",
       "excerpt" : 1,
       "retrieve_data" : 0,
       "highlight_data" : 0,
       "skip_schema_check" : 0,
       "solr_version" : "4",
-      "http_method" : "AUTO"
+      "http_method" : "AUTO",
+      "autocorrect_spell" : 1,
+      "autocorrect_suggest_words" : 1
     },
     "enabled" : "1",
     "rdf_mapping" : []
