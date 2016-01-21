@@ -18,6 +18,7 @@ features[page_manager_handlers][] = node_view__panel_context_75e1767f-61d5-443b-
 features[page_manager_handlers][] = node_view__panel_context_86d5c846-6b6c-43f7-8ef9-0cbb4f513fe7
 features[page_manager_handlers][] = node_view__panel_context_f69415b1-e449-4cd0-859c-f2bea71148bb
 features[page_manager_handlers][] = site_template_panel_context
+features[page_manager_pages][] = database_search_temp
 features[page_manager_pages][] = error_404
 features[page_manager_pages][] = front
 features[variable][] = default_page_manager_handlers

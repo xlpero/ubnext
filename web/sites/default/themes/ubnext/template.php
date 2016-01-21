@@ -447,5 +447,5 @@ function ubnext_theme_registry_alter(&$theme_registry) {
     $theme_registry['search_api_page_results']['preprocess functions'],
     '_ubnext_preprocess_search_api_page_results'
   );
-  dsm($theme_registry);
+
 }
