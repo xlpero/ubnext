@@ -23,7 +23,10 @@ function ubn_page_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'default_page_manager_pages';
-  $strongarm->value = array();
+  $strongarm->value = array(
+    'site_search' => TRUE,
+    'libraries' => TRUE,
+  );
   $export['default_page_manager_pages'] = $strongarm;
 
   $strongarm = new stdClass();
