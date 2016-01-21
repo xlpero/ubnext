@@ -3,11 +3,71 @@
   models[database] = entity:node
   view_mode[node][database] = ubn_search_result
 #}
-<div class="database">
+
+
+
+{% macro getPreferedUrl(arr) %}
+  {# if open access exist print that url otherwise print protected url #}
+  {% if count(arr) > 1 %}
+    {% for url in arr %}
+      {% if url.public_access.value == 1 %}
+        {{url.field_url.url.value}}
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    {{arr[0].field_url.url.value}}
+  {% endif %}
+{% endmacro %}
+
+{% import _self as helper %}
+
+<div class="database-row">
   {%
     set excerpt = database.value.ubn_search_result_item.excerpt ?
     database.value.ubn_search_result_item.excerpt :
     database.field_description_paragraphs[0].value
   %}
-  {{ excerpt | raw }}
+  {%
+    set title = database.title.value
+  %}
+  {%
+    set link = database.url.value
+  %}
+  {%
+    set desc = database.field_description_paragraphs[0].value|length > 150 ? database.field_description_paragraphs[0].value|slice(0, 150) ~ '...' : database.field_description_paragraphs[0].value
+  %}
+  {%
+    set public_access = database.field_public_access.value
+  %}
+  {%
+    set db_url =  database.field_database_urls[1].field_url.url.value
+  %}
+
+  <div class="database-item">
+    <div class="database-item-link-title">
+      <a href='{{link}}'>{{title}}</h2></a>
+    </div>
+
+    <p class="database-item-description">
+        {{desc}}
+    </p>
+    <div class="row">
+      <div class="col-xs-12 col-sm-6">
+        <div class="database-item-access-level">
+          {% if  (public_access) %}
+            <i class='fa fa-unlock-alt'></i>  {{t("Open Access")}}
+          {% else %}
+            <i class='fa fa-lock'></i> {{t("Availible at Gothenburg University")}}
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <div class="database-item-direct-link">
+            <a href="{{helper.getPreferedUrl(database.field_database_urls)}}">Direkt till databasen</a> <i class="fa fa-chevron-right"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 </div>

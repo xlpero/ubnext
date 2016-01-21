@@ -54,7 +54,7 @@
       width: 100%;
       cursor: pointer;
       background: @gray-lighter;
-      padding: 5px 10px;
+      padding: 10px;
       border-bottom: 1px solid @gray-light;
       .ubn-facet-header-title {
         max-width: 90%;
@@ -109,13 +109,50 @@
   }
 
 
+  /* search input */
+  .searchbar-top {
+    margin-top:40px;
+    margin-bottom: 40px;
+    .form-submit {
+      &.btn {
+        border-radius: 0 5px 5px 0;
+      }
+    }
+  }
+
   /* search result */
   .search-api-page-results {
     h2 {
       display: none;
     }
 
+    .search-performance {
+      display: none;
+    }
+    .database-row {
+     border-bottom: 1px solid @gray-light;
+     padding-bottom: 20px;
+
+     .database-item {
+
+       .database-item-link-title {
+         font-size: 1.4em;
+         margin-bottom: 10px;
+       }
+       .database-item-access-level {
+       }
+       .database-item-direct-link {
+         margin-top: 10px;
+        @media (min-width: @screen-sm-min) {
+          margin-top : 0;
+          float:right;
+        }
+
+       }
+     }
+   }
     .search-results {
+
       padding-left: 0px;
     }
     .search-info {

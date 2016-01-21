@@ -4,6 +4,7 @@
       <?php print render($content['searchbartop']); ?>
     </div>
   </div>
+  </div>
   <div class="row">
     <aside class="sidebar col-xs-12 col-sm-4">
       <div class="facet-filter">
@@ -11,7 +12,6 @@
       </div>
     </aside>
     <section class="main col-xs-12 col-sm-8">
-      Main
     	<?php print render($content['main']); ?>
     </section>
   </div>

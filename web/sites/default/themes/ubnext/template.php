@@ -276,7 +276,6 @@ function ubnext_form_search_api_page_search_form_site_alter(&$form, &$form_state
 }
 
 function ubnext_form_search_api_page_search_form_databases_alter(&$form, &$form_state, $form_id) {
-  return;
   _ubnext_search_form_alter($form, $form_state, $form_id);
 }
 
@@ -426,7 +425,7 @@ function ubnext_facetapi_deactivate_widget($variables) {
  * (Because we need it to run before
  * template_preprocess_search_api_page_results)
  *
- * Attach "search result items" (with snippets etc) to search result entities 
+ * Attach "search result items" (with snippets etc) to search result entities
  */
 //TODO: entity api entity metadata shit alter and add ubn_search_result_item
 //property??
