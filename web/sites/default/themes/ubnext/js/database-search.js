@@ -24,6 +24,9 @@ var myModule = (function ($) {
 
             }
           }
+          else {
+            window.location = $(this).children().find("a").attr('href');
+          }
         });
 
       }

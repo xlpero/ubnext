@@ -341,7 +341,7 @@ function ubnext_facetapi_link_inactive($variables) {
 
   if(!$variables['hide_inactive_items']) {
     $widget = $variables['operator'] === FACETAPI_OPERATOR_OR && !$variables['limit_active_items'] ?
-      '<span class="fa fa-square-o"></span>' :
+      '<span class="fa fa-plus"></span>' :
       '';
     $variables['text'] = $widget . $variables['text'];
   }
@@ -394,7 +394,7 @@ function ubnext_facetapi_link_active($variables) {
   );
 
   $widget = $variables['operator'] === FACETAPI_OPERATOR_OR && !$variables['limit_active_items'] ?
-    '<span class="fa fa-check-square-o"></span>' :
+    '<span class="fa fa-minus"></span>' :
     '';
 
   $variables['text'] = $widget . theme('facetapi_accessible_markup', $accessible_vars) . $link_text;
