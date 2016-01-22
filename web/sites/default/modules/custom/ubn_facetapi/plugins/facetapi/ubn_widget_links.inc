@@ -75,6 +75,9 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
               $item['#markup'] = drupal_strtolower($item['#markup']);
             }
           }
+          if(strpos($item['#markup'], ',') !== FALSE) {
+            $item['#markup'] = '"' . $item['#markup'] . '"';
+          }
           $active_items_titles[] = $item['#markup'];
         }
         $facet_title = implode(', ', $active_items_titles);
