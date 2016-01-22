@@ -252,7 +252,7 @@ function ubnext_bootstrap_search_api_page_search_form($variables) {
 
 
   $search_submit = drupal_render($element['submit' . $suffix]);
-  $search_input = drupal_render($element['keys_1']);
+  $search_input = drupal_render($element['keys' . $suffix]);
 
   foreach(element_children($element, TRUE) as $key) {
     $element['#children'] .= drupal_render($element[$key]);
