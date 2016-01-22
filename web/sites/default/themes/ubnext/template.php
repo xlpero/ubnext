@@ -241,6 +241,7 @@ function ubnext_css_alter(&$css) {
 
 function ubnext_bootstrap_search_api_page_search_form($variables) {
   $element = $variables['element'];
+  $suffix = '_' . $element['id']['#value'];
   if (isset($element['#action'])) {
     $element['#attributes']['action'] = drupal_strip_dangerous_protocols($element['#action']);
   }
@@ -250,7 +251,7 @@ function ubnext_bootstrap_search_api_page_search_form($variables) {
   }
 
 
-  $search_submit = drupal_render($element['submit_1']);
+  $search_submit = drupal_render($element['submit' . $suffix]);
   $search_input = drupal_render($element['keys_1']);
 
   foreach(element_children($element, TRUE) as $key) {
@@ -284,8 +285,8 @@ function _ubnext_search_form_alter(&$form, &$form_state, $form_id) {
   // Add bootstrap classes
   $suffix = '_' . $form['id']['#value'];
   $form['keys' . $suffix]['#attributes']['class'][] = 'form-control';
-  if(!isset($form['submit_1']['#attributes'])) {
-    $form['submit_1']['#attributes'] = array();
+  if(!isset($form['submit' . $suffix]['#attributes'])) {
+    $form['submit' . $suffix]['#attributes'] = array();
   }
   if(!isset($form['submit' . $suffix]['#attributes']['class'])) {
     $form['submit' . $suffix]['#attributes']['class'] = array();
