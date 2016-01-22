@@ -63,8 +63,8 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
       if($global_settings['operator'] === FACETAPI_OPERATOR_OR) {
         $active_items = $this->UBNFacetapiActiveBuildItems($element);
         $active_items_titles = array();
-        foreach($active_items as $item) {
-          $active_items_titles[] = $item['#markup'];
+        foreach($active_items as $i => $item) {
+          $active_items_titles[] = $i ? drupal_strtolower($item['#markup']) : $item['#markup'];
         }
         $facet_title = implode(', ', $active_items_titles);
       }
