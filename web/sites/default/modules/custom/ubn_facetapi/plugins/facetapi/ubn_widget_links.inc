@@ -8,6 +8,7 @@
 class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
 
   public function UBNFacetapiActiveBuildItems($build) {
+    //TODO: cache?
     $active_items = array();
     foreach($build as $item) {
       if($item['#active']) {
@@ -35,15 +36,16 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
     $global_settings = $this->facet->getSettings()->settings;
 
     $settings = $this->settings->settings;
-    $active_items = $this->facet->getAdapter()->getActiveItems($this->facet->getFacet());
-    $hide_inactive_items = !empty($active_items) && isset($settings['hide_inactive_items']) && $settings['hide_inactive_items'];
+    //$active_items = $this->facet->getAdapter()->getActiveItems($this->facet->getFacet());
 
     $facet_title = '';
     $facet_items = array();
 
-    if($hide_inactive_items) {
-      //Get active item from build
-      $active_items = $this->UBNFacetapiActiveBuildItems($element);
+    if(
+      isset($settings['hide_inactive_items']) &&
+      $settings['hide_inactive_items'] &&
+      $active_items = $this->UBNFacetapiActiveBuildItems($element)
+    ) {
       $active_item = current($active_items);
       //Query?
       $variables = array(
@@ -60,8 +62,10 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
       $facet_handle = theme('ubn_facetapi_active_header_item_handle', $variables);
     }
     else {
-      if($global_settings['operator'] === FACETAPI_OPERATOR_OR) {
-        $active_items = $this->UBNFacetapiActiveBuildItems($element);
+      if(
+        $global_settings['operator'] === FACETAPI_OPERATOR_OR &&
+        $active_items = $this->UBNFacetapiActiveBuildItems($element)
+      ) {
         $active_items_titles = array();
         foreach($active_items as $i => $item) {
           //TODO: preg_split instead of explode
