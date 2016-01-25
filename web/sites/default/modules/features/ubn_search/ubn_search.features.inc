@@ -68,11 +68,12 @@ function ubn_search_default_search_api_index() {
     "machine_name" : "databases",
     "description" : null,
     "server" : "solr",
-    "item_type" : "node",
+    "item_type" : "search_api_et_node",
     "options" : {
       "datasource" : { "bundles" : [ "database" ] },
       "index_directly" : 0,
       "cron_limit" : "50",
+      "search_api_et" : { "include" : "incomplete", "fallback language" : "" },
       "fields" : {
         "field_alternate_titles" : { "type" : "list\\u003Ctext\\u003E" },
         "field_description_paragraphs" : { "type" : "list\\u003Ctext\\u003E" },
@@ -198,11 +199,12 @@ function ubn_search_default_search_api_index() {
     "machine_name" : "default_node_index",
     "description" : null,
     "server" : "solr",
-    "item_type" : "node",
+    "item_type" : "search_api_et_node",
     "options" : {
       "datasource" : { "bundles" : [ "page", "database", "library" ] },
       "index_directly" : 0,
       "cron_limit" : "50",
+      "search_api_et" : { "include" : "incomplete", "fallback language" : "" },
       "fields" : {
         "field_alternate_titles" : { "type" : "list\\u003Ctext\\u003E" },
         "field_description_paragraphs" : { "type" : "list\\u003Ctext\\u003E" },
