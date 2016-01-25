@@ -6,7 +6,35 @@
 
 include_once 'ubn_general.features.inc';
 
+function _ubn_general_import_databases() {
+  //_ubn_general_feeds_import($importer_id);
+}
 
+function _ubn_general_feeds_import($importer_id, $feed_nid = 0) {
+  db_update('feeds_source')
+    ->condition('id', $importer_id)
+    ->condition('feed_nid', $feed_nid)
+    ->fields(array('state' => FALSE))
+    ->execute();
+  $source = feeds_source($importer_id, 0)->existing();
+  $batch = 0;
+  $t = drupal_is_cli() ? 'dt' : 't';
+  while($source->import() !== FEEDS_BATCH_COMPLETE) {
+    $message = $t(
+      'Ran import batch !batch for !importer_id...',
+      array(
+        '!batch' => ++$batch,
+        '!importer_id' => $importer_id
+      )
+    );
+    if(drupal_is_cli()) {
+      drush_log($message, 'ok');
+    }
+    else {
+      drupal_set_message($message);
+    }
+  }
+}
 
 /**
  * Implements hook_ctools_plugin_directory().

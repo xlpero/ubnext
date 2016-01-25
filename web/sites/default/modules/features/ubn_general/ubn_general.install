@@ -261,6 +261,26 @@ function ubn_general_update_7118() {
   }
 }
 
+//TODO: revert content types??
+function ubn_general_update_7119() {
+  _ubn_general_feeds_import('databases');
+
+  $types = array();
+  foreach (search_api_index_load_multiple(FALSE) as $index) {
+    $types[$index->item_type][] = $index;
+  }
+  foreach ($types as $type => $indexes) {
+    try {
+      $controller = search_api_get_datasource_controller($type);
+      $controller->stopTracking($indexes);
+      $controller->startTracking($indexes);
+    }
+    catch (SearchApiException $e) {
+      // Modules defining entity or item types might have been disabled. Ignore.
+    }
+  }
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {
