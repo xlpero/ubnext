@@ -254,7 +254,8 @@ function search_api_et_entity_update($entity, $entity_type) {
 
     // The Entity has changed its language, remove the old Item from the index!
     if ($entity->original->language !== $entity->language) {
-      search_api_track_item_delete($et_entity_type, $entity->original->language . '_' . $entity_id);
+      //TODO: PATCH!
+      search_api_track_item_delete($et_entity_type, array($entity->original->language . '_' . $entity_id));
     }
 
     // This Entity has changed, thus we're propagating the changes also to the
