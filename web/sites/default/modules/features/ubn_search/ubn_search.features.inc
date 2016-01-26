@@ -28,7 +28,7 @@ function ubn_search_default_search_api_autocomplete_search() {
     "machine_name" : "search_api_page_databases",
     "name" : "Databases",
     "index_id" : "databases",
-    "suggester_id" : "",
+    "suggester_id" : "ubn_solr_server",
     "type" : "search_api_page",
     "enabled" : "1",
     "options" : {
@@ -42,7 +42,7 @@ function ubn_search_default_search_api_autocomplete_search() {
     "machine_name" : "search_api_page_site",
     "name" : "Site search",
     "index_id" : "default_node_index",
-    "suggester_id" : "server",
+    "suggester_id" : "ubn_solr_server",
     "type" : "search_api_page",
     "enabled" : "1",
     "options" : {
@@ -394,8 +394,8 @@ function ubn_search_default_search_api_server() {
       "site_hash" : true,
       "scheme" : "http",
       "host" : "130.241.35.208",
-      "port" : "8080",
-      "path" : "\\/solr\\/drupal7_ubnext_xljoha",
+      "port" : "8983",
+      "path" : "\\/solr\\/drupal7_ubnext_xgudav",
       "http_user" : "admin",
       "http_pass" : "admin",
       "excerpt" : 1,
