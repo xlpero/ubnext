@@ -1,4 +1,5 @@
 <?php
+//TODO: Implement supportsIndex etc!!!!
 
 /**
  * @file
@@ -11,10 +12,11 @@
  * The server needs to support the "search_api_autocomplete" feature for this to
  * work.
  */
-class UBNSearchApiAutocompleteServerSuggester extends SearchApiAutocompleteSuggesterPluginBase {
+class UBNSearchApiAutocompleteServerSuggester extends SearchApiAutocompleteServerSuggester {
   /**
    * {@inheritdoc}
    */
+  /*
   public function defaultConfiguration() {
     return array(
       'fields' => array(
@@ -22,6 +24,7 @@ class UBNSearchApiAutocompleteServerSuggester extends SearchApiAutocompleteSugge
       ),
     );
   }
+  */
 
   /**
    * {@inheritdoc}

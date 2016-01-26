@@ -5,6 +5,7 @@ package = UBNext
 dependencies[] = search_api
 dependencies[] = search_api_autocomplete
 dependencies[] = search_api_solr
+dependencies[] = search_api_et_solr
 files[] = src/UBNSearchApiAutocompleteServerSuggester.php
 files[] = includes/callback_add_autocomplete_field.inc
 files[] = includes/service.inc

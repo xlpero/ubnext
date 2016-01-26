@@ -31,8 +31,8 @@ class UBNSearchApiSolrAlterAddAutocompleteField extends SearchApiAbstractAlterCa
   }
 
   public function alterItems(array &$items) {
-    dsm('no alter here, hahaha');
   }
+
   public function propertyInfo() {
     $info = array();
     //if enabled

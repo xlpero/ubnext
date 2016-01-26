@@ -7,8 +7,6 @@ class UBNSearchApiSolrService extends SearchApiSolrService {
 
   public function getAutocompleteSuggestions(SearchApiQueryInterface $query, SearchApiAutocompleteSearch $search, $incomplete_key, $user_input) {
 
-    dsm('fucking fuck');
-
     $suggestions = array();
     // Reset request handler
     $this->request_handler = NULL;
@@ -120,11 +118,6 @@ class UBNSearchApiSolrService extends SearchApiSolrService {
         drupal_alter('search_api_solr_query', $call_args, $query);
         $this->preQuery($call_args, $query);
         $response = $this->solr->search($keys, $params, $http_method);
-        dsm('begin');
-        dsm($i);
-        dsm($call_args);
-        dsm($response);
-        dsm('end');
 
         $alter_data['responses'][] = $response;
 
