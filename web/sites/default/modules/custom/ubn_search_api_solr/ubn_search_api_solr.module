@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * Implements hook_search_api_autocomplete_suggester_info()
+ */
+function ubn_search_api_solr_search_api_autocomplete_suggester_info() {
+  $suggesters['ubn_solr_server'] = array(
+    'label' => t('Retrieve from UBN Solr server'),
+    'description' => t('For an UBN Solr server, ask the server for autocomplete suggestions using the preconfigured "autocomplete" field found in the custom UBN schema.xml.'),
+    'class' => 'UBNSearchApiAutocompleteServerSuggester',
+  );
+  return $suggesters;
+}
+
+/*
+function ubn_search_api_solr_entity_property_info_alter(&$info) {
+}
+*/
+
+/**
+ * Implements hook_search_api_alter_callback_info().
+ */
+/*
+function ubn_search_api_solr_search_api_alter_callback_info() {
+  $callbacks['search_api_solr_alter_add_autocomplete_field'] = array(
+    'name' => t('UBN (pseudo) autocomplete field'),
+    'description' => t('A hack to make search api recognize the aggregated "autocomplete" field in the UBN schema.xml'),
+    'class' => 'UBNSearchApiSolrAlterAddAutocompleteField',
+  );
+  return $callbacks;
+}
+*/
+
+/** TODO Implements etc **/
+/*
+function ubn_search_api_solr_search_api_data_type_info() {
+  return array(
+    // You can use any identifier you want here, but it makes sense to use the
+    // field type name from schema.xml.
+    'spell' => array(
+      // Stock hook_search_api_data_type_info() info:
+      'name' => t('Fulltext (w/ partial matching)'),
+      'fallback' => 'text',
+      // Dynamic field with name="te_*".
+      'prefix' => '',
+      // Fulltext types should always be multi-valued.
+      'always multiValued' => FALSE,
+    ),
+  );
+}
+*/
+
+// hook_search_api_service_info_alter
+function ubn_search_api_solr_search_api_service_info_alter(&$info) {
+  $info['search_api_solr_service']['name'] = t('UBN Solr Service');
+  $info['search_api_solr_service']['class'] = 'UBNSearchAPISolrService';
+  $info['search_api_solr_service']['module'] = 'ubn_search_api_solr';
+}
+
+// TODO: Better way of overriding this
+function ubn_search_api_solr_entity_load($entities, $type) {
+  if($type === 'search_api_index') {
+    /*
+    foreach($entities as $entity) {
+      $entity->options['fields']['autocomplete'] = array(
+        'type' => 'text',
+      );
+    }
+    */
+  }
+  else if($type === 'search_api_autocomplete_search') {
+    foreach($entities as $entity) {
+      $entity->suggester_id = 'ubn_solr_server';
+      //$entity->options['suggester_configuration']['fields'] = array('autocomplete');
+    }
+  }
+}

@@ -1,0 +1,10 @@
+name = UBN Search API Solr
+description = Search API Solr customizations for UBNext
+core = 7.x
+package = UBNext
+dependencies[] = search_api
+dependencies[] = search_api_autocomplete
+dependencies[] = search_api_solr
+files[] = src/UBNSearchApiAutocompleteServerSuggester.php
+files[] = includes/callback_add_autocomplete_field.inc
+files[] = includes/service.inc
