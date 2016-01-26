@@ -270,6 +270,7 @@ function ubn_general_update_7119() {
   _ubn_general_feeds_import('databases');
   foreach (search_api_index_load_multiple(FALSE) as $index) {
     search_api_index_enable($index->id);
+    search_api_index_items($index);
   }
 
   /*
