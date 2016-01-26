@@ -273,6 +273,10 @@ function ubn_general_update_7119() {
     search_api_index_items($index);
   }
 
+  // Revert ubn_search agains since
+  // index disable triggers disabling of search pages
+  features_revert_module('ubn_search');
+
   /*
   $types = array();
   foreach (search_api_index_load_multiple(FALSE) as $index) {
