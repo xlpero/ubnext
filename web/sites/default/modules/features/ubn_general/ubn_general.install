@@ -261,6 +261,40 @@ function ubn_general_update_7118() {
   }
 }
 
+//TODO: revert content types??
+function ubn_general_update_7119() {
+  array_map('features_revert_module', array('ubn_content_types', 'ubn_search'));
+  foreach (search_api_index_load_multiple(FALSE) as $index) {
+    search_api_index_disable($index->id);
+  }
+  _ubn_general_feeds_import('databases');
+  foreach (search_api_index_load_multiple(FALSE) as $index) {
+    search_api_index_enable($index->id);
+    search_api_index_items($index);
+  }
+
+  // Revert ubn_search agains since
+  // index disable triggers disabling of search pages
+  features_revert_module('ubn_search');
+
+  /*
+  $types = array();
+  foreach (search_api_index_load_multiple(FALSE) as $index) {
+    $types[$index->item_type][] = $index;
+  }
+  foreach ($types as $type => $indexes) {
+    try {
+      $controller = search_api_get_datasource_controller($type);
+      $controller->stopTracking($indexes);
+      $controller->startTracking($indexes);
+    }
+    catch (SearchApiException $e) {
+      // Modules defining entity or item types might have been disabled. Ignore.
+    }
+  }
+  */
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {

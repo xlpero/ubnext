@@ -8,6 +8,7 @@
 class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
 
   public function UBNFacetapiActiveBuildItems($build) {
+    //TODO: cache?
     $active_items = array();
     foreach($build as $item) {
       if($item['#active']) {
@@ -35,15 +36,16 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
     $global_settings = $this->facet->getSettings()->settings;
 
     $settings = $this->settings->settings;
-    $active_items = $this->facet->getAdapter()->getActiveItems($this->facet->getFacet());
-    $hide_inactive_items = !empty($active_items) && isset($settings['hide_inactive_items']) && $settings['hide_inactive_items'];
+    //$active_items = $this->facet->getAdapter()->getActiveItems($this->facet->getFacet());
 
     $facet_title = '';
     $facet_items = array();
 
-    if($hide_inactive_items) {
-      //Get active item from build
-      $active_items = $this->UBNFacetapiActiveBuildItems($element);
+    if(
+      isset($settings['hide_inactive_items']) &&
+      $settings['hide_inactive_items'] &&
+      $active_items = $this->UBNFacetapiActiveBuildItems($element)
+    ) {
       $active_item = current($active_items);
       //Query?
       $variables = array(
@@ -60,16 +62,41 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
       $facet_handle = theme('ubn_facetapi_active_header_item_handle', $variables);
     }
     else {
-      $facet_title = $this->build['#title'];
+      if(
+        $global_settings['operator'] === FACETAPI_OPERATOR_OR &&
+        $active_items = $this->UBNFacetapiActiveBuildItems($element)
+      ) {
+        $active_items_titles = array();
+        foreach($active_items as $i => $item) {
+          //TODO: preg_split instead of explode
+          //TODO: could probably do this in one preg_replace as well?
+          //Capitalize backreference?
+          if($i) {
+            // For non-first items, chech if first word is all caps,
+            // if not make it lower-case
+            $words = explode(' ', $item['#markup']);
+            if($words[0] !== drupal_strtoupper($words[0])) {
+              $item['#markup'] = drupal_strtolower($item['#markup']);
+            }
+          }
+          if(strpos($item['#markup'], ',') !== FALSE) {
+            $item['#markup'] = '"' . $item['#markup'] . '"';
+          }
+          $active_items_titles[] = $item['#markup'];
+        }
+        $facet_title = implode(', ', $active_items_titles);
+      }
+      else {
+        $facet_title = $this->build['#title'];
+      }
       //TODO: theme function
       $facet_handle = theme('ubn_facetapi_widget_links_handle');
       $this->setThemeHooks($element);
       $facet_items = $this->buildListItems($element);
     }
 
-    $operator = $global_settings['operator'];
     $this->build['#attributes']['class'][] = 'ubn-facet';
-    $this->build['#attributes']['class'][] = 'ubn-facet-' . $operator;
+    $this->build['#attributes']['class'][] = 'ubn-facet-' . $global_settings['operator'];
     $this->build['#attributes']['class'][] = 'ubn-facet-links';
     $element = array(
       '#theme' => 'ubn_facetapi_facet', //UBN widget links item list
@@ -122,7 +149,6 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
     //$items = parent::buildListItems($build);
     //return $this->UBNFacetapiWidgetProcessListItems($items);
 
-
     $settings = $this->settings->settings;
     $global_settings = $this->facet->getSettings()->settings;
 
@@ -132,12 +158,6 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
     // Initializes links attributes, adds rel="nofollow" if configured.
     $attributes = ($settings['nofollow']) ? array('rel' => 'nofollow') : array();
     $attributes += array('class' => $this->getItemClasses());
-
-
-    // Custom markup for case when inactive items are hidden:
-    if($hide_inactive_items) {
-
-    }
 
     // Builds rows.
     $items = array();
@@ -254,6 +274,5 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
       'hide_inactive_items' => FALSE,
     );
   }
-
 
 }

@@ -28,7 +28,7 @@ function ubn_search_default_search_api_autocomplete_search() {
     "machine_name" : "search_api_page_databases",
     "name" : "Databases",
     "index_id" : "databases",
-    "suggester_id" : "",
+    "suggester_id" : "ubn_solr_server",
     "type" : "search_api_page",
     "enabled" : "1",
     "options" : {
@@ -42,7 +42,7 @@ function ubn_search_default_search_api_autocomplete_search() {
     "machine_name" : "search_api_page_site",
     "name" : "Site search",
     "index_id" : "default_node_index",
-    "suggester_id" : "server",
+    "suggester_id" : "ubn_solr_server",
     "type" : "search_api_page",
     "enabled" : "1",
     "options" : {
@@ -68,11 +68,12 @@ function ubn_search_default_search_api_index() {
     "machine_name" : "databases",
     "description" : null,
     "server" : "solr",
-    "item_type" : "node",
+    "item_type" : "search_api_et_node",
     "options" : {
       "datasource" : { "bundles" : [ "database" ] },
       "index_directly" : 0,
       "cron_limit" : "50",
+      "search_api_et" : { "include" : "incomplete", "fallback language" : "" },
       "fields" : {
         "field_alternate_titles" : { "type" : "list\\u003Ctext\\u003E" },
         "field_description_paragraphs" : { "type" : "list\\u003Ctext\\u003E" },
@@ -198,11 +199,12 @@ function ubn_search_default_search_api_index() {
     "machine_name" : "default_node_index",
     "description" : null,
     "server" : "solr",
-    "item_type" : "node",
+    "item_type" : "search_api_et_node",
     "options" : {
       "datasource" : { "bundles" : [ "page", "database", "library" ] },
       "index_directly" : 0,
       "cron_limit" : "50",
+      "search_api_et" : { "include" : "incomplete", "fallback language" : "" },
       "fields" : {
         "field_alternate_titles" : { "type" : "list\\u003Ctext\\u003E" },
         "field_description_paragraphs" : { "type" : "list\\u003Ctext\\u003E" },
@@ -392,8 +394,8 @@ function ubn_search_default_search_api_server() {
       "site_hash" : true,
       "scheme" : "http",
       "host" : "130.241.35.208",
-      "port" : "8080",
-      "path" : "\\/solr\\/drupal7_ubnext_xljoha",
+      "port" : "8983",
+      "path" : "\\/solr\\/drupal7_ubnext_xgudav",
       "http_user" : "admin",
       "http_pass" : "admin",
       "excerpt" : 1,
