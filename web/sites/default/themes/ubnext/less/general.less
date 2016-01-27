@@ -13,6 +13,21 @@
 	}
 }
 
+a {
+  &.call-to-action {
+    &:after {
+      font-family: FontAwesome;
+      content: "\f054";
+      margin-left: 10px;
+      display: inline-block;
+      color: @gray-dark;
+      text-decoration: none;
+
+    }
+  }
+}
+
+
 .container {
 	@media (max-width: @screen-xs-max) {
 		&.fullwidth-on-xs {

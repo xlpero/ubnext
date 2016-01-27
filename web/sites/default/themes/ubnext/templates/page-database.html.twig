@@ -1,0 +1,97 @@
+{# slate
+  name = Page for databases
+  models[database] = entity:node
+#}
+
+
+{% macro databasePropertyRow(headerStr, propertyObj, field) %}
+<div class="col-xs-12 database-property">
+    <div class="database-property-header">{{t(headerStr)}}:</div>
+    {% for item in propertyObj %}
+        {% if field %}
+          {% set theAttribute = field %}
+        {% else %}
+          {% set theAttribute = "value" %}
+        {% endif %}
+        <div class="database-property-value">{{attribute(item,theAttribute) }}</div>
+    {% endfor %}
+</div>
+{% endmacro %}
+
+{% import _self as helper %}
+
+
+<div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <div class="database-abstract">
+        <div class="row">
+          <div class="col-xs-12">
+          <h1>{{database.title}}</h1>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12">
+            {% if not database.field_description_paragraphs is empty %}
+              {% for paragraph in database.field_description_paragraphs %}
+                <p>
+                  {{paragraph}}
+                </p>
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-xs-12 center">
+              {% if not database.field_database_urls is empty %}
+                {% for item in database.field_database_urls %}
+                  <div class="database-links">
+                    <div class="row database-links-link">
+                      <div class="col-xs-12">
+                        <a class="call-to-action" href={{item.field_url.value.url}}>To {{database.title}}</a>
+                      </div>
+                    </div>
+                    <div class="row database-links-info">
+                      <div class="col-xs-12">
+                        {% if (item.field_public_access.value == 1) %}
+                        <i class="fa fa-unlock-alt"></i>
+                        {{t("Open Access")}}
+                        {% else %}
+                          <i class="fa fa-lock"></i>
+                          {{t("Available at Gothenburg University")}}
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div> <!-- end database-links -->
+                {% endfor %}
+              {% endif %}
+          </div>
+        </div>
+      </div> <!-- end abstract -->
+
+
+
+    <div class="row database-properties">
+      {% if not database.field_topics.value is empty %}
+        {{helper.databasePropertyRow("Subjects", database.field_topics, "name")}}
+      {% endif %}
+
+      {% if not database.field_topics_depth_1.value is empty %}
+        {{helper.databasePropertyRow("Subject terms", database.field_topics_depth_1, "name")}}
+      {% endif %}
+
+      {% if not database.field_publishers.value is empty %}
+        {{helper.databasePropertyRow("Vendor", database.field_publishers, "name")}}
+      {% endif %}
+
+      {% if not database.field_media_types.value is empty %}
+        {{helper.databasePropertyRow("Mediatypes", database.field_media_types, "name")}}
+      {% endif %}
+
+      {% if not database.field_alternate_titles is empty %}
+        {{helper.databasePropertyRow("Alternativ title", database.field_alternate_titles, null)}}
+      {% endif %}
+    </div>
+  </div>
+</div>

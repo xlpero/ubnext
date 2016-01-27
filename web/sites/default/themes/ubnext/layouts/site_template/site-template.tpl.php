@@ -1,5 +1,9 @@
 <?php global $language; ?>
 
+<div id="spinner">
+  <i class="fa fa-circle-o-notch fa-spin"></i>
+</div>
+
 <?php if (!empty($content['topbar'])): ?>
   <div class="topbar clearfix">
     <?php print render($content['topbar']); ?>
