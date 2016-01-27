@@ -16,12 +16,11 @@ function ubnext_links__locale_block($variables) {
 
 
 
-function ubnext_preprocess_node(&$vars) {
 
-}
 
 function ubnext_preprocess_panels_pane(&$vars) {
 
+  dsm("this is form YOURTHEME_preprocess_panels_pane");
 }
 
 function ubnext_preprocess_page(&$vars, $hook) {
