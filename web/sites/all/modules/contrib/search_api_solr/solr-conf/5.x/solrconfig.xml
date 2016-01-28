@@ -1346,7 +1346,7 @@
       <str name="lookupImpl">AnalyzingInfixLookupFactory</str>
       <str name="indexPath">suggester_infix_data</str>
       <str name="dictionaryImpl">DocumentDictionaryFactory</str>
-      <str name="field">autocomplete_databases</str>
+      <str name="field">autocomplete</str>
       <str name="weightField">weigh_dummy</str>
       <str name="suggestAnalyzerFieldType">text_autocomplete</str>
       <str name="buildOnStartup">true</str>
@@ -1357,7 +1357,7 @@
       <str name="lookupImpl">FuzzyLookupFactory</str>
       <str name="storeDir">suggester_fuzzy_data</str>
       <str name="dictionaryImpl">DocumentDictionaryFactory</str>
-      <str name="field">autocomplete_databases</str>
+      <str name="field">autocomplete</str>
       <str name="weightField">weigh_dummy</str>
       <str name="suggestAnalyzerFieldType">text_autocomplete</str>
       <str name="buildOnStartup">true</str>
@@ -1369,8 +1369,10 @@
     <lst name="defaults">
       <str name="suggest">true</str>
       <str name="suggest.count">10</str>
+      <!--
       <str name="suggest.dictionary">default_infix</str>
       <str name="suggest.dictionary">default_fuzzy</str>
+      -->
     </lst>
     <arr name="components">
       <str>suggester</str>
