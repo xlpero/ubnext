@@ -57,7 +57,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
   protected $request_handler = NULL;
 
   /**
-   * Overrides SearchApiAbstractService::configurationForm().
+   * {@inheritdoc}
    */
   public function configurationForm(array $form, array &$form_state) {
     if ($this->options) {
@@ -271,7 +271,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
   }
 
   /**
-   * Overrides SearchApiAbstractService::configurationFormValidate().
+   * {@inheritdoc}
    */
   public function configurationFormValidate(array $form, array &$values, array &$form_state) {
     if (isset($values['port']) && (!is_numeric($values['port']) || $values['port'] < 0 || $values['port'] > 65535)) {
@@ -280,7 +280,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
   }
 
   /**
-   * Overrides SearchApiAbstractService::configurationFormSubmit().
+   * {@inheritdoc}
    */
   public function configurationFormSubmit(array $form, array &$values, array &$form_state) {
     // Since the form is nested into another, we can't simply use #parents for
@@ -429,8 +429,8 @@ class SearchApiSolrService extends SearchApiAbstractService {
                 $status = 'error';
               }
               elseif (substr($stats_summary['@schema_version'], 0, 9) != 'drupal-4.') {
-                $variables['@url'] = url(drupal_get_path('module', 'search_api_solr') . '/INSTALL.txt');
-                $message = t('You are using an incompatible schema.xml configuration file. Please follow the instructions in the <a href="@url">INSTALL.txt</a> file for setting up Solr.', $variables);
+                $variables['@url'] = url('https://www.drupal.org/node/1999310');
+                $message = t('You are using an incompatible schema.xml configuration file. Please follow the instructions in <a href="@url">the handbook</a> for setting up Solr.', $variables);
                 drupal_set_message($message, 'error');
                 $status = 'error';
               }
@@ -495,7 +495,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
   }
 
   /**
-   * Overrides SearchApiAbstractService::addIndex().
+   * {@inheritdoc}
    */
   public function addIndex(SearchApiIndex $index) {
     if (module_exists('search_api_multi') && module_exists('search_api_views')) {
@@ -504,7 +504,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
   }
 
   /**
-   * Overrides SearchApiAbstractService::fieldsUpdated().
+   * {@inheritdoc}
    */
   public function fieldsUpdated(SearchApiIndex $index) {
     if (module_exists('search_api_multi') && module_exists('search_api_views')) {
@@ -525,7 +525,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
   }
 
   /**
-   * Overrides SearchApiAbstractService::removeIndex().
+   * {@inheritdoc}
    */
   public function removeIndex($index) {
     if (module_exists('search_api_multi') && module_exists('search_api_views')) {
@@ -536,7 +536,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
   }
 
   /**
-   * Implements SearchApiServiceInterface::indexItems().
+   * {@inheritdoc}
    */
   public function indexItems(SearchApiIndex $index, array $items) {
     $documents = array();
@@ -592,6 +592,60 @@ class SearchApiSolrService extends SearchApiAbstractService {
       if ($doc) {
         $documents[] = $doc;
         $ret[] = $id;
+      }
+    }
+
+    if (module_exists('search_api_autocomplete')) {
+      $index_id = $index->machine_name;
+      $autocomplete_searches = search_api_autocomplete_search_load_multiple(
+        FALSE,
+        array(
+          'index_id' => $index->machine_name,
+          'suggester_id' => 'solr_server',
+        )
+      );
+      if(!empty($autocomplete_searches)) {
+        $autocomplete_search = reset($autocomplete_searches);
+        $suggester = $autocomplete_search->getSuggester();
+        $suggester_config = $suggester->getConfiguration();
+        $fields = $suggester_config['fields'];
+
+        //Get solr field names
+        $solr_field_names = $this->getFieldNames($index);
+        $autocomplete_solr_fields = array();
+        foreach($fields as $field) {
+          $autocomplete_solr_field_names[] = $solr_field_names[$field];
+        }
+
+        foreach ($documents as $delta => $document) {
+          // Get the current document language.
+          $document_language_field = $document->getField('ss_search_api_language');
+          $document_language = $document_language_field['value'];
+          $autocomplete_fields = array_intersect($autocomplete_solr_field_names, $document->getFieldNames());
+          foreach ($autocomplete_fields as $solr_field_name) {
+            if (strpos($solr_field_name, '_') !== FALSE) {
+              list($solr_prefix, $field_name) = explode('_', $solr_field_name, 2);
+              $old_solr_field = $document->getField($solr_field_name);
+              // Replace whatever solr prefix with simple string
+              // this seems a bit hackish, but should work
+              // and avoids unnecessary processing by solr
+              // since autocomplete fields are just sources for copyField
+              // directive and not used for anything else
+
+              // TODO: Include option to include search_api_solr_site_hash()
+              //in autocomplete fields names
+
+              $solr_prefix = str_replace('t', 's', $solr_prefix);
+              $multilingual_autocomplete_solr_field_name =
+                implode('_', array($solr_prefix, 'autocomplete', $index_id, $document_language, $field_name));
+              $document->setField(
+                $multilingual_autocomplete_solr_field_name,
+                $old_solr_field['value'],
+                $old_solr_field['boost']
+              );
+            }
+          }
+        }
       }
     }
 
@@ -772,6 +826,17 @@ class SearchApiSolrService extends SearchApiAbstractService {
    *
    * It is up to the caller to ensure $ids is a valid query when the method is
    * called in this fashion.
+   *
+   * @param array|string $ids
+   *   Either an array containing the ids of the items that should be deleted,
+   *   or 'all' if all items should be deleted. Other formats might be
+   *   recognized by implementing classes, but these are not standardized.
+   * @param SearchApiIndex $index
+   *   The index from which items should be deleted, or NULL if all indexes on
+   *   this server should be cleared (then, $ids has to be 'all').
+   *
+   * @throws SearchApiException
+   *   If an error occurred while trying to delete the items.
    */
   public function deleteItems($ids = 'all', SearchApiIndex $index = NULL) {
     $this->connect();
@@ -804,7 +869,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
   }
 
   /**
-   * Implements SearchApiServiceInterface::search().
+   * {@inheritdoc}
    */
   public function search(SearchApiQueryInterface $query) {
     $time_method_called = microtime(TRUE);
@@ -1080,6 +1145,18 @@ class SearchApiSolrService extends SearchApiAbstractService {
               if (substr($f, 0, 3) == 'ss_') {
                 $f = 'sort_' . substr($f, 3);
               }
+
+              // The default Solr schema provides a virtual field named
+              // "random_SEED" that can be used to randomly sort the results;
+              // the field is available only at query-time.
+              if ($group_sort_field == 'search_api_random') {
+                $params = $query->getOption('search_api_random_sort', array());
+                // Random seed: getting the value from parameters or computing a
+                // new one.
+                $seed = !empty($params['seed']) ? $params['seed'] : mt_rand();
+                $f = 'random_' . $seed;
+              }
+
               $order = strtolower($order);
               $group_params['group.sort'][] = $f . ' ' . $order;
             }
@@ -1336,8 +1413,10 @@ class SearchApiSolrService extends SearchApiAbstractService {
       }
     }
     if (!empty($this->options['highlight_data'])) {
+      $prefix = variable_get('search_api_solr_highlight_prefix', 'tm_');
+      $prefix_length = strlen($prefix);
       foreach ($field_mapping as $search_api_property => $solr_property) {
-        if (substr($solr_property, 0, 3) == 'tm_' && !empty($response->highlighting->$id->$solr_property)) {
+        if (substr($solr_property, 0, $prefix_length) == $prefix && !empty($response->highlighting->$id->$solr_property)) {
           // Contrary to above, we here want to preserve HTML, so we just
           // replace the [HIGHLIGHT] tags with the appropriate format.
           $fields[$search_api_property] = $this->formatHighlighting($response->highlighting->$id->$solr_property);
@@ -1557,10 +1636,10 @@ class SearchApiSolrService extends SearchApiAbstractService {
       }
       elseif ($f instanceof SearchApiQueryFilterInterface) {
         $q = $this->createFilterQueries($f, $solr_fields, $fields);
-        if ($filter->getConjunction() != $f->getConjunction()) {
+        if ($filter->getConjunction() != $f->getConjunction() && count($q) > 1) {
           // $or == TRUE means the nested filter has conjunction AND, and vice versa
           $sep = $or ? ' ' : ' OR ';
-          $fq[] = count($q) == 1 ? reset($q) : '((' . implode(')' . $sep . '(', $q) . '))';
+          $fq[] = '((' . implode(')' . $sep . '(', $q) . '))';
         }
         else {
           $fq = array_merge($fq, $q);
@@ -1604,7 +1683,6 @@ class SearchApiSolrService extends SearchApiAbstractService {
     if ($value === NULL) {
       return ($operator == '=' ? '*:* AND -' : '') . "$field:[* TO *]";
     }
-    $value = trim($value);
     $value = $this->formatFilterValue($value, search_api_extract_inner_type($field_info['type']));
     switch ($operator) {
       case '<>':
@@ -1717,7 +1795,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
     }
 
     if (!empty($this->options['highlight_data'])) {
-      $highlight_params['hl.fl'] = 'tm_*';
+      $highlight_params['hl.fl'] = variable_get('search_api_solr_highlight_prefix', 'tm_') . '*';
       $highlight_params['hl.snippets'] = 1;
       $highlight_params['hl.fragsize'] = 0;
       if (!empty($this->options['excerpt'])) {
@@ -1795,6 +1873,58 @@ class SearchApiSolrService extends SearchApiAbstractService {
   //
   // Autocompletion feature
   //
+
+  public function getSolrSuggestionCompomentAutocompleteSuggestions($user_input, $suggester_configuration = NULL) {
+    $suggestions = array();
+
+    //TODO: highlight search terms for suggesters
+    // that does not return highlighted results
+    // (fuzzy for example)
+    $params = array(
+      'suggest.q' => $user_input,
+    );
+
+    $suggester_dictionaries = array_filter(
+      array_map(
+        'trim',
+        explode(
+          "\n",
+          $suggester_configuration['suggester_dictionaries']
+        )
+      )
+    );
+
+    if(!empty($suggester_dictionaries)) {
+      $params['suggest.dictionary'] = $suggester_dictionaries;
+    }
+
+    $this->connect();
+    $response = $this->solr->makeServletRequest(
+      'autocomplete',
+      $params
+    );
+
+    //TODO: Shorten very long suggestions to max length
+    // (and provide setting for this) since most suggesters
+    // return whole field (which can be very long)
+    //
+    //TODO: Setting for maximum number of suggestions!
+    foreach($suggester_dictionaries as $dictionary) {
+      if(isset($response->suggest->{$dictionary}->{$user_input})) {
+        $dictionary_suggestions = $response->suggest->{$dictionary}->{$user_input};
+        if(!empty($dictionary_suggestions->suggestions)) {
+          foreach($dictionary_suggestions->suggestions as $suggestion) {
+            $suggestions[] = array(
+              'keys' => strip_tags($suggestion->term),
+              'render' => $suggestion->term,
+            );
+          }
+        }
+      }
+    }
+    drupal_alter('search_api_solr_autocomplete_suggestions', $suggestions, $alter_data);
+    return $suggestions;
+  }
 
   /**
    * Implements SearchApiAutocompleteInterface::getAutocompleteSuggestions().
