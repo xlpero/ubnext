@@ -28,16 +28,20 @@ function ubn_search_default_search_api_autocomplete_search() {
     "machine_name" : "search_api_page_databases",
     "name" : "Databases",
     "index_id" : "databases",
-    "suggester_id" : "ubn_solr_server",
+    "suggester_id" : "solr_server",
     "type" : "search_api_page",
     "enabled" : "1",
     "options" : {
       "suggester_configuration" : {
-        "fields" : [ "field_alternate_titles", "title_field" ],
-        "ubn_solr_server" : {
-          "suggester_path" : "autocomplete",
-          "suggester_dictionaries" : "databases_infix\\r\\ndatabases_fuzzy"
-        }
+        "fields" : [
+          "field_alternate_titles",
+          "field_media_types:name",
+          "field_publishers:name",
+          "field_topics_depth_0:name",
+          "field_topics_depth_1:name",
+          "title_field"
+        ],
+        "solr_server" : { "suggester_dictionaries" : "databases_infix\\r\\ndatabases_fuzzy" }
       },
       "min_length" : "1",
       "results" : 1,
@@ -87,10 +91,14 @@ function ubn_search_default_search_api_index() {
         "field_alternate_titles" : { "type" : "list\\u003Ctext\\u003E" },
         "field_description_paragraphs" : { "type" : "list\\u003Ctext\\u003E" },
         "field_media_types" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_media_types:name" : { "type" : "list\\u003Ctext\\u003E" },
         "field_public_access" : { "type" : "boolean" },
         "field_publishers" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_publishers:name" : { "type" : "list\\u003Ctext\\u003E" },
         "field_topics_depth_0" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_topics_depth_0:name" : { "type" : "list\\u003Ctext\\u003E" },
         "field_topics_depth_1" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_topics_depth_1:name" : { "type" : "list\\u003Ctext\\u003E" },
         "search_api_aggregation_1" : { "type" : "string" },
         "search_api_language" : { "type" : "string" },
         "title_field" : { "type" : "text" }
@@ -417,6 +425,53 @@ function ubn_search_default_search_api_server() {
       "autocorrect_suggest_words" : 1
     },
     "enabled" : "1",
+    "rdf_mapping" : []
+  }');
+  return $items;
+}
+
+/**
+ * Implements hook_default_search_api_sort().
+ */
+function ubn_search_default_search_api_sort() {
+  $items = array();
+  $items['databases__field_public_access'] = entity_import('search_api_sort', '{
+    "index_id" : "databases",
+    "field" : "field_public_access",
+    "name" : "Free database",
+    "enabled" : "1",
+    "weight" : "-98",
+    "identifier" : "databases__field_public_access",
+    "default_sort" : "0",
+    "default_sort_no_terms" : "0",
+    "default_order" : "desc",
+    "options" : { "field_name" : "Public access" },
+    "rdf_mapping" : []
+  }');
+  $items['databases__search_api_aggregation_1'] = entity_import('search_api_sort', '{
+    "index_id" : "databases",
+    "field" : "search_api_aggregation_1",
+    "name" : "A-Z",
+    "enabled" : "1",
+    "weight" : "-100",
+    "identifier" : "databases__search_api_aggregation_1",
+    "default_sort" : "0",
+    "default_sort_no_terms" : "1",
+    "default_order" : "asc",
+    "options" : { "field_name" : "A-Z" },
+    "rdf_mapping" : []
+  }');
+  $items['databases__search_api_relevance'] = entity_import('search_api_sort', '{
+    "index_id" : "databases",
+    "field" : "search_api_relevance",
+    "name" : "Relevance",
+    "enabled" : "1",
+    "weight" : "-99",
+    "identifier" : "databases__search_api_relevance",
+    "default_sort" : "1",
+    "default_sort_no_terms" : "0",
+    "default_order" : "desc",
+    "options" : { "field_name" : "search_api_relevance" },
     "rdf_mapping" : []
   }');
   return $items;
