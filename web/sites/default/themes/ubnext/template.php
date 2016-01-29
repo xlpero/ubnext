@@ -461,12 +461,69 @@ function _ubnext_preprocess_search_api_page_results(array &$variables) {
   }
 }
 
-
-
 function ubnext_theme_registry_alter(&$theme_registry) {
   array_unshift(
     $theme_registry['search_api_page_results']['preprocess functions'],
     '_ubnext_preprocess_search_api_page_results'
   );
+}
 
+/**
+ * Theme a list of sort options.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - items: The sort options
+ *   - options: Various options to pass
+ */
+function ubnext_search_api_sorts_list(array $variables) {
+  $items = array_map('render', $variables['items']);
+  $options = $variables['options'];
+  $options['attributes']['class'] = array('ubn-search-sorts', 'list-unstyled', 'list-inline');
+  return !empty($items) ? theme('item_list', array('items' => $items) + $options) : '';
+}
+
+/**
+ * Theme a single sort item.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - name: The name to display for the item.
+ *   - path: The destination path when the sort link is clicked.
+ *   - options: An array of options to pass to l().
+ *   - active: A boolean telling whether this sort filter is active or not.
+ *   - order_options: If active, a set of options to reverse the order
+ * @return string
+ */
+function ubnext_search_api_sorts_sort($variables) {
+  $name = $variables['name'];
+  $path = $variables['path'];
+  $options = $variables['options'] + array('attributes' => array());
+  $options['attributes'] += array('class' => array());
+  $options['html'] = (bool) $variables['active'];
+
+  $order_options = $variables['order_options'] + array('query' => array(), 'attributes' => array(), 'html' => TRUE);
+  $order_options['attributes'] += array('class' => array());
+
+  if ($variables['active']) {
+    //TODO: Should not use t for variable strings!
+    // as modules original theme implementation does
+    $fa_class = array(
+      'asc' => 'fa-sort-desc',
+      'desc' => 'fa-sort-asc',
+    );
+    $fa_icon = '<i class="fa ' . $fa_class[$order_options['query']['order']] . '"></i>';
+    $output = theme(
+      'link',
+      array(
+        'text' => $name .' ' . $fa_icon,
+        'path' => $path,
+        'options' => $order_options,
+      )
+    );
+  }
+  else {
+    $output = theme('link', array('text' => $name, 'path' => $path, 'options' => $options));
+  }
+  return $output;
 }
