@@ -6,8 +6,8 @@ var myModule = (function ($) {
 
     History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
       // Log the State
-      var State = History.getState(); // Note: We are using History.getState() instead of event.state
-      History.log('statechange:', State.data, State.title, State.url);
+    //  var State = History.getState(); // Note: We are using History.getState() instead of event.state
+    //  History.log('statechange:', State.data, State.title, State.url);
     });
   }
   function toggleLoader() {
@@ -48,9 +48,13 @@ var myModule = (function ($) {
       var $selector = $(selector);
       if ($selector) {
 
-        var linkTarget = selector + " .facet-filter a, .ajaxify";
+        var linkTarget = selector + " .facet-filter a, .clear-search-btn";
         $(document).on("click", linkTarget, function() {
           loadHTMLFragment($(this).attr("href"));
+          if ($(this).hasClass("clear-search-btn"))
+          {
+            $('input.auto_submit').val('');
+          }
           return false;
         });
 
