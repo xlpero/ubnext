@@ -18,6 +18,13 @@
     .item-list {
       .ubn-facet-items {
         float:left;
+        margin-bottom: 0;
+        li {
+          padding-bottom: 10px;
+          &:last-child {
+            padding-bottom: 0;
+          }
+        }
         a {
           .fa {
             font-size: .8em;
@@ -60,7 +67,7 @@
       width: 100%;
       cursor: pointer;
       background: @gray-lighter;
-      padding: 10px;
+      padding: 15px;
       border-bottom: 1px solid @gray-light;
       .ubn-facet-header-title {
         max-width: 90%;
@@ -87,7 +94,7 @@
 
     &.ubn-facet-or {
       .ubn-facet-items {
-        margin-bottom: 5px;
+        margin-bottom: 10px;
         a {
           /*text-decoration: none;*/
           /*color: @gray-dark;*/
@@ -124,6 +131,14 @@
         border-radius: 0 5px 5px 0;
       }
     }
+    .fa {
+      position: absolute;
+      z-index: 100;
+      top: 12px;
+      right: 84px;
+      color: @gray-dark;
+    }
+
   }
 
   /* search result */

@@ -34,6 +34,12 @@
     set link = database.url.value
   %}
   {%
+    set refering_link = "/?refering=" ~ request_uri()
+  %}
+  {%
+    set link_expanded =  link ~ refering_link
+  %}
+  {%
     set desc = database.field_description_paragraphs[0].value|length > 150 ? database.field_description_paragraphs[0].value|slice(0, 150) ~ '...' : database.field_description_paragraphs[0].value
   %}
   {%
@@ -42,10 +48,14 @@
   {%
     set db_url =  database.field_database_urls[1].field_url.url.value
   %}
+{%
+    set temp = search_api_current_search()
+%}
+
 
   <div class="database-item">
     <div class="database-item-link-title">
-      <a href='{{link}}'>{{title}}</h2></a>
+      <a href='{{link_expanded}}'>{{title}}</h2></a>
     </div>
 
     <p class="database-item-description">
@@ -63,7 +73,7 @@
       </div>
       <div class="col-xs-12 col-sm-6">
         <div class="database-item-direct-link">
-            <a href="{{helper.getPreferedUrl(database.field_database_urls)}}">Direkt till databasen</a> <i class="fa fa-chevron-right"></i>
+            <a href="{{helper.getPreferedUrl(database.field_database_urls)}}">Directly to {{title}}</a> <i class="fa fa-chevron-right"></i>
         </div>
       </div>
     </div>

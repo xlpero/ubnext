@@ -14,10 +14,8 @@ var myModule = (function ($) {
     var height = $(".main").height();
     if ($("body").hasClass("loading")) {
       // remove it
-
       $(".search-api-page-results").hide();
-      $(".facet-filter").hide();
-      $(".facet-filter").fadeIn();
+      $(".facet-filter").fadeTo("fast", 1);
       $(".search-api-page-results").fadeIn();
       $("body").removeClass("loading");
       $(".main").height("auto");
@@ -25,8 +23,8 @@ var myModule = (function ($) {
     else {
       // add it
       $(".main").height(height);
+      $(".facet-filter").fadeTo("fast", 0.5);
       $(".search-api-page-results").fadeOut();
-      $(".facet-filter").fadeOut();
       $("body").addClass("loading");
     }
 
@@ -45,10 +43,12 @@ var myModule = (function ($) {
 
     init: function(selector) {
       // setup history.js
+
       setupHistory();
       var $selector = $(selector);
       if ($selector) {
-        var linkTarget = selector + " .facet-filter a";
+
+        var linkTarget = selector + " .facet-filter a, .ajaxify";
         $(document).on("click", linkTarget, function() {
           loadHTMLFragment($(this).attr("href"));
           return false;

@@ -19,12 +19,14 @@ function ubnext_links__locale_block($variables) {
 
 
 function ubnext_preprocess_panels_pane(&$vars) {
+  //dsm($vars['pane']->pid);
+  if ($vars['pane']->pid == "new-3054dda2-3a4b-428b-b253-726c16c2f284") {
+      drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-node.js");
+  }
 
-  dsm("this is form YOURTHEME_preprocess_panels_pane");
-}
-
-function ubnext_preprocess_page(&$vars, $hook) {
-
+  if ($vars['pane']->pid == "new-ca86db48-2f24-45d3-ac45-222dd2a3c535") {
+      drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-search.js");
+  }
 }
 
 
@@ -35,7 +37,6 @@ function ubnext_preprocess_page(&$vars, $hook) {
 function ubnext_preprocess_html(&$vars) {
   global $is_https;
   drupal_add_css(($is_https ? 'https' : 'http') . '://fonts.googleapis.com/css?family=Open+Sans:700,400', array('type' => 'external'));
-  drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-search.js");
   drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/vendor/history.js/scripts/bundled/html4+html5/jquery.history.js");
 
 
@@ -251,7 +252,6 @@ function ubnext_bootstrap_search_api_page_search_form($variables) {
     $element['#attributes']['accept-charset'] = "UTF-8";
   }
 
-
   $search_submit = drupal_render($element['submit' . $suffix]);
   $search_input = drupal_render($element['keys' . $suffix]);
 
@@ -259,9 +259,18 @@ function ubnext_bootstrap_search_api_page_search_form($variables) {
     $element['#children'] .= drupal_render($element[$key]);
   }
   // Anonymous DIV to satisfy XHTML compliance.
+
+  // Get path to empty search
+  $searches = search_api_current_search();
+  $search = reset($searches);
+  $searchQuery = $search[0];
+  $pages = search_api_page_load_multiple(false, array('index_id' => $searchQuery->getIndex()->machine_name));
+  $page = reset($pages);
+  $path = $page->path;
+  global $base_url;
   return '<form' . drupal_attributes($element['#attributes']) . '><div>'
     . $element['#children'] .
-    '<div class="input-group">' . $search_input .
+    '<div class="input-group">' . $search_input . "<a href='" . $base_url . "/" . $path . "'class='ajaxify' title='" . t("Clear search and reset filters") ."'><i class='fa  fa-times-circle'></i></a>" .
       '<span class="input-group-btn"><div>' . $search_submit . '</div></span>' .
     '</div></form>';
 }
@@ -283,8 +292,10 @@ function ubnext_form_search_api_page_search_form_databases_alter(&$form, &$form_
 
 
 function _ubnext_search_form_alter(&$form, &$form_state, $form_id) {
+
   // Add bootstrap classes
   $suffix = '_' . $form['id']['#value'];
+  $form['keys' . $suffix]['#attributes']['placeholder'] = t("Enter database name or subject");
   $form['keys' . $suffix]['#attributes']['class'][] = 'form-control';
   if(!isset($form['submit' . $suffix]['#attributes'])) {
     $form['submit' . $suffix]['#attributes'] = array();
@@ -298,6 +309,12 @@ function _ubnext_search_form_alter(&$form, &$form_state, $form_id) {
   if(!isset($form['keys' . $suffix]['#pre_render'])) {
     $form['keys' . $suffix]['#pre_render'] = array();
   }
+
+  // get query and put it as default_value if it exist
+  $searches = search_api_current_search();
+  $search = reset($searches);
+  $query = $search[0]->getKeys()[0];
+  $form['keys' . $suffix]['#default_value'] = $query;
 
   $form['keys' . $suffix]['#pre_render'][] = 'ubnext_bootstrap_form_element_pre_render';
 
@@ -443,6 +460,8 @@ function _ubnext_preprocess_search_api_page_results(array &$variables) {
     }
   }
 }
+
+
 
 function ubnext_theme_registry_alter(&$theme_registry) {
   array_unshift(

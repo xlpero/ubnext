@@ -24,15 +24,19 @@
 
 {% import _self as helper %}
 
-
+{%
+  set refering_url = drupal_get_query_parameters()['refering']
+%}
 
 <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
-      <div class="row">
-        <div class="col-xs-12">
-          <i class="fa fa-chevron-left"></i> <a href="javascript: window.history.go(-1)">Back to search result</a>
+      {% if refering_url %}
+        <div class="row">
+          <div class="col-xs-12">
+            <i class="fa fa-chevron-left"></i> <a href="{{refering_url}}">Back to search result</a>
+          </div>
         </div>
-      </div>
+      {% endif %}
       <div class="database-abstract">
         <div class="row">
           <div class="col-xs-12">
