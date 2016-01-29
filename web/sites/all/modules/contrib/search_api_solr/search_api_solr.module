@@ -47,6 +47,18 @@ function search_api_solr_search_api_service_info() {
 }
 
 /**
+ * Implements hook_search_api_autocomplete_suggester_info()
+ */
+function search_api_solr_search_api_autocomplete_suggester_info() {
+  $suggesters['solr_server'] = array(
+    'label' => t('Retrieve from Solr server suggester compoment'),
+    'description' => t('For a Solr server, ask the server for autocomplete suggestions using the suggester component.'),
+    'class' => 'SearchApiSolrAutocompleteServerSuggester',
+  );
+  return $suggesters;
+}
+
+/**
  * Implements hook_help().
  */
 function search_api_solr_help($path, array $arg = array()) {

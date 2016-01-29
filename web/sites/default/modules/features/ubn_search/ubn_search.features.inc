@@ -32,9 +32,18 @@ function ubn_search_default_search_api_autocomplete_search() {
     "type" : "search_api_page",
     "enabled" : "1",
     "options" : {
-      "custom" : { "page_id" : "databases" },
-      "results" : true,
-      "fields" : []
+      "suggester_configuration" : {
+        "fields" : [ "field_alternate_titles", "title_field" ],
+        "ubn_solr_server" : {
+          "suggester_path" : "autocomplete",
+          "suggester_dictionaries" : "databases_infix\\r\\ndatabases_fuzzy"
+        }
+      },
+      "min_length" : "1",
+      "results" : 1,
+      "submit_button_selector" : ":submit",
+      "autosubmit" : 1,
+      "custom" : { "page_id" : "databases" }
     },
     "rdf_mapping" : []
   }');
