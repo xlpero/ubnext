@@ -320,43 +320,6 @@ function ubn_content_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_database_urls-field_remote_id'.
-  $field_instances['field_collection_item-field_database_urls-field_remote_id'] = array(
-    'bundle' => 'field_database_urls',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 3,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_remote_id',
-    'label' => 'Remote id',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'ubn_property_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 5,
-    ),
-  );
-
-  // Exported field_instance:
   // 'field_collection_item-field_database_urls-field_url'.
   $field_instances['field_collection_item-field_database_urls-field_url'] = array(
     'bundle' => 'field_database_urls',
