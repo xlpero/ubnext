@@ -27,7 +27,7 @@ function ubn_feeds_feeds_importer_default() {
         'context' => '$.*',
         'sources' => array(
           'jsonpath_parser:0' => 'guid',
-          'jsonpath_parser:1' => 'database_id',
+          'jsonpath_parser:1' => 'database_libris_id',
           'jsonpath_parser:2' => 'id',
           'jsonpath_parser:3' => 'access_description.description.und',
           'jsonpath_parser:4' => 'url',
@@ -71,33 +71,23 @@ function ubn_feeds_feeds_importer_default() {
             'unique' => FALSE,
           ),
           2 => array(
-            'source' => 'jsonpath_parser:2',
-            'target' => 'identifier_field',
-            'unique' => FALSE,
-          ),
-          3 => array(
             'source' => 'jsonpath_parser:3',
             'target' => 'field_description_short',
             'unique' => FALSE,
           ),
-          4 => array(
+          3 => array(
             'source' => 'jsonpath_parser:4',
             'target' => 'field_url:url',
             'unique' => FALSE,
           ),
-          5 => array(
+          4 => array(
             'source' => 'jsonpath_parser:5',
             'target' => 'field_url:title',
             'unique' => FALSE,
           ),
-          6 => array(
+          5 => array(
             'source' => 'jsonpath_parser:6',
             'target' => 'field_public_access',
-            'unique' => FALSE,
-          ),
-          7 => array(
-            'source' => 'jsonpath_parser:7',
-            'target' => 'field_remote_id',
             'unique' => FALSE,
           ),
         ),
@@ -141,7 +131,7 @@ function ubn_feeds_feeds_importer_default() {
           'jsonpath_parser:5' => 'keywords[*].guid',
           'jsonpath_parser:6' => 'categories[*].guid',
           'jsonpath_parser:8' => 'public_access',
-          'jsonpath_parser:9' => 'id',
+          'jsonpath_parser:9' => 'libris_id',
         ),
         'debug' => array(
           'options' => array(
@@ -469,11 +459,6 @@ function ubn_feeds_feeds_importer_default() {
           7 => array(
             'source' => 'jsonpath_parser:8',
             'target' => 'field_referenced_opening_hours:opening_hours:date_feeds_set_target:field_opening_hours_date:start',
-            'unique' => FALSE,
-          ),
-          8 => array(
-            'source' => 'jsonpath_parser:9',
-            'target' => 'language',
             'unique' => FALSE,
           ),
         ),
