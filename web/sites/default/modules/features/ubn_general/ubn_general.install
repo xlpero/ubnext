@@ -294,6 +294,17 @@ function ubn_general_update_7119() {
   }
   */
 }
+/* Re-import all databases */
+function ubn_general_update_7120() {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'database');
+  $result = $query->execute();
+  if(isset($result['node'])) {
+    entity_delete_multiple('node', array_keys($result['node']));
+  }
+  _ubn_general_import_databases();
+}
 
 // Enable entity translation for library
 /*
