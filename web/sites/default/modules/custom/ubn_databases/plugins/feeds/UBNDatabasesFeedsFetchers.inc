@@ -86,9 +86,11 @@ class UBNDatabasesFeedsFetcher extends UBNDatabasesFeedsFetcherBase {
     //Databases
     //
     $databases = array();
-    foreach($pdo->query('SELECT id, libris_id, title FROM dbs', $pdo::FETCH_ASSOC) as $row) {
-      $databases[$row['id']] = $row + array(
-        'guid' => md5('ubn_databases:' . $row['id']), //Quick and dirty fix
+    foreach($pdo->query('SELECT id, libris_id, title, marcxml FROM dbs', $pdo::FETCH_ASSOC) as $row) {
+      $databases[$row['id']] = array(
+        'title' => $row['title'],
+        'libris_id' => $row['libris_id'],
+        'guid' => md5('ubn_databases:' . $row['libris_id']),
         'alternate_titles' => array(),
         'publishers' => array(),
         'descriptions' => array(),
@@ -333,15 +335,26 @@ class UBNDatabasesUrlsFeedsFetcher extends UBNDatabasesFeedsFetcherBase {
     $pdo = $this->UBNDatabasesPDO($source);
     //Urls
     $urls = array();
-    foreach($pdo->query('SELECT id, db_id as database_id, url, info, description FROM urls ORDER BY id DESC', $pdo::FETCH_ASSOC) as $row) {
+
+    $query = <<<EOD
+      SELECT
+        dbs.libris_id as database_libris_id,
+        url,
+        info,
+        description
+      FROM urls
+      LEFT JOIN dbs
+      ON urls.db_id = dbs.id
+      ORDER BY urls.id DESC
+EOD;
+    foreach($pdo->query($query, $pdo::FETCH_ASSOC) as $row) {
       $public_access = strpos($row['url'], '.ezproxy.') === FALSE;
-      $guid = md5('ubn_databases_url:' . $row['id']);
+      $guid = md5('ubn_databases_url:' . $row['url'] . $row['database_libris_id']);
       $access_description = _ubn_databases_access_description_process($row['info']);
       $urls[] = array(
         'guid' => $guid,
-        'id' => $row['id'],
-        'database_id' => $row['database_id'],
-        'database_guid' => md5('ubn_databases:' . $row['id']),
+        'database_libris_id' => $row['database_libris_id'],
+        'database_guid' => md5('ubn_databases:' . $row['database_libris_id']),
         'url' => $row['url'],
         'public_access' => $public_access,
         'description' => $row['description'],
