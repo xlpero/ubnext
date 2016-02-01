@@ -1,0 +1,9 @@
+{# slate
+  name = Database shortcut: item
+  models[database] = entity:node
+#}
+
+
+{% import "macros/database-url.html.twig" as helper %}
+
+<a href="{{helper.getPreferedUrl(database.field_database_urls)}}">{{database.title}}</a>

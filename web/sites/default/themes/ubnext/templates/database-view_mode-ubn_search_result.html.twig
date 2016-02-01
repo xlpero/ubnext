@@ -6,20 +6,9 @@
 
 
 
-{% macro getPreferedUrl(arr) %}
-  {# if open access exist print that url otherwise print protected url #}
-  {% if count(arr) > 1 %}
-    {% for url in arr %}
-      {% if url.public_access.value == 1 %}
-        {{url.field_url.url.value}}
-      {% endif %}
-    {% endfor %}
-  {% else %}
-    {{arr[0].field_url.url.value}}
-  {% endif %}
-{% endmacro %}
 
-{% import _self as helper %}
+
+{% import "macros/database-url.html.twig" as helper %}
 
 <div class="database-row">
   {%
@@ -48,9 +37,7 @@
   {%
     set db_url =  database.field_database_urls[1].field_url.url.value
   %}
-{%
-    set temp = search_api_current_search()
-%}
+
 
 
   <div class="database-item">

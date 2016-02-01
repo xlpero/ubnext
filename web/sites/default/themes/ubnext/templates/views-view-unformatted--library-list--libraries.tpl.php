@@ -30,7 +30,7 @@ $view->display_handler->options['pane_conf']['ubn_i18n'] : array();
 						</div>
 					</div>
 			</div>
-			<ul class="list-unstyled ub-list-of-links"> 
+			<ul class="list-unstyled ub-list-of-links">
 				<?php foreach ($rows as $id => $row): ?>
 				  <li><?php print $row; ?></li>
 				<?php endforeach; ?>

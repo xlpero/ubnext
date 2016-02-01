@@ -314,6 +314,7 @@ function _ubnext_search_form_alter(&$form, &$form_state, $form_id) {
   $searches = search_api_current_search();
   $search = reset($searches);
   $query = $search[0]->getKeys()[0];
+
   $form['keys' . $suffix]['#default_value'] = $query;
 
   $form['keys' . $suffix]['#pre_render'][] = 'ubnext_bootstrap_form_element_pre_render';

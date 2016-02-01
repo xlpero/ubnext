@@ -14,9 +14,9 @@ var myModule = (function ($) {
     var height = $(".main").height();
     if ($("body").hasClass("loading")) {
       // remove it
-      $(".search-api-page-results").hide();
+      $(".main").hide();
       $(".facet-filter").fadeTo("fast", 1);
-      $(".search-api-page-results").fadeIn();
+      $(".main").fadeIn();
       $("body").removeClass("loading");
       $(".main").height("auto");
     }
@@ -24,7 +24,7 @@ var myModule = (function ($) {
       // add it
       $(".main").height(height);
       $(".facet-filter").fadeTo("fast", 0.5);
-      $(".search-api-page-results").fadeOut();
+      $(".main").fadeOut();
       $("body").addClass("loading");
     }
 
@@ -32,7 +32,7 @@ var myModule = (function ($) {
   function loadHTMLFragment(url) {
     toggleLoader();
     $.get(url, function(data) {
-      $(".main").html($(data).find(".search-api-page-results"));
+      $(".main").html($(data).find(".main"));
       $(".sidebar").html($(data).find(".facet-filter"));
       History.pushState(null, null, url);
       toggleLoader();

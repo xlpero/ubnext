@@ -2,6 +2,17 @@
 .main-cms {
 	ul, ol {
 		margin-bottom: 24px;
+
+	  &.horizontal {
+	    li {
+	      display: inline-block;
+	      float:left;
+				margin-right: 10px;
+				&:last-child {
+					margin-right: 0;
+				}
+	    }
+	  }
 	}
 
 	.ub-list-of-links {

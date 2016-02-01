@@ -36,6 +36,12 @@
 
 ?>
 <div class="<?php print $classes;?>">
+  <?php
+    $searches = search_api_current_search();
+    $search = reset($searches);
+    dsm($search[1]['result count']);
+    dsm($search[1]['search_api_solr_response']->response->numFound);
+  ?>
   <?php if ($result_count): ?>
     <?php print render($search_performance); ?>
   <?php endif; ?>

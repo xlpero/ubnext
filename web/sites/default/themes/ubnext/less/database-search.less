@@ -121,6 +121,23 @@
     }
   }
 
+  /* database shortcuts */
+  .shortcuts-top {
+    .center();
+    ul {
+      display: inline-block;
+    }
+    @media (max-width: @screen-xs-max) {
+      ul {
+        &.horizontal {
+          li {
+            float:none;
+            display: block;
+          }
+        }
+      }
+    }
+  }
 
   /* search input */
   .searchbar-top {
@@ -148,7 +165,7 @@
     }
 
     .search-performance {
-      display: none;
+      display: block;
     }
     .database-row {
      border-bottom: 1px solid @gray-light;
@@ -173,7 +190,6 @@
      }
    }
     .search-results {
-
       padding-left: 0px;
     }
     .search-info {

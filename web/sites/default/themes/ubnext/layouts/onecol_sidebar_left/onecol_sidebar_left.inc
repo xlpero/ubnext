@@ -9,6 +9,7 @@ $plugin = array(
   'icon' => '',
   'category' => 'UBNext',
   'regions' => array(
+    'shortcuts' => t('Shortcuts'),
     'searchbartop' => t('Searchbar (top)'),
     'sidebar' => t('Sidebar'),
     'main' => t('Main'),
