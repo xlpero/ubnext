@@ -36,18 +36,11 @@
 
 ?>
 <div class="<?php print $classes;?>">
-  <?php
-    $searches = search_api_current_search();
-    $search = reset($searches);
-    dsm($search[1]['result count']);
-    dsm($search[1]['search_api_solr_response']->response->numFound);
-  ?>
   <?php if ($result_count): ?>
-    <?php print render($search_performance); ?>
+    <strong><?php print t("Showing !count of !max databases:", array('!count' => $result_count, '!max' => $variables['total-items-in-index'])); ?></strong>
   <?php endif; ?>
   <?php print render($spellcheck); ?>
   <?php if ($result_count): ?>
-    <h2><?php print t('Search results');?></h2>
     <ol class="search-results">
       <?php print render($search_results); ?>
     </ol>

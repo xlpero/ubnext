@@ -19,12 +19,11 @@ function ubnext_links__locale_block($variables) {
 
 
 function ubnext_preprocess_panels_pane(&$vars) {
-  //dsm($vars['pane']->pid);
-  if ($vars['pane']->pid == "new-3054dda2-3a4b-428b-b253-726c16c2f284") {
+  if ($vars['pane']->uuid == "3054dda2-3a4b-428b-b253-726c16c2f284") {
       drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-node.js");
   }
 
-  if ($vars['pane']->pid == "new-ca86db48-2f24-45d3-ac45-222dd2a3c535") {
+  if ($vars['pane']->uuid == "ca86db48-2f24-45d3-ac45-222dd2a3c535") {
       drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-search.js");
   }
 }
@@ -450,6 +449,8 @@ function ubnext_facetapi_deactivate_widget($variables) {
 //TODO: entity api entity metadata shit alter and add ubn_search_result_item
 //property??
 function _ubnext_preprocess_search_api_page_results(array &$variables) {
+  dsm($variables['index']->datasource()->getIndexStatus($variables['index'])['indexed']);
+  $variables['total-items-in-index'] = $variables['index']->datasource()->getIndexStatus($variables['index'])['indexed'];
   if(!empty($variables['results']['results'])) {
     $variables['items'] = $variables['index']->loadItems(array_keys($variables['results']['results']));
     // Overlay item entities with "result item" data (so we can access it in
