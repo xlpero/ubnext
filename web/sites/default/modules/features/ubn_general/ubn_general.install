@@ -297,6 +297,14 @@ function ubn_general_update_7119() {
 /* Re-import all databases */
 function ubn_general_update_7120() {
   $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'field_collection_item')
+    ->entityCondition('bundle', 'field_database_urls');
+  $result = $query->execute();
+  if(isset($result['field_collection_item'])) {
+    entity_delete_multiple('field_collection_item', array_keys($result['field_collection_item']));
+  }
+
+  $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'database');
   $result = $query->execute();
