@@ -1877,15 +1877,16 @@ class SearchApiSolrService extends SearchApiAbstractService {
   public function getSolrSuggestionCompomentAutocompleteSuggestions($user_input, $suggester_configuration = NULL) {
     $suggestions = array();
 
+    $suggester_dictionaries = !empty($suggester_configuration['suggester_dictionaries']) ?
+      $suggester_configuration['suggester_dictionaries'] : array('default_fuzzy', 'default_infix');
+
     //TODO: highlight search terms for suggesters
     // that does not return highlighted results
     // (fuzzy for example)
     $params = array(
       'suggest.q' => $user_input,
+      'suggest.dictionary' => $suggester_dictionaries,
     );
-
-    $params['suggest.dictionary'] = !empty($suggester_configuration['suggester_dictionaries']) ?
-      $suggester_configuration['suggester_dictionaries'] : array('default_fuzzy', 'default_infix');
 
     $this->connect();
     $response = $this->solr->makeServletRequest(
