@@ -449,7 +449,6 @@ function ubnext_facetapi_deactivate_widget($variables) {
 //TODO: entity api entity metadata shit alter and add ubn_search_result_item
 //property??
 function _ubnext_preprocess_search_api_page_results(array &$variables) {
-  dsm($variables['index']->datasource()->getIndexStatus($variables['index'])['indexed']);
   $variables['total-items-in-index'] = $variables['index']->datasource()->getIndexStatus($variables['index'])['indexed'];
   if(!empty($variables['results']['results'])) {
     $variables['items'] = $variables['index']->loadItems(array_keys($variables['results']['results']));
@@ -460,6 +459,35 @@ function _ubnext_preprocess_search_api_page_results(array &$variables) {
         $variables['items'][$id]->ubn_search_result_item = $item;
       }
     }
+  }
+  if(
+    $variables['page']->options['get_per_page'] &&
+    !isset($_GET['per_page']) &&
+    isset($variables['results']['result count']) &&
+    $variables['results']['result count'] > $variables['page']->options['per_page']
+  ) {
+    $params = drupal_get_query_parameters($_GET, array('q', 'page'));
+    $path = current_path();
+    $params['per_page'] = 2000;
+    $variables['show_all_link'] = theme(
+      'link',
+      array(
+        'text' => t('Show all'),
+        'path' => $path,
+        'options' => array(
+          'html' => TRUE,
+          'query' => $params,
+          'attributes' => array(
+            'class'=> array(
+              'ubn-search-results-show-all',
+              'btn',
+              'btn-default',
+              'btn-block',
+            ),
+          ),
+        ),
+      )
+    );
   }
 }
 
