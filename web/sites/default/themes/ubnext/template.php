@@ -264,6 +264,10 @@ function ubnext_bootstrap_search_api_page_search_form($variables) {
   $pages = search_api_page_load_multiple(false, array('index_id' => $searchQuery->getIndex()->machine_name));
   $page = reset($pages);
   $path = $page->path;
+
+  // figure out later..
+  //print t("Showing !count of !max databases:", array('!count' => 10, '!max' => $variables['total-items-in-index']));
+
   global $base_url;
   return '<form' . drupal_attributes($element['#attributes']) . '><div>'
     . $element['#children'] .
@@ -447,7 +451,7 @@ function ubnext_facetapi_deactivate_widget($variables) {
 //TODO: entity api entity metadata shit alter and add ubn_search_result_item
 //property??
 function _ubnext_preprocess_search_api_page_results(array &$variables) {
-  dsm($variables['index']->datasource()->getIndexStatus($variables['index'])['indexed']);
+  //dsm($variables['index']->datasource()->getIndexStatus($variables['index'])['indexed']);
   $variables['total-items-in-index'] = $variables['index']->datasource()->getIndexStatus($variables['index'])['indexed'];
   if(!empty($variables['results']['results'])) {
     $variables['items'] = $variables['index']->loadItems(array_keys($variables['results']['results']));

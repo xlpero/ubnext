@@ -158,15 +158,21 @@
 
   }
 
+
+
+
   /* search result */
   .search-api-page-results {
     h2 {
       display: none;
     }
-
-    .search-performance {
-      display: block;
+    
+    @media (max-width: @screen-xs-max) {
+      .search-meta {
+        text-align: center;
+      }
     }
+
     .database-row {
      border-bottom: 1px solid @gray-light;
      padding-bottom: 20px;
@@ -181,16 +187,17 @@
        }
        .database-item-direct-link {
          margin-top: 10px;
-        @media (min-width: @screen-sm-min) {
-          margin-top : 0;
-          float:right;
-        }
+          @media (min-width: @screen-sm-min) {
+            margin-top : 0;
+            float:right;
+          }
 
        }
      }
    }
     .search-results {
       padding-left: 0px;
+      margin-top: 20px;
     }
     .search-info {
       display: none;
@@ -202,7 +209,13 @@
 
 
 
+.ubn-search-sorts {
+  float: right;
+  @media (max-width: @screen-xs-max) {
+    display:none;
+  }
 
+}
 
 /* ### database post ### */
 .node-type-database {
