@@ -362,7 +362,7 @@ function ubn_search_default_search_api_page() {
       "fields" : [],
       "per_page" : "30",
       "result_page_search_form" : 1,
-      "get_per_page" : 0,
+      "get_per_page" : 1,
       "view_mode" : "ubn_search_result",
       "language_filter" : { "current" : "current", "und" : "und" },
       "empty_behavior" : "results"
@@ -385,7 +385,7 @@ function ubn_search_default_search_api_page() {
       },
       "per_page" : "30",
       "result_page_search_form" : 1,
-      "get_per_page" : 0,
+      "get_per_page" : 1,
       "view_mode" : "search_api_page_result",
       "language_filter" : { "current" : "current", "und" : "und" },
       "empty_behavior" : "results"
