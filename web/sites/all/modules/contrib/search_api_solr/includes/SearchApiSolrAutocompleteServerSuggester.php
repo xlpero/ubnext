@@ -59,9 +59,23 @@ class SearchApiSolrAutocompleteServerSuggester extends SearchApiAutocompleteServ
       '#title' => t('Suggester dictionaries'),
       '#type' => 'textarea',
       '#description' => t('One dictionary per line, in order of precedence.'),
-      '#default_value' => $this->configuration['solr_server']['suggester_dictionaries'],
+      '#default_value' => implode("\n", $this->configuration['solr_server']['suggester_dictionaries']),
     );
     return $form;
+  }
+  /**
+   * {@inheritdoc}
+   */
+  public function submitConfigurationForm(array $form, array &$form_state) {
+    $form_state['values']['solr_server']['suggester_dictionaries'] =
+      array_map(
+        'trim',
+        explode(
+          "\n",
+          $form_state['values']['solr_server']['suggester_dictionaries']
+        )
+      );
+    parent::submitConfigurationForm($form, $form_state);
   }
 
   /**

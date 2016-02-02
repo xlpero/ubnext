@@ -4,6 +4,36 @@
  * @file
  * Provides a Solr-based service class for the Search API.
  */
+function search_api_solr_search_api_autocomplete_search_presave(SearchApiAutocompleteSearch $search) {
+  $suggester = $search->getSuggester();
+  if(!empty($suggester) && $suggester instanceof SearchApiSolrAutocompleteServerSuggester) {
+    $original_suggester_conf = array(
+      'fields' => array(),
+    );
+    list($id, , ) = entity_extract_ids('search_api_autocomplete_search', $search);
+    if($id) {
+      $entities = entity_load('search_api_autocomplete_search', array($id));
+      if(isset($entities[$id])) {
+        $original_search = $entities[$id];
+        $original_suggester = $original_search->getSuggester();
+        if(!empty($original_suggester) && $original_suggester instanceof SearchApiSolrAutocompleteServerSuggester) {
+          $original_suggester_conf = array();
+          $original_suggester_conf = $original_suggester->getConfiguration();
+        }
+      }
+    }
+
+    $suggester_conf = $suggester->getConfiguration();
+    //Sort since array equal comparison requires both keys and values
+    //being equal
+    sort($suggester_conf['fields']);
+    sort($original_suggester_conf['fields']);
+    if($suggester_conf['fields'] !== $original_suggester_conf['fields']) {
+      //Must reindex since autocomplete fields have been removed and/or added
+      $search->index()->reindex();
+    }
+  }
+}
 
 /**
  * Implements hook_menu().

@@ -44,7 +44,9 @@
     <ol class="search-results">
       <?php print render($search_results); ?>
     </ol>
-    <a href="#" class="btn btn-default btn-block"><?php print t("Show all"); ?></a>
+    <?php if(isset($show_all_link)): ?>
+      <?php print $show_all_link; ?>
+    <?php endif; ?>
     <?php print render($pager); ?>
   <?php else : ?>
     <h2><?php print t('Your search yielded no results.');?></h2>
