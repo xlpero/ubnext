@@ -32,7 +32,7 @@ var myModule = (function ($) {
   function loadHTMLFragment(url) {
     toggleLoader();
     $.get(url, function(data) {
-      $(".main").html($(data).find(".main"));
+      $(".main").html($(data).find(".main").html());
       $(".sidebar").html($(data).find(".facet-filter"));
       History.pushState(null, null, url);
       toggleLoader();

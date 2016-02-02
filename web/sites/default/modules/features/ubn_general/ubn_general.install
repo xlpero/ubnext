@@ -329,4 +329,3 @@ function ubn_general_update_7101() {
   ubn_general_entity_translation_fields_enable(array('title_field', 'field_lead'));
 }
 */
-
