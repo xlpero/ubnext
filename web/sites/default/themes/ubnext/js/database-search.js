@@ -14,9 +14,9 @@ var myModule = (function ($) {
     var height = $(".main").height();
     if ($("body").hasClass("loading")) {
       // remove it
-      $(".main").hide();
+      $(".main-inner").hide();
       $(".facet-filter").fadeTo("fast", 1);
-      $(".main").fadeIn();
+      $(".main-inner").fadeIn();
       $("body").removeClass("loading");
       $(".main").height("auto");
     }
@@ -24,7 +24,7 @@ var myModule = (function ($) {
       // add it
       $(".main").height(height);
       $(".facet-filter").fadeTo("fast", 0.5);
-      $(".main").fadeOut();
+      $(".main-inner").fadeOut();
       $("body").addClass("loading");
     }
 
@@ -32,7 +32,7 @@ var myModule = (function ($) {
   function loadHTMLFragment(url) {
     toggleLoader();
     $.get(url, function(data) {
-      $(".main").html($(data).find(".main").html());
+      $(".main-inner").html($(data).find(".main-inner"));
       $(".sidebar").html($(data).find(".facet-filter"));
       History.pushState(null, null, url);
       toggleLoader();
@@ -48,7 +48,7 @@ var myModule = (function ($) {
       var $selector = $(selector);
       if ($selector) {
 
-        var linkTarget = selector + " .facet-filter a, .clear-search-btn";
+        var linkTarget = selector + " .facet-filter a, .clear-search-btn, .ubn-search-results-show-all, .sort-item";
         $(document).on("click", linkTarget, function() {
           loadHTMLFragment($(this).attr("href"));
           if ($(this).hasClass("clear-search-btn"))

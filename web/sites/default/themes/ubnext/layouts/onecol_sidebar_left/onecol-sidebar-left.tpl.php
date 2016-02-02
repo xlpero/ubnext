@@ -17,7 +17,9 @@
       </div>
     </aside>
     <section class="main col-xs-12 col-sm-8">
-    	<?php print render($content['main']); ?>
+      <div class="main-inner">
+    	   <?php print render($content['main']); ?>
+      </div>
     </section>
   </div>
 </div>

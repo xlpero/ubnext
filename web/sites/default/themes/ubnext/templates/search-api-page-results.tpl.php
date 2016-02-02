@@ -47,7 +47,7 @@
     <?php if(isset($show_all_link)): ?>
       <?php print $show_all_link; ?>
     <?php endif; ?>
-    <?php print render($pager); ?>
+    <?php //print render($pager); ?>
   <?php else : ?>
     <h2><?php print t('Your search yielded no results.');?></h2>
     <?php print $no_results_help; ?>
