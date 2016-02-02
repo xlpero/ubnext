@@ -1884,18 +1884,8 @@ class SearchApiSolrService extends SearchApiAbstractService {
       'suggest.q' => $user_input,
     );
 
-    $suggester_dictionaries = array_filter(
-      array_map(
-        'trim',
-        explode(
-          "\n",
-          $suggester_configuration['suggester_dictionaries']
-        )
-      )
-    );
-
-    $params['suggest.dictionary'] = !empty($suggester_dictionaries) ?
-      $suggester_dictionaries : array('default_fuzzy', 'default_infix');
+    $params['suggest.dictionary'] = !empty($suggester_configuration['suggester_dictionaries']) ?
+      $suggester_configuration['suggester_dictionaries'] : array('default_fuzzy', 'default_infix');
 
     $this->connect();
     $response = $this->solr->makeServletRequest(

@@ -41,7 +41,7 @@ function ubn_search_default_search_api_autocomplete_search() {
           "field_topics_depth_1:name",
           "title_field"
         ],
-        "solr_server" : { "suggester_dictionaries" : "databases_infix\\r\\ndatabases_fuzzy" }
+        "solr_server" : { "suggester_dictionaries" : ["databases_infix", "databases_fuzzy"] }
       },
       "min_length" : "1",
       "results" : 1,
