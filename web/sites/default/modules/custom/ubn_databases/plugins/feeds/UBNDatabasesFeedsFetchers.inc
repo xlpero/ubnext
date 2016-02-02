@@ -86,7 +86,12 @@ class UBNDatabasesFeedsFetcher extends UBNDatabasesFeedsFetcherBase {
     //Databases
     //
     $databases = array();
-    foreach($pdo->query('SELECT id, libris_id, title, marcxml FROM dbs', $pdo::FETCH_ASSOC) as $row) {
+    foreach($pdo->query('SELECT id, libris_id, title, verde_data FROM dbs', $pdo::FETCH_ASSOC) as $row) {
+      $verde_data_json = '';
+      if(!empty($row['verde_data'])) {
+        $xml = simplexml_load_string($row['verde_data']);
+        $verde_data_json = json_encode($xml);
+      }
       $databases[$row['id']] = array(
         'title' => $row['title'],
         'libris_id' => $row['libris_id'],
@@ -99,6 +104,7 @@ class UBNDatabasesFeedsFetcher extends UBNDatabasesFeedsFetcherBase {
         'categories' => array(), //TODO: change names to media types etc?
         'keywords' => array(),
         'prioritized_keywords' => array(),
+        'verde_data_json' => $verde_data_json,
         //Tmp fix: static dummy values to set language
         'language_sv' => 'sv',
         'language_en' => 'en',
@@ -221,7 +227,6 @@ EOD;
     }
     */
     $raw = drupal_json_encode(array_values($databases));
-    //file_put_contents('/tmp/databases.json', $raw);
     $fetcher_result = new FeedsFetcherResult($raw);
     return $fetcher_result;
   }
