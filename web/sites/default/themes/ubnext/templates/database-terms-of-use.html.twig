@@ -33,6 +33,7 @@
   }
 %}
 {% set verde_data = json_decode(database.field_verde_data_json.value, TRUE) %}
+{% if not verde_data is empty %}
 <section class="database-terms-of-use">
 <h3>{{ database.field_verde_data_json._label }} </h3>
 {{ property_list.property_list_begin() }}
@@ -43,3 +44,4 @@
 {% endfor %}
 {{ property_list.property_list_end() }}
 </section>
+{% endif %}
