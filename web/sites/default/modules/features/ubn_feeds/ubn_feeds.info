@@ -1,7 +1,7 @@
 name = UBN Feeds
 core = 7.x
 package = UBNext
-version = 7.x-0.7
+version = 7.x-0.8
 project = ubn_feeds
 dependencies[] = ctools
 dependencies[] = entityreference_feeds

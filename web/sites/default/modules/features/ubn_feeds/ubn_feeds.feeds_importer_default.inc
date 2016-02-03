@@ -132,6 +132,7 @@ function ubn_feeds_feeds_importer_default() {
           'jsonpath_parser:6' => 'categories[*].guid',
           'jsonpath_parser:8' => 'public_access',
           'jsonpath_parser:9' => 'libris_id',
+          'jsonpath_parser:10' => 'verde_data_json',
         ),
         'debug' => array(
           'options' => array(
@@ -145,6 +146,7 @@ function ubn_feeds_feeds_importer_default() {
             'jsonpath_parser:6' => 0,
             'jsonpath_parser:8' => 0,
             'jsonpath_parser:9' => 0,
+            'jsonpath_parser:10' => 0,
           ),
         ),
         'allow_override' => 0,
@@ -204,6 +206,11 @@ function ubn_feeds_feeds_importer_default() {
           8 => array(
             'source' => 'jsonpath_parser:9',
             'target' => 'field_remote_id',
+            'unique' => FALSE,
+          ),
+          9 => array(
+            'source' => 'jsonpath_parser:10',
+            'target' => 'field_verde_data_json',
             'unique' => FALSE,
           ),
         ),
