@@ -320,6 +320,43 @@ function ubn_content_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'field_collection_item-field_database_urls-field_remote_id'.
+  $field_instances['field_collection_item-field_database_urls-field_remote_id'] = array(
+    'bundle' => 'field_database_urls',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_remote_id',
+    'label' => 'Remote id',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance:
   // 'field_collection_item-field_database_urls-field_url'.
   $field_instances['field_collection_item-field_database_urls-field_url'] = array(
     'bundle' => 'field_database_urls',
@@ -564,6 +601,57 @@ function ubn_content_types_field_default_field_instances() {
       ),
       'type' => 'taxonomy_autocomplete',
       'weight' => 33,
+    ),
+  );
+
+  // Exported field_instance: 'node-database-field_promote_to_shortcut'.
+  $field_instances['node-database-field_promote_to_shortcut'] = array(
+    'bundle' => 'database',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'If checked this link will be visible amongst the shortcuts on the database search page. ',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 16,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_promote_to_shortcut',
+    'label' => 'Promote to shortcut',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 1,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 47,
     ),
   );
 
@@ -2441,6 +2529,52 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-page-field_referenced_app'.
+  $field_instances['node-page-field_referenced_app'] = array(
+    'bundle' => 'page',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_referenced_app',
+    'label' => 'App',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 6,
+    ),
+  );
+
   // Exported field_instance: 'node-page-field_template'.
   $field_instances['node-page-field_template'] = array(
     'bundle' => 'page',
@@ -3349,6 +3483,7 @@ function ubn_content_types_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Adapted study rooms (Lässtudios)');
   t('Alternate titles');
+  t('App');
   t('Authors');
   t('Body');
   t('Book return box (bokinkast)');
@@ -3363,6 +3498,7 @@ function ubn_content_types_field_default_field_instances() {
   t('GU-print');
   t('Group study rooms');
   t('Homepage of the Author');
+  t('If checked this link will be visible amongst the shortcuts on the database search page. ');
   t('Image');
   t('Is exception');
   t('Is open');
@@ -3379,6 +3515,7 @@ function ubn_content_types_field_default_field_instances() {
   t('Opening hours date');
   t('Phone');
   t('Possible to heat food');
+  t('Promote to shortcut');
   t('Public access');
   t('Publishers');
   t('Quiet reading room');

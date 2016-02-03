@@ -552,6 +552,9 @@ function ubn_content_types_strongarm() {
         'xmlsitemap' => array(
           'weight' => '30',
         ),
+        'language' => array(
+          'weight' => '5',
+        ),
       ),
       'display' => array(),
     ),

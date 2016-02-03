@@ -20,6 +20,13 @@ function ubn_search_ctools_plugin_api($module = NULL, $api = NULL) {
 }
 
 /**
+ * Implements hook_views_api().
+ */
+function ubn_search_views_api($module = NULL, $api = NULL) {
+  return array("api" => "3.0");
+}
+
+/**
  * Implements hook_default_search_api_autocomplete_search().
  */
 function ubn_search_default_search_api_autocomplete_search() {
@@ -41,7 +48,7 @@ function ubn_search_default_search_api_autocomplete_search() {
           "field_topics_depth_1:name",
           "title_field"
         ],
-        "solr_server" : { "suggester_dictionaries" : ["databases_infix", "databases_fuzzy"] }
+        "solr_server" : { "suggester_dictionaries" : [ "databases_infix", "databases_fuzzy" ] }
       },
       "min_length" : "1",
       "results" : 1,
@@ -412,7 +419,7 @@ function ubn_search_default_search_api_server() {
       "scheme" : "http",
       "host" : "130.241.35.208",
       "port" : "8983",
-      "path" : "\\/solr\\/drupal7_ubnext_xgudav",
+      "path" : "\\/solr\\/drupal7_ubnext_xljoha",
       "http_user" : "admin",
       "http_pass" : "admin",
       "excerpt" : 1,
