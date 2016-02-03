@@ -588,6 +588,32 @@ function ubn_page_default_page_manager_handlers() {
     $pane->uuid = '1a87ea19-06b4-4ec5-b690-bcea2f4d8dd6';
     $display->content['new-1a87ea19-06b4-4ec5-b690-bcea2f4d8dd6'] = $pane;
     $display->panels['main'][0] = 'new-1a87ea19-06b4-4ec5-b690-bcea2f4d8dd6';
+    $pane = new stdClass();
+    $pane->pid = 'new-ae87b80a-3df6-497c-a027-df5e74375ce9';
+    $pane->panel = 'main';
+    $pane->type = 'slate_render';
+    $pane->subtype = 'slate_render:database-terms-of-use';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'argument_entity_id:node_1',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = 'ae87b80a-3df6-497c-a027-df5e74375ce9';
+    $display->content['new-ae87b80a-3df6-497c-a027-df5e74375ce9'] = $pane;
+    $display->panels['main'][1] = 'new-ae87b80a-3df6-497c-a027-df5e74375ce9';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
