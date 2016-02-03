@@ -115,14 +115,30 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       ));
       break;
     case 'menu-trail':
-      $trail = array();
-      foreach($page_tree_by_level as $level) {
-        $links = _ubn_menu_menu_tree_links($level);
-        foreach($links as $link) {
-          if($link['in_active_trail']) {
-            $trail[] = $link;
-            break;
+      //We don't call drupal_get_breadcrumb() since
+      //we do not whant menu_get_active_breadcrumb() called
+      //if no breadcrumb is set. We have already handled that
+      //case below.
+
+      $trail = drupal_set_breadcrumb();
+      if(empty($trail)) {
+        foreach($page_tree_by_level as $level) {
+          $links = _ubn_menu_menu_tree_links($level);
+          foreach($links as $link) {
+            if($link['in_active_trail']) {
+              $trail[] = $link;
+              break;
+            }
           }
+        }
+        if(!empty($trail)) {
+          array_unshift(
+            $trail,
+            array(
+              'href' => url('<front>'),
+              'title' => t('Home'),
+            )
+          );
         }
       }
       if(!empty($trail)) {

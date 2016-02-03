@@ -13,7 +13,6 @@
       		$("#toggle-menu-btn").removeClass("open");
       		$(".ubn-mobile-menu").slideUp(100);
       	}
-      	
       });
     }
   }
