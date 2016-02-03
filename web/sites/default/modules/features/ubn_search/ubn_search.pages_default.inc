@@ -40,6 +40,7 @@ function ubn_search_default_page_manager_handlers() {
       'sidebar' => NULL,
       'topbar' => NULL,
       'searchbartop' => NULL,
+      'shortcuts' => NULL,
     ),
     'main' => array(
       'style' => 'naked',
@@ -128,6 +129,25 @@ function ubn_search_default_page_manager_handlers() {
     $pane->uuid = 'ca86db48-2f24-45d3-ac45-222dd2a3c535';
     $display->content['new-ca86db48-2f24-45d3-ac45-222dd2a3c535'] = $pane;
     $display->panels['searchbartop'][0] = 'new-ca86db48-2f24-45d3-ac45-222dd2a3c535';
+    $pane = new stdClass();
+    $pane->pid = 'new-8ce72e3e-4b6b-48dc-9ce1-5867a659b542';
+    $pane->panel = 'shortcuts';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'database_shortcuts-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '8ce72e3e-4b6b-48dc-9ce1-5867a659b542';
+    $display->content['new-8ce72e3e-4b6b-48dc-9ce1-5867a659b542'] = $pane;
+    $display->panels['shortcuts'][0] = 'new-8ce72e3e-4b6b-48dc-9ce1-5867a659b542';
     $pane = new stdClass();
     $pane->pid = 'new-82de267b-a0cf-4836-9c24-d21c2a09d730';
     $pane->panel = 'sidebar';
