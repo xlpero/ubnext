@@ -314,6 +314,11 @@ function ubn_general_update_7120() {
   _ubn_general_import_databases();
 }
 
+/* Re-import all databases (terms of use) */
+function ubn_general_update_7121() {
+  _ubn_general_import_databases();
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {
