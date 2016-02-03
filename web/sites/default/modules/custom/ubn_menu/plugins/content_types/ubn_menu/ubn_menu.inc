@@ -50,9 +50,8 @@ function ubn_menu_ubn_menu_content_type_settings_submit($form, &$form_state) {
  */
 function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $context) {
   list(, $menu_name, $type) = explode(':', $subtype);
-  $cache = drupal_static(__FUNCTION__);
+  $cache = &drupal_static(__FUNCTION__);
   $menu_name = 'main-menu';
-
   if(!isset($cache[$menu_name . ':page_tree_by_level'])) {
     $page_tree = menu_tree_page_data($menu_name);
     _ubn_menu_prune($page_tree);
