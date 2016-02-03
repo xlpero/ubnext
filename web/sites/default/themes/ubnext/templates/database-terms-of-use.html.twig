@@ -34,14 +34,20 @@
 %}
 {% set verde_data = json_decode(database.field_verde_data_json.value, TRUE) %}
 {% if not verde_data is empty %}
-<section class="database-terms-of-use">
-<h3>{{ database.field_verde_data_json._label }} </h3>
-{{ property_list.property_list_begin() }}
-{% for source, label in mapping %}
-  {% if not verde_data[source] is empty and not verde_data[source] is iterable and not label is empty %}
-    {{ property_list.property(verde_data[source], label ~ ':', '', TRUE) }}
-  {% endif %}
-{% endfor %}
-{{ property_list.property_list_end() }}
-</section>
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2 database-properties">
+    <section class="database-terms-of-use database-property">
+      <div class="database-property-header">{{ database.field_verde_data_json._label }}:</div>
+      {{ property_list.property_list_begin() }}
+      {% for source, label in mapping %}
+        {% if not verde_data[source] is empty and not verde_data[source] is iterable and not label is empty %}
+          <div class="database-property-value">
+            {{ property_list.property(verde_data[source], label ~ ':', '', TRUE) }}
+          </div>
+        {% endif %}
+      {% endfor %}
+      {{ property_list.property_list_end() }}
+    </section>
+  </div>
+</div>
 {% endif %}

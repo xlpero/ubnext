@@ -3,9 +3,6 @@
   models[database] = entity:node
 #}
 
-
-
-
 {% macro databasePropertyRow(headerStr, propertyObj, field) %}
   <div class="col-xs-12 database-property">
       <div class="database-property-header">{{t(headerStr)}}:</div>
@@ -27,6 +24,7 @@
 {%
   set refering_url = drupal_get_query_parameters()['refering']
 %}
+
 
 <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
@@ -63,7 +61,11 @@
                   <div class="database-links">
                     <div class="row database-links-link">
                       <div class="col-xs-12">
-                        <a class="call-to-action" href={{item.field_url.value.url}}>To {{database.title}}</a>
+                        <a class="call-to-action" href={{item.field_url.value.url}}>To {{database.title}}
+                          {% if item.field_url.value.title %}
+                            ({{item.field_url.value.title}})
+                          {% endif %}
+                        </a>
                       </div>
                     </div>
                     <div class="row database-links-info">
