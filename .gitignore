@@ -1,7 +1,6 @@
 .DS_Store
 
-# Ignore git repositories
-.git
+
 
 # Ignore todo-files
 todo
