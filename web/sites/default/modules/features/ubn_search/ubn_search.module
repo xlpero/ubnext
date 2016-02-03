@@ -4,4 +4,20 @@
  * Code for the Search feature.
  */
 
+function ubn_search_menu() {
+  $items = array();
+  $items['search/databases'] = array(
+    'title'=> 'Redirecting to database search',
+    'type' => MENU_CALLBACK,
+    'page callback' => 'ubn_search_database_search_redirect',
+    'access callback' => TRUE,
+  );
+  return $items;
+}
+
+function ubn_search_database_search_redirect() {
+  //303 is more correct than 302 since POST/GET should follow the redirect
+  drupal_goto('search/databases/search', array(), 303);
+}
+
 include_once 'ubn_search.features.inc';
