@@ -2,29 +2,42 @@
   name = Database: Terms of use
   models[database] = entity:node
 #}
-
 {% import "macros/property-list.html.twig" as property_list %}
-
 {%
   set mapping = {
-    'PublicNote': t('Library staff node'),
-    'AuhtorizesUserDef': t('Authorized user definition'),
+    'PublicNote': t('Library staff note'),
+    'AuthorizesUserDef': t('Authorized user definition'),
+    'CitationRequirementDetails': t('Citation requirement details'),
+    'IntrLibPrintOrFax': false,
+    'IntrLibTermNote': false,
+    'IntrLibElectronic': false,
+    'IntrLibkeepingRequired': false,
     'DigitalCopy': t('Download'),
     'DigitalCopyTermNote': t('Download note'),
     'PrintCopy': t('Print'),
     'PrintCopyTermNote': t('Print note'),
     'ScholarySharing': t('Scholarly sharing'),
     'ScholarySharingNote': t('Scholarly sharing note'),
+    'DistanceEducation': false,
+    'DistanceEducationTermNote': false,
+    'CourseReservePrint': t('Course reserve print'),
+    'CourseReserveTermNote': t('Course reserve note'),
+    'ElectronicLink': t('Electronic link'),
+    'ElectronicLinkTermNote': t('Electronic link note'),
     'CoursePackPrint': t('Course pack print'),
+    'CoursePackElectronic': t('Course pack electronic'),
+    'CoursePackTermNote': t('Course pack note'),
+    'RemoteAccessCode': t('Remote access'),
+    'WorkinTermUseNote': t('Walk-in terms of use note'),
+    'LocalUsePermission': t('Local use permission'),
   }
 %}
 {% set verde_data = json_decode(database.field_verde_data_json.value, TRUE) %}
-{{ dsm(verde_data) }}
 <section class="database-terms-of-use">
 <h3>{{ database.field_verde_data_json._label }} </h3>
 {{ property_list.property_list_begin() }}
 {% for source, label in mapping %}
-  {% if not verde_data[source] is empty and not verde_data[source] is iterable %}
+  {% if not verde_data[source] is empty and not verde_data[source] is iterable and not label is empty %}
     {{ property_list.property(verde_data[source], label ~ ':', '', TRUE) }}
   {% endif %}
 {% endfor %}
