@@ -62,7 +62,7 @@ function ubn_search_default_search_api_autocomplete_search() {
     "machine_name" : "search_api_page_site",
     "name" : "Site search",
     "index_id" : "default_node_index",
-    "suggester_id" : "ubn_solr_server",
+    "suggester_id" : "solr_server",
     "type" : "search_api_page",
     "enabled" : "1",
     "options" : {
