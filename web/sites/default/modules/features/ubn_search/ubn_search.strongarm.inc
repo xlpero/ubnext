@@ -36,7 +36,7 @@ function ubn_search_strongarm() {
       'search_api_page:search/site' => 'search_api_page:search/site',
     ),
     'databases' => array(
-      'search_api_page:search/databases' => 'search_api_page:search/databases',
+      'search_api_page:search/databases/search' => 'search_api_page:search/databases/search',
       'search_api_autocomplete:search_api_page_databases' => 'search_api_autocomplete:search_api_page_databases',
     ),
   );
