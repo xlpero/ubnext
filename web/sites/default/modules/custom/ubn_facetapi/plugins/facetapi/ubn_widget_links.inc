@@ -84,7 +84,7 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
           }
           $active_items_titles[] = $item['#markup'];
         }
-        $facet_title = implode(', ', $active_items_titles);
+        $facet_title = htmlspecialchars(implode(', ', $active_items_titles));
       }
       else {
         $facet_title = $this->build['#title'];

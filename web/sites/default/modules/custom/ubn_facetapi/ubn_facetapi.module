@@ -145,7 +145,7 @@ function theme_ubn_facetapi_facet($variables) {
 
   $output .= '<div class="ubn-facet-header">';
   if (isset($title) && $title !== '') {
-    $output .= '<div class="ubn-facet-header-title">' . $title . '</div>';
+    $output .= '<div class="ubn-facet-header-title" title="'. $title .'">' . $title . '</div>';
   }
   $output .= '<span class="ubn-facet-header-handle">' . $variables['handle'] . '</span>';
   $output .= '</div>';

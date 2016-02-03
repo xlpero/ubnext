@@ -58,6 +58,13 @@ var myModule = (function ($) {
           return false;
         });
 
+        var submitTarget = selector + " .form-submit";
+        $(document).on("click", submitTarget, function() {
+          var query = $(".auto_submit").val();
+          var url = $selector.find(".clear-search-btn").attr("href") + "/" + query;
+          loadHTMLFragment(url);
+          return false;
+        })
           var headerTarget = selector + " .ubn-facet-header";
           $(document).on( "click", headerTarget, function() {
           var $next = $(this).next();
