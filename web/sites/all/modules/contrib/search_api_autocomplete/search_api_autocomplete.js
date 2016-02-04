@@ -38,7 +38,7 @@ if (typeof Drupal.jsAC != 'undefined') {
    * Extend from Drupal's autocomplete.js to automatically submit the form
    * when Enter is hit.
    */
-/*  var default_onkeyup = Drupal.jsAC.prototype.onkeyup;
+  var default_onkeyup = Drupal.jsAC.prototype.onkeyup;
   Drupal.jsAC.prototype.onkeyup = function (input, e) {
     if (!e) {
       e = window.event;
@@ -50,7 +50,7 @@ if (typeof Drupal.jsAC != 'undefined') {
       var selector = getSetting(input, 'selector', ':submit');
       $(selector, input.form).trigger('click');
     }
-  };*/
+  };
 
   /**
    * Handler for the "keydown" event.
