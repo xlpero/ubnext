@@ -1,5 +1,7 @@
 var myModule = (function ($) {
   var History = null;
+  var default_onkeyup = onKeyUpHandler;
+
   function setupHistory() {
     // Prepare
     History = window.History; // Note: We are using a capital H instead of a lower h
@@ -10,6 +12,7 @@ var myModule = (function ($) {
     //  History.log('statechange:', State.data, State.title, State.url);
     });
   }
+
   function toggleLoader() {
     var height = $(".main").height();
     if ($("body").hasClass("loading")) {
@@ -39,11 +42,49 @@ var myModule = (function ($) {
     });
 
   }
+
+
+  function getSetting(input, setting, defaultValue) {
+    // Earlier versions of jQuery, like the default for Drupal 7, don't properly
+    // convert data-* attributes to camel case, so we access it via the verbatim
+    // name from the attribute (which also works in newer versions).
+    var search = $(input).data('search-api-autocomplete-search');
+    if (typeof search == 'undefined'
+        || typeof Drupal.settings.search_api_autocomplete == 'undefined'
+        || typeof Drupal.settings.search_api_autocomplete[search] == 'undefined'
+        || typeof Drupal.settings.search_api_autocomplete[search][setting] == 'undefined') {
+      return defaultValue;
+    }
+    return Drupal.settings.search_api_autocomplete[search][setting];
+  };
+
   return {
 
     init: function(selector) {
+      if (typeof Drupal.jsAC != 'undefined') {
+        Drupal.jsAC.prototype.select = function(node) {
+          var autocompleteValue = $(node).data('autocompleteValue');
+          // Check whether this is not a suggestion but a "link".
+          if (autocompleteValue.charAt(0) == ' ') {
+          //  window.location.href = autocompleteValue.substr(1);
+            return false;
+          }
+          this.input.value = autocompleteValue;
+          $(this.input).trigger('autocompleteSelect', [node]);
+          if ($(this.input).hasClass('auto_submit')) {
+            if (typeof Drupal.search_api_ajax != 'undefined') {
+              // Use Search API Ajax to submit
+              Drupal.search_api_ajax.navigateQuery($(this.input).val());
+            }
+            else {
+              var selector = getSetting(this.input, 'selector', ':submit');
+              $(selector, this.input.form).trigger('click');
+            }
+            return true;
+          }
+        };
+      }
       // setup history.js
-
       setupHistory();
       var $selector = $(selector);
       if ($selector) {

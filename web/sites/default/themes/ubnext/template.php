@@ -22,7 +22,12 @@ function ubnext_preprocess_panels_pane(&$vars) {
   }
 
   if ($vars['pane']->uuid == "ca86db48-2f24-45d3-ac45-222dd2a3c535") {
-      drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-search.js");
+      drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-search.js",
+      array(
+        'scope' => 'footer',
+        'group' => JS_THEME,
+        'weight' => 5,
+      ));
   }
 }
 
@@ -314,7 +319,7 @@ function _ubnext_search_form_alter(&$form, &$form_state, $form_id) {
   // get query and put it as default_value if it exist
   $searches = search_api_current_search();
   $search = reset($searches);
-  $query = $search[0]->getKeys()[0];
+  $query = $search[0]->getOriginalKeys();
 
   $form['keys' . $suffix]['#default_value'] = $query;
 
