@@ -1,6 +1,6 @@
 var myModule = (function ($) {
   var History = null;
-  var default_onkeyup = onKeyUpHandler;
+
 
   function setupHistory() {
     // Prepare

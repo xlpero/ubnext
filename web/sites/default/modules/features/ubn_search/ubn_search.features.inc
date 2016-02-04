@@ -446,7 +446,7 @@ function ubn_search_default_search_api_sort() {
     "index_id" : "databases",
     "field" : "field_public_access",
     "name" : "Free database",
-    "enabled" : "1",
+    "enabled" : "0",
     "weight" : "-98",
     "identifier" : "databases__field_public_access",
     "default_sort" : "0",
