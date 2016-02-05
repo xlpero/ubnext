@@ -37,7 +37,7 @@
 ?>
 <div class="<?php print $classes;?>">
   <?php if ($result_count): ?>
-    <div class="search-meta"><strong><?php print t("Showing !count of !max databases:", array('!count' => $result_count, '!max' => $variables['total-items-in-index'])); ?></strong></div>
+    <div class="search-meta"><strong><?php print t("Found !count of !max databases:", array('!count' => $result_count, '!max' => $variables['total-items-in-index'])); ?></strong></div>
   <?php endif; ?>
   <?php print render($spellcheck); ?>
   <?php if ($result_count): ?>
