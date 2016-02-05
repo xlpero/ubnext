@@ -40,11 +40,11 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
 
     $facet_title = '';
     $facet_items = array();
-
+    $active_items = $this->UBNFacetapiActiveBuildItems($element);
     if(
       isset($settings['hide_inactive_items']) &&
       $settings['hide_inactive_items'] &&
-      $active_items = $this->UBNFacetapiActiveBuildItems($element)
+      $active_items
     ) {
       $active_item = current($active_items);
       //Query?
@@ -64,7 +64,7 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
     else {
       if(
         $global_settings['operator'] === FACETAPI_OPERATOR_OR &&
-        $active_items = $this->UBNFacetapiActiveBuildItems($element)
+        $active_items 
       ) {
         $active_items_titles = array();
         foreach($active_items as $i => $item) {
@@ -94,7 +94,9 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
       $this->setThemeHooks($element);
       $facet_items = $this->buildListItems($element);
     }
-
+    if ($active_items) {
+      $this->build['#attributes']['class'][] = 'ubn-facet-active-items';
+    }
     $this->build['#attributes']['class'][] = 'ubn-facet';
     $this->build['#attributes']['class'][] = 'ubn-facet-' . $global_settings['operator'];
     $this->build['#attributes']['class'][] = 'ubn-facet-links';
