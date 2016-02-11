@@ -44,28 +44,25 @@ function uuid_entity_features_export_options($component) {
  */
 function uuid_entity_features_export($data, &$export, $module_name, $component) {
   $pipe = array();
-
   $export['dependencies']['uuid_entity_features'] = 'uuid_entity_features';
-
   $type = _uuid_entity_features_component_entity_type($component);
-
   $info = entity_get_info($type);
   $info['entity keys'] += array('module' => 'module', 'status' => 'status');
   $status_key = $info['entity keys']['status'];
   $module_key = $info['entity keys']['module'];
+
   if (!empty($info['bundle of'])) {
     $entity_info = entity_get_info($info['bundle of']);
     $bundle_key = $entity_info['bundle keys']['bundle'];
   }
 
-  //$export['features'][$component] = $data;
   foreach($data as $uuid) {
     $export['features'][$component][$uuid] = $uuid;
   }
 
   $ids = entity_get_id_by_uuid($type, $data);
-
-  foreach (entity_load($type, array_values($ids)) as $id => $entity) {
+  $entities = entity_load($type, $ids);
+  foreach ($entities as $id => $entity) {
     // If this is a bundle of a fieldable entity, add its fields to the pipe.
     if (!empty($info['bundle of'])) {
       //TODO: what about fields on current entity?
@@ -83,15 +80,16 @@ function uuid_entity_features_export($data, &$export, $module_name, $component) 
     // if entity is an indirect dependency, Features will filter it out.
     $export['dependencies']['entity'] = 'entity';
   }
+  $context = array(
+    'data' => $data,
+    'module_name' => $module_name,
+    'component' => $component,
+  );
   drupal_alter(
     array('uuid_entity_features_export', 'uuid_entity_features_' . $type . '_export'),
-    $data,
     $export,
-    array(
-      'pipe' => &$pipe,
-      'module_name' => $module_name,
-      'component' => $component,
-    )
+    $pipe,
+    $context
   );
   return $pipe;
 }
@@ -104,6 +102,7 @@ function uuid_entity_features_export_render($module, $data, $export, $component)
   $info = entity_get_info($type);
   $output = array();
   $output[] = '  $items = array();';
+
   $ids = entity_get_id_by_uuid($type, $data);
   $ids_guids = array_flip($ids);
 
@@ -113,21 +112,23 @@ function uuid_entity_features_export_render($module, $data, $export, $component)
   $module_key = $info['entity keys']['module'];
   $id_key = $info['entity keys']['id'];
 
-  foreach (entity_load($type, array_values($ids)) as $id => $entity) {
+  foreach (entity_uuid_load($type, $data) as $id => $entity) {
+    $context = array(
+      'module_name' => $module,
+      'export' => $export,
+      'component' => $component,
+    );
     drupal_alter(
       array(
         'uuid_entity_features_export_render_entity',
-        'uuid_entity_features_export_render_' . $type '_entity',
+        'uuid_entity_features_export_render_' . $type . '_entity',
       ),
       $entity,
-      array(
-        'module_name' => $module,
-        'export' => $export,
-        'component' => $component,
-      )
+      $context
     );
     $export  = "  \$items['{$ids_guids[$id]}'] = entity_create('{$type}', ";
     $vars = get_object_vars($entity);
+    //TODO: do not need to unset id and revision id?
     unset($vars[$status_key], $vars[$status_key], $vars[$id_key], $vars['is_new']);
     if(!empty($info['entity keys']['revision'])) {
       unset($vars[$info['entity keys']['revision']]);
@@ -159,6 +160,8 @@ function uuid_entity_features_rebuild($module, $component) {
   $entities_settings = uuid_entity_features_entities_settings();
   $settings = $entities_settings[$type];
   $entities = features_get_default($component, $module);
+
+  try {
   if (!empty($entities)) {
     //TODO: First sync translations!
     $ids = entity_get_id_by_uuid($type, array_keys($entities));
@@ -173,7 +176,7 @@ function uuid_entity_features_rebuild($module, $component) {
         $ids = array();
       }
       else {
-        $stored_entities = entity_load($type, array_values($ids));
+        $stored_entities = entity_uuid_load($type, array_keys($entities));
       }
     }
     $fields_info = field_info_fields();
@@ -232,13 +235,18 @@ function uuid_entity_features_rebuild($module, $component) {
             }
           }
           //Update
-          entity_save($type, $stored_entity);
+          entity_uuid_save($type, $stored_entity);
         }
       }
       else {
         //Create
-        entity_save($type, $entity);
+        entity_uuid_save($type, $entity);
       }
     }
+  }
+  }
+  catch(Exception $e) {
+    dsm('horrible error');
+    dsm($e->getMessage());
   }
 }

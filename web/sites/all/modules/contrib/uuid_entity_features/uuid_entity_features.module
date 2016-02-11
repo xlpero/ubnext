@@ -57,9 +57,67 @@ function uuid_entity_features_uuid_entity_features_export_render_node_entity_alt
   unset($node->last_comment_timestamp);
 }
 
+function uuid_entity_features_uuid_entity_features_node_export_alter(&$export, &$pipe, $context) {
+  static $processed_node_uuids = array();
+  $node_uuids = array_diff($context['data'], $processed_node_uuids);
+  if(!empty($node_uuids)) {
+    $settings = uuid_entity_features_entities_settings();
+    $ids = entity_get_id_by_uuid('node', $node_uuids);
+    $nodes = entity_load('node', $ids);
+    if(module_exists('entity_menu_links')) {
+      foreach($nodes as $node) {
+        //Clone node object so that menu object will not
+        //be included in export, or committed to entity cache
+        $node = clone $node;
+        menu_node_prepare($node);
+        //Or collect mlids and load multiple?
+        if(!empty($node->menu['mlid'])) {
+          $mlids = array();
+          foreach(range(1, 9) as $n) {
+            if(empty($node->menu["p$n"])) {
+              break;
+            }
+            $mlids[] = $node->menu["p$n"];
+          }
+          $uuids = entity_get_uuid_by_id('menu_link', $mlids);
+          $menu_links = entity_uuid_load('menu_link', $uuids);
+          foreach($menu_links as $mlid => $menu_link) {
+            $pipe['uuid_entity_menu_link'][$menu_link->uuid] = $menu_link->uuid;
+            $linked_entity = entity_menu_links_linked_entity($menu_link, TRUE);
+            if(!empty($linked_entity) && $settings[$linked_entity['type']]['enabled']) {
+              if($mlid != $node->menu['mlid']) {
+                $pipe["uuid_entity_{$linked_entity['type']}"][$linked_entity['uuid']] = $linked_entity['uuid'];
+                if($linked_entity['type'] === 'node') {
+                  $processed_node_uuids[] = $linked_entity['uuid'];
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+function uuid_entity_features_uuid_entity_features_export_render_menu_link_entity_alter($menu_link, $context) {
+  /*
+  foreach(range(1, 9) as $n) {
+    unset($menu_link->{"p$n"});
+  }
+  */
+  unset($menu_link->weight); //?
+  unset($menu_link->timestamp);
+  //unset($menu_link->has_children);
+  unset($menu_link->i18n_tsid);
+  unset($menu_link->rdf_mapping);
+  //TODO: Consequences of unsetting page_callback, page_arguments etc?
+}
+
 function uuid_entity_features_init() {
   //uuid_entity_features_entities_entity_info();
 }
+
 function uuid_entity_features_entities_entity_info() {
   return array_filter(entity_get_info(), '_uuid_entity_features_compatible_entity_type');
 }
@@ -117,7 +175,6 @@ function uuid_entity_features_settings_form($form, &$form_state) {
   );
 
   //TODO: view filter
-
   foreach (uuid_entity_features_entities_entity_info() as $type => $info) {
     if(isset($info['uuid']) && $info['uuid']) {
       $bundle_options = array();
@@ -177,6 +234,8 @@ function uuid_entity_features_settings_form($form, &$form_state) {
       */
     }
   }
+
+  //TODO: empty features cache if new enabled!
   return system_settings_form($form);
 }
 
