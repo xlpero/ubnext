@@ -14,7 +14,7 @@ var myModule = (function ($) {
   }
 
   function toggleLoader() {
-    var height = $(".main").height();
+    var height = $(".ajax-container").height();
     if ($("body").hasClass("loading")) {
       // remove it
       $(".main-inner").hide();
@@ -25,7 +25,7 @@ var myModule = (function ($) {
     }
     else {
       // add it
-      $(".main").height(height);
+      $(".ajax-container").height(height);
       $(".facet-filter").fadeTo("fast", 0.5);
       $(".main-inner").fadeOut();
       $("body").addClass("loading");
@@ -35,8 +35,7 @@ var myModule = (function ($) {
   function loadHTMLFragment(url) {
     toggleLoader();
     $.get(url, function(data) {
-      $(".main-inner").html($(data).find(".main-inner"));
-      $(".sidebar").html($(data).find(".facet-filter"));
+      $(".ajax-container").html($(data).find(".ajax-container").html());
       History.pushState(null, null, url);
       toggleLoader();
     });
