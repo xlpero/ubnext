@@ -1,0 +1,52 @@
+<?php
+
+function menu_position_uuid_entity_info_alter(&$info) {
+  $info['menu_position_rule']['uuid'] = TRUE;
+  $info['menu_position_rule']['entity keys']['uuid'] = 'uuid';
+}
+
+/**
+ * Implements hook_entity_uuid_load().
+ */
+function menu_position_uuid_entity_uuid_load(&$entities, $entity_type) {
+  if ($entity_type == 'menu_position_rule') {
+    $plugins = menu_position_get_plugins();
+    $mlids = array();
+    foreach($entities as $rule) {
+      $mlids[] = $rule->plid;
+      $mlids[] = $rule->mlid;
+    }
+    $menu_links_uuids = entity_get_uuid_by_id('menu_link', $mlids);
+    foreach($entities as $rule) {
+      $rule->plid = $menu_links_uuids[$rule->plid];
+      $rule->mlid = $menu_links_uuids[$rule->mlid];
+      if(!empty($rule->conditions)) {
+        foreach($rule->conditions as $plugin_key => $plugin_settings) {
+          $callback = menu_position_get_uuid_load_callback($plugin_key);
+          if($callback) {
+            $rule->conditions[$plugin_key] = $callback($plugin_settings);
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_uuid_presave().
+ */
+function menu_position_uuid_entity_uuid_presave(&$entity, $entity_type) {
+  if ($entity_type == 'menu_position_rule') {
+    $menu_links_ids = entity_get_id_by_uuid('menu_link', array($entity->plid, $entity->mlid));
+    $entity->plid = $menu_links_ids[$entity->plid];
+    $entity->mlid = $menu_links_ids[$entity->mlid];
+    if(!empty($rule->conditions)) {
+      foreach($rule->conditions as $plugin_key => $plugin_settings) {
+        $callback = menu_position_get_uuid_presave_callback($plugin_key);
+        if($callback) {
+          $rule->conditions[$plugin_key] = $callback($plugin_settings);
+        }
+      }
+    }
+  }
+}

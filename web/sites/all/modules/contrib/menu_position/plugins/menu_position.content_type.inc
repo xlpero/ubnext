@@ -65,6 +65,7 @@ function menu_position_menu_position_rule_content_type_form_submit(&$form, &$for
   // The user has added our plugin's form elements as a condition for the rule.
   if (!empty($form_state['values']['content_type'])) {
     // Remove any 0 valued options.
+    // array_filter?
     foreach ($form_state['values']['content_type'] as $key => $value) {
       if ($value === 0) {
         unset($form_state['values']['content_type'][$key]);
