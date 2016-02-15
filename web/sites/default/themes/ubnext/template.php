@@ -534,6 +534,7 @@ function ubnext_search_api_sorts_list(array $variables) {
  * @return string
  */
 function ubnext_search_api_sorts_sort($variables) {
+
   $name = $variables['name'];
   $path = $variables['path'];
   $options = $variables['options'] + array('attributes' => array());
@@ -542,7 +543,6 @@ function ubnext_search_api_sorts_sort($variables) {
 
   $order_options = $variables['order_options'] + array('query' => array(), 'attributes' => array(), 'html' => TRUE);
   $order_options['attributes'] += array('class' => array());
-
   if ($variables['active']) {
     //TODO: Should not use t for variable strings!
     // as modules original theme implementation does

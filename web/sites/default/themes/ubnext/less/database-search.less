@@ -167,13 +167,20 @@
   }
 
 
-
+  .no-sidebar {
+    .ubn-search-sorts {
+      display: none;
+    }
+  }
 
   /* search result */
   .search-api-page-results {
-    h2 {
-      display: none;
+    .no-result {
+      font-size: 1.2em;
+      color: @gray-light;
     }
+
+
 
     @media (max-width: @screen-xs-max) {
       .search-meta {
