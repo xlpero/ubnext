@@ -199,14 +199,20 @@
          margin-bottom: 10px;
        }
        .database-item-access-level {
-       }
-       .database-item-direct-link {
          margin-top: 10px;
           @media (min-width: @screen-sm-min) {
             margin-top : 0;
-            float:right;
+            float: right;
           }
-
+       }
+       .database-item-direct-link {
+         .fa {
+           color: @gray-darker;
+           display: inline;
+           text-decoration: none;
+           margin-left: 5px;
+           vertical-align: middle;
+         }
        }
      }
    }

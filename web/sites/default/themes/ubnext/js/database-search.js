@@ -14,7 +14,7 @@ var myModule = (function ($) {
   }
 
   function toggleLoader() {
-    var height = $(".ajax-container").height();
+    var height = $(".main").height();
     if ($("body").hasClass("loading")) {
       // remove it
       $(".main-inner").hide();
@@ -25,7 +25,7 @@ var myModule = (function ($) {
     }
     else {
       // add it
-      $(".ajax-container").height(height);
+      $(".main").height(height);
       $(".facet-filter").fadeTo("fast", 0.5);
       $(".main-inner").fadeOut();
       $("body").addClass("loading");
