@@ -357,8 +357,8 @@ function ubnext_facetapi_link_inactive($variables) {
 
   // Sanitizes the link text if necessary.
   $sanitize = empty($variables['options']['html']);
-  $variables['text'] = ($sanitize) ? check_plain($variables['text']) : $variables['text'];
 
+  $variables['text'] = ($sanitize) ? check_plain($variables['text']) : $variables['text'];
   // Resets link text, sets to options to HTML since we already sanitized the
   // link text and are providing additional markup for accessibility.
   $variables['text'] .= $accessible_markup;

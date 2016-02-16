@@ -64,27 +64,27 @@ class UBNFacetapiWidgetLinks extends FacetapiWidgetLinks {
     else {
       if(
         $global_settings['operator'] === FACETAPI_OPERATOR_OR &&
-        $active_items 
+        $active_items
       ) {
         $active_items_titles = array();
         foreach($active_items as $i => $item) {
           //TODO: preg_split instead of explode
           //TODO: could probably do this in one preg_replace as well?
           //Capitalize backreference?
-          if($i) {
+        /*  if($i) {
             // For non-first items, chech if first word is all caps,
             // if not make it lower-case
             $words = explode(' ', $item['#markup']);
             if($words[0] !== drupal_strtoupper($words[0])) {
               $item['#markup'] = drupal_strtolower($item['#markup']);
             }
-          }
-          if(strpos($item['#markup'], ',') !== FALSE) {
+          }*/
+          /*if(strpos($item['#markup'], ',') !== FALSE) {
             $item['#markup'] = '"' . $item['#markup'] . '"';
-          }
+          }*/
           $active_items_titles[] = $item['#markup'];
         }
-        $facet_title = htmlspecialchars(implode(', ', $active_items_titles));
+        $facet_title = htmlspecialchars(implode(' + ', $active_items_titles));
       }
       else {
         $facet_title = $this->build['#title'];
