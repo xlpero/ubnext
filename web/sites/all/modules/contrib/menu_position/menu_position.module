@@ -360,9 +360,26 @@ function menu_position_evaluate_rules($context = array(), $use_cache = FALSE) {
     return $cache[$cache_key];
   }
 
-  // Retrieve the rules from the database. For speed, we don't call
-  // menu_position_read_rules() and unserialize the conditions only if needed.
-  $rules = db_query('SELECT * FROM {menu_position_rules} WHERE enabled = :enabled ORDER BY weight, rid', array(':enabled' => 1));
+  //This actually shaves of more than a few milliseconds if cache hit
+  //and since this code is run for almost all requests it's probably a good idea
+  //to make ugly micro-optimizations such as this one
+  //TODO: flush this cache on save/update etc
+  $rules_cache = cache_get('menu_position_enabled_rules');
+  if(empty($rules_cache)) {
+    $query = new EntityFieldQuery();
+    $query
+      ->entityCondition('entity_type', 'menu_position_rule')
+      ->propertyCondition('enabled', 1)
+      ->propertyOrderBy('weight', 'ASC');
+    $result = $query->execute();
+    if(!empty($result['menu_position_rule'])) {
+      $rules = entity_load('menu_position_rule', array_keys($result['menu_position_rule']));
+    }
+    cache_set('menu_position_enabled_rules', $rules);
+  }
+  else {
+    $rules = $rules_cache->data;
+  }
 
   // Retrieve the list of menus the path is already in.
   $menu_names = db_query('SELECT menu_name FROM {menu_links} WHERE link_path = :path', array(':path' => $context['path']))->fetchCol();
@@ -370,7 +387,7 @@ function menu_position_evaluate_rules($context = array(), $use_cache = FALSE) {
   // Flag that we still need to set the breadcrumb.
   $set_breadcrumb = TRUE;
 
-  // Examine each rule and check its conditions.
+  // Examine each rule and check its conditions.z
   foreach ($rules as $rule) {
 
     if (in_array($rule->menu_name, $menu_names, TRUE)) {
@@ -382,7 +399,6 @@ function menu_position_evaluate_rules($context = array(), $use_cache = FALSE) {
       // A rule with no conditions always matches.
       $rule_matches = TRUE;
       // Go through each condition, ANDing each result.
-      $rule->conditions = unserialize($rule->conditions);
       foreach ($rule->conditions as $plugin => $variables) {
         // Add the current rule and node to the callback's variables.
         $variables['rule'] = $rule;
@@ -419,7 +435,6 @@ function menu_position_evaluate_rules($context = array(), $use_cache = FALSE) {
       $menu_names[] = $rule->menu_name;
     }
   }
-
   return $cache[$cache_key];
 }
 

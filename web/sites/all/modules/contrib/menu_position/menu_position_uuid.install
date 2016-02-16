@@ -4,8 +4,8 @@ function menu_position_schema_alter(&$schema = array()) {
   $schema['menu_position_rules']['fields']['uuid'] = array(
     'type' => 'char',
     'length' => 36,
-    'not null' => TRUE,
-    'default' => '',
+    'not null' => FALSE,
+    'default' => NULL,
     'description' => 'The Universally Unique Identifier.',
   );
   $schema['menu_position_rules']['unique keys']['uuid'] = array('uuid'); //TODO: Pointless?
@@ -25,5 +25,5 @@ function menu_position_uuid_install() {
 
 function menu_position_uuid_uninstall() {
   db_drop_field('menu_position_rules', 'uuid');
-  db_drop_unique_key('menu_position_rules', 'uuid');
+ //db_drop_unique_key('menu_position_rules', 'uuid');
 }

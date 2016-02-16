@@ -474,6 +474,9 @@ function menu_position_add_rule(array $rule) {
     'menu_name'   => $rule['menu_name'],
     'plid'        => $rule['plid'],
   );
+  //Temporary fulfix
+  $fields['uuid'] = uuid_generate();
+
   $rid = db_insert('menu_position_rules')
     ->fields($fields)
     ->execute();
