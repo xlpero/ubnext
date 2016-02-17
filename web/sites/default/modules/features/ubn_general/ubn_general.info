@@ -38,6 +38,7 @@ dependencies[] = title
 dependencies[] = transliteration
 dependencies[] = trigger
 dependencies[] = ubn_app
+dependencies[] = ubn_content
 dependencies[] = ubn_feeds
 dependencies[] = ubn_i18n
 dependencies[] = ubn_markdown
