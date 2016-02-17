@@ -256,7 +256,6 @@ function ubnext_bootstrap_search_api_page_search_form($variables) {
 
   $search_submit = drupal_render($element['submit' . $suffix]);
   $search_input = drupal_render($element['keys' . $suffix]);
-
   foreach(element_children($element, TRUE) as $key) {
     $element['#children'] .= drupal_render($element[$key]);
   }
@@ -303,14 +302,18 @@ function _ubnext_search_form_alter(&$form, &$form_state, $form_id) {
   $suffix = '_' . $form['id']['#value'];
   $form['keys' . $suffix]['#attributes']['placeholder'] = t("Enter database name or subject");
   $form['keys' . $suffix]['#attributes']['class'][] = 'form-control';
+  $form['keys' . $suffix]['#attributes']['class'][] = 'input-lg';
   if(!isset($form['submit' . $suffix]['#attributes'])) {
     $form['submit' . $suffix]['#attributes'] = array();
   }
   if(!isset($form['submit' . $suffix]['#attributes']['class'])) {
     $form['submit' . $suffix]['#attributes']['class'] = array();
   }
+  dsm($form['submit' . $suffix]['#value']);
+  $form['submit' . $suffix]['#value'] = '&#xf011; search';
   $form['submit' . $suffix]['#attributes']['class'][] = 'btn';
   $form['submit' . $suffix]['#attributes']['class'][] = 'btn-primary';
+  $form['submit' . $suffix]['#attributes']['class'][] = 'btn-lg';
 
   if(!isset($form['keys' . $suffix]['#pre_render'])) {
     $form['keys' . $suffix]['#pre_render'] = array();

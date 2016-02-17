@@ -143,16 +143,26 @@
   .searchbar-top {
     margin-top:10px;
     margin-bottom: 40px;
+    input[type="submit"] {
+      font-family: FontAwesome;
+    }
     .form-submit {
+
       &.btn {
         border-radius: 0 5px 5px 0;
       }
+
+    }
+    .form-autocomplete {
+      height: 48px;
+      border-radius: @border-radius-base 0 0 @border-radius-base;
+      background: @gray-lighter;
     }
     .fa {
       position: absolute;
       z-index: 100;
-      top: 12px;
-      right: 84px;
+      top: 18px;
+      right: 105px;
       color: @gray-dark;
     }
 
@@ -199,13 +209,15 @@
          margin-bottom: 10px;
        }
        .database-item-access-level {
-         margin-top: 10px;
           @media (min-width: @screen-sm-min) {
-            margin-top : 0;
             float: right;
           }
        }
        .database-item-direct-link {
+         margin-top: 10px;
+         @media (min-width: @screen-sm-min) {
+           margin-top : 0;
+         }
          .fa {
            color: @gray-darker;
            display: inline;
