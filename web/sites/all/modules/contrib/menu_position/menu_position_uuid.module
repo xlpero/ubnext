@@ -5,6 +5,16 @@ function menu_position_uuid_entity_info_alter(&$info) {
   $info['menu_position_rule']['entity keys']['uuid'] = 'uuid';
 }
 
+//Or just pipe alter? Use features alter hook instead?
+function menu_position_uuid_uuid_entity_features_menu_position_rule_export_alter(&$export, &$pipe, $context) {
+  $data = $context['data'];
+  $rules = entity_uuid_load('menu_position_rule', $data);
+  foreach($rules as $rule) {
+    $pipe['uuid_entity_menu_link'][$rule->mlid] = $rule->mlid;
+    $pipe['uuid_entity_menu_link'][$rule->plid] = $rule->plid;
+  }
+}
+
 /**
  * Implements hook_entity_uuid_load().
  */
