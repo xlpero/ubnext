@@ -555,6 +555,9 @@ function ubn_page_default_page_manager_handlers() {
       'default' => NULL,
       'main' => NULL,
     ),
+    'main' => array(
+      'style' => 'naked',
+    ),
   );
   $display->cache = array();
   $display->title = '';
@@ -599,7 +602,7 @@ function ubn_page_default_page_manager_handlers() {
       'context' => array(
         0 => 'argument_entity_id:node_1',
       ),
-      'override_title' => 0,
+      'override_title' => 1,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
