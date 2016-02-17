@@ -297,23 +297,26 @@ function ubnext_form_search_api_page_search_form_databases_alter(&$form, &$form_
 
 
 function _ubnext_search_form_alter(&$form, &$form_state, $form_id) {
-
   // Add bootstrap classes
   $suffix = '_' . $form['id']['#value'];
   $form['keys' . $suffix]['#attributes']['placeholder'] = t("Enter database name or subject");
   $form['keys' . $suffix]['#attributes']['class'][] = 'form-control';
   $form['keys' . $suffix]['#attributes']['class'][] = 'input-lg';
+
   if(!isset($form['submit' . $suffix]['#attributes'])) {
     $form['submit' . $suffix]['#attributes'] = array();
   }
   if(!isset($form['submit' . $suffix]['#attributes']['class'])) {
     $form['submit' . $suffix]['#attributes']['class'] = array();
   }
-  dsm($form['submit' . $suffix]['#value']);
-  $form['submit' . $suffix]['#value'] = '&#xf011; search';
-  $form['submit' . $suffix]['#attributes']['class'][] = 'btn';
-  $form['submit' . $suffix]['#attributes']['class'][] = 'btn-primary';
-  $form['submit' . $suffix]['#attributes']['class'][] = 'btn-lg';
+  if(!isset($form['submit' . $suffix]['#attributes']['style'])) {
+    $form['submit' . $suffix]['#attributes']['style'] = array();
+  }
+
+  // http://drupal.stackexchange.com/questions/13796/generating-button-type-submit-with-the-form-api
+  $form['submit' . $suffix]['#attributes']['style'][] = 'display: none';
+  $form['submit' . $suffix]["#prefix"] = '<button type="button" title="' . t("Click here to search for database") . '" class="submit-btn btn btn-lg btn-primary"><i class="fa fa-search">';
+  $form['submit' . $suffix]["#suffix"] = '</i></button>';
 
   if(!isset($form['keys' . $suffix]['#pre_render'])) {
     $form['keys' . $suffix]['#pre_render'] = array();
