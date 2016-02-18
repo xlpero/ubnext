@@ -7,12 +7,17 @@ function menu_position_uuid_entity_info_alter(&$info) {
 
 //Or just pipe alter? Use features alter hook instead?
 function menu_position_uuid_uuid_entity_features_menu_position_rule_export_alter(&$export, &$pipe, $context) {
-  $data = $context['data'];
-  $rules = entity_uuid_load('menu_position_rule', $data);
+  $export['dependencies']['menu_position_uuid'] = 'menu_position_uuid';
+  $rules = entity_uuid_load('menu_position_rule', $context['data']);
   foreach($rules as $rule) {
     //$pipe['uuid_entity_menu_link'][$rule->mlid] = $rule->mlid;
     $pipe['uuid_entity_menu_link'][$rule->plid] = $rule->plid;
   }
+}
+
+function menu_position_uuid_features_api_alter(&$components) {
+  //Make sure menu link items are rebuilt first
+  $components['uuid_entity_menu_position_rule']['weight'] = $components['uuid_entity_menu_link']['weight'] + 1;
 }
 
 function menu_position_uuid_uuid_entity_features_export_render_menu_position_rule_entity_alter($rule, $context) {

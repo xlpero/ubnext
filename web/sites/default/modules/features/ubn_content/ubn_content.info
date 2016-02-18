@@ -5,6 +5,7 @@ version = 7.x-0.1
 dependencies[] = entity
 dependencies[] = entity_menu_links
 dependencies[] = menu_position
+dependencies[] = menu_position_uuid
 dependencies[] = strongarm
 dependencies[] = uuid_entity_features
 features[ctools][] = strongarm:strongarm:1

@@ -38,7 +38,7 @@ function ubn_content_uuid_entity_default_menu_link() {
    'p9' => 0,
    'updated' => 0,
    'language' => 'und',
-   'vuuid' => 'a9a44948-6e74-440b-9762-1f30a48f0eb9',
+   'vuuid' => 'e271f685-9951-4ceb-9281-a7a4c1a4824d',
    'uuid' => '1c1ba3a9-5e91-4cf4-b887-917a255d3ad0',
    'default_revision' => 1,
    'access' => TRUE,
@@ -50,7 +50,9 @@ function ubn_content_uuid_entity_default_menu_link() {
    'link_path' => 'search/databases/search',
    'router_path' => 'search/databases/search',
    'link_title' => 'Search databases',
-   'options' => FALSE,
+   'options' => array(
+     'alter' => TRUE,
+   ),
    'module' => 'menu',
    'hidden' => 0,
    'external' => 0,
@@ -69,10 +71,11 @@ function ubn_content_uuid_entity_default_menu_link() {
    'p9' => 0,
    'updated' => 0,
    'language' => 'und',
-   'vuuid' => '9915651e-4f8d-4b64-8d27-f93e1d747796',
+   'vuuid' => 'c7d08c5d-d3d9-4ed3-9d22-5649fd6d2309',
    'uuid' => '21c050e2-5ef9-4347-af28-192f53a34c05',
    'default_revision' => 1,
    'access' => TRUE,
+   'i18n_menu' => TRUE,
  ));
   return $items;
 }
