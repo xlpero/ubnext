@@ -17,6 +17,7 @@ class MenuPositionRuleController extends EntityAPIController {
    */
   public function delete($ids, DatabaseTransaction $transaction = NULL) {
     foreach ($ids as $rid) {
+      //TODO!
       menu_position_rule_delete($rid);
     }
   }
@@ -25,13 +26,21 @@ class MenuPositionRuleController extends EntityAPIController {
    * Overrides save from EntityAPIController
    */
   public function save($entity, DatabaseTransaction $transaction = NULL) {
-    $rule = (array) $entity;
-    $rid = menu_position_rule_save($rule);
-    if (FALSE === $rid) {
-      $transaction->rollback();
-      throw new Exception('Could not save menu position rule');
+    $transaction = isset($transaction) ? $transaction : db_transaction();
+    $rule = (object) $entity;
+    //TODO: correct?
+    // Possible to add required to schema?
+    // Use own entity api property metadata?
+    $required_properties = array(
+      'admin_title',
+      //'menu_name' //TODO: set menu name from plid if missing
+      'plid',
+    );
+    foreach($required_properties as $property) {
+      if(empty($rule->{$property})) {
+        throw new Exception(t('Required property @property missing', array('@property' => $property)));
+      }
     }
-    $entity->rid = $rid;
+    return parent::save($rule, $transaction);
   }
-
 }
