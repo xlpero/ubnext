@@ -65,3 +65,4 @@ features[variable][] = search_api_facets_search_ids
 features[variable][] = search_api_page_search_api_page_disabled_databases
 features[variable][] = search_api_page_search_api_page_disabled_site
 features[views_view][] = database_shortcuts
+features[views_view][] = malfunction_messages
