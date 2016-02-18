@@ -10,6 +10,7 @@ $plugin = array(
   'category' => 'UBNext',
   'regions' => array(
     'header' => t('Header'),
+    'alertarea' => t('Alert area'),
     'shortcuts' => t('Shortcuts'),
     'searchbartop' => t('Searchbar (top)'),
     'sidebar' => t('Sidebar'),
