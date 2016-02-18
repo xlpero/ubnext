@@ -42,6 +42,19 @@
           </div>
         </div>
 
+        {% if database.field_malfunction_message_active.value == 1 %}
+          <div class="row">
+            <div class="col-xs-12">
+              {% if database.field_malfunction_message.value %}
+                <div class="alert alert-warning" role="alert">
+                  <i class="fa fa-info-circle"></i>
+                  {{database.field_malfunction_message.value}}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+
         <div class="row">
           <div class="col-xs-12">
             {% if not database.field_description_paragraphs is empty %}
