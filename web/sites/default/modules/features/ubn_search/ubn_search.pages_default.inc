@@ -42,6 +42,7 @@ function ubn_search_default_page_manager_handlers() {
       'searchbartop' => NULL,
       'shortcuts' => NULL,
       'header' => NULL,
+      'alertarea' => NULL,
     ),
     'main' => array(
       'style' => 'naked',
@@ -54,7 +55,7 @@ function ubn_search_default_page_manager_handlers() {
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-3d1a8c22-70f2-4beb-bd22-08072805459c';
-    $pane->panel = 'header';
+    $pane->panel = 'alertarea';
     $pane->type = 'views_panes';
     $pane->subtype = 'malfunction_messages-panel_pane_1';
     $pane->shown = TRUE;
@@ -71,7 +72,7 @@ function ubn_search_default_page_manager_handlers() {
     $pane->locks = array();
     $pane->uuid = '3d1a8c22-70f2-4beb-bd22-08072805459c';
     $display->content['new-3d1a8c22-70f2-4beb-bd22-08072805459c'] = $pane;
-    $display->panels['header'][0] = 'new-3d1a8c22-70f2-4beb-bd22-08072805459c';
+    $display->panels['alertarea'][0] = 'new-3d1a8c22-70f2-4beb-bd22-08072805459c';
     $pane = new stdClass();
     $pane->pid = 'new-1c2acbe2-08bb-4ae2-adcc-12eaba130949';
     $pane->panel = 'header';
@@ -94,11 +95,11 @@ function ubn_search_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
     $pane->uuid = '1c2acbe2-08bb-4ae2-adcc-12eaba130949';
     $display->content['new-1c2acbe2-08bb-4ae2-adcc-12eaba130949'] = $pane;
-    $display->panels['header'][1] = 'new-1c2acbe2-08bb-4ae2-adcc-12eaba130949';
+    $display->panels['header'][0] = 'new-1c2acbe2-08bb-4ae2-adcc-12eaba130949';
     $pane = new stdClass();
     $pane->pid = 'new-5d336d16-3a73-4150-953f-2e2f923eae06';
     $pane->panel = 'main';

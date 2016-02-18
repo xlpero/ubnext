@@ -21,7 +21,7 @@ function ubnext_preprocess_panels_pane(&$vars) {
       drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-node.js");
   }
 
-  if ($vars['pane']->uuid == "ca86db48-2f24-45d3-ac45-222dd2a3c535") {
+  if ($vars['pane']->uuid == "9ae1ff6d-4776-475a-8cd3-948940f0e225") {
       drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-search.js",
       array(
         'scope' => 'footer',
@@ -30,8 +30,6 @@ function ubnext_preprocess_panels_pane(&$vars) {
       ));
   }
 }
-
-
 
 /**
  *
