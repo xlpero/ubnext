@@ -28,6 +28,199 @@ function menu_position_entity_info() {
   return $info;
 }
 
+function menu_position_menu_position_rule_insert($rule) {
+  $mlid = menu_position_save_menu_link($rule->rid, NULL, $rule->plid, $rule->admin_title);
+  db_update('menu_position_rules')
+    ->fields(array('mlid' => $mlid))
+    ->condition('rid', $rule->rid)
+    ->execute();
+  $rule->mlid = $mlid;
+}
+function menu_position_menu_position_rule_update($rule) {
+  if(empty($rule->mlid)) {
+    throw new Exception('Missing mlid for rule @rid', array('@rid' => $rule->rid));
+  }
+  if(
+    $rule->admin_title != $rule->original->admin_title ||
+    $rule->plid != $rule->original->plid
+  ) {
+    //Don't allow changing of mlid
+    //TODO: handle this?
+    if(isset($rule->original->mlid)) {
+      $rule->mlid = $rule->original->mlid;
+    }
+    menu_position_save_menu_link($rule->rid, $rule->mlid, $rule->plid, $rule->admin_title);
+  }
+}
+
+//TODO: refactor module to get rid of plid?
+
+//TODO: Load a menu item without running _menu_link_translate
+// and without joining against the menu_router table
+function menu_position_menu_link_load($mlid) {
+  $query = db_select('menu_links', 'ml');
+  $query->fields('ml');
+  $query->condition('ml.mlid', $mlid);
+  $item = $query->execute()->fetchAssoc();
+  //TODO: proper fix
+  if(!empty($item)) {
+    $item['options'] = unserialize($item['options']);
+  }
+  return $item;
+}
+
+//TODO: documentation
+/**
+ * Saves a menu position rule menu link
+ *
+ * @param int $rid
+ *   ID of the rule needing a menu link.
+ * @param int $mlid
+ *   The mlid of the menu link used in the rule.
+ * @param int $plid
+ *   The mlid of the parent menu link specified in the rule.
+ * @param string $admin_title
+ *   The administrative title of the rule.
+ *
+ * @return int
+ *   The mlid of the rule's new menu link.
+ */
+function menu_position_save_menu_link($rid, $mlid, $plid, $admin_title) {
+  // Add a menu link to handle matching pages.
+  $parent_item = menu_position_menu_link_load($plid);
+  if(empty($parent_item)) {
+    throw new Exception(t('Invalid parent menu link item'));
+  }
+  $item = array(
+    'menu_name' => $parent_item['menu_name'],
+    'link_path' => 'menu-position/' . $rid,
+    'link_title' => $admin_title . ' (menu position rule)',
+    'mlid' => $mlid,
+    'plid' => $plid,
+    'hidden' => 1,
+    'module' => 'menu_position',
+    'options' => array(
+      'alter' => TRUE,
+      'attributes' => array('class' => array('menu-position-link')),
+    ),
+  );
+  if (!empty($item['mlid'])) {
+    $existing_item = menu_position_menu_link_load($item['mlid']);
+    if(empty($existing_item)) {
+      throw new Exception(t('Invalid menu item (mlid: @mlid)', array('@mlid' => $item['mlid'])));
+    }
+    //TODO: safe to use menu_link_load?
+    //$existing_item = menu_link_load($mlid);
+    $item += !empty($existing_item) ? $existing_item : array();
+    // If the rule has a new parent, update the old parent.
+    if(!empty($existing_item) && $existing_item['plid'] != $item['plid']) {
+      $old_parent_item = menu_position_menu_link_load($existing_item['plid']);
+      if(!empty($old_parent_item)) {
+        $old_parent_item['options']['alter'] = FALSE;
+        menu_link_save($old_parent_item);
+      }
+    }
+  }
+
+  // Update the parent, but only if parent is new or has changed
+  if(empty($mlid) || !empty($existing_item) && $existing_item['plid'] != $item['plid']) {
+    $parent_item['options']['alter'] = TRUE;
+    menu_link_save($parent_item);
+  }
+  return menu_link_save($item);
+}
+
+
+
+//TODO: delete
+/**
+ * Deletes a menu position rule.
+ */
+function menu_position_delete_rule($rid) {
+  db_delete('menu_position_rules')
+    ->condition('rid', $rid)
+    ->execute();
+  menu_link_delete(NULL, 'menu-position/' . $rid);
+}
+
+//TODO: remove
+/**
+ * Retrieves a menu position rule from the database.
+ *
+ * @param int $rid
+ *   The ID of the requested rule.
+ *
+ * @return array
+ *   An associative array for the requested rule.
+ */
+function menu_position_read_rule($rid) {
+  $rule = db_query('SELECT * FROM {menu_position_rules} WHERE rid = :rid', array(':rid' => $rid))->fetchAssoc();
+  $rule['conditions'] = unserialize($rule['conditions']);
+  return $rule;
+}
+
+//TODO: remove 
+/**
+ * Retrieves a menu position rule from the database.
+ *
+ * @return array
+ *   An associative array for all rules with keys equal to the rid of each rule.
+ */
+function menu_position_read_rules() {
+  $query = db_query('SELECT * FROM {menu_position_rules} ORDER BY weight, rid');
+  $rules = array();
+  foreach ($query as $rule) {
+    $rule->conditions = unserialize($rule->conditions);
+    $rules[$rule->rid] = $rule;
+  }
+  return $rules;
+}
+
+//TODO: update documentation
+/**
+ * Saves a menu position rule.
+ *
+ * @param array $rule
+ *   An associate array defining the new rule to be created. Must contain the
+ *   following keys:
+ *   - admin_title: The administrative title of the rule.
+ *   - conditions: An associative array whose keys are the machine names of the
+ *     plugins actively configured in the rule. The value of each array element
+ *     is array containing the necessary variables for that plugin.
+ *   - menu_name: The machine name of the menu where this rule is positioned.
+ *   - plid: The mlid of the parent menu link specified in the rule.
+ */
+function menu_position_rule_save($rule) {
+  return entity_save('menu_position_rule', $rule);
+}
+
+function menu_position_rule_delete($rid) {
+  return entity_delete('menu_position_rule', $rid);
+}
+
+function menu_position_rule_delete_multiple($rids) {
+  return entity_delete_multiple('menu_position_rule', $rids);
+}
+
+/**
+ * Helper function for hook_menu_link_update().
+ */
+function _menu_position_menu_link_update($link) {
+  $rules = db_query('SELECT rid, plid FROM {menu_position_rules} WHERE mlid = :mlid ORDER BY weight, rid', array(':mlid' => $link['mlid']));
+  foreach ($rules as $rule) {
+    // Check if the user has altered the parent menu item.
+    if ($link['plid'] != $rule->plid) {
+      // Update the rule with the new parent.
+      db_update('menu_position_rules')
+        ->fields(array(
+          'menu_name' => $link['menu_name'],
+          'plid' => $link['plid'],
+          ))
+        ->condition('rid', $rule->rid)
+        ->execute();
+    }
+  }
+}
 
 /**
  * Entity uri callback.
@@ -270,7 +463,6 @@ function menu_position_menu_link_alter(&$item) {
  * Implements hook_menu_link_update().
  */
 function menu_position_menu_link_update($link) {
-  module_load_include('inc', 'menu_position', 'menu_position.admin');
   _menu_position_menu_link_update($link);
 }
 

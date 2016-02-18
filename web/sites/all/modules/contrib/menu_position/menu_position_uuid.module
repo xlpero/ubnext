@@ -10,9 +10,14 @@ function menu_position_uuid_uuid_entity_features_menu_position_rule_export_alter
   $data = $context['data'];
   $rules = entity_uuid_load('menu_position_rule', $data);
   foreach($rules as $rule) {
-    $pipe['uuid_entity_menu_link'][$rule->mlid] = $rule->mlid;
+    //$pipe['uuid_entity_menu_link'][$rule->mlid] = $rule->mlid;
     $pipe['uuid_entity_menu_link'][$rule->plid] = $rule->plid;
   }
+}
+
+function menu_position_uuid_uuid_entity_features_export_render_menu_position_rule_entity_alter($rule, $context) {
+  //TODO: perhaps explain why this is a good idea
+  unset($rule->mlid);
 }
 
 /**
@@ -20,7 +25,6 @@ function menu_position_uuid_uuid_entity_features_menu_position_rule_export_alter
  */
 function menu_position_uuid_entity_uuid_load(&$entities, $entity_type) {
   if ($entity_type == 'menu_position_rule') {
-    $plugins = menu_position_get_plugins();
     $mlids = array();
     foreach($entities as $rule) {
       $mlids[] = $rule->plid;
@@ -47,9 +51,15 @@ function menu_position_uuid_entity_uuid_load(&$entities, $entity_type) {
  */
 function menu_position_uuid_entity_uuid_presave(&$entity, $entity_type) {
   if ($entity_type == 'menu_position_rule') {
-    $menu_links_ids = entity_get_id_by_uuid('menu_link', array($entity->plid, $entity->mlid));
+    $uuids = array($entity->plid);
+    if(!empty($entity->mlid)) {
+      $uuids[] = $entity->mlid;
+    }
+    $menu_links_ids = entity_get_id_by_uuid('menu_link', $uuids);
     $entity->plid = $menu_links_ids[$entity->plid];
-    $entity->mlid = $menu_links_ids[$entity->mlid];
+    if(!empty($entity->mlid)) {
+      $entity->mlid = $menu_links_ids[$entity->mlid];
+    }
     if(!empty($rule->conditions)) {
       foreach($rule->conditions as $plugin_key => $plugin_settings) {
         $callback = menu_position_get_uuid_presave_callback($plugin_key);
