@@ -567,6 +567,9 @@ function menu_position_evaluate_rules($context = array(), $use_cache = FALSE) {
     if(!empty($result['menu_position_rule'])) {
       $rules = entity_load('menu_position_rule', array_keys($result['menu_position_rule']));
     }
+    else {
+      $rules = array();
+    }
     cache_set('menu_position_enabled_rules', $rules);
   }
   else {
