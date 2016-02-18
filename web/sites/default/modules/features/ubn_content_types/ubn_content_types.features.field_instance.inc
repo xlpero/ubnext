@@ -556,6 +556,103 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-database-field_malfunction_message'.
+  $field_instances['node-database-field_malfunction_message'] = array(
+    'bundle' => 'database',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Add your malfunction message here. If you want it to be active check the active checkbox below.  ',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 18,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_malfunction_message',
+    'label' => 'Malfunction message',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 0,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 49,
+    ),
+  );
+
+  // Exported field_instance: 'node-database-field_malfunction_message_active'.
+  $field_instances['node-database-field_malfunction_message_active'] = array(
+    'bundle' => 'database',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Enables the malfunction message and makes it visible to users',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 19,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_malfunction_message_active',
+    'label' => 'Malfunction message active',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 50,
+    ),
+  );
+
   // Exported field_instance: 'node-database-field_media_types'.
   $field_instances['node-database-field_media_types'] = array(
     'bundle' => 'database',
@@ -3531,6 +3628,7 @@ function ubn_content_types_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Adapted study rooms (Lässtudios)');
+  t('Add your malfunction message here. If you want it to be active check the active checkbox below.  ');
   t('Alternate titles');
   t('App');
   t('Authors');
@@ -3542,6 +3640,7 @@ function ubn_content_types_field_default_field_instances() {
   t('Delivery address');
   t('Description');
   t('Descriptions');
+  t('Enables the malfunction message and makes it visible to users');
   t('File');
   t('Files');
   t('GU-print');
@@ -3555,6 +3654,8 @@ function ubn_content_types_field_default_field_instances() {
   t('Location');
   t('Location override');
   t('Mailing address');
+  t('Malfunction message');
+  t('Malfunction message active');
   t('Media aspect ratio');
   t('Media atoms');
   t('Media layout');
