@@ -91,9 +91,13 @@ function ubn_search_default_search_api_index() {
     "item_type" : "search_api_et_node",
     "options" : {
       "datasource" : { "bundles" : [ "database" ] },
-      "index_directly" : 0,
+      "index_directly" : 1,
       "cron_limit" : "50",
-      "search_api_et" : { "include" : "incomplete", "fallback language" : "" },
+      "search_api_et" : {
+        "include" : "incomplete",
+        "restrict undefined" : 0,
+        "fallback language" : ""
+      },
       "fields" : {
         "field_alternate_titles" : { "type" : "list\\u003Ctext\\u003E" },
         "field_description_paragraphs" : { "type" : "list\\u003Ctext\\u003E" },
