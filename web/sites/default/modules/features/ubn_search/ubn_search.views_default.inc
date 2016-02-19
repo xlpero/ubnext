@@ -146,7 +146,7 @@ function ubn_search_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'database' => 'database',
   );
-  /* Filter criterion: Content: Malfunction message active (field_malfunction_message_active) */
+  /* Filter criterion: Content: Service disruption (field_malfunction_message_active) */
   $handler->display->display_options['filters']['field_malfunction_message_active_value']['id'] = 'field_malfunction_message_active_value';
   $handler->display->display_options['filters']['field_malfunction_message_active_value']['table'] = 'field_data_field_malfunction_message_active';
   $handler->display->display_options['filters']['field_malfunction_message_active_value']['field'] = 'field_malfunction_message_active_value';
