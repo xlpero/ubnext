@@ -91,6 +91,8 @@ class FacetapiUrlProcessorStandard extends FacetapiUrlProcessor {
    * Implements FacetapiUrlProcessor::setBreadcrumb().
    */
   public function setBreadcrumb() {
+    //TODO: FIX THIS PROPERLY BY SUBCLASSING URL_PROCESSOR (or patch)
+    return;
     $breadcrumb = drupal_get_breadcrumb();
 
     // Gets search keys and active items form the adapter.

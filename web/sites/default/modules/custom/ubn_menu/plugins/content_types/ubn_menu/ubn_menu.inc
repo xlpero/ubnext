@@ -63,12 +63,9 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
   $block->title = t('UBN Menu'); //title?, none?
 
   switch($type) {
-    case 'all':
+  case 'all':
+      /*
       $menu_output_by_level = array();
-      foreach($page_tree_by_level as $level => $tree) {
-        $menu_output_by_level[$level] = menu_tree_output($tree);
-        $menu_output_by_level[$level] = drupal_render($menu_output_by_level[$level]);
-      }
 
       $menu_top_level = array_shift($menu_output_by_level);
       $menu_bottom_level = !empty($menu_output_by_level) ? array_pop($menu_output_by_level) : '';
@@ -82,28 +79,33 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
         )
       );
       break;
+      */
     case 'top-level':
       $menu_top_level = array_shift($page_tree_by_level);
-      $links = _ubn_menu_menu_tree_links($menu_top_level);
-      //TODO: implement menu-name wild card
-      $block->content = slate_render('ubn-menu-top-level', array(
-        'links' => $links
-      ));
+      if(!empty($menu_top_level)) {
+        $links = _ubn_menu_menu_tree_links($menu_top_level);
+        //TODO: implement menu-name wild card
+        if(!empty($links)) {
+          $block->content = slate_render('ubn-menu-top-level', array(
+            'links' => $links
+          ));
+        }
+      }
       break;
     case 'bottom-level':
       // First unshift top-level
       //array_shift($page_tree_by_level);
       //$menu_bottom_level = array_pop($page_tree_by_level);
       $menu_bottom_level = _ubn_menu_menu_tree_expanded_level($page_tree_by_level);
+      $block->content = '';
       if(!empty($menu_bottom_level)) {
         $links = _ubn_menu_menu_tree_links($menu_bottom_level);
         //TODO: implement menu-name wild card
-        $block->content = slate_render('ubn-menu-bottom-level', array(
-          'links' => $links
-        ));
-      }
-      else {
-        $block->content = '';
+        if(!empty($links)) {
+          $block->content = slate_render('ubn-menu-bottom-level', array(
+            'links' => $links
+          ));
+        }
       }
       break;
     case 'bottom-level-dropdown':
@@ -164,7 +166,7 @@ function _ubn_menu_menu_tree_links($tree) {
     }
   }
   $links = array();
-  foreach($tree as $item) {
+  foreach($items as $item) {
     $link = array();
     //url options?
     $link['href'] = url($item['link']['href']);
