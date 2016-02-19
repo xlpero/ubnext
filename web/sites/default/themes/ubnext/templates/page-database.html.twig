@@ -3,7 +3,26 @@
   models[database] = entity:node
 #}
 
-{% macro databasePropertyRow(headerStr, propertyObj, field) %}
+{% macro buildSearchUrl(propertyName,item) %}
+  {%
+    set baseUrl =  base_path() ~ "search/databases/search"
+  %}
+  {% if (propertyName == "field_topics_depth_0") %}
+    {% set url = baseUrl ~ "?f[0]=field_topics_depth_0:" ~ item.tid.value %}
+    {{url}}
+  {% elseif (propertyName == "field_topics_depth_1") %}
+    {% set url = baseUrl ~ "?f[0]=field_topics_depth_0:" ~ item.parent[0].value.tid ~ "&f[1]=field_topics_depth_1:" ~ item.tid.value %}
+    {{url}}
+  {% else %}
+
+  {% endif %}
+
+
+{% endmacro %}
+
+
+{% macro databasePropertyRow(headerStr, propertyName, propertyObj, field) %}
+  {% import _self as help %}
   <div class="col-xs-12 database-property">
       <div class="database-property-header">{{t(headerStr)}}:</div>
       <div class="database-property-value">
@@ -13,7 +32,11 @@
             {% else %}
               {% set theAttribute = "value" %}
             {% endif %}
-            {{attribute(item,theAttribute)}} {% if not loop.last %} | {% endif %}
+            {% if propertyName == "field_topics_depth_0" or propertyName == "field_topics_depth_1" %}
+              <a href="{{help.buildSearchUrl(propertyName, item)}}">{{attribute(item,theAttribute)}}</a> {% if not loop.last %} | {% endif %}
+            {% else %}
+              {{attribute(item,theAttribute)}} {% if not loop.last %} | {% endif %}
+            {% endif %}
         {% endfor %}
       </div>
   </div>
@@ -24,7 +47,6 @@
 {%
   set refering_url = drupal_get_query_parameters()['refering']
 %}
-
 
 <div class="row">
     <div class="col-sm-8 col-sm-offset-2">
@@ -105,23 +127,23 @@
 
     <div class="row database-properties">
       {% if not database.field_topics.value is empty %}
-        {{helper.databasePropertyRow("Subjects", database.field_topics, "name")}}
+        {{helper.databasePropertyRow("Subjects", "field_topics_depth_0", database.field_topics_depth_0, "name")}}
       {% endif %}
 
       {% if not database.field_topics_depth_1.value is empty %}
-        {{helper.databasePropertyRow("Subject terms", database.field_topics_depth_1, "name")}}
+        {{helper.databasePropertyRow("Subject terms", "field_topics_depth_1", database.field_topics_depth_1, "name")}}
       {% endif %}
 
       {% if not database.field_publishers.value is empty %}
-        {{helper.databasePropertyRow("Vendor", database.field_publishers, "name")}}
+        {{helper.databasePropertyRow("Vendor", null, database.field_publishers, "name")}}
       {% endif %}
 
       {% if not database.field_media_types.value is empty %}
-        {{helper.databasePropertyRow("Mediatypes", database.field_media_types, "name")}}
+        {{helper.databasePropertyRow("Mediatypes", null, database.field_media_types, "name")}}
       {% endif %}
 
       {% if not database.field_alternate_titles is empty %}
-        {{helper.databasePropertyRow("Alternativ title", database.field_alternate_titles, null)}}
+        {{helper.databasePropertyRow("Alternativ title", null,  database.field_alternate_titles, null)}}
       {% endif %}
     </div>
   </div>
