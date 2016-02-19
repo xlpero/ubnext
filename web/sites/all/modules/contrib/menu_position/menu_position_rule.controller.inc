@@ -17,9 +17,9 @@ class MenuPositionRuleController extends EntityAPIController {
    */
   public function delete($ids, DatabaseTransaction $transaction = NULL) {
     foreach ($ids as $rid) {
-      //TODO!
-      menu_position_rule_delete($rid);
+      menu_position_delete_rule($rid);
     }
+    cache_clear_all('menu_position_enabled_rules', 'cache');
   }
 
   /**
@@ -41,6 +41,7 @@ class MenuPositionRuleController extends EntityAPIController {
         throw new Exception(t('Required property @property missing', array('@property' => $property)));
       }
     }
+    cache_clear_all('menu_position_enabled_rules', 'cache');
     return parent::save($rule, $transaction);
   }
 }
