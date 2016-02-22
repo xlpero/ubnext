@@ -1050,7 +1050,6 @@ function token_menu_link_load($mlid, $language_code = NULL) {
   }
 
   $cache_key = $mlid . $language_code;
-
   if (!isset($cache[$cache_key])) {
     $item = db_query("SELECT * FROM {menu_links} ml LEFT JOIN {menu_router} m ON m.path = ml.router_path WHERE ml.mlid = :mlid", array(':mlid' => $mlid))->fetchAssoc();
     if (!empty($item)) {
@@ -1135,7 +1134,11 @@ function _token_menu_link_translate(&$item, $language_code = NULL) {
     $item['access'] = TRUE;
     _menu_item_localize($item, $map, TRUE);
 
-    if(module_exists('i18n_menu') && _i18n_menu_link_is_localizable($item)) {
+    if(
+      module_exists('i18n_menu') &&
+      _i18n_menu_link_process($item) &&
+      _i18n_menu_link_is_localizable($item)
+    ) {
       _i18n_menu_link_localize($item, $language_code);
     }
   }
