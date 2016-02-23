@@ -166,11 +166,11 @@ function slate_render($slate, $models = array()) {
       return;
     }
     $models[$model] = $plugin->wrapper($models[$model]);
-
   }
+
   //static $total_time = 0;
   global $language_content;
-  $cache_enabled = variable_get('slate_cache_enabled', TRUE);
+  $cache_enabled = variable_get('slate_cache_enabled', FALSE);
   try {
     //$time = microtime(TRUE); 
     //Cache key hint?
