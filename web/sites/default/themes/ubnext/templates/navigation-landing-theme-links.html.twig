@@ -1,0 +1,73 @@
+{# slate
+  name = Navigation landing: theme-links
+  models[page] = entity:node
+#}
+
+<div class="container">
+	<div class="row ub-panel-separator">
+		<div class="col-xs-12 col-sm-4">
+			<div class="ubn-find-fast">
+				<div class="ubn-find-fast-head">
+					<div class="ubn-find-fast-head-title">
+						Hitta snabbt
+					</div>
+					<div class="ubn-find-fast-indicator">
+						<i class="fa fa-arrow-right pull-right"></i>
+					</div>
+				</div>
+				<div class="ubn-find-fast-body">
+					<ul class="list-unstyled">
+						<li><i class="fa fa-chevron-right"></i><a href="#">link 1</a></li>
+						<li><i class="fa fa-chevron-right"></i><a href="#">link 1</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+
+		<ul class="ubn-theme-links primary list-unstyled">
+			<li class="col-xs-12 col-sm-4">
+				<div class="ubn-theme-links-item">
+					<div class="ubn-theme-links-item-head">
+						<div class="ubn-theme-links-item-head-link">
+							<a href="#">Theme 1</a>
+						</div>
+						<div class="ubn-theme-links-item-head-indicator">
+							<i class="fa fa-chevron-right pull-right"></i>
+						</div>
+					</div>
+					<div class="ubn-theme-links-item-body">
+						This is theme link body
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+	<div class="row">
+			<ul class="ubn-theme-links secondary list-unstyled">
+				<li class="col-xs-12 col-sm-4">
+					<div class="ubn-theme-links-item">
+						<div class="ubn-theme-links-item-head">
+							<div class="ubn-theme-links-item-head-link">
+								<a href="#">Theme 1</a>
+							</div>
+							<div class="ubn-theme-links-item-head-indicator">
+								<i class="fa fa-chevron-right pull-right"></i>
+							</div>
+						</div>
+						<div class="ubn-theme-links-item-body">
+							This is theme link body
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+
+{% if not page.field_content_sections is empty %}
+
+{% endif %}
