@@ -6,6 +6,9 @@
 
 include_once 'ubn_general.features.inc';
 
+function ubn_general_init() {
+}
+
 function _ubn_general_import_databases() {
   foreach(
     array(
@@ -190,17 +193,19 @@ function ubn_general_admin_paths() {
 }
 
 function ubn_general_field_collection_is_empty_alter(&$is_empty, FieldCollectionItemEntity $item) {
-  $media_atoms = field_get_items('field_collection_item', $item, 'field_media_atoms');
-  $file_atoms = field_get_items('field_collection_item', $item, 'field_file_atoms');
-  $body = field_get_items('field_collection_item', $item, 'field_body');
-  $title = field_get_items('field_collection_item', $item, 'field_title');
-  if(
-    empty($media_atoms[0]['sid']) &&
-    empty($file_atoms[0]['sid']) &&
-    empty($body[0]['value']) &&
-    empty($title[0]['value'])
-  ) {
-    $is_empty = TRUE;
+  if($item->field_name === 'field_content_sections') {
+    $media_atoms = field_get_items('field_collection_item', $item, 'field_media_atoms');
+    $file_atoms = field_get_items('field_collection_item', $item, 'field_file_atoms');
+    $body = field_get_items('field_collection_item', $item, 'field_body');
+    $title = field_get_items('field_collection_item', $item, 'field_title');
+    if(
+      empty($media_atoms[0]['sid']) &&
+      empty($file_atoms[0]['sid']) &&
+      empty($body[0]['value']) &&
+      empty($title[0]['value'])
+    ) {
+      $is_empty = TRUE;
+    }
   }
 }
 
