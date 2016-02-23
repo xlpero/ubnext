@@ -6,9 +6,6 @@
 
 include_once 'ubn_general.features.inc';
 
-function ubn_general_init() {
-}
-
 function _ubn_general_import_databases() {
   foreach(
     array(
