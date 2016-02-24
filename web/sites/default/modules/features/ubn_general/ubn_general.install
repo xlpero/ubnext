@@ -320,6 +320,7 @@ function ubn_general_update_7121() {
 }
 
 function ubn_general_update_7122() {
+  features_revert_module('ubn_content_types');
   $query = new EntityFieldQuery();
   $result = $query
     ->entityCondition('entity_type', 'node')
