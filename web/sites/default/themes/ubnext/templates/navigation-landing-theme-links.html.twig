@@ -5,8 +5,6 @@
 
 
 
-
-
 {% macro themeLink(linkTitle, url, description) %}
 	<li class="col-xs-12 col-sm-6 col-md-4">
 			<div class="ubn-theme-links-item">
@@ -26,9 +24,6 @@
 {% endmacro %}
 
 {% import _self as helper %}
-
-
-
 
 <div class="container">
 		{% if not page.field_theme_link is empty %}
@@ -58,7 +53,7 @@
 					{% endif %}
 				</li>
 				{% for link in page.field_theme_link %}
-					{% if loop.index <= page.field_number_of_primary.value %}
+					{% if loop.index < page.field_number_of_primary.value %}
 						{{helper.themeLink(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value)}}
 					{% endif %}
 				{% endfor %}
@@ -70,7 +65,7 @@
 		<div class="row">
 			<ul class="ubn-theme-links secondary list-unstyled">
 				{% for link in page.field_theme_link %}
-					{% if loop.index > page.field_number_of_primary.value %}
+					{% if loop.index >= page.field_number_of_primary.value %}
 							{{helper.themeLink(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value)}}
 					{% endif %}
 				{% endfor %}

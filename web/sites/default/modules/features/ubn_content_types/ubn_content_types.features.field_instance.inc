@@ -2518,11 +2518,7 @@ function ubn_content_types_field_default_field_instances() {
   // Exported field_instance: 'node-navigation_landing-field_number_of_primary'.
   $field_instances['node-navigation_landing-field_number_of_primary'] = array(
     'bundle' => 'navigation_landing',
-    'default_value' => array(
-      0 => array(
-        'value' => 1,
-      ),
-    ),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -2554,7 +2550,7 @@ function ubn_content_types_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_number_of_primary',
     'label' => 'Number of primary themelinks',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'max' => '',
