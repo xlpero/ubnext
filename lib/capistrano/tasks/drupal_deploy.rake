@@ -47,7 +47,7 @@ namespace :drupal do
     on release_roles :app do
       within release_path.join(fetch(:app_path)) do
         execute :drush, 'vset maintenance_mode 1 -y'
-        invoke "drupal:clear_cache"
+        # invoke "drupal:clear_cache"
       end
     end
   end
@@ -57,7 +57,7 @@ namespace :drupal do
     on release_roles :app do
       within release_path.join(fetch(:app_path)) do
         execute :drush, 'vset maintenance_mode 0 -y'
-        invoke "drupal:clear_cache"
+        # invoke "drupal:clear_cache"
       end
     end
   end
@@ -89,7 +89,7 @@ namespace :deploy do
   after :starting, 'drush:install'
   after :starting, 'drupal:backup_database'
   after :publishing, 'drupal:site_offline'
-  after :publishing, 'drupal:clearcache'
+# after :publishing, 'drupal:clearcache'
   after :publishing, 'drupal:updatedb'
   after :publishing, 'drupal:site_online'
 end
