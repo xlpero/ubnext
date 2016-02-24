@@ -14,6 +14,9 @@ function ubn_content_types_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "field_group" && $api == "field_group") {
     return array("version" => "1");
   }
+  if ($module == "linkit" && $api == "linkit_profiles") {
+    return array("version" => "1");
+  }
   if ($module == "picture" && $api == "default_picture_mapping") {
     return array("version" => "2");
   }
@@ -204,6 +207,14 @@ function ubn_content_types_node_info() {
     ),
     'library' => array(
       'name' => t('Library'),
+      'base' => 'node_content',
+      'description' => '',
+      'has_title' => '1',
+      'title_label' => t('Title'),
+      'help' => '',
+    ),
+    'navigation_landing' => array(
+      'name' => t('Navigation Landing'),
       'base' => 'node_content',
       'description' => '',
       'has_title' => '1',

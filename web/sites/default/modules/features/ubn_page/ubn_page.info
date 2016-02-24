@@ -13,6 +13,7 @@ dependencies[] = strongarm
 features[ctools][] = page_manager:pages_default:1
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
+features[page_manager_handlers][] = node_view__navigation-landing
 features[page_manager_handlers][] = node_view__panel_context_2a4b8744-508b-4c0f-bd8f-86a4fa9d91f3
 features[page_manager_handlers][] = node_view__panel_context_75e1767f-61d5-443b-9456-0e86608b78ce
 features[page_manager_handlers][] = node_view__panel_context_86d5c846-6b6c-43f7-8ef9-0cbb4f513fe7

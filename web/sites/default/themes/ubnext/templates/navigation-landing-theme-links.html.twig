@@ -3,67 +3,81 @@
   models[page] = entity:node
 #}
 
-<div class="container">
-	<div class="row ub-panel-separator">
-		<div class="col-xs-12 col-sm-4">
-			<div class="ubn-find-fast">
-				<div class="ubn-find-fast-head">
-					<div class="ubn-find-fast-head-title">
-						Hitta snabbt
-					</div>
-					<div class="ubn-find-fast-indicator">
-						<i class="fa fa-arrow-right pull-right"></i>
-					</div>
+
+
+
+
+{% macro themeLink(linkTitle, url, description) %}
+	<li class="col-xs-12 col-sm-6 col-md-4">
+			<div class="ubn-theme-links-item">
+			<div class="ubn-theme-links-item-head">
+				<div class="ubn-theme-links-item-head-link">
+					<a href="{{url}}">{{linkTitle}}</a>
 				</div>
-				<div class="ubn-find-fast-body">
-					<ul class="list-unstyled">
-						<li><i class="fa fa-chevron-right"></i><a href="#">link 1</a></li>
-						<li><i class="fa fa-chevron-right"></i><a href="#">link 1</a></li>
-					</ul>
+				<div class="ubn-theme-links-item-head-indicator">
+					<i class="fa fa-chevron-right pull-right"></i>
 				</div>
 			</div>
+			<div class="ubn-theme-links-item-body">
+				{{description | raw}}
+			</div>
 		</div>
+	</li>
+{% endmacro %}
+
+{% import _self as helper %}
 
 
-		<ul class="ubn-theme-links primary list-unstyled">
-			<li class="col-xs-12 col-sm-4">
-				<div class="ubn-theme-links-item">
-					<div class="ubn-theme-links-item-head">
-						<div class="ubn-theme-links-item-head-link">
-							<a href="#">Theme 1</a>
-						</div>
-						<div class="ubn-theme-links-item-head-indicator">
-							<i class="fa fa-chevron-right pull-right"></i>
-						</div>
-					</div>
-					<div class="ubn-theme-links-item-body">
-						This is theme link body
-					</div>
-				</div>
-			</li>
-		</ul>
-	</div>
 
-	<div class="row">
-			<ul class="ubn-theme-links secondary list-unstyled">
-				<li class="col-xs-12 col-sm-4">
-					<div class="ubn-theme-links-item">
-						<div class="ubn-theme-links-item-head">
-							<div class="ubn-theme-links-item-head-link">
-								<a href="#">Theme 1</a>
+
+<div class="container">
+		{% if not page.field_theme_link is empty %}
+		<div class="row">
+			<ul class="ubn-theme-links primary list-unstyled">
+				<li>
+					{% if not page.field_shortcut_links is empty %}
+							<div class="col-xs-12 col-sm-6 col-md-4">
+								<div class="ubn-find-fast">
+									<div class="ubn-find-fast-head">
+										<div class="ubn-find-fast-head-title">
+											{{page.field_shortcut_heading.value}}
+										</div>
+										<div class="ubn-find-fast-indicator">
+											<i class="fa fa-arrow-right pull-right"></i>
+										</div>
+									</div>
+									<div class="ubn-find-fast-body">
+										<ul class="list-unstyled">
+											{% for link in page.field_shortcut_links %}
+												<li><i class="fa fa-chevron-right"></i><a href="{{link.field_link.value.url}}">{{link.field_link.value.title}}</a></li>
+											{% endfor %}
+										</ul>
+									</div>
+								</div>
 							</div>
-							<div class="ubn-theme-links-item-head-indicator">
-								<i class="fa fa-chevron-right pull-right"></i>
-							</div>
-						</div>
-						<div class="ubn-theme-links-item-body">
-							This is theme link body
-						</div>
-					</div>
+					{% endif %}
 				</li>
+				{% for link in page.field_theme_link %}
+					{% if loop.index <= page.field_number_of_primary.value %}
+						{{helper.themeLink(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value)}}
+					{% endif %}
+				{% endfor %}
 			</ul>
 		</div>
-	</div>
+
+
+
+		<div class="row">
+			<ul class="ubn-theme-links secondary list-unstyled">
+				{% for link in page.field_theme_link %}
+					{% if loop.index > page.field_number_of_primary.value %}
+							{{helper.themeLink(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value)}}
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+
+		{% endif %}
 </div>
 
 
