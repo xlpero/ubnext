@@ -319,6 +319,18 @@ function ubn_general_update_7121() {
   _ubn_general_import_databases();
 }
 
+function ubn_general_update_7122() {
+  features_revert(array('ubn_content_types' => array('variable')));
+  $query = new EntityFieldQuery();
+  $result = $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'database')
+    ->execute();
+  if($result['node']) {
+    pathauto_node_update_alias_multiple(array_keys($result['node']), 'bulkupdate', array('message' => TRUE));
+  }
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {

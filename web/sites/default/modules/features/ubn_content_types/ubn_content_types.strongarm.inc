@@ -1117,6 +1117,7 @@ function ubn_content_types_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_database_pattern';
   $strongarm->value = 'databases/[node:title_field]';
+  $strongarm->value = 'search/databases/[node:title_field]';
   $export['pathauto_node_database_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -1124,6 +1125,7 @@ function ubn_content_types_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_database_sv_pattern';
   $strongarm->value = 'databaser/[node:title_field]';
+  $strongarm->value = 'sok/databaser/[node:title_field]';
   $export['pathauto_node_database_sv_pattern'] = $strongarm;
 
   $strongarm = new stdClass();

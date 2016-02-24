@@ -165,12 +165,59 @@ function slate_render($slate, $models = array()) {
 
       return;
     }
-
     $models[$model] = $plugin->wrapper($models[$model]);
   }
 
+  //static $total_time = 0;
+  global $language_content;
+  $cache_enabled = variable_get('slate_cache_enabled', FALSE);
   try {
-    $content = slate_twig_instance()->render($slate_info['file'], $models);
+    //$time = microtime(TRUE); 
+    //Cache key hint?
+    if($cache_enabled) {
+      $cache_data = array();
+      foreach($models as $model) {
+        //TODO: change this to something more reliable
+        //TODO: Or add language content only once for small speed gain + small
+        //risk of errant caching?
+        if($model instanceof SlateModelPluginEntityWrapper) {
+          $language = $model->getPropertyLanguage();
+          $cache_data[] = array(
+            $language->language,
+            $model->value(),
+          );
+        }
+        else {
+          $cache_data[] = array(
+            $language_content->language,
+            $model,
+          );
+        }
+      }
+      $cache_data[] = $slate;
+
+      if(variable_get('slate_cache_slate_file_hash', FALSE)) {
+        $cache_data[] = md5_file($slate_info['path'] . DIRECTORY_SEPARATOR . $slate_info['file']);
+      }
+      $cache_key = md5(serialize($cache_data));
+      /*
+      $total_time += microtime(TRUE) - $time;
+      dsm($total_time * 1000);
+      */
+
+      //TODO: our own cache bin?
+      $cache = cache_get($cache_key);
+      if(isset($cache->data)) {
+        $content = $cache->data;
+      }
+    }
+
+    if(!isset($content)) {
+      $content = slate_twig_instance()->render($slate_info['file'], $models);
+      if($cache_enabled) {
+        cache_set($cache_key, $content);
+      }
+    }
 
     if (variable_get('slate_comments_enabled', FALSE)) {
       $content = '<!-- ' . $slate_info['file'] . ' -->' . $content;
