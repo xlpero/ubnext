@@ -1134,12 +1134,20 @@ function _token_menu_link_translate(&$item, $language_code = NULL) {
     $item['access'] = TRUE;
     _menu_item_localize($item, $map, TRUE);
 
-    if(
-      module_exists('i18n_menu') &&
-      _i18n_menu_link_process($item) &&
-      _i18n_menu_link_is_localizable($item)
-    ) {
-      _i18n_menu_link_localize($item, $language_code);
+    if(module_exists('i18n_menu')) {
+      _i18n_menu_link_process($item);
+      // We have to resort to different logic here than in
+      // i18n_menu module.
+      // _i18n_menu_link_process returns FALSE for admin pages
+      // including the node edit form but we want to localize links
+      // also for those pages so ignore return value and instead use
+      // $link['i18n_menu'] set by this function
+      if(
+        !empty($item['i18n_menu']) &&
+        _i18n_menu_link_is_localizable($item)
+      ) {
+        _i18n_menu_link_localize($item, $language_code);
+      }
     }
   }
 
