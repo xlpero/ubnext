@@ -247,30 +247,36 @@ function search_api_et_item_languages($entity, $entity_type, SearchApiIndex $ind
  * Implements hook_entity_update().
  */
 function search_api_et_entity_update($entity, $entity_type) {
-  // Entity original language has been changed.
+
+  if ($entity_type == 'search_api_index' || !entity_get_property_info($entity_type)) {
+    return;
+  }
+
   list($entity_id) = entity_extract_ids($entity_type, $entity);
   if (!empty($entity->language) && !empty($entity->original->language)) {
     $et_entity_type = _search_api_et_get_item_type($entity_type);
 
-    // The Entity has changed its language, remove the old Item from the index!
+    // The entity has changed its language, remove the old item from the index!
+    //TODO: How is this handled through entity translaiton hooks?
     if ($entity->original->language !== $entity->language) {
-      //TODO: PATCH!
       search_api_track_item_delete($et_entity_type, array($entity->original->language . '_' . $entity_id));
     }
 
     // This Entity has changed, thus we're propagating the changes also to the
     // related translations to keep up to date their non-translatable fields.
+    $entity_language = entity_translation_language($entity_type, $entity);
+    $translations = entity_translation_get_handler($entity_type, $entity)->getTranslations();
+
     $item_ids = array();
-    $indexes = _search_api_et_get_indexes(array($entity_type));
-    foreach ($indexes as $index) {
-      $datasource = $index->datasource();
-      if ($datasource instanceof SearchApiEtDatasourceController) {
-        // Keep only unique Item IDs
-        $item_ids = array_merge($item_ids, $datasource->getTrackableItemIds($index, array($entity_id)));
+    foreach(array_keys($translations->data) as $language) {
+      // Skip entity translation language since has already been processed
+      // through entity translation update/insert hooks
+      if($language != $entity_language) {
+        $item_ids[] = $language . '_' . $entity_id;
       }
     }
 
-    // Track the chances to all translations.
+    // Track the changes of translations.
     if(!empty($item_ids)) {
       search_api_track_item_change($et_entity_type, $item_ids);
 
