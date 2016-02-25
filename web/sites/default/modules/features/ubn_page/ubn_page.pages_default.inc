@@ -1029,6 +1029,7 @@ function ubn_page_default_page_manager_handlers() {
           'settings' => array(
             'type' => array(
               'library' => 'library',
+              'navigation_landing' => 'navigation_landing',
             ),
           ),
           'context' => 'node',
