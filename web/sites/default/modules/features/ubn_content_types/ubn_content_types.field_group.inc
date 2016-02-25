@@ -121,6 +121,8 @@ function ubn_content_types_field_group_info() {
     'children' => array(
       0 => 'field_shortcut_links',
       1 => 'field_shortcut_heading',
+      2 => 'field_shortcut_file',
+      3 => 'field_type_of_link_to_use',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

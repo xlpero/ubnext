@@ -410,6 +410,50 @@ function ubn_content_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'field_collection_item-field_shortcut_links-field_file'.
+  $field_instances['field_collection_item-field_shortcut_links-field_file'] = array(
+    'bundle' => 'field_shortcut_links',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'atom_reference',
+        'settings' => array(
+          'link' => 0,
+          'override' => 0,
+        ),
+        'type' => 'title',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_file',
+    'label' => 'File',
+    'required' => 0,
+    'settings' => array(
+      'allow_override' => 0,
+      'entity_translation_sync' => FALSE,
+      'referencable_types' => array(
+        'file' => 'file',
+        'image' => 0,
+        'video' => 0,
+      ),
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'atom_reference',
+      'settings' => array(
+        'context' => 'sdl_editor_representation',
+      ),
+      'type' => 'atom_reference_textfield',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance:
   // 'field_collection_item-field_shortcut_links-field_link'.
   $field_instances['field_collection_item-field_shortcut_links-field_link'] = array(
     'bundle' => 'field_shortcut_links',
@@ -468,6 +512,44 @@ function ubn_content_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'field_collection_item-field_shortcut_links-field_type_to_use'.
+  $field_instances['field_collection_item-field_shortcut_links-field_type_to_use'] = array(
+    'bundle' => 'field_shortcut_links',
+    'default_value' => array(
+      0 => array(
+        'value' => 'link',
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_type_to_use',
+    'label' => 'Type to use',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance:
   // 'field_collection_item-field_theme_link-field_description'.
   $field_instances['field_collection_item-field_theme_link-field_description'] = array(
     'bundle' => 'field_theme_link',
@@ -489,7 +571,12 @@ function ubn_content_types_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'text_processing' => 1,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
     ),
@@ -2663,7 +2750,7 @@ function ubn_content_types_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -4144,6 +4231,7 @@ function ubn_content_types_field_default_field_instances() {
   t('Thumbnail');
   t('Title');
   t('Topics');
+  t('Type to use');
   t('URL');
   t('Url');
   t('Visiting address');

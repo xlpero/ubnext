@@ -1384,6 +1384,14 @@ function ubn_content_types_strongarm() {
       'parseable' => TRUE,
       'formats' => array(),
     ),
+    'page_navigation_landing_shortcut' => array(
+      'name' => 'page_navigation_landing_shortcut',
+      'title' => 'Page navigation landing shortcut',
+      'description' => '',
+      'render_language' => 'XHTML',
+      'parseable' => TRUE,
+      'formats' => array(),
+    ),
   );
   $export['scald_custom_contexts'] = $strongarm;
 

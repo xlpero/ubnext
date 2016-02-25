@@ -135,7 +135,7 @@ function ubn_scald_scald_render($atom, $context, $options = array()) {
   $callback = "_ubn_scald_{$context}_render";
   $atom_type_callback = "_ubn_scald_atom_type_{$atom->type}_render";
   $context_atom_type_callback = "_ubn_scald_{$context}_atom_type_{$atom->type}_render";
-  
+
   //Special case for inline contexts
 
   if(strpos($context, 'page_content_inline_') === 0) {
@@ -206,6 +206,18 @@ function _ubn_scald_page_content_attachments_render($atom, $context, $options) {
     'font_awesome_icon' => _ubn_scald_font_awesome_icon($atom->base_entity->filemime),
   ));
 }
+
+function _ubn_scald_page_navigation_landing_shortcut_render($atom, $context, $options) {
+  return slate_render('scald-file-page-navigation-landing-shortcut', array(
+    'atom' => $atom,
+    'file_url' => file_create_url($atom->base_entity->uri),
+    'file_size' => format_size($atom->base_entity->filesize),
+    'file_mime' => $atom->base_entity->filemime,
+    'file_extension' => _ubn_scald_file_extension($atom->base_entity->filename),
+    'font_awesome_icon' => _ubn_scald_font_awesome_icon($atom->base_entity->filemime),
+  ));
+}
+
 
 function _ubn_scald_atom_type_video_render($atom, $context, $options) {
   //TODO: fix scald transcoder for picture, for now use ordinary image styles
@@ -381,6 +393,16 @@ function ubn_scald_scald_contexts() {
   $contexts['page_content_attachments'] = array(
     'title' => t('Page content attachments'),
     'description' => t('Page content attachments'),
+    'render_language' => 'XHTML',
+    'parseable' => TRUE,
+    'formats' => array(
+      'file' => array('passthrough'),
+      'image' => array('passthrough'),
+    ),
+  );
+  $contexts['page_navigation_landing_shortcut'] = array(
+    'title' => t('Page navigation landing shortcut'),
+    'description' => t('Page navigation landing shortcut'),
     'render_language' => 'XHTML',
     'parseable' => TRUE,
     'formats' => array(

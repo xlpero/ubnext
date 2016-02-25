@@ -6,22 +6,21 @@
   }
 
   .mixin-indicator {
-    font-size: 1.2em;
+    font-size: 1em;
     float: right;
   }
 
   .mixin-head {
     .clearfix();
-    border-bottom: 1px solid @gray-lighter;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    font-size: 1.4em;
+    margin-bottom: 20px;
+    font-size: 1.75em;
+    font-family: NimbusSanNovCon-Med;
   }
 
 
   /* find fast box */
   .ubn-find-fast {
-    padding: 15px;
+    padding: 20px;
     min-height: @boxes-min-height;
     .mixin-primary();
     margin-bottom: 20px;
@@ -44,6 +43,9 @@
           .fa {
             margin-right: 5px;
           }
+          .file-meta-data {
+            white-space: nowrap;
+          }
         }
       }
     }
@@ -60,10 +62,19 @@
     }
     .ubn-theme-links-item {
       min-height: @boxes-min-height;
-      padding: 15px;
+      padding: 20px;
       margin-bottom: 20px;
       .clearfix();
     }
+    &.secondary {
+      .ubn-theme-links-item-head {
+        font-size: 1.5em;
+        .ubn-theme-links-item-head-indicator {
+          display: none;
+        }
+      }
+    }
+
     .ubn-theme-links-item-head {
       .mixin-head();
 
