@@ -878,7 +878,7 @@ function ubn_content_types_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_malfunction_message_active',
     'label' => 'Service disruption',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'ubn_property_field' => 0,
