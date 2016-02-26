@@ -23,9 +23,9 @@
 							<ul class="list-unstyled">
 								{% for link in page.field_shortcut_links %}
 									{% if link.field_type_to_use.value == "link" %}
-										<li><i class="fa fa-chevron-right"></i><a href="{{link.field_link.value.url}}">{{link.field_link.value.title}}</a></li>
+									<li><i class="fa fa-chevron-right"></i><div class="ubn-find-fast-body-link"><a href="{{link.field_link.value.url}}">{{link.field_link.value.title}}</a></div></li>
 									{% elseif link.field_type_to_use.value == "file" %}
-										<li><i class="fa fa-chevron-right"></i>{{misc.file_atom(link.field_file,'page_navigation_landing_shortcut')|raw }}</li>
+										<li><i class="fa fa-chevron-right"></i><div class="ubn-find-fast-body-link">{{misc.file_atom(link.field_file,'page_navigation_landing_shortcut')|raw }}</div></li>
 									{% endif %}
 								{% endfor %}
 							</ul>
