@@ -403,7 +403,7 @@ function ubn_content_types_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_node__library';
   $strongarm->value = array(
-    'default_language' => 'en',
+    'default_language' => 'sv',
     'hide_language_selector' => 1,
     'exclude_language_none' => 1,
     'lock_language' => 0,
@@ -416,7 +416,7 @@ function ubn_content_types_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_node__page';
   $strongarm->value = array(
-    'default_language' => 'en',
+    'default_language' => 'sv',
     'hide_language_selector' => 1,
     'exclude_language_none' => 1,
     'lock_language' => 0,
@@ -456,7 +456,7 @@ function ubn_content_types_strongarm() {
   $strongarm->name = 'entity_translation_settings_scald_atom__video';
   $strongarm->value = array(
     'default_language' => 'xx-et-current',
-    'hide_language_selector' => 0,
+    'hide_language_selector' => 1,
     'exclude_language_none' => 1,
     'lock_language' => 0,
     'shared_fields_original_only' => 0,
@@ -468,7 +468,7 @@ function ubn_content_types_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_taxonomy_term__media_types';
   $strongarm->value = array(
-    'default_language' => 'en',
+    'default_language' => 'sv',
     'hide_language_selector' => 1,
     'exclude_language_none' => 1,
     'lock_language' => 0,
@@ -546,7 +546,7 @@ function ubn_content_types_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_taxonomy_term__topics';
   $strongarm->value = array(
-    'default_language' => 'en',
+    'default_language' => 'sv',
     'hide_language_selector' => 1,
     'exclude_language_none' => 1,
     'lock_language' => 0,
