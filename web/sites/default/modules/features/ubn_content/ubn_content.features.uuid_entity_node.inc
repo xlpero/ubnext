@@ -22,6 +22,7 @@ function ubn_content_uuid_entity_default_node() {
    'translate' => 0,
    'uuid' => 'd869e9b9-2268-4ad0-9fc7-4547e311dac1',
    'revision_uid' => 1,
+   'field_lead' => array(),
    'title_field' => array(
      'en' => array(
        0 => array(
@@ -31,9 +32,8 @@ function ubn_content_uuid_entity_default_node() {
        ),
      ),
    ),
-   'field_lead' => array(),
-   'field_template' => array(),
    'field_content_sections' => array(),
+   'field_template' => array(),
    'field_referenced_app' => array(),
    'path' => array(
      'pathauto' => 1,
