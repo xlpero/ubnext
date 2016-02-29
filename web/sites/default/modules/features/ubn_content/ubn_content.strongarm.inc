@@ -20,7 +20,7 @@ function ubn_content_strongarm() {
       'bundles' => array(
         'page' => 'page',
       ),
-      'rebuild_behavior' => '2',
+      'rebuild_behavior' => '1',
     ),
     'taxonomy_term' => array(
       'enabled' => 0,
@@ -39,25 +39,25 @@ function ubn_content_strongarm() {
     ),
     'menu_position_rule' => array(
       'enabled' => 1,
-      'bundles' => array(),
       'rebuild_behavior' => '2',
+      'bundles' => array(),
     ),
     'file' => array(
       'enabled' => 0,
-      'bundles' => array(),
       'rebuild_behavior' => '0',
+      'bundles' => array(),
     ),
     'user' => array(
       'enabled' => 0,
-      'bundles' => array(),
       'rebuild_behavior' => '0',
+      'bundles' => array(),
     ),
     'menu_link' => array(
       'enabled' => 1,
       'bundles' => array(
         'main-menu' => 'main-menu',
       ),
-      'rebuild_behavior' => '3',
+      'rebuild_behavior' => '2',
     ),
   );
   $export['uuid_entity_features_entities'] = $strongarm;

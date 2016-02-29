@@ -1,7 +1,7 @@
 name = UBN Content
 core = 7.x
 package = UBNext
-version = 7.x-0.1
+version = 7.x-0.2
 dependencies[] = entity
 dependencies[] = entity_menu_links
 dependencies[] = menu_position
