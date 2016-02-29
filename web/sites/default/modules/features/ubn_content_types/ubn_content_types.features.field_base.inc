@@ -223,7 +223,7 @@ function ubn_content_types_field_default_field_bases() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
     ),
-    'translatable' => 1,
+    'translatable' => 0,
     'type' => 'text_long',
   );
 
@@ -448,7 +448,7 @@ function ubn_content_types_field_default_field_bases() {
       'title_value' => '',
       'url' => 0,
     ),
-    'translatable' => 1,
+    'translatable' => 0,
     'type' => 'link_field',
   );
 
@@ -1122,7 +1122,7 @@ function ubn_content_types_field_default_field_bases() {
       'entity_translation_sync' => FALSE,
       'max_length' => 255,
     ),
-    'translatable' => 0,
+    'translatable' => 1,
     'type' => 'text',
   );
 
@@ -1238,7 +1238,7 @@ function ubn_content_types_field_default_field_bases() {
       'hide_blank_items' => 1,
       'path' => '',
     ),
-    'translatable' => 0,
+    'translatable' => 1,
     'type' => 'field_collection',
   );
 

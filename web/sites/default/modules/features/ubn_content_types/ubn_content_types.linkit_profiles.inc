@@ -168,7 +168,7 @@ function ubn_content_types_default_linkit_profiles() {
     ),
     'insert_plugin' => array(
       'plugin' => 'raw_url',
-      'url_method' => '2',
+      'url_method' => '1',
     ),
     'attribute_plugins' => array(
       'accesskey' => array(
