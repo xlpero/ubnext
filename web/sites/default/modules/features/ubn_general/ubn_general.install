@@ -331,6 +331,11 @@ function ubn_general_update_7122() {
   }
 }
 
+/* Set default language to sv for entity translation */
+function ubn_general_update_7123() {
+  features_revert(array('ubn_content_types' => array('variable')));
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {
