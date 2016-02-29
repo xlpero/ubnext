@@ -31,16 +31,20 @@ function menu_position_uuid_uuid_entity_features_export_render_menu_position_rul
 function menu_position_uuid_entity_uuid_load(&$entities, $entity_type) {
   if ($entity_type == 'menu_position_rule') {
     $mlids = array();
-    foreach($entities as $rule) {
+    foreach ($entities as $rule) {
       $mlids[] = $rule->plid;
       $mlids[] = $rule->mlid;
     }
     $menu_links_uuids = entity_get_uuid_by_id('menu_link', $mlids);
-    foreach($entities as $rule) {
-      $rule->plid = $menu_links_uuids[$rule->plid];
-      $rule->mlid = $menu_links_uuids[$rule->mlid];
-      if(!empty($rule->conditions)) {
-        foreach($rule->conditions as $plugin_key => $plugin_settings) {
+    foreach ($entities as $rule) {
+      if (isset($menu_links_uuids[$rule->plid])) {
+        $rule->plid = $menu_links_uuids[$rule->plid];
+      }
+      if (isset($menu_links_uuids[$rule->mlid])) {
+        $rule->mlid = $menu_links_uuids[$rule->mlid];
+      }
+      if (!empty($rule->conditions)) {
+        foreach ($rule->conditions as $plugin_key => $plugin_settings) {
           $callback = menu_position_get_uuid_load_callback($plugin_key);
           if($callback) {
             $rule->conditions[$plugin_key] = $callback($plugin_settings);
