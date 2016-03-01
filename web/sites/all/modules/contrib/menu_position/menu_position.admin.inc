@@ -421,15 +421,17 @@ function menu_position_rule_form_submit($form, &$form_state) {
   );
   // Add the rule to the database.
   if ($form_state['values']['rid'] == '') {
-    menu_position_add_rule($rule);
     drupal_set_message(t('Rule has been added.'));
   }
   // Update an exisiting rule.
   else {
     $rule['rid'] = $form_state['values']['rid'];
-    menu_position_edit_rule($rule);
+    //TODO: this is a mess
+    $existing_rule = entity_load_unchanged('menu_position_rule', $rule['rid']);
+    $rule = $rule + get_object_vars($existing_rule);
     drupal_set_message(t('Rule has been modified.'));
   }
+  menu_position_rule_save((object) $rule);
 
   $form_state['redirect'] = 'admin/structure/menu-position';
 }

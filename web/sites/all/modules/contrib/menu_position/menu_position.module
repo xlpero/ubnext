@@ -36,6 +36,7 @@ function menu_position_menu_position_rule_insert($rule) {
     ->execute();
   $rule->mlid = $mlid;
 }
+
 function menu_position_menu_position_rule_update($rule) {
   if(empty($rule->mlid)) {
     throw new Exception('Missing mlid for rule @rid', array('@rid' => $rule->rid));
@@ -143,7 +144,7 @@ function menu_position_delete_rule($rid) {
   menu_link_delete(NULL, 'menu-position/' . $rid);
 }
 
-//TODO: remove
+//TODO: remove/replace
 /**
  * Retrieves a menu position rule from the database.
  *
@@ -159,7 +160,7 @@ function menu_position_read_rule($rid) {
   return $rule;
 }
 
-//TODO: remove 
+//TODO: remove/replace
 /**
  * Retrieves a menu position rule from the database.
  *
@@ -200,6 +201,10 @@ function menu_position_rule_delete($rid) {
 
 function menu_position_rule_delete_multiple($rids) {
   return entity_delete_multiple('menu_position_rule', $rids);
+}
+
+function menu_position_rule_load(array $rids) {
+  return entity_load('menu_position_rule', $rids);
 }
 
 /**
