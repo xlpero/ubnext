@@ -13,9 +13,9 @@
 			<div class="ubn-theme-links-item-head">
 				<div class="ubn-theme-links-item-head-link">
 					{% if addShortcuts %}
-						<h2 class="list primary"><a href="{{url}}">{{linkTitle}}</a></h2>
+						<h2 class="list primary"><a href="{{ url(url) }}">{{linkTitle}}</a></h2>
 					{% else %}
-						<h2 class="list secondary"><a href="{{url}}">{{linkTitle}}</a></h2>
+						<h2 class="list secondary"><a href="{{ url(url) }}">{{linkTitle}}</a></h2>
 					{% endif %}
 
 				</div>
@@ -69,8 +69,7 @@
 										<ul class="list-unstyled">
 											{% for link in page.field_shortcut_links %}
 												{% if link.field_type_to_use.value == "link" %}
-
-												<li><i class="fa fa-chevron-right"></i><div class="ubn-find-fast-body-link"><a href=" {{url(link.field_link.value.url)}} ">{{link.field_link.value.title}}</a></div></li>
+													<li><i class="fa fa-chevron-right"></i><div class="ubn-find-fast-body-link"><a href=" {{url(link.field_link.value.url)}} ">{{link.field_link.value.title}}</a></div></li>
 												{% elseif link.field_type_to_use.value == "file" %}
 													<li><i class="fa fa-chevron-right"></i><div class="ubn-find-fast-body-link">{{misc.file_atom(link.field_file,'page_navigation_landing_shortcut')|raw }}</div></li>
 												{% endif %}
@@ -80,10 +79,6 @@
 								</div>
 							</div>
 					</li>
-				{% else %}
-					{%
-						set addShortcuts = false
-					%}
 				{% endif %}
 
 				{% for link in page.field_theme_link %}
@@ -100,12 +95,11 @@
 			<ul class="ubn-theme-links secondary list-unstyled clearfix">
 				{% for link in page.field_theme_link %}
 					{% if loop.index > page.field_number_of_primary.value %}
-							{{helper.themeLink(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value, loop.index - page.field_number_of_primary.value + 1, page, addShortcuts)}}
+							{{helper.themeLink(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value, loop.index, page, false)}}
 					{% endif %}
 				{% endfor %}
 			</ul>
 		</div>
-
 		{% endif %}
 </div>
 

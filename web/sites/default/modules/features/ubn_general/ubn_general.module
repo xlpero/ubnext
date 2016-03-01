@@ -134,7 +134,7 @@ function ubn_general_generate_map($entities) {
     $wrapper->language($language_content->language);
     if (!empty($entity->field_location['und'])) {
       $coordinates = $entity->field_location['und'][0]['lat'] . ',' . $entity->field_location['und'][0]['lon'];
-    } 
+    }
 
     if (empty($coordinates)) {
       continue;
@@ -168,7 +168,7 @@ function ubn_general_render_map($coords = array()) {
     drupal_add_js(drupal_get_path('module', 'ubn_general') . '/ubn_general.map.js');
 
     return '<div id="ub-map-canvas"></div>';
-  } 
+  }
 
 }
 
@@ -203,6 +203,16 @@ function ubn_general_field_collection_is_empty_alter(&$is_empty, FieldCollection
     ) {
       $is_empty = TRUE;
     }
+  } else if ($item->field_name === 'field_shortcut_links') {
+      $file_atom = field_get_items('field_collection_item', $item, 'field_file');
+      $link = field_get_items('field_collection_item', $item, 'field_link');
+
+      if(
+        empty($file_atom[0]['sid']) &&
+        empty($link[0]['url']))
+        {
+        $is_empty = TRUE;
+      }
   }
 }
 
