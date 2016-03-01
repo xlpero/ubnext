@@ -9,6 +9,56 @@
  */
 function ubn_content_uuid_entity_default_node() {
   $items = array();
+  $items['84551f72-f8f7-43fc-b4f0-020e0ed5af2a'] = entity_create('node', array(
+    'uid' => 1,
+    'title' => 'Search',
+    'comment' => 1,
+    'promote' => 0,
+    'sticky' => 0,
+    'vuuid' => 'f0e4972d-3091-46e0-b232-4f470446bdbb',
+    'type' => 'navigation_landing',
+    'language' => 'sv',
+    'tnid' => 0,
+    'translate' => 0,
+    'uuid' => '84551f72-f8f7-43fc-b4f0-020e0ed5af2a',
+    'revision_uid' => 1,
+    'title_field' => array(
+      'sv' => array(
+        0 => array(
+          'value' => 'Search',
+          'format' => NULL,
+          'safe_value' => 'Search',
+        ),
+      ),
+    ),
+    'field_lead' => array(),
+    'field_theme_link' => array(),
+    'field_number_of_primary' => array(),
+    'field_shortcut_links' => array(),
+    'field_shortcut_heading' => array(),
+    'translations' => array(
+      'original' => 'sv',
+      'data' => array(
+        'sv' => array(
+          'language' => 'sv',
+          'source' => '',
+          'status' => 1,
+          'translate' => 0,
+        ),
+      ),
+    ),
+    'path' => array(
+      'pathauto' => 1,
+      'pathauto_i18n_status' => 1,
+    ),
+    'cid' => 0,
+    'last_comment_name' => NULL,
+    'last_comment_uid' => 1,
+    'comment_count' => 0,
+    'name' => 'admin',
+    'picture' => 0,
+    'data' => 'b:0;',
+  ));
   $items['d869e9b9-2268-4ad0-9fc7-4547e311dac1'] = entity_create('node', array(
     'uid' => 1,
     'title' => 'Search',
@@ -22,6 +72,7 @@ function ubn_content_uuid_entity_default_node() {
     'translate' => 0,
     'uuid' => 'd869e9b9-2268-4ad0-9fc7-4547e311dac1',
     'revision_uid' => 1,
+    'field_lead' => array(),
     'title_field' => array(
       'en' => array(
         0 => array(
@@ -32,15 +83,14 @@ function ubn_content_uuid_entity_default_node() {
       ),
       'sv' => array(
         0 => array(
-          'value' => 'Sök',
+          'value' => 'Search',
           'format' => NULL,
-          'safe_value' => 'Sök',
+          'safe_value' => 'Search',
         ),
       ),
     ),
-    'field_lead' => array(),
-    'field_template' => array(),
     'field_content_sections' => array(),
+    'field_template' => array(),
     'field_referenced_app' => array(),
     'translations' => array(
       'original' => 'en',
@@ -70,16 +120,6 @@ function ubn_content_uuid_entity_default_node() {
     'name' => 'admin',
     'picture' => 0,
     'data' => 'b:0;',
-    'url_alias' => array(
-      0 => array(
-        'alias' => 'search',
-        'language' => 'en',
-      ),
-      1 => array(
-        'alias' => 'sok',
-        'language' => 'sv',
-      ),
-    ),
   ));
   return $items;
 }

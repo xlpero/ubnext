@@ -19,8 +19,9 @@ function ubn_content_strongarm() {
       'enabled' => 1,
       'bundles' => array(
         'page' => 'page',
+        'navigation_landing' => 'navigation_landing',
       ),
-      'rebuild_behavior' => '1',
+      'rebuild_behavior' => '0',
     ),
     'taxonomy_term' => array(
       'enabled' => 0,
