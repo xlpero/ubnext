@@ -62,6 +62,40 @@ function ubn_news_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_comment_filter_story';
+  $strongarm->value = 0;
+  $export['entity_translation_comment_filter_story'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_hide_translation_links_story';
+  $strongarm->value = 0;
+  $export['entity_translation_hide_translation_links_story'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_node_metadata_story';
+  $strongarm->value = '0';
+  $export['entity_translation_node_metadata_story'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_node__story';
+  $strongarm->value = array(
+    'default_language' => 'sv',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 1,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_node__story'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__story';
   $strongarm->value = array(
     'view_modes' => array(),
@@ -86,7 +120,7 @@ function ubn_news_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_story';
-  $strongarm->value = '0';
+  $strongarm->value = '4';
   $export['language_content_type_story'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -128,6 +162,23 @@ function ubn_news_strongarm() {
   $strongarm->name = 'node_submitted_story';
   $strongarm->value = 1;
   $export['node_submitted_story'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_i18n_default_node_story';
+  $strongarm->value = 1;
+  $export['pathauto_i18n_default_node_story'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_node_story';
+  $strongarm->value = array(
+    'status' => '0',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_node_story'] = $strongarm;
 
   return $export;
 }
