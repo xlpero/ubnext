@@ -336,6 +336,11 @@ function ubn_general_update_7123() {
   features_revert(array('ubn_content_types' => array('variable')));
 }
 
+/* Enable UBN News feature */
+function ubn_general_update_7124() {
+  module_enable(array('ubn_news'));
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {
