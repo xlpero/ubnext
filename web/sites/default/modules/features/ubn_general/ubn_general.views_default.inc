@@ -73,20 +73,6 @@ function ubn_general_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'slate';
   $handler->display->display_options['row_options']['slate'] = 'library-libraries-list-item';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
-  $translatables['library_list'] = array(
-    t('Master'),
-    t('Todays opening hours'),
-    t('more'),
-    t('Apply'),
-    t('Reset'),
-    t('Sort by'),
-    t('Asc'),
-    t('Desc'),
-    t('Front'),
-    t('View panes'),
-    t('Libraries'),
-    t('Our libraries'),
-  );
   $export['library_list'] = $view;
 
   return $export;
