@@ -5,14 +5,14 @@
 
 
 
-{% macro themeLink(linkTitle, url, description, index, page, addShortcuts) %}
+{% macro themeLink(linkTitle, url, description, index, page, addShortcuts, isPrimary) %}
 	{% import "macros/misc.html.twig" as misc %}
 
 	<li class="col-xs-12 col-sm-6 col-md-4">
 			<div class="ubn-theme-links-item">
 			<div class="ubn-theme-links-item-head">
 				<div class="ubn-theme-links-item-head-link">
-					{% if addShortcuts %}
+					{% if isPrimary %}
 						<h2 class="list primary"><a href="{{ url(url) }}">{{linkTitle}}</a></h2>
 					{% else %}
 						<h2 class="list secondary"><a href="{{ url(url) }}">{{linkTitle}}</a></h2>
@@ -81,21 +81,26 @@
 					</li>
 				{% endif %}
 
+				{%
+					set isPrimary = true
+				%}
 				{% for link in page.field_theme_link %}
 					{% if loop.index <= page.field_number_of_primary.value %}
-						{{helper.themeLink(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value, loop.index, page, addShortcuts)}}
+						{{helper.themeLink(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value, loop.index, page, addShortcuts, isPrimary)}}
 					{% endif %}
 				{% endfor %}
 			</ul>
 		</div>
 
 
-
+		{%
+			set isPrimary = false
+		%}
 		<div class="row">
 			<ul class="ubn-theme-links secondary list-unstyled clearfix">
 				{% for link in page.field_theme_link %}
 					{% if loop.index > page.field_number_of_primary.value %}
-							{{helper.themeLink(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value, loop.index, page, false)}}
+							{{helper.themeLink(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value, loop.index, page, isPrimary)}}
 					{% endif %}
 				{% endfor %}
 			</ul>
