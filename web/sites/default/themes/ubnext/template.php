@@ -297,7 +297,7 @@ function ubnext_form_search_api_page_search_form_databases_alter(&$form, &$form_
 function _ubnext_search_form_alter(&$form, &$form_state, $form_id) {
   // Add bootstrap classes
   $suffix = '_' . $form['id']['#value'];
-  $form['keys' . $suffix]['#attributes']['placeholder'] = t("Enter database name or subject");
+  $form['keys' . $suffix]['#attributes']['placeholder'] = t("Search");
   $form['keys' . $suffix]['#attributes']['class'][] = 'form-control';
   $form['keys' . $suffix]['#attributes']['class'][] = 'input-lg';
 

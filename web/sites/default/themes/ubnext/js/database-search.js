@@ -40,8 +40,16 @@ var myModule = (function ($) {
       toggleLoader();
     });
 
-  }
+  };
 
+  function toggleClearFilters(selector, show) {
+    if (show === true) {
+      $(document).find(selector + " .clear-search-btn").fadeIn(200);
+    }
+    else {
+      $(document).find(selector + " .clear-search-btn").fadeOut(200);
+    }
+  };
 
   function getSetting(input, setting, defaultValue) {
     // Earlier versions of jQuery, like the default for Drupal 7, don't properly
@@ -66,6 +74,14 @@ var myModule = (function ($) {
       if ($selector) {
         $selector.find(".form-autocomplete").focus();
 
+        $(document).on("change paste keyup", selector + " .form-autocomplete", function() {
+          if ($(selector + " .form-autocomplete").val().length > 0) {
+            toggleClearFilters(selector, true);
+          }
+          else {
+            toggleClearFilters(selector, false);
+          }
+        });
         $(document).on('keyup', '.auto_submit', function( event ) {
           if (event.keyCode === 13) {
             //alert(event.keyCode);
@@ -79,7 +95,9 @@ var myModule = (function ($) {
           loadHTMLFragment($(this).attr("href"));
           if ($(this).hasClass("clear-search-btn"))
           {
-            $('input.auto_submit').val('');
+            $(selector + " .form-autocomplete").val(''); // does not trigger change..
+            toggleClearFilters(selector, false);
+            $selector.find(".form-autocomplete").focus();
           }
           return false;
         });
