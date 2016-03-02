@@ -39,7 +39,9 @@ function menu_position_menu_position_rule_insert($rule) {
 
 function menu_position_menu_position_rule_update($rule) {
   if(empty($rule->mlid)) {
-    throw new Exception('Missing mlid for rule @rid', array('@rid' => $rule->rid));
+    //TODO: Repair or fail?
+    // throw new Exception(t('Missing mlid and plid for rule @rid', array('@rid' => $rule->rid)));
+    return menu_position_menu_position_rule_insert($rule);
   }
   if(
     $rule->admin_title != $rule->original->admin_title ||
