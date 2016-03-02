@@ -327,6 +327,7 @@ features[variable][] = language_content_type_library
 features[variable][] = language_content_type_navigation_landing
 features[variable][] = language_content_type_opening_hours
 features[variable][] = language_content_type_page
+features[variable][] = locale_field_language_fallback
 features[variable][] = menu_options_database
 features[variable][] = menu_options_library
 features[variable][] = menu_options_navigation_landing

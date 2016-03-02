@@ -571,7 +571,7 @@ function ubn_content_types_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_shared_labels';
-  $strongarm->value = 1;
+  $strongarm->value = 0;
   $export['entity_translation_shared_labels'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -907,6 +907,13 @@ function ubn_content_types_strongarm() {
   $strongarm->name = 'language_content_type_page';
   $strongarm->value = '4';
   $export['language_content_type_page'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'locale_field_language_fallback';
+  $strongarm->value = 0;
+  $export['locale_field_language_fallback'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

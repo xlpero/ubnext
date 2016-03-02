@@ -54,13 +54,13 @@
           {% if  (public_access) %}
             <i class='fa fa-unlock-alt'></i>  {{t("Open Access")}}
           {% else %}
-            <i class='fa fa-lock'></i> {{t("Availible at Gothenburg University")}}
+            <i class='fa fa-lock'></i> {{t("Available at Gothenburg University")}}
           {% endif %}
         </div>
       </div>
       <div class="col-xs-12 col-sm-6 col-sm-pull-6">
         <div class="database-item-direct-link">
-            <a href="{{helper.getPreferedUrl(database.field_database_urls)}}">Directly to {{title}}</a><i class="fa fa-chevron-right"></i>
+            <a href="{{helper.getPreferedUrl(database.field_database_urls)}}">{{t("Directly to")}} {{title}}</a><i class="fa fa-chevron-right"></i>
         </div>
       </div>
 
