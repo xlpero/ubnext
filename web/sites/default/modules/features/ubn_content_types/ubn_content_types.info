@@ -233,7 +233,6 @@ features[taxonomy][] = scald_authors
 features[taxonomy][] = scald_tags
 features[taxonomy][] = special_collection
 features[taxonomy][] = topics
-features[taxonomy][] = wlan
 features[variable][] = comment_anonymous_database
 features[variable][] = comment_anonymous_library
 features[variable][] = comment_anonymous_navigation_landing
