@@ -341,6 +341,23 @@ function ubn_general_update_7124() {
   module_enable(array('ubn_news'));
 }
 
+
+
+// remove body on page
+function ubn_general_update_7125() {
+  field_delete_field('field_special_collections');
+  field_delete_field('field_study_seats_count');
+  field_delete_field('field_group_study_rooms_count');
+  field_delete_field('field_adapted_study_rooms_count');
+  field_delete_field('field_quiet_reading_room');
+  field_delete_field('field_gu_print');
+  field_delete_field('field_wlan');
+  field_delete_field('field_food_heating_facilities');
+  field_delete_field('field_cafe');
+  field_delete_field('field_book_return_box');
+  features_revert_module('ubn_content_types');
+}
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {

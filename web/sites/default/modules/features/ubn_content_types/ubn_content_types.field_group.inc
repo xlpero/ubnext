@@ -82,16 +82,7 @@ function ubn_content_types_field_group_info() {
     'label' => 'Library resources',
     'weight' => '7',
     'children' => array(
-      0 => 'field_adapted_study_rooms_count',
-      1 => 'field_book_return_box',
-      2 => 'field_cafe',
-      3 => 'field_food_heating_facilities',
-      4 => 'field_group_study_rooms_count',
-      5 => 'field_gu_print',
-      6 => 'field_quiet_reading_room',
-      7 => 'field_study_seats_count',
-      8 => 'field_wlan',
-      9 => 'field_special_collections',
+      0 => 'field_library_resources',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

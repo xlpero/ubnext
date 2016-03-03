@@ -410,6 +410,90 @@ function ubn_content_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'field_collection_item-field_library_resources-field_resource_name'.
+  $field_instances['field_collection_item-field_library_resources-field_resource_name'] = array(
+    'bundle' => 'field_library_resources',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_resource_name',
+    'label' => 'Resource name',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'field_collection_item-field_library_resources-field_resource_value'.
+  $field_instances['field_collection_item-field_library_resources-field_resource_value'] = array(
+    'bundle' => 'field_library_resources',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_resource_value',
+    'label' => 'Resource value',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 2,
+    ),
+  );
+
+  // Exported field_instance:
   // 'field_collection_item-field_shortcut_links-field_file'.
   $field_instances['field_collection_item-field_shortcut_links-field_file'] = array(
     'bundle' => 'field_shortcut_links',
@@ -1378,150 +1462,6 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_adapted_study_rooms_count'.
-  $field_instances['node-library-field_adapted_study_rooms_count'] = array(
-    'bundle' => 'library',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 6,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_adapted_study_rooms_count',
-    'label' => 'Adapted study rooms (Lässtudios)',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'max' => '',
-      'min' => '',
-      'prefix' => '',
-      'suffix' => '',
-      'ubn_property_field' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 18,
-    ),
-  );
-
-  // Exported field_instance: 'node-library-field_book_return_box'.
-  $field_instances['node-library-field_book_return_box'] = array(
-    'bundle' => 'library',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 12,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_book_return_box',
-    'label' => 'Book return box (bokinkast)',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'ubn_property_field' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 24,
-    ),
-  );
-
-  // Exported field_instance: 'node-library-field_cafe'.
-  $field_instances['node-library-field_cafe'] = array(
-    'bundle' => 'library',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 11,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_cafe',
-    'label' => 'Cafe',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'ubn_property_field' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 23,
-    ),
-  );
-
   // Exported field_instance: 'node-library-field_content_sections'.
   $field_instances['node-library-field_content_sections'] = array(
     'bundle' => 'library',
@@ -1684,150 +1624,6 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_food_heating_facilities'.
-  $field_instances['node-library-field_food_heating_facilities'] = array(
-    'bundle' => 'library',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 10,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_food_heating_facilities',
-    'label' => 'Possible to heat food',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'ubn_property_field' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 22,
-    ),
-  );
-
-  // Exported field_instance: 'node-library-field_group_study_rooms_count'.
-  $field_instances['node-library-field_group_study_rooms_count'] = array(
-    'bundle' => 'library',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 5,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_group_study_rooms_count',
-    'label' => 'Group study rooms',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'max' => '',
-      'min' => '',
-      'prefix' => '',
-      'suffix' => '',
-      'ubn_property_field' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 17,
-    ),
-  );
-
-  // Exported field_instance: 'node-library-field_gu_print'.
-  $field_instances['node-library-field_gu_print'] = array(
-    'bundle' => 'library',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 7,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_gu_print',
-    'label' => 'GU-print',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'ubn_property_field' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 20,
-    ),
-  );
-
   // Exported field_instance: 'node-library-field_image_atom'.
   $field_instances['node-library-field_image_atom'] = array(
     'bundle' => 'library',
@@ -1928,6 +1724,56 @@ function ubn_content_types_field_default_field_instances() {
       ),
       'type' => 'text_textarea',
       'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'node-library-field_library_resources'.
+  $field_instances['node-library-field_library_resources'] = array(
+    'bundle' => 'library',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'field_collection',
+        'settings' => array(
+          'add' => 'Add',
+          'delete' => 'Delete',
+          'description' => TRUE,
+          'edit' => 'Edit',
+          'view_mode' => 'full',
+        ),
+        'type' => 'field_collection_view',
+        'weight' => 25,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_library_resources',
+    'label' => 'Library resources',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'field_collection',
+      'settings' => array(),
+      'type' => 'field_collection_embed',
+      'weight' => 25,
     ),
   );
 
@@ -2153,51 +1999,6 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_quiet_reading_room'.
-  $field_instances['node-library-field_quiet_reading_room'] = array(
-    'bundle' => 'library',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 8,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_quiet_reading_room',
-    'label' => 'Quiet reading room',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'ubn_property_field' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 19,
-    ),
-  );
-
   // Exported field_instance: 'node-library-field_referenced_opening_hours'.
   $field_instances['node-library-field_referenced_opening_hours'] = array(
     'bundle' => 'library',
@@ -2245,105 +2046,6 @@ function ubn_content_types_field_default_field_instances() {
       ),
       'type' => 'entityreference_autocomplete',
       'weight' => 15,
-    ),
-  );
-
-  // Exported field_instance: 'node-library-field_special_collections'.
-  $field_instances['node-library-field_special_collections'] = array(
-    'bundle' => 'library',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 22,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_special_collections',
-    'label' => 'Special collections',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'ubn_property_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 15,
-    ),
-  );
-
-  // Exported field_instance: 'node-library-field_study_seats_count'.
-  $field_instances['node-library-field_study_seats_count'] = array(
-    'bundle' => 'library',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'number',
-        'settings' => array(
-          'decimal_separator' => '.',
-          'prefix_suffix' => TRUE,
-          'scale' => 0,
-          'thousand_separator' => ' ',
-        ),
-        'type' => 'number_integer',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_study_seats_count',
-    'label' => 'Study seats',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'max' => '',
-      'min' => '',
-      'prefix' => '',
-      'suffix' => '',
-      'ubn_property_field' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'number',
-      'settings' => array(),
-      'type' => 'number',
-      'weight' => 16,
     ),
   );
 
@@ -2456,51 +2158,6 @@ function ubn_content_types_field_default_field_instances() {
       ),
       'type' => 'addressfield_standard',
       'weight' => 8,
-    ),
-  );
-
-  // Exported field_instance: 'node-library-field_wlan'.
-  $field_instances['node-library-field_wlan'] = array(
-    'bundle' => 'library',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'taxonomy',
-        'settings' => array(),
-        'type' => 'taxonomy_term_reference_link',
-        'weight' => 9,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_wlan',
-    'label' => 'WLAN',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'ubn_property_field' => 1,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 21,
     ),
   );
 
@@ -4171,14 +3828,11 @@ function ubn_content_types_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('Adapted study rooms (Lässtudios)');
   t('Add your malfunction message here. If you want it to be active check the active checkbox below.  ');
   t('Alternate titles');
   t('App');
   t('Authors');
   t('Body');
-  t('Book return box (bokinkast)');
-  t('Cafe');
   t('Content');
   t('Database urls');
   t('Delivery address');
@@ -4187,14 +3841,13 @@ function ubn_content_types_field_default_field_instances() {
   t('Enables the Service disruption message (ie makes it visible to users)');
   t('File');
   t('Files');
-  t('GU-print');
-  t('Group study rooms');
   t('Homepage of the Author');
   t('If checked this link will be visible amongst the shortcuts on the database search page. ');
   t('Image');
   t('Is exception');
   t('Is open');
   t('Lead');
+  t('Library resources');
   t('Link');
   t('Link to theme');
   t('Location');
@@ -4210,19 +3863,17 @@ function ubn_content_types_field_default_field_instances() {
   t('Opening hours');
   t('Opening hours date');
   t('Phone');
-  t('Possible to heat food');
   t('Promote to shortcut');
   t('Public access');
   t('Publishers');
-  t('Quiet reading room');
   t('Remote id');
+  t('Resource name');
+  t('Resource value');
   t('Service disruption');
   t('Short description');
   t('Short title');
   t('Shortcut heading');
   t('Shortcut links');
-  t('Special collections');
-  t('Study seats');
   t('Subtopics');
   t('Tags');
   t('Template');
@@ -4235,7 +3886,6 @@ function ubn_content_types_field_default_field_instances() {
   t('URL');
   t('Url');
   t('Visiting address');
-  t('WLAN');
   t('hero image');
 
   return $field_instances;
