@@ -10,6 +10,8 @@
     {% set image_atoms = ubn_content_sections_atoms(story.field_content_sections, 'image', 1) %}
     {% if not image_atoms is empty %}
       {{ misc.media_atom(image_atoms|first, 'blurb') }}
+    {% else %}
+      <img src="{{ file_create_url(path_to_theme() ~ '/' ~ 'css/img/placeholder.png') }}" alt="Image placeholder" title="Image placeholder">
     {% endif %}
   {% endif %}
   </div>
