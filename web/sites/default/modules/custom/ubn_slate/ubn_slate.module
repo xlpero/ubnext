@@ -1,4 +1,24 @@
 <?php
+function _ubn_slate_content_sections_atoms($content_sections, $atom_type = NULL, $limit = NULL) {
+  $atoms = array();
+  foreach($content_sections as $content_section) {
+    foreach($content_section->field_media_atoms as $atom) {
+      if(
+        (
+          !isset($atom_type) ||
+          $atom->getBundle() === $atom_type
+        ) &&
+        (
+          !isset($limit) ||
+          $limit--
+        )
+      ) {
+        $atoms[] = $atom;
+      }
+    }
+  }
+  return $atoms;
+}
 
 function _ubn_slate_opening_hours_items($opening_hours_values, $weekdays = NULL, $limit = NULL) {
   //TODO: static lookup table for weekdays?
@@ -75,13 +95,20 @@ function _ubn_slate_number_format($number, $decimals = 2) {
   return rtrim(rtrim(number_format($number, $decimals, ',', ' '), '0'), ',');
 }
 
-
 /**
  * Implements hook_slate_twig_alter().
  *
  * @param $twig
  */
 function ubn_slate_slate_twig_alter(&$twig) {
+  $twig->addExtension(new Twig_Extensions_Extension_Text());
+
+  $function = new Twig_SimpleFunction(
+    'ubn_content_sections_atoms',
+    '_ubn_slate_content_sections_atoms'
+  );
+  $twig->addFunction($function);
+
   $function = new Twig_SimpleFunction(
     'ubn_opening_hours_items',
     '_ubn_slate_opening_hours_items'
