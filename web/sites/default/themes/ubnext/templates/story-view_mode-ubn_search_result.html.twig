@@ -3,4 +3,9 @@
   models[story] = entity:node
   view_mode[node][story] = ubn_search_result
 #}
-Story search result
+{% import "macros/dates.html.twig" as dates %}
+{% import "macros/misc.html.twig" as misc %}
+<li class="archive-story-teaser">
+  <div class="archive-story-teaser-publication-date">{{ dates.date_default(story.created) }}</div>
+  <h2 class="archive-story-teaser-header">{{ misc.link(story.title_field.value, story.url) }}</h2>
+</li>

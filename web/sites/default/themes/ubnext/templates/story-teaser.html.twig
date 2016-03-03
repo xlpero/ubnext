@@ -3,4 +3,8 @@
   models[story] = entity:node
 #}
 {% import "macros/dates.html.twig" as dates %}
-Story teaser
+{% import "macros/misc.html.twig" as misc %}
+<div class="story-teaser">
+  <div class="story-teaser-publication-date">{{ dates.date_default(story.created) }}</div>
+  <h2 class="story-teaser-header">{{ misc.link(story.title_field.value, story.url) }}</h2>
+</div>

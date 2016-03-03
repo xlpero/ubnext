@@ -41,8 +41,8 @@
   <?php endif; ?>
   <?php print render($spellcheck); ?>
   <?php if ($result_count): ?>
-    <ol class="search-results">
-      <?php print render($search_results); ?>
+    <ol class="search-results list-unstyled">
+      <li><?php print render($search_results); ?></li>
     </ol>
     <?php if(isset($show_all_link)): ?>
       <?php print $show_all_link; ?>
