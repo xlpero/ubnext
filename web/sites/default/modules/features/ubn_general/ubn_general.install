@@ -362,7 +362,14 @@ function ubn_general_update_7126() {
 }
 
 function ubn_general_update_7127() {
-  taxonomy_vocabulary_delete("WLAN");
+  $tax = taxonomy_vocabulary_machine_name_load("WLAN");
+  taxonomy_vocabulary_delete($tax->vid);
+  features_revert_module('ubn_content_types');
+}
+
+function ubn_general_update_7128() {
+  $tax = taxonomy_vocabulary_machine_name_load("WLAN");
+  taxonomy_vocabulary_delete($tax->vid);
   features_revert_module('ubn_content_types');
 }
 
