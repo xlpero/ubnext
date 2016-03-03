@@ -102,6 +102,14 @@ function slate_twig_instance() {
 
   Twig_Autoloader::register();
 
+  //TODO: Composer autoloader?
+  $extensions_path = libraries_get_path('twig-extensions');
+
+  if ($extensions_path) {
+    require_once $extensions_path . '/lib/Twig/Extensions/Autoloader.php';
+    Twig_Extensions_Autoloader::register();
+  }
+
   $loaders = module_invoke_all('slate_twig_loaders');
 
   drupal_alter('slate_twig_loaders', $loaders);
@@ -124,6 +132,13 @@ function slate_twig_instance() {
   drupal_alter('slate_twig_environment', $environment);
 
   $twig = new Twig_Environment($loader, $environment);
+
+  if(module_exists('date')) {
+    // User configurable timezones will not play well
+    // with cache, so set timezone globally
+    // TODO: option for this?
+    $twig->getExtension('core')->setTimezone(date_default_timezone(FALSE));
+  }
 
   drupal_alter('slate_twig', $twig);
 
