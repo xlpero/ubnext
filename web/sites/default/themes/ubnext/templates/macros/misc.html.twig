@@ -65,5 +65,5 @@
 
 {% macro link(text, url, class) %}
   {% set url = url(url, { 'absolute' : true }) %}
-  <a class="{{ class }}" href="{{ url }}">{{ text }}</a>
+  <a{%if not class is empty %} class="{{ class }}"{% endif %} href="{{ url }}">{{ text }}</a>
 {% endmacro %}

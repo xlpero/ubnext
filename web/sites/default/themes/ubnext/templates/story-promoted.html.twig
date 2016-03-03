@@ -3,4 +3,17 @@
   models[story] = entity:node
 #}
 {% import "macros/dates.html.twig" as dates %}
-Story promoted
+{% import "macros/misc.html.twig" as misc %}
+<div class="story-promoted">
+  <div class="story-promoted-image">
+  {% if (not story.field_content_sections is empty) %}
+    {% set image_atoms = ubn_content_sections_atoms(story.field_content_sections, 'image', 1) %}
+    {% if not image_atoms is empty %}
+      {{ misc.media_atom(image_atoms|first, 'blurb') }}
+    {% endif %}
+  {% endif %}
+  </div>
+  <div class="story-promoted-publication-date">{{ dates.default(story.created) }}</div>
+  <h2 class="story-promoted-header">{{ misc.link(story.title_field.value, story.url) }}</h2>
+  <div class="story-promoted-excerpt">{{ truncate_utf8(story.field_lead.value, 125, TRUE, TRUE) }}</div>
+</div>
