@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row ub-panel-separator">
-    <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2"">
+    <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <?php print render($content['header']) ?>
     </div>
   </div>
