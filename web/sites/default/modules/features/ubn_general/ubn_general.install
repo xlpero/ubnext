@@ -357,14 +357,18 @@ function ubn_general_update_7125() {
 }
 
 function ubn_general_update_7126() {
+  /*
   taxonomy_vocabulary_delete("WLAN");
   features_revert_module('ubn_content_types');
+  */
 }
 
 function ubn_general_update_7127() {
+  /*
   $tax = taxonomy_vocabulary_machine_name_load("WLAN");
   taxonomy_vocabulary_delete($tax->vid);
   features_revert_module('ubn_content_types');
+  */
 }
 
 function ubn_general_update_7128() {
@@ -372,9 +376,6 @@ function ubn_general_update_7128() {
   taxonomy_vocabulary_delete($tax->vid);
   features_revert_module('ubn_content_types');
 }
-
-
-
 
 // Enable entity translation for library
 /*
