@@ -37,7 +37,10 @@ function ubn_i18n_ubn_i18n_panes() {
         'settings form' => 'ubn_i18n_slate_render_error_404_settings_form',
       ),
       'slate_render:database-header' => array(
-        'settings form' => 'ubn_i18n_slate_render_database_header',
+        'settings form' => 'ubn_i18n_slate_render_database_header_settings_form',
+      ),
+      'slate_render:static-page-head' => array(
+        'settings form' => 'ubn_i18n_slate_render_static_page_head_settings_form',
       ),
     ),
   );
@@ -53,22 +56,35 @@ function ubn_i18n_library_list_libraries_settings_form($form_state, $conf) {
   );
 }
 
+function ubn_i18n_slate_render_static_page_head_settings_form($form_state, $conf) {
+  return array(
+   'title' => array(
+      '#title' => t('Title'),
+      '#type' => 'textfield',
+      '#default_value' => isset($conf['title']) ? $conf['title'] : 'Page title',
+    ),
+    'ingress' => array(
+      '#title' => t('Lead'),
+      '#type' => 'textarea',
+      '#default_value' => isset($conf['ingress']) ? $conf['ingress'] : NULL,
+    ),
+  );
+}
 
-function ubn_i18n_slate_render_database_header($form_state, $conf) {
+function ubn_i18n_slate_render_database_header_settings_form($form_state, $conf) {
   return array(
    'title' => array(
       '#title' => t('Title'),
       '#type' => 'textfield',
       '#default_value' => isset($conf['title']) ? $conf['title'] : 'Databases',
     ),
-    'ingress' => array(
-      '#title' => t('Ingress'),
+    'lead' => array(
+      '#title' => t('Lead'),
       '#type' => 'textarea',
-      '#default_value' => isset($conf['ingress']) ? $conf['ingress'] : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+      '#default_value' => isset($conf['lead']) ? $conf['lead'] : NULL,
     ),
   );
 }
-
 
 function ubn_i18n_slate_render_error_404_settings_form($form_state, $conf) {
   return array(

@@ -62,6 +62,8 @@ function ubn_news_views_default_views() {
 
   /* Display: Latest stories promoted */
   $handler = $view->new_display('panel_pane', 'Latest stories promoted', 'latest_stories_promoted');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'News';
   $handler->display->display_options['pane_title'] = 'Promoted stories';
 
   /* Display: Latest stories */

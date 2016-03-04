@@ -53,6 +53,9 @@ function ubn_news_default_page_manager_handlers() {
       'default' => NULL,
       'main' => NULL,
     ),
+    'main' => array(
+      'style' => 'naked',
+    ),
   );
   $display->cache = array();
   $display->title = '';
@@ -167,12 +170,43 @@ function ubn_news_default_page_manager_handlers() {
       'default' => NULL,
       'main' => NULL,
     ),
+    'main' => array(
+      'style' => 'naked',
+    ),
   );
   $display->cache = array();
   $display->title = '';
   $display->uuid = 'a0e72b8b-9862-40cf-a574-a424253ccee2';
   $display->content = array();
   $display->panels = array();
+    $pane = new stdClass();
+    $pane->pid = 'new-c0f20a47-6dd9-46bd-8e43-ddd1bb706562';
+    $pane->panel = 'main';
+    $pane->type = 'slate_render';
+    $pane->subtype = 'slate_render:static-page-head';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+      'ubn_i18n' => array(
+        'title' => 'News',
+        'ingress' => '',
+      ),
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+      'style' => 'naked',
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'c0f20a47-6dd9-46bd-8e43-ddd1bb706562';
+    $display->content['new-c0f20a47-6dd9-46bd-8e43-ddd1bb706562'] = $pane;
+    $display->panels['main'][0] = 'new-c0f20a47-6dd9-46bd-8e43-ddd1bb706562';
     $pane = new stdClass();
     $pane->pid = 'new-a268191e-56c3-461c-af42-7546fd63626b';
     $pane->panel = 'main';
@@ -188,11 +222,11 @@ function ubn_news_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = 'a268191e-56c3-461c-af42-7546fd63626b';
     $display->content['new-a268191e-56c3-461c-af42-7546fd63626b'] = $pane;
-    $display->panels['main'][0] = 'new-a268191e-56c3-461c-af42-7546fd63626b';
+    $display->panels['main'][1] = 'new-a268191e-56c3-461c-af42-7546fd63626b';
     $pane = new stdClass();
     $pane->pid = 'new-122b7a81-0da1-4a89-9f24-10646fa7c723';
     $pane->panel = 'main';
@@ -218,11 +252,11 @@ function ubn_news_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '122b7a81-0da1-4a89-9f24-10646fa7c723';
     $display->content['new-122b7a81-0da1-4a89-9f24-10646fa7c723'] = $pane;
-    $display->panels['main'][1] = 'new-122b7a81-0da1-4a89-9f24-10646fa7c723';
+    $display->panels['main'][2] = 'new-122b7a81-0da1-4a89-9f24-10646fa7c723';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
