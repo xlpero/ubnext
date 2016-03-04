@@ -1434,6 +1434,14 @@ function ubn_content_types_strongarm() {
       'parseable' => TRUE,
       'formats' => array(),
     ),
+    'blurb' => array(
+      'name' => 'blurb',
+      'title' => 'Blurb',
+      'description' => '',
+      'render_language' => 'XHTML',
+      'parseable' => TRUE,
+      'formats' => array(),
+    ),
   );
   $export['scald_custom_contexts'] = $strongarm;
 
