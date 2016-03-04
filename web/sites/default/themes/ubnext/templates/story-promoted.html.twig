@@ -11,7 +11,7 @@
     {% if not image_atoms is empty %}
       {{ misc.media_atom(image_atoms|first, 'blurb') }}
     {% else %}
-      <img src="{{ file_create_url(path_to_theme() ~ '/' ~ 'css/img/placeholder.png') }}" alt="Image placeholder" title="Image placeholder">
+      <img src="{{ image_style_url('blurb_small', path_to_theme() ~ '/' ~ 'css/img/story_placeholder.png') }}" alt="Image placeholder" title="Image placeholder">
     {% endif %}
   {% endif %}
   </div>
