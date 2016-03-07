@@ -37,10 +37,10 @@
 // (same as database search) or use placeholders
 
 ?>
-<div class="row">
+<section class="row">
   <?php if ($result_count): ?>
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-      <h2><?php print t('More stories'); ?></h2>
+      <h1 class="small"><?php print t('More stories'); ?></h1>
       <ol class="archive-stories list-unstyled">
         <?php print render($search_results); ?>
       </ol>
@@ -51,4 +51,4 @@
   <?php else : ?>
     <div class="no-result"><?php print t('No stories where found. Change your search and try again.');?></div>
   <?php endif; ?>
-</div>
+</section>

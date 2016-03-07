@@ -36,12 +36,12 @@ function ubn_news_image_default_styles() {
   $styles['blurb_small'] = array(
     'label' => 'Blurb small',
     'effects' => array(
-      3 => array(
+      1 => array(
         'name' => 'manualcrop_crop_and_scale',
         'data' => array(
           'width' => 320,
           'height' => 200,
-          'upscale' => 0,
+          'upscale' => 1,
           'respectminimum' => 1,
           'onlyscaleifcrop' => 0,
           'style_name' => 'blurb_small',

@@ -5,6 +5,6 @@
 {% import "macros/dates.html.twig" as dates %}
 {% import "macros/misc.html.twig" as misc %}
 <div class="story-teaser">
-  <div class="story-teaser-publication-date">{{ dates.date_default(story.created) }}</div>
-  <h2 class="story-teaser-header">{{ misc.link(story.title_field.value, story.url) }}</h2>
+  <div class="story-teaser-publication-date date">{{ dates.date_default(story.created) }}</div>
+  <h2 class="story-teaser-header small">{{ misc.link(story.title_field.value, story.url) }}</h2>
 </div>

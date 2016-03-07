@@ -1,10 +1,44 @@
 .main-cms {
+  .story-teaser {
+    .story-teaser-publication-date {
+      margin-right: 10px;
+      width: 130px;
+      display: inline-block;
+      .date();
+    }
+    .story-teaser-header {
+      display: inline-block;
+    }
+  }
   .archive-stories {
     ol {
       margin-left: 0;
     }
+    .archive-story-teaser {
+
+      .archive-story-teaser-publication-date {
+        margin-right: 10px;
+        width: 130px;
+        display: inline-block;
+        .date();
+      }
+      .archive-story-teaser-header {
+        display: inline-block;
+      }
+    }
   }
-  .story-promoted-image img {
-    .img-responsive();
+  .story-promoted {
+    margin-bottom: 20px;
+    .story-promoted-publication-date {
+      .date();
+    }
+    .story-promoted-image img {
+      .img-responsive();
+      margin-bottom: 10px;
+    }
+    .story-promoted-header {
+
+    }
   }
+
 }
