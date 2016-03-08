@@ -125,3 +125,24 @@ function ubn_news_default_search_api_page() {
   }');
   return $items;
 }
+
+/**
+ * Implements hook_default_search_api_sort().
+ */
+function ubn_news_default_search_api_sort() {
+  $items = array();
+  $items['stories__created'] = entity_import('search_api_sort', '{
+    "index_id" : "stories",
+    "field" : "created",
+    "name" : "Date created",
+    "enabled" : "1",
+    "weight" : "-100",
+    "identifier" : "stories__created",
+    "default_sort" : "1",
+    "default_sort_no_terms" : "1",
+    "default_order" : "desc",
+    "options" : { "field_name" : "Date created" },
+    "rdf_mapping" : []
+  }');
+  return $items;
+}
