@@ -11,6 +11,12 @@ class UBNFacetapiWidgetCheckbox extends FacetapiWidget {
    * rendered in blocks with are separate from one another.
    */
   public function __construct($id, array $realm, FacetapiFacet $facet, stdClass $settings) {
+    $config_name = _ubn_facetapi_i18n_string_name($settings->name);
+    $settings->settings['checkbox_label'] =
+      i18n_string(
+        'facetapi:facet_setting:' . $config_name . ':checkbox_label',
+        $settings->settings['checkbox_label']
+      );
     parent::__construct($id, $realm, $facet, $settings);
     $this->key = $facet['name'];
   }
