@@ -45,7 +45,7 @@
         <?php print render($search_results); ?>
       </ol>
       <?php if(isset($pager)): ?>
-        <?php print $pager; ?>
+        <?php print render($pager); ?>
       <?php endif; ?>
     </div>
   <?php else : ?>

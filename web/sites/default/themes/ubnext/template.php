@@ -16,6 +16,7 @@ function ubnext_links__locale_block($variables) {
 
 
 
+
 function ubnext_preprocess_panels_pane(&$vars) {
   if ($vars['pane']->uuid == "3054dda2-3a4b-428b-b253-726c16c2f284") {
       drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-node.js");

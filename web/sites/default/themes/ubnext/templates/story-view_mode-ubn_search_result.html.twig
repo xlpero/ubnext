@@ -7,5 +7,5 @@
 {% import "macros/misc.html.twig" as misc %}
 <li class="archive-story-teaser">
   <div class="archive-story-teaser-publication-date">{{ dates.date_default(story.created) }}</div>
-  <h2 class="list secondary archive-story-teaser-header">{{ misc.link(story.title_field.value, story.url) }}</h2>
+  <div class="archive-story-teaser-header"><h2 class="small">{{ misc.link(story.title_field.value, story.url) }}</h2></div>
 </li>
