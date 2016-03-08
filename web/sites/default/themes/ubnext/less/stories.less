@@ -1,13 +1,21 @@
 .main-cms {
   .story-teaser {
+    margin-bottom: 20px;
     .story-teaser-publication-date {
-      margin-right: 10px;
-      width: 130px;
-      display: inline-block;
+      @media (min-width: @screen-sm-min) {
+        position: absolute;
+        margin-right: 10px;
+        width: 130px;
+        display: inline-block;
+      }
+
       .date();
     }
     .story-teaser-header {
-      display: inline-block;
+      display: block;
+      @media (min-width: @screen-sm-min) {
+        margin-left: 140px;
+      }
     }
   }
   .archive-stories {

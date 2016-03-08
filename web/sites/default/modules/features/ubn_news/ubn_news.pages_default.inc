@@ -213,7 +213,24 @@ function ubn_news_default_page_manager_handlers() {
     $pane->type = 'views_panes';
     $pane->subtype = 'stories-latest_stories_promoted';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'php',
+          'settings' => array(
+            'description' => 'Hide if page exist as query param',
+            'php' => '$test = isset($_GET[\'page\']) ? $_GET[\'page\'] : \'\';
+
+if(isset($_GET[\'page\'])) {
+    return true;
+} else {
+    return false;
+}',
+          ),
+          'not' => TRUE,
+        ),
+      ),
+    );
     $pane->configuration = array();
     $pane->cache = array();
     $pane->style = array(
