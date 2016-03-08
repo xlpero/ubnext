@@ -192,7 +192,7 @@ function ubn_news_default_page_manager_handlers() {
       'override_title_heading' => 'h2',
       'ubn_i18n' => array(
         'title' => 'News',
-        'ingress' => '',
+        'ingress' => 'This is lead',
       ),
     );
     $pane->cache = array();
