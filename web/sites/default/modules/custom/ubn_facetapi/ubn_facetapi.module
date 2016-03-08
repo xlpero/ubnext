@@ -25,6 +25,24 @@ function ubn_facetapi_facetapi_widgets() {
   );
 }
 
+function ubn_facetapi_facetapi_facet_info_alter(array &$facet_info, array $searcher_info) {
+  $enabled_facets = facetapi_get_enabled_facets($searcher_info['name']);
+  foreach(array_keys($enabled_facets) as $facet_name) {
+    i18n_string_update('facetapi:facet:' . $facet_name . ':label', $facet_info[$facet_name]['label']);
+  }
+}
+
+function ubn_facetapi_facetapi_enabled_facets_alter(array &$facets, $searcher, $realm_name) {
+  static $cache;
+  foreach($facets as &$facet) {
+    $string_name = 'facetapi:facet:' . $facet['name'] . ':label';
+    if(!isset($cache[$string_name])) {
+      $cache[$string_name] = i18n_string('facetapi:facet:' . $facet['name'] . ':label', $facet['label']);
+    }
+    $facet['label'] = $cache[$string_name];
+  }
+}
+
 function ubn_facetapi_theme_registry_alter(&$theme_registry) {
   $theme_registry['facetapi_link_inactive']['variables'] += array(
     'operator' => NULL,
