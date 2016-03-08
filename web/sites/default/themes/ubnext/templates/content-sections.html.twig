@@ -5,7 +5,7 @@
 {% import "macros/misc.html.twig" as misc %}
 
 {% if not page.field_content_sections is empty %}
-<section class="content-sections">
+<section class="content-sections container">
 	<div class="row ub-panel-separator">
 		<div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
 	  		{{ misc.content_sections(page.field_content_sections) }}

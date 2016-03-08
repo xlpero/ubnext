@@ -40,7 +40,10 @@
 <section class="row">
   <?php if ($result_count): ?>
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-      <h1 class="small"><?php print t('More stories'); ?></h1>
+      <?php if (!isset($_GET['page'])): ?>
+        <h1 class="small"><?php print t('More stories'); ?></h1>
+      <?php endif; ?>
+
       <ol class="archive-stories list-unstyled">
         <?php print render($search_results); ?>
       </ol>
