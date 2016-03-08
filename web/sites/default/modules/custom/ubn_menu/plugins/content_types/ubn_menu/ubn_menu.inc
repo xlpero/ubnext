@@ -120,6 +120,7 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       //we do not whant menu_get_active_breadcrumb() called
       //if no breadcrumb is set. We have already handled that
       //case below.
+      $breadcrumb_max_length = variable_get('ubn_menu_breadcrumb_max_length', 32);
 
       $trail = drupal_set_breadcrumb();
       if(empty($trail)) {
@@ -127,6 +128,11 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
           $links = _ubn_menu_menu_tree_links($level);
           foreach($links as $link) {
             if($link['in_active_trail']) {
+              // There is a slight inconsistency
+              // that we cannot easliy truncate
+              // breakcrumb titles set by drupal_set_breadcrumb()
+              // (since already rendered) but we can live with that
+              $link['title'] = truncate_utf8($link['title'], $breadcrumb_max_length, TRUE, TRUE);
               $trail[] = $link;
               break;
             }
