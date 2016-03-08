@@ -25,6 +25,48 @@ function ubn_facetapi_facetapi_widgets() {
   );
 }
 
+/**
+ * Implements hook_facetapi_i18n_translatable_settings().
+ */
+/*
+function ubn_facetapi_facetapi_i18n_translatable_settings() {
+}
+*/
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function ubn_facetapi_form_facetapi_facet_display_form_alter(&$form, &$form_state) {
+  $form['#submit'][] = 'ubn_facetapi_facetapi_facet_display_form_submit';
+}
+
+/**
+ * Form submission handler for facetapi_facet_display_form_submit().
+ *
+ * @see facetapi_facet_display_form()
+ */
+function ubn_facetapi_facetapi_facet_display_form_submit($form, &$form_state) {
+  // Pulls variables for code readability.
+  $facet = $form['#facetapi']['facet'];
+  $realm = $form['#facetapi']['realm'];
+
+  //Quickfix, surprised facetapi i18n does not handle this
+  //TODO: general fix
+  $checkbox_label = $form_state['values']['checkbox_label'];
+
+  // Formats the name of the configuration for use with the i18n module.
+  $name = $form['#facetapi']['adapter']->getFacetSettings($facet, $realm)->name;
+
+  $config_name = _ubn_facetapi_i18n_string_name($name);
+
+  // Updates / creates translation source for the user defined string.
+  i18n_string_update('facetapi:facet_setting:' . $config_name . ':checkbox_label', $checkbox_label);
+}
+
+function _ubn_facetapi_i18n_string_name($name) {
+ return preg_replace('@[^a-zA-Z0-9]@', '_', $name);
+}
+
 function ubn_facetapi_facetapi_facet_info_alter(array &$facet_info, array $searcher_info) {
   $enabled_facets = facetapi_get_enabled_facets($searcher_info['name']);
   foreach(array_keys($enabled_facets) as $facet_name) {
