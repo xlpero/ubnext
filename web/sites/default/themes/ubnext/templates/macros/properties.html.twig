@@ -6,11 +6,11 @@
       <div class="center"><h2>{{ title }}</h2></div>
     <ul class="list-unstyled ub-list-of-links">
     {% for property in ubn_property_fields %}
-      {% if not property.value.value is null %}
+      {% if not property.value is null %}
         <li>
-          <div class="row">
-            <div class="col-xs-8">{{ property.label.value }}</div>
-            <div class="col-xs-4 center"><strong>{{ _self.property_value(property.value.value, property.type.value, property.language.value) }}</strong></div>
+          <div class="row vertical-align">
+            <div class="col-xs-6">{{ property.field_resource_name.value }}</div>
+            <div class="col-xs-6 center"><strong>{{ property.field_resource_value.value | raw}}</strong></div>
           </div>
         </li>
       {% endif %}
