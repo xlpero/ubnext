@@ -22,7 +22,7 @@
     {%
       set pathToPlaceholder = base_path() ~ drupal_get_path('theme', variable_get('theme_default', NULL)) ~ '/css/img/news-item-placeholder.png'
     %}
-    <img src="{{pathToPlaceholder}}" alt="Image placeholder" title="Image placeholder">
+    <img src="{{pathToPlaceholder}}" alt="{{t("No image has been added to this article")}}" title="{{t("No image has been added to this article")}}">
   {% endif %}
 
 
