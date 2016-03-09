@@ -9,8 +9,8 @@
       {% if not property.value is null %}
         <li>
           <div class="row vertical-align">
-            <div class="col-xs-6">{{ property.field_resource_name.value }}</div>
-            <div class="col-xs-6 center"><strong>{{ property.field_resource_value.value | raw}}</strong></div>
+            <div class="col-xs-6 col-md-8">{{ property.field_resource_name.value }}</div>
+            <div class="col-xs-6 col-md-4 center"><strong>{{ property.field_resource_value.value | raw}}</strong></div>
           </div>
         </li>
       {% endif %}
