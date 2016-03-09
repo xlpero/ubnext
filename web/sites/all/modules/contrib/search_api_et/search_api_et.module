@@ -292,9 +292,12 @@ function search_api_et_entity_update($entity, $entity_type) {
 function search_api_et_entity_translation_insert($entity_type, $entity, $translation, $values = array()) {
   list($entity_id) = entity_extract_ids($entity_type, $entity);
   $item_id = $translation['language'] . '_' . $entity_id;
-  // First try to remove existing entries to avoid possible PDO Exception.
-  // See issue https://www.drupal.org/node/2284405
-  search_api_track_item_delete('search_api_et_' . $entity_type, array($item_id));
+
+  // Entity may have been loaded previously and cached value will in that case
+  // be stale, make sure that subsequent loads will produce a fresh entity
+  // containing the inserted translation
+  entity_get_controller($entity_type)->resetCache(array($entity_id));
+
   search_api_track_item_insert('search_api_et_' . $entity_type, array($item_id));
   // Optionally run re-queueing for "completed entity languages" indexes.
   drupal_register_shutdown_function('search_api_et_shutdown_requeue_indexes', $entity_type);
