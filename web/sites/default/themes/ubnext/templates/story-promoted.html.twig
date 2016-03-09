@@ -5,7 +5,7 @@
 {% import "macros/dates.html.twig" as dates %}
 {% import "macros/misc.html.twig" as misc %}
 
-<section class="story-promoted col-sm-4">
+<section class="story-promoted col-sm-6 col-md-4">
   <div class="story-promoted-image">
   {% if (not story.field_content_sections is empty) %}
     {% set image_atoms = ubn_content_sections_atoms(story.field_content_sections, 'image', 1) %}

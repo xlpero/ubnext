@@ -19,6 +19,16 @@ function ubn_general_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'access stories search_api_page'.
+  $permissions['access stories search_api_page'] = array(
+    'name' => 'access stories search_api_page',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+    ),
+    'module' => 'search_api_page',
+  );
+
   // Exported permission: 'use text format markdown'.
   $permissions['use text format markdown'] = array(
     'name' => 'use text format markdown',
