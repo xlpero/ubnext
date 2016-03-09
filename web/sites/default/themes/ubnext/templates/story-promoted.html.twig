@@ -19,7 +19,10 @@
   {% if atom %}
     {{ misc.media_atom(atom, 'blurb') }}
   {% else %}
-    <img src="{{ image_style_url('blurb_small', 'public://unmanaged_files/news-item-placeholder.png') }}" alt="Image placeholder" title="Image placeholder">
+    {%
+      set pathToPlaceholder = base_path() ~ drupal_get_path('theme', variable_get('theme_default', NULL)) ~ '/css/img/news-item-placeholder.png'
+    %}
+    <img src="{{pathToPlaceholder}}" alt="Image placeholder" title="Image placeholder">
   {% endif %}
 
 
