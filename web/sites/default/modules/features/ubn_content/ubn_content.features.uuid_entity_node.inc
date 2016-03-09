@@ -32,9 +32,23 @@ function ubn_content_uuid_entity_default_node() {
       ),
     ),
     'field_lead' => array(),
-    'field_theme_link' => array(),
+    'field_theme_link' => array(
+      'sv' => array(
+        0 => array(
+          'value' => 10439,
+          'revision_id' => 10439,
+        ),
+      ),
+    ),
     'field_number_of_primary' => array(),
-    'field_shortcut_links' => array(),
+    'field_shortcut_links' => array(
+      'sv' => array(
+        0 => array(
+          'value' => 10440,
+          'revision_id' => 10440,
+        ),
+      ),
+    ),
     'field_shortcut_heading' => array(),
     'translations' => array(
       'original' => 'sv',

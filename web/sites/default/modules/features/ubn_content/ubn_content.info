@@ -12,6 +12,7 @@ dependencies[] = uuid_entity_features
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[uuid_entity_menu_link][] = 21c050e2-5ef9-4347-af28-192f53a34c05
+features[uuid_entity_menu_link][] = 91931532-ff81-4a88-8c0a-6bfd5e0d1009
 features[uuid_entity_menu_link][] = 9f38d427-1547-42fb-b878-c35ff0014922
 features[uuid_entity_menu_position_rule][] = fb0e614d-5b06-4623-b3b8-d2206914d8b6
 features[uuid_entity_node][] = 84551f72-f8f7-43fc-b4f0-020e0ed5af2a
