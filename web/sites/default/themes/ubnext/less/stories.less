@@ -42,17 +42,27 @@
       }
     }
   }
-  .story-promoted {
-    margin-bottom: 20px;
-    .story-promoted-publication-date {
-      .date();
+  .promoted-news {
+    .story-promoted {
+      margin-bottom: 20px;
+      .story-promoted-publication-date {
+        .date();
+      }
+      .story-promoted-image img {
+        .img-responsive();
+        margin-bottom: 10px;
+      }
+      .story-promoted-header {
+        margin-bottom: 10px;
+      }
     }
-    .story-promoted-image img {
-      .img-responsive();
-      margin-bottom: 10px;
-    }
-    .story-promoted-header {
-      margin-bottom: 10px;
+
+    .clearfix-wrapper {
+      display: none;
+      &:nth-of-type(2) {
+        display: block;
+      //  display: block !important;
+      }
     }
   }
 
