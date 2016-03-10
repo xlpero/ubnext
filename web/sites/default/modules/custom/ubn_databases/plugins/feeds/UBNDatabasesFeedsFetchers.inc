@@ -128,12 +128,12 @@ class UBNDatabasesFeedsFetcher extends UBNDatabasesFeedsFetcherBase {
 
     $database_public_access = NULL;
     //Urls
-    foreach($pdo->query('SELECT db_id as id, url, info, description FROM urls', $pdo::FETCH_ASSOC) as $row) {
+    foreach($pdo->query('SELECT db_id as id, url FROM urls', $pdo::FETCH_ASSOC) as $row) {
       $public_access = strpos($row['url'], 'ezproxy.') === FALSE;
       if(!isset($databases[$row['id']]['public_access']) || !$databases[$row['id']]['public_access'] && $public_access) {
         $databases[$row['id']]['public_access'] = $public_access;
       }
-      $guid = md5('ubn_databases_url:' . $row['id']);
+      $guid = md5('ubn_databases_url:' . $row['url'] . $databases[$row['id']]['libris_id']);
       $databases[$row['id']]['urls'][] = array(
         'guid' => $guid,
       );

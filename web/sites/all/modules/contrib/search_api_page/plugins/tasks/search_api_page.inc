@@ -196,6 +196,7 @@ function search_api_page_search_api_page_build_subtask($task, $page) {
     'admin type' => t('System'),
     'row class' => empty($page->disabled) ? 'page-manager-enabled' : 'page-manager-disabled',
     'storage' => t('In code'),
+    'module' => 'search_api_page',
     'disabled' => variable_get('search_api_page_search_api_page_disabled_' . $page, TRUE),
     // This works for both enable AND disable
     'enable callback' => 'search_api_page_search_api_page_enable',
