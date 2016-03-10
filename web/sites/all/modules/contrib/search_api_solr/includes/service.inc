@@ -11,6 +11,11 @@ class SearchApiSolrService extends SearchApiAbstractService {
   const SOLR_DATE_FORMAT = 'Y-m-d\TH:i:s\Z';
 
   /**
+   * Path to the autocomplete servlet.
+   */
+  const AUTOCOMPLETE_SERVLET = 'autocomplete';
+
+  /**
    * The connection class used by this service.
    *
    * Must implement SearchApiSolrConnectionInterface.
@@ -1890,7 +1895,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
 
     $this->connect();
     $response = $this->solr->makeServletRequest(
-      'autocomplete',
+      self::AUTOCOMPLETE_SERVLET,
       $params
     );
 

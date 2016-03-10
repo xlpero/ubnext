@@ -16,17 +16,26 @@ class SearchApiSolrAutocompleteServerSuggester extends SearchApiAutocompleteServ
    * {@inheritdoc}
    */
   public static function supportsIndex(SearchApiIndex $index) {
-    //TODO: how get service class, and instance of?
-    try {
-      $server = $index->server();
-      $service_info = search_api_get_service_info($server->class);
-      return
-        $service_info['class'] === 'SearchApiSolrService' ||
-        is_subclass_of($service_info['class'], 'SearchApiSolrService');
+    static $supports_index = array();
+    if(!isset($supports_index[$index->id])) {
+      try {
+        $server = $index->server();
+        $service_info = search_api_get_service_info($server->class);
+        $solr = $server->getSolrConnection();
+        //TODO: check if suggesters have been enabled? where?
+        //getSolrVersion() potentially rather expensive, advice user to set version manually?
+        $supports_index[$index->id] =
+          (
+            $service_info['class'] === 'SearchApiSolrService' ||
+            is_subclass_of($service_info['class'], 'SearchApiSolrService')
+          ) &&
+          $server->getSolrConnection()->getSolrVersion() >= 5;
+      }
+      catch (SearchApiException $e) {
+        return FALSE;
+      }
     }
-    catch (SearchApiException $e) {
-      return FALSE;
-    }
+    return $supports_index[$index->id];
   }
 
   /**
@@ -36,7 +45,6 @@ class SearchApiSolrAutocompleteServerSuggester extends SearchApiAutocompleteServ
     $index = $this->getSearch()->index();
     return parent::defaultConfiguration() + array(
       'solr_server' => array(
-        'suggester_path' => 'autocomplete',
         'suggester_dictionaries' => '',
       ),
     );
@@ -63,18 +71,71 @@ class SearchApiSolrAutocompleteServerSuggester extends SearchApiAutocompleteServ
     );
     return $form;
   }
+
+  /**
+   * {@inheritdoc}
+   */
+  /*
+  public function validateConfigurationForm(array $form, array &$form_state) {
+    parent::validateConfigurationForm($form, $form_state);
+  }
+  */
+
+  private function solrAutocompletParseDictionaries($value) {
+    return array_map(
+      'trim',
+      explode(
+        "\n",
+        $value
+      )
+    );
+  }
+
   /**
    * {@inheritdoc}
    */
   public function submitConfigurationForm(array $form, array &$form_state) {
+
     $form_state['values']['solr_server']['suggester_dictionaries'] =
-      array_map(
-        'trim',
-        explode(
-          "\n",
-          $form_state['values']['solr_server']['suggester_dictionaries']
+      $this->solrAutocompletParseDictionaries($form_state['values']['solr_server']['suggester_dictionaries']);
+
+    $server = $this->search->server();
+    $service_class_info = search_api_get_service_info($server->class);
+    $autocomplete_servlet = constant($service_class_info['class'] . '::AUTOCOMPLETE_SERVLET');
+    $solr = $server->getSolrConnection();
+
+    // First check if autocomplete servlet is enabled/configured
+    // and warn if problems are detected
+    try {
+      $solr->makeServletRequest($autocomplete_servlet, array());
+      // If autocomplete servlet is set up and seems to be
+      // working probe each dictionary in turn
+      foreach($form_state['values']['solr_server']['suggester_dictionaries'] as $dictionary) {
+        try {
+          $solr->makeServletRequest($autocomplete_servlet, array('suggest.dictionary' => $dictionary));
+        }
+        catch (Exception $e) {
+          $message = t(
+            'A problem occured requesting autocomplete suggester dictionary "@dictionary": @message.',
+            array(
+              '@dictionary' => $dictionary,
+              '@message' => $e->getMessage(),
+            )
+          );
+          drupal_set_message($message, 'warning');
+        }
+      }
+    }
+    catch (Exception $e) {
+      $message = t(
+        'A problem occured requesting autocomplete suggester servlet: @message',
+        array(
+          '@message' => $e->getMessage(),
         )
       );
+      drupal_set_message($message, 'warning');
+    }
+
     parent::submitConfigurationForm($form, $form_state);
   }
 
