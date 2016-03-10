@@ -39,8 +39,8 @@ function ubn_news_image_default_styles() {
       1 => array(
         'name' => 'manualcrop_crop_and_scale',
         'data' => array(
-          'width' => 320,
-          'height' => 200,
+          'width' => 640,
+          'height' => 400,
           'upscale' => 1,
           'respectminimum' => 1,
           'onlyscaleifcrop' => 0,
