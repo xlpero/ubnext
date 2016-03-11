@@ -1,5 +1,7 @@
 Search API Solr Search 1.x, dev (xxxx-xx-xx):
 ---------------------------------------------
+- #2645366 by tedfordgif, drunken monkey: Fixed browser incorrectly filling the
+  HTTP Auth form fields.
 - #2611716 by aditya_anurag, drunken monkey: Improved the method documentation
   comments.
 - #2599658 by Loparev, drunken monkey: Added the possibility to highlight

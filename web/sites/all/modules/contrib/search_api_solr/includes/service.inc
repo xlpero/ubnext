@@ -181,6 +181,10 @@ class SearchApiSolrService extends SearchApiAbstractService {
       '#type' => 'textfield',
       '#title' => t('Username'),
       '#default_value' => $options['http_user'],
+      // This prefix with no-op text and password field will keep most browsers
+      // from autocompleting these fields, which is hardly ever what the user
+      // wants.
+      '#prefix' => '<input type="text" style="display:none" /><input type="password" style="display:none" />',
     );
     $form['http']['http_pass'] = array(
       '#type' => 'password',
@@ -613,7 +617,8 @@ class SearchApiSolrService extends SearchApiAbstractService {
         $autocomplete_search = reset($autocomplete_searches);
         $suggester = $autocomplete_search->getSuggester();
         $suggester_config = $suggester->getConfiguration();
-        $fields = $suggester_config['fields'];
+
+        $fields = !empty($suggester_config['fields']) ? $suggester_config['fields'] : $index->getFulltextFields();
 
         //Get solr field names
         $solr_field_names = $this->getFieldNames($index);
