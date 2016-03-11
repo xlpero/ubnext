@@ -430,7 +430,7 @@ function ubn_search_default_search_api_server() {
       "retrieve_data" : 0,
       "highlight_data" : 0,
       "skip_schema_check" : 0,
-      "solr_version" : "4",
+      "solr_version" : "5",
       "http_method" : "AUTO",
       "autocorrect_spell" : 1,
       "autocorrect_suggest_words" : 1
