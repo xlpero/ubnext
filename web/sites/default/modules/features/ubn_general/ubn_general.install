@@ -140,7 +140,8 @@ function ubn_general_install() {
 	variable_set('theme_default', 'ubnext');
 	$modules = array('dashboard', 'overlay', 'shortcut', 'toolbar', 'search');
 	module_disable($modules);
-	drupal_uninstall_modules($modules);
+  drupal_uninstall_modules($modules);
+  //TODO: Enable feature modules instead of adding as dependencies
 }
 
 function ubn_general_update_7100() {
@@ -394,6 +395,9 @@ function ubn_general_update_7130() {
   }
 }
 
+function ubn_general_update_7131() {
+  module_enable(array('ubn_contact'));
+}
 
 // Enable entity translation for library
 /*
