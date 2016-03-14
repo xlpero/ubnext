@@ -1,1 +1,24 @@
 <?php
+
+//TODO: array $hidden_fields?
+function _ubn_entityform_issue_form_instance_render($ttx_group_tid, $ttx_library_tid, $library_hidden) {
+  module_load_include('inc', 'entityform', 'entityform.admin');
+  $issue = entityform_empty_load('issue');
+  //dsm($issue);
+  //TODO: entity_metadata_wrapper, set values etc
+  return drupal_render(entityform_form_wrapper($issue, 'submit', 'embedded'));
+}
+
+/**
+ * Implements hook_slate_twig_alter().
+ *
+ * @param $twig
+ */
+function ubn_entityform_slate_twig_alter(&$twig) {
+  $function = new Twig_SimpleFunction(
+    'ubn_issue_form_instance_render',
+    '_ubn_entityform_issue_form_instance_render'
+  );
+  $twig->addFunction($function);
+}
+
