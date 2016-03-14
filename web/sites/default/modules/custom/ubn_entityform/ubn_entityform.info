@@ -1,0 +1,4 @@
+name = UBN Entityform
+description = Entityform customizations for UBNext
+core = 7.x
+package = UBNext
