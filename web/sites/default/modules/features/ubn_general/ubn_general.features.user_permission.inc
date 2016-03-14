@@ -29,6 +29,16 @@ function ubn_general_user_default_permissions() {
     'module' => 'search_api_page',
   );
 
+  // Exported permission: 'use search_api_autocomplete for search_api_page_databases'.
+  $permissions['use search_api_autocomplete for search_api_page_databases'] = array(
+    'name' => 'use search_api_autocomplete for search_api_page_databases',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
+    ),
+    'module' => 'search_api_autocomplete',
+  );
+
   // Exported permission: 'use text format markdown'.
   $permissions['use text format markdown'] = array(
     'name' => 'use text format markdown',
