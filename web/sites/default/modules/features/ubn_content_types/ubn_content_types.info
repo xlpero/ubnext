@@ -155,6 +155,7 @@ features[field_instance][] = node-library-field_referenced_opening_hours
 features[field_instance][] = node-library-field_title_short
 features[field_instance][] = node-library-field_visiting_address
 features[field_instance][] = node-library-title_field
+features[field_instance][] = node-navigation_landing-field_body
 features[field_instance][] = node-navigation_landing-field_lead
 features[field_instance][] = node-navigation_landing-field_number_of_primary
 features[field_instance][] = node-navigation_landing-field_shortcut_heading

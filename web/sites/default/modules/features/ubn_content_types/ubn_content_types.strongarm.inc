@@ -689,10 +689,10 @@ function ubn_content_types_strongarm() {
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '3',
+          'weight' => '4',
         ),
         'redirect' => array(
-          'weight' => '2',
+          'weight' => '3',
         ),
         'language' => array(
           'weight' => '2',

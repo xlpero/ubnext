@@ -3,8 +3,6 @@
   models[page] = entity:node
 #}
 
-
-
 {% macro themeLink(linkTitle, url, description, index, page, addShortcuts, isPrimary) %}
 	{% import "macros/misc.html.twig" as misc %}
 
@@ -47,6 +45,11 @@
 {% import _self as helper %}
 
 <div class="container">
+		<div class="row">
+			<div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+				{{page.field_body.value | raw}}
+			</div>
+		</div>
 		{% if not page.field_theme_link is empty %}
 		<div class="row">
 			<ul class="ubn-theme-links primary list-unstyled clearfix">

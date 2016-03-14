@@ -108,12 +108,10 @@ function ubn_content_types_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Shortcut links',
-    'weight' => '10',
+    'weight' => '5',
     'children' => array(
       0 => 'field_shortcut_links',
       1 => 'field_shortcut_heading',
-      2 => 'field_shortcut_file',
-      3 => 'field_type_of_link_to_use',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
@@ -193,7 +191,7 @@ function ubn_content_types_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Theme links',
-    'weight' => '12',
+    'weight' => '6',
     'children' => array(
       0 => 'field_theme_link',
       1 => 'field_number_of_primary',
