@@ -644,16 +644,13 @@ function ubn_content_types_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '9',
+          'weight' => '10',
         ),
         'redirect' => array(
-          'weight' => '10',
+          'weight' => '11',
         ),
         'language' => array(
           'weight' => '8',
-        ),
-        'xmlsitemap' => array(
-          'weight' => '14',
         ),
       ),
       'display' => array(),

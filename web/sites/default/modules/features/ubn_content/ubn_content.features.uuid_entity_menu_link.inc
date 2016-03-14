@@ -76,41 +76,5 @@ function ubn_content_uuid_entity_default_menu_link() {
     'access' => TRUE,
     'i18n_menu' => TRUE,
   ));
-  $items['91931532-ff81-4a88-8c0a-6bfd5e0d1009'] = entity_create('menu_link', array(
-    'menu_name' => 'main-menu',
-    'plid' => 0,
-    'link_path' => 'news',
-    'router_path' => 'news',
-    'link_title' => 'News',
-    'options' => array(
-      'attributes' => array(
-        'title' => '',
-      ),
-      'alter' => TRUE,
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'depth' => 1,
-    'customized' => 1,
-    'p1' => '91931532-ff81-4a88-8c0a-6bfd5e0d1009',
-    'p2' => 0,
-    'p3' => 0,
-    'p4' => 0,
-    'p5' => 0,
-    'p6' => 0,
-    'p7' => 0,
-    'p8' => 0,
-    'p9' => 0,
-    'updated' => 0,
-    'language' => 'und',
-    'vuuid' => '83765b17-1647-41f4-8f00-ee74d835649a',
-    'uuid' => '91931532-ff81-4a88-8c0a-6bfd5e0d1009',
-    'default_revision' => 1,
-    'access' => TRUE,
-    'i18n_menu' => TRUE,
-  ));
   return $items;
 }
