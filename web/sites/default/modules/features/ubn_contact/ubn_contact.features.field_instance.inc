@@ -307,11 +307,7 @@ function ubn_contact_field_default_field_instances() {
   // 'field_collection_item-field_issue_form_instance-field_ttx_library_hidden'.
   $field_instances['field_collection_item-field_issue_form_instance-field_ttx_library_hidden'] = array(
     'bundle' => 'field_issue_form_instance',
-    'default_value' => array(
-      0 => array(
-        'value' => 0,
-      ),
-    ),
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -338,7 +334,7 @@ function ubn_contact_field_default_field_instances() {
       'settings' => array(
         'display_label' => 0,
       ),
-      'type' => 'options_onoff',
+      'type' => 'options_buttons',
       'weight' => 5,
     ),
   );
