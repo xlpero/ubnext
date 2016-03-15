@@ -7,10 +7,6 @@
 {% if not page.field_issue_form_instance is empty %}
   {% set instance = page.field_issue_form_instance %}
   {{
-    ubn_issue_form_instance_render(
-      instance.field_ttx_group.value,
-      instance.field_ttx_library.value,
-      instance.field_ttx_library_hidden.value
-    ) | raw
+    ubn_form_instance_render(instance, 'issue') | raw
   }}
 {% endif %}
