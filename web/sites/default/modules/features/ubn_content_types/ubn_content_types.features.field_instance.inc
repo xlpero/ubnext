@@ -1679,56 +1679,6 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-library-field_issue_form_instance'.
-  $field_instances['node-library-field_issue_form_instance'] = array(
-    'bundle' => 'library',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'field_collection',
-        'settings' => array(
-          'add' => 'Add',
-          'delete' => 'Delete',
-          'description' => TRUE,
-          'edit' => 'Edit',
-          'view_mode' => 'full',
-        ),
-        'type' => 'field_collection_view',
-        'weight' => 26,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_issue_form_instance',
-    'label' => 'Contact form',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'field_collection',
-      'settings' => array(),
-      'type' => 'field_collection_embed',
-      'weight' => 8,
-    ),
-  );
-
   // Exported field_instance: 'node-library-field_lead'.
   $field_instances['node-library-field_lead'] = array(
     'bundle' => 'library',
@@ -2261,8 +2211,8 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-navigation_landing-field_body'.
-  $field_instances['node-navigation_landing-field_body'] = array(
+  // Exported field_instance: 'node-navigation_landing-field_content_sections'.
+  $field_instances['node-navigation_landing-field_content_sections'] = array(
     'bundle' => 'navigation_landing',
     'default_value' => NULL,
     'deleted' => 0,
@@ -2270,10 +2220,16 @@ function ubn_content_types_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 8,
+        'module' => 'field_collection',
+        'settings' => array(
+          'add' => 'Add',
+          'delete' => 'Delete',
+          'description' => TRUE,
+          'edit' => 'Edit',
+          'view_mode' => 'full',
+        ),
+        'type' => 'field_collection_view',
+        'weight' => 9,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -2289,27 +2245,18 @@ function ubn_content_types_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_body',
-    'label' => 'Body',
+    'field_name' => 'field_content_sections',
+    'label' => 'Content',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'linkit' => array(
-        'button_text' => 'Search',
-        'enable' => 0,
-        'profile' => '',
-      ),
-      'text_processing' => 1,
-      'ubn_property_field' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
+      'active' => 0,
+      'module' => 'field_collection',
+      'settings' => array(),
+      'type' => 'field_collection_embed',
       'weight' => 2,
     ),
   );
@@ -3936,7 +3883,6 @@ function ubn_content_types_field_default_field_instances() {
   t('App');
   t('Authors');
   t('Body');
-  t('Contact form');
   t('Content');
   t('Database urls');
   t('Delivery address');
