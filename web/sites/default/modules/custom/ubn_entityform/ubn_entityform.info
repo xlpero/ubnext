@@ -5,3 +5,4 @@ package = UBNext
 dependencies[] = slate
 dependencies[] = entity
 dependencies[] = entityform
+dependencies[] = recaptcha
