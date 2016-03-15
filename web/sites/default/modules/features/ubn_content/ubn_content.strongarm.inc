@@ -24,8 +24,10 @@ function ubn_content_strongarm() {
       'rebuild_behavior' => '0',
     ),
     'taxonomy_term' => array(
-      'enabled' => 0,
-      'bundles' => array(),
+      'enabled' => 1,
+      'bundles' => array(
+        'ttx_library' => 'ttx_library',
+      ),
       'rebuild_behavior' => '0',
     ),
     'comment' => array(
