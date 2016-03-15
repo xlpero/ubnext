@@ -54,7 +54,6 @@ function _uuid_entity_feature_component($component_name) {
 }
 
 function uuid_entity_features_uuid_entity_features_export_render_node_entity_alter($node, $context) {
-  unset($node->entity_translation_handler_id);
   unset($node->rdf_mapping);
   unset($node->created);
   unset($node->changed);
@@ -152,6 +151,7 @@ function uuid_entity_features_entity_uuid_load(&$entities, $entity_type) {
       if (entity_translation_enabled($entity_type, $entity)) {
         //TODO: possible set uid to user uuid?
         //TODO: How handle revisions?
+        unset($entity->entity_translation_handler_id);
         $fields = array('entity_type', 'entity_id', 'revision_id', 'uid', 'created', 'changed');
         $handler = entity_translation_get_handler($entity_type, $entity);
         $translations = $handler->getTranslations();
