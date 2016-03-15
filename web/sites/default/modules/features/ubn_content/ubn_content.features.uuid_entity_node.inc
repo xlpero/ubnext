@@ -40,18 +40,7 @@ function ubn_content_uuid_entity_default_node() {
         ),
       ),
     ),
-    'field_content_sections' => array(
-      'en' => array(
-        0 => array(
-          'value' => 10360,
-          'revision_id' => 10360,
-        ),
-        1 => array(
-          'value' => 10361,
-          'revision_id' => 10361,
-        ),
-      ),
-    ),
+    'field_content_sections' => array(),
     'field_template' => array(
       'und' => array(
         0 => array(
@@ -106,23 +95,9 @@ function ubn_content_uuid_entity_default_node() {
       ),
     ),
     'field_lead' => array(),
-    'field_theme_link' => array(
-      'sv' => array(
-        0 => array(
-          'value' => 10439,
-          'revision_id' => 10439,
-        ),
-      ),
-    ),
+    'field_theme_link' => array(),
     'field_number_of_primary' => array(),
-    'field_shortcut_links' => array(
-      'sv' => array(
-        0 => array(
-          'value' => 10440,
-          'revision_id' => 10440,
-        ),
-      ),
-    ),
+    'field_shortcut_links' => array(),
     'field_shortcut_heading' => array(),
     'field_body' => array(),
     'translations' => array(
