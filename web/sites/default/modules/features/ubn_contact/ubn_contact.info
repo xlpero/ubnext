@@ -1,7 +1,8 @@
 name = UBN Contact
 core = 7.x
 package = UBNext
-version = 7.x-0.2
+version = 7.x-0.3
+dependencies[] = captcha
 dependencies[] = ctools
 dependencies[] = email
 dependencies[] = entity
@@ -39,6 +40,7 @@ features[field_instance][] = node-contact-title_field
 features[node][] = contact
 features[taxonomy][] = ttx_group
 features[taxonomy][] = ttx_library
+features[user_permission][] = skip CAPTCHA
 features[variable][] = comment_anonymous_contact
 features[variable][] = comment_contact
 features[variable][] = comment_default_mode_contact
