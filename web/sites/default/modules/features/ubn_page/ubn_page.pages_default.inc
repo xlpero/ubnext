@@ -405,6 +405,33 @@ function ubn_page_default_page_manager_handlers() {
     $display->content['new-7c4c7fc8-306f-4cd3-9d92-608de6b5d877'] = $pane;
     $display->panels['main'][6] = 'new-7c4c7fc8-306f-4cd3-9d92-608de6b5d877';
     $pane = new stdClass();
+    $pane->pid = 'new-898103aa-d553-4282-aadd-a7150aeaae85';
+    $pane->panel = 'main';
+    $pane->type = 'slate_render';
+    $pane->subtype = 'slate_render:issue-contact-form';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'argument_entity_id:node_1',
+      ),
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+      'style' => 'naked',
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 7;
+    $pane->locks = array();
+    $pane->uuid = '898103aa-d553-4282-aadd-a7150aeaae85';
+    $display->content['new-898103aa-d553-4282-aadd-a7150aeaae85'] = $pane;
+    $display->panels['main'][7] = 'new-898103aa-d553-4282-aadd-a7150aeaae85';
+    $pane = new stdClass();
     $pane->pid = 'new-2b04e45a-7ba0-4d4d-98d6-f874e234fe61';
     $pane->panel = 'main';
     $pane->type = 'slate_render';
@@ -426,11 +453,11 @@ function ubn_page_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 7;
+    $pane->position = 8;
     $pane->locks = array();
     $pane->uuid = '2b04e45a-7ba0-4d4d-98d6-f874e234fe61';
     $display->content['new-2b04e45a-7ba0-4d4d-98d6-f874e234fe61'] = $pane;
-    $display->panels['main'][7] = 'new-2b04e45a-7ba0-4d4d-98d6-f874e234fe61';
+    $display->panels['main'][8] = 'new-2b04e45a-7ba0-4d4d-98d6-f874e234fe61';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

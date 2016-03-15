@@ -1,7 +1,7 @@
 name = UBN Contact
 core = 7.x
-package = Features
-version = 7.x-0.1
+package = UBNext
+version = 7.x-0.2
 dependencies[] = ctools
 dependencies[] = email
 dependencies[] = entity
