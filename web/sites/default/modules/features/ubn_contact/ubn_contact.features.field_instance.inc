@@ -187,7 +187,7 @@ function ubn_contact_field_default_field_instances() {
     'entity_type' => 'entityform',
     'field_name' => 'field_ttx_group',
     'label' => 'Group',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'ubn_property_field' => 0,
@@ -220,7 +220,7 @@ function ubn_contact_field_default_field_instances() {
     'entity_type' => 'entityform',
     'field_name' => 'field_ttx_library',
     'label' => 'Library',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'ubn_property_field' => 0,
@@ -439,6 +439,85 @@ function ubn_contact_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'taxonomy_term-ttx_library-field_value'.
+  $field_instances['taxonomy_term-ttx_library-field_value'] = array(
+    'bundle' => 'ttx_library',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_value',
+    'label' => 'TTX value',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-ttx_library-name_field'.
+  $field_instances['taxonomy_term-ttx_library-name_field'] = array(
+    'bundle' => 'ttx_library',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'name_field',
+    'label' => 'Name',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'ubn_property_field' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 0,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Email');
@@ -447,7 +526,9 @@ function ubn_contact_field_default_field_instances() {
   t('Issue form');
   t('Library');
   t('Message');
+  t('Name');
   t('Namn');
+  t('TTX value');
   t('Title');
 
   return $field_instances;
