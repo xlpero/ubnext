@@ -1,12 +1,61 @@
 <?php
 
+/*
+function ubn_entityform_form_alter(&$form, &$form_state, $form_id) {
+}
+*/
+
+/*
+function ubn_entityform_form_issue_entityform_edit_form_alter(&$form, &$form_state) {
+}
+*/
+
+function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $form_id) {
+  $issue = $form['#entity'];
+  if(!empty($issue->ubn_entityform['hidden_fields'])) {
+    foreach($issue->ubn_entityform['hidden_fields'] as $field_name) {
+      $form[$field_name]['#access'] = FALSE;
+    }
+  }
+}
+
 //TODO: array $hidden_fields?
-function _ubn_entityform_issue_form_instance_render($ttx_group_tid, $ttx_library_tid, $library_hidden) {
+function _ubn_entityform_form_instance_render($field_instance, $entityform_type = NULL) {
   module_load_include('inc', 'entityform', 'entityform.admin');
-  $issue = entityform_empty_load('issue');
-  //dsm($issue);
+  global $language_content;
+
+  $issue = entityform_empty_load($entityform_type);
+
+  try {
+    $issue_wrapper = entity_metadata_wrapper(
+      'entityform',
+      $issue,
+      array(
+        'langcode' => $language_content->language,
+      )
+    );
+  } catch(Exception $e) {
+    drupal_set_message($e->getMessage(), 'error');
+    watchdog_exception('ubn_entityform', $e);
+  }
+
+  $issue->ubn_entityform = array();
+
+  $instances = field_info_instances('field_collection_item', $field_instance->field_name->value());
+  foreach(array_keys($instances) as $field_name) {
+    // Field ends with hidden?
+    if (preg_match('/_hidden$/', $field_name)) {
+      if ($field_instance->get($field_name)->value()) {
+        $issue->ubn_entityform['hidden_fields'][] = substr($field_name, 0, strlen($field_name) - 7);
+      }
+    }
+    else {
+      $issue_wrapper->get($field_name)->set($field_instance->get($field_name)->value());
+    }
+  }
   //TODO: entity_metadata_wrapper, set values etc
-  return drupal_render(entityform_form_wrapper($issue, 'submit', 'embedded'));
+  $form = entityform_form_wrapper($issue, 'submit', 'embedded');
+  return drupal_render($form);
 }
 
 /**
@@ -16,8 +65,8 @@ function _ubn_entityform_issue_form_instance_render($ttx_group_tid, $ttx_library
  */
 function ubn_entityform_slate_twig_alter(&$twig) {
   $function = new Twig_SimpleFunction(
-    'ubn_issue_form_instance_render',
-    '_ubn_entityform_issue_form_instance_render'
+    'ubn_form_instance_render',
+    '_ubn_entityform_form_instance_render'
   );
   $twig->addFunction($function);
 }
