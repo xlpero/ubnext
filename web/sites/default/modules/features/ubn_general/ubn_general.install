@@ -262,11 +262,6 @@ function ubn_general_update_7118() {
   }
 }
 
-// remove body
-function ubn_general_update_7119() {
-  field_delete_field('body');
-  features_revert_module('ubn_content_types');
-}
 
 //TODO: revert content types??
 function ubn_general_update_7119() {
@@ -404,6 +399,14 @@ function ubn_general_update_7130() {
 function ubn_general_update_7131() {
   module_enable(array('ubn_contact'));
 }
+
+
+// remove body
+function ubn_general_update_7132() {
+  field_delete_field('body');
+  features_revert_module('ubn_content_types');
+}
+
 
 // Enable entity translation for library
 /*
