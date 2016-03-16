@@ -27,6 +27,32 @@ function ubn_contact_field_default_field_bases() {
     'type' => 'email',
   );
 
+  // Exported field_base: 'field_form_access'.
+  $field_bases['field_form_access'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_form_access',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => '',
+        1 => 'Show form',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_boolean',
+  );
+
   // Exported field_base: 'field_full_name'.
   $field_bases['field_full_name'] = array(
     'active' => 1,
@@ -149,13 +175,13 @@ function ubn_contact_field_default_field_bases() {
     'type' => 'taxonomy_term_reference',
   );
 
-  // Exported field_base: 'field_ttx_library_hidden'.
-  $field_bases['field_ttx_library_hidden'] = array(
+  // Exported field_base: 'field_ttx_library_access'.
+  $field_bases['field_ttx_library_access'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_ttx_library_hidden',
+    'field_name' => 'field_ttx_library_access',
     'indexes' => array(
       'value' => array(
         0 => 'value',
@@ -165,8 +191,8 @@ function ubn_contact_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        0 => 0,
-        1 => 1,
+        0 => '',
+        1 => 'Expose library selection',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,

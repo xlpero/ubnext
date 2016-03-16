@@ -59,7 +59,6 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
       ),
     ),
     'name_original' => 'Studietorget Hälsovetarbacken',
-    'entity_translation_handler_id' => 'taxonomy_term-eid-630-0',
     'rdf_mapping' => array(
       'rdftype' => array(
         0 => 'skos:Concept',
@@ -91,6 +90,7 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
     'path' => array(
       'pathauto' => 1,
     ),
+    'entity_translation_handler_id' => 'taxonomy_term-eid-630-0',
     'url_alias' => array(
       0 => array(
         'alias' => 'ttx-library/biomedical-library-learning-centre',
@@ -152,7 +152,6 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
       ),
     ),
     'name_original' => 'Biblioteket för musik och dramatik',
-    'entity_translation_handler_id' => 'taxonomy_term-eid-628-0',
     'rdf_mapping' => array(
       'rdftype' => array(
         0 => 'skos:Concept',
@@ -184,6 +183,7 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
     'path' => array(
       'pathauto' => 1,
     ),
+    'entity_translation_handler_id' => 'taxonomy_term-eid-628-0',
     'url_alias' => array(
       0 => array(
         'alias' => 'ttx-library/music-and-drama-library',
@@ -245,7 +245,6 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
       ),
     ),
     'name_original' => 'Biomedicinska biblioteket',
-    'entity_translation_handler_id' => 'taxonomy_term-eid-629-0',
     'rdf_mapping' => array(
       'rdftype' => array(
         0 => 'skos:Concept',
@@ -277,6 +276,7 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
     'path' => array(
       'pathauto' => 1,
     ),
+    'entity_translation_handler_id' => 'taxonomy_term-eid-629-0',
     'url_alias' => array(
       0 => array(
         'alias' => 'ttx-library/biomedical-library',
@@ -325,7 +325,6 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
       ),
     ),
     'name_original' => 'Konstbiblioteket',
-    'entity_translation_handler_id' => 'taxonomy_term-eid-634-0',
     'rdf_mapping' => array(
       'rdftype' => array(
         0 => 'skos:Concept',
@@ -357,6 +356,7 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
     'path' => array(
       'pathauto' => 1,
     ),
+    'entity_translation_handler_id' => 'taxonomy_term-eid-634-0',
     'url_alias' => array(
       0 => array(
         'alias' => 'ttx-library/konstbiblioteket',
@@ -414,7 +414,6 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
       ),
     ),
     'name_original' => 'Humanistiska biblioteket',
-    'entity_translation_handler_id' => 'taxonomy_term-eid-631-0',
     'rdf_mapping' => array(
       'rdftype' => array(
         0 => 'skos:Concept',
@@ -446,6 +445,7 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
     'path' => array(
       'pathauto' => 1,
     ),
+    'entity_translation_handler_id' => 'taxonomy_term-eid-631-0',
     'url_alias' => array(
       0 => array(
         'alias' => 'ttx-library/humanities-library',
@@ -507,7 +507,6 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
       ),
     ),
     'name_original' => 'Samhällsvetenskapliga biblioteket',
-    'entity_translation_handler_id' => 'taxonomy_term-eid-635-0',
     'rdf_mapping' => array(
       'rdftype' => array(
         0 => 'skos:Concept',
@@ -539,6 +538,7 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
     'path' => array(
       'pathauto' => 1,
     ),
+    'entity_translation_handler_id' => 'taxonomy_term-eid-635-0',
     'url_alias' => array(
       0 => array(
         'alias' => 'ttx-library/social-sciences-library',
@@ -600,7 +600,6 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
       ),
     ),
     'name_original' => 'Studietorget Campus Linne',
-    'entity_translation_handler_id' => 'taxonomy_term-eid-637-0',
     'rdf_mapping' => array(
       'rdftype' => array(
         0 => 'skos:Concept',
@@ -632,6 +631,7 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
     'path' => array(
       'pathauto' => 1,
     ),
+    'entity_translation_handler_id' => 'taxonomy_term-eid-637-0',
     'url_alias' => array(
       0 => array(
         'alias' => 'ttx-library/campus-linne',
@@ -680,7 +680,6 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
       ),
     ),
     'name_original' => 'Pedagogiska biblioteke',
-    'entity_translation_handler_id' => 'taxonomy_term-eid-636-0',
     'rdf_mapping' => array(
       'rdftype' => array(
         0 => 'skos:Concept',
@@ -712,6 +711,7 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
     'path' => array(
       'pathauto' => 1,
     ),
+    'entity_translation_handler_id' => 'taxonomy_term-eid-636-0',
     'url_alias' => array(
       0 => array(
         'alias' => 'ttx-library/pedagogiska-biblioteke',
@@ -769,7 +769,6 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
       ),
     ),
     'name_original' => 'Geovetenskapliga biblioteket',
-    'entity_translation_handler_id' => 'taxonomy_term-eid-633-0',
     'rdf_mapping' => array(
       'rdftype' => array(
         0 => 'skos:Concept',
@@ -801,6 +800,7 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
     'path' => array(
       'pathauto' => 1,
     ),
+    'entity_translation_handler_id' => 'taxonomy_term-eid-633-0',
     'url_alias' => array(
       0 => array(
         'alias' => 'ttx-library/earth-sciences-library',
@@ -862,7 +862,6 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
       ),
     ),
     'name_original' => 'Ekonomiska biblioteket',
-    'entity_translation_handler_id' => 'taxonomy_term-eid-632-0',
     'rdf_mapping' => array(
       'rdftype' => array(
         0 => 'skos:Concept',
@@ -894,6 +893,7 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
     'path' => array(
       'pathauto' => 1,
     ),
+    'entity_translation_handler_id' => 'taxonomy_term-eid-632-0',
     'url_alias' => array(
       0 => array(
         'alias' => 'ttx-library/economics-library',
