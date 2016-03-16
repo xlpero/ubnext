@@ -3,10 +3,9 @@
   models[page] = entity:node
 #}
 
-{# import "macros/entityforms.html.twig" as entityforms #}
 {% if not page.field_issue_form_instance is empty %}
   {% set instance = page.field_issue_form_instance %}
-  {{
-    ubn_form_instance_render(instance, 'issue') | raw
-  }}
+  {% if instance.field_form_access.value %}
+    {{ ubn_form_instance_render(instance, 'issue') | raw }}
+  {% endif %}
 {% endif %}
