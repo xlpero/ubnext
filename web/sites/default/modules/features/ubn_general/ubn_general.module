@@ -186,6 +186,8 @@ function ubn_general_admin_paths() {
   return array(
     'atom/*/edit' => TRUE,
     'atom/*/edit/*' => TRUE,
+    'atom/add' => TRUE,
+    'atom/add/*' => TRUE,
   );
 }
 
