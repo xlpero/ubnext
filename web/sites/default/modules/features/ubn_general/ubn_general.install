@@ -407,6 +407,11 @@ function ubn_general_update_7132() {
   features_revert_module('ubn_content_types');
 }
 
+// Remove field_ttx_library_hidden
+function ubn_general_update_7133() {
+  field_delete_field('field_ttx_library_hidden');
+  features_revert_module('ubn_contact');
+}
 
 // Enable entity translation for library
 /*
