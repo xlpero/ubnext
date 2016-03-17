@@ -236,6 +236,46 @@ function ubn_contact_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'field_collection_item-field_issue_form_instance-field_form_access'.
+  $field_instances['field_collection_item-field_issue_form_instance-field_form_access'] = array(
+    'bundle' => 'field_issue_form_instance',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 5,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_form_access',
+    'label' => 'Show form',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance:
   // 'field_collection_item-field_issue_form_instance-field_ttx_group'.
   $field_instances['field_collection_item-field_issue_form_instance-field_ttx_group'] = array(
     'bundle' => 'field_issue_form_instance',
@@ -254,7 +294,7 @@ function ubn_contact_field_default_field_instances() {
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_ttx_group',
     'label' => 'Group',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'ubn_property_field' => 0,
@@ -265,7 +305,7 @@ function ubn_contact_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 2,
+      'weight' => 0,
     ),
   );
 
@@ -288,7 +328,7 @@ function ubn_contact_field_default_field_instances() {
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_ttx_library',
     'label' => 'Library',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'ubn_property_field' => 0,
@@ -299,15 +339,19 @@ function ubn_contact_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 4,
+      'weight' => 1,
     ),
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_issue_form_instance-field_ttx_library_hidden'.
-  $field_instances['field_collection_item-field_issue_form_instance-field_ttx_library_hidden'] = array(
+  // 'field_collection_item-field_issue_form_instance-field_ttx_library_access'.
+  $field_instances['field_collection_item-field_issue_form_instance-field_ttx_library_access'] = array(
     'bundle' => 'field_issue_form_instance',
-    'default_value' => array(),
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -316,13 +360,13 @@ function ubn_contact_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 2,
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'field_collection_item',
-    'field_name' => 'field_ttx_library_hidden',
-    'label' => 'Hide library',
-    'required' => 1,
+    'field_name' => 'field_ttx_library_access',
+    'label' => 'Expose library selection',
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'ubn_property_field' => 0,
@@ -334,8 +378,8 @@ function ubn_contact_field_default_field_instances() {
       'settings' => array(
         'display_label' => 0,
       ),
-      'type' => 'options_buttons',
-      'weight' => 5,
+      'type' => 'options_onoff',
+      'weight' => 2,
     ),
   );
 
@@ -521,13 +565,14 @@ function ubn_contact_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Email');
+  t('Expose library selection');
   t('Group');
-  t('Hide library');
   t('Issue form');
   t('Library');
   t('Message');
   t('Name');
   t('Namn');
+  t('Show form');
   t('TTX value');
   t('Title');
 
