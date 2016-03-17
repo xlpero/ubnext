@@ -413,6 +413,13 @@ function ubn_general_update_7133() {
   features_revert_module('ubn_contact');
 }
 
+// Revert features
+function ubn_general_update_7134() {
+  features_revert_module('ubn_contact');
+}
+
+
+
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {
