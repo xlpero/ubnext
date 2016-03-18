@@ -55,7 +55,8 @@ function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state)
     //TODO: How does entityform get built? Would be nice to know
     $entity_form_wrapper = entity_metadata_wrapper('entityform', $form_state['entityform']);
     $ttx_data = array(
-      'group' => $entity_form_wrapper->field_ttx_group->field_value->value(),
+      //'group' => $entity_form_wrapper->field_ttx_group->field_value->value(),
+      'group' => 'group37',
       'library' => $entity_form_wrapper->field_ttx_library->field_value->value(),
       'email' => $entity_form_wrapper->field_email->value(),
     );
