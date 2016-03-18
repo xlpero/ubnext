@@ -483,6 +483,47 @@ function ubn_contact_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'taxonomy_term-ttx_group-field_value'.
+  $field_instances['taxonomy_term-ttx_group-field_value'] = array(
+    'bundle' => 'ttx_group',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_value',
+    'label' => 'TTX value',
+    'required' => 1,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 1,
+    ),
+  );
+
   // Exported field_instance: 'taxonomy_term-ttx_library-field_value'.
   $field_instances['taxonomy_term-ttx_library-field_value'] = array(
     'bundle' => 'ttx_library',

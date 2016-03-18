@@ -26,7 +26,7 @@ function ubn_contact_default_entityform_type() {
       "draft_redirect_path" : "",
       "draft_button_text" : "",
       "draft_save_text" : { "value" : "", "format" : "markdown" },
-      "submit_button_text" : "",
+      "submit_button_text" : "Submit",
       "submit_confirm_msg" : "",
       "your_submissions" : "",
       "disallow_resubmit_msg" : "",
@@ -41,7 +41,7 @@ function ubn_contact_default_entityform_type() {
       "form_status" : "ENTITYFORM_OPEN",
       "roles" : { "1" : "1", "2" : "2", "3" : 0 },
       "resubmit_action" : "new",
-      "redirect_path" : "",
+      "redirect_path" : "[current-page:url]",
       "instruction_pre" : { "value" : "", "format" : "markdown" }
     },
     "weight" : "0",

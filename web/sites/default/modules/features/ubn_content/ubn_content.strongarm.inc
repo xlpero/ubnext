@@ -26,6 +26,7 @@ function ubn_content_strongarm() {
     'taxonomy_term' => array(
       'enabled' => 1,
       'bundles' => array(
+        'ttx_group' => 'ttx_group',
         'ttx_library' => 'ttx_library',
       ),
       'rebuild_behavior' => '0',
