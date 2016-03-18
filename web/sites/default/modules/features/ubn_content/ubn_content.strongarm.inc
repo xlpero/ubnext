@@ -29,7 +29,7 @@ function ubn_content_strongarm() {
         'ttx_group' => 'ttx_group',
         'ttx_library' => 'ttx_library',
       ),
-      'rebuild_behavior' => '0',
+      'rebuild_behavior' => '1',
     ),
     'comment' => array(
       'enabled' => 0,
