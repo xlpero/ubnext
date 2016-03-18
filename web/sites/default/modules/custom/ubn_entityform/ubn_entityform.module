@@ -130,14 +130,19 @@ function _ubn_entityform_form_instance_render($field_instance, $entityform_type 
       $issue_wrapper->get($field_name)->set($field_instance->get($field_name)->value());
       if (
         !isset($info_instances[$field_name . '_access']) ||
-        $field_instance->get($field_name . '_access')->value()
+        !$field_instance->get($field_name . '_access')->value()
       ) {
         $issue->ubn_entityform['hidden_fields'][] = $field_name;
       }
     }
   }
   //$form = entityform_form_wrapper($issue, 'submit', 'embedded');
-  $form = drupal_get_form($issue->type . '_entityform_edit_form_' . $field_instance->getIdentifier(), $issue, 'submit', 'embedded');
+  $form = drupal_get_form(
+    $issue->type . '_entityform_edit_form_' . $field_instance->getIdentifier(),
+    $issue,
+    'submit',
+    'embedded'
+  );
   $form['#attributes']['class'][] = 'entityform';
   $form['#attributes']['class'][] = 'entitytype-' . $issue->type . '-form';
   return drupal_render($form);
