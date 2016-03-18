@@ -1632,9 +1632,9 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
     'field_value' => array(
       'und' => array(
         0 => array(
-          'value' => 'Campus Linné',
+          'value' => 'Campus Linne',
           'format' => NULL,
-          'safe_value' => 'Campus Linné',
+          'safe_value' => 'Campus Linne',
         ),
       ),
     ),
