@@ -1607,7 +1607,7 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
     ),
   ));
   $items['9281b091-3083-4af4-90b3-de006a0b887b'] = entity_create('taxonomy_term', array(
-    'name' => 'Campus Linne',
+    'name' => 'Campus Linné',
     'description' => '',
     'format' => 'markdown',
     'weight' => 0,
@@ -1616,25 +1616,25 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
     'name_field' => array(
       'en' => array(
         0 => array(
-          'value' => 'Campus Linne',
+          'value' => 'Campus Linné',
           'format' => NULL,
-          'safe_value' => 'Campus Linne',
+          'safe_value' => 'Campus Linné',
         ),
       ),
       'sv' => array(
         0 => array(
-          'value' => 'Studietorget Campus Linne',
+          'value' => 'Studietorget Campus Linné',
           'format' => NULL,
-          'safe_value' => 'Studietorget Campus Linne',
+          'safe_value' => 'Studietorget Campus Linné',
         ),
       ),
     ),
     'field_value' => array(
       'und' => array(
         0 => array(
-          'value' => 'Campus Linne',
+          'value' => 'Campus Linné',
           'format' => NULL,
-          'safe_value' => 'Campus Linne',
+          'safe_value' => 'Campus Linné',
         ),
       ),
     ),
@@ -1655,7 +1655,7 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
         ),
       ),
     ),
-    'name_original' => 'Studietorget Campus Linne',
+    'name_original' => 'Studietorget Campus Linné',
     'rdf_mapping' => array(
       'rdftype' => array(
         0 => 'skos:Concept',
@@ -1766,7 +1766,7 @@ function ubn_contact_uuid_entity_default_taxonomy_term() {
     ),
   ));
   $items['9a3402f6-f516-4ddf-9b01-9bdbdaa0b853'] = entity_create('taxonomy_term', array(
-    'name' => 'Pedagogiska biblioteke',
+    'name' => 'Pedagogiska biblioteket',
     'description' => '',
     'format' => 'markdown',
     'weight' => 0,
