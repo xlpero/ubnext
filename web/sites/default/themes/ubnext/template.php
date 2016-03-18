@@ -57,10 +57,15 @@ function ubnext_form_element($variables) {
     $output .= theme('form_element_label', $variables);
   }
   else {
+
     switch ($element['#title_display']) {
       case 'before':
       case 'invisible':
+
         $output .= ' ' . theme('form_element_label', $variables);
+        if (!empty($element['#description'])) {
+          $output .= '<div class="help-block">' . $element['#description'] . "</div>\n";
+        }
         $output .= ' ' . $prefix . $element['#children'] . $suffix . "\n";
         break;
 
@@ -77,9 +82,7 @@ function ubnext_form_element($variables) {
     }
   }
 
-  if (!empty($element['#description'])) {
-    //$output .= '<div class="description">' . $element['#description'] . "</div>\n";
-  }
+
 
   $output .= "</div>\n";
 
@@ -161,7 +164,7 @@ function ubnext_textarea($variables) {
   }
 
   if (!empty($element['#description'])) {
-    $element['#attributes']['placeholder'] = $element['#description'];
+
   }
 
   $output = '<div' . drupal_attributes($wrapper_attributes) . '>';
@@ -179,7 +182,7 @@ function ubnext_textfield($variables) {
   $element['#attributes']['class'][] = 'form-control';
 
   if (!empty($element['#description'])) {
-    $element['#attributes']['placeholder'] = $element['#description'];
+
   }
 
   $extra = '';
