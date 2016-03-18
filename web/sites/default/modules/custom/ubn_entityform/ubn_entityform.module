@@ -78,7 +78,7 @@ function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state)
       )
     );
     if($response->code != 200) {
-      form_set_error('form', 'Sorry! Something went wrong, please try again later.');
+      form_set_error('form', t('Sorry! Something went wrong, please try again later.'));
       watchdog(
         'ubn_entityform',
         'Error while submittning @type form (@code: @error).',
