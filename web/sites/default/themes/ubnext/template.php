@@ -28,7 +28,7 @@ function ubnext_form_element($variables) {
     $attributes['id'] = $element['#id'];
   }
   // Add element's #type and #name as class to aid with JS/CSS selectors.
-  $attributes['class'] = array('form-item');
+  $attributes['class'] = array('form-item', 'form-group');
   if (!empty($element['#type'])) {
     $attributes['class'][] = 'form-type-' . strtr($element['#type'], '_', '-');
   }
@@ -42,6 +42,15 @@ function ubnext_form_element($variables) {
   if ($element['#type'] == 'checkbox') {
     $attributes['class'][] = 'checkbox';
   }
+
+
+    // Check for errors and set correct error class.
+  if (isset($element['#parents']) && form_get_error($element)) {
+    $attributes['class'][] = 'has-error';
+    dsm(form_get_error($element));
+    $element['#field_suffix'] .= '<div class="error-msg"><i class="fa fa-exclamation-triangle"></i>' . form_get_error($element) . '</div>';
+  }
+
 
   $output = '<div' . drupal_attributes($attributes) . '>' . "\n";
 
@@ -106,6 +115,7 @@ function ubnext_form_element_label($variables) {
   $title = filter_xss_admin($element['#title']);
 
   $attributes = array();
+  $attributes['class'][] = 'control-label';
   // Style the label as class option to display inline with the element.
   if ($element['#title_display'] == 'after') {
     $attributes['class'] = 'option';

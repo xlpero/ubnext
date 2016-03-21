@@ -88,4 +88,3 @@ function ubn_entityform_slate_twig_alter(&$twig) {
   );
   $twig->addFunction($function);
 }
-
