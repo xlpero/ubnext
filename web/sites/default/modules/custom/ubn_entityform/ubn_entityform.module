@@ -1,21 +1,26 @@
 <?php
+
 /*
 function ubn_entityform_form_alter(&$form, &$form_state, $form_id) {
 }
 */
-/*
-function ubn_entityform_form_issue_entityform_edit_form_alter(&$form, &$form_state) {
-}
- */
 
-function _ubn_entityform_type($field_name) {
+function ubn_entityform_forms($form_id, $args) {
+  $forms = array();
+  if(strpos($form_id, '_entityform_edit_form') !== FALSE) {
+    $forms[$form_id] = array('callback' => 'entityform_edit_form');
+  }
+  return $forms;
+}
+
+function _ubn_entityform_field_collection_field_entityform_type($field_name) {
   $matches = array();
   preg_match('/^field_(\w+?)_form_instance$/', $field_name, $matches);
   return !empty($matches) ? $matches[1] : NULL;
 }
 
 function ubn_entityform_field_collection_is_empty_alter(&$is_empty, FieldCollectionItemEntity $item) {
-  if (_ubn_entityform_type($item->field_name)) {
+  if (_ubn_entityform_field_collection_field_entityform_type($item->field_name)) {
     $ttx_library = field_get_items('field_collection_item', $item, 'field_ttx_library');
     $ttx_group = field_get_items('field_collection_item', $item, 'field_ttx_group');
     $is_empty = !isset($ttx_library[0]['tid']) || !isset($ttx_group[0]['tid']);
@@ -23,9 +28,9 @@ function ubn_entityform_field_collection_is_empty_alter(&$is_empty, FieldCollect
 }
 
 function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $form_id) {
-  $issue = $form['#entity'];
-  if (!empty($issue->ubn_entityform['hidden_fields'])) {
-    foreach ($issue->ubn_entityform['hidden_fields'] as $field_name) {
+  $entityform = $form['#entity'];
+  if (!empty($entityform->ubn_entityform['hidden_fields'])) {
+    foreach ($entityform->ubn_entityform['hidden_fields'] as $field_name) {
       $form[$field_name]['#access'] = FALSE;
     }
   }
@@ -34,6 +39,67 @@ function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $f
     '#captcha_type' => 'recaptcha/reCAPTCHA',
     '#weight' => -99,
   );
+  #$form['actions']['submit']['#submit'][] = 'ubn_entityform_entityform_edit_form_submit';
+  list(, , $bundle) = entity_extract_ids('entityform', $entityform);
+  if ($bundle === 'issue') {
+    //TODO: Should make sure we are always the last validation handler
+    // right now not sure that is always the case (in case other modules add
+    // validation handler after us)
+    // should implement hook_module_implements_alter?
+    $form['#validate'][] = 'ubn_entityform_issue_entityform_edit_form_validate';
+  }
+}
+
+function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state) {
+  if($form_state['submitted'] && !form_get_errors() && !$form_state['rebuild']) {
+    //TODO: How does entityform get built? Would be nice to know
+    $entityform_wrapper = entity_metadata_wrapper('entityform', $form_state['entityform']);
+    global $language_content;
+    $ttx_data = array(
+      'cmd' => 'newticket',
+      //'grp' => $entityform_wrapper->field_ttx_group->field_value->value(),
+      'grp' => 'group37',
+      'xlibrary' => $entityform_wrapper->field_ttx_library->field_value->value(),
+      'lang' => $language_content->language,
+      'subject' => $entityform_wrapper->field_title->value(),
+      'problem' => $entityform_wrapper->field_message->value(),
+      'name' => $entityform_wrapper->field_full_name->value(),
+      'email' => $entityform_wrapper->field_email->value(),
+      'kid' => time() . '-' . rand(1000000, 9999999),
+    );
+
+    $response = drupal_http_request(
+      variable_get('ubn_entityform_ttx2easit_endpoint', 'http://130.241.35.161:3006/easitapi/new'),
+      array(
+        'headers' => array('Content-Type' => 'application/x-www-form-urlencoded'),
+        'method' => 'POST',
+        'data' => http_build_query($ttx_data, '', '&'),
+        'timeout' => 20,
+      )
+    );
+    if($response->code != 200) {
+      form_set_error('form', t('Sorry! Something went wrong, please try again later.'));
+      watchdog(
+        'ubn_entityform',
+        'Error while submittning @type form (@code: @error).',
+        array(
+          '@type' => $entityform_wrapper->getBundle(),
+          '@code' => $response->code,
+          '@error' => $response->error,
+        ),
+        WATCHDOG_ERROR
+      );
+    }
+  }
+}
+
+function ubn_entityform_entityform_edit_form_submit(&$form, &$form_state) {
+  /*
+  drupal_session_start();
+  $entity_form = $form['#entity'];
+  list($id) = entity_extract_ids('entityform', $entity_form);
+  $_SESSION['ubn_entityform_id'] = $id;
+  */
 }
 
 //TODO: array $hidden_fields?
@@ -57,7 +123,6 @@ function _ubn_entityform_form_instance_render($field_instance, $entityform_type 
   }
 
   $issue->ubn_entityform = array();
-
   $info_instances = field_info_instances('field_collection_item', $field_instance->field_name->value());
   foreach (array_keys($info_instances) as $field_name) {
     // Hide fields storing hidden setting
@@ -65,14 +130,21 @@ function _ubn_entityform_form_instance_render($field_instance, $entityform_type 
       $issue_wrapper->get($field_name)->set($field_instance->get($field_name)->value());
       if (
         !isset($info_instances[$field_name . '_access']) ||
-        $field_instance->get($field_name . '_access')->value()
+        !$field_instance->get($field_name . '_access')->value()
       ) {
         $issue->ubn_entityform['hidden_fields'][] = $field_name;
       }
     }
   }
-  //TODO: entity_metadata_wrapper, set values etc
-  $form = entityform_form_wrapper($issue, 'submit', 'embedded');
+  //$form = entityform_form_wrapper($issue, 'submit', 'embedded');
+  $form = drupal_get_form(
+    $issue->type . '_entityform_edit_form_' . $field_instance->getIdentifier(),
+    $issue,
+    'submit',
+    'embedded'
+  );
+  $form['#attributes']['class'][] = 'entityform';
+  $form['#attributes']['class'][] = 'entitytype-' . $issue->type . '-form';
   return drupal_render($form);
 }
 
