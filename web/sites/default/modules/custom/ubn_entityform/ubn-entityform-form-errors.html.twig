@@ -1,0 +1,9 @@
+{# slate
+  name = UBN Entityform: form errors
+  models[errors] = item
+#}
+<ul class="ubn-form-errors list-unstyled">
+{% for error in errors %}
+  <li class="ubn-form-error alert alert-danger">{{ error|raw }}</li>
+{% endfor %}
+</ul>
