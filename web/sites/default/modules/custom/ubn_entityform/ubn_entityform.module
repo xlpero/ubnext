@@ -99,7 +99,7 @@ function _ubn_entityform_form_get_errors() {
   $errors = form_set_error();
   $ubn_form_errors = array();
   foreach($errors as $name => $error) {
-    if(strpos($name, 'ubn_form') === 0) {
+    if(strpos($name, 'ubn_form') === 0 || strpos($name, 'captcha') !== FALSE) {
       $ubn_form_errors[$name] = $error;
     }
   }
