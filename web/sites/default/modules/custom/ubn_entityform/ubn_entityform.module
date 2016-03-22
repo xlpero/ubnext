@@ -2,14 +2,7 @@
 
 
 function ubn_entityform_form_alter(&$form, &$form_state, $form_id) {
-  // need form id to js
-  $my_settings = array(
-    'postPath' => $form["#action"],
-    'postingStr' => t("Posting"),
-    'formId' => drupal_clean_css_identifier($form_id)
-  );
-  drupal_add_js(array('ubn_entityform' => $my_settings), 'setting');
-  drupal_add_js(drupal_get_path('module', 'ubn_entityform') . '/ubn_entityform.js');
+
 }
 
 
@@ -36,6 +29,15 @@ function ubn_entityform_field_collection_is_empty_alter(&$is_empty, FieldCollect
 }
 
 function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $form_id) {
+    // need form id to js
+  $my_settings = array(
+    'postPath' => $form["#action"],
+    'postingStr' => t("Posting"),
+    'formId' => drupal_clean_css_identifier($form_id)
+  );
+  
+  drupal_add_js(array('ubn_entityform' => $my_settings), 'setting');
+  drupal_add_js(drupal_get_path('module', 'ubn_entityform') . '/ubn_entityform.js');
   $entityform = $form['#entity'];
   if (!empty($entityform->ubn_entityform['hidden_fields'])) {
     foreach ($entityform->ubn_entityform['hidden_fields'] as $field_name) {
