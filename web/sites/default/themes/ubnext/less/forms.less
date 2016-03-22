@@ -1,61 +1,58 @@
 .main-cms {
-	.log-in-form {
-		margin-top:20px;
-		.form-item {
-			margin-bottom: 10px;
-			.description {
-				font-size: .8em;
-			}
-		}
-		@media (max-width: @screen-sm-min) {
-			.btn {
-				width: 100% !important;
-			}
-		}
-		@media (min-width: @screen-sm-min) {
-			.btn {
-				float: right;
-			}
-		}
-	}
+  .log-in-form {
+    margin-top:20px;
+    .form-item {
+      margin-bottom: 10px;
+      .description {
+        font-size: .8em;
+      }
+    }
+    @media (max-width: @screen-sm-min) {
+      .btn {
+        width: 100% !important;
+      }
+    }
+    @media (min-width: @screen-sm-min) {
+      .btn {
+        float: right;
+      }
+    }
+  }
 
-	/* general */
-	.form-item {
-		margin-bottom: 20px;
-		.help-block {
-			margin-top: 0;
-		}
-		label {
-			margin-bottom: 5px;
-		}
-		.error-msg {
-			.fa {
-				color: @brand-danger;
-				margin-right: 5px;
-			}
+  /* general */
+  .form-item {
+    margin-bottom: 20px;
+    .help-block {
+      margin-top: 0;
+    }
+    label {
+      margin-bottom: 5px;
+    }
+    .error-msg {
+      .fa {
+        color: @brand-danger;
+        margin-right: 5px;
+      }
 
-			margin-bottom:10px;
-		}
-	}
-	.form-actions {
+      margin-bottom:10px;
+    }
+  }
+  .form-actions {
     .clearfix();
-		.captcha {
-			width: 100%;
-			margin-bottom: 20px;
-			float:left;
-			.g-recaptcha {
-				div {
-					div {
-						.pull-right();
-					}
-				}
-			}
-		}
-		button {
-			.pull-right();
-		}
-	}
-
-
-
+    .captcha {
+      width: 100%;
+      margin-bottom: 20px;
+      float:left;
+      .g-recaptcha {
+        div {
+          div {
+            .pull-right();
+          }
+        }
+      }
+    }
+    button {
+      .pull-right();
+    }
+  }
 }
