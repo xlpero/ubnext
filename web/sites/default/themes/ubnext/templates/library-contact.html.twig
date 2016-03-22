@@ -4,10 +4,15 @@
 #}
 <div class="container ub-panel-separator">
   <div class="ubn-pane library-contact-pane row">
-  <section class="library-contact col-sm-12 col-md-10 col-md-offset-1">
+  {% set form_instance = library.field_issue_form_instance %}
+  {% set form_enabled =
+    (not form_instance is empty) and
+    form_instance.field_form_access.value
+  %}
+  <section class="library-contact {%if form_enabled %}col-md-10 col-md-offset-1{% else %}col-sm-8 col-sm-offset-2{% endif %}">
     <h2>{{ t('Contact information') }}</h2>
     <div class="row">
-      <div class="col-sm-6 col-md-5">
+      <div class="{% if form_enabled %}col-sm-6 col-md-5{% else %}col-xs-12{% endif %}">
         {% set mailing_address = library.field_mailing_address.value %}
         {% if not mailing_address is empty %}
           <section class="library-contact-section">
@@ -50,15 +55,12 @@
           </section>
         {% endif %}
       </div>
+      {% if form_enabled %}
       <div class="col-sm-6 col-md-7">
-        <h3>{{t("Contact form")}}</h3>
-        {% if not library.field_issue_form_instance is empty %}
-          {% set instance = library.field_issue_form_instance %}
-          {{
-            ubn_form_instance_render(instance, 'issue') | raw
-          }}
-        {% endif %}
+        <h3>{{ t('Contact form') }}</h3>
+          {{ ubn_form_instance_render(form_instance, 'issue')|raw }}
       </div>
+      {% endif %}
     </div>
   </section>
   </div>
