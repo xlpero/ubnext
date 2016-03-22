@@ -1,24 +1,40 @@
 Drupal.behaviors.entityForm = {
   attach: function (context, settings) {
-    if (jQuery("#issue-entityform-edit-form-10460").length) {
-      alert("exist");
-      jQuery("#" + Drupal.settings.ubn_entityform.formId).css("border", "1px solid red");
-    }
-    jQuery("#" + Drupal.settings.ubn_entityform.formId).submit(function(e) {
-      alert("#" + Drupal.settings.ubn_entityform.formId);
+    var form_id = "#" + Drupal.settings.ubn_entityform.formId;
+    var that = this;
+    jQuery(document).on("submit", form_id, context, function (e) {
         var url = Drupal.settings.ubn_entityform.postPath; // the script where you handle the form input.
-        $.ajax({
+        that.toggleLoading(form_id);
+        jQuery.ajax({
                type: "POST",
                url: url,
-               data: $(Drupal.settings.ubn_entityform.formId).serialize(), // serializes the form's elements.
+               data: jQuery(form_id).serialize(), // serializes the form's elements.
                success: function(data)
                {
-                loadHTMLFragment(data);
-                toggleLoader();
+                that.replaceForm(form_id, data);
+                that.toggleLoading(form_id);
                }
              });
         e.preventDefault(); // avoid to execute the actual submit of the form.
-    });
+    })
+
+  },
+  replaceForm: function(formId, data) {
+    jQuery(formId).html(jQuery(data).find(formId).html());
+  
+  },
+
+  toggleLoading: function(id) {
+    if (jQuery(id).hasClass("loading")) {
+      jQuery(id).fadeTo("fast", 1);      
+      jQuery(id).removeClass("loading");
+    }
+    else {
+      jQuery(id).fadeTo("fast", 0.5);
+      jQuery(id).find("#edit-submit").html(Drupal.settings.ubn_entityform.postingStr + " <i class='fa fa-circle-o-notch fa-spin'></i>");
+      jQuery(id).addClass("loading");
+    }
+
   }
 };
   
