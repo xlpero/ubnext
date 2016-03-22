@@ -24,27 +24,6 @@
           </section>
         {% endif %}
 
-        {% set mailing_address = library.field_mailing_address.value %}
-        {% if not mailing_address is empty %}
-          <section class="library-contact-section">
-          <h3>{{ mailing_address.organisation_name }}</h3>
-          <p>
-            {{ mailing_address.thoroughfare }}<br>
-            {{ mailing_address.postal_code }} {{ mailing_address.locality }}<br>
-          </p>
-          </section>
-        {% endif %}
-
-        {% set visiting_address = library.field_visiting_address.value %}
-        {% if not visiting_address is empty %}
-          <h3>{{ library.field_visiting_address._label }}</h3>
-          <section class="library-contact-section">
-          <p>
-            {{ (not visiting_address.premise is empty ? visiting_address.premise ~ ', ') ~ visiting_address.thoroughfare }}<br>
-          </p>
-          </section>
-        {% endif %}
-
         {% set visiting_address = library.field_visiting_address.value %}
         {% if not visiting_address is empty %}
           <h3>{{ library.field_visiting_address._label }}</h3>
@@ -69,26 +48,6 @@
           </section>
         {% endif %}
 
-        {% set delivery_address = library.field_delivery_address.value %}
-        {% if not delivery_address is empty %}
-          <h3>{{ library.field_delivery_address._label }}</h3>
-          <section class="library-contact-section">
-          <p>
-            {% if not delivery_address.organisation_name is empty %}
-              {{ delivery_address.organisation_name }}<br>
-            {% endif %}
-            {{ (not delivery_address.premise is empty ? delivery_address.premise ~ ', ') ~ delivery_address.thoroughfare }}<br>
-            {{ delivery_address.postal_code }} {{ delivery_address.locality }}<br>
-          </p>
-          </section>
-        {% endif %}
-
-        {% if not library.field_phone.value is empty %}
-          <section class="library-contact-section">
-          <h3>{{ library.field_phone._label }}</h3>
-          <div>{{ library.field_phone.value }}</div>
-          </section>
-        {% endif %}
         {% if not library.field_phone.value is empty %}
           <section class="library-contact-section">
           <h3>{{ library.field_phone._label }}</h3>
