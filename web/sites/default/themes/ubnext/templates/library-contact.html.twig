@@ -98,13 +98,8 @@
       </div>
       {% if form_enabled %}
       <div class="col-sm-6 col-md-7">
-        <h3>{{t("Contact form")}}</h3>
-        {% if not library.field_issue_form_instance is empty %}
-          {% set instance = library.field_issue_form_instance %}
-          {% if instance.field_form_access.value %}
-            {{ ubn_form_instance_render(instance, 'issue') | raw }}
-          {% endif %}
-        {% endif %}
+        <h3>{{ t('Contact form') }}</h3>
+          {{ ubn_form_instance_render(form_instance, 'issue')|raw }}
       </div>
       {% endif %}
     </div>
