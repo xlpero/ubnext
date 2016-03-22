@@ -1,5 +1,4 @@
 <?php
-
 /*
 function ubn_entityform_form_alter(&$form, &$form_state, $form_id) {
 }
@@ -34,12 +33,14 @@ function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $f
       $form[$field_name]['#access'] = FALSE;
     }
   }
+
   $form['actions']['captcha'] = array(
     '#type' => 'captcha',
     '#captcha_type' => 'recaptcha/reCAPTCHA',
     '#weight' => -99,
   );
-  #$form['actions']['submit']['#submit'][] = 'ubn_entityform_entityform_edit_form_submit';
+
+  $form['actions']['submit']['#submit'][] = 'ubn_entityform_entityform_edit_form_submit';
   list(, , $bundle) = entity_extract_ids('entityform', $entityform);
   if ($bundle === 'issue') {
     //TODO: Should make sure we are always the last validation handler
@@ -48,6 +49,59 @@ function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $f
     // should implement hook_module_implements_alter?
     $form['#validate'][] = 'ubn_entityform_issue_entityform_edit_form_validate';
   }
+  //TODO: add only if submitted!
+  $form['#pre_render'][] = '_ubn_entityform_form_status_messages_pre_render';
+}
+
+function _ubn_entityform_form_status_messages_pre_render($form) {
+  //TODO: only if submitted!
+  // Check for general form errors
+  $errors = _ubn_entityform_form_get_errors();
+  $messages_success = _ubn_entityform_form_get_messages_success();
+
+  if(!empty($messages_success) || !empty($errors)) {
+    $form['ubn_entityform_messages'] = array(
+      '#type' => 'container',
+      '#attributes' => array('class' => array('ubn-form-status-messages')),
+    );
+    $container = &$form['ubn_entityform_messages'];
+    if(!empty($errors)) {
+      $container['errors'] = array(
+        '#markup' => slate_render('ubn-entityform-form-errors', array('errors' => $errors)),
+      );
+    }
+    if(!empty($messages_success)) {
+      $container['success'] = array(
+        '#markup' => slate_render('ubn-entityform-form-messages-success', array('messages' => $messages_success)),
+      );
+    }
+  }
+  return $form;
+}
+
+function _ubn_entityform_form_set_error($error, $type = NULL) {
+  form_set_error('ubn_form' . (isset($type) ? '_' . $type : ''), $error);
+}
+
+// Break out to separate module?
+function _ubn_entityform_form_get_errors() {
+  $errors = form_set_error();
+  $ubn_form_errors = array();
+  foreach($errors as $name => $error) {
+    if(strpos($name, 'ubn_form') === 0) {
+      $ubn_form_errors[$name] = $error;
+    }
+  }
+  return $ubn_form_errors;
+}
+
+function _ubn_entityform_form_set_message_success($message) {
+  drupal_set_message($message, 'ubn_form_message_success');
+}
+
+function _ubn_entityform_form_get_messages_success() {
+  $messages = drupal_get_messages('ubn_form_message_success');
+  return isset($messages['ubn_form_message_success']) ? $messages['ubn_form_message_success'] : array();
 }
 
 function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state) {
@@ -77,8 +131,9 @@ function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state)
         'timeout' => 20,
       )
     );
+
     if($response->code != 200) {
-      form_set_error('form', t('Sorry! Something went wrong, please try again later.'));
+      _ubn_entityform_form_set_error(t('Sorry! Something went wrong, please try again later.'), 'ttx2easit');
       watchdog(
         'ubn_entityform',
         'Error while submittning @type form (@code: @error).',
@@ -90,16 +145,22 @@ function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state)
         WATCHDOG_ERROR
       );
     }
+    else {
+      $message = t('Your message has been received.');
+      if(!empty($entityform_wrapper->field_email->value())) {
+        $message .= ' ' . t(
+          'A confirmation has been sent to %email.',
+          array('%email' => $entityform_wrapper->field_email->value())
+        );
+      }
+      _ubn_entityform_form_set_message_success($message);
+    }
   }
 }
 
 function ubn_entityform_entityform_edit_form_submit(&$form, &$form_state) {
-  /*
-  drupal_session_start();
-  $entity_form = $form['#entity'];
-  list($id) = entity_extract_ids('entityform', $entity_form);
-  $_SESSION['ubn_entityform_id'] = $id;
-  */
+  //TODO: add # to url
+  //$form_state['redirect'] = array(current_path(), array('fragement' => 
 }
 
 //TODO: array $hidden_fields?
@@ -108,7 +169,6 @@ function _ubn_entityform_form_instance_render($field_instance, $entityform_type 
   global $language_content;
 
   $issue = entityform_empty_load($entityform_type);
-
   try {
     $issue_wrapper = entity_metadata_wrapper(
       'entityform',
@@ -160,4 +220,3 @@ function ubn_entityform_slate_twig_alter(&$twig) {
   );
   $twig->addFunction($function);
 }
-

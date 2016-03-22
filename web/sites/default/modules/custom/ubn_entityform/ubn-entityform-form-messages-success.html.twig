@@ -1,0 +1,9 @@
+{# slate
+  name = UBN Entityform: form success messages
+  models[messages] = item
+#}
+<ul class="ubn-form-messages-success list-unstyled">
+{% for message in messages %}
+  <li class="ubn-form-messages-success-message alert alert-success">{{ message|raw }}</li>
+{% endfor %}
+</ul>
