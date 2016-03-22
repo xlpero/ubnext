@@ -30,9 +30,6 @@
       {% set context = 'page_content' %}
       {% if not section.field_media_atoms.value is empty %}
       <div class="content-section-media">
-        {% for atom in section.field_media_atoms %}
-          {# _self.media_atom(atom, context) #}
-        {% endfor %}
         {{ _self.media_atoms_layout(atoms_layout) }}
       </div>
       {% endif %}
@@ -43,13 +40,32 @@
         </section>
       {% endif %}
       {% if not section.field_file_atoms.value is empty %}
-        <div class="row">
         <ul class="list-unstyled content-sections-section-attached-files">
-        {% for atom in section.field_file_atoms %}
-          <li class="col-xs-12">{{ _self.file_atom(atom, 'page_content_attachments') }}</li>
+          {% for atom in section.field_file_atoms %}
+            <li>{{ _self.file_atom(atom, 'page_content_attachments') }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      {% if not section.field_contact_instances is empty %}
+        <ul class="list-unstyled content-sections-section-contacts">
+        {% for contact_instance in section.field_contact_instances %}
+          <li class="content-sections-section-contacts-contact">
+            {% set contact = contact_instance.field_referenced_contact %}
+            {# Default always runs? #}
+            <h2>{{ contact_instance.field_title.value|default(t('Contact @contact', {'@contact': drupal_strtolower(contact.title_field.value)})) }}</h2>
+            {% set form_instance = contact.field_issue_form_instance %}
+            {% set form_enabled =
+              (not form_instance is empty) and
+              form_instance.field_form_access.value
+            %}
+            {% if form_enabled %}
+            <div class="content-sections-section-contacts-contact-form">
+              {{ ubn_form_instance_render(form_instance, 'issue')|raw }}
+            </div>
+            {% endif %}
+          </li>
         {% endfor %}
         </ul>
-        </div>
       {% endif %}
     {% endfor %}
   {% endif %}
