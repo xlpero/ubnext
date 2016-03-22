@@ -61,8 +61,8 @@ function ubnext_form_element($variables) {
   $suffix = isset($element['#field_suffix']) ? ' <span class="field-suffix">' . $element['#field_suffix'] . '</span>' : '';
 
   if ($element['#type'] == 'checkbox') {
-    $variables['rendered_element'] = ' ' . $prefix . $element['#children'] . $suffix . "\n";
-    $output .= theme('form_element_label', $variables);
+    $variables['rendered_element'] = ' ' . $prefix . $element['#children'] . "\n";
+    $output .= theme('form_element_label', $variables) . $suffix ;
   }
   else {
 
@@ -258,6 +258,25 @@ function ubnext_preprocess_panels_pane(&$vars) {
       ));
   }
 }
+
+
+
+
+
+
+function ubnext_preprocess_page(&$vars, $hook = null){
+
+    if (isset($vars['node'])) {
+        switch ($vars['node']->type) {
+            case 'library': // machine name another content type
+                drupal_add_js(drupal_get_path('theme', 'ubnext').'/js/library.js'); // relative path to your script
+                break;
+        }
+    }
+}
+
+
+
 
 /**
  *
