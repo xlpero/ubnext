@@ -103,7 +103,7 @@ function ubn_contact_content_uuid_entity_default_taxonomy_term() {
     ),
   ));
   $items['20c74674-ae25-449b-becc-9d585f4c966e'] = entity_create('taxonomy_term', array(
-    'name' => 'Studietorget Hälsovetarbacken',
+    'name' => 'Biomedical Library - Learning Centre',
     'description' => '',
     'format' => 'markdown',
     'weight' => 0,
@@ -151,7 +151,6 @@ function ubn_contact_content_uuid_entity_default_taxonomy_term() {
         ),
       ),
     ),
-    'name_original' => 'Studietorget Hälsovetarbacken',
     'path' => array(
       'pathauto' => 1,
     ),
@@ -405,7 +404,7 @@ function ubn_contact_content_uuid_entity_default_taxonomy_term() {
     ),
   ));
   $items['44794526-92e9-4ce7-88aa-018dd0f22074'] = entity_create('taxonomy_term', array(
-    'name' => 'Biblioteket för musik och dramatik',
+    'name' => 'Music and Drama Library',
     'description' => '',
     'format' => 'markdown',
     'weight' => 0,
@@ -453,13 +452,12 @@ function ubn_contact_content_uuid_entity_default_taxonomy_term() {
         ),
       ),
     ),
-    'name_original' => 'Biblioteket för musik och dramatik',
     'path' => array(
       'pathauto' => 1,
     ),
   ));
   $items['5a15e618-81c2-42e0-8fe6-75a8a94e5bfc'] = entity_create('taxonomy_term', array(
-    'name' => 'Biomedicinska biblioteket',
+    'name' => 'Biomedical Library',
     'description' => '',
     'format' => 'markdown',
     'weight' => 0,
@@ -507,7 +505,6 @@ function ubn_contact_content_uuid_entity_default_taxonomy_term() {
         ),
       ),
     ),
-    'name_original' => 'Biomedicinska biblioteket',
     'path' => array(
       'pathauto' => 1,
     ),
@@ -610,13 +607,12 @@ function ubn_contact_content_uuid_entity_default_taxonomy_term() {
         ),
       ),
     ),
-    'name_original' => 'Konstbiblioteket',
     'path' => array(
       'pathauto' => 1,
     ),
   ));
   $items['70d93717-6e43-4445-9eab-222c27ae983d'] = entity_create('taxonomy_term', array(
-    'name' => 'Humanistiska biblioteket',
+    'name' => 'Humanities Library',
     'description' => '',
     'format' => 'markdown',
     'weight' => 0,
@@ -664,7 +660,6 @@ function ubn_contact_content_uuid_entity_default_taxonomy_term() {
         ),
       ),
     ),
-    'name_original' => 'Humanistiska biblioteket',
     'path' => array(
       'pathauto' => 1,
     ),
@@ -763,7 +758,7 @@ function ubn_contact_content_uuid_entity_default_taxonomy_term() {
     ),
   ));
   $items['8879d243-b1a9-404e-9a19-24d606e0063b'] = entity_create('taxonomy_term', array(
-    'name' => 'Samhällsvetenskapliga biblioteket',
+    'name' => 'Social Sciences Library',
     'description' => '',
     'format' => 'markdown',
     'weight' => 0,
@@ -811,13 +806,12 @@ function ubn_contact_content_uuid_entity_default_taxonomy_term() {
         ),
       ),
     ),
-    'name_original' => 'Samhällsvetenskapliga biblioteket',
     'path' => array(
       'pathauto' => 1,
     ),
   ));
   $items['9281b091-3083-4af4-90b3-de006a0b887b'] = entity_create('taxonomy_term', array(
-    'name' => 'Studietorget Campus Linne',
+    'name' => 'Campus Linne',
     'description' => '',
     'format' => 'markdown',
     'weight' => 0,
@@ -865,7 +859,6 @@ function ubn_contact_content_uuid_entity_default_taxonomy_term() {
         ),
       ),
     ),
-    'name_original' => 'Studietorget Campus Linne',
     'path' => array(
       'pathauto' => 1,
     ),
@@ -937,7 +930,6 @@ function ubn_contact_content_uuid_entity_default_taxonomy_term() {
         ),
       ),
     ),
-    'name_original' => 'Pedagogiska biblioteket',
     'path' => array(
       'pathauto' => 1,
     ),
@@ -1160,7 +1152,7 @@ function ubn_contact_content_uuid_entity_default_taxonomy_term() {
     ),
   ));
   $items['e317540a-901f-4f49-8a74-7de5fcc53015'] = entity_create('taxonomy_term', array(
-    'name' => 'Geovetenskapliga biblioteket',
+    'name' => 'Earth Sciences Library',
     'description' => '',
     'format' => 'markdown',
     'weight' => 0,
@@ -1208,13 +1200,12 @@ function ubn_contact_content_uuid_entity_default_taxonomy_term() {
         ),
       ),
     ),
-    'name_original' => 'Geovetenskapliga biblioteket',
     'path' => array(
       'pathauto' => 1,
     ),
   ));
   $items['eef4521a-55c7-4a3d-b4c2-d2721aa94afa'] = entity_create('taxonomy_term', array(
-    'name' => 'Ekonomiska biblioteket',
+    'name' => 'Economics Library',
     'description' => '',
     'format' => 'markdown',
     'weight' => 0,
@@ -1262,7 +1253,6 @@ function ubn_contact_content_uuid_entity_default_taxonomy_term() {
         ),
       ),
     ),
-    'name_original' => 'Ekonomiska biblioteket',
     'path' => array(
       'pathauto' => 1,
     ),
