@@ -718,11 +718,11 @@ function ubn_contact_field_default_field_instances() {
   t('Library');
   t('Message');
   t('Name');
-  t('Your name');
   t('Phone');
   t('Show form');
   t('TTX value');
   t('Title');
+  t('Your name');
 
   return $field_instances;
 }
