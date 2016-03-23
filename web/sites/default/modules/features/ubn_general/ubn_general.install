@@ -418,7 +418,14 @@ function ubn_general_update_7134() {
   features_revert_module('ubn_contact');
 }
 
-
+// Revert features
+function ubn_general_update_7135() {
+  module_enable(array('ubn_contact_content'));
+  features_revert_module('ubn_contact');
+  // Incompatible with ubn_contact
+  // because of POST to node page
+  module_disable(array('restws'));
+}
 
 // Enable entity translation for library
 /*
