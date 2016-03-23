@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the UBN contact content feature.
+ */
+
+include_once 'ubn_contact_content.features.inc';
