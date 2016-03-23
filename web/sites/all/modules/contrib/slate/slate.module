@@ -145,6 +145,14 @@ function slate_twig_instance() {
   return $twig;
 }
 
+function slate_is_cacheable($allow_caching = NULL) {
+  $allow_caching_static = &drupal_static(__FUNCTION__, TRUE);
+  if(isset($allow_caching)) {
+    $allow_caching_static = $allow_caching;
+  }
+  return $allow_caching_static;
+}
+
 /**
  * Implements hook_flush_caches().
  */
@@ -185,7 +193,7 @@ function slate_render($slate, $models = array()) {
 
   //static $total_time = 0;
   global $language_content;
-  $cache_enabled = variable_get('slate_cache_enabled', FALSE);
+  $cache_enabled = variable_get('slate_cache_enabled', FALSE) && !isset($slate_info['cacheable']) || !empty($slate_info['cacheable']);
   try {
     //$time = microtime(TRUE); 
     //Cache key hint?
@@ -230,7 +238,13 @@ function slate_render($slate, $models = array()) {
     if(!isset($content)) {
       $content = slate_twig_instance()->render($slate_info['file'], $models);
       if($cache_enabled) {
-        cache_set($cache_key, $content);
+        if(slate_is_cacheable()) {
+          cache_set($cache_key, $content);
+        }
+        else {
+          // Reset cache magic marker
+          slate_is_cacheable(TRUE);
+        }
       }
     }
 
@@ -242,7 +256,6 @@ function slate_render($slate, $models = array()) {
   }
   catch (Twig_Error $e) {
     drupal_set_message($e->getMessage(), 'error');
-
     return '';
   }
 }
