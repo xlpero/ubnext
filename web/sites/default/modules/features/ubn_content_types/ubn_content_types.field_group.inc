@@ -44,6 +44,34 @@ function ubn_content_types_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_contacts|field_collection_item|field_content_sections|form';
+  $field_group->group_name = 'group_contacts';
+  $field_group->entity_type = 'field_collection_item';
+  $field_group->bundle = 'field_content_sections';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Contacts',
+    'weight' => '9',
+    'children' => array(
+      0 => 'field_contact_instances',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Contacts',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-contacts field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'collapsed',
+    ),
+  );
+  $export['group_contacts|field_collection_item|field_content_sections|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_file_attachments|field_collection_item|field_content_sections|form';
   $field_group->group_name = 'group_file_attachments';
   $field_group->entity_type = 'field_collection_item';

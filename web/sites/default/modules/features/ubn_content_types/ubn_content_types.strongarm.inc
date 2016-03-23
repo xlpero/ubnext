@@ -292,7 +292,7 @@ function ubn_content_types_strongarm() {
     'taxonomy_term' => 'taxonomy_term',
     'scald_atom' => 'scald_atom',
     'field_collection_item' => 'field_collection_item',
-    'comment' => 0,
+    'entityform' => 0,
     'user' => 0,
   );
   $export['entity_translation_entity_types'] = $strongarm;
