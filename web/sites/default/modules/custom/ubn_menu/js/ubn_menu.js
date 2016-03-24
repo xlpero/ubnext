@@ -1,17 +1,15 @@
 (function ($) {
   Drupal.behaviors.ubn_menu = {
     attach: function(context, settings) {
-      console.log('context', context);
-      console.log('settings', settings);
-      $(".ubn-mobile-menu").hide();
-      $("#toggle-menu-btn").bind("click", function() {
-      	if (!$("#toggle-menu-btn").hasClass("open")) {
-      		$("#toggle-menu-btn").addClass("open");
-      		$(".ubn-mobile-menu").slideDown(100);
+      $(".ubn-mobile-menu", context).hide();
+      $("#toggle-menu-btn", context).bind("click", function() {
+      	if (!$("#toggle-menu-btn", context).hasClass("open")) {
+      		$("#toggle-menu-btn", context).addClass("open");
+      		$(".ubn-mobile-menu", context).slideDown(100);
       	}
       	else {
-      		$("#toggle-menu-btn").removeClass("open");
-      		$(".ubn-mobile-menu").slideUp(100);
+      		$("#toggle-menu-btn", context).removeClass("open");
+      		$(".ubn-mobile-menu", context).slideUp(100);
       	}
       });
     }
