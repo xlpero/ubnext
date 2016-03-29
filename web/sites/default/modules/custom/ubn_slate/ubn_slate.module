@@ -85,7 +85,7 @@ function _ubn_slate_opening_hours_items($opening_hours_values, $weekdays = NULL,
     }
     $opening_hours_items[$i]['is_exception'] = (bool) $opening_hours->field_opening_hours_is_exception->value();
     if($opening_hours_items[$i]['is_exception']) {
-      $opening_hours_items[$i]['hours'] .= '*';
+      $opening_hours_items[$i]['hours'] .= ' *';
     }
   }
   return array_values($opening_hours_items);

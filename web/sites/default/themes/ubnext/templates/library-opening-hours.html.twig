@@ -3,7 +3,6 @@
   models[library] = entity:node
 #}
 
-
 <div class="container ub-panel-separator">
   <header class="center">
     <h2>{{ t("Opening hours for !location", {"!location" : library.title_field.value})
@@ -12,15 +11,31 @@
   <div class="row">
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
       <ul class="list-unstyled ub-list-of-links">
+      {% set hasException = false %}
       {% for opening_hours in ubn_opening_hours_items(library.field_referenced_opening_hours) %}
         <li>
           <div class="row vertical-align">
             <div class="col-xs-7 col-sm-8">{{ opening_hours.weekday }}</div>
-            <div class="col-xs-5 col-sm-4">{{ opening_hours.hours }}</div>
+            <div class="col-xs-5 col-sm-4">
+              {{ opening_hours.hours }}
+              {% if opening_hours.is_exception %}
+                {% set hasException = true %}
+              {% endif %}
+            </div>
+
           </div> <!-- end row -->
         </li>
       {% endfor %}
       </ul>
+      {% if hasException %}
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="ubn-footnote pull-right">
+              * {{t("Deviant openinghours")}}
+            </div>
+          </div>
+        </div>
+      {% endif %}
     </div>
   </div> <!-- end row -->
 </div>
