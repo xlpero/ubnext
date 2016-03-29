@@ -1,39 +1,56 @@
+(function ($) {
 Drupal.behaviors.entityForm = {
   attach: function (context, settings) {
-    var form_id = "#" + Drupal.settings.ubn_entityform.formId;
-    var that = this;
-    jQuery(document).on("submit", form_id, context, function (e) {
-        var url = Drupal.settings.ubn_entityform.postPath; // the script where you handle the form input.
-        that.toggleLoading(form_id);
-        jQuery.ajax({
-               type: "POST",
-               url: url,
-               data: jQuery(form_id).serialize(), // serializes the form's elements.
-               success: function(data)
-               {
-                that.replaceForm(form_id, data);
-                that.toggleLoading(form_id);
-               }
-             });
-        e.preventDefault(); // avoid to execute the actual submit of the form.
-    })
-
+    if("ubn_entityform" in Drupal.settings) {
+      var that = this;
+      for(i in Drupal.settings.ubn_entityform) {
+        $form = $(Drupal.settings.ubn_entityform[i].formId, context);
+        if($form.length) {
+          $form.on("submit", Drupal.settings.ubn_entityform[i], function (e) {
+            var form_settings = e.data;
+            var $this = $(this);
+            that.toggleLoading($this, form_settings.postingStr);
+            $.ajax({
+              type: "POST",
+              url: form_settings.postPath, // the script where you handle the form input.
+              data: $this.serialize(), // serializes the form's elements.
+              success: function(data) {
+                that.toggleLoading($this, form_settings.postingStr, function() {
+                  that.replaceForm($this, form_settings.formId, data);
+                });
+              }
+            });
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+          });
+        }
+      }
+    }
   },
-  replaceForm: function(formId, data) {
-    jQuery(formId).html(jQuery(data).find(formId).html());
-  
+  replaceForm: function($old_form, formId, data){
+    var $form_wrapped = $(data).find(formId).wrap('<div></div>').parent();
+    Drupal.attachBehaviors($form_wrapped);
+    $old_form.replaceWith($form_wrapped.contents());
   },
 
-  toggleLoading: function(id) {
-    if (jQuery(id).hasClass("loading")) {
-      jQuery(id).fadeTo("fast", 1);      
-      jQuery(id).removeClass("loading");
+  toggleLoading: function($form, posting_string, complete) {
+    //Disable submit?
+    if ($form.hasClass("loading")) {
+      $form.fadeTo("fast", 1, function() {
+        $form.removeClass("loading");
+        complete();
+      });
     }
     else {
-      jQuery(id).fadeTo("fast", 0.5);
-      jQuery(id).find("#edit-submit").html(Drupal.settings.ubn_entityform.postingStr + " <i class='fa fa-circle-o-notch fa-spin'></i>");
-      jQuery(id).addClass("loading");
+      $form
+        .addClass("loading")
+        .fadeTo("fast", 0.5)
+        //.find(':input')
+        //.prop('disabled', true)
+        //.end()
+        .find(".form-submit")
+        .prop('disabled', true)
+        .html(posting_string + " <i class='fa fa-circle-o-notch fa-spin'></i>");
     }
-
   }
 };
+})(jQuery);
