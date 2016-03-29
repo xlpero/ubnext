@@ -16,9 +16,10 @@ Drupal.behaviors.entityForm = {
               data: $this.serialize(), // serializes the form's elements.
               success: function(data) {
                 that.toggleLoading($this, form_settings.postingStr, function() {
-                  that.replaceForm($this, form_settings.formId, data);
+                  var $new_form = that.replaceForm($this, form_settings.formId, data);
                   //TODO: consistant class names in tempalte, and change this:
-                  if($('.ubn-form-status-messages').length) {
+                  if($('.ubn-form-status-messages', $new_form).length) {
+                    //$new_form closest?
                     Drupal.ubnext.scrollTo($(form_settings.formId).closest('.content-sections-section-contacts-contact'));
                   }
                 });
@@ -33,7 +34,9 @@ Drupal.behaviors.entityForm = {
   replaceForm: function($old_form, formId, data){
     var $form_wrapped = $(data).find(formId).wrap('<div></div>').parent();
     Drupal.attachBehaviors($form_wrapped);
-    $old_form.replaceWith($form_wrapped.contents());
+    var $new_form = $form_wrapped.contents();
+    $old_form.replaceWith($new_form);
+    return $new_form;
   },
 
   toggleLoading: function($form, posting_string, complete) {
