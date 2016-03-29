@@ -41,7 +41,7 @@ function ubn_contact_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'email_textfield',
-      'weight' => 35,
+      'weight' => 5,
     ),
   );
 
@@ -82,7 +82,7 @@ function ubn_contact_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 34,
+      'weight' => 4,
     ),
   );
 
@@ -124,7 +124,7 @@ function ubn_contact_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 33,
+      'weight' => 3,
     ),
   );
 
@@ -165,7 +165,7 @@ function ubn_contact_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 32,
+      'weight' => 2,
     ),
   );
 
@@ -198,7 +198,7 @@ function ubn_contact_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 37,
+      'weight' => 6,
     ),
   );
 
@@ -231,7 +231,7 @@ function ubn_contact_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 36,
+      'weight' => 1,
     ),
   );
 

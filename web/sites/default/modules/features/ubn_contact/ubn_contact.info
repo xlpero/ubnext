@@ -1,7 +1,7 @@
 name = UBN Contact
 core = 7.x
 package = UBNext
-version = 7.x-0.10
+version = 7.x-0.11
 dependencies[] = captcha
 dependencies[] = ctools
 dependencies[] = email
