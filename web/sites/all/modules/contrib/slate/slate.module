@@ -145,12 +145,19 @@ function slate_twig_instance() {
   return $twig;
 }
 
-function slate_is_cacheable($allow_caching = NULL) {
-  $allow_caching_static = &drupal_static(__FUNCTION__, TRUE);
-  if(isset($allow_caching)) {
-    $allow_caching_static = $allow_caching;
+function slate_is_cacheable($allow_caching = NULL, $initialize_context = NULL) {
+  $allow_caching_static = &drupal_static(__FUNCTION__, array());
+  if(!empty($initialize_context)) {
+    array_push($allow_caching_static, TRUE);
   }
-  return $allow_caching_static;
+  if(isset($allow_caching)) {
+    end($allow_caching_static);
+    $i = key($allow_caching_static);
+    $allow_caching_static[$i] = $allow_caching;
+  }
+  else {
+    return array_pop($allow_caching_static);
+  }
 }
 
 /**
@@ -191,12 +198,9 @@ function slate_render($slate, $models = array()) {
     $models[$model] = $plugin->wrapper($models[$model]);
   }
 
-  //static $total_time = 0;
   global $language_content;
   $cache_enabled = variable_get('slate_cache_enabled', FALSE) && !isset($slate_info['cacheable']) || !empty($slate_info['cacheable']);
   try {
-    //$time = microtime(TRUE); 
-    //Cache key hint?
     if($cache_enabled) {
       $cache_data = array();
       foreach($models as $model) {
@@ -222,12 +226,8 @@ function slate_render($slate, $models = array()) {
       if(variable_get('slate_cache_slate_file_hash', FALSE)) {
         $cache_data[] = md5_file($slate_info['path'] . DIRECTORY_SEPARATOR . $slate_info['file']);
       }
-      $cache_key = md5(serialize($cache_data));
-      /*
-      $total_time += microtime(TRUE) - $time;
-      dsm($total_time * 1000);
-      */
 
+      $cache_key = md5(extension_loaded('igbinary') ? igbinary_serialize($cache_data) : serialize($cache_data));
       //TODO: our own cache bin?
       $cache = cache_get($cache_key);
       if(isset($cache->data)) {
@@ -236,14 +236,15 @@ function slate_render($slate, $models = array()) {
     }
 
     if(!isset($content)) {
+      if($cache_enabled) {
+        // Initialize cache context on stack
+        slate_is_cacheable(NULL, TRUE);
+      }
       $content = slate_twig_instance()->render($slate_info['file'], $models);
       if($cache_enabled) {
+        // This also pops off the current context of the stack
         if(slate_is_cacheable()) {
           cache_set($cache_key, $content);
-        }
-        else {
-          // Reset cache magic marker
-          slate_is_cacheable(TRUE);
         }
       }
     }
