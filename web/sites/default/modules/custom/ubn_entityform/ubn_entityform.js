@@ -17,6 +17,10 @@ Drupal.behaviors.entityForm = {
               success: function(data) {
                 that.toggleLoading($this, form_settings.postingStr, function() {
                   that.replaceForm($this, form_settings.formId, data);
+                  //TODO: consistant class names in tempalte, and change this:
+                  if($('.ubn-form-status-messages', context).length) {
+                    Drupal.ubnext.scrollTo($(form_settings.formId).closest('.content-sections-section-contacts-contact'));
+                  }
                 });
               }
             });
