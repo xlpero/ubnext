@@ -1,3 +1,19 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @xljoha
+ Unwatch 10
+  Star 0
+ Fork 0 ub-digit/ubnext
+ Code  Issues 0  Pull requests 0  Wiki  Pulse  Graphs  Settings
+Tree: 83d88fa7ab Find file Copy pathubnext/web/sites/default/modules/custom/ubn_entityform/ubn_entityform.module
+83d88fa  22 hours ago
+@gnucifer gnucifer Add general error message for validation errors
+2 contributors @gnucifer @xljoha
+RawBlameHistory     275 lines (247 sloc)  9.52 KB
 <?php
 
 
@@ -30,20 +46,13 @@ function ubn_entityform_field_collection_is_empty_alter(&$is_empty, FieldCollect
 
 function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $form_id) {
     // need form id to js
- // dsm($form_state['input']['field_anonymus']['und']);
-  if ($form_state['input']['field_anonymus']['und']) {
-    $form_state['input']['field_full_name']['und'][0]['value'] = 'anonymus';
-    $form_state['input']['field_email']['und'][0]['email'] = 'anonymus@anonymus.ub.gu.se';
-    $form['field_email']['#access'] = FALSE;
-    $form['field_full_name']['#access'] = FALSE;
-  }
-  $my_settings = array(
-    'postPath' => $form["#action"],
-    'postingStr' => t("Posting"),
-    'formId' => drupal_clean_css_identifier($form_id)
+  $setting = array(
+    'postPath' => $form['#action'],
+    'postingStr' => t('Posting'),
+    'formId' => '#' . drupal_clean_css_identifier($form_id)
   );
-  
-  drupal_add_js(array('ubn_entityform' => $my_settings), 'setting');
+
+  drupal_add_js(array('ubn_entityform' => array($setting)), 'setting');
   drupal_add_js(drupal_get_path('module', 'ubn_entityform') . '/ubn_entityform.js');
   $entityform = $form['#entity'];
   if (!empty($entityform->ubn_entityform['hidden_fields'])) {
@@ -51,12 +60,13 @@ function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $f
       $form[$field_name]['#access'] = FALSE;
     }
   }
-
+  /*
   $form['actions']['captcha'] = array(
     '#type' => 'captcha',
     '#captcha_type' => 'recaptcha/reCAPTCHA',
     '#weight' => -99,
   );
+  */
 
   $form['actions']['submit']['#submit'][] = 'ubn_entityform_entityform_edit_form_submit';
   list(, , $bundle) = entity_extract_ids('entityform', $entityform);
@@ -74,8 +84,8 @@ function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $f
 function _ubn_entityform_form_status_messages_pre_render($form) {
   //TODO: only if submitted!
   // Check for general form errors
-  $errors = _ubn_entityform_form_get_errors();
-  $messages_success = _ubn_entityform_form_get_messages_success();
+  $errors = _ubn_entityform_form_get_errors($form['#form_id']);
+  $messages_success = _ubn_entityform_form_get_messages_success($form['#form_id']);
 
   if(!empty($messages_success) || !empty($errors)) {
     $form['ubn_entityform_messages'] = array(
@@ -97,34 +107,68 @@ function _ubn_entityform_form_status_messages_pre_render($form) {
   return $form;
 }
 
-function _ubn_entityform_form_set_error($error, $type = NULL) {
-  form_set_error('ubn_form' . (isset($type) ? '_' . $type : ''), $error);
+function _ubn_entityform_form_set_error($error, $form_id, $type = NULL) {
+  form_set_error('ubn_form_' . $form_id . (isset($type) ? '_' . $type : ''), $error);
 }
 
 // Break out to separate module?
-function _ubn_entityform_form_get_errors() {
+function _ubn_entityform_form_get_errors($form_id) {
   $errors = form_set_error();
   $ubn_form_errors = array();
   foreach($errors as $name => $error) {
-    if(strpos($name, 'ubn_form') === 0 || strpos($name, 'captcha') !== FALSE) {
+    if(strpos($name, 'ubn_form_' . $form_id) === 0) {
       $ubn_form_errors[$name] = $error;
     }
   }
   return $ubn_form_errors;
 }
 
-function _ubn_entityform_form_set_message_success($message) {
-  drupal_set_message($message, 'ubn_form_message_success');
+function _ubn_entityform_form_set_message_success($form_id, $message) {
+  _ubn_entityform_form_set_message($form_id, 'success', $message);
 }
 
-function _ubn_entityform_form_get_messages_success() {
-  $messages = drupal_get_messages('ubn_form_message_success');
-  return isset($messages['ubn_form_message_success']) ? $messages['ubn_form_message_success'] : array();
+function _ubn_entityform_form_get_messages_success($form_id) {
+  return _ubn_entityform_form_get_messages($form_id, 'success');
+}
+
+function _ubn_entityform_form_get_messages($form_id, $type = NULL) {
+  if($messages = _ubn_entityform_form_set_message($form_id, $type)) {
+    if($type) {
+      unset($_SESSION['ubn_entityform_messages'][$form_id][$type]);
+      if(empty($_SESSION['ubn_entityform_messages'][$form_id])) {
+        unset($_SESSION['ubn_entityform_messages'][$form_id]);
+      }
+    }
+    else {
+      unset($_SESSION['ubn_entityform_messages'][$form_id]);
+    }
+    if(empty($_SESSION['ubn_entityform_messages'])) {
+      unset($_SESSION['ubn_entityform_messages']);
+    }
+    return $messages;
+  }
+  return array();
+}
+
+function _ubn_entityform_form_set_message($form_id, $type = NULL, $message = NULL) {
+  if(isset($message)) {
+    if(!isset($_SESSION['ubn_entityform_messages'][$form_id][$type])) {
+      $_SESSION['ubn_entityform_messages'][$form_id][$type] = array();
+    }
+    $_SESSION['ubn_entityform_messages'][$form_id][$type][] = $message;
+    drupal_page_is_cacheable(FALSE);
+  }
+  if(isset($type)) {
+    return isset($_SESSION['ubn_entityform_messages'][$form_id][$type]) ? $_SESSION['ubn_entityform_messages'][$form_id][$type] : array();
+  }
+  return isset($_SESSION['ubn_entityform_messages'][$form_id]) ? $_SESSION['ubn_entityform_messages'][$form_id] : array();
 }
 
 function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state) {
-    dsm($form_state['input']['field_email']['und']);
-  if($form_state['submitted'] && !form_get_errors() && !$form_state['rebuild']) {
+  if(form_get_errors()) {
+    _ubn_entityform_form_set_error(t('One or more fields has invalid or missing values. Please review errors below.'), $form['#form_id'], 'validation');
+  }
+  else if ($form_state['submitted'] && !$form_state['rebuild']) {
     //TODO: How does entityform get built? Would be nice to know
     $entityform_wrapper = entity_metadata_wrapper('entityform', $form_state['entityform']);
     global $language_content;
@@ -151,8 +195,13 @@ function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state)
       )
     );
 
+    /*
+    $response = new stdClass();
+    $response->code = 200;
+    */
+
     if($response->code != 200) {
-      _ubn_entityform_form_set_error(t('Sorry! Something went wrong, please try again later.'), 'ttx2easit');
+      _ubn_entityform_form_set_error(t('Sorry! Something went wrong, please try again later.'), $form['#form_id'], 'ttx2easit');
       watchdog(
         'ubn_entityform',
         'Error while submittning @type form (@code: @error).',
@@ -172,7 +221,7 @@ function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state)
           array('%email' => $entityform_wrapper->field_email->value())
         );
       }
-      _ubn_entityform_form_set_message_success($message);
+      _ubn_entityform_form_set_message_success($form['#form_id'], $message);
     }
   }
 }
