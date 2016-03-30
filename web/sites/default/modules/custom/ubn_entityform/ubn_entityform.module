@@ -30,7 +30,13 @@ function ubn_entityform_field_collection_is_empty_alter(&$is_empty, FieldCollect
 
 function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $form_id) {
     // need form id to js
-  dsm($form);
+ // dsm($form_state['input']['field_anonymus']['und']);
+  if ($form_state['input']['field_anonymus']['und']) {
+    $form_state['input']['field_full_name']['und'][0]['value'] = 'anonymus';
+    $form_state['input']['field_email']['und'][0]['email'] = 'anonymus@anonymus.ub.gu.se';
+    $form['field_email']['#access'] = FALSE;
+    $form['field_full_name']['#access'] = FALSE;
+  }
   $my_settings = array(
     'postPath' => $form["#action"],
     'postingStr' => t("Posting"),
@@ -117,6 +123,7 @@ function _ubn_entityform_form_get_messages_success() {
 }
 
 function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state) {
+    dsm($form_state['input']['field_email']['und']);
   if($form_state['submitted'] && !form_get_errors() && !$form_state['rebuild']) {
     //TODO: How does entityform get built? Would be nice to know
     $entityform_wrapper = entity_metadata_wrapper('entityform', $form_state['entityform']);

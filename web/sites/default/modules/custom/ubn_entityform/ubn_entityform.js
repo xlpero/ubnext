@@ -1,7 +1,33 @@
 Drupal.behaviors.entityForm = {
-  attach: function (context, settings) {
+  attach: function (context, settº»ings) {
     var form_id = "#" + Drupal.settings.ubn_entityform.formId;
+    var anonymousCheckbox = form_id + " #edit-field-anonymus-und";
+    var nameId = form_id + " #edit-field-full-name";
+    var emailId = form_id + " #edit-field-email";
     var that = this;
+
+   /* jQuery(document).on("change", anonymousCheckbox, function() {
+      if (jQuery(this).prop("checked")) {
+        jQuery(nameId + " input[type='text']").val("Anonymous");
+        jQuery(nameId + " input[type='text']").prop('type', 'hidden');
+        jQuery(nameId + " label").hide();
+       
+        jQuery(emailId + " input[type='text']").val("anonymous@anonymous.se");
+        jQuery(emailId + " input[type='text']").prop('type', 'hidden');
+        jQuery(emailId + " label").hide();
+      }
+      else {
+        jQuery(nameId + " input[type='hidden']").val("");
+        jQuery(nameId + " input[type='hidden']").prop('type', 'text');
+        jQuery(nameId + " label").show()
+
+        jQuery(emailId + " input[type='hidden']").val("");
+        jQuery(emailId + " input[type='hidden']").prop('type', 'text');
+        jQuery(emailId + " label").show();
+      }
+    });*/
+
+    
     jQuery(document).on("submit", form_id, context, function (e) {
         var url = Drupal.settings.ubn_entityform.postPath; // the script where you handle the form input.
         that.toggleLoading(form_id);
