@@ -30,6 +30,7 @@ function ubn_entityform_field_collection_is_empty_alter(&$is_empty, FieldCollect
 
 function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $form_id) {
     // need form id to js
+  dsm($form);
   $my_settings = array(
     'postPath' => $form["#action"],
     'postingStr' => t("Posting"),
