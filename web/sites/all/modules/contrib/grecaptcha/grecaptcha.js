@@ -18,13 +18,20 @@ var grecaptcha_ready = false;
             'sitekey' : recaptcha_settings.sitekey,
             'theme' : recaptcha_settings.theme,
             'type' : recaptcha_settings.type
-            /*
-            'callback' : (function(element_id) { return function(response) {
-                console.log(element_id);
-            };
-            })(setting.id)
-            */
           };
+          if(recaptcha_settings.disable_submit) {
+            //How safe is this selector?
+            var $form_submit = $element.closest('form').find('.form-submit').attr('disabled', 'disabled');
+            params.callback = (function(element_id, $submit) { return function(response) {
+                $submit.removeAttr('disabled');
+              };
+            })(setting.id, $form_submit);
+
+            params.expired_callback = (function(element_id, $submit) { return function() {
+                $submit.attr('disabled', 'disabled');
+              };
+            })(setting.id, $form_submit);
+          }
           if('tabindex' in recaptcha_settings && recaptcha_settings.tabindex) {
             params.tabindex = recaptcha_settings.tabindex;
           }
