@@ -21,6 +21,7 @@ Drupal.behaviors.entityForm = {
                   if($('.ubn-form-status-messages', $new_form).length) {
                     //$new_form closest? Needs to work on librarypage also.. scroll to form id?
                     Drupal.ubnext.scrollTo($(form_settings.formId));
+
                   }
                 });
               }
@@ -61,3 +62,4 @@ Drupal.behaviors.entityForm = {
   }
 };
 })(jQuery);
+

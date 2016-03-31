@@ -28,6 +28,7 @@ function ubn_entityform_field_collection_is_empty_alter(&$is_empty, FieldCollect
   }
 }
 
+
 function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $form_id) { 
   $isAnon = $form_state['input']['field_anonymus']['und'];
   if ($isAnon) {
@@ -36,6 +37,7 @@ function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $f
   }
 
   // need form id to js
+
   $setting = array(
     'postPath' => $form['#action'],
     'postingStr' => t('Posting'),
@@ -113,9 +115,7 @@ function _ubn_entityform_form_get_errors($form_id) {
   return $ubn_form_errors;
 }
 
-function _ubn_entityform_form_set_message_success($form_id, $message) {
-  _ubn_entityform_form_set_message($form_id, 'success', $message);
-}
+
 
 function _ubn_entityform_form_get_messages_success($form_id) {
   return _ubn_entityform_form_get_messages($form_id, 'success');
