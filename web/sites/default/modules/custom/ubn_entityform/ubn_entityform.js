@@ -20,7 +20,7 @@ Drupal.behaviors.entityForm = {
                   //TODO: consistant class names in tempalte, and change this:
                   if($('.ubn-form-status-messages', $new_form).length) {
                     //$new_form closest? Needs to work on librarypage also.. scroll to form id?
-                    Drupal.ubnext.scrollTo($(form_settings.formId).closest('.content-sections-section-contacts-contact'));
+                    Drupal.ubnext.scrollTo($(form_settings.formId));
                   }
                 });
               }
@@ -33,10 +33,9 @@ Drupal.behaviors.entityForm = {
   },
   replaceForm: function($old_form, formId, data){
     var $form_wrapped = $(data).find(formId).wrap('<div></div>').parent();
-    Drupal.attachBehaviors($form_wrapped);
     var $new_form = $form_wrapped.contents();
     $old_form.replaceWith($new_form);
-    Drupal.attachBehaviors($new_form);
+    Drupal.attachBehaviors($new_form.parent());
     return $new_form;
   },
 
