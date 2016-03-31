@@ -530,6 +530,46 @@ function ubn_content_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'field_collection_item-field_issue_form_instance-field_anonymous_allowed_access'.
+  $field_instances['field_collection_item-field_issue_form_instance-field_anonymous_allowed_access'] = array(
+    'bundle' => 'field_issue_form_instance',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_anonymous_allowed_access',
+    'label' => 'Anonymous allowed',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance:
   // 'field_collection_item-field_library_resources-field_resource_name'.
   $field_instances['field_collection_item-field_library_resources-field_resource_name'] = array(
     'bundle' => 'field_library_resources',
@@ -4050,6 +4090,7 @@ function ubn_content_types_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Add your malfunction message here. If you want it to be active check the active checkbox below.  ');
   t('Alternate titles');
+  t('Anonymous allowed');
   t('App');
   t('Authors');
   t('Body');
