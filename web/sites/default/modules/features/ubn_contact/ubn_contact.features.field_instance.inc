@@ -10,6 +10,45 @@
 function ubn_contact_field_default_field_instances() {
   $field_instances = array();
 
+  // Exported field_instance: 'entityform-issue-field_anonymous_allowed'.
+  $field_instances['entityform-issue-field_anonymous_allowed'] = array(
+    'bundle' => 'issue',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 7,
+      ),
+    ),
+    'entity_type' => 'entityform',
+    'field_name' => 'field_anonymous_allowed',
+    'label' => 'Anonymous allowed',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'entityform-issue-field_email'.
   $field_instances['entityform-issue-field_email'] = array(
     'bundle' => 'issue',
@@ -41,7 +80,7 @@ function ubn_contact_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'email_textfield',
-      'weight' => 5,
+      'weight' => 7,
     ),
   );
 
@@ -62,7 +101,7 @@ function ubn_contact_field_default_field_instances() {
     ),
     'entity_type' => 'entityform',
     'field_name' => 'field_full_name',
-    'label' => 'Your name',
+    'label' => 'Name',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -82,7 +121,7 @@ function ubn_contact_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 4,
+      'weight' => 6,
     ),
   );
 
@@ -92,7 +131,7 @@ function ubn_contact_field_default_field_instances() {
     'bundle' => 'issue',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'heeelp me I am drowning',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -198,7 +237,7 @@ function ubn_contact_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 6,
+      'weight' => 8,
     ),
   );
 
@@ -383,53 +422,6 @@ function ubn_contact_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact-field_email'.
-  $field_instances['node-contact-field_email'] = array(
-    'bundle' => 'contact',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'email',
-        'settings' => array(),
-        'type' => 'email_default',
-        'weight' => 3,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_email',
-    'label' => 'Email',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'ubn_property_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'email',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'email_textfield',
-      'weight' => 2,
-    ),
-  );
-
   // Exported field_instance: 'node-contact-field_issue_form_instance'.
   $field_instances['node-contact-field_issue_form_instance'] = array(
     'bundle' => 'contact',
@@ -476,60 +468,7 @@ function ubn_contact_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 6,
-    ),
-  );
-
-  // Exported field_instance: 'node-contact-field_phone'.
-  $field_instances['node-contact-field_phone'] = array(
-    'bundle' => 'contact',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 2,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_phone',
-    'label' => 'Phone',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'linkit' => array(
-        'button_text' => 'Search',
-        'enable' => 0,
-        'profile' => '',
-      ),
-      'text_processing' => 0,
-      'ubn_property_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 1,
+      'weight' => 31,
     ),
   );
 
@@ -561,72 +500,25 @@ function ubn_contact_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'title_field',
-    'label' => 'Name',
-    'required' => 1,
+    'label' => 'Title',
+    'required' => TRUE,
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'hide_label' => array(
-        'entity' => 0,
-        'page' => 0,
-      ),
-      'linkit' => array(
-        'button_text' => 'Search',
-        'enable' => 0,
-        'profile' => '',
+        'entity' => FALSE,
+        'page' => FALSE,
       ),
       'text_processing' => 0,
-      'ubn_property_field' => 0,
+      'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 1,
       'module' => 'text',
       'settings' => array(
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 0,
-    ),
-  );
-
-  // Exported field_instance: 'taxonomy_term-ttx_group-field_value'.
-  $field_instances['taxonomy_term-ttx_group-field_value'] = array(
-    'bundle' => 'ttx_group',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'taxonomy_term',
-    'field_name' => 'field_value',
-    'label' => 'TTX value',
-    'required' => 1,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'linkit' => array(
-        'button_text' => 'Search',
-        'enable' => 0,
-        'profile' => '',
-      ),
-      'text_processing' => 0,
-      'ubn_property_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 1,
+      'weight' => -5,
     ),
   );
 
@@ -711,6 +603,7 @@ function ubn_contact_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Anonymous allowed');
   t('Email');
   t('Expose library selection');
   t('Group');
@@ -718,11 +611,10 @@ function ubn_contact_field_default_field_instances() {
   t('Library');
   t('Message');
   t('Name');
-  t('Phone');
   t('Show form');
   t('TTX value');
   t('Title');
-  t('Your name');
+  t('heeelp me I am drowning');
 
   return $field_instances;
 }
