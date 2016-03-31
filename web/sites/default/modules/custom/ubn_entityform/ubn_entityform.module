@@ -242,7 +242,7 @@ function _ubn_entityform_form_instance_render($field_instance, $entityform_type 
 
   $issue->ubn_entityform = array();
   $info_instances = field_info_instances('field_collection_item', $field_instance->field_name->value());
-  dsm($info_instances);
+
   foreach (array_keys($info_instances) as $field_name) {
     // Hide fields storing hidden setting
     if (!preg_match('/_access$/', $field_name)) {
@@ -251,7 +251,6 @@ function _ubn_entityform_form_instance_render($field_instance, $entityform_type 
         !isset($info_instances[$field_name . '_access']) ||
         !$field_instance->get($field_name . '_access')->value()
       ) {
-        dsm($field_name);
         $issue->ubn_entityform['hidden_fields'][] = $field_name;
       }
     }
