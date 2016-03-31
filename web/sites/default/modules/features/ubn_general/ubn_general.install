@@ -263,6 +263,7 @@ function ubn_general_update_7118() {
 }
 
 
+
 //TODO: revert content types??
 function ubn_general_update_7119() {
   array_map('features_revert_module', array('ubn_content_types', 'ubn_search'));
@@ -432,6 +433,13 @@ function ubn_general_update_7136() {
   features_revert_module('ubn_content_types');
   module_disable(array('comment'));
 }
+
+
+function ubn_general_update_7137() {
+  field_delete_field('field_anonymus');
+  features_revert_module('ubn_content_types');
+}
+
 
 //TODO: Disable rdf module?
 
