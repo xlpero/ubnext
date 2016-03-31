@@ -30,7 +30,7 @@ function ubn_entityform_field_collection_is_empty_alter(&$is_empty, FieldCollect
 
 
 function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $form_id) { 
-  $isAnon = $form_state['input']['field_anonymus']['und'];
+  $isAnon = $form_state['input']['field_anonymous']['und'];
   if ($isAnon) {
     $form['field_email']['#access'] = FALSE;
     $form['field_full_name']['#access'] = FALSE;
@@ -226,11 +226,11 @@ function _ubn_entityform_form_instance_render($field_instance, $entityform_type 
   module_load_include('inc', 'entityform', 'entityform.admin');
   global $language_content;
 
-  $issue = entityform_empty_load($entityform_type);
+  $entityform = entityform_empty_load($entityform_type);
   try {
-    $issue_wrapper = entity_metadata_wrapper(
+    $entityform_wrapper = entity_metadata_wrapper(
       'entityform',
-      $issue,
+      $entityform,
       array(
         'langcode' => $language_content->language,
       )
@@ -240,30 +240,37 @@ function _ubn_entityform_form_instance_render($field_instance, $entityform_type 
     watchdog_exception('ubn_entityform', $e);
   }
 
-  $issue->ubn_entityform = array();
+  $entityform->ubn_entityform = array();
   $info_instances = field_info_instances('field_collection_item', $field_instance->field_name->value());
 
   foreach (array_keys($info_instances) as $field_name) {
     // Hide fields storing hidden setting
-    if (!preg_match('/_access$/', $field_name)) {
-      $issue_wrapper->get($field_name)->set($field_instance->get($field_name)->value());
+    if (preg_match('/_access$/', $field_name)) {
+      $target_field_name = substr($field_name, 0, -7);
       if (
-        !isset($info_instances[$field_name . '_access']) ||
-        !$field_instance->get($field_name . '_access')->value()
+        // Check that target field actually exists, not true for
+        // field_form_access for example
+        isset($entityform_wrapper->{$target_field_name}) &&
+        !$field_instance->get($field_name)->value()
       ) {
-        $issue->ubn_entityform['hidden_fields'][] = $field_name;
+        $entityform->ubn_entityform['hidden_fields'][] = $target_field_name;
       }
     }
+    // Set default value
+    else if(isset($entityform_wrapper->{$field_name})) {
+      $entityform_wrapper->get($field_name)->set($field_instance->get($field_name)->value());
+    }
   }
-  //$form = entityform_form_wrapper($issue, 'submit', 'embedded');
+
+  //$form = entityform_form_wrapper($entityform, 'submit', 'embedded');
   $form = drupal_get_form(
-    $issue->type . '_entityform_edit_form_' . $field_instance->getIdentifier(),
-    $issue,
+    $entityform->type . '_entityform_edit_form_' . $field_instance->getIdentifier(),
+    $entityform,
     'submit',
     'embedded'
   );
   $form['#attributes']['class'][] = 'entityform';
-  $form['#attributes']['class'][] = 'entitytype-' . $issue->type . '-form';
+  $form['#attributes']['class'][] = 'entitytype-' . $entityform->type . '-form';
   return drupal_render($form);
 }
 
