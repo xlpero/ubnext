@@ -48,4 +48,39 @@
         }
     }
   }
+
+  .ubn-collapse {
+    .ubn-collapse-head {
+        h2 {
+            margin-bottom: 0;
+        }
+        .ubn-collapse-head-toggle-btn {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            color: @gray-darker;
+            font-size: 1.5em;
+            .fa {
+                -ms-transform: rotate(45deg); /* IE 9 */
+                -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+                transform: rotate(45deg);
+                -webkit-transition: .3s ease-in-out;
+                 -moz-transition: .3s ease-in-out;
+                -o-transition: .3s ease-in-out;
+                transition: .3s ease-in-out;
+            }
+            &.collapsed {
+                .fa {
+                    -ms-transform: rotate(0deg); /* IE 9 */
+                    -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+                    transform: rotate(0deg);
+                }
+            }
+        }
+    }
+    .ubn-collapse-body {
+        margin-top: 20px;
+    }
+  }
+
 }
