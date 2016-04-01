@@ -456,6 +456,10 @@ function ubn_general_update_7140() {
   drupal_uninstall_modules($modules);
 }
 
+function ubn_general_update_7141() {
+  features_revert_module('ubn_contact');
+}
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
