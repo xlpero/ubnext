@@ -5,6 +5,8 @@
 #}
 <ul class="ubn-form-errors list-unstyled">
 {% for error in errors %}
-  <li class="ubn-form-error alert alert-danger">{{ error|raw }}</li>
+  <li class="ubn-form-error alert alert-danger">
+    <i class="fa fa-exclamation-circle"></i> {{ error|raw }}
+  </li>
 {% endfor %}
 </ul>
