@@ -444,6 +444,12 @@ function ubn_general_update_7138() {
   variable_set('grecaptcha_site_key', variable_get('recaptcha_site_key', ''));
 }
 
+function ubn_general_update_7139() {
+  $modules = array('recaptcha');
+  module_disable($modules);
+  drupal_uninstall_modules($modules);
+}
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
