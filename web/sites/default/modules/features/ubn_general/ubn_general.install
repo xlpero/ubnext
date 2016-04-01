@@ -434,12 +434,15 @@ function ubn_general_update_7136() {
   module_disable(array('comment'));
 }
 
-
 function ubn_general_update_7137() {
   field_delete_field('field_anonymus');
   features_revert_module('ubn_content_types');
 }
 
+function ubn_general_update_7138() {
+  variable_set('grecaptcha_secret_key', variable_get('recaptcha_secret_key', ''));
+  variable_set('grecaptcha_site_key', variable_get('recaptcha_site_key', ''));
+}
 
 //TODO: Disable rdf module?
 
