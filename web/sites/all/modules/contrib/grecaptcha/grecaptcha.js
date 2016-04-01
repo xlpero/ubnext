@@ -17,8 +17,12 @@ var grecaptcha_ready = false;
           var params = {
             'sitekey' : recaptcha_settings.sitekey,
             'theme' : recaptcha_settings.theme,
-            'type' : recaptcha_settings.type
+            'type' : recaptcha_settings.type,
+            'size' : recaptcha_settings.size
           };
+          if(recaptcha_settings.compact_breakpoint && $(window).width() < recaptcha_settings.compact_breakpoint) {
+            params.size = 'compact';
+          }
           if(recaptcha_settings.disable_submit) {
             //How safe is this selector?
             var $form_submit = $element.closest('form').find('.form-submit').attr('disabled', 'disabled');

@@ -262,6 +262,13 @@ function _ubn_entityform_form_instance_render($field_instance, $entityform_type 
     }
   }
 
+  // Hard coded hidden fields, TODO: add alter hook instead?
+  foreach(array('field_ttx_group') as $field_name) {
+    if(isset($entityform_wrapper->{$field_name})) {
+      $entityform->ubn_entityform['hidden_fields'][] = $field_name;
+    }
+  }
+
   //$form = entityform_form_wrapper($entityform, 'submit', 'embedded');
   $form = drupal_get_form(
     $entityform->type . '_entityform_edit_form_' . $field_instance->getIdentifier(),

@@ -434,12 +434,31 @@ function ubn_general_update_7136() {
   module_disable(array('comment'));
 }
 
-
 function ubn_general_update_7137() {
   field_delete_field('field_anonymus');
   features_revert_module('ubn_content_types');
 }
 
+function ubn_general_update_7138() {
+  variable_set('grecaptcha_secret_key', variable_get('recaptcha_secret_key', ''));
+  variable_set('grecaptcha_site_key', variable_get('recaptcha_site_key', ''));
+}
+
+function ubn_general_update_7139() {
+  $modules = array('recaptcha');
+  module_disable($modules);
+  drupal_uninstall_modules($modules);
+}
+
+function ubn_general_update_7140() {
+  $modules = array('captcha');
+  module_disable($modules);
+  drupal_uninstall_modules($modules);
+}
+
+function ubn_general_update_7141() {
+  features_revert_module('ubn_contact');
+}
 
 //TODO: Disable rdf module?
 

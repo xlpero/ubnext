@@ -50,11 +50,14 @@ function grecaptcha_element_process($element, $form_state, $complete_form) {
       array(
         'grecaptcha' => array(
           'settings' => array(
+            //TODO: split to element settings?
             'sitekey' => $grecaptcha_site_key,
             'theme' => variable_get('grecaptcha_theme', 'light'),
             'type' => variable_get('grecaptcha_type', 'image'),
+            'size' => variable_get('grecaptcha_size', 'normal'),
             'tabindex' => variable_get('grecaptcha_tabindex', 0),
             'disable_submit' => variable_get('grecaptcha_disable_submit', TRUE),
+            'compact_breakpoint' => variable_get('grecaptcha_compact_breakpoint', 480),
           ),
         ),
       ),
