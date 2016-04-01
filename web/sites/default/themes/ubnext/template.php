@@ -47,7 +47,7 @@ function ubnext_form_element($variables) {
     // Check for errors and set correct error class.
   if (isset($element['#parents']) && form_get_error($element)) {
     $attributes['class'][] = 'has-error';
-    $element['#field_prefix'] = '<div class="error-msg"><i class="fa fa-exclamation-triangle"></i>' . form_get_error($element) . '</div>';
+    $element['#field_prefix'] = '<div class="error-msg"><i class="fa fa-exclamation-circle"></i>' . form_get_error($element) . '</div>';
   }
 
 
