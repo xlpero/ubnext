@@ -246,7 +246,7 @@ function _ubn_entityform_form_instance_render($field_instance, $entityform_type 
   $entityform->ubn_entityform = array();
   $info_instances = field_info_instances('field_collection_item', $field_instance->field_name->value());
 
-  dsm($info_instances['field_ttx_library']);
+
   foreach (array_keys($info_instances) as $field_name) {
     // Hide fields storing hidden setting
     if (preg_match('/_access$/', $field_name)) {
