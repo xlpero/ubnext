@@ -30,7 +30,7 @@ function ubn_entityform_field_collection_is_empty_alter(&$is_empty, FieldCollect
 
 
 function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $form_id) { 
-  $isAnon = $form_state['input']['field_anonymous']['und'];
+  $isAnon = $form_state['input']['field_anonymous_allowed']['und'];
   if ($isAnon) {
     $form['field_email']['#access'] = FALSE;
     $form['field_full_name']['#access'] = FALSE;
