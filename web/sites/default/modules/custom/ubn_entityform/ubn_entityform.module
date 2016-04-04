@@ -40,12 +40,13 @@ function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $f
 
   $setting = array(
     'postPath' => $form['#action'],
-    'postingStr' => t('Posting'),
+    'postingStr' => t('Sending'),
     'formId' => '#' . drupal_clean_css_identifier($form_id)
   );
 
   drupal_add_js(array('ubn_entityform' => array($setting)), 'setting');
   drupal_add_js(drupal_get_path('module', 'ubn_entityform') . '/ubn_entityform.js');
+  
   $entityform = $form['#entity'];
   if (!empty($entityform->ubn_entityform['hidden_fields'])) {
     foreach ($entityform->ubn_entityform['hidden_fields'] as $field_name) {
@@ -245,6 +246,7 @@ function _ubn_entityform_form_instance_render($field_instance, $entityform_type 
   $entityform->ubn_entityform = array();
   $info_instances = field_info_instances('field_collection_item', $field_instance->field_name->value());
 
+  dsm($info_instances['field_ttx_library']);
   foreach (array_keys($info_instances) as $field_name) {
     // Hide fields storing hidden setting
     if (preg_match('/_access$/', $field_name)) {

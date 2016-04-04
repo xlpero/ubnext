@@ -35,7 +35,7 @@
     }
 
     .content-sections-section-contacts-contact {
-        padding: 10px;
+        padding: 15px 20px;
         border: 1px solid @gray-light;
         .content-sections-section-contacts-contact-head {
             .btn-toggle {
@@ -51,17 +51,22 @@
 
   .ubn-collapse {
     .ubn-collapse-head {
+        cursor: pointer;
         h2 {
+            .fa {
+                color: @brand-primary;
+                margin-right: 5px;
+            }
             margin-bottom: 0;
         }
         .ubn-collapse-head-toggle-btn {
             position: absolute;
-            top:-2px;
+            top:-5px;
             right: 20px;
             color: @gray-darker;
             font-size: 1.5em;
             @media (min-width: @screen-sm-min) {
-                top: 2px;
+
             }
             .fa {
                 -ms-transform: rotate(45deg); /* IE 9 */
@@ -83,6 +88,7 @@
     }
     .ubn-collapse-body {
         margin-top: 20px;
+        padding-bottom: 15px;
     }
   }
 
