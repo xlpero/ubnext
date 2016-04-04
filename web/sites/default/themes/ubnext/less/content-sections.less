@@ -56,10 +56,13 @@
         }
         .ubn-collapse-head-toggle-btn {
             position: absolute;
-            top: 2px;
+            top:-2px;
             right: 20px;
             color: @gray-darker;
             font-size: 1.5em;
+            @media (min-width: @screen-sm-min) {
+                top: 2px;
+            }
             .fa {
                 -ms-transform: rotate(45deg); /* IE 9 */
                 -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
