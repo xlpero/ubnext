@@ -188,10 +188,11 @@ function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state)
     /*
     $response = new stdClass();
     $response->code = 200;
+    $response->error = "Error!";
     */
 
     if($response->code != 200) {
-      _ubn_entityform_form_set_error(t('Sorry! Something went wrong, please try again later.'), $form['#form_id'], 'ttx2easit');
+      _ubn_entityform_form_set_error(t('Something went wrong, please try again later.'), $form['#form_id'], 'ttx2easit');
       watchdog(
         'ubn_entityform',
         'Error while submittning @type form (@code: @error).',
@@ -204,7 +205,8 @@ function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state)
       );
     }
     else {
-      $message = t('Your message has been received.');
+      //Ugly with markup here, but what to do?
+      $message = '<strong>' . t('Thank you!') . '</strong> ' . t('Your message has been received.');
       if(!empty($entityform_wrapper->field_email->value())) {
         $message .= ' ' . t(
           'A confirmation has been sent to %email.',
