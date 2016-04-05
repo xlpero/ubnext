@@ -27,7 +27,7 @@ function ubn_contact_field_default_field_bases() {
     'settings' => array(
       'allowed_values' => array(
         0 => '',
-        1 => 'Jag vill va anonym',
+        1 => 'I prefer anonymity',
       ),
       'allowed_values_function' => '',
       'entity_translation_sync' => FALSE,
