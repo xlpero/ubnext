@@ -36,6 +36,9 @@ function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $f
     $form['field_full_name']['#access'] = FALSE;
   }
 
+  $form['actions']['submit']['#value'] = t("Send");
+
+
   // need form id to js
   $setting = array(
     'postPath' => $form['#action'],
