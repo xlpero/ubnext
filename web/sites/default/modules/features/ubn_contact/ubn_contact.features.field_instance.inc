@@ -131,7 +131,7 @@ function ubn_contact_field_default_field_instances() {
     'bundle' => 'issue',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'heeelp me I am drowning',
+    'description' => 'Describe your question',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -184,7 +184,7 @@ function ubn_contact_field_default_field_instances() {
     ),
     'entity_type' => 'entityform',
     'field_name' => 'field_title',
-    'label' => 'Title',
+    'label' => 'Subject',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -700,6 +700,7 @@ function ubn_contact_field_default_field_instances() {
   // Included for use with string extractors like potx.
   t('Anonymous allowed');
   t('Body');
+  t('Describe your question');
   t('Email');
   t('Expose library selection');
   t('Group');
@@ -708,9 +709,9 @@ function ubn_contact_field_default_field_instances() {
   t('Message');
   t('Name');
   t('Show form');
+  t('Subject');
   t('TTX value');
   t('Title');
-  t('heeelp me I am drowning');
 
   return $field_instances;
 }
