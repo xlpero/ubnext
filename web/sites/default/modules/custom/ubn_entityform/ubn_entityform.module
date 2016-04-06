@@ -157,7 +157,7 @@ function _ubn_entityform_form_set_message($form_id, $type = NULL, $message = NUL
 
 function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state) {
   if(form_get_errors()) {
-    _ubn_entityform_form_set_error(t('One or more fields has invalid or missing values. Please review errors below.'), $form['#form_id'], 'validation');
+    _ubn_entityform_form_set_error(t('One or more fields are invalid. Please review errors below.'), $form['#form_id'], 'validation');
   }
   else if ($form_state['submitted'] && !$form_state['rebuild']) {
     //TODO: How does entityform get built? Would be nice to know
@@ -207,7 +207,7 @@ function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state)
     }
     else {
       //Ugly with markup here, but what to do?
-      $message = '<strong>' . t('Thank you!') . '</strong> ' . t('Your message has been received.');
+      $message = t('Your message has been received.');
       if(!empty($entityform_wrapper->field_email->value())) {
         $message .= ' ' . t(
           'A confirmation has been sent to %email.',
