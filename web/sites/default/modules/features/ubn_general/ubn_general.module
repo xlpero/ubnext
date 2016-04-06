@@ -194,11 +194,13 @@ function ubn_general_field_collection_is_empty_alter(&$is_empty, FieldCollection
     $file_atoms = field_get_items('field_collection_item', $item, 'field_file_atoms');
     $body = field_get_items('field_collection_item', $item, 'field_body');
     $title = field_get_items('field_collection_item', $item, 'field_title');
+    $contacts = field_get_items('field_collection_item', $item, 'field_contact_instances');
     if(
       empty($media_atoms[0]['sid']) &&
       empty($file_atoms[0]['sid']) &&
       empty($body[0]['value']) &&
-      empty($title[0]['value'])
+      empty($title[0]['value']) &&
+      (empty($contacts) || empty($contacts[0]['field_referenced_contact']['und'][0]['target_id']))
     ) {
       $is_empty = TRUE;
     }
