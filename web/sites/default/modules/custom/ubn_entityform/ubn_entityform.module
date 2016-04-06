@@ -37,16 +37,14 @@ function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $f
   }
 
   // need form id to js
-
   $setting = array(
     'postPath' => $form['#action'],
     'postingStr' => t('Sending'),
     'formId' => '#' . drupal_clean_css_identifier($form_id)
   );
-
   drupal_add_js(array('ubn_entityform' => array($setting)), 'setting');
   drupal_add_js(drupal_get_path('module', 'ubn_entityform') . '/ubn_entityform.js');
-  
+
   $entityform = $form['#entity'];
   if (!empty($entityform->ubn_entityform['hidden_fields'])) {
     foreach ($entityform->ubn_entityform['hidden_fields'] as $field_name) {
@@ -167,7 +165,7 @@ function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state)
       'cmd' => 'newticket',
       //'grp' => $entityform_wrapper->field_ttx_group->field_value->value(),
       'grp' => 'group37',
-      'xlibrary' => $entityform_wrapper->field_ttx_library->field_value->value(),
+      'xlibrary' => !empty($entityform_wrapper->field_ttx_library->value()) ? $entityform_wrapper->field_ttx_library->field_value->value() : 'nochoice',
       'lang' => $language_content->language,
       'subject' => $entityform_wrapper->field_title->value(),
       'problem' => $entityform_wrapper->field_message->value(),
@@ -246,23 +244,28 @@ function _ubn_entityform_form_instance_render($field_instance, $entityform_type 
   $entityform->ubn_entityform = array();
   $info_instances = field_info_instances('field_collection_item', $field_instance->field_name->value());
 
+  $access_fields = array();
+  $default_value_fields = array();
 
   foreach (array_keys($info_instances) as $field_name) {
-    // Hide fields storing hidden setting
     if (preg_match('/_access$/', $field_name)) {
-      $target_field_name = substr($field_name, 0, -7);
-      if (
-        // Check that target field actually exists, not true for
-        // field_form_access for example
-        isset($entityform_wrapper->{$target_field_name}) &&
-        !$field_instance->get($field_name)->value()
-      ) {
-        $entityform->ubn_entityform['hidden_fields'][] = $target_field_name;
-      }
+      $access_fields[] = $field_name;
     }
-    // Set default value
-    else if(isset($entityform_wrapper->{$field_name})) {
-      $entityform_wrapper->get($field_name)->set($field_instance->get($field_name)->value());
+    else {
+      $default_value_fields[] = $field_name;
+    }
+  }
+
+  // Collect hidden fields
+  foreach($access_fields as $field_name) {
+    $target_field_name = substr($field_name, 0, -7);
+    if (
+      // Check that target field actually exists, not true for
+      // field_form_access for example
+      isset($entityform_wrapper->{$target_field_name}) &&
+      !$field_instance->get($field_name)->value()
+    ) {
+      $entityform->ubn_entityform['hidden_fields'][] = $target_field_name;
     }
   }
 
@@ -272,6 +275,18 @@ function _ubn_entityform_form_instance_render($field_instance, $entityform_type 
       $entityform->ubn_entityform['hidden_fields'][] = $field_name;
     }
   }
+
+  // Set default values
+  foreach($default_value_fields as $field_name) {
+    //Default values only set for hidden fields
+    if(isset($entityform_wrapper->{$field_name}) && in_array($field_name, $entityform->ubn_entityform['hidden_fields'])) {
+      $default_value = $field_instance->get($field_name)->value();
+      if(!empty($default_value)) {
+        $entityform_wrapper->get($field_name)->set($default_value);
+      }
+    }
+  }
+
 
   //$form = entityform_form_wrapper($entityform, 'submit', 'embedded');
   $form = drupal_get_form(
