@@ -44,7 +44,9 @@ Drupal.behaviors.entityForm = {
     if ($form.hasClass("loading")) {
       $form.fadeTo("fast", 1, function() {
         $form.removeClass("loading");
-        complete();
+        if (complete) {
+          complete();
+        }
       });
     }
     else {
