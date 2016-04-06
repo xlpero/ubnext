@@ -16,8 +16,8 @@
 # used to set extended properties on the server.
 
 #TODO: Set common settings fro ubn_conf in deploy.rb instead?
-server 'm-staging.ub.gu.se', user: 'drupal-deploy', roles: %w{app},
-  ubn_conf: { ubn_settings_solr_host: 'localhost' } 
+server 'beta-staging.ub.gu.se', user: 'drupal-deploy', roles: %w{app},
+  ubn_conf: { ubn_settings_solr_host: 'localhost' }
 
 #fetch(:stage)?
 set :deploy_to, '/var/www/drupal/staging'
