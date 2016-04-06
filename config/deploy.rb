@@ -57,8 +57,8 @@ namespace :deploy do
   end
   after :updated, :grunt_less do
     SSHKit.config.command_map[:grunt] = "#{release_path.join(fetch(:theme_path), 'node_modules/.bin/grunt')}"
-    on roles :app do 
-      within release_path.join(fetch(:theme_path)) do 
+    on roles :app do
+      within release_path.join(fetch(:theme_path)) do
         execute :grunt, 'less'
       end
     end
