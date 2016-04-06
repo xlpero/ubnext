@@ -17,7 +17,10 @@
 
 # server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
 server 'beta.ub.gu.se', user: 'drupal-deploy', roles: %w{app},
-  ubn_conf: { ubn_settings_solr_host: 'localhost' }
+  ubn_conf: {
+    ubn_settings_solr_host: 'localhost',
+    slate_cache_enabled: 1
+  }
 
 set :deploy_to, '/var/www/drupal/production'
 
