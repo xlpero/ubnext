@@ -51,11 +51,12 @@
         {% for contact_instance in section.field_contact_instances %}
           <li class="content-sections-section-contacts-contact ubn-collapse">
             {% set contact = contact_instance.field_referenced_contact %}
+            {% set contact_id = drupal_html_id('contactcard') %}
             {# Default always runs? #}
-            <div class="content-sections-section-contacts-contact-head ubn-collapse-head collapsed row" data-target="{{'#contactcard-' ~ loop.index}}" data-toggle="collapse" aria-expanded="false">
+            <div class="content-sections-section-contacts-contact-head ubn-collapse-head collapsed row" data-target="#{{ contact_id }}" data-toggle="collapse" aria-expanded="false">
               <div class="col-xs-12">
-                <h2 class="small"><i class="fa fa-comment"></i> {{ contact_instance.field_title.value|default(t('Contact @contact', {'@contact': drupal_strtolower(contact.title_field.value)})) }}</h2>
-                <a class="ubn-collapse-head-toggle-btn collapsed" role="button" data-toggle="collapse" href="{{'#contactcard-' ~ loop.index}}" aria-expanded="false">
+                <h2 class="small"><i class="fa fa-comment"></i> {{ contact_instance.field_title.value|default(t('Contact @contact', {'@contact': contact.title_field.value})) }}</h2>
+                <a class="ubn-collapse-head-toggle-btn collapsed" role="button" data-toggle="collapse" href="#{{ contact_id }}" aria-expanded="false">
                 <i class="fa fa-plus"></i>
                 </a>
               </div>
@@ -67,7 +68,7 @@
             %}
             {% if form_enabled %}
             {{ slate_is_cacheable(FALSE) }}
-            <div id="{{'contactcard-' ~ loop.index}}" class="collapse ubn-collapse-body content-sections-section-contacts-contact-form">
+            <div id="{{ contact_id }}" class="collapse ubn-collapse-body content-sections-section-contacts-contact-form">
               {{ ubn_form_instance_render(form_instance, 'issue')|raw }}
             </div>
             {% endif %}
