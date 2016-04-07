@@ -70,7 +70,7 @@
             {{ slate_is_cacheable(FALSE) }}
             <div id="{{ contact_id }}" class="collapse ubn-collapse-body content-sections-section-contacts-contact-form">
               <div class="contact-body">
-                  {{contact.field_body.value | raw}}
+                  {{contact.field_description.value | raw}}
               </div>
               {{ ubn_form_instance_render(form_instance, 'issue')|raw }}
             </div>

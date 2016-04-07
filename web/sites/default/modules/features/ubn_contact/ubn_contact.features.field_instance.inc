@@ -422,9 +422,8 @@ function ubn_contact_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-contact-field_body'.
-  $field_instances['node-contact-field_body'] = array(
-    'bueditor_profile' => -1,
+  // Exported field_instance: 'node-contact-field_description'.
+  $field_instances['node-contact-field_description'] = array(
     'bundle' => 'contact',
     'default_value' => NULL,
     'deleted' => 0,
@@ -435,7 +434,7 @@ function ubn_contact_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'teaser' => array(
         'label' => 'above',
@@ -451,8 +450,8 @@ function ubn_contact_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'node',
-    'field_name' => 'field_body',
-    'label' => 'Body',
+    'field_name' => 'field_description',
+    'label' => 'Description',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -461,7 +460,7 @@ function ubn_contact_field_default_field_instances() {
         'enable' => 0,
         'profile' => '',
       ),
-      'text_processing' => 1,
+      'text_processing' => 0,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
     ),
@@ -472,7 +471,7 @@ function ubn_contact_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 1,
+      'weight' => 32,
     ),
   );
 
@@ -699,8 +698,8 @@ function ubn_contact_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Anonymous allowed');
-  t('Body');
   t('Describe your question');
+  t('Description');
   t('Email');
   t('Expose library selection');
   t('Group');

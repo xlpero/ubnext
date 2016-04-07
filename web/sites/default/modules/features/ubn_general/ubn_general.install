@@ -470,6 +470,14 @@ function ubn_general_update_7143() {
   }
 }
 
+
+function ubn_general_update_7144() {
+  features_revert_module('ubn_contact');
+  if ($instance = field_info_instance('node', 'field_body', 'contact')) {
+    field_delete_instance($instance);
+  }
+}
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library

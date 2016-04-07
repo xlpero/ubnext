@@ -825,7 +825,7 @@ function ubn_content_types_field_default_field_instances() {
         'enable' => 0,
         'profile' => '',
       ),
-      'text_processing' => 0,
+      'text_processing' => 1,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
     ),
