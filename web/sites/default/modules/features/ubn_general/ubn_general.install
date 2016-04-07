@@ -465,8 +465,9 @@ function ubn_general_update_7142() {
   if ($instance = field_info_instance('node', 'field_email', 'contact')) {
     field_delete_instance($instance);
   }​
-  if ($instance = field_info_instance('node', 'field_phone', 'contact')) {
-    field_delete_instance($instance);
+
+  if ($instance2 = field_info_instance('node', 'field_phone', 'contact')) {
+    field_delete_instance($instance2);
   }​
 }
 
