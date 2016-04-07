@@ -94,16 +94,16 @@ function ubn_contact_strongarm() {
     'extra_fields' => array(
       'form' => array(
         'path' => array(
-          'weight' => '30',
+          'weight' => '5',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '4',
         ),
         'xmlsitemap' => array(
           'weight' => '30',
         ),
         'language' => array(
-          'weight' => '5',
+          'weight' => '3',
         ),
       ),
       'display' => array(),
