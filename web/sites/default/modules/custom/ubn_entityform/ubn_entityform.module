@@ -29,15 +29,12 @@ function ubn_entityform_field_collection_is_empty_alter(&$is_empty, FieldCollect
 }
 
 
-function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $form_id) { 
-  $isAnon = $form_state['input']['field_anonymous_allowed']['und'];
-  if ($isAnon) {
+function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $form_id) {
+  if(!empty($form_state['input']['field_anonymous_allowed']['und'])) {
     $form['field_email']['#access'] = FALSE;
     $form['field_full_name']['#access'] = FALSE;
   }
-
   $form['actions']['submit']['#value'] = t("Send");
-
 
   // need form id to js
   $setting = array(
@@ -177,6 +174,8 @@ function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state)
       'kid' => time() . '-' . rand(1000000, 9999999),
     );
 
+    dsm($ttx_data);
+    /*
     $response = drupal_http_request(
       variable_get('ubn_entityform_ttx2easit_endpoint', 'http://130.241.35.161:3006/easitapi/new'),
       array(
@@ -186,12 +185,11 @@ function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state)
         'timeout' => 20,
       )
     );
+    */
 
-    /*
     $response = new stdClass();
     $response->code = 200;
     $response->error = "Error!";
-    */
 
     if($response->code != 200) {
       _ubn_entityform_form_set_error(t('Something went wrong, please try again later.'), $form['#form_id'], 'ttx2easit');
