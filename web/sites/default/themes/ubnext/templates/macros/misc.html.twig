@@ -66,15 +66,20 @@
               (not form_instance is empty) and
               form_instance.field_form_access.value
             %}
-            {% if form_enabled %}
-            {{ slate_is_cacheable(FALSE) }}
             <div id="{{ contact_id }}" class="collapse ubn-collapse-body content-sections-section-contacts-contact-form">
+              {% if not contact.field_description is empty %}
               <div class="contact-body">
                   {{contact.field_description.value | raw}}
               </div>
-              {{ ubn_form_instance_render(form_instance, 'issue')|raw }}
+              {% endif %}
+              {% if form_enabled and contact.field_description %}
+                <hr>
+              {% endif %}
+              {% if form_enabled %}
+                {{ slate_is_cacheable(FALSE) }}
+                {{ ubn_form_instance_render(form_instance, 'issue')|raw }}
+              {% endif %}
             </div>
-            {% endif %}
           </li>
         {% endfor %}
         </ul>
