@@ -21,11 +21,13 @@ function _ubn_entityform_field_collection_field_entityform_type($field_name) {
 }
 
 function ubn_entityform_field_collection_is_empty_alter(&$is_empty, FieldCollectionItemEntity $item) {
+  /*
   if (_ubn_entityform_field_collection_field_entityform_type($item->field_name)) {
     $ttx_library = field_get_items('field_collection_item', $item, 'field_ttx_library');
     $ttx_group = field_get_items('field_collection_item', $item, 'field_ttx_group');
     $is_empty = !isset($ttx_library[0]['tid']) || !isset($ttx_group[0]['tid']);
   }
+  */
 }
 
 
