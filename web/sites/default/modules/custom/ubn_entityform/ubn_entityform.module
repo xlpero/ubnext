@@ -163,8 +163,8 @@ function ubn_entityform_issue_entityform_edit_form_validate($form, &$form_state)
     global $language_content;
     $ttx_data = array(
       'cmd' => 'newticket',
-      //'grp' => $entityform_wrapper->field_ttx_group->field_value->value(),
-      'grp' => 'group37',
+      'grp' => $entityform_wrapper->field_ttx_group->field_value->value(),
+      //'grp' => 'group37',
       'xlibrary' => !empty($entityform_wrapper->field_ttx_library->value()) ? $entityform_wrapper->field_ttx_library->field_value->value() : 'nochoice',
       'lang' => $language_content->language,
       'subject' => $entityform_wrapper->field_title->value(),
