@@ -1,0 +1,5 @@
+name = UBN Footer
+description = UBN Custom footer
+core = 7.x
+package = UBNext
+dependencies[] = slate

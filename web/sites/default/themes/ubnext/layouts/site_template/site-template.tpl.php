@@ -141,11 +141,7 @@
   <!-- ### FOOTER ### -->
   <div class="footer-area">
     <footer id="footer" class="container">
-      <div class="row">
-        <div class="col-xs-12">
-
-        </div>
-      </div>
+      <?php print render($content['footer']); ?>
     </footer>
   </div>
   <!-- ### END FOOTER ### -->

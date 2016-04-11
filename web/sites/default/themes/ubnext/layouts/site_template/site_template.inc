@@ -19,5 +19,6 @@ $plugin = array(
     'pagetitle' => t('Page title'), /* put title and lead paragraphs here */ 
     'messages' => t('Messages'),
     'content' => t('Content'),
+    'footer' => t('Footer'),
   ),
 );
