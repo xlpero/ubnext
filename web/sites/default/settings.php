@@ -17,4 +17,7 @@ $conf['i18n_variables'] = array(
   'anonymous',
   'menu_primary_menu',
   'menu_secondary_menu',
+  'footer_col1',
+  'footer_col2',
+  'footer_col3',
 );
