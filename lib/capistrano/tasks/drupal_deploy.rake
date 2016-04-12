@@ -15,6 +15,11 @@ file 'data' do
   mkdir('data')
 end
 
+#?
+#file 'data/database.sql' do
+  #invoke shit
+#end
+
 # Install drush
 namespace :drush do
   desc "Install Drush"
@@ -91,7 +96,7 @@ namespace :drupal do
     task :upload => 'data' do
       invoke 'drupal:stash-files:remove'
       on release_roles :app do
-        upload! 'data/files', current_path.join('files'), recursive: true
+        upload! File.join('data', 'files'), current_path.join('files'), recursive: true
       end
     end
   end
@@ -105,12 +110,47 @@ namespace :drupal do
   end
 
   namespace :'stash-database' do
-    desc "Stash database"
-    task :default do
+    desc "Remove stashed database"
+    task :remove do
       on release_roles :app do
         within current_path.join(fetch(:app_path)) do
-          execute :drush, "sql-dump --result-file=\"#{current_path}/database.sql\""
+          execute :rm, current_path.join('database.sql')
         end
+      end
+    end
+
+    desc "Download stashed database"
+    task :download => 'data' do
+      # Check if extist and possible run stash-database if not?
+      on release_roles :app do
+        download! current_path.join('database.sql'), 'data'
+      end
+    end
+
+    desc "Upload stashed database"
+    # TODO: 'data/database.sql'? Nah, makes no sense to download -> upload
+    task :upload => 'data' do
+      on release_roles :app do
+        upload! File.join('data', 'database.sql'), current_path.join('database.sql')
+      end
+    end
+
+    task :'apply' do
+    on release_roles :app do
+      within current_path.join(fetch(:app_path)) do
+        #TODO: drop before import?
+        execute :drush, "sql-cli < \"#{current_path.join('database.sql')}\""
+      end
+    end
+
+  end
+
+  desc "Stash database"
+  task :'stash-database' do
+    on release_roles :app do
+      within current_path.join(fetch(:app_path)) do
+        #TODO: inconsistent use of quotes for paths, fix
+        execute :drush, "sql-dump --result-file=\"#{current_path.join('database.sql')}\""
       end
     end
   end
