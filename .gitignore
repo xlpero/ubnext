@@ -1,6 +1,7 @@
 .DS_Store
 
-
+# Ignore drupal-capistrano data dir
+/data
 
 # Ignore todo-files
 todo
