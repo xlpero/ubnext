@@ -15,7 +15,7 @@ set :branch, 'master'
 
 set :scm, :git
 set :format, :pretty
-set :log_level, :debug
+set :log_level, :info
 
 # Default false
 set :pty, false
@@ -35,6 +35,9 @@ set :keep_releases, 5
 set :app_path, 'web'
 set :site_path, 'web/sites/default'
 set :theme_path, 'web/sites/default/themes/ubnext'
+set :files_path, 'web/sites/default/files'
+set :files_user, 'www-data'
+set :files_group, 'www-data'
 
 ## Composer ##
 set :composer_roles, :app
