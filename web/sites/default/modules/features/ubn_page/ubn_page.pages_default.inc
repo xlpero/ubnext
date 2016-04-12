@@ -977,6 +977,30 @@ function ubn_page_default_page_manager_handlers() {
     $display->content['new-92a668ff-293b-4e55-aeaa-1363a20464ff'] = $pane;
     $display->panels['dropdown_navigation'][0] = 'new-92a668ff-293b-4e55-aeaa-1363a20464ff';
     $pane = new stdClass();
+    $pane->pid = 'new-7462df87-fdfa-4351-8ceb-255a745eecef';
+    $pane->panel = 'footer';
+    $pane->type = 'slate_render';
+    $pane->subtype = 'slate_render:footer';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+      'style' => 'naked',
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '7462df87-fdfa-4351-8ceb-255a745eecef';
+    $display->content['new-7462df87-fdfa-4351-8ceb-255a745eecef'] = $pane;
+    $display->panels['footer'][0] = 'new-7462df87-fdfa-4351-8ceb-255a745eecef';
+    $pane = new stdClass();
     $pane->pid = 'new-94db747d-dbbe-42bd-9909-a59b215d30bd';
     $pane->panel = 'messages';
     $pane->type = 'page_messages';
