@@ -140,21 +140,9 @@
 <div class="footer-cms">
   <!-- ### FOOTER ### -->
   <div class="footer-area">
-    <footer id="footer" class="container">
       <?php print render($content['footer']); ?>
-    </footer>
   </div>
   <!-- ### END FOOTER ### -->
-
-  <!-- ### SITE BOTTOM ### -->
-  <div class="site-bottom-area">
-    <div class="site-bottom container">
-      <div class="copyright">
-        &copy; <?php print variable_get('site_name'); ?>  <?php echo date("Y"); ?>
-      </div>
-    </div>
-  </div>
-  <!-- ### END SITE BOTTOM ### -->
 </div> <!-- ### END FOOTER-CMS -->
 
 

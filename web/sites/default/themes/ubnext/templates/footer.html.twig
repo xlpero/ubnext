@@ -1,4 +1,21 @@
 {# slate
   name = Footer 
 #}
-<h2>fooooter</h2>
+
+<footer id="footer" class="container">
+	<div class="row">
+		<div class="col-sm-6 col-md-4">
+			{{check_markup(variable_get('footer_col1', NULL)['value'], variable_get('footer_col1', NULL)['format']) | raw}}	
+		</div>
+		<div class="col-sm-6 col-md-8">
+			<div class="row">
+				<div class="col-md-6">
+					{{check_markup(variable_get('footer_col2', NULL)['value'], variable_get('footer_col1', NULL)['format']) | raw}}	
+				</div>
+				<div class="col-md-6">
+					{{check_markup(variable_get('footer_col3', NULL)['value'], variable_get('footer_col1', NULL)['format']) | raw}}	
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
