@@ -23,7 +23,7 @@ set :pty, false
 set :linked_files, %w{web/sites/default/secret.settings.php web/sites/default/site.settings.php}
 
 # Default value for linked_dirs is []
-set :linked_dirs, %w{web/sites/default/files}
+# set :linked_dirs, %w{web/sites/default/files}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }

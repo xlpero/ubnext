@@ -6,6 +6,9 @@ namespace :load do
     set :app_path, 'web' #??
     set :drupal_data_permit_write, true
     set :templating_paths, fetch(:templating_paths) << "lib/capistrano/templates"
+    # Perhaps closure?
+    # set :copy_files, fetch(:copy_files) << fetch(:files_path)
+    # set :copy_dir_flags, "-RLT --preserve=all"
   end
 end
 
@@ -243,18 +246,8 @@ namespace :deploy do
   end
   before :check, :'drupal-install-scripts' do
     on release_roles :app do
-      script = 'drupal-stash-files-apply.sh'
-      template script, shared_path.join(script), 0750
-      digest = template_digest(script, ->(data){ Digest::SHA256.hexdigest(data) })
-      entry = sudoers_entry('drupal-deploy', "sha256:#{digest}", "#{shared_path.join(script)}")
-      upload! entry, shared_path.join('suduers-files-apply')
-
-      script = 'drupal-stash-files-apply-merge.sh'
-      template script, shared_path.join(script), 0750
-      digest = template_digest(script, ->(data){ Digest::SHA256.hexdigest(data) })
-      entry = sudoers_entry('drupal-deploy', "sha256:#{digest}", "#{shared_path.join(script)}")
-      #entry = sudoers_entry('drupal-deploy', "sha256:#{digest}", sha256_script_exec(shared_path.join(script), digest))
-      upload! entry, shared_path.join('suduers-files-apply-merge')
+      drupal_deploy_prepare_script('drupal-stash-files-apply.sh', shared_path)
+      drupal_deploy_prepare_script('drupal-stash-files-apply-merge.sh', shared_path)
     end
   end
   after :starting, 'composer:install_executable'
@@ -264,6 +257,37 @@ namespace :deploy do
       #invoke 'drupal:stash-database'
     end
   end
+
+  before :publishing, :drupal_deploy_chown_files_directory do
+    # TODO: long/poor name
+    # TODO: document why we do this (for cleanup to work)
+    on release_roles :app do
+      drupal_deploy_prepare_script('drupal-chown-server-user-files-directory.sh', shared_path)
+      execute :sudo, shared_path.join('drupal-chown-server-user-files-directory.sh')
+    end
+  end
+
+  after :updating, :copy_files_directory do
+    on release_roles :app do
+      drupal_deploy_prepare_script('drupal-chown-files-directory.sh', shared_path)
+
+      last_release = capture(:ls, '-xr', releases_path).split.fetch(1, nil)
+      next unless last_release
+      last_release_path = releases_path.join(last_release)
+
+      path = fetch(:files_path)
+      source = last_release_path.join(path)
+      target = release_path.join(path)
+
+      if test "[ -d #{source} ]"
+        execute :cp, '-RLT --preserve=all', source, target
+        execute :sudo, shared_path.join('drupal-chown-files-directory.sh')
+      else
+        warn "#{source} is not a directory that can be copied (target: #{target})"
+      end
+    end
+  end
+
   after :publishing, 'drupal:site-offline'
 # after :publishing, 'drupal:clear-cache'
   after :publishing, 'drupal:updatedb'
