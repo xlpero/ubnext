@@ -43,19 +43,15 @@ namespace :drupal do
 
   desc "Export data"
   task :'export-data' do
-    invoke 'drupal:stash-database'
-    invoke 'drupal:stash-files'
-    invoke 'drupal:stash-database:download'
-    invoke 'drupal:stash-files:download'
+    invoke 'drupal:export-files'
+    invoke 'drupal:export-database'
   end
 
   desc "Import data"
   task :'import-data' do
     next unless data_permit_write
-    invoke 'drupal:stash-database:upload'
-    invoke 'drupal:stash-files:upload'
-    invoke 'drupal:stash-database:apply'
-    invoke 'drupal:stash-files:apply'
+    invoke 'drupal:import-files'
+    invoke 'drupal:import-database'
   end
 
   desc "Export files"
@@ -128,6 +124,7 @@ namespace :drupal do
     desc "Download stashed files"
     task :download => 'data' do
       on release_roles :app do
+        FileUtils.rm_r 'data/files' unless !Dir.exists?('data/files')
         download! current_path.join('files'), 'data', recursive: true
       end
     end
@@ -181,6 +178,7 @@ namespace :drupal do
         within current_path.join(fetch(:app_path)) do
           #TODO: drop before import?
           execute :drush, "sql-cli < \"#{current_path.join('database.sql')}\""
+          invoke 'drupal:clear-cache'
         end
       end
     end
