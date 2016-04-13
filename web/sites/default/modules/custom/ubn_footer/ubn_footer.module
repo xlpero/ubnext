@@ -4,6 +4,7 @@
  * 
  */
 function ubn_footer_form_system_site_information_settings_alter(&$form, &$form_state, $form_id) {
+   
    $form['footer_fieldset'] = array(
         '#type' => 'fieldset',
         '#title' => t('FOOTER'),
@@ -31,8 +32,39 @@ function ubn_footer_form_system_site_information_settings_alter(&$form, &$form_s
        '#default_value' => $default_value['value'],
        '#format' => $default_value['format'],
     );
-
-    //$form['#submit'][] = '_ubn_footer_form_submit';
 }
+
+
+/**
+ * Implements hook_variable_info().
+ */
+
+function ubn_footer_variable_info($options) {
+	  // Site configuration, site information
+  $variables['footer_col1'] = array(
+    'type' => 'text_format',
+    'title' => t('Column 1', array(), $options),
+    'default' => array('value' => NULL, 'format' => NULL),
+    'description' => t("This will appear in column one in the footer", array(), $options),
+    'group' => 'site_information',
+  );
+
+  $variables['footer_col2'] = array(
+    'type' => 'text_format',
+    'title' => t('Column 2', array(), $options),
+    'default' => array('value' => NULL, 'format' => NULL),
+    'description' => t("This will appear in column two in the footer", array(), $options),
+    'group' => 'site_information',
+  );
+
+  $variables['footer_col3'] = array(
+    'type' => 'text_format',
+    'title' => t('Column 3', array(), $options),
+    'default' => array('value' => NULL, 'format' => NULL),
+    'description' => t("This will appear in column three in the footer", array(), $options),
+    'group' => 'site_information',
+  );
+  return $variables;
+}  
 
 
