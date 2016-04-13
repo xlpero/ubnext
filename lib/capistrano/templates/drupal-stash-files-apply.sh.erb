@@ -1,0 +1,7 @@
+#!/bin/bash
+# Make * match dotfiles
+shopt -s dotglob
+rm -Rf "<%= current_path.join(fetch(:files_path)) %>"
+mkdir "<%= current_path.join(fetch(:files_path)) %>"
+cp -RL --preserve=all "<%= current_path.join('files') %>"/* "<%= current_path.join(fetch(:files_path)) %>"
+chown -R <%= fetch(:files_user) %>:<%= fetch(:files_group) %> "<%= current_path.join(fetch(:files_path)) %>"

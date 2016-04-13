@@ -1,3 +1,4 @@
+
 # Load DSL and Setup Up Stages
 require 'capistrano/setup'
 
@@ -12,6 +13,9 @@ require 'capistrano/npm'
 
 # Require erb for settings files templating purposes
 require 'capistrano/capistrano_plugin_template'
+
+# Hmmmm??
+require_relative 'lib/capistrano/capistrano_drupal'
 
 # Includes tasks from other gems included in your Gemfile
 #
