@@ -16,7 +16,7 @@
 # used to set extended properties on the server.
 
 #TODO: Set common settings fro ubn_conf in deploy.rb instead?
-server 'beta-staging.ub.gu.se', user: 'drupal-deploy', roles: %w{app}
+server 'beta-staging.ub.gu.se', user: 'drupal-deploy', roles: %w{app},
   ubn_conf: {
     ubn_settings_solr_host: 'localhost',
     slate_cache_enabled: 1
