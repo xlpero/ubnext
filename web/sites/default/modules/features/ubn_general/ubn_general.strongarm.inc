@@ -41,55 +41,6 @@ function ubn_general_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'footer_col1';
-  $strongarm->value = array(
-    'value' => '##Contact
-Göteborgs universitetsbibliotek  
-Box 222  
-SE 405 30 Göteborg
-
-
-__Växel:__  
-031-786 00 00  
-[Kontakta oss](http://www.ub.gu.se "optional title text")',
-    'format' => 'markdown',
-  );
-  $export['footer_col1'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'footer_col2';
-  $strongarm->value = array(
-    'value' => '##Website
-
-[Om webbplatsen](http://ub.gu.se "the optional text")
-
-##Universitetsbiblioteket
-
-[Om Göteborgs universitetsbibliotek](http://www.ub.gu.se "the optional text here")',
-    'format' => 'markdown',
-  );
-  $export['footer_col2'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'footer_col3';
-  $strongarm->value = array(
-    'value' => '##Portals
-
-* [Medarbetarportalen](http://ub.gu.se, "optional title text")
-* [Studentportalen](http://ub.gu.se, "optional title text")
-* [GUL](http://ub.gu.se, "optional title text")
-* [GU.se](http://ub.gu.se, "optional title text")',
-    'format' => 'markdown',
-  );
-  $export['footer_col3'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'i18n_string_source_language';
   $strongarm->value = 'en';
   $export['i18n_string_source_language'] = $strongarm;
@@ -285,6 +236,19 @@ __Växel:__
   $strongarm->name = 'user_default_timezone';
   $strongarm->value = '0';
   $export['user_default_timezone'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'variable_realm_list_language';
+  $strongarm->value = array(
+    0 => 'site_name',
+    1 => 'site_slogan',
+    2 => 'footer_col1',
+    3 => 'footer_col2',
+    4 => 'footer_col3',
+  );
+  $export['variable_realm_list_language'] = $strongarm;
 
   return $export;
 }
