@@ -24,6 +24,9 @@ server 'beta.ub.gu.se', user: 'drupal-deploy', roles: %w{app},
 
 set :deploy_to, '/var/www/drupal/production'
 
+# Drupal deploy
+set :drupal_data_permit_write, false
+
 # Custom SSH Options
 # ==================
 # You may pass any option but keep in mind that net/ssh understands a

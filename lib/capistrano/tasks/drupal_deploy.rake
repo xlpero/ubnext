@@ -4,6 +4,7 @@
 namespace :load do
   task :defaults do
     set :app_path, 'web' #??
+    set :drupal_data_permit_write, true
     set :templating_paths, fetch(:templating_paths) << "lib/capistrano/templates"
   end
 end
@@ -33,17 +34,54 @@ namespace :drush do
 end
 
 namespace :drupal do
-  namespace :'export-data' do
-    desc "Export data"
-    task :default do
-      invoke 'drupal:stash-database'
-      invoke 'drupal:stash-files'
-      on release_roles :app do
-        within current_path.join(fetch(:app_path)) do
-          #puts "hej"
-        end
-      end
-    end
+
+  #Is this kosher?
+  def data_permit_write
+    puts "Writing data not permitted for stage '#{fetch(:stage)}'." unless fetch(:drupal_data_permit_write)
+    fetch(:drupal_data_permit_write)
+  end
+
+  desc "Export data"
+  task :'export-data' do
+    invoke 'drupal:stash-database'
+    invoke 'drupal:stash-files'
+    invoke 'drupal:stash-database:download'
+    invoke 'drupal:stash-files:download'
+  end
+
+  desc "Import data"
+  task :'import-data' do
+    next unless data_permit_write
+    invoke 'drupal:stash-database:upload'
+    invoke 'drupal:stash-files:upload'
+    invoke 'drupal:stash-database:apply'
+    invoke 'drupal:stash-files:apply'
+  end
+
+  desc "Export files"
+  task :'export-files' do
+    invoke 'drupal:stash-files'
+    invoke 'drupal:stash-files:download'
+  end
+
+  desc "Import files"
+  task :'import-files' do
+    next unless data_permit_write
+    invoke 'drupal:stash-files:upload'
+    invoke 'drupal:stash-files:apply'
+  end
+
+  desc "Export database"
+  task :'export-database' do
+    invoke 'drupal:stash-database'
+    invoke 'drupal:stash-database:download'
+  end
+
+  desc "Import database"
+  task :'import-database' do
+    next unless data_permit_write
+    invoke 'drupal:stash-database:upload'
+    invoke 'drupal:stash-database:apply'
   end
 
   namespace :'stash-files' do
@@ -73,6 +111,7 @@ namespace :drupal do
 
     desc "Stash files apply (replace destination files)"
     task :'apply' do
+      next unless data_permit_write
       on release_roles :app do
         execute :sudo, shared_path.join('drupal-stash-files-apply.sh')
       end
@@ -80,6 +119,7 @@ namespace :drupal do
 
     desc "Stash files apply (merge)"
     task :'apply-merge' do
+      next unless data_permit_write
       on release_roles :app do
         execute :sudo, shared_path.join('drupal-stash-files-apply-merge.sh')
       end
@@ -136,6 +176,7 @@ namespace :drupal do
     end
 
     task :'apply' do
+      next unless data_permit_write
       on release_roles :app do
         within current_path.join(fetch(:app_path)) do
           #TODO: drop before import?
@@ -143,7 +184,6 @@ namespace :drupal do
         end
       end
     end
-
   end
 
   desc "Stash database"
