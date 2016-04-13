@@ -136,10 +136,11 @@ namespace :drupal do
     end
 
     task :'apply' do
-    on release_roles :app do
-      within current_path.join(fetch(:app_path)) do
-        #TODO: drop before import?
-        execute :drush, "sql-cli < \"#{current_path.join('database.sql')}\""
+      on release_roles :app do
+        within current_path.join(fetch(:app_path)) do
+          #TODO: drop before import?
+          execute :drush, "sql-cli < \"#{current_path.join('database.sql')}\""
+        end
       end
     end
 
