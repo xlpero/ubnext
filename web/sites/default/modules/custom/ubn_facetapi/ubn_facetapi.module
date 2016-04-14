@@ -82,6 +82,7 @@ function _ubn_facetapi_field_topics_depth_1_facet_alter(&$build, $adapter, $face
         ->condition('t.vid', $vocabulary->vid)
         ->condition('h.parent', $parent_tids, 'IN')
         ->execute();
+      $tids = array();
       while($tid = $result->fetchField()) {
         $tids[$tid] = $tid;
       }
