@@ -44,44 +44,50 @@ namespace :drupal do
     fetch(:drupal_data_permit_write)
   end
 
+  namespace :'export' do
+    desc "Export files"
+    task :'files' do
+      invoke 'drupal:stash-files'
+      invoke 'drupal:stash-files:download'
+    end
+
+    desc "Export database"
+    task :'database' do
+      invoke 'drupal:stash-database'
+      invoke 'drupal:stash-database:download'
+    end
+  end
+
   desc "Export data"
-  task :'export-data' do
-    invoke 'drupal:export-files'
-    invoke 'drupal:export-database'
+  task :'export' do
+    invoke 'drupal:export:files'
+    invoke 'drupal:export:database'
+  end
+
+  namespace :'import' do
+    desc "Import files"
+    task :'files' do
+      next unless data_permit_write
+      invoke 'drupal:stash-files:upload'
+      invoke 'drupal:stash-files:apply'
+    end
+
+    desc "Import database"
+    task :'database' do
+      next unless data_permit_write
+      invoke 'drupal:stash-database:upload'
+      invoke 'drupal:stash-database:apply'
+    end
   end
 
   desc "Import data"
-  task :'import-data' do
+  task :'import' do
     next unless data_permit_write
-    invoke 'drupal:import-files'
-    invoke 'drupal:import-database'
+    invoke 'drupal:import:files'
+    invoke 'drupal:import:database'
   end
 
-  desc "Export files"
-  task :'export-files' do
-    invoke 'drupal:stash-files'
-    invoke 'drupal:stash-files:download'
-  end
-
-  desc "Import files"
-  task :'import-files' do
-    next unless data_permit_write
-    invoke 'drupal:stash-files:upload'
-    invoke 'drupal:stash-files:apply'
-  end
-
-  desc "Export database"
-  task :'export-database' do
-    invoke 'drupal:stash-database'
-    invoke 'drupal:stash-database:download'
-  end
-
-  desc "Import database"
-  task :'import-database' do
-    next unless data_permit_write
-    invoke 'drupal:stash-database:upload'
-    invoke 'drupal:stash-database:apply'
-  end
+  #TODO: namespace stash
 
   namespace :'stash-files' do
     desc "Remove stashed files"
