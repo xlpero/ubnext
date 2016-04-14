@@ -67,7 +67,34 @@ function _ubn_facetapi_i18n_string_name($name) {
  return preg_replace('@[^a-zA-Z0-9]@', '_', $name);
 }
 
+function _ubn_facetapi_field_topics_depth_1_facet_alter(&$build, $adapter, $facet) {
+  $facets = $adapter->getEnabledFacets();
+  if(isset($facets['field_topics_depth_0'])) {
+    $active_items = $adapter->getActiveItems($facets['field_topics_depth_0']);
+    if(!empty($active_items)) {
+      $parent_tids = array_keys($active_items);
+      $vocabulary = taxonomy_vocabulary_machine_name_load('topics');
+      $query = db_select('taxonomy_term_data', 't');
+      $query->join('taxonomy_term_hierarchy', 'h', 'h.tid = t.tid');
+      $result = $query
+        //->addTag('term_access')
+        ->fields('t', array('tid'))
+        ->condition('t.vid', $vocabulary->vid)
+        ->condition('h.parent', $parent_tids, 'IN')
+        ->execute();
+      while($tid = $result->fetchField()) {
+        $tids[$tid] = $tid;
+      }
+      $build = array_intersect_key($build, $tids);
+    }
+  }
+}
+
 function ubn_facetapi_facetapi_facet_info_alter(array &$facet_info, array $searcher_info) {
+  if(isset($facet_info['field_topics_depth_1'])) {
+    $facet_info['field_topics_depth_1']['alter callbacks'][] = '_ubn_facetapi_field_topics_depth_1_facet_alter';
+  }
+
   $enabled_facets = facetapi_get_enabled_facets($searcher_info['name']);
   foreach(array_keys($enabled_facets) as $facet_name) {
     i18n_string_update('facetapi:facet:' . $facet_name . ':label', $facet_info[$facet_name]['label']);

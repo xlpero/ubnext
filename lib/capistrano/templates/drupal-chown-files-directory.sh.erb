@@ -1,0 +1,2 @@
+#!/bin/bash
+chown -R <%= fetch(:files_user) %>:<%= fetch(:files_group) %> "<%= current_path.join(fetch(:files_path)) %>"
