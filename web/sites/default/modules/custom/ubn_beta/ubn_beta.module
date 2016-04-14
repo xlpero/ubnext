@@ -1,0 +1,39 @@
+<?php
+
+/**
+ * 
+ */
+function ubn_beta_form_system_site_information_settings_alter(&$form, &$form_state, $form_id) {
+   $form['beta_fieldset'] = array(
+        '#type' => 'fieldset',
+        '#title' => t('BETA'),
+        '#collapsible' => TRUE,
+//        '#tree' => TRUE,
+    );
+   	$default_value = variable_get('beta_info', array('value' => NULL, 'format' => NULL));
+    $form['beta_fieldset']['beta_info'] = array(
+      '#type' => 'text_format',
+      '#title' => t('Beta information'),
+       '#default_value' => $default_value['value'],
+       '#format' => $default_value['format'],
+    );
+}
+
+
+/**
+ * Implements hook_variable_info().
+ */
+
+function ubn_beta_variable_info($options) {
+	  // Site configuration, site information
+  $variables['beta_info'] = array(
+    'type' => 'text_format',
+    'title' => t('Beta information', array(), $options),
+    'default' => array('value' => NULL, 'format' => NULL),
+    'description' => t("This will appear in the beta indicator on all pages", array(), $options),
+    'group' => 'site_information',
+  );
+  return $variables;
+}  
+
+

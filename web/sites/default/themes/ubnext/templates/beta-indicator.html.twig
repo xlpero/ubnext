@@ -1,0 +1,13 @@
+{# slate
+  name = Beta indicator: indicator for the beta site
+#}
+
+<div class="container fullwidth-on-xs">
+	<div class="row beta-indicator-wrapper">
+	  <div class="col-xs-12">
+	    <div class="beta-indicator center">
+			{{check_markup(variable_get('beta_info', NULL)['value'], variable_get('beta_info', NULL)['format']) | raw}}
+	    </div>
+	  </div>
+	</div>
+</div>

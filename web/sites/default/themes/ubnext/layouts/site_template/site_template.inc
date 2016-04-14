@@ -18,6 +18,7 @@ $plugin = array(
     'tabs' => t("Tabs"),
     'pagetitle' => t('Page title'), /* put title and lead paragraphs here */ 
     'messages' => t('Messages'),
+    'beta' => t('Beta'),
     'content' => t('Content'),
     'footer' => t('Footer'),
   ),

@@ -244,9 +244,10 @@ function ubn_general_strongarm() {
   $strongarm->value = array(
     0 => 'site_name',
     1 => 'site_slogan',
-    2 => 'footer_col1',
-    3 => 'footer_col2',
-    4 => 'footer_col3',
+    2 => 'beta_info',
+    3 => 'footer_col1',
+    4 => 'footer_col2',
+    5 => 'footer_col3',
   );
   $export['variable_realm_list_language'] = $strongarm;
 

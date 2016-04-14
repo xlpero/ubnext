@@ -99,6 +99,13 @@
 <?php endif; ?>
 <!-- ### END NAVIGATION ### -->
 
+
+<?php if (!empty($content['beta'])): ?>
+  <?php print render($content['beta']); ?>
+<?php endif; ?>
+
+
+
 <?php if (!empty($content['tabs'])): ?>
   <div class="container">
     <div class="row">
@@ -120,6 +127,7 @@
     </div>
   </div>
 <?php endif; ?>
+
 
 <?php if (!empty($content['pagetitle'])): ?>
   <section class="page-head">
