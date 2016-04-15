@@ -86,6 +86,8 @@ var myModule = (function ($) {
         $(document).on('keydown', '.form-autocomplete', function( event ) {
           if (event.keyCode === 13) {
             //alert(event.keyCode);
+            var submitTarget = selector + " .submit-btn";
+            $(submitTarget).trigger("click");
             event.preventDefault();
             return false;
           }
