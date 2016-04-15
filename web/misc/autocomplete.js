@@ -174,7 +174,7 @@ Drupal.jsAC.prototype.hidePopup = function (keycode) {
   var popup = this.popup;
   if (popup) {
     this.popup = null;
-    $(popup).fadeOut('fast', function () { $(popup).remove(); });
+  //  $(popup).fadeOut('fast', function () { $(popup).remove(); });
   }
   this.selected = false;
   $(this.ariaLive).empty();
