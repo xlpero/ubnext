@@ -107,7 +107,7 @@ var myModule = (function ($) {
           return false;
         });
 
-        var submitTarget = selector + " .submit-btn";
+        var submitTarget = selector + " .submit-btn, :submit";
         $(document).on("click", submitTarget, function() {
           var query = $(".form-autocomplete").val();
           var url = $selector.find(".clear-search-btn").attr("href") + "/" + query;
