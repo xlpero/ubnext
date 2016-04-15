@@ -48,7 +48,7 @@ if (typeof Drupal.jsAC != 'undefined') {
 
     if (13 == e.keyCode && $(input).hasClass('auto_submit')) {
       var selector = getSetting(input, 'selector', ':submit');
-      $(selector, input.form).trigger('click');
+    //  $(selector, input.form).trigger('click');
     }
   };
 
