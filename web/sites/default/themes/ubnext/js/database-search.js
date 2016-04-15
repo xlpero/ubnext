@@ -82,6 +82,16 @@ var myModule = (function ($) {
             toggleClearFilters(selector, false);
           }
         });
+
+        $(document).on('keydown', '.auto_submit', function( event ) {
+          if (event.keyCode === 13) {
+            //alert(event.keyCode);
+            event.preventDefault();
+            return false;
+          }
+
+        });
+        
         $(document).on('keyup', '.auto_submit', function( event ) {
           if (event.keyCode === 13) {
             //alert(event.keyCode);
