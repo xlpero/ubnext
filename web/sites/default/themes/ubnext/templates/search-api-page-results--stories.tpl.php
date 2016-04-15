@@ -37,7 +37,7 @@
 // (same as database search) or use placeholders
 
 ?>
-<section class="row">
+<div class="row">
   <?php if ($result_count): ?>
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
       <?php if (!isset($_GET['page'])): ?>

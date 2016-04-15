@@ -1,5 +1,5 @@
 <div class="container">
-	<section class="main">
+	<div class="main">
 		<?php print render($content['main']); ?>
-	</section>
+	</div>
 </div>

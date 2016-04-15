@@ -44,18 +44,14 @@
 {% import "macros/misc.html.twig" as misc %}
 {% import _self as helper %}
 
-
-
-
-<div class="container">
 		{% if not page.field_content_sections is empty %}
-		<section class="content-sections">
+		<div class="content-sections">
 			<div class="row ub-panel-separator">
 				<div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
 			  		{{ misc.content_sections(page.field_content_sections) }}
 			  	</div>
 		  	</div>
-		</section>
+		</div>
 		{% endif %}
 
 		{% if not page.field_theme_link is empty %}
@@ -117,10 +113,3 @@
 			</ul>
 		</div>
 		{% endif %}
-</div>
-
-
-
-{% if not page.field_content_sections is empty %}
-
-{% endif %}
