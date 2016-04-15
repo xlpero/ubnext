@@ -94,6 +94,33 @@ function ubn_page_default_page_manager_handlers() {
     $display->content['new-ce69a7ac-895b-4e74-96e3-1054f934577b'] = $pane;
     $display->panels['header'][0] = 'new-ce69a7ac-895b-4e74-96e3-1054f934577b';
     $pane = new stdClass();
+    $pane->pid = 'new-42a20fe0-8b58-4b7d-bbd7-cfaa600af309';
+    $pane->panel = 'main';
+    $pane->type = 'slate_render';
+    $pane->subtype = 'slate_render:content-sections';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'argument_entity_id:node_1',
+      ),
+      'override_title' => 0,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+      'style' => 'naked',
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '42a20fe0-8b58-4b7d-bbd7-cfaa600af309';
+    $display->content['new-42a20fe0-8b58-4b7d-bbd7-cfaa600af309'] = $pane;
+    $display->panels['main'][0] = 'new-42a20fe0-8b58-4b7d-bbd7-cfaa600af309';
+    $pane = new stdClass();
     $pane->pid = 'new-20483623-b8ec-4ed2-ac70-64e8b0856028';
     $pane->panel = 'main';
     $pane->type = 'slate_render';
@@ -111,14 +138,15 @@ function ubn_page_default_page_manager_handlers() {
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
+      'style' => 'naked',
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 1;
     $pane->locks = array();
     $pane->uuid = '20483623-b8ec-4ed2-ac70-64e8b0856028';
     $display->content['new-20483623-b8ec-4ed2-ac70-64e8b0856028'] = $pane;
-    $display->panels['main'][0] = 'new-20483623-b8ec-4ed2-ac70-64e8b0856028';
+    $display->panels['main'][1] = 'new-20483623-b8ec-4ed2-ac70-64e8b0856028';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
