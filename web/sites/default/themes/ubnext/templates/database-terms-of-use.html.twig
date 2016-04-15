@@ -36,7 +36,7 @@
 {% if not verde_data is empty %}
 <div class="row">
   <div class="col-sm-8 col-sm-offset-2 database-properties">
-    <section class="database-terms-of-use database-property">
+    <div class="database-terms-of-use database-property">
       <div class="database-property-header">{{ database.field_verde_data_json._label }}:</div>
       {{ property_list.property_list_begin() }}
       {% for source, label in mapping %}
@@ -47,7 +47,7 @@
         {% endif %}
       {% endfor %}
       {{ property_list.property_list_end() }}
-    </section>
+    </div>
   </div>
 </div>
 {% endif %}

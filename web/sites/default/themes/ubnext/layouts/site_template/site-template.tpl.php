@@ -62,9 +62,6 @@
     </nav>
 </div>
 
-
-
-
 <?php if(!empty($content['breadcrumb'])): ?>
 <div class="nav-cms breadcrumb-nav-cms">
  <div class="container">
@@ -130,20 +127,18 @@
 
 
 <?php if (!empty($content['pagetitle'])): ?>
-  <section class="page-head">
+  <div class="page-head">
     <?php print render($content['pagetitle']); ?>
-  </section>
+  </div>
 <?php endif; ?>
 
 <?php if (!empty($content['content'])): ?>
-  <section class="main-cms">
+  <div class="main-cms">
     <div class="wrap">
       <?php print render($content['content']); ?>
     </div>
-  </section>
+  </div>
 <?php endif; ?>
-
-
 
 <div class="footer-cms">
   <!-- ### FOOTER ### -->
@@ -152,8 +147,6 @@
   </div>
   <!-- ### END FOOTER ### -->
 </div> <!-- ### END FOOTER-CMS -->
-
-
 
 <!-- Google Tag Manager -->
 <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-NR65TR"

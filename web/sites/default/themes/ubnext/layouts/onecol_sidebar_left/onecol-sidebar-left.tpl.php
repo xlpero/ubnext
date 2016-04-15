@@ -1,9 +1,15 @@
+<?php //TODO: rename to search page or similar ?>
+
 <div class="container">
-  <div class="row ub-panel-separator">
-    <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <?php print render($content['header']) ?>
-    </div>
-  </div>
+
+  <?php if (!empty ($content['header'])) : ?>
+    <?php print render($content['header']) ?>
+  <?php endif; ?>
+
+  <?php if (!empty ($content['main_top'])) : ?>
+    <?php print render($content['main_top']) ?>
+  <?php endif; ?>
+
   <?php if (!empty ($content['alertarea'])) : ?>
   <div class="row ub-panel-separator">
     <div class="col-sm-12 col-md-12">
@@ -36,13 +42,13 @@
     <?php endif; ?>
 
     <?php if (!empty ($content['sidebar'])) : ?>
-      <section class="main col-xs-12 col-sm-8">
+      <div class="main col-xs-12 col-sm-8">
     <?php else : ?>
-      <section class="main col-xs-12 col-sm-8 col-sm-offset-2 center no-sidebar">
+      <div class="main col-xs-12 col-sm-8 col-sm-offset-2 center no-sidebar">
     <?php endif; ?>
       <div class="main-inner">
     	   <?php print render($content['main']); ?>
       </div>
-    </section>
+    </div>
   </div>
 </div>

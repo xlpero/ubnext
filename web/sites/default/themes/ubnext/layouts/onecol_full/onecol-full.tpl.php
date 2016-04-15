@@ -1,4 +1,14 @@
+<div class="main">
+  <div class="container">
+    <div class="row ub-panel-separator">
 
-<section class="main">
-	<?php print render($content['main']); ?>
-</section>
+    <?php if (!empty ($content['header'])) : ?>
+      <?php print render($content['header']); ?>
+    <?php endif; ?>
+
+    <?php if (!empty ($content['main'])) : ?>
+      <?php print render($content['main']); ?>
+    <?php endif; ?>
+
+  </div>
+</div>

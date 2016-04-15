@@ -5,7 +5,7 @@
 {% import "macros/dates.html.twig" as dates %}
 {% import "macros/misc.html.twig" as misc %}
 
-<section class="story-promoted col-sm-6 col-md-4">
+<div class="story-promoted col-sm-6 col-md-4">
   <div class="story-promoted-image">
   {% if (not story.field_content_sections is empty) %}
     {% set image_atoms = ubn_content_sections_atoms(story.field_content_sections, 'image', 1) %}
@@ -25,9 +25,8 @@
     <img src="{{pathToPlaceholder}}" alt="{{t("No image has been added to this article")}}" title="{{t("No image has been added to this article")}}">
   {% endif %}
 
-
   </div>
   <div class="story-promoted-publication-date">{{ dates.date_default(story.created) }}</div>
   <h2 class="story-promoted-header list primary">{{ misc.link(story.title_field.value, story.url) }}</h2>
   <div class="story-promoted-excerpt">{{ truncate_utf8(story.field_lead.value, 125, TRUE, TRUE) }}</div>
-</section><div class="clearfix-wrapper"><div class="clearfix visible-sm"></div></div>
+</div><div class="clearfix-wrapper"><div class="clearfix visible-sm"></div></div>

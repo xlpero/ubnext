@@ -1,7 +1,6 @@
 {% macro properties(title, ubn_property_fields, namespace) %}
 {% if ubn_property_fields.count %}
-<div class="container ub-panel-separator">
-  <div class="row">
+  <div class="row ub-panel-separator">
     <div class="col-sm-8 col-sm-offset-2">
       <div class="center"><h2>{{ title }}</h2></div>
     <ul class="list-unstyled ub-list-of-links">
@@ -18,10 +17,8 @@
     </ul>
     </div>
   </div>
-</div>
 {% endif %}
 {% endmacro %}
-
 
 {% macro property_value(value, type, language) %}
   {% if type == 'boolean' %}

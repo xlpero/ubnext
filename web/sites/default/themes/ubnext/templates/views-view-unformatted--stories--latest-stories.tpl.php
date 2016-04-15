@@ -8,8 +8,7 @@
  */
 ?>
 
-<div class="container">
-<section class="row ub-panel-separator">
+<div class="row ub-panel-separator">
   <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
     <div class="divider"></div>
     <h1 class="small"><?php print $view->get_title(); ?></h1>
@@ -22,5 +21,4 @@
     ?>
     <div class="more-news-link pull-right"><?php print l(t("More news"), "/news") ?> <i class="fa fa-chevron-right"></i></div>
   </div>
-</section>
 </div>
