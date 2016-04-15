@@ -292,7 +292,7 @@ function ubn_content_types_strongarm() {
     'taxonomy_term' => 'taxonomy_term',
     'scald_atom' => 'scald_atom',
     'field_collection_item' => 'field_collection_item',
-    'comment' => 0,
+    'entityform' => 0,
     'user' => 0,
   );
   $export['entity_translation_entity_types'] = $strongarm;
@@ -1449,7 +1449,7 @@ function ubn_content_types_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'scald_switch_feature_export';
-  $strongarm->value = FALSE;
+  $strongarm->value = 0;
   $export['scald_switch_feature_export'] = $strongarm;
 
   return $export;
