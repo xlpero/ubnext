@@ -91,6 +91,15 @@ var myModule = (function ($) {
           }
 
         });
+
+        $(document).on('keypress', '.auto_submit', function( event ) {
+          if (event.keyCode === 13) {
+            //alert(event.keyCode);
+            event.preventDefault();
+            return false;
+          }
+
+        });
         
         $(document).on('keyup', '.auto_submit', function( event ) {
           if (event.keyCode === 13) {
