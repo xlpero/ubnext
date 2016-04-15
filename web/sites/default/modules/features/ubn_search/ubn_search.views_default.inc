@@ -77,20 +77,6 @@ function ubn_search_views_default_views() {
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
-  $translatables['database_shortcuts'] = array(
-    t('Master'),
-    t('<none>'),
-    t('more'),
-    t('Apply'),
-    t('Reset'),
-    t('Sort by'),
-    t('Asc'),
-    t('Desc'),
-    t('Page'),
-    t('Block'),
-    t('Content pane'),
-    t('View panes'),
-  );
   $export['database_shortcuts'] = $view;
 
   $view = new view();
@@ -159,20 +145,6 @@ function ubn_search_views_default_views() {
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
-  $translatables['malfunction_messages'] = array(
-    t('Master'),
-    t('malfunction messages'),
-    t('more'),
-    t('Apply'),
-    t('Reset'),
-    t('Sort by'),
-    t('Asc'),
-    t('Desc'),
-    t('Malfunction message'),
-    t('Block'),
-    t('Content pane'),
-    t('View panes'),
-  );
   $export['malfunction_messages'] = $view;
 
   return $export;
