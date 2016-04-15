@@ -83,18 +83,8 @@ var myModule = (function ($) {
           }
         });
 
-        $(document).on('keydown', '.form-autocomplete', function( event ) {
-          if (event.keyCode === 13) {
-            //alert(event.keyCode);
-            var submitTarget = selector + " .submit-btn";
-            $(submitTarget).trigger("click");
-            event.preventDefault();
-            return false;
-          }
 
-        });
-
-        $(document).on('keypress', '.form-autocomplete', function( event ) {
+        $(document).on('click', '.form-autocomplete', function( event ) {
           if (event.keyCode === 13) {
             //alert(event.keyCode);
             event.preventDefault();
@@ -102,15 +92,8 @@ var myModule = (function ($) {
           }
 
         });
-        
-        $(document).on('keyup', '.form-autocomplete', function( event ) {
-          if (event.keyCode === 13) {
-            //alert(event.keyCode);
-            event.preventDefault();
-            return false;
-          }
 
-        });
+        submit
 
         var linkTarget = selector + " .facet-filter a, .clear-search-btn, .ubn-search-results-show-all, .sort-item";
         $(document).on("click", linkTarget, function() {
@@ -124,7 +107,7 @@ var myModule = (function ($) {
           return false;
         });
 
-        var submitTarget = selector + " .submit-btn";
+        var submitTarget = selector + " .submit-btn", " :submit";
         $(document).on("click", submitTarget, function() {
           var query = $(".form-autocomplete").val();
           var url = $selector.find(".clear-search-btn").attr("href") + "/" + query;
