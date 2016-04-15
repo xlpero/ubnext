@@ -1449,7 +1449,7 @@ function ubn_content_types_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'scald_switch_feature_export';
-  $strongarm->value = TRUE;
+  $strongarm->value = FALSE;
   $export['scald_switch_feature_export'] = $strongarm;
 
   return $export;

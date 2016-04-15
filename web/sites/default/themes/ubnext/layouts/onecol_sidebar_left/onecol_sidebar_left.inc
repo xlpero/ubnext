@@ -11,9 +11,7 @@ $plugin = array(
   'regions' => array(
     'header' => t('Header'),
     'main_top' => t('Main top'),
-    'alertarea' => t('Alert area'),
-    'shortcuts' => t('Shortcuts'),
-    'searchbartop' => t('Searchbar (top)'),
+    'search_bar_top' => t('Search bar'),
     'sidebar' => t('Sidebar'),
     'main' => t('Main'),
   ),

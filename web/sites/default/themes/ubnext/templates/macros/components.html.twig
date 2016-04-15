@@ -1,15 +1,12 @@
 {% macro page_head(title, lead, created, namespace) %}
   {% import "dates.html.twig" as dates %}
-
-  <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-    <h1 class="page-title">{{ title }}</h1>
-    {% if created %}
-      <div class="date-created">
-        {{ dates.date_default(created) }}
-      </div>
-    {% endif %}
-    {% if not lead is empty %}
-      <p class="lead">{{ lead }}</p>
-    {% endif %}
-  </div>
+  <h1 class="page-title">{{ title }}</h1>
+  {% if created %}
+    <div class="date-created">
+      {{ dates.date_default(created) }}
+    </div>
+  {% endif %}
+  {% if not lead is empty %}
+    <p class="lead">{{ lead }}</p>
+  {% endif %}
 {% endmacro %}
