@@ -83,7 +83,7 @@ var myModule = (function ($) {
           }
         });
 
-        $(document).on('keydown', '.auto_submit', function( event ) {
+        $(document).on('keydown', '.form-autocomplete', function( event ) {
           if (event.keyCode === 13) {
             //alert(event.keyCode);
             event.preventDefault();
@@ -92,7 +92,7 @@ var myModule = (function ($) {
 
         });
 
-        $(document).on('keypress', '.auto_submit', function( event ) {
+        $(document).on('keypress', '.form-autocomplete', function( event ) {
           if (event.keyCode === 13) {
             //alert(event.keyCode);
             event.preventDefault();
@@ -101,7 +101,7 @@ var myModule = (function ($) {
 
         });
         
-        $(document).on('keyup', '.auto_submit', function( event ) {
+        $(document).on('keyup', '.form-autocomplete', function( event ) {
           if (event.keyCode === 13) {
             //alert(event.keyCode);
             event.preventDefault();
@@ -124,7 +124,7 @@ var myModule = (function ($) {
 
         var submitTarget = selector + " .submit-btn";
         $(document).on("click", submitTarget, function() {
-          var query = $(".auto_submit").val();
+          var query = $(".form-autocomplete").val();
           var url = $selector.find(".clear-search-btn").attr("href") + "/" + query;
           loadHTMLFragment(url);
           return false;
