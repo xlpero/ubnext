@@ -60,6 +60,15 @@ function ubn_search_default_page_manager_handlers() {
     'header' => array(
       'style' => 'naked',
     ),
+    'main_top' => array(
+      'style' => 'naked',
+    ),
+    'search_bar_top' => array(
+      'style' => 'naked',
+    ),
+    'sidebar' => array(
+      'style' => 'naked',
+    ),
   );
   $display->cache = array();
   $display->title = '';
