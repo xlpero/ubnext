@@ -299,7 +299,6 @@ features[variable][] = entity_translation_settings_field_collection_item__field_
 features[variable][] = entity_translation_settings_field_collection_item__field_content_sections
 features[variable][] = entity_translation_settings_field_collection_item__field_database_urls
 features[variable][] = entity_translation_settings_field_collection_item__field_library_properties
-features[variable][] = entity_translation_settings_node__article
 features[variable][] = entity_translation_settings_node__database
 features[variable][] = entity_translation_settings_node__embedded_page
 features[variable][] = entity_translation_settings_node__library
