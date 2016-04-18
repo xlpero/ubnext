@@ -1,4 +1,4 @@
-<div class="container log-in-form ub-panel-separator">
+<div class="container log-in-form panel-separator">
 	<div class="row">
 		<div class="col-sm-6">
 			<h2><?php print variable_get('site_name'); ?></h2>
