@@ -4,12 +4,15 @@
  */
 
 $plugin = array(
-  'title' => t('One column full-widht'),
+  'title' => t('One column full-width'),
   'theme' => 'onecol_full',
   'icon' => '',
   'category' => 'UBNext',
   'regions' => array(
     'header' => t('Header'),
+    'promoted_top' => t('Promoted top'),
+    'main_top' => t('Main top'),
+    'promoted' => t('Promoted'),
     'main' => t('Main'),
   ),
 );

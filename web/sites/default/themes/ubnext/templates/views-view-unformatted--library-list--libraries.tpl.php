@@ -13,7 +13,7 @@ $ubn_i18n = isset($view->display_handler->options['pane_conf']['ubn_i18n']) ?
 $view->display_handler->options['pane_conf']['ubn_i18n'] : array();
 ?>
 
-<div class="row ub-panel-separator">
+<div class="row panel-separator">
 	<div class="col-xs-12 col-sm-8 col-sm-offset-2">
 		<h2 class="center"><?php print $view->get_title(); ?></h2>
 		<div class="row">

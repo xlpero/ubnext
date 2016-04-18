@@ -1,0 +1,8 @@
+{# slate
+  name = Page: admin links
+  models[page] = entity:node
+#}
+<div id="tabs">
+  {% set edit_link = l(t('Edit'), page.edit_url.value, {'absolute': TRUE, 'query' : drupal_get_destination()}) %}
+  {{ theme('menu_local_tasks', { 'primary': {'#markup': '<li>' ~ edit_link ~ '</li>'}})|raw }}
+</div>

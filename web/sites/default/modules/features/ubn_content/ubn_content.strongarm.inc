@@ -19,6 +19,7 @@ function ubn_content_strongarm() {
       'enabled' => 1,
       'bundles' => array(
         'page' => 'page',
+        'embedded_page' => 'embedded_page',
         'navigation_landing' => 'navigation_landing',
       ),
       'rebuild_behavior' => '0',
@@ -26,14 +27,9 @@ function ubn_content_strongarm() {
     'taxonomy_term' => array(
       'enabled' => 1,
       'bundles' => array(
-        'ttx_group' => 'ttx_group',
         'ttx_library' => 'ttx_library',
+        'ttx_group' => 'ttx_group',
       ),
-      'rebuild_behavior' => '1',
-    ),
-    'comment' => array(
-      'enabled' => 0,
-      'bundles' => array(),
       'rebuild_behavior' => '0',
     ),
     'field_collection_item' => array(

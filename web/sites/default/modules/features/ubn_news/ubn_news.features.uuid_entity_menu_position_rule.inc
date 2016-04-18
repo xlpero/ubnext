@@ -23,7 +23,6 @@ function ubn_news_uuid_entity_default_menu_position_rule() {
     'plid' => '91931532-ff81-4a88-8c0a-6bfd5e0d1009',
     'weight' => 0,
     'uuid' => 'a3d0978f-d7ba-40e6-8a73-b21b5a9f4b6d',
-    'rdf_mapping' => array(),
   ));
   return $items;
 }

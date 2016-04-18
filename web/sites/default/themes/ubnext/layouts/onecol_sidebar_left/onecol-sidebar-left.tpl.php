@@ -3,33 +3,23 @@
 <div class="container">
 
   <?php if (!empty ($content['header'])) : ?>
-    <?php print render($content['header']) ?>
+    <div class="row">
+      <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+        <?php print render($content['header']) ?>
+      </div>
+    </div>
   <?php endif; ?>
 
   <?php if (!empty ($content['main_top'])) : ?>
     <?php print render($content['main_top']) ?>
   <?php endif; ?>
 
-  <?php if (!empty ($content['alertarea'])) : ?>
-  <div class="row ub-panel-separator">
-    <div class="col-sm-12 col-md-12">
-      <?php print render($content['alertarea']) ?>
-    </div>
-  </div>
-  <?php endif; ?>
-
-  <?php if (!empty ($content['shortcuts'])) : ?>
-  <div class="shortcuts-top row">
-    <div class="col-xs-12">
-      <?php print render($content['shortcuts']) ?>
-    </div>
-  </div>
-  <?php endif; ?>
-
   <div class="row">
-    <div class="searchbar-top col-xs-12 col-sm-8 col-sm-offset-2">
-      <?php print render($content['searchbartop']); ?>
-    </div>
+    <?php if (!empty ($content['search_bar_top'])) : ?>
+      <div class="searchbar-top col-xs-12 col-sm-8 col-sm-offset-2">
+        <?php print render($content['search_bar_top']); ?>
+      </div>
+    <?php endif; ?>
   </div>
   </div>
   <div class="row ajax-container">

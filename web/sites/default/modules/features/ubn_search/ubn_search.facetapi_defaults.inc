@@ -66,7 +66,7 @@ function ubn_search_facetapi_default_facet_settings() {
     'individual_parent' => 0,
     'query_type' => 'term',
     'limit_active_items' => 0,
-    'default_true' => TRUE,
+    'default_true' => '1',
     'facet_search_ids' => array(),
     'exclude' => 0,
   );
