@@ -224,3 +224,20 @@ function ubn_general_entity_info_alter(&$entity_info) {
     'custom settings' => TRUE,
   );
 }
+
+/**
+ * Implements hook_node_access()
+ */
+function ubn_general_node_access($node, $op, $account) {
+  if(
+    is_object($node) &&
+    $node->type === 'embedded_page' &&
+    $op === 'view' &&
+    !$account->uid &&
+    arg(0) === 'node' &&
+    arg(1) === $node->nid
+  ) {
+    return NODE_ACCESS_DENY;
+  }
+  return NODE_ACCESS_IGNORE;
+}
