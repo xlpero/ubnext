@@ -10,6 +10,9 @@ $plugin = array(
   'category' => 'UBNext',
   'regions' => array(
     'header' => t('Header'),
+    'promoted_top' => t('Promoted top'),
+    'main_top' => t('Main top'),
+    'promoted' => t('Promoted'),
     'main' => t('Main'),
   ),
 );
