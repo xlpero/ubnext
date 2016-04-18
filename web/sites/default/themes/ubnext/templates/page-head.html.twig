@@ -5,6 +5,6 @@
   conf[show_date][type] = bool
 #}
 {% import "macros/components.html.twig" as components %}
-<div class="ub-panel-separator">
+<div class="panel-separator">
   {{ components.page_head(page.title_field.value, page.field_lead.value, conf.show_date ? page.created.value) }}
 </div>

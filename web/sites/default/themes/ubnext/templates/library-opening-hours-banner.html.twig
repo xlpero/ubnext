@@ -2,7 +2,7 @@
   name = Library opening hours banner
   models[library] = entity:node
 #}
-<div class="row library-opening-hours-banner ub-panel-separator">
+<div class="row library-opening-hours-banner panel-separator">
   <div class="col-xs-12">
   {% for opening_hours in ubn_opening_hours_items(library.field_referenced_opening_hours, [t('Today'), t('Tomorrow')]) %}
     <div class="library-opening-hours-banner-item center">
