@@ -245,18 +245,7 @@ function ubnext_select($variables) {
 
 
 function ubnext_preprocess_panels_pane(&$vars) {
-  if ($vars['pane']->uuid == "3054dda2-3a4b-428b-b253-726c16c2f284") {
-      drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-node.js");
-  }
 
-  if ($vars['pane']->uuid == "9ae1ff6d-4776-475a-8cd3-948940f0e225") {
-      drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-search.js",
-      array(
-        'scope' => 'footer',
-        'group' => JS_THEME,
-        'weight' => 5,
-      ));
-  }
 }
 
 
@@ -694,6 +683,13 @@ function ubnext_facetapi_deactivate_widget($variables) {
 //TODO: entity api entity metadata shit alter and add ubn_search_result_item
 //property??
 function _ubnext_preprocess_search_api_page_results(array &$variables) {
+
+  drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-search.js",
+  array(
+    'scope' => 'footer',
+    'group' => JS_THEME,
+    'weight' => 5,
+  ));
 
   $variables['total-items-in-index'] = $variables['index']->datasource()->getIndexStatus($variables['index'])['indexed'];
   if(!empty($variables['results']['results'])) {
