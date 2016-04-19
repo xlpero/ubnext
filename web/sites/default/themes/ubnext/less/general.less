@@ -45,13 +45,14 @@ a {
 
 .date {
   color: @gray;
-  font-weight: bold;
+  font-weight: bold;  
 }
 
 .container {
   @media (max-width: @screen-xs-max) {
     &.fullwidth-on-xs {
-      padding: 0;
+      padding:0;
+      overflow-x: hidden;
     }
     .row.fullwidth-on-xs {
       margin-left: @grid-gutter-width * -1;

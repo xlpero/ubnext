@@ -32,5 +32,4 @@
       <?php print render($content['main']); ?>
     <?php endif; ?>
   </div>
-
 </div>
