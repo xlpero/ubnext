@@ -247,7 +247,7 @@ function search_api_et_solr_search_api_solr_search_results_alter_process_doc($en
  */
 function search_api_et_solr_field_is_translatable($field_name, $entity_type, $index) {
   $server = $index->server();
-  $clean_ids = $server->options['clean_ids'];
+  $clean_ids = !empty($server->options['clean_ids']);
 
   $property_separator = $clean_ids ? '$' : ':';
   if (strpos($field_name, $property_separator) !== FALSE) {
