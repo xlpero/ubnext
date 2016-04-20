@@ -46,6 +46,13 @@ function entity_menu_links_install_revisions() {
   $menu_links_revision_fields = implode(',', array_keys($rev_fields)) . ', timestamp';
   $menu_links_fields = implode(',', array_keys($links_fields)) . ', ' . time();
 
+  // Add escaping to keyword "external" to fix installation ODBC error with SQL Server d.o issue #2622230.
+  global $databases;
+  if (isset($databases['default']['default']['driver']) && $databases['default']['default']['driver'] == 'sqlsrv') {
+    $menu_links_revision_fields = str_replace('external', '[external]', $menu_links_revision_fields);
+    $menu_links_fields = str_replace('external', '[external]', $menu_links_fields);
+  }
+
   $query = "INSERT INTO {menu_links_revision} ($menu_links_revision_fields) SELECT $menu_links_fields FROM {menu_links} WHERE module <> :module";
   db_query($query, array(':module' => 'system'));
 
