@@ -50,6 +50,15 @@ class SlateModelPluginEntityWrapper extends EntityDrupalWrapper {
   /**
    *
    */
+  public function _view($view_mode) {
+    $build = entity_view($this->type(), array($this->value()), $view_mode);
+
+    return render($build);
+  }
+
+  /**
+   *
+   */
   public function get($name) {
     $value = parent::get($name);
 
@@ -74,6 +83,12 @@ class SlateModelPluginEntityWrapper extends EntityDrupalWrapper {
    */
   public function __isset($name) {
     if (parent::__isset($name)) {
+      $info = $this->get($name)->info();
+
+      if (!empty($info['computed'])) {
+        return TRUE;
+      }
+
       $value = $this->get($name)->value();
 
       return isset($value);
