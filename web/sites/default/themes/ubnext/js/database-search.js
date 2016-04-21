@@ -114,6 +114,29 @@ Drupal.behaviors.database = {
 
   };
 
+
+    Drupal.jsAC.prototype.select = function(node) {
+    var autocompleteValue = $(node).data('autocompleteValue');
+    // Check whether this is not a suggestion but a "link".
+    if (autocompleteValue.charAt(0) == ' ') {
+      window.location.href = autocompleteValue.substr(1);
+      return false;
+    }
+    this.input.value = autocompleteValue;
+    $(this.input).trigger('autocompleteSelect', [node]);
+    if ($(this.input).hasClass('auto_submit')) {
+      if (typeof Drupal.search_api_ajax != 'undefined') {
+        // Use Search API Ajax to submit
+        Drupal.search_api_ajax.navigateQuery($(this.input).val());
+      }
+      else {
+      //  var selector = getSetting(this.input, 'selector', ':submit');
+       // $(selector, this.input.form).trigger('click');
+      }
+      return true;
+    }
+  };
+
 })(jQuery);
 
 
