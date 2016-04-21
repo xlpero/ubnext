@@ -19,6 +19,8 @@ function slate_list_page($form, &$form_state) {
 
   $rows = array();
 
+  uasort($slates, '_slate_sort_by_name');
+
   foreach ($slates as $slate => $slate_info) {
     $row = array();
 
@@ -59,4 +61,11 @@ function slate_settings_page($form, &$form_state) {
   );
 
   return system_settings_form($form);
+}
+
+/**
+ * Sort slates by name.
+ */
+function _slate_sort_by_name($left, $right) {
+  return strnatcmp($left['name'], $right['name']);
 }
