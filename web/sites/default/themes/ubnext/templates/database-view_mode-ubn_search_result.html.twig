@@ -1,12 +1,10 @@
 {# slate
   name = Database: View mode 'UBN search result'
-  models[database] = entity:node
+  models[entity] = entity:node
   view_mode[node][database] = ubn_search_result
 #}
 
-
-
-
+{% set database = entity %}
 
 {% import "macros/database-url.html.twig" as helper %}
 
@@ -37,8 +35,6 @@
   {%
     set db_url =  database.field_database_urls[1].field_url.url.value
   %}
-
-
 
   <div class="database-item">
     <div class="database-item-link-title">
