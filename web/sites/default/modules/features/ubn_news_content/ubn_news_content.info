@@ -1,0 +1,11 @@
+name = UBN News content
+core = 7.x
+package = UBNext
+version = 7.x-1.0
+dependencies[] = ctools
+dependencies[] = strongarm
+dependencies[] = ubn_content
+dependencies[] = uuid_entity_features
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[uuid_entity_node][] = 8271cd94-aa97-450f-acd3-2956cf1bb5bc

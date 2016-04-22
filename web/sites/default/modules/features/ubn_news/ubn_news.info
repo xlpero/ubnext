@@ -21,6 +21,7 @@ dependencies[] = strongarm
 dependencies[] = text
 dependencies[] = ubn_content
 dependencies[] = ubn_content_types
+dependencies[] = ubn_news_content
 dependencies[] = uuid_entity_features
 dependencies[] = views
 dependencies[] = views_content
