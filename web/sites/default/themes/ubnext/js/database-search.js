@@ -111,7 +111,6 @@ Drupal.behaviors.database = {
       Drupal.toggleLoader();
       Drupal.attachBehaviors(newContent);
     });
-
   };
 
 

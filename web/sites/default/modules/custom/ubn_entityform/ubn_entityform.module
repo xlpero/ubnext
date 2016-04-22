@@ -40,7 +40,7 @@ function ubn_entityform_form_entityform_edit_form_alter(&$form, &$form_state, $f
 
   // need form id to js
   $setting = array(
-    'postPath' => $form['#action'],
+    'postPath' => url($form['#action']),
     'postingStr' => t('Sending'),
     'formId' => '#' . drupal_clean_css_identifier($form_id)
   );
