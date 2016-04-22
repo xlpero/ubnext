@@ -262,9 +262,13 @@ function search_api_page_reset_original_options($children, array $element) {
  */
 function template_preprocess_search_api_page_results(array &$variables) {
   $results = $variables['results'];
+  $results += array(
+    'results' => array(),
+  );
 
-  if (!empty($variables['results']['results']) && empty($variables['items'])) {
-    $variables['items'] = $variables['index']->loadItems(array_keys($variables['results']['results']));
+  $variables['items'] = array();
+  if ($results['results']) {
+    $variables['items'] = $variables['index']->loadItems(array_keys($results['results']));
   }
   $variables['result_count'] = $results['result count'];
   $variables['sec'] = 0;

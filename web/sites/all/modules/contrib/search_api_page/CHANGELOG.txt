@@ -1,5 +1,12 @@
-Search API Pages 1.x, dev (xx/xx/xxxx):
+Search API Pages 1.x, dev (xxxx-xx-xx):
 ---------------------------------------
+- #2699913 by dsdeiz, drunken monkey: Fixed Page Manager integration.
+- #1664706 by Les Lim, drunken monkey: Added static caching to hook_forms()
+  implementation.
+- #1377292 by drunken monkey: Fixed search form block for anonymous users.
+- #2592143 by drunken monkey: Improved template documentation to state title is
+  unsanitized.
+- #2498525 by drunken monkey, GDrupal: Fixed warnings for empty results.
 - #2528592 by marcingy: Fixed old search page titles being displayed until
   manual menu rebuild.
 - #2315713 by pontus_nilsson, DamienMcKenna, drunken monkey, kallehauge: Added
