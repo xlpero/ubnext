@@ -423,7 +423,7 @@ function ubn_search_default_search_api_server() {
       "scheme" : "http",
       "host" : "130.241.35.208",
       "port" : "8983",
-      "path" : "\\/solr\\/drupal7_ubnext_xgudav",
+      "path" : "\\/solr\\/drupal7_ubnext_xljoha",
       "http_user" : "admin",
       "http_pass" : "admin",
       "excerpt" : 1,

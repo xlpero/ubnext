@@ -81,7 +81,18 @@ function ubn_search_default_page_manager_handlers() {
     $pane->type = 'slate_render';
     $pane->subtype = 'slate_render:page-admin-links';
     $pane->shown = TRUE;
-    $pane->access = array();
+    $pane->access = array(
+      'plugins' => array(
+        0 => array(
+          'name' => 'perm',
+          'settings' => array(
+            'perm' => 'edit any embedded_page content',
+          ),
+          'context' => 'logged-in-user',
+          'not' => FALSE,
+        ),
+      ),
+    );
     $pane->configuration = array(
       'context' => array(
         0 => 'context_entity_uuid:node_1',
