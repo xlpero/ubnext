@@ -491,7 +491,7 @@ function ubnext_bootstrap_search_api_page_search_form($variables) {
   global $base_url;
   return '<form' . drupal_attributes($element['#attributes']) . '><div>'
     . $element['#children'] .
-    '<div class="input-group">' . $search_input . "<a href='" . $base_url . "/" . $path . "'class='clear-search-btn' title='" . t("Clear search and reset filters") ."'><i class='fa  fa-times-circle'></i></a>" .
+    '<div class="input-group">' . $search_input . "<a href='" . $element['#action'] . "'class='clear-search-btn' title='" . t("Clear search and reset filters") ."'><i class='fa  fa-times-circle'></i></a>" .
       '<span class="input-group-btn"><div>' . $search_submit . '</div></span>' .
     '</div></form>';
 }

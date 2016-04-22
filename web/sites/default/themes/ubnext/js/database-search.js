@@ -54,7 +54,7 @@ Drupal.behaviors.database = {
 
       $('.submit-btn', context).on("click", function() {
         var query = $(".form-autocomplete").val();
-        var url = $(".clear-search-btn", context).attr("href") + "/" + query;
+        var url = $("form", context).attr("action") + query;
         Drupal.loadHTMLFragment(url);
         return false;
       })
