@@ -1,0 +1,13 @@
+diff --git a/search_api_page.module b/search_api_page.module
+index 2f9a1b0..4201264 100755
+--- a/search_api_page.module
++++ b/search_api_page.module
+@@ -178,7 +178,7 @@ function search_api_page_forms($form_id, $args) {
+   }
+ 
+   // Make sure we do have a page as the first argument.
+-  if (!$args || !($args[0] instanceof EntityInterface)) {
++  if (!$args || !($args[0] instanceof Entity)) {
+     return array();
+   }
+ 

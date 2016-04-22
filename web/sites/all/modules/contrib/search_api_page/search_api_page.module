@@ -169,14 +169,33 @@ function search_api_page_block_view($delta) {
  * Implements hook_forms().
  */
 function search_api_page_forms($form_id, $args) {
-  $forms = array();
-  foreach (search_api_page_load_multiple(FALSE, array('enabled' => TRUE)) as $page) {
-    $forms['search_api_page_search_form_' . $page->machine_name] = array(
-      'callback' => 'search_api_page_search_form',
-      'callback arguments' => array(),
+  // Check whether the given form ID matches our pattern for dynamically
+  // generated form IDs.
+  $prefix = 'search_api_page_search_form_';
+  $prefix_length = strlen($prefix);
+  if (substr($form_id, 0, $prefix_length) != $prefix) {
+    return array();
+  }
+
+  // Make sure we do have a page as the first argument.
+  if (!$args || !($args[0] instanceof Entity)) {
+    return array();
+  }
+
+  // Retrieve the search page machine name from the form ID and compare it with
+  // the one from the page in the arguments. Also check the page is actually
+  // enabled.
+  $page_id = substr($form_id, $prefix_length);
+  $page = $args[0];
+  if ($page->machine_name == $page_id && $page->enabled) {
+    return array(
+      $form_id => array(
+        'callback' => 'search_api_page_search_form',
+        'callback arguments' => array(),
+      ),
     );
   }
-  return $forms;
+  return array();
 }
 
 /**
@@ -515,6 +534,9 @@ function search_api_page_search_form(array $form, array &$form_state, Entity $pa
       $form['text']['#weight'] = -5;
     }
   }
+
+  // Search forms generally don't need token validation.
+  $form['#token'] = FALSE;
 
   return $form;
 }
