@@ -42,6 +42,7 @@ function ubn_search_user_default_permissions() {
     'name' => 'use search_api_sorts',
     'roles' => array(
       'administrator' => 'administrator',
+      'anonymous user' => 'anonymous user',
     ),
     'module' => 'search_api_sorts',
   );
