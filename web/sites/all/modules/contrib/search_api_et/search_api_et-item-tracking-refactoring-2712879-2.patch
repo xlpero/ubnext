@@ -1,0 +1,165 @@
+diff --git a/includes/SearchApiEtDatasourceController.php b/includes/SearchApiEtDatasourceController.php
+index d1c9a93..13b9074 100644
+--- a/includes/SearchApiEtDatasourceController.php
++++ b/includes/SearchApiEtDatasourceController.php
+@@ -273,9 +273,6 @@ class SearchApiEtDatasourceController extends SearchApiEntityDataSourceControlle
+       // Sometimes we get item_ids not meant to be tracked, just filter them out.
+       $ids = $this->filterTrackableIds($index, $item_ids);
+       if ($ids) {
+-        // In some times the Item is alre
+-        parent::trackItemDelete($ids, array($index));
+-
+         // Actually add the items to the index.
+         parent::trackItemInsert($ids, array($index));
+         $ret[$index_id] = $index;
+@@ -284,35 +281,6 @@ class SearchApiEtDatasourceController extends SearchApiEntityDataSourceControlle
+     return $ret;
+   }
+ 
+-
+-  /**
+-   * {@inheritdoc}
+-   */
+-  public function trackItemChange($item_ids, array $indexes, $dequeue = FALSE) {
+-    // If this method was called from _search_api_index_reindex(), $item_ids
+-    // will be set to FALSE, which means we need to reindex all items, so no
+-    // need for any other processing below.
+-    if ($item_ids === FALSE) {
+-      parent::trackItemChange($item_ids, $indexes, $dequeue);
+-      return NULL;
+-    }
+-
+-    $ret = array();
+-    foreach ($indexes as $index_id => $index) {
+-      // The $item_ids can contain a single EntityID if we get invoked from the
+-      // hook: search_api_et_entity_update(). In this case we need to, for each
+-      // Index, identify the set of ItemIDs that need to be marked as changed.
+-      // Check if we get Entity IDs or Item IDs.
+-      $ids = $this->getTrackableItemIdsFromMixedSource($index, $item_ids);
+-
+-      if (!empty($ids)) {
+-        parent::trackItemChange($ids, array($index), $dequeue);
+-        $ret[$index_id] = $index;
+-      }
+-    }
+-    return $ret;
+-  }
+-
+   /**
+    * Retrieves all Item IDs from the given index, filtered by the Entity IDs.
+    *
+@@ -349,50 +317,6 @@ class SearchApiEtDatasourceController extends SearchApiEntityDataSourceControlle
+   }
+ 
+   /**
+-   * {@inheritdoc}
+-   */
+-  public function trackItemDelete(array $item_ids, array $indexes) {
+-    $ret = array();
+-    foreach ($indexes as $index_id => $index) {
+-      // The $item_ids can contain also single EntityID if we get invoked from the
+-      // hook: search_api_et_entity_delete(). In this case we need to, for each
+-      // Index, identify the set of ItemIDs that need to be marked as changed.
+-      $ids = $this->getTrackableItemIdsFromMixedSource($index, $item_ids);
+-
+-      if ($ids) {
+-        parent::trackItemDelete($ids, array($index));
+-        $ret[$index_id] = $index;
+-      }
+-    }
+-    return $ret;
+-  }
+-
+-
+-  /**
+-   * Helper function to return the list of ItemIDs, fiven
+-   * @param \SearchApiIndex $index
+-   * @param $mixed_ids
+-   * @return array
+-   */
+-  protected function getTrackableItemIdsFromMixedSource(SearchApiIndex $index, $mixed_ids) {
+-    // Check if we get Entity IDs or Item IDs.
+-    $first_item_id = reset($mixed_ids);
+-    $is_valid_item_id = SearchApiEtHelper::isValidItemId($first_item_id);
+-    if (!$is_valid_item_id) {
+-      $entity_id = $first_item_id;
+-      $ids = $this->getTrackableItemIds($index, $entity_id);
+-    }
+-    else {
+-      // Filter the item_ids that need to be tracked by this index.
+-      $ids = $this->filterTrackableIds($index, $mixed_ids);
+-    }
+-
+-    return $ids;
+-  }
+-
+-
+-
+-  /**
+    * @param SearchApiIndex $index
+    *   The index for which item IDs should be retrieved.
+    * @param array $entity_ids
+diff --git a/search_api_et.module b/search_api_et.module
+index 9070ca4..09b4190 100644
+--- a/search_api_et.module
++++ b/search_api_et.module
+@@ -254,15 +254,21 @@ function search_api_et_item_languages($entity, $entity_type, SearchApiIndex $ind
+  * Implements hook_entity_delete().
+  */
+ function search_api_et_entity_delete($entity, $entity_type) {
++  module_load_include('inc', 'search_api_et');
+   list($entity_id, $revision, $bundle) = entity_extract_ids($entity_type, $entity);
+-  // Passing the EntityID only, so every index can properly handle their translations.
+-  search_api_track_item_delete(SearchApiEtHelper::getItemType($entity_type), array($entity_id));
++
++  $item_ids = array();
++  foreach(search_api_et_item_languages_entity($entity, $entity_type) as $language) {
++    $item_ids[] = SearchApiEtHelper::buildItemId($language, $entity_id);
++  }
++  search_api_track_item_delete(SearchApiEtHelper::getItemType($entity_type), $item_ids);
+ }
+ 
+ /**
+  * Implements hook_entity_update().
+  */
+ function search_api_et_entity_update($entity, $entity_type) {
++  module_load_include('inc', 'search_api_et');
+   list($entity_id, $revision, $bundle) = entity_extract_ids($entity_type, $entity);
+   $et_entity_type = SearchApiEtHelper::getItemType($entity_type);
+ 
+@@ -277,8 +283,21 @@ function search_api_et_entity_update($entity, $entity_type) {
+     }
+   }
+ 
+-  // Passing the EntityID only, so every index can properly handle their translations.
+-  search_api_track_item_change($et_entity_type, array($entity_id));
++  $entity_language = entity_translation_language($entity_type, $entity);
++
++  $item_ids = array();
++  foreach(search_api_et_item_languages_entity($entity, $entity_type) as $language) {
++    // Skip entity translation language since has already been processed
++    // through entity translation update/insert hooks
++    if($language != $entity_language) {
++      $item_ids[] = SearchApiEtHelper::buildItemId($language, $entity_id);
++    }
++  }
++
++  // Track the changes of translations.
++  if(!empty($item_ids)) {
++    search_api_track_item_change($et_entity_type, $item_ids);
++  }
+ }
+ 
+ /**
+@@ -286,6 +305,11 @@ function search_api_et_entity_update($entity, $entity_type) {
+  */
+ function search_api_et_entity_translation_insert($entity_type, $entity, $translation, $values = array()) {
+   list($entity_id) = entity_extract_ids($entity_type, $entity);
++  // Entity will have been loaded previously and cached value is now
++  // stale, make sure that subsequent loads will produce a fresh entity
++  // containing the inserted translation
++  entity_get_controller($entity_type)->resetCache(array($entity_id));
++
+   $item_id = SearchApiEtHelper::buildItemId($entity_id, $translation['language']);
+ 
+   search_api_track_item_insert(SearchApiEtHelper::getItemType($entity_type), array($item_id));
