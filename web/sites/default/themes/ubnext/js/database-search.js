@@ -1,6 +1,4 @@
 (function ($) {
-
-
 Drupal.behaviors.database = {
   attach: function(context, settings) {
       Drupal.setupHistory();

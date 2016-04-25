@@ -203,12 +203,15 @@ function ubn_news_default_page_manager_handlers() {
     $pane->shown = TRUE;
     $pane->access = array(
       'plugins' => array(
-        0 => array(
-          'name' => 'perm',
+        1 => array(
+          'name' => 'node_access',
           'settings' => array(
-            'perm' => 'edit any embedded_page content',
+            'type' => 'update',
           ),
-          'context' => 'logged-in-user',
+          'context' => array(
+            0 => 'logged-in-user',
+            1 => 'context_entity_uuid:node_1',
+          ),
           'not' => FALSE,
         ),
       ),
