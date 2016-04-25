@@ -54,13 +54,20 @@ Drupal.behaviors.database = {
 
       $('.submit-btn', context).on("click", function() {
         var query = $(".form-autocomplete").val();
-        var url = $("form", context).attr("action") + query;
-        Drupal.loadHTMLFragment(url);
+        var actionUrl = $("form", context).attr("action");
+        var lastChar = actionUrl.substr(-1); // Selects the last character
+        if (lastChar !== '/') {         // If the last character is not a slash
+          actionUrl += "/";
+        }
+        actionUrl = actionUrl + query;
+        Drupal.loadHTMLFragment(actionUrl);
         return false;
       })
 
       }
   };
+
+  Drupal.alreadyTriggered = false;
 
   Drupal.setupHistory = function() {
     // Prepare
@@ -110,11 +117,73 @@ Drupal.behaviors.database = {
       History.pushState(null, null, url);
       Drupal.toggleLoader();
       Drupal.attachBehaviors(newContent);
+      Drupal.alreadyTriggered = false;
     });
   };
 
 
-    Drupal.jsAC.prototype.select = function(node) {
+
+
+  var getSetting = function (input, setting, defaultValue) {
+    // Earlier versions of jQuery, like the default for Drupal 7, don't properly
+    // convert data-* attributes to camel case, so we access it via the verbatim
+    // name from the attribute (which also works in newer versions).
+    var search = $(input).data('search-api-autocomplete-search');
+    if (typeof search == 'undefined'
+        || typeof Drupal.settings.search_api_autocomplete == 'undefined'
+        || typeof Drupal.settings.search_api_autocomplete[search] == 'undefined'
+        || typeof Drupal.settings.search_api_autocomplete[search][setting] == 'undefined') {
+      return defaultValue;
+    }
+    return Drupal.settings.search_api_autocomplete[search][setting];
+  };
+
+  Drupal.jsAC.prototype.onkeyup = function (input, e) {
+    if (!e) {
+      e = window.event;
+    }
+    // This comes from drupals autocomplete.js
+    if (!e) {
+      e = window.event;
+    }
+    switch (e.keyCode) {
+      case 16: // Shift.
+      case 17: // Ctrl.
+      case 18: // Alt.
+      case 20: // Caps lock.
+      case 33: // Page up.
+      case 34: // Page down.
+      case 35: // End.
+      case 36: // Home.
+      case 37: // Left arrow.
+      case 38: // Up arrow.
+      case 39: // Right arrow.
+      case 40: // Down arrow.
+        return true;
+
+      case 9:  // Tab.
+      case 13: 
+        if ($(input).hasClass('auto_submit')) {
+            var selector = getSetting(input, 'selector', ':submit');
+            $(selector, input.form).trigger('click');
+            Drupal.alreadyTriggered = true;
+        }
+      case 27: // Esc.
+        this.hidePopup(e.keyCode);
+        return true;
+
+      default: // All other keys.
+        if (input.value.length > 0 && !input.readOnly) {
+          this.populatePopup();
+        }
+        else {
+          this.hidePopup(e.keyCode);
+        }
+        return true;
+    }
+  };
+
+  Drupal.jsAC.prototype.select = function(node) {
     var autocompleteValue = $(node).data('autocompleteValue');
     // Check whether this is not a suggestion but a "link".
     if (autocompleteValue.charAt(0) == ' ') {
@@ -129,8 +198,11 @@ Drupal.behaviors.database = {
         Drupal.search_api_ajax.navigateQuery($(this.input).val());
       }
       else {
-      //  var selector = getSetting(this.input, 'selector', ':submit');
-       // $(selector, this.input.form).trigger('click');
+        if (!Drupal.alreadyTriggered) {
+          var selector = getSetting(this.input, 'selector', ':submit');
+          $(selector, this.input.form).trigger('click');
+          Drupal.alreadyTriggered = false;
+        }
       }
       return true;
     }
