@@ -256,8 +256,6 @@ function ubnext_preprocess_panels_pane(&$vars) {
 function ubnext_preprocess_html(&$vars) {
   global $is_https;
   drupal_add_css(($is_https ? 'https' : 'http') . '://fonts.googleapis.com/css?family=Open+Sans:700,400', array('type' => 'external'));
-  drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/vendor/history.js/scripts/bundled/html4+html5/jquery.history.js");
-  drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/vendor/bootstrap.min.js");
   // If the Guide feature is enabled, add chapter-1 class to body if the first
   // chapter on a guide is active.
   if (module_exists('ubn_guide')) {

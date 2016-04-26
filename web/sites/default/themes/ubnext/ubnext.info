@@ -6,7 +6,10 @@ stylesheets[all][] = css/ubnext.css
 
 ; Javascripts
 scripts[] = js/vendor/jquery.fitvids.js
+scripts[] = js/vendor/jquery.cookie.js
 scripts[] = js/main.js
+scripts[] = js/vendor/bootstrap.min.js
+scripts[] = js/vendor/history.js/scripts/bundled/html4+html5/jquery.history.js
 
 ; Panels
 api[panels][styles][version] = 3
