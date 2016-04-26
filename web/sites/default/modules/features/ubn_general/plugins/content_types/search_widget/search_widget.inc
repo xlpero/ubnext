@@ -81,10 +81,10 @@ function ubn_general_search_widget_content_type_render($subtype, $conf, $panel_a
 
   $lang =  $language->language;
   if ($lang == 'en') {
-    $url = "http://gothenburg.summon.serialssolutions.com/en/search/";
+    $url = "https://gothenburg.summon.serialssolutions.com/en/search/";
   }
   elseif ($lang == 'sv') {
-    $url = "http://gothenburg.summon.serialssolutions.com/sv-SE/search/";
+    $url = "https://gothenburg.summon.serialssolutions.com/sv-SE/search/";
   }
 
   $slogan = format_string($conf['slogan'], array('@number' => _ubn_slate_number_format($number)));
