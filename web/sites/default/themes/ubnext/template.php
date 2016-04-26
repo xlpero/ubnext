@@ -243,13 +243,6 @@ function ubnext_select($variables) {
 }
 
 
-
-function ubnext_preprocess_panels_pane(&$vars) {
-
-}
-
-
-
 /**
  *
  */
