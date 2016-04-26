@@ -723,7 +723,7 @@ function _ubnext_preprocess_search_api_page_results(array &$variables) {
             'class'=> array(
               'ubn-search-results-show-all',
               'btn',
-              'btn-default',
+              'btn-primary',
               'btn-block',
             ),
           ),
