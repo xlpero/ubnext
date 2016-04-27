@@ -9,6 +9,7 @@ $plugin = array(
   'icon' => '',
   'category' => 'UBNext',
   'regions' => array(
+  	'services' => t('Services'),
     'main' => t('Main'),
   ),
 );
