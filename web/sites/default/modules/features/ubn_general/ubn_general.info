@@ -22,6 +22,7 @@ dependencies[] = i18n_variable
 dependencies[] = i18nviews
 dependencies[] = image
 dependencies[] = imagemagick
+dependencies[] = language_cookie
 dependencies[] = locale
 dependencies[] = markdown
 dependencies[] = menu
