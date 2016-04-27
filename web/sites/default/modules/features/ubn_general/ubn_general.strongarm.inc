@@ -92,14 +92,14 @@ function ubn_general_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'language_cookie_blacklisted_paths';
   $strongarm->value = 'language_selection
-ubnext/web/*/*';
+*/*';
   $export['language_cookie_blacklisted_paths'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'language_cookie_domain';
-  $strongarm->value = 'ubnext2.dev';
+  $strongarm->value = 'ub.gu.se';
   $export['language_cookie_domain'] = $strongarm;
 
   $strongarm = new stdClass();
