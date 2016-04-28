@@ -1,10 +1,11 @@
 {# slate
   name = Story: View mode 'UBN search result'
-  models[story] = entity:node
+  models[entity] = entity:node
   view_mode[node][story] = ubn_search_result
 #}
 {% import "macros/dates.html.twig" as dates %}
 {% import "macros/misc.html.twig" as misc %}
+{% set story = entity %}
 <li class="archive-story-teaser">
   <div class="archive-story-teaser-publication-date">{{ dates.date_default(story.created) }}</div>
   <div class="archive-story-teaser-header"><h2 class="small">{{ misc.link(story.title_field.value, story.url) }}</h2></div>
