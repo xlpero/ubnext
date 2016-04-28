@@ -1,0 +1,60 @@
+  @boxes-min-height: 200px;
+  @boxes-min-height-extended: 230px;
+
+ 
+/* find fast box */
+.ubn-panel-links {
+  padding: 20px;
+  min-height: @boxes-min-height;
+  border: 1px solid @gray-light;
+  margin-bottom: 20px;
+  .ubn-panel-links-head {
+    .clearfix();
+    margin-bottom: 10px;
+    .ubn-panel-links-head-title {
+      float: left;
+
+    }
+    .ubn-panel-links-indicator {
+      display: none;
+      font-size: 1.75em;
+      float: right;
+    }
+  }
+
+  .ubn-panel-links-body {
+    ul {
+      margin-bottom: 5px;
+      li {
+        .fa {
+          position: absolute;
+          margin-top: 5px;
+        }
+        .ubn-panel-links-body-link {
+          margin-left: 20px;
+        }
+        padding-bottom: 10px;
+        .fa {
+          margin-right: 5px;
+        }
+        .file-meta-data {
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+
+  &.extended {
+  min-height: @boxes-min-height-extended;
+  .ubn-panel-links-head {
+    margin-bottom: 20px;
+    .ubn-panel-links-head-title {
+
+    }
+    .ubn-panel-links-indicator {
+      display: block;
+    }
+  }
+
+  }
+}

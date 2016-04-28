@@ -98,7 +98,9 @@
 
 
 <?php if (!empty($content['beta'])): ?>
-  <?php print render($content['beta']); ?>
+  <div class="panel-separator">
+    <?php print render($content['beta']); ?>
+  </div>
 <?php endif; ?>
 
 
