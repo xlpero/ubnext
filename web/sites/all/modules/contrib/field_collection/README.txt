@@ -1,4 +1,3 @@
-
 Field collection
 -----------------
 Provides a field collection field, to which any number of fields can be attached.

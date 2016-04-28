@@ -550,10 +550,6 @@ function field_collection_field_update($host_entity_type, $host_entity, $field, 
     unset($original_by_id[$item['value']]);
   }
 
-  if ($field['translatable'] && module_exists('entity_translation') && entity_translation_enabled($host_entity_type)) {
-    unset($host_entity->{$field['field_name']}[LANGUAGE_NONE]);
-  }
-
   // If there are removed items, care about deleting the item entities.
   if ($original_by_id) {
     $ids = array_flip($original_by_id);
@@ -1146,6 +1142,20 @@ function field_collection_field_widget_form(&$form, &$form_state, $field, $insta
 }
 
 /**
+ * Implements hook_entity_translation_source_field_state_alter()
+ */
+function field_collection_entity_translation_source_field_state_alter(&$field_state) {
+  if (isset($field_state['entity'])) {
+    module_load_include('inc', 'entity', 'includes/entity.ui');
+    foreach ($field_state['entity'] as $delta => $entity) {
+      if ($entity instanceof FieldCollectionItemEntity) {
+        $field_state['entity'][$delta] = entity_ui_clone_entity('field_collection_item', $entity);
+      }
+    }
+  }
+}
+
+/**
  * Registers a child entity translation handler for the given element.
  */
 function field_collection_add_child_translation_handler($element) {
@@ -1394,7 +1404,6 @@ function field_collection_field_widget_render_required($element) {
  * FAPI validation of an individual field collection element.
  */
 function field_collection_field_widget_embed_validate($element, &$form_state, $complete_form) {
-  $instance = field_widget_instance($element, $form_state);
   $field = field_widget_field($element, $form_state);
   $field_parents = $element['#field_parents'];
   $field_name = $element['#field_name'];
@@ -1407,14 +1416,20 @@ function field_collection_field_widget_embed_validate($element, &$form_state, $c
   if (isset($field_state['entity'][$element['#delta']])) {
     $field_collection_item = $field_state['entity'][$element['#delta']];
   }
-  elseif ($form_state['values'][$field_state['array_parents'][0]][$field_state['array_parents'][1]][$element['#delta']]) {
-    $field_collection_item = clone $field_state['entity'][0];
-    foreach ($form_state['values'][$field_state['array_parents'][0]][$field_state['array_parents'][1]][$element['#delta']] as $key => $value) {
-      if (property_exists($field_collection_item, $key)) {
-        $field_collection_item->{$key} = $value;
+  else {
+    $field_values = drupal_array_get_nested_value($form_state['values'], $field_state['array_parents']);
+    if ($field_values[$element['#delta']]) {
+      $field_collection_item = entity_create('field_collection_item', array('field_name' => $field['field_name']));
+      foreach ($field_values[$element['#delta']] as $key => $value) {
+        if (property_exists($field_collection_item, $key)) {
+          $field_collection_item->{$key} = $value;
+        }
       }
     }
   }
+
+  // Attach field API validation of the embedded form.
+  field_attach_form_validate('field_collection_item', $field_collection_item, $element, $form_state);
 
   // Handle a possible language change.
   if (field_collection_item_is_translatable()) {
@@ -1423,9 +1438,6 @@ function field_collection_field_widget_embed_validate($element, &$form_state, $c
     $element_form_state = array('values' => &$element_values[$element['#delta']]);
     $handler->entityFormLanguageWidgetSubmit($element, $element_form_state);
   }
-
-  // Attach field API validation of the embedded form.
-  field_attach_form_validate('field_collection_item', $field_collection_item, $element, $form_state);
 
   // Now validate required elements if the entity is not empty.
   if (!field_collection_item_is_empty($field_collection_item) && !empty($element['#field_collection_required_elements'])) {
@@ -1608,6 +1620,7 @@ function field_collection_entity_metadata_property_callback(&$info, $entity_type
   // Set the bundle as we know it is the name of the field.
   $property['bundle'] = $field['field_name'];
   $property['getter callback'] = 'field_collection_field_property_get';
+  $property['setter callback'] = 'field_collection_field_property_set';
 }
 
 /**
@@ -1662,6 +1675,42 @@ function field_collection_field_property_get($entity, array $options, $name, $en
   }
   // For an empty single-valued field, we have to return NULL.
   return $field['cardinality'] == 1 ? ($values ? reset($values) : NULL) : $values;
+}
+
+/**
+ * Entity property info setter callback for the field collection items.
+ *
+ * Like entity_metadata_field_property_set(), but additionally supports
+ * saving the revision id.
+ */
+function field_collection_field_property_set($entity, $name, $value, $langcode, $entity_type) {
+  $field = field_info_field($name);
+  $columns = array_keys($field['columns']);
+  $langcode = entity_metadata_field_get_language($entity_type, $entity, $field, $langcode);
+  $values = $field['cardinality'] == 1 ? array($value) : (array) $value;
+
+  $items = array();
+  foreach ($values as $delta => $value) {
+    if (isset($value)) {
+      if ($value instanceof FieldCollectionItemEntity) {
+        $items[$delta][$columns[0]] = $value->item_id;
+        $items[$delta][$columns[1]] = $value->revision_id;
+      }
+      elseif (is_array($value) && isset($value['value']) && isset($value['revision_id'])) {
+        $items[$delta][$columns[0]] = $value['value'];
+        $items[$delta][$columns[1]] = $value['revision_id'];
+      }
+      else {
+        $item = field_collection_item_load($value);
+        $items[$delta][$columns[0]] = $item->item_id;
+        $items[$delta][$columns[1]] = $item->revision_id;
+      }
+    }
+  }
+  $entity->{$name}[$langcode] = $items;
+  // Empty the static field language cache, so the field system picks up any
+  // possible new languages.
+  drupal_static_reset('field_language');
 }
 
 /**
