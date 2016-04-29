@@ -11,6 +11,7 @@ dependencies[] = diff
 dependencies[] = entity
 dependencies[] = entity_translation
 dependencies[] = entity_translation_i18n_menu
+dependencies[] = entityqueue
 dependencies[] = features
 dependencies[] = features_actions_triggers
 dependencies[] = feeds
