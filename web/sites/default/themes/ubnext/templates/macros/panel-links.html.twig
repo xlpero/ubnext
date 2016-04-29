@@ -6,7 +6,9 @@
   {% endif %}
     <div class="ubn-panel-links-head">
       <div class="ubn-panel-links-head-title">
-        <h2 class="list primary">{{title}}</h2>
+        {% if not title is empty %}
+          <h2 class="list primary">{{title}}</h2>
+        {% endif %}
       </div>
       <div class="ubn-panel-links-indicator">
         <i class="fa fa-arrow-right pull-right"></i>
@@ -14,13 +16,15 @@
     </div>
     <div class="ubn-panel-links-body">
       <ul class="list-unstyled">
-        {% for link in list %}
-          {% if link.field_type_to_use.value == "link" %}
-            <li><i class="fa fa-chevron-right"></i><div class="ubn-panel-links-body-link"><a href=" {{url(link.field_link.value.url)}} ">{{link.field_link.value.title}}</a></div></li>
-          {% elseif link.field_type_to_use.value == "file" %}
-            <li><i class="fa fa-chevron-right"></i><div class="ubn-panel-links-body-link">{{misc.file_atom(link.field_file,'list_navigation_landing_shortcut')|raw }}</div></li>
-          {% endif %}
-        {% endfor %}
+        {% if not list is empty %}
+          {% for link in list %}
+            {% if link.field_type_to_use.value == "link" %}
+              <li><i class="fa fa-chevron-right"></i><div class="ubn-panel-links-body-link"><a href=" {{url(link.field_link.value.url)}} ">{{link.field_link.value.title}}</a></div></li>
+            {% elseif link.field_type_to_use.value == "file" %}
+              <li><i class="fa fa-chevron-right"></i><div class="ubn-panel-links-body-link">{{misc.file_atom(link.field_file,'list_navigation_landing_shortcut')|raw }}</div></li>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
       </ul>
     </div>
   </div>
