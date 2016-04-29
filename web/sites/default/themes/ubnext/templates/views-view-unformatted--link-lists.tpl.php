@@ -19,6 +19,5 @@
 			<div class="clearfix visible-md-block"></div>
 			<div class="clearfix visible-lg-block"></div>
 		<?php endif; ?>
-
 	  <?php endforeach; ?>
 </div>
