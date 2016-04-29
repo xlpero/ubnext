@@ -1,4 +1,15 @@
 
+
+<?php if (!empty($content['search'])): ?>
+	<section id="search" class="container panel-seperator">
+		<div class="row">
+			<div class="col-xs-12 col-sm-8 col-sm-offset-2">
+		  		<?php print render($content['search']); ?>
+		  	</div>
+		</div>
+	</section>
+<?php endif ?>
+
 <?php if (!empty($content['services'])): ?>
 	<section id="services" class="container">
 		<div class="row">
