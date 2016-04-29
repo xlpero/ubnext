@@ -1173,7 +1173,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_media_types',
-    'label' => 'Media types',
+    'label' => 'Media type',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1387,7 +1387,7 @@ function ubn_content_types_field_default_field_instances() {
   // Exported field_instance: 'node-database-field_topics'.
   $field_instances['node-database-field_topics'] = array(
     'bundle' => 'database',
-    'default_value' => array(),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -1413,7 +1413,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_topics',
-    'label' => 'Topics',
+    'label' => 'Subject',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1421,12 +1421,9 @@ function ubn_content_types_field_default_field_instances() {
       'user_register_form' => FALSE,
     ),
     'widget' => array(
-      'active' => 0,
+      'active' => 1,
       'module' => 'options',
-      'settings' => array(
-        'autocomplete_path' => 'taxonomy/autocomplete',
-        'size' => 60,
-      ),
+      'settings' => array(),
       'type' => 'options_select',
       'weight' => 37,
     ),
@@ -1461,7 +1458,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_topics_depth_0',
-    'label' => 'Topics',
+    'label' => 'Subject',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -1509,7 +1506,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
     'entity_type' => 'node',
     'field_name' => 'field_topics_depth_1',
-    'label' => 'Subtopics',
+    'label' => 'Subject terms',
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
@@ -4280,7 +4277,7 @@ function ubn_content_types_field_default_field_instances() {
   t('Media aspect ratio');
   t('Media atoms');
   t('Media layout');
-  t('Media types');
+  t('Media type');
   t('Name');
   t('Number of primary themelinks');
   t('Opening hours');
@@ -4297,14 +4294,14 @@ function ubn_content_types_field_default_field_instances() {
   t('Short title');
   t('Shortcut heading');
   t('Shortcut links');
-  t('Subtopics');
+  t('Subject');
+  t('Subject terms');
   t('Tags');
   t('Template');
   t('Terms of use');
   t('Theme links');
   t('Thumbnail');
   t('Title');
-  t('Topics');
   t('Type to use');
   t('URL');
   t('Url');
