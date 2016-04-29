@@ -63,7 +63,7 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
   $block->title = t('UBN Menu'); //title?, none?
 
   switch($type) {
-  case 'all':
+    case 'all':
       /*
       $menu_output_by_level = array();
 
@@ -82,10 +82,10 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       */
     case 'top-level':
       $menu_top_level = array_shift($page_tree_by_level);
-      if(!empty($menu_top_level)) {
+      if (!empty($menu_top_level)) {
         $links = _ubn_menu_menu_tree_links($menu_top_level);
         //TODO: implement menu-name wild card
-        if(!empty($links)) {
+        if (!empty($links)) {
           $block->content = slate_render('ubn-menu-top-level', array(
             'links' => $links
           ));
@@ -98,10 +98,10 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       //$menu_bottom_level = array_pop($page_tree_by_level);
       $menu_bottom_level = _ubn_menu_menu_tree_expanded_level($page_tree_by_level);
       $block->content = '';
-      if(!empty($menu_bottom_level)) {
+      if (!empty($menu_bottom_level)) {
         $links = _ubn_menu_menu_tree_links($menu_bottom_level);
         //TODO: implement menu-name wild card
-        if(!empty($links)) {
+        if (!empty($links)) {
           $block->content = slate_render('ubn-menu-bottom-level', array(
             'links' => $links
           ));
@@ -120,14 +120,14 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       //we do not whant menu_get_active_breadcrumb() called
       //if no breadcrumb is set. We have already handled that
       //case below.
-      $breadcrumb_max_length = variable_get('ubn_menu_breadcrumb_max_length', 32);
+      $breadcrumb_max_length = variable_get('ubn_menu_breadcrumb_max_length', 36);
 
       $trail = drupal_set_breadcrumb();
-      if(empty($trail)) {
-        foreach($page_tree_by_level as $level) {
+      if (empty($trail)) {
+        foreach ($page_tree_by_level as $level) {
           $links = _ubn_menu_menu_tree_links($level);
-          foreach($links as $link) {
-            if($link['in_active_trail']) {
+          foreach ($links as $link) {
+            if ($link['in_active_trail']) {
               // There is a slight inconsistency
               // that we cannot easliy truncate
               // breakcrumb titles set by drupal_set_breadcrumb()
@@ -138,7 +138,20 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
             }
           }
         }
-        if(!empty($trail)) {
+        // trail is still empty, check if we may use node title for breadcrumb
+        if (empty($trail)) {
+          $node = menu_get_object();
+          
+          if (!empty($node)) {
+            $link = array(
+              'href' => url($node->title),
+              'title' => $node->title,
+            );
+            $link['title'] = truncate_utf8($link['title'], $breadcrumb_max_length, TRUE, TRUE);
+            $trail[] = $link;
+          }
+        }
+        if (!empty($trail)) {
           array_unshift(
             $trail,
             array(
@@ -148,7 +161,7 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
           );
         }
       }
-      if(!empty($trail)) {
+      if (!empty($trail)) {
         $block->content = slate_render('ubn-menu-menu-trail', array(
           'links' => $trail,
         ));

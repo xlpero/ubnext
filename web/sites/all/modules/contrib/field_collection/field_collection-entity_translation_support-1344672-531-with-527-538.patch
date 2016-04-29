@@ -1,17 +1,18 @@
 diff --git a/README.txt b/README.txt
-index e027040..51aafb3 100644
+index e027040..c611bdd 100644
 --- a/README.txt
 +++ b/README.txt
-@@ -28,9 +28,20 @@ field collection item may also be viewed and edited separately.
+@@ -1,4 +1,3 @@
+-
+ Field collection
+ -----------------
+ Provides a field collection field, to which any number of fields can be attached.
+@@ -28,9 +27,20 @@ field collection item may also be viewed and edited separately.
      module might provide such widgets itself too.
  
  
 -Restrictions
 --------------
--
--  * As of now, the field collection field does not properly respect field
--    translation. Thus, for now it is suggested to only use the field for
--    entities that are not translatable.
 + Using field collection with entity translation
 + -----------------------------------------------
 +
@@ -23,7 +24,10 @@ index e027040..51aafb3 100644
 +    a known issue where a host can not be translated unless it has at least
 +    one other field that is translatable, even if some fields inside one of
 +    its field collections are translatable.
-+
+ 
+-  * As of now, the field collection field does not properly respect field
+-    translation. Thus, for now it is suggested to only use the field for
+-    entities that are not translatable.
 +  * The alternate use case is to make the field collection field in the host
 +    translatable.  If this is done it does not matter whether the inner fields
 +    are set to translatable or not, they will all be translatable as every
@@ -243,10 +247,10 @@ index 1e57aa1..d3d408b 100644
  files[] = field_collection.migrate.inc
  configure = admin/structure/field-collections
 diff --git a/field_collection.install b/field_collection.install
-index d2b1892..e253e95 100644
+index 2fd64a2..7296346 100644
 --- a/field_collection.install
 +++ b/field_collection.install
-@@ -328,3 +328,32 @@ function field_collection_update_7006() {
+@@ -352,3 +352,32 @@ function field_collection_update_7007() {
      }
    }
  }
@@ -254,7 +258,7 @@ index d2b1892..e253e95 100644
 +/**
 + * Update fields in field collections already set to use Entity Translation.
 + */
-+function field_collection_update_7007() {
++function field_collection_update_7008() {
 +  // Include FieldCollectionItemEntity class.
 +  module_load_include('inc', 'field_collection', 'field_collection.entity');
 +
@@ -280,7 +284,7 @@ index d2b1892..e253e95 100644
 +  }
 +}
 diff --git a/field_collection.module b/field_collection.module
-index b5cfc07..48abf2d 100644
+index 94f6d3b..e7cbd16 100644
 --- a/field_collection.module
 +++ b/field_collection.module
 @@ -19,6 +19,20 @@ function field_collection_help($path, $arg) {
@@ -369,7 +373,7 @@ index b5cfc07..48abf2d 100644
   * Menu callback for loading the bundle names.
   */
  function field_collection_field_name_load($arg) {
-@@ -302,7 +358,7 @@ function field_collection_item_access($op, FieldCollectionItemEntity $item = NUL
+@@ -291,7 +347,7 @@ function field_collection_item_access($op, FieldCollectionItemEntity $item = NUL
   */
  function field_collection_item_delete($id) {
    $fci = field_collection_item_load($id);
@@ -378,7 +382,7 @@ index b5cfc07..48abf2d 100644
      $fci->delete();
    }
  }
-@@ -386,7 +442,6 @@ function field_collection_field_get_path($field) {
+@@ -375,7 +431,6 @@ function field_collection_field_get_path($field) {
   * Implements hook_field_settings_form().
   */
  function field_collection_field_settings_form($field, $instance) {
@@ -386,7 +390,7 @@ index b5cfc07..48abf2d 100644
    $form['hide_blank_items'] = array(
      '#type' => 'checkbox',
      '#title' => t('Hide blank items'),
-@@ -420,7 +475,7 @@ function field_collection_field_insert($host_entity_type, $host_entity, $field,
+@@ -409,7 +464,7 @@ function field_collection_field_insert($host_entity_type, $host_entity, $field,
          $entity = $new_entity;
        }
        if (!empty($entity->is_new)) {
@@ -395,7 +399,7 @@ index b5cfc07..48abf2d 100644
        }
        $entity->save(TRUE);
        $item = array(
-@@ -435,37 +490,38 @@ function field_collection_field_insert($host_entity_type, $host_entity, $field,
+@@ -424,37 +479,38 @@ function field_collection_field_insert($host_entity_type, $host_entity, $field,
   * Implements hook_field_update().
   *
   * Care about removed field collection items.
@@ -446,7 +450,7 @@ index b5cfc07..48abf2d 100644
            $entity->revision = TRUE;
            // Without this cache clear entity_revision_is_default will
            // incorrectly return false here when creating a new published revision
-@@ -485,6 +541,14 @@ function field_collection_field_update($host_entity_type, $host_entity, $field,
+@@ -474,6 +530,14 @@ function field_collection_field_update($host_entity_type, $host_entity, $field,
              $entity->default_revision = FALSE;
            }
          }
@@ -461,7 +465,7 @@ index b5cfc07..48abf2d 100644
          $entity->save(TRUE);
  
          $item = array(
-@@ -493,9 +557,14 @@ function field_collection_field_update($host_entity_type, $host_entity, $field,
+@@ -482,6 +546,7 @@ function field_collection_field_update($host_entity_type, $host_entity, $field,
          );
        }
      }
@@ -469,14 +473,7 @@ index b5cfc07..48abf2d 100644
      unset($original_by_id[$item['value']]);
    }
  
-+  if ($field['translatable'] && module_exists('entity_translation') && entity_translation_enabled($host_entity_type)) {
-+    unset($host_entity->{$field['field_name']}[LANGUAGE_NONE]);
-+  }
-+
-   // If there are removed items, care about deleting the item entities.
-   if ($original_by_id) {
-     $ids = array_flip($original_by_id);
-@@ -509,8 +578,17 @@ function field_collection_field_update($host_entity_type, $host_entity, $field,
+@@ -498,8 +563,17 @@ function field_collection_field_update($host_entity_type, $host_entity, $field,
          ->execute();
      }
      else {
@@ -495,7 +492,7 @@ index b5cfc07..48abf2d 100644
          $un_item->updateHostEntity($host_entity);
          $un_item->deleteRevision(TRUE);
        }
-@@ -522,9 +600,8 @@ function field_collection_field_update($host_entity_type, $host_entity, $field,
+@@ -511,9 +585,8 @@ function field_collection_field_update($host_entity_type, $host_entity, $field,
   * Implements hook_field_delete().
   */
  function field_collection_field_delete($entity_type, $entity, $field, $instance, $langcode, &$items) {
@@ -506,7 +503,7 @@ index b5cfc07..48abf2d 100644
      // We filter out entities that are still being referenced by other
      // host-entities. This should never be the case, but it might happened e.g.
      // when modules cloned a node without knowing about field-collection.
-@@ -645,6 +722,7 @@ function field_collection_field_formatter_info() {
+@@ -639,6 +712,7 @@ function field_collection_field_formatter_info() {
        'field types' => array('field_collection'),
        'settings' =>  array(
          'edit' => t('Edit'),
@@ -514,7 +511,7 @@ index b5cfc07..48abf2d 100644
          'delete' => t('Delete'),
          'add' => t('Add'),
          'description' => TRUE,
-@@ -680,22 +758,29 @@ function field_collection_field_formatter_settings_form($field, $instance, $view
+@@ -674,22 +748,29 @@ function field_collection_field_formatter_settings_form($field, $instance, $view
    $elements = array();
  
    if ($display['type'] != 'field_collection_fields') {
@@ -550,7 +547,7 @@ index b5cfc07..48abf2d 100644
        '#description' => t('Leave the title empty, to hide the link.'),
      );
      $elements['description'] = array(
-@@ -736,7 +821,7 @@ function field_collection_field_formatter_settings_summary($field, $instance, $v
+@@ -730,7 +811,7 @@ function field_collection_field_formatter_settings_summary($field, $instance, $v
    $output = array();
  
    if ($display['type'] !== 'field_collection_fields') {
@@ -559,7 +556,7 @@ index b5cfc07..48abf2d 100644
      if ($links) {
        $output[] = t('Links: @links', array('@links' => check_plain(implode(', ', $links))));
      }
-@@ -769,7 +854,7 @@ function field_collection_field_formatter_view($entity_type, $entity, $field, $i
+@@ -763,7 +844,7 @@ function field_collection_field_formatter_view($entity_type, $entity, $field, $i
          if ($field_collection = field_collection_field_get_entity($item)) {
            $output = l($field_collection->label(), $field_collection->path());
            $links = array();
@@ -568,7 +565,7 @@ index b5cfc07..48abf2d 100644
              if ($settings[$op] && field_collection_item_access($op == 'edit' ? 'update' : $op, $field_collection)) {
                $title = entity_i18n_string("field:{$field['field_name']}:{$instance['bundle']}:setting_$op", $settings[$op]);
                $links[] = l($title, $field_collection->path() . '/' . $op, array('query' => drupal_get_destination()));
-@@ -799,7 +884,7 @@ function field_collection_field_formatter_view($entity_type, $entity, $field, $i
+@@ -793,7 +874,7 @@ function field_collection_field_formatter_view($entity_type, $entity, $field, $i
              '#theme' => 'links__field_collection_view',
            );
            $links['#attributes']['class'][] = 'field-collection-view-links';
@@ -577,7 +574,7 @@ index b5cfc07..48abf2d 100644
              if ($settings[$op] && field_collection_item_access($op == 'edit' ? 'update' : $op, $field_collection)) {
                $links['#links'][$op] = array(
                  'title' => entity_i18n_string("field:{$field['field_name']}:{$instance['bundle']}:setting_$op", $settings[$op]),
-@@ -832,6 +917,29 @@ function field_collection_field_formatter_view($entity_type, $entity, $field, $i
+@@ -826,6 +907,29 @@ function field_collection_field_formatter_view($entity_type, $entity, $field, $i
  }
  
  /**
@@ -607,7 +604,7 @@ index b5cfc07..48abf2d 100644
   * Helper function to add links to a field collection field.
   */
  function field_collection_field_formatter_links(&$element, $entity_type, $entity, $field, $instance, $langcode, $items, $display) {
-@@ -841,7 +949,7 @@ function field_collection_field_formatter_links(&$element, $entity_type, $entity
+@@ -835,7 +939,7 @@ function field_collection_field_formatter_links(&$element, $entity_type, $entity
    if ($settings['add'] && ($field['cardinality'] == FIELD_CARDINALITY_UNLIMITED || count($items) < $field['cardinality'])) {
      // Check whether the current is allowed to create a new item.
      $field_collection_item = entity_create('field_collection_item', array('field_name' => $field['field_name']));
@@ -616,7 +613,7 @@ index b5cfc07..48abf2d 100644
  
      if (field_collection_item_access('create', $field_collection_item)) {
        $allow_create_item = TRUE;
-@@ -965,15 +1073,56 @@ function field_collection_field_widget_form(&$form, &$form_state, $field, $insta
+@@ -959,15 +1063,56 @@ function field_collection_field_widget_form(&$form, &$form_state, $field, $insta
          // load.
          if (empty($field_collection_item)) {
            $field_collection_item = entity_create('field_collection_item', array('field_name' => $field_name));
@@ -675,10 +672,24 @@ index b5cfc07..48abf2d 100644
  
        if (empty($element['#required'])) {
          $element['#after_build'][] = 'field_collection_field_widget_embed_delay_required_validation';
-@@ -1002,6 +1151,15 @@ function field_collection_field_widget_form(&$form, &$form_state, $field, $insta
+@@ -997,6 +1142,29 @@ function field_collection_field_widget_form(&$form, &$form_state, $field, $insta
  }
  
  /**
++ * Implements hook_entity_translation_source_field_state_alter()
++ */
++function field_collection_entity_translation_source_field_state_alter(&$field_state) {
++  if (isset($field_state['entity'])) {
++    module_load_include('inc', 'entity', 'includes/entity.ui');
++    foreach ($field_state['entity'] as $delta => $entity) {
++      if ($entity instanceof FieldCollectionItemEntity) {
++        $field_state['entity'][$delta] = entity_ui_clone_entity('field_collection_item', $entity);
++      }
++    }
++  }
++}
++
++/**
 + * Registers a child entity translation handler for the given element.
 + */
 +function field_collection_add_child_translation_handler($element) {
@@ -691,7 +702,7 @@ index b5cfc07..48abf2d 100644
   * Implements hook_field_attach_form().
   *
   * Corrects #max_delta when we hide the blank field collection item.
-@@ -1023,6 +1181,19 @@ function field_collection_field_attach_form($entity_type, $entity, &$form, &$for
+@@ -1033,6 +1201,19 @@ function field_collection_field_attach_form($entity_type, $entity, &$form, &$for
        }
      }
    }
@@ -711,7 +722,7 @@ index b5cfc07..48abf2d 100644
  }
  
  /**
-@@ -1174,7 +1345,7 @@ function field_collection_field_get_entity(&$item, $field_name = NULL) {
+@@ -1170,7 +1351,7 @@ function field_collection_field_get_entity(&$item, $field_name = NULL) {
    elseif (isset($item['value'])) {
      // By default always load the default revision, so caches get used.
      $entity = field_collection_item_load($item['value']);
@@ -720,7 +731,14 @@ index b5cfc07..48abf2d 100644
        // A non-default revision is a referenced, so load this one.
        $entity = field_collection_item_revision_load($item['revision_id']);
      }
-@@ -1234,7 +1405,28 @@ function field_collection_field_widget_embed_validate($element, &$form_state, $c
+@@ -1223,30 +1404,51 @@ function field_collection_field_widget_render_required($element) {
+  * FAPI validation of an individual field collection element.
+  */
+ function field_collection_field_widget_embed_validate($element, &$form_state, $complete_form) {
+-  $instance = field_widget_instance($element, $form_state);
+   $field = field_widget_field($element, $form_state);
+   $field_parents = $element['#field_parents'];
+   $field_name = $element['#field_name'];
    $language = $element['#language'];
  
    $field_state = field_form_get_state($field_parents, $field_name, $language, $form_state);
@@ -731,15 +749,21 @@ index b5cfc07..48abf2d 100644
 +  if (isset($field_state['entity'][$element['#delta']])) {
 +    $field_collection_item = $field_state['entity'][$element['#delta']];
 +  }
-+  elseif ($form_state['values'][$field_state['array_parents'][0]][$field_state['array_parents'][1]][$element['#delta']]) {
-+    $field_collection_item = clone $field_state['entity'][0];
-+    foreach ($form_state['values'][$field_state['array_parents'][0]][$field_state['array_parents'][1]][$element['#delta']] as $key => $value) {
-+      if (property_exists($field_collection_item, $key)) {
-+        $field_collection_item->{$key} = $value;
++  else {
++    $field_values = drupal_array_get_nested_value($form_state['values'], $field_state['array_parents']);
++    if ($field_values[$element['#delta']]) {
++      $field_collection_item = entity_create('field_collection_item', array('field_name' => $field['field_name']));
++      foreach ($field_values[$element['#delta']] as $key => $value) {
++        if (property_exists($field_collection_item, $key)) {
++          $field_collection_item->{$key} = $value;
++        }
 +      }
 +    }
 +  }
-+
+ 
+   // Attach field API validation of the embedded form.
+   field_attach_form_validate('field_collection_item', $field_collection_item, $element, $form_state);
+ 
 +  // Handle a possible language change.
 +  if (field_collection_item_is_translatable()) {
 +    $handler = entity_translation_get_handler('field_collection_item', $field_collection_item);
@@ -747,10 +771,9 @@ index b5cfc07..48abf2d 100644
 +    $element_form_state = array('values' => &$element_values[$element['#delta']]);
 +    $handler->entityFormLanguageWidgetSubmit($element, $element_form_state);
 +  }
- 
-   // Attach field API validation of the embedded form.
-   field_attach_form_validate('field_collection_item', $field_collection_item, $element, $form_state);
-@@ -1244,13 +1436,11 @@ function field_collection_field_widget_embed_validate($element, &$form_state, $c
++
+   // Now validate required elements if the entity is not empty.
+   if (!field_collection_item_is_empty($field_collection_item) && !empty($element['#field_collection_required_elements'])) {
      foreach ($element['#field_collection_required_elements'] as &$elements) {
  
        // Copied from _form_validate().
@@ -765,7 +788,7 @@ index b5cfc07..48abf2d 100644
            if (isset($elements['#title'])) {
              form_error($elements, t('@name field is required.', array('@name' => $elements['#title'])));
            }
-@@ -1262,6 +1452,9 @@ function field_collection_field_widget_embed_validate($element, &$form_state, $c
+@@ -1258,6 +1460,9 @@ function field_collection_field_widget_embed_validate($element, &$form_state, $c
      }
    }
  
@@ -775,7 +798,7 @@ index b5cfc07..48abf2d 100644
    // Only if the form is being submitted, finish the collection entity and
    // prepare it for saving.
    if ($form_state['submitted'] && !form_get_errors()) {
-@@ -1277,12 +1470,17 @@ function field_collection_field_widget_embed_validate($element, &$form_state, $c
+@@ -1273,12 +1478,17 @@ function field_collection_field_widget_embed_validate($element, &$form_state, $c
        $item['_weight'] = $element['_weight']['#value'];
      }
  
@@ -793,7 +816,7 @@ index b5cfc07..48abf2d 100644
  }
  
  /**
-@@ -1329,12 +1527,16 @@ function field_collection_i18n_string_list_field_alter(&$properties, $type, $ins
+@@ -1325,12 +1535,16 @@ function field_collection_i18n_string_list_field_alter(&$properties, $type, $ins
  
        foreach ($instance['display'] as $view_mode => $display) {
          if ($display['type'] != 'field_collection_fields') {
@@ -811,7 +834,7 @@ index b5cfc07..48abf2d 100644
            $properties['field'][$instance['field_name']][$instance['bundle']]['setting_delete'] = array(
              'title' => t('Delete link title'),
              'string' => $display['settings']['delete'],
-@@ -1425,7 +1627,10 @@ function field_collection_item_set_host_entity($item, $property_name, $wrapper)
+@@ -1422,7 +1636,10 @@ function field_collection_item_set_host_entity($item, $property_name, $wrapper)
    if (!isset($wrapper->{$item->field_name})) {
      throw new EntityMetadataWrapperException('The specified entity has no such field collection field.');
    }
@@ -823,7 +846,7 @@ index b5cfc07..48abf2d 100644
  }
  
  /**
-@@ -1483,6 +1688,47 @@ function field_collection_devel_generate($object, $field, $instance, $bundle) {
+@@ -1516,6 +1733,47 @@ function field_collection_devel_generate($object, $field, $instance, $bundle) {
  }
  
  /**
@@ -871,7 +894,7 @@ index b5cfc07..48abf2d 100644
   * Determines if the additional blank items should be displayed or not.
   *
   * @param array $field
-@@ -1509,3 +1755,42 @@ function field_collection_admin_menu_map() {
+@@ -1542,3 +1800,42 @@ function field_collection_admin_menu_map() {
      return $map;
    }
  }
