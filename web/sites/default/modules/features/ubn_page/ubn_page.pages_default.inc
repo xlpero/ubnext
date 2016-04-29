@@ -1498,6 +1498,7 @@ function ubn_page_default_page_manager_pages() {
     'style_settings' => array(
       'default' => NULL,
       'main' => NULL,
+      'services' => NULL,
     ),
   );
   $display->cache = array();
@@ -1553,6 +1554,26 @@ function ubn_page_default_page_manager_pages() {
     $pane->uuid = 'ea3f5579-ce3d-4d53-a14a-726f1d81d213';
     $display->content['new-ea3f5579-ce3d-4d53-a14a-726f1d81d213'] = $pane;
     $display->panels['main'][1] = 'new-ea3f5579-ce3d-4d53-a14a-726f1d81d213';
+    $pane = new stdClass();
+    $pane->pid = 'new-2b2c36ca-fc2a-4599-9e20-4768481be88c';
+    $pane->panel = 'services';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'link_lists-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+      'style' => 'naked',
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '2b2c36ca-fc2a-4599-9e20-4768481be88c';
+    $display->content['new-2b2c36ca-fc2a-4599-9e20-4768481be88c'] = $pane;
+    $display->panels['services'][0] = 'new-2b2c36ca-fc2a-4599-9e20-4768481be88c';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

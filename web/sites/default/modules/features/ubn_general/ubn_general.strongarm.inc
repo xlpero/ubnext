@@ -92,7 +92,7 @@ function ubn_general_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'language_cookie_blacklisted_paths';
   $strongarm->value = 'language_selection
-*/*';
+';
   $export['language_cookie_blacklisted_paths'] = $strongarm;
 
   $strongarm = new stdClass();

@@ -55,6 +55,7 @@ dependencies[] = ubn_scald
 dependencies[] = ubn_search
 dependencies[] = ubn_settings
 dependencies[] = ubn_slate
+dependencies[] = ubn_startpage
 dependencies[] = ubn_summon
 dependencies[] = variable
 dependencies[] = variable_store
