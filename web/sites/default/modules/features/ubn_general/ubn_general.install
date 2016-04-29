@@ -503,6 +503,20 @@ function ubn_general_update_7146() {
   );
 }
 
+// Delete field collections with missing host entities
+function ubn_general_update_7147() {
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'field_collection_item')->execute();
+  if (!empty($result['field_collection_item'])) {
+    $field_collection_items = entity_load('field_collection_item', array_keys($result['field_collection_item']));
+    foreach ($field_collection_items as $id => $item) {
+      if (!$item->hostEntity()) {
+        entity_delete('field_collection_item', $id);
+      }
+    }
+  }
+}
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
