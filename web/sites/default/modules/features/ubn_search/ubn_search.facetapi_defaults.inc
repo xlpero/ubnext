@@ -246,7 +246,7 @@ function ubn_search_facetapi_default_facet_settings() {
       'format' => 'markdown',
     ),
     'hide_inactive_items' => 0,
-    'checkbox_label' => 'Free databases only',
+    'checkbox_label' => 'Show freely accessible',
   );
   $export['search_api@databases:block:field_public_access'] = $facet;
 
