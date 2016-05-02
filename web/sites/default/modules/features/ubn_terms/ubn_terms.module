@@ -1,0 +1,33 @@
+<?php
+/**
+ * @file
+ * Code for the UBN Terms feature.
+ */
+
+include_once 'ubn_terms.features.inc';
+
+function ubn_terms_entity_info_alter(&$entity_info) {
+  $entity_info['taxonomy_term']['view modes']['ubn_terms_search_result'] = array(
+    'label' => t('UBN Terms search result'),
+    'custom settings' => FALSE,
+  );
+}
+
+function ubn_terms_views_pre_render(&$view) {
+
+}
+
+function ubn_term_safe_css_identifier($data) {
+  //preg_match('/^[a-zA-Z]$/', 
+  //dsm(unpack('H*', $data));
+  return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+}
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function ubn_terms_ctools_plugin_directory($owner, $plugin_type) {
+  if (in_array($plugin_type, array('content_types'))) {
+    return "plugins/$plugin_type";
+  }
+}

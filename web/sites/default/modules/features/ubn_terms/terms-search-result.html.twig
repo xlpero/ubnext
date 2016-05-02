@@ -1,0 +1,37 @@
+{# slate
+    name = Terms: Search result
+    models[term_groups] = item
+#}
+
+<div id="terms-search-controls">
+  <input id="terms-search-controls-search-box" type="search" placeholder="{{ t("Search...") }}">
+</div>
+
+<div id="terms-groups">
+  {% for term_group_batch in term_groups|batch(10) %}
+    <div class="term-group-{{ loop.index }}">
+    {% for term_group in term_group_batch %}
+      <span class="terms-groups-group terms-groups-group-{{ term_group.group.identifier }} {{ term_group.terms is empty ? 'terms-groups-group-empty' }}">
+      {% if not term_group.terms is empty %}
+        <a href="#term-group-{{ term_group.group.identifier }}">{{ term_group.group.name }}</a>
+      {% else %}
+        {{ term_group.group.name }}
+      {% endif %}
+      </span>
+    {% endfor %}
+    </div>
+  {% endfor %}
+</div>
+
+<div id="terms-search-results" class="panel-separator">
+  {% for term_group in term_groups if not term_group.terms is empty %}
+    <section class="term-group term-group-{{ term_group.group.identifier }}">
+      <h2 id="term-group-{{ term_group.group.identifier }}">{{ term_group.group.name }}</h2>
+      <ol class="term-group-terms list-unstyled">
+        {% for term_id, term in term_group.terms %}
+          {{ term|raw }}
+        {% endfor %}
+      </ol>
+    </section>
+  {% endfor %}
+</div>

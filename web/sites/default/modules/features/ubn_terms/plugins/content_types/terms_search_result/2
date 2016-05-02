@@ -1,0 +1,77 @@
+<?php
+/**
+ * @file
+ */
+
+/**
+ * Plugin definition.
+ */
+$plugin = array(
+  'single' => TRUE,
+  'title' => t('Terms: Search results'),
+  'description' => t('Terms search results.'),
+  'category' => 'UBNext',
+  'edit form' => 'ubn_terms_terms_search_result_content_type_settings',
+);
+
+/**
+ * Settings callback.
+ */
+function ubn_terms_terms_search_result_content_type_settings($form, &$form_state) {
+  return $form;
+}
+
+/**
+ * Render callback.
+ */
+function ubn_terms_terms_search_result_content_type_render($subtype, $conf, $panel_args, $context) {
+
+  $query = new EntityFieldQuery();
+
+  $results = $query
+    ->entityCondition('entity_type', 'taxonomy_term')
+    ->entityCondition('bundle', array('term', 'term_synonym'), 'IN')
+    ->fieldOrderBy('name_field', 'value', 'ASC')
+    ->execute();
+
+  if (!empty($results['taxonomy_term'])) {
+    $terms = entity_load('taxonomy_term', array_keys($results['taxonomy_term']));
+  }
+
+  $first_letter = druapl_substr($term, 0, 1);
+  $section = NULL;
+
+  $matches = array();
+  preg_match('@\p{L}|\p{N}@u', $first_letter, $matches);
+  if (!empty($matches[0])) {
+    if (is_numeric($matches[0])) {
+      $section = '[0-9]';
+    }
+    else {
+      print drupal_strtoupper($matches[0]);
+    }
+  }
+  else {
+    //TODO: this is pretty ugly, but wtf
+    global $user;
+    if($user->uid) {
+      drupal_set_message(t('Invalid first letter "%letter" for term "%term"', array('%letter' => $first_letter, '%term' => $term->name)));
+    }
+  }
+
+
+  dsm($terms);
+
+  //Loop through term and select template? Or view mode? view mode is nice
+  //
+  //ubn_lunr module?
+  //$renderable = entity_view('taxonomy_term', 'ubn_lunr_search_result');
+  //$output = drupal_render($renderable);
+
+  $block = new stdClass();
+  $block->title = t('Search');
+  $block->content = slate_render('terms-search-result', array(
+    'terms' => 'terms goes here trlalaal',
+  ));
+  return $block;
+}
