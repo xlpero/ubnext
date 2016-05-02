@@ -7,7 +7,11 @@
     <div class="ubn-panel-links-head">
       <div class="ubn-panel-links-head-title">
         {% if not title is empty %}
-          <h2 class="list primary">{{title}}</h2>
+          {% if extended %}
+            <h2 class="list primary"></h2>
+          {% else %}
+            <h2 class="h1 small no-top-margin">{{title}}</h2>
+          {% endif %}
         {% endif %}
       </div>
       <div class="ubn-panel-links-indicator">
