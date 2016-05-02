@@ -25,6 +25,8 @@ function ubn_terms_terms_search_result_content_type_settings($form, &$form_state
  * Render callback.
  */
 function ubn_terms_terms_search_result_content_type_render($subtype, $conf, $panel_args, $context) {
+  global $language_content;
+
   drupal_add_js(drupal_get_path('module', 'ubn_terms') . '/js/ubn_terms.js');
 
   $default_groups = array(
@@ -43,6 +45,7 @@ function ubn_terms_terms_search_result_content_type_render($subtype, $conf, $pan
     ->fieldOrderBy('name_field', 'value', 'ASC')
     ->execute();
 
+  $terms = array();
   if (!empty($results['taxonomy_term'])) {
     $terms = entity_load('taxonomy_term', array_keys($results['taxonomy_term']));
   }
@@ -67,9 +70,7 @@ function ubn_terms_terms_search_result_content_type_render($subtype, $conf, $pan
     }
   }
 
-  global $language_content;
 
-  //array_diff($default_groups[$language_content->language], array_keys($grouped_terms))
   $groups = array_unique(array_merge($default_groups[$language_content->language], array_keys($grouped_terms)));
   usort($groups, 'ubn_general_strnatcmp');
 
