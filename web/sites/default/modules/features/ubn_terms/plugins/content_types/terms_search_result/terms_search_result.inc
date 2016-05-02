@@ -92,7 +92,7 @@ function ubn_terms_terms_search_result_content_type_render($subtype, $conf, $pan
     );
     if(isset($grouped_terms[$group])) {
       foreach($grouped_terms[$group] as $term) {
-        $renderable = entity_view('taxonomy_term', array($term), 'ubn_lunr_search_result');
+        $renderable = entity_view('taxonomy_term', array($term), 'ubn_term_search_result');
         $term_group['terms'][$term->tid] = drupal_render($renderable);
       }
     }
