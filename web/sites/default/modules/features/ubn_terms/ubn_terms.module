@@ -26,3 +26,18 @@ function ubn_terms_ctools_plugin_directory($owner, $plugin_type) {
     return "plugins/$plugin_type";
   }
 }
+
+/**
+ * Implements hook_query_TAG_alter().
+ *
+ * Super ugly hack, but what to do?
+ *
+ * @param QueryAlterableInterface $query
+ */
+function ubn_terms_query_UBN_TERMS_ORDER_BY_FIELD_LANGUAGE_CONDITION_alter(QueryAlterableInterface $query) {
+  global $language_content;
+  //Hackelyhack
+  list($order_by) = array_keys($query->getOrderby());
+  list($alias) = explode('.', $order_by);
+  $query->condition("$alias.language", $language_content->language, '=');
+}
