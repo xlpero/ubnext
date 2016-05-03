@@ -3,6 +3,7 @@ core = 7.x
 package = UBNext
 version = 7.x-0.2
 dependencies[] = ctools
+dependencies[] = entityreference_backreference
 dependencies[] = features
 dependencies[] = page_manager
 dependencies[] = taxonomy
