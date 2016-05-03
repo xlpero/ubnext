@@ -26,8 +26,15 @@ function ubn_terms_terms_search_result_content_type_settings($form, &$form_state
  */
 function ubn_terms_terms_search_result_content_type_render($subtype, $conf, $panel_args, $context) {
   global $language_content;
-
+  drupal_add_js(drupal_get_path('module', 'ubn_terms') . '/js/vendor/lunr.min.js');
+  if($language_content->language !== 'en') {
+    //File exists?
+    drupal_add_js(drupal_get_path('module', 'ubn_terms') . "/js/vendor/lunr.stemmer.support.min.js");
+    drupal_add_js(drupal_get_path('module', 'ubn_terms') . "/js/vendor/lunr.{$language_content->language}.min.js");
+  }
   drupal_add_js(drupal_get_path('module', 'ubn_terms') . '/js/ubn_terms.js');
+
+  //TODO: Language as js-setting?
 
   $default_groups = array(
     'sv' => array(
