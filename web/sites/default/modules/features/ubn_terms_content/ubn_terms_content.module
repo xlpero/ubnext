@@ -4,4 +4,4 @@
  * Code for the UBN Term content feature.
  */
 
-include_once 'ubn_term_content.features.inc';
+include_once 'ubn_terms_content.features.inc';

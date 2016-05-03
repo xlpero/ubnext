@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * ubn_term_content.features.uuid_entity_node.inc
+ * ubn_terms_content.features.uuid_entity_node.inc
  */
 
 /**
  * Implements hook_uuid_entity_default_node().
  */
-function ubn_term_content_uuid_entity_default_node() {
+function ubn_terms_content_uuid_entity_default_node() {
   $items = array();
   $items['9f7228f5-44f9-47f2-8794-2e067eabb2fa'] = entity_create('node', array(
     'uid' => 1,
