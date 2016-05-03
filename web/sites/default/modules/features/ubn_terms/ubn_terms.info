@@ -9,6 +9,7 @@ dependencies[] = page_manager
 dependencies[] = taxonomy
 dependencies[] = text
 dependencies[] = ubn_content_types
+dependencies[] = ubn_terms_content
 features[ctools][] = page_manager:pages_default:1
 features[features_api][] = api:2
 features[field_base][] = field_term_synonyms
