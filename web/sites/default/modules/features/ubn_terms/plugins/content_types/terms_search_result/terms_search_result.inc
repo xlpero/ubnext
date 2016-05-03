@@ -27,6 +27,7 @@ function ubn_terms_terms_search_result_content_type_settings($form, &$form_state
 function ubn_terms_terms_search_result_content_type_render($subtype, $conf, $panel_args, $context) {
   global $language_content;
 
+  drupal_add_js(drupal_get_path('theme', 'ubnext') . '/js/vendor/jquery.scrollTo.min.js');
   drupal_add_js(drupal_get_path('module', 'ubn_terms') . '/js/ubn_terms.js');
 
   $default_groups = array(

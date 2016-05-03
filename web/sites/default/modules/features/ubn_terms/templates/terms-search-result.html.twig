@@ -3,35 +3,53 @@
     models[term_groups] = item
 #}
 
-<div id="terms-search-controls">
-  <input id="terms-search-controls-search-box" type="search" placeholder="{{ t("Search...") }}">
-</div>
-
-<div id="terms-groups">
-  {% for term_group_batch in term_groups|batch(10) %}
-    <div class="term-group-{{ loop.index }}">
-    {% for term_group in term_group_batch %}
-      <span class="terms-groups-group terms-groups-group-{{ term_group.group.identifier }} {{ term_group.terms is empty ? 'terms-groups-group-empty' }}">
-      {% if not term_group.terms is empty %}
-        <a href="#term-group-{{ term_group.group.identifier }}">{{ term_group.group.name }}</a>
-      {% else %}
-        {{ term_group.group.name }}
-      {% endif %}
-      </span>
-    {% endfor %}
+<div class="row panel-separator">
+  <div class="col-sm-8 col-sm-offset-2">
+    <div id="terms-search-controls">
+      <div class="input-group">
+        <input type="text" name="q" class="form-control input-lg">
+        <span class="input-group-btn">
+        <button class="btn btn-lg btn-primary" type="submit"><i class="fa fa-search"></i></button>
+        </span>
+      </div><!-- /input-group -->
     </div>
-  {% endfor %}
+  </div>
 </div>
 
-<div id="terms-search-results" class="panel-separator">
-  {% for term_group in term_groups if not term_group.terms is empty %}
-    <section class="term-group term-group-{{ term_group.group.identifier }}">
-      <h2 id="term-group-{{ term_group.group.identifier }}">{{ term_group.group.name }}</h2>
-      <ol class="term-group-terms list-unstyled">
-        {% for term_id, term in term_group.terms %}
-          {{ term|raw }}
-        {% endfor %}
-      </ol>
-    </section>
-  {% endfor %}
+
+<div class="row panel-separator">
+  <div class="col-sm-12">
+    <nav id="terms-groups">
+          <div class="terms-groups-group term-group-{{ loop.index }}">
+          {% for term_group in term_groups %}
+              <span class="terms-groups-group-item terms-groups-group-{{ term_group.group.identifier }} {{ term_group.terms is empty ? 'terms-groups-group-empty' }}">
+              {% if not term_group.terms is empty %}
+                <a href="#term-group-{{ term_group.group.identifier }}">{{ term_group.group.name }}</a>
+              {% else %}
+                <span class="terms-groups-group-disabled">{{ term_group.group.name }}</span>
+              {% endif %}
+              </span>
+          {% endfor %}
+          </div>
+    </nav>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <div id="terms-search-results" class="panel-separator">
+      {% for term_group in term_groups if not term_group.terms is empty %}
+        <section class="term-group term-group-{{ term_group.group.identifier }}">
+          <h2 id="term-group-{{ term_group.group.identifier }}">{{ term_group.group.name }}</h2>
+          <ol class="term-group-terms list-unstyled">
+            {% for term_id, term in term_group.terms %}
+              {{ term|raw }}
+            {% endfor %}
+          </ol>
+        </section>
+      {% endfor %}
+    </div>
+  </div>
 </div>

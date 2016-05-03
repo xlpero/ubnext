@@ -65,4 +65,64 @@
 			}
 		}
 	}
+
+	#terms-search-controls {
+		input {
+			height: 48px;
+	      	border-radius: @border-radius-base 0 0 @border-radius-base;
+	      	background: @gray-lighter;
+		}
+		button {
+			border-radius: 0 5px 5px 0;
+		}
+	}
+
+	#terms-groups{
+		.terms-groups-group {
+			/* Small devices (tablets, 768px and up) */
+			@media (min-width: @screen-md-min) {
+				display: table;
+	    		width: 100%;	
+			}
+			font-size: 1.4em;
+			.terms-groups-group-item {
+				display: inline-block;
+				width: 40px;
+				@media (max-width: @screen-sm-min) {
+
+				}
+				@media (min-width: @screen-md-min) {
+					display: table-cell;
+					width: 40px;
+				}
+			}
+			a {
+				text-decoration: none;
+			}
+			.terms-groups-group-disabled {
+				color: @gray-light;
+			}
+		}
+	}
+
+	.term-group {
+		h2 {
+			border-bottom: 1px solid @gray-light;
+			padding-bottom: 10px;
+		}
+	}
+
+	#terms-search-results {
+		.term-group-terms {
+			.term-collapsible {
+				.term-name {
+					padding-right: 20px;
+				}
+				.fa {
+					margin-left: -20px;
+					pointer-events: none;
+				}
+			}
+		}
+	}
 }

@@ -10,6 +10,15 @@
         //Hiding
         $(this).find('.fa').removeClass('fa-chevron-up').addClass('fa-chevron-down');
       });
+
+
+      $termlinks = $('.terms-groups-group-item a, .term-synonym-terms a', context);
+      $termlinks.on("click", function(e) {
+        var hashTarget = e.currentTarget.hash;
+        $(window).scrollTo(hashTarget,200);
+      })
+
+
     }
   }
 })(jQuery);
