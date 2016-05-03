@@ -51,7 +51,7 @@ function ubn_terms_terms_search_result_content_type_render($subtype, $conf, $pan
     ->entityCondition('bundle', array('term', 'term_synonym'), 'IN')
     ->fieldOrderBy('name_field', 'value', 'ASC')
     //->fieldLanguageCondition('name_field', $language_content->language, '=')
-    ->addTag('UBN_TERMS_ORDER_BY_FIELD_LANGUAGE_CONDITION')
+    ->addTag('UBN_TERMS_ENTITY_TRANSLATION_ORDER_BY_FIELD')
     //->addTag('TAXONOMY_TERM_ENTITY_TRANSLATION')
     ->execute();
 
