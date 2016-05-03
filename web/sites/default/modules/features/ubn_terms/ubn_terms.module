@@ -13,14 +13,9 @@ function ubn_terms_entity_info_alter(&$entity_info) {
   );
 }
 
-function ubn_terms_views_pre_render(&$view) {
-
-}
-
-function ubn_term_safe_css_identifier($data) {
-  //preg_match('/^[a-zA-Z]$/', 
-  //dsm(unpack('H*', $data));
-  return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+function ubn_terms_safe_css_identifier($data) {
+  $tmp = unpack('H*', $data);
+  return array_shift($tmp);
 }
 
 /**
