@@ -27,8 +27,19 @@ function ubn_terms_terms_search_result_content_type_settings($form, &$form_state
 function ubn_terms_terms_search_result_content_type_render($subtype, $conf, $panel_args, $context) {
   global $language_content;
 
+
   drupal_add_js(drupal_get_path('theme', 'ubnext') . '/js/vendor/jquery.scrollTo.min.js');
+
+  drupal_add_js(drupal_get_path('module', 'ubn_terms') . '/js/vendor/lunr.min.js');
+  if($language_content->language !== 'en') {
+    //File exists?
+    drupal_add_js(drupal_get_path('module', 'ubn_terms') . "/js/vendor/lunr.stemmer.support.min.js");
+    drupal_add_js(drupal_get_path('module', 'ubn_terms') . "/js/vendor/lunr.{$language_content->language}.min.js");
+  }
+
   drupal_add_js(drupal_get_path('module', 'ubn_terms') . '/js/ubn_terms.js');
+
+  //TODO: Language as js-setting?
 
   $default_groups = array(
     'sv' => array(
@@ -44,6 +55,9 @@ function ubn_terms_terms_search_result_content_type_render($subtype, $conf, $pan
     ->entityCondition('entity_type', 'taxonomy_term')
     ->entityCondition('bundle', array('term', 'term_synonym'), 'IN')
     ->fieldOrderBy('name_field', 'value', 'ASC')
+    //->fieldLanguageCondition('name_field', $language_content->language, '=')
+    ->addTag('UBN_TERMS_ENTITY_TRANSLATION_ORDER_BY_FIELD')
+    //->addTag('TAXONOMY_TERM_ENTITY_TRANSLATION')
     ->execute();
 
   $terms = array();
@@ -59,7 +73,7 @@ function ubn_terms_terms_search_result_content_type_render($subtype, $conf, $pan
     $matches = array();
     preg_match('@\p{L}|\p{N}@u', $first_letter, $matches);
     if (!empty($matches[0])) {
-      $group = is_numeric($first_letter) ? '[0-9]' : drupal_strtoupper($first_letter);
+      $group = is_numeric($first_letter) ? '0-9' : drupal_strtoupper($first_letter);
       $grouped_terms[$group][] = $term;
     }
     else {
@@ -87,7 +101,7 @@ function ubn_terms_terms_search_result_content_type_render($subtype, $conf, $pan
     $term_group = array(
       'group' => array(
         'name' => $group,
-        'identifier' => ubn_term_safe_css_identifier($group),
+        'identifier' => ubn_terms_safe_css_identifier($group),
       ),
       'terms' => array(),
     );

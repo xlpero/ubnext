@@ -87,8 +87,20 @@ function ubn_general_strongarm_alter(&$variables) {
  */
 function ubn_general_query_ENTITY_TRANSLATION_alter(QueryAlterableInterface $query) {
   global $language_content;
-
   $query->join('entity_translation', 'entity_translation', "entity_translation.entity_type = 'node' AND entity_translation.entity_id = node.nid");
+  $query->condition('entity_translation.language', $language_content->language, '=');
+}
+
+/**
+ * Implements hook_query_TAG_alter().
+ *
+ * Only works for entities of type 'taxonomy_term'.
+ *
+ * @param QueryAlterableInterface $query
+ */
+function ubn_general_query_TAXONOMY_TERM_ENTITY_TRANSLATION_alter(QueryAlterableInterface $query) {
+  global $language_content;
+  $query->join('entity_translation', 'entity_translation', "entity_translation.entity_type = 'taxonomy_term' AND entity_translation.entity_id = taxonomy_term_data.tid");
   $query->condition('entity_translation.language', $language_content->language, '=');
 }
 
