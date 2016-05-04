@@ -36,9 +36,11 @@ function ubn_terms_field_attach_validate($entity_type, $entity, &$errors) {
       $entity->vocabulary_machine_name === 'term' ||
       $entity->vocabulary_machine_name === 'term_synonym'
     ) {
+      $language = entity_translation_language('taxonomy_term', $entity);
       foreach($entity->name_field as $langcode => $items) {
         $term_name = $items[0]['value'];
         $query = new EntityFieldQuery();
+        $query->addMetaData('entity_language', $language);
         $result = $query
           ->entityCondition('entity_type', 'taxonomy_term')
           ->entityCondition('bundle', array('term', 'term_synonym'), 'IN')
@@ -49,6 +51,7 @@ function ubn_terms_field_attach_validate($entity_type, $entity, &$errors) {
           ->execute();
         if(isset($result['taxonomy_term'])) {
           $id = key($result['taxonomy_term']);
+          //TODO: not current language, form language!!!!!!
           if($id != $entity->tid) {
             $term = entity_load_single('taxonomy_term', $id);
             $term_wrapper = entity_metadata_wrapper('taxonomy_term', $term);
@@ -100,6 +103,10 @@ function ubn_terms_query_UBN_TERMS_ENTIY_TRANSLATION_FIELD_CONDITION_alter(Query
   global $language_content;
   //Hackelyhack
   $fields = array();
+  $language = $query->getMetadata('entity_language');
+  if(empty($language)) {
+    $language = $language_content->language;
+  }
   foreach($query->conditions() as $condition) {
     if(isset($condition['field']) && strpos($condition['field'], 'field_') === 0) {
       list($alias) = explode('.', $condition['field']);
@@ -107,7 +114,7 @@ function ubn_terms_query_UBN_TERMS_ENTIY_TRANSLATION_FIELD_CONDITION_alter(Query
     }
   }
   foreach($fields as $alias) {
-    $query->condition("$alias.language", $language_content->language, '=');
+    $query->condition("$alias.language", $language, '=');
   }
 }
 
