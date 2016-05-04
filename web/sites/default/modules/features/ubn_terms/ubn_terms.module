@@ -18,16 +18,28 @@ function ubn_terms_safe_css_identifier($data) {
   return array_shift($tmp);
 }
 
+/*
 function ubn_terms_form_alter(&$form, &$form_state, $form_id) {
   if($form_id === 'taxonomy_form_term') {
     $form['#validate'][] = 'ubn_terms_taxonomy_form_term_validate';
   }
 }
+*/
 
-function ubn_terms_taxonomy_form_term_validate($form, &$form_state) {
-  //dsm('validate');
-  //dsm($form_state);
+function ubn_terms_form_taxonomy_form_term_alter(&$form, &$form_state) {
+  if($form['#bundle'] === 'term_synonym' || $form['#bundle'] === 'term') {
+    if($form['#bundle'] === 'term_synonym') {
+      $form['description']['#access'] = FALSE;
+    }
+    $form['relations']['#access'] = FALSE;
+    $form['path']['#access'] = FALSE;
+  }
 }
+
+/*
+function ubn_terms_taxonomy_form_term_validate($form, &$form_state) {
+}
+*/
 
 function ubn_terms_field_attach_validate($entity_type, $entity, &$errors) {
   if($entity_type === 'taxonomy_term') {
