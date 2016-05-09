@@ -371,7 +371,7 @@ function ubn_content_types_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'entity_translation_settings_field_collection_item__field_content_sections';
   $strongarm->value = array(
-    'default_language' => 'xx-et-default',
+    'default_language' => 'und',
     'hide_language_selector' => 1,
     'exclude_language_none' => 0,
     'lock_language' => 0,
