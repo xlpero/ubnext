@@ -117,5 +117,8 @@ function ubn_slate_slate_twig_alter(&$twig) {
     '_ubn_slate_number_format'
   );
   $twig->addFilter($filter);
+
+  global $base_url;
+  $twig->addGlobal('base_url', $base_url);
 }
 

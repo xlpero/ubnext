@@ -52,7 +52,7 @@ function ubn_content_types_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Contacts',
-    'weight' => '9',
+    'weight' => '6',
     'children' => array(
       0 => 'field_contact_instances',
     ),
@@ -128,6 +128,35 @@ function ubn_content_types_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_media_settings|field_collection_item|field_content_sections|form';
+  $field_group->group_name = 'group_media_settings';
+  $field_group->entity_type = 'field_collection_item';
+  $field_group->bundle = 'field_content_sections';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Media settings',
+    'weight' => '1',
+    'children' => array(
+      0 => 'field_media_layout',
+      1 => 'field_media_context',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Media settings',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-media-settings field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'collapsed',
+    ),
+  );
+  $export['group_media_settings|field_collection_item|field_content_sections|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_shortcut_links|node|navigation_landing|form';
   $field_group->group_name = 'group_shortcut_links';
   $field_group->entity_type = 'node';
@@ -180,6 +209,34 @@ function ubn_content_types_field_group_info() {
     ),
   );
   $export['group_shourtcut_links|node|navigation_landing|default'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
+  $field_group->identifier = 'group_term|field_collection_item|field_content_sections|form';
+  $field_group->group_name = 'group_term';
+  $field_group->entity_type = 'field_collection_item';
+  $field_group->bundle = 'field_content_sections';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'Referened term',
+    'weight' => '2',
+    'children' => array(
+      0 => 'field_term',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'label' => 'Referened term',
+      'instance_settings' => array(
+        'required_fields' => 1,
+        'classes' => 'group-term field-group-fieldset',
+        'description' => '',
+      ),
+      'formatter' => 'collapsed',
+    ),
+  );
+  $export['group_term|field_collection_item|field_content_sections|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */

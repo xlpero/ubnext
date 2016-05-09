@@ -254,6 +254,11 @@ function search_api_et_item_languages($entity, $entity_type, SearchApiIndex $ind
  * Implements hook_entity_delete().
  */
 function search_api_et_entity_delete($entity, $entity_type) {
+  // We only react on entity operations for types with property information, as
+  // we don't provide search integration for the others.
+  if (!entity_get_property_info($entity_type) || !isset($entity->original)) {
+    return;
+  }
   module_load_include('inc', 'search_api_et');
   list($entity_id, $revision, $bundle) = entity_extract_ids($entity_type, $entity);
 
@@ -268,6 +273,11 @@ function search_api_et_entity_delete($entity, $entity_type) {
  * Implements hook_entity_update().
  */
 function search_api_et_entity_update($entity, $entity_type) {
+  // We only react on entity operations for types with property information, as
+  // we don't provide search integration for the others.
+  if (!entity_get_property_info($entity_type) || !isset($entity->original)) {
+    return;
+  }
   module_load_include('inc', 'search_api_et');
   list($entity_id, $revision, $bundle) = entity_extract_ids($entity_type, $entity);
   $et_entity_type = SearchApiEtHelper::getItemType($entity_type);

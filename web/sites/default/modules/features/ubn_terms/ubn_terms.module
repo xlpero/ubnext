@@ -18,45 +18,77 @@ function ubn_terms_safe_css_identifier($data) {
   return array_shift($tmp);
 }
 
-function ubn_terms_form_alter(&$form, &$form_state, $form_id) {
-  if($form_id === 'taxonomy_form_term') {
-    $form['#validate'][] = 'ubn_terms_taxonomy_form_term_validate';
+function ubn_terms_form_taxonomy_form_term_alter(&$form, &$form_state) {
+  if($form['#bundle'] === 'term_synonym' || $form['#bundle'] === 'term') {
+    if($form['#bundle'] === 'term_synonym') {
+      $form['description']['#access'] = FALSE;
+    }
+    $form['relations']['#access'] = FALSE;
+    $form['path']['#access'] = FALSE;
   }
 }
 
-function ubn_terms_taxonomy_form_term_validate($form, &$form_state) {
-  //dsm('validate');
-  //dsm($form_state);
+function _ubn_terms_language_terms($term_name, $language) {
+  $query = new EntityFieldQuery();
+  $result = $query
+    ->entityCondition('entity_type', 'taxonomy_term')
+    ->entityCondition('bundle', array('term', 'term_synonym'), 'IN')
+    ->fieldCondition('name_field', 'value', $term_name)
+    ->addMetaData('entity_language', $language)
+    ->addTag('UBN_TERMS_LANGUAGE_TERMS')
+    ->execute();
+  return isset($result['taxonomy_term']) ? $result['taxonomy_term'] : array();
+}
+
+function _ubn_terms_field_attach_validate_unique_set_error($tid, $field_name, $language, &$errors) {
+  $term = entity_load_single('taxonomy_term', $tid);
+  $term_wrapper = entity_metadata_wrapper('taxonomy_term', $term);
+  $term_url = $term_wrapper->get('url')->value();
+  $entity_info = $term_wrapper->entityInfo();
+  $bundle_label = $entity_info['bundles'][$term_wrapper->getBundle()]['label'];
+  //Fix code duplication?
+  $errors[$field_name][$language][0][] = array(
+    'error' => $field_name . '_non_unique',
+    'message' => t(
+      'A !term_link with the name %name already exists for the current langauge (@language).',
+      array(
+        '!term_link' => l(drupal_strtolower($bundle_label), $term_url),
+        '%name' => $term_wrapper->label(),
+        '@language' => $languages[$language]->name,
+      )
+    )
+  );
 }
 
 function ubn_terms_field_attach_validate($entity_type, $entity, &$errors) {
   if($entity_type === 'taxonomy_term') {
-    //TODO: in_array?
-    if(
+    if (
       $entity->vocabulary_machine_name === 'term' ||
       $entity->vocabulary_machine_name === 'term_synonym'
     ) {
-      foreach($entity->name_field as $langcode => $items) {
-        $term_name = $items[0]['value'];
-        $query = new EntityFieldQuery();
-        $result = $query
-          ->entityCondition('entity_type', 'taxonomy_term')
-          ->entityCondition('bundle', array('term', 'term_synonym'), 'IN')
-          ->fieldCondition('name_field', 'value', $term_name)
-          //->fieldLanguageCondition('name_field', $langcode, '=')
-          //->addTag('UBN_TERMS_DEBUG')
-          ->addTag('UBN_TERMS_ENTIY_TRANSLATION_FIELD_CONDITION')
-          ->execute();
-        if(isset($result['taxonomy_term'])) {
-          $id = key($result['taxonomy_term']);
-          if($id != $entity->tid) {
-            $term = entity_load_single('taxonomy_term', $id);
-            $term_wrapper = entity_metadata_wrapper('taxonomy_term', $term);
-            $term_url = $term_wrapper->get('url')->value();
-            $errors['name_field'][$langcode][0][] = array(
-              'error' => 'field_name_non_unique',
-              'message' => t('A !term_link with this name already exists for the current langauge.', array('!term_link' => l(t('term'), $term_url)))
-            );
+      $language = entity_translation_language('taxonomy_term', $entity);
+      if($entity->vocabulary_machine_name === 'term' && !empty($entity->field_term_synonyms[$language])) {
+        $term_synonyms = $entity->field_term_synonyms[$language];
+        $current_entity_synonym_tids = array();
+        foreach($term_synonyms as $term_synonym) {
+          $current_entity_synonym_tids[$term_synonym['tid']] = $term_synonym['tid'];
+        }
+        foreach($term_synonyms as $term_synonym) {
+          $terms = _ubn_terms_language_terms($term_synonym['name'], $language);
+          $terms = array_diff_key($terms, $current_entity_synonym_tids);
+          if(!empty($terms)) {
+            _ubn_terms_field_attach_validate_unique_set_error(key($terms), 'field_term_synonyms', $language, $errors);
+          }
+        }
+      }
+      $items = $entity->name_field[$language];
+      if (isset($items[0])) {
+        $term_name = $items[0];
+        $terms = _ubn_terms_language_terms($term_name, $language);
+        if(!empty($terms)) {
+          $tid = key($terms);
+          if($tid != $entity->tid) {
+            _ubn_terms_field_attach_validate_unique_set_error($tid, 'name_field', $language, $errors);
           }
         }
       }
@@ -80,7 +112,7 @@ function ubn_terms_ctools_plugin_directory($owner, $plugin_type) {
  *
  * @param QueryAlterableInterface $query
  */
-//TODO: add entity transation?
+/*
 function ubn_terms_query_UBN_TERMS_ENTITY_TRANSLATION_ORDER_BY_FIELD_alter(QueryAlterableInterface $query) {
   global $language_content;
   //Hackelyhack
@@ -88,6 +120,7 @@ function ubn_terms_query_UBN_TERMS_ENTITY_TRANSLATION_ORDER_BY_FIELD_alter(Query
   list($alias) = explode('.', $order_by);
   $query->condition("$alias.language", $language_content->language, '=');
 }
+*/
 
 /**
  * Implements hook_query_TAG_alter().
@@ -96,10 +129,15 @@ function ubn_terms_query_UBN_TERMS_ENTITY_TRANSLATION_ORDER_BY_FIELD_alter(Query
  *
  * @param QueryAlterableInterface $query
  */
+/*
 function ubn_terms_query_UBN_TERMS_ENTIY_TRANSLATION_FIELD_CONDITION_alter(QueryAlterableInterface $query) {
   global $language_content;
   //Hackelyhack
   $fields = array();
+  $language = $query->getMetadata('entity_language');
+  if(empty($language)) {
+    $language = $language_content->language;
+  }
   foreach($query->conditions() as $condition) {
     if(isset($condition['field']) && strpos($condition['field'], 'field_') === 0) {
       list($alias) = explode('.', $condition['field']);
@@ -107,10 +145,55 @@ function ubn_terms_query_UBN_TERMS_ENTIY_TRANSLATION_FIELD_CONDITION_alter(Query
     }
   }
   foreach($fields as $alias) {
-    $query->condition("$alias.language", $language_content->language, '=');
+    $query->condition("$alias.language", $language, '=');
   }
 }
 
 function ubn_terms_query_UBN_TERMS_DEBUG_alter(QueryAlterableInterface $query) {
   dsm((string) $query);
+}
+*/
+
+/**
+ * Implements hook_query_TAG_alter().
+ *
+ * Super ugly hack, but what to do?
+ *
+ * @param QueryAlterableInterface $query
+ */
+function ubn_terms_query_UBN_TERMS_LANGUAGE_TERMS_alter(QueryAlterableInterface $query) {
+  global $language_content;
+  //Hackelyhack
+  $language = $query->getMetadata('entity_language');
+  if(empty($language)) {
+    $language = $language_content->language;
+  }
+
+  $name_field_alias = NULL;
+  foreach(array_keys($query->getTables()) as $alias) {
+    if(strpos($alias, 'field_data_name_field') === 0) {
+      $name_field_alias = $alias;
+    }
+  }
+
+  if($name_field_alias) {
+    $term_synonyms_alias = $query->leftJoin(
+      'field_data_field_term_synonyms',
+      'ts',
+      "$name_field_alias.entity_id = ts.field_term_synonyms_tid AND ts.entity_type = 'taxonomy_term' AND ts.bundle = 'term'"
+    );
+
+    //Only select terms for current language, or term synonyms referenced
+    //by terms with current language
+    $or = db_or()
+      ->condition(db_and()
+      ->condition("$name_field_alias.bundle", 'term', '=')
+      ->condition("$name_field_alias.language", $language, '=')
+    )
+    ->condition("$term_synonyms_alias.language", $language, '=');
+    $query->condition($or);
+  }
+  else {
+    throw new Exception("Missing name_field table"); //??
+  }
 }
