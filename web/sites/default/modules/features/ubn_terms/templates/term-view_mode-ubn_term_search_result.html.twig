@@ -6,5 +6,5 @@
 {% set id = entity.getIdentifier %}
 <li id="term-{{ id }}" class="term term-collapsible">
   <a class="term-name collapsed" role="button" data-toggle="collapse" href="#term-{{ id }}-description" aria-expanded="false" aria-controls="term-{{ id }}-description">{{ entity.name.value }}</a> <i class="fa fa-chevron-down" aria-hidden="true"></i>
-  <div id="term-{{ id }}-description" class="collapse term-description">{{ entity.description.value|raw }}</div>
+  <div id="term-{{ id }}-description" class="collapse term-description"><div>{{ entity.description.value|raw }}</div></div>
 </li>

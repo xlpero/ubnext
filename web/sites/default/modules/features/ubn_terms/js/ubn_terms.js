@@ -1,4 +1,9 @@
 (function($) {
+  Drupal.behaviors.ubn_terms = {
+    attach: function(context, settings) {
+      $("#terms-search-controls-search-box", context).focus();
+    }
+  };
   Drupal.behaviors.ubn_terms_collapsible = {
     attach : function(context, settings) {
       $collapsibles = $('.term-collapsible', context);
@@ -15,10 +20,8 @@
       $termlinks = $('.terms-groups-group-item a, .term-synonym-terms a', context);
       $termlinks.on("click", function(e) {
         var hashTarget = e.currentTarget.hash;
-        $(window).scrollTo(hashTarget,200);
-      })
-
-
+        Drupal.ubnext.scrollTo($(hashTarget));
+      });
     }
   };
   Drupal.behaviors.ubn_terms_lunr = {
@@ -40,7 +43,6 @@
           title: $this.children('.term-name').text(),
           body: $this.children('.term-description').text(),
         };
-        console.dir(doc);
         idx.add(doc);
       });
       //TODO:
@@ -57,22 +59,31 @@
       }
       $terms = $('.term', context);
       $term_groups = $('.term-group', context);
+      $term_groups_item = $('.terms-groups-group-item', context); 
+
       $('#terms-search-controls-search-box', context).on('keyup change', function() {
         var query = $(this).val();
         if(query) {
           var results = idx.search(query);
           // Focus out show all
+
           $term_groups.hide();
           $terms.hide();
+          $term_groups_item.hide();
+
           for(i in results) {
             $('#' + results[i].ref).show().parents('.term-group').show();
+            $('#' + results[i].ref).show().parents('.term-group').show();
+            console.log($('#' + results[i].ref).show().parents('.term-group'));
           }
         }
         else {
           $term_groups.show();
           $terms.show();
+
         }
       });
+
     }
   };
 })(jQuery);

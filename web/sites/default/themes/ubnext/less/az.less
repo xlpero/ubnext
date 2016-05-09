@@ -1,71 +1,4 @@
 .main-cms {
-	.a-z {
-		.menu {
-			.clearfix();
-			border-bottom: 1px solid #ccc;
-			@media(min-width: @screen-sm-min) {
-
-			}	
-			li {
-				text-transform: uppercase;
-				float:left;
-				margin-bottom: 20px;
-				display: inline-block;
-
-				a {
-					font-weight: bold;
-					
-					padding:9px 20px 9px 0;
-
-					text-decoration: none;
-					&:hover {
-						text-decoration: underline;
-						&.disabled {
-							text-decoration: none;
-						}
-					}
-					&.disabled {
-						opacity: .5;
-
-					}
-				}
-				&:last-child {
-					
-					a {
-						padding-right: 0;
-					}
-				}
-			}
-
-		}
-
-		.alphabetic-list {
-			float: left;
-			width: 100%;
-			max-width: 640px;
-			@media (min-width: @screen-sm-min) {
-				min-width: 640px;
-			}
-
-			.alphabetic-heading {
-				text-transform: uppercase;
-			}
-
-			.alphabetic-letter-terms {
-				.clearfix();
-				border-bottom: 1px solid #ccc;
-				margin-bottom: 20px;
-
-
-				.back-to-top {
-					float: right;
-					font-size: .8em;
-					padding:10px 0;
-				}
-			}
-		}
-	}
-
 	#terms-search-controls {
 		input {
 			height: 48px;
@@ -77,49 +10,59 @@
 		}
 	}
 
-	#terms-groups{
+	#terms-groups {
 		.terms-groups-group {
-			/* Small devices (tablets, 768px and up) */
-			@media (min-width: @screen-md-min) {
-				display: table;
-	    		width: 100%;	
-			}
-			font-size: 1.4em;
+			height: 40px;
+			font-size: 1.375em;
+			text-align: justify;
 			.terms-groups-group-item {
 				display: inline-block;
-				width: 40px;
-				@media (max-width: @screen-sm-min) {
-
-				}
-				@media (min-width: @screen-md-min) {
-					display: table-cell;
-					width: 40px;
-				}
 			}
 			a {
 				text-decoration: none;
 			}
-			.terms-groups-group-disabled {
+			.term-groups-group-item-disabled {
 				color: @gray-light;
+			}
+			&:after {
+			  content: '';
+			  width: 100%; /* Ensures there are at least 2 lines of text, so justification works */
+			  display: inline-block;
 			}
 		}
 	}
 
-	.term-group {
-		h2 {
-			border-bottom: 1px solid @gray-light;
-			padding-bottom: 10px;
-		}
-	}
+
 
 	#terms-search-results {
+		.term-group {
+			h2 {
+				border-bottom: 1px solid @gray-light;
+				margin-bottom: 20px;
+			}
+		}
 		.term-group-terms {
+			.term {
+				font-size: 1.125em;
+				margin-bottom: 20px;
+			}
+			.term-description {
+				> div {
+					padding-top: 5px;
+					padding-bottom: 50px;
+				}
+				
+			}
 			.term-collapsible {
+				p {
+					margin-bottom: 0;
+				}
 				.term-name {
 					padding-right: 20px;
 				}
 				.fa {
 					margin-left: -20px;
+					font-size: 0.75em;
 					pointer-events: none;
 				}
 			}

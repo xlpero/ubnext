@@ -28,8 +28,6 @@ function ubn_terms_terms_search_result_content_type_render($subtype, $conf, $pan
   global $language_content;
 
 
-  drupal_add_js(drupal_get_path('theme', 'ubnext') . '/js/vendor/jquery.scrollTo.min.js');
-
   drupal_add_js(drupal_get_path('module', 'ubn_terms') . '/js/vendor/lunr.min.js');
   if($language_content->language !== 'en') {
     //File exists?
