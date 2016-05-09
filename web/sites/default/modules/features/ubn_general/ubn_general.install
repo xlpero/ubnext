@@ -522,6 +522,12 @@ function ubn_general_update_7148() {
   module_enable(array('ubn_terms'));
 }
 
+/* Delete description_field from term_synonym */
+function ubn_general_update_7149() {
+  if ($instance = field_info_instance('taxonomy_term', 'description_field', 'term_synonym')) {
+    field_delete_instance($instance);
+  }
+}
 
 //TODO: Disable rdf module?
 
