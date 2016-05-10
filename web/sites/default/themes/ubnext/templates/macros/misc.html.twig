@@ -33,6 +33,13 @@
         {{ _self.media_atoms_layout(atoms_layout) }}
       </div>
       {% endif %}
+      {% if not section.field_referenced_term is empty %}
+        {% set term = section.field_referenced_term %}
+        <section class="content-section-term">
+          <h2 class="content-section-term-title">{{ term.name.value }}</h2>
+          <div class="content-section-term-description">{{ term.description.value|raw }}</div>
+        </section>
+      {% endif %}
       {% if section.field_title.value or section.field_body.value %}
         <section class="content-sections-section">
          {% if section.field_title.value %}<h2 class="content-sections-section-title">{{ section.field_title.value }}</h2>{% endif %}
