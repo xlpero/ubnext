@@ -104,6 +104,119 @@ function ubn_general_query_TAXONOMY_TERM_ENTITY_TRANSLATION_alter(QueryAlterable
   $query->condition('entity_translation.language', $language_content->language, '=');
 }
 
+function ubn_general_entityreference_selectionhandler_efq_alter(&$query, $handler) {
+  /*
+  $entity_type = $handler->field['settings']['target_type'];
+  $entity_info = entity_get_info($entity_type);
+  $legacy_field = $entity_info['entity keys']['label'];
+  $replacement_field_info = title_field_replacement_info($entity_type, $legacy_field);
+
+  if (!empty($replacement_field_info)) {
+    $bundles = $handler->field['settings']['handler_settings']['target_bundles'];
+
+    $title_field_replacement_enabled = FALSE;
+    $title_field_replacement_all = NULL;
+    foreach($bundles as $bundle) {
+      if($info = title_field_replacement_enabled($entity_type, $bundle, $legacy_field)) {
+        $title_field_replacement_enabled = TRUE;
+      }
+      else {
+        $title_field_replacement_all = FALSE;
+      }
+    }
+    if (!isset($title_field_replacement_all)) {
+      $title_field_replacement_all = $title_field_replacement_enabled;
+    }
+
+    if ($title_field_replacement_enabled && $title_field_replacement_all) {
+      $label_property = $entity_info['entity keys']['label'];
+      foreach($query->propertyConditions as $key => $condition) {
+        if ($condition['column'] === $label_property) {
+          $value = $condition['value'];
+          $operator = $condition['operator'];
+          //unset($query->propertyConditions[$key]);
+          $title_field = $replacement_field_info['field']['field_name'];
+          //$query->fieldCondition($title_field, 'value', $value, $operator);
+          $query->fieldCondition($title_field, 'value', $value);
+          break;
+        }
+      }
+    }
+  }
+  */
+}
+
+/**
+ * Implements hook_query_TAG_alter().
+ *
+ * @param QueryAlterableInterface $query
+ */
+function ubn_general_query_ENTITYREFERENCE_alter(QueryAlterableInterface $query) {
+  $handler = $query->getMetaData('entityreference_selection_handler');
+  $entity_type = $handler->field['settings']['target_type'];
+  $entity_info = entity_get_info($entity_type);
+  $legacy_field = $entity_info['entity keys']['label'];
+  $replacement_field_info = title_field_replacement_info($entity_type, $legacy_field);
+
+  if (!empty($replacement_field_info)) {
+    $bundles = $handler->field['settings']['handler_settings']['target_bundles'];
+
+    $title_field_replacement_enabled = FALSE;
+    $title_field_replacement_all = NULL;
+    foreach($bundles as $bundle) {
+      if($info = title_field_replacement_enabled($entity_type, $bundle, $legacy_field)) {
+        $title_field_replacement_enabled = TRUE;
+      }
+      else {
+        $title_field_replacement_all = FALSE;
+      }
+    }
+    if (!isset($title_field_replacement_all)) {
+      $title_field_replacement_all = $title_field_replacement_enabled;
+    }
+
+    if ($title_field_replacement_enabled) {
+
+      $base_table = $entity_info['base table'];
+
+      $label_field = "$base_table.{$entity_info['entity keys']['label']}";
+      $conditions = &$query->conditions();
+      $value = NULL;
+      foreach(array_keys($conditions) as $key) {
+        if(isset($conditions[$key]['field']) && strpos($conditions[$key]['field'], $label_field) === 0) {
+          if(isset($conditions[$key]['value'])) {
+            $value = $conditions[$key]['value'];
+            $operator = $conditions[$key]['operator'];
+            unset($conditions[$key]);
+          }
+          break;
+        }
+      }
+      if(isset($value)) {
+        $title_field_name = $replacement_field_info['field']['field_name'];
+        $field_info = field_info_field($title_field_name);
+        if($field_info['storage']['type'] === 'field_sql_storage') {
+          $field_table = _field_sql_storage_tablename($field_info);
+          $entity_basetable = $entity_info['base table'];
+          foreach($query->getTables() as $alias => $table) {
+            if (strpos($alias, $entity_basetable) === 0) {
+              $field_table_alias = $query->join(
+                $field_table,
+                $field_table,
+                "$field_table.entity_id = $alias.{$entity_info['entity keys']['id']}"
+              );
+              $query->condition("$field_table_alias.entity_type", $entity_type, '=');
+              $value_column = _field_sql_storage_columnname($field_info['field_name'], 'value');
+              $query->condition("$field_table_alias.$value_column", $value, $operator);
+              break;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 /**
  * Custom strnatcmp to fix a bad, bad, bad PHP bug!
  */
