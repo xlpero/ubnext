@@ -7,7 +7,8 @@
   <div class="col-sm-8 col-sm-offset-2">
     <div id="terms-search-controls">
       <div class="input-group">
-        <input id="terms-search-controls-search-box" type="text" name="q" placeholder="Search" class="form-control input-lg">
+        <input id="terms-search-controls-search-box" autocomplete="off" type="text" name="q" placeholder="Search" class="form-control input-lg">
+        <a href="javascript:void(0);" class="clear-search-btn" title='" . t("Clear search") ."'><i class='fa  fa-times-circle'></i></a>
         <span class="input-group-btn">
         <button class="btn btn-lg btn-primary" type="submit"><i class="fa fa-search"></i></button>
         </span>
@@ -26,11 +27,10 @@
           <div class="terms-groups-group term-group-{{ loop.index }}">
           {% for term_group in term_group_batch %}
             <span class="terms-groups-group-item terms-groups-group-{{ term_group.group.identifier }} {{ term_group.terms is empty ? 'terms-groups-group-empty' }}">
-            {% if not term_group.terms is empty %}
+
               <a href="#term-group-{{ term_group.group.identifier }}">{{ term_group.group.name }}</a>
-            {% else %}
-              <span class="term-groups-group-item-disabled">{{ term_group.group.name }}</span>
-            {% endif %}
+              <span class="term-groups-group-item-empty">{{ term_group.group.name }}</span>
+
             </span>
           {% endfor %}
           </div>
@@ -44,18 +44,18 @@
 {% import _self as helper %}
 
 
-<nav class="panel-separator visible-md-block visible-lg-block">
+<nav class="letter-nav panel-separator visible-md-block visible-lg-block">
   {{helper.generate_evenly_distributed_rows(term_groups, 30)}}
 </nav>
 
 
 
-<nav class="panel-separator visible-sm-block">
+<nav class="letter-nav panel-separator visible-sm-block">
   {{helper.generate_evenly_distributed_rows(term_groups, 15)}}
 </nav>
 
 
-<nav class="panel-separator visible-xs-block">
+<nav class="letter-nav panel-separator visible-xs-block">
   {{helper.generate_evenly_distributed_rows(term_groups, 8)}}
 </nav>
 
@@ -63,6 +63,8 @@
 
 
 <div id="terms-search-results" class="panel-separator">
+
+    <div class="no-result center">{{ t('No term was found. Change your search and try again.') }}</div>
   {% for term_group in term_groups if not term_group.terms is empty %}
     <section class="term-group term-group-{{ term_group.group.identifier }}">
       <h2 id="term-group-{{ term_group.group.identifier }}">{{ term_group.group.name }}</h2>

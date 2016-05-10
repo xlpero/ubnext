@@ -4,7 +4,7 @@ Drupal.behaviors.database = {
       Drupal.setupHistory();
       $(".form-autocomplete", context).focus();
       $(".form-autocomplete", context).on("change paste keyup", function() {
-          if ($(".form-autocomplete").val().length > 0) {
+          if ($(this).val().length > 0) {
             Drupal.toggleClearFilters(context, true);
           }
           else {

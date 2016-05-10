@@ -5,6 +5,15 @@
 	      	border-radius: @border-radius-base 0 0 @border-radius-base;
 	      	background: @gray-lighter;
 		}
+
+		.clear-search-btn {
+	      position: absolute;
+	      z-index: 100;
+	      top: 12px;
+	      right: 65px;
+	      color: @gray-dark;
+	      display: none;
+	    }
 		button {
 			border-radius: 0 5px 5px 0;
 		}
@@ -21,20 +30,53 @@
 			a {
 				text-decoration: none;
 			}
-			.term-groups-group-item-disabled {
+
+			.term-groups-group-item-empty {
 				color: @gray-light;
+				display: none;
 			}
+			.terms-groups-group-empty {
+				.term-groups-group-item-empty {
+					display: block;
+				}
+				a {
+					display: none;
+				}
+			}
+
 			&:after {
 			  content: '';
 			  width: 100%; /* Ensures there are at least 2 lines of text, so justification works */
 			  display: inline-block;
 			}
+
+			.terms-groups-group-item {
+				&.disabled {
+					.term-groups-group-item-empty {
+						display: block;
+					}	
+					a {
+						display: none;
+					}
+				}
+			}
+
 		}
 	}
 
 
 
 	#terms-search-results {
+		.no-result {
+	      font-size: 1.2em;
+	      color: @gray-light;
+	      display: none;
+	    }
+	    &.no-result {
+	    	.no-result {
+	    		display: block;
+	    	}
+	    }
 		.term-group {
 			h2 {
 				border-bottom: 1px solid @gray-light;

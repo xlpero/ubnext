@@ -4,8 +4,10 @@
   view_mode[taxonomy_term][term_synonym] = ubn_term_search_result
 #}
 {% set term_synonym_terms = entity.field_term_synonyms_taxonomy_term_eb %}
+{% set groupId = ubn_terms_safe_css_identifier(entity.name|first) %}
+
 {% if not term_synonym_terms is empty %}
-<li id="term-{{ entity.getIdentifier }}" class="term term-synonym">
+<li id="term-{{ entity.getIdentifier }}" data-term-group-id="{{ groupId }}" class="term term-synonym">
   <span class="term-name">{{ entity.name.value }}</span>, {{ t('see') }}
   <span class="term-synonym-terms">
     {% for term in term_synonym_terms %}
