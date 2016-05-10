@@ -529,6 +529,12 @@ function ubn_general_update_7149() {
   }
 }
 
+/* Delete field_term field */
+function ubn_general_update_7150() {
+  field_delete_field('field_term');
+}
+
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
