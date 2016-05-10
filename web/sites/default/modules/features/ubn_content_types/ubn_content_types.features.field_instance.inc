@@ -337,8 +337,8 @@ function ubn_content_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_content_sections-field_term'.
-  $field_instances['field_collection_item-field_content_sections-field_term'] = array(
+  // 'field_collection_item-field_content_sections-field_referenced_term'.
+  $field_instances['field_collection_item-field_content_sections-field_referenced_term'] = array(
     'bundle' => 'field_content_sections',
     'default_value' => NULL,
     'deleted' => 0,
@@ -355,7 +355,7 @@ function ubn_content_types_field_default_field_instances() {
       ),
     ),
     'entity_type' => 'field_collection_item',
-    'field_name' => 'field_term',
+    'field_name' => 'field_referenced_term',
     'label' => 'Term',
     'required' => 0,
     'settings' => array(

@@ -223,7 +223,7 @@ function ubn_content_types_field_group_info() {
     'label' => 'Referened term',
     'weight' => '2',
     'children' => array(
-      0 => 'field_term',
+      0 => 'field_referenced_term',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

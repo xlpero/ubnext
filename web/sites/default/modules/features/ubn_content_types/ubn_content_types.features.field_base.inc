@@ -1167,13 +1167,13 @@ function ubn_content_types_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_term'.
-  $field_bases['field_term'] = array(
+  // Exported field_base: 'field_referenced_term'.
+  $field_bases['field_referenced_term'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
-    'field_name' => 'field_term',
+    'field_name' => 'field_referenced_term',
     'indexes' => array(
       'target_id' => array(
         0 => 'target_id',
