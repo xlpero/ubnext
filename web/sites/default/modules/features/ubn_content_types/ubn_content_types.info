@@ -226,6 +226,7 @@ features[node][] = opening_hours
 features[node][] = page
 features[picture_mapping][] = library_hero
 features[picture_mapping][] = page_content
+features[scald_context_config][] = hero_area
 features[taxonomy][] = library_properties
 features[taxonomy][] = media_types
 features[taxonomy][] = publishers
