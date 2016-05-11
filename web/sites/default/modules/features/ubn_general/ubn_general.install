@@ -534,6 +534,10 @@ function ubn_general_update_7150() {
   field_delete_field('field_term');
 }
 
+/* Delete field_template field */
+function ubn_general_update_7151() {
+  field_delete_field('field_template');
+}
 
 //TODO: Disable rdf module?
 
