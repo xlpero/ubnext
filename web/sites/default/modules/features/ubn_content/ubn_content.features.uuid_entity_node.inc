@@ -143,13 +143,6 @@ function ubn_content_uuid_entity_default_node() {
         ),
       ),
     ),
-    'field_template' => array(
-      'und' => array(
-        0 => array(
-          'value' => 'libraries',
-        ),
-      ),
-    ),
     'field_content_sections' => array(),
     'field_referenced_app' => array(),
     'translations' => array(
