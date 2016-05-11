@@ -351,7 +351,7 @@ function ubn_content_types_field_default_field_instances() {
           'link' => FALSE,
         ),
         'type' => 'entityreference_label',
-        'weight' => 11,
+        'weight' => 12,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -371,7 +371,7 @@ function ubn_content_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'entityreference_autocomplete',
-      'weight' => 4,
+      'weight' => 5,
     ),
   );
 
@@ -3377,51 +3377,6 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-page-field_template'.
-  $field_instances['node-page-field_template'] = array(
-    'bundle' => 'page',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_template',
-    'label' => 'Template',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'ubn_property_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_select',
-      'weight' => 5,
-    ),
-  );
-
   // Exported field_instance: 'node-page-title_field'.
   $field_instances['node-page-title_field'] = array(
     'bundle' => 'page',
@@ -4336,7 +4291,6 @@ function ubn_content_types_field_default_field_instances() {
   t('Subject');
   t('Subject terms');
   t('Tags');
-  t('Template');
   t('Term');
   t('Terms of use');
   t('Theme links');

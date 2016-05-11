@@ -224,6 +224,7 @@ function ubn_content_types_field_group_info() {
     'weight' => '2',
     'children' => array(
       0 => 'field_referenced_term',
+      1 => 'field_term',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
