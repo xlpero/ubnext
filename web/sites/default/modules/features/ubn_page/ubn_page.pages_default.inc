@@ -1143,18 +1143,9 @@ function ubn_page_default_page_manager_handlers() {
           'not' => TRUE,
         ),
         1 => array(
-          'name' => 'entity_field_value:node:page:field_template',
+          'name' => 'entity_uuid:node',
           'settings' => array(
-            'field_template' => array(
-              'und' => array(
-                0 => array(
-                  'value' => 'libraries',
-                ),
-              ),
-            ),
-            'field_template_value' => array(
-              0 => 'libraries',
-            ),
+            'uuid' => 'f8bcf20f-d066-41fc-9e41-c1b3d97dccee',
           ),
           'context' => 'node',
           'not' => TRUE,
