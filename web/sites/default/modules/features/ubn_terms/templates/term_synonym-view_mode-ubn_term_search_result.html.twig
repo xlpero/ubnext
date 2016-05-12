@@ -11,7 +11,7 @@
   <span class="term-name">{{ entity.name.value }}</span>, {{ t('see') }}
   <span class="term-synonym-terms">
     {% for term in term_synonym_terms %}
-      {{ loop.index > 1 ? (not loop.last ? ', ' : ' ' ~ t('or') ~ ' ') }}<a href="#term-{{ term.tid }}">{{ term.name }}</a>
+      {{ loop.index > 1 ? (not loop.last ? ', ' : ' ' ~ t('or') ~ ' ') }}<a href="#{{ term.name_field }}">{{ term.name }}</a>
     {% endfor %}
   </span>
 </li>
