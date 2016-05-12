@@ -1835,6 +1835,9 @@ function entity_translation_settings($entity_type, $bundle) {
  */
 function entity_translation_language($entity_type, $entity) {
   $handler = entity_translation_get_handler($entity_type, $entity);
+  if (empty($handler)) {
+    return LANGUAGE_NONE;
+  }
   $langcode = $handler->getFormLanguage();
   return !empty($langcode) ? $langcode : $handler->getLanguage();
 }

@@ -1,6 +1,19 @@
 
 Entity Translation 7.x-1.x, xxxx-xx-xx
 --------------------------------------
+
+
+Entity Translation 7.x-1.0-beta5, 2016-05-08
+--------------------------------------------
+#929402 by das-peter, bastnic, kristiaanvandeneynde, brockfanning, greenjuls,
+  make77, steinmb: Added support for migrate module.
+#1291388 by Jax, poiu, plach: Added support for multilingual core search.
+#2339315 by loopduplicate, gnucifer, plopesc, james.williams: Fixed Source
+  language prepopulated values should be also included in $form_state['field'].
+#2648062 by brunoric, cebasqueira, lucasr, mmchristoph: Fixed Fatal error: Call
+  to a member function getFormLanguage() on a non-object.
+#S156840 by HelenaEksler, plach: Fixed XSS vulnerability in the translation
+  form page title.
 #2444203 by Leksat, badrange, attiks: Show fallback information on the translation
   overview.
 #2458393 by catch, plach, douggreen: Fixed unindexed query in
@@ -18,6 +31,7 @@ Entity Translation 7.x-1.x, xxxx-xx-xx
 #2203801 by idflood: Impossible to update taxonomy term after enabling
   i18n_taxonomy.
 #2415189 by catch: Translation deletion bypasses entity saving.
+
 
 Entity Translation 7.x-1.0-beta4, 2015-01-23
 --------------------------------------------

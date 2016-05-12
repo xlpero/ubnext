@@ -11,6 +11,7 @@ files[] = includes/translation.handler.comment.inc
 files[] = includes/translation.handler.node.inc
 files[] = includes/translation.handler.taxonomy_term.inc
 files[] = includes/translation.handler.user.inc
+files[] = includes/translation.migrate.inc
 
 files[] = tests/entity_translation.test
 
