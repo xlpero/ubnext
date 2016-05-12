@@ -23,8 +23,22 @@
 		.terms-groups-group {
 			height: 40px;
 			font-size: 1.375em;
-			text-align: justify;
+			@media (min-width: @screen-md-min) { 
+				text-align: justify;
+			}
+			
 			.terms-groups-group-item {
+				width: 11%;
+				min-width: 34px;
+				float: left;
+				@media (min-width: @screen-sm-min) { 
+					width: 5.9%;
+				}
+				@media (min-width: @screen-md-min) { 
+					float: none;
+					width: auto !important;
+					min-width: 10px;
+				}
 				display: inline-block;
 			}
 			a {
