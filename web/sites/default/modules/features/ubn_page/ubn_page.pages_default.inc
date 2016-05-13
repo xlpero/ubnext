@@ -1523,7 +1523,7 @@ function ubn_page_default_page_manager_pages() {
       'slogan' => 'Search among <strong class="hidden-xs"> @number </strong> books, articles, magazines and more...',
       'placeholder' => 'Search for...',
       'aria_label' => 'Search terms',
-      'number_of_items' => '100000',
+      'number_of_items' => '',
     );
     $pane->cache = array();
     $pane->style = array(

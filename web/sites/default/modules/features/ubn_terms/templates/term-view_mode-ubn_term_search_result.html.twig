@@ -3,10 +3,10 @@
   models[entity] = entity:taxonomy_term
   view_mode[taxonomy_term][term] = ubn_term_search_result
 #}
-{% set id = entity.getIdentifier %}
+{% set id = drupal_clean_css_identifier(entity.name) %}
 {% set groupId = ubn_terms_safe_css_identifier(entity.name|first) %}
 
-<li id="term-{{ id }}" data-term-group-id="{{ groupId }}" class="term term-collapsible">
-  <a class="term-name collapsed" role="button" data-toggle="collapse" href="#term-{{ id }}-description" aria-expanded="false" aria-controls="term-{{ id }}-description">{{ entity.name.value }}</a> <i class="fa fa-chevron-down" aria-hidden="true"></i>
-  <div id="term-{{ id }}-description" class="collapse term-description"><div>{{ entity.description.value|raw }}</div></div>
+<li id="{{ id }}" data-term-group-id="{{ groupId }}" class="term term-collapsible">
+  <a class="term-name collapsed" role="button" data-toggle="collapse" href="#{{ id }}-description" aria-expanded="false" aria-controls="term-{{ id }}-description">{{ entity.name.value }}</a> <i class="fa fa-chevron-down" aria-hidden="true"></i>
+  <div id="{{ id }}-description" class="collapse term-description"><div>{{ entity.description.value|raw }}</div></div>
 </li>

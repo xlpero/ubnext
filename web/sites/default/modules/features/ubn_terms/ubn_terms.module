@@ -14,6 +14,8 @@ function ubn_terms_entity_info_alter(&$entity_info) {
 }
 
 function ubn_terms_safe_css_identifier($data) {
+  // small hack
+  return drupal_clean_css_identifier($data);
   $tmp = unpack('H*', $data);
   return array_shift($tmp);
 }

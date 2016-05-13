@@ -20,7 +20,6 @@
 
 
 {% macro generate_evenly_distributed_rows(term_groups, number_of_items_per_row) %}
-  <div class="row">
     <div class="col-sm-12">
       <div id="terms-groups">
         {% for term_group_batch in term_groups|batch(number_of_items_per_row) %}
@@ -28,53 +27,53 @@
           {% for term_group in term_group_batch %}
             <span class="terms-groups-group-item terms-groups-group-{{ term_group.group.identifier }} {{ term_group.terms is empty ? 'terms-groups-group-empty' }}">
 
-              <a href="#term-group-{{ term_group.group.identifier }}">{{ term_group.group.name }}</a>
+              <a href="#{{ term_group.group.identifier }}">{{ term_group.group.name }}</a>
               <span class="term-groups-group-item-empty">{{ term_group.group.name }}</span>
-
             </span>
           {% endfor %}
           </div>
         {% endfor %}
       </div>
     </div>
-  </div>
 {% endmacro %}
 
 
 {% import _self as helper %}
 
 
-<nav class="letter-nav panel-separator visible-md-block visible-lg-block">
+<nav class="row letter-nav panel-separator visible-md-block visible-lg-block">
   {{helper.generate_evenly_distributed_rows(term_groups, 30)}}
 </nav>
 
 
 
-<nav class="letter-nav panel-separator visible-sm-block">
-  {{helper.generate_evenly_distributed_rows(term_groups, 15)}}
+<nav class="row letter-nav panel-separator visible-sm-block clearfix">
+  {{helper.generate_evenly_distributed_rows(term_groups, 30)}}
 </nav>
 
 
-<nav class="letter-nav panel-separator visible-xs-block">
-  {{helper.generate_evenly_distributed_rows(term_groups, 8)}}
+<nav class="row letter-nav panel-separator visible-xs-block clearfix">
+  {{helper.generate_evenly_distributed_rows(term_groups, 30)}}
 </nav>
 
 
 
-
-<div id="terms-search-results" class="panel-separator">
-
-    <div class="no-result center">{{ t('No term was found. Change your search and try again.') }}</div>
-  {% for term_group in term_groups if not term_group.terms is empty %}
-    <section class="term-group term-group-{{ term_group.group.identifier }}">
-      <h2 id="term-group-{{ term_group.group.identifier }}">{{ term_group.group.name }}</h2>
-      <ol class="term-group-terms list-unstyled">
-        {% for term_id, term in term_group.terms %}
-          {{ term|raw }}
-        {% endfor %}
-      </ol>
-    </section>
-  {% endfor %}
+<div class="row">
+  <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+    <div id="terms-search-results" class="panel-separator">
+        <div class="no-result center">{{ t('No term was found. Change your search and try again.') }}</div>
+      {% for term_group in term_groups if not term_group.terms is empty %}
+        <section class="term-group term-group-{{ term_group.group.identifier }}">
+          <h2 id="{{ term_group.group.identifier }}">{{ term_group.group.name }}</h2>
+          <ol class="term-group-terms list-unstyled">
+            {% for term_id, term in term_group.terms %}
+              {{ term|raw }}
+            {% endfor %}
+          </ol>
+        </section>
+      {% endfor %}
+    </div>
+  </div>
 </div>
 
 
