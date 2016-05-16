@@ -76,8 +76,8 @@ function ubn_content_types_image_default_styles() {
         'name' => 'manualcrop_crop_and_scale',
         'data' => array(
           'width' => 750,
-          'height' => 350,
-          'upscale' => 1,
+          'height' => 242,
+          'upscale' => 0,
           'respectminimum' => 1,
           'onlyscaleifcrop' => 0,
           'style_name' => 'library_hero_extra_small',
