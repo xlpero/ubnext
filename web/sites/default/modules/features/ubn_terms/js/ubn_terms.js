@@ -58,7 +58,7 @@
           this.use(lunr[language]);
         }
         this.field('title', { boost: 10 });
-        this.field('body');
+        //this.field('body');
         this.ref('id');
       });
       //TODO: safer class name
@@ -67,7 +67,7 @@
         var doc = {
           id: $this.attr('id'),
           title: $this.children('.term-name').text(),
-          body: $this.children('.term-description').text(),
+//          body: $this.children('.term-description').text(),
         };
         idx.add(doc);
       });
