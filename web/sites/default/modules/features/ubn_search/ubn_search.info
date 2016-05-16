@@ -21,6 +21,7 @@ dependencies[] = slate
 dependencies[] = strongarm
 dependencies[] = ubn_content_types
 dependencies[] = ubn_facetapi
+dependencies[] = ubn_search_api_solr
 dependencies[] = views
 dependencies[] = views_content
 features[ctools][] = facetapi:facetapi_defaults:1

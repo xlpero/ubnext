@@ -416,7 +416,7 @@ function ubn_search_default_search_api_server() {
     "name" : "Solr",
     "machine_name" : "solr",
     "description" : "",
-    "class" : "search_api_solr_service",
+    "class" : "ubn_search_api_solr_service",
     "options" : {
       "clean_ids" : true,
       "site_hash" : true,
