@@ -6,8 +6,8 @@
 {% set id = drupal_clean_css_identifier(entity.name) %}
 {% set groupId = ubn_terms_safe_css_identifier(entity.name|first) %}
 
-{% set macroURL = base_path() ~ drupal_get_path('theme','ubnext') ~ "/templates/macros/misc.html.twig" %}
-{{dsm(macroURL)}}
+{% set macroURL = "macros/misc.html.twig" %}
+
 {% import macroURL as misc %}
 
 <li id="{{ id }}" data-term-group-id="{{ groupId }}" class="term term-collapsible">
@@ -21,7 +21,7 @@
 			            {% if link.field_type_to_use.value == "link" %}
 			              <li><a class="icon-to-the-right" href=" {{url(link.field_link.value.url)}} ">{{link.field_link.value.title}} </a> <i class="fa fa-chevron-right"></i></li>
 			            {% elseif link.field_type_to_use.value == "file" %}
-			              <li>{{misc.file_atom(link.field_file,'list_navigation_landing_shortcut')|raw }}</li>
+			              <li>{{misc.file_atom(link.field_file,'page_navigation_landing_shortcut')|raw }}</li>
 			            {% endif %}
 					{% endfor %}
 				</ul>
