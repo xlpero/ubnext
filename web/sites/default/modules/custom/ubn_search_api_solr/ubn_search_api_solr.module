@@ -1,0 +1,22 @@
+<?php
+/**
+ * Implements hook_search_api_service_info().
+ */
+function ubn_search_api_solr_search_api_service_info() {
+  $variables = array(
+    '@solr_wiki_url' => url('http://wiki.apache.org/solr/SolrQuerySyntax'),
+    '@readme_url' => url(drupal_get_path('module', 'search_api_solr') . '/README.txt'),
+  );
+  $services['ubn_search_api_solr_service'] = array(
+    'name' => t('UBN Solr service'),
+    'description' => t('<p>Index items using an Apache Solr search server, with some UBN specific customizations.</p>
+<ul>
+  <li>See <a href="@solr_wiki_url">the Solr wiki</a> for information about the "direct" parse mode.</li>
+  <li>Will use internal Solr preprocessors, so Search API preprocessors should for the most part be deactivated.</li>
+  <li>See the <a href="@readme_url">README.txt</a> file provided with this module for details.</li>
+</ul>', $variables),
+    'class' => 'UBNSearchApiSolrService',
+  );
+  return $services;
+}
+

@@ -1,0 +1,7 @@
+name = UBN Search API Solr
+description = Search API Solr customizations for UBNext
+core = 7.x
+package = UBNext
+dependencies[] = search_api_solr
+files[] = includes/service.inc
+files[] = includes/solr_connection.inc
