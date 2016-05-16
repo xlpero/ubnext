@@ -560,10 +560,12 @@ function ubn_general_update_7154() {
   features_revert_module('ubn_content_types');
 }
 
-
-
 function ubn_general_update_7155() {
   features_revert_module(array('ubn_terms'));
+}
+
+function ubn_general_update_7156() {
+  module_enable(array('ubn_search_api_solr'));
 }
 
 //TODO: Disable rdf module?
