@@ -7,6 +7,17 @@
 {% set groupId = ubn_terms_safe_css_identifier(entity.name|first) %}
 
 <li id="{{ id }}" data-term-group-id="{{ groupId }}" class="term term-collapsible">
-  <a class="term-name collapsed" role="button" data-toggle="collapse" href="#{{ id }}-description" aria-expanded="false" aria-controls="term-{{ id }}-description">{{ entity.name.value }}</a> <i class="fa fa-chevron-down" aria-hidden="true"></i>
-  <div id="{{ id }}-description" class="collapse term-description"><div>{{ entity.description.value|raw }}</div></div>
+  	<a class="term-name collapsed icon-to-the-right" role="button" data-toggle="collapse" href="#{{ id }}-description" aria-expanded="false" aria-controls="term-{{ id }}-description">{{ entity.name.value }}</a> <i class="fa fa-dynamic fa-chevron-down" aria-hidden="true"></i>
+  	<div id="{{ id }}-description" class="collapse term-description">
+		<div>
+			{{ entity.description.value|raw }}
+			{% if entity.field_shortcut_links is not null %}
+				<ul class="term-description-read-more-links list-unstyled">
+					{% for link in entity.field_shortcut_links %}
+						<li><a class="icon-to-the-right" href="{{link.field_link.url}}">{{link.field_link.title}}</a> <i class="fa fa-chevron-right"></i></li>
+					{% endfor %}
+				</ul>
+			{% endif %}
+		</div>
+	</div>
 </li>

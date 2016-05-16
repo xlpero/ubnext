@@ -35,8 +35,8 @@
       {% endif %}
       {% if not section.field_referenced_term is empty %}
         {% set term = section.field_referenced_term %}
-        <section class="content-section-term">
-          <h2 class="content-section-term-title">{{ term.name.value }}</h2>
+        <section class="content-section-term panel-separator">
+          <h2 class="h3 content-section-term-title">{{ term.name.value }}</h2>
           <div class="content-section-term-description">{{ term.description.value|raw }}</div>
         </section>
       {% endif %}
