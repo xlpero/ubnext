@@ -49,6 +49,44 @@ function ubn_terms_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'taxonomy_term-term-field_shortcut_links'.
+  $field_instances['taxonomy_term-term-field_shortcut_links'] = array(
+    'bundle' => 'term',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => 'Add links that you want the user to visit to get more information about this subject. ',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'field_collection',
+        'settings' => array(
+          'add' => 'Add',
+          'delete' => 'Delete',
+          'description' => TRUE,
+          'edit' => 'Edit',
+          'view_mode' => 'full',
+        ),
+        'type' => 'field_collection_view',
+        'weight' => 3,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_shortcut_links',
+    'label' => 'Read more links',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'field_collection',
+      'settings' => array(),
+      'type' => 'field_collection_embed',
+      'weight' => 2,
+    ),
+  );
+
   // Exported field_instance: 'taxonomy_term-term-field_term_synonyms'.
   $field_instances['taxonomy_term-term-field_term_synonyms'] = array(
     'bundle' => 'term',
@@ -81,7 +119,7 @@ function ubn_terms_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 2,
+      'weight' => 3,
     ),
   );
 
@@ -202,8 +240,10 @@ function ubn_terms_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Add links that you want the user to visit to get more information about this subject. ');
   t('Description');
   t('Name');
+  t('Read more links');
   t('Synonyms');
 
   return $field_instances;
