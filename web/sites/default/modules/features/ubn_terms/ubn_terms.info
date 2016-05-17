@@ -1,7 +1,7 @@
 name = UBN Terms
 core = 7.x
 package = UBNext
-version = 7.x-0.4
+version = 7.x-0.5
 dependencies[] = ctools
 dependencies[] = entityreference_backreference
 dependencies[] = features
@@ -22,7 +22,6 @@ features[field_instance][] = taxonomy_term-term-description_field
 features[field_instance][] = taxonomy_term-term-field_shortcut_links
 features[field_instance][] = taxonomy_term-term-field_term_synonyms
 features[field_instance][] = taxonomy_term-term-name_field
-features[field_instance][] = taxonomy_term-term_synonym-description_field
 features[field_instance][] = taxonomy_term-term_synonym-name_field
 features[page_manager_handlers][] = node_view__panel_context_d53dd498-e5ce-4850-bc6f-d8db313ef48a
 features[taxonomy][] = term
