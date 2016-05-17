@@ -19,7 +19,8 @@
 server 'beta.ub.gu.se', user: 'drupal-deploy', roles: %w{app},
   ubn_conf: {
     ubn_settings_solr_host: 'localhost',
-    slate_cache_enabled: 1
+    slate_cache_enabled: 1,
+    ubn_terms_cache: 1
   }
 
 set :deploy_to, '/var/www/drupal/production'
