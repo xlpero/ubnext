@@ -561,7 +561,7 @@ function ubn_general_update_7154() {
 }
 
 function ubn_general_update_7155() {
-  features_revert_module(array('ubn_terms'));
+  features_revert_module('ubn_terms');
 }
 
 function ubn_general_update_7156() {
@@ -570,6 +570,14 @@ function ubn_general_update_7156() {
 
 function ubn_general_update_7157() {
   features_revert_module('ubn_content_types');
+}
+
+/* Delete description_field from term_synonym */
+function ubn_general_update_7158() {
+  if ($instance = field_info_instance('taxonomy_term', 'description_field', 'term_synonym')) {
+    field_delete_instance($instance);
+  }
+  features_revert_module('ubn_terms');
 }
 
 //TODO: Disable rdf module?
