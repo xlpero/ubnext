@@ -2,6 +2,7 @@
 Drupal.behaviors.database = {
   attach: function(context, settings) {
       Drupal.setupHistory();
+      console.log(Drupal.settings.ubn_databases);
       $(".form-autocomplete", context).focus();
       $(".form-autocomplete", context).on("change paste keyup", function() {
           if ($(this).val().length > 0) {
@@ -52,7 +53,7 @@ Drupal.behaviors.database = {
 
       $('.submit-btn', context).on("click", function() {
         var query = $(".form-autocomplete").val();
-        var actionUrl = $("form", context).attr("action");
+        var actionUrl = Drupal.settings.ubn_databases.basePath;
         var lastChar = actionUrl.substr(-1); // Selects the last character
         if (lastChar !== '/') {         // If the last character is not a slash
           actionUrl += "/";
