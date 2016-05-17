@@ -376,6 +376,7 @@ function ubn_search_default_search_api_page() {
       "get_per_page" : 1,
       "view_mode" : "ubn_search_result",
       "language_filter" : { "current" : "current", "und" : "und" },
+      "search_api_spellcheck" : 1,
       "empty_behavior" : "results"
     },
     "enabled" : "1",
@@ -423,7 +424,7 @@ function ubn_search_default_search_api_server() {
       "scheme" : "http",
       "host" : "130.241.35.208",
       "port" : "8983",
-      "path" : "\\/solr\\/drupal7_ubnext_xljoha",
+      "path" : "\\/solr\\/drupal7_ubnext_xgudav",
       "http_user" : "admin",
       "http_pass" : "admin",
       "excerpt" : 1,
