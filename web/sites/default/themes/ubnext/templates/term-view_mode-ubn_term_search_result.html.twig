@@ -10,19 +10,19 @@
 <li id="{{ id }}" data-term-group-id="{{ groupId }}" class="term term-collapsible">
   <a class="term-name collapsed icon-to-the-right" role="button" data-toggle="collapse" href="#{{ id }}-description" aria-expanded="false" aria-controls="term-{{ id }}-description">{{ entity.name.value }}</a> <i class="fa fa-dynamic fa-chevron-down" aria-hidden="true"></i>
   <div id="{{ id }}-description" class="collapse term-description">
-	<div>
-		{{ entity.description.value|raw }}
-		{% if entity.field_shortcut_links is not empty %}
-			<ul class="term-description-read-more-links list-unstyled">
-			{% for link in entity.field_shortcut_links %}
-			  {% if link.field_type_to_use.value == "link" %}
-			    <li><a class="icon-to-the-right" href=" {{ url(link.field_link.value.url) }} ">{{ link.field_link.value.title }} </a> <i class="fa fa-chevron-right"></i></li>
-			  {% elseif link.field_type_to_use.value == "file" %}
-			    <li>{{ misc.file_atom(link.field_file, 'page_navigation_landing_shortcut')|raw }}</li>
-			  {% endif %}
-			{% endfor %}
-			</ul>
-		{% endif %}
+  <div>
+    {{ entity.description.value|raw }}
+    {% if entity.field_shortcut_links is not empty %}
+      <ul class="term-description-read-more-links list-unstyled">
+      {% for link in entity.field_shortcut_links %}
+        {% if link.field_type_to_use.value == "link" %}
+          <li><a class="icon-to-the-right" href=" {{ url(link.field_link.value.url) }} ">{{ link.field_link.value.title }} </a> <i class="fa fa-chevron-right"></i></li>
+        {% elseif link.field_type_to_use.value == "file" %}
+          <li>{{ misc.file_atom(link.field_file, 'page_navigation_landing_shortcut')|raw }}</li>
+        {% endif %}
+      {% endfor %}
+      </ul>
+    {% endif %}
     {% set referencing_content_sections = entity.field_referenced_term_field_collection_item_eb %}
     {% if not referencing_content_sections is empty %}
       {% set break = false %}
@@ -32,6 +32,6 @@
         {% set break = true %}
       {% endfor %}
     {% endif %}
-		</div>
-	</div>
+    </div>
+  </div>
 </li>
