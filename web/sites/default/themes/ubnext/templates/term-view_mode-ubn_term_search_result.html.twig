@@ -26,9 +26,16 @@
     {% set referencing_content_sections = entity.field_referenced_term_field_collection_item_eb %}
     {% if not referencing_content_sections is empty %}
       {% set break = false %}
-      {% for section in referencing_content_sections if section.field_referenced_term_no_link is empty and not break %}
+      {% for section in referencing_content_sections if section.field_referenced_term_no_link.value is empty and not break %}
         {# Only output first valid link found #}
-        {{ misc.link(t('Read more'), section.host_entity.url.value) }}
+        {{
+          misc.link(
+            t('Read more'),
+            section.host_entity.url.value,
+            NULL,
+            { 'fragment' : 'content-section-term-' ~ drupal_strtolower(drupal_clean_css_identifier(entity.name.value)) }
+          )
+        }}
         {% set break = true %}
       {% endfor %}
     {% endif %}
