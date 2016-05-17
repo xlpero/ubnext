@@ -30,7 +30,7 @@
         {# Only output first valid link found #}
         {{
           misc.link(
-            t('Read more'),
+            t('Read more about @term', { '@term' : entity.name.value }),
             section.host_entity.url.value,
             'term-page-link',
             { 'fragment' : 'content-section-term-' ~ drupal_strtolower(drupal_clean_css_identifier(entity.name.value)) }
