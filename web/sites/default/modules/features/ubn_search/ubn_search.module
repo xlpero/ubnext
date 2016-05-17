@@ -17,7 +17,7 @@ function ubn_search_menu() {
 
 function ubn_search_url_inbound_alter(&$path, $original_path, $path_language) {
   if(strpos($path, 'sok/databaser/sok') === 0) {
-    $path = str_replace($path, 'sok/databaser/sok', 'search/databases/search');
+    $path = str_replace('sok/databaser/sok', 'search/databases/search', $path);
   }
 }
 
