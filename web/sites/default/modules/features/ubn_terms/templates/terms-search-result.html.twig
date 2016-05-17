@@ -64,7 +64,7 @@
         <div class="no-result center">{{ t('No term was found. Change your search and try again.') }}</div>
       {% for term_group in term_groups if not term_group.terms is empty %}
         <section class="term-group term-group-{{ term_group.group.identifier }}">
-          <h2 id="{{ term_group.group.identifier }}">{{ term_group.group.name }}</h2>
+          <h2 class="medium" id="{{ term_group.group.identifier }}">{{ term_group.group.name }}</h2>
           <ol class="term-group-terms list-unstyled">
             {% for term_id, term in term_group.terms %}
               {{ term|raw }}
