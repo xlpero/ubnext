@@ -670,10 +670,15 @@ function ubnext_facetapi_deactivate_widget($variables) {
 //property??
 function _ubnext_preprocess_search_api_page_results(array &$variables) {
   $ubn_database_settings = array(
-  'basePath' => base_path() . $variables['page']->path,
+  'basePath' => url($variables['page']->path),
   );
   drupal_add_js(array('ubn_databases' => $ubn_database_settings), 'setting');
-  drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-search.js");
+  drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-search.js",
+  array(
+    'scope' => 'footer',
+    'group' => JS_THEME,
+    'weight' => 5,
+  ));
 
   $variables['total-items-in-index'] = $variables['index']->datasource()->getIndexStatus($variables['index'])['indexed'];
   if(!empty($variables['results']['results'])) {
