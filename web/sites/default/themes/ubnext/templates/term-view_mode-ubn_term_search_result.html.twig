@@ -4,11 +4,9 @@
   view_mode[taxonomy_term][term] = ubn_term_search_result
 #}
 {% set id = drupal_clean_css_identifier(entity.name) %}
-{% set groupId = ubn_terms_safe_css_identifier(entity.name|first) %}
+{% set groupId = drupal_clean_css_identifier(entity.name|first) %}
 
-{% set macroURL = "macros/misc.html.twig" %}
-
-{% import macroURL as misc %}
+{% import "macros/misc.html.twig" as misc %}
 
 <li id="{{ id }}" data-term-group-id="{{ groupId }}" class="term term-collapsible">
   	<a class="term-name collapsed icon-to-the-right" role="button" data-toggle="collapse" href="#{{ id }}-description" aria-expanded="false" aria-controls="term-{{ id }}-description">{{ entity.name.value }}</a> <i class="fa fa-dynamic fa-chevron-down" aria-hidden="true"></i>
