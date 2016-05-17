@@ -43,7 +43,6 @@ function ubn_terms_terms_search_result_content_type_render($subtype, $conf, $pan
   }
   else {
     //TODO: Language as js-setting?
-
     $default_groups = array(
       'sv' => array(
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Å', 'Ä', 'Ö'

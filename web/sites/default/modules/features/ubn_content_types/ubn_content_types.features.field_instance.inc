@@ -376,6 +376,46 @@ function ubn_content_types_field_default_field_instances() {
   );
 
   // Exported field_instance:
+  // 'field_collection_item-field_content_sections-field_referenced_term_no_link'.
+  $field_instances['field_collection_item-field_content_sections-field_referenced_term_no_link'] = array(
+    'bundle' => 'field_content_sections',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Don\'t show a link to this page for the term view on the alphabetical listing.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 14,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_referenced_term_no_link',
+    'label' => 'No link',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 7,
+    ),
+  );
+
+  // Exported field_instance:
   // 'field_collection_item-field_content_sections-field_title'.
   $field_instances['field_collection_item-field_content_sections-field_title'] = array(
     'bundle' => 'field_content_sections',
@@ -4252,6 +4292,7 @@ function ubn_content_types_field_default_field_instances() {
   t('Delivery address');
   t('Description');
   t('Descriptions');
+  t('Don\'t show a link to this page for the term view on the alphabetical listing.');
   t('Enables the Service disruption message (ie makes it visible to users)');
   t('File');
   t('Files');
@@ -4273,6 +4314,7 @@ function ubn_content_types_field_default_field_instances() {
   t('Media layout');
   t('Media type');
   t('Name');
+  t('No link');
   t('Number of primary themelinks');
   t('Opening hours');
   t('Opening hours date');
