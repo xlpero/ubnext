@@ -1,7 +1,7 @@
 name = UBN Terms
 core = 7.x
 package = UBNext
-version = 7.x-0.5
+version = 7.x-0.6
 dependencies[] = ctools
 dependencies[] = entityreference_backreference
 dependencies[] = features
@@ -28,3 +28,4 @@ features[taxonomy][] = term
 features[taxonomy][] = term_synonym
 features[variable][] = entity_translation_settings_taxonomy_term__term
 features[variable][] = entity_translation_settings_taxonomy_term__term_synonym
+features[views_view][] = ubn_terms_admin_content
