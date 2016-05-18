@@ -36,7 +36,7 @@
       {% if not section.field_referenced_term is empty %}
         {% set term = section.field_referenced_term %}
         <section id="content-section-term-{{ drupal_strtolower(drupal_clean_css_identifier(term.name.value)) }}" class="content-section-term panel-separator">
-          <h2 class="h3 content-section-term-title">{{ term.name.value }}</h2>
+         <h2 class="small content-section-term-title"><i class="fa fa-info-circle"></i>{{t("In brief: ")}}{{ term.name.value }}</h2>
           <div class="content-section-term-description">{{ term.description.value|raw }}</div>
         </section>
       {% endif %}
