@@ -36,7 +36,8 @@ function ubn_terms_terms_search_result_content_type_render($subtype, $conf, $pan
 
   drupal_add_js(drupal_get_path('module', 'ubn_terms') . '/js/ubn_terms.js');
 
-  $cache = cache_get('ubn_terms_search_result');
+  $search_result_cache_key = 'ubn_terms_search_result_' . $language_content->language;
+  $cache = cache_get($search_result_cache_key);
   $content = '';
   if ($cache && variable_get('ubn_terms_cache', FALSE)) {
     $content = $cache->data;
@@ -114,7 +115,7 @@ function ubn_terms_terms_search_result_content_type_render($subtype, $conf, $pan
       $term_groups[] = $term_group;
     }
     $content = slate_render('terms-search-result', array('term_groups' => $term_groups));
-    cache_set('ubn_terms_search_result', $content);
+    cache_set($search_result_cache_key, $content);
   }
   $block = new stdClass();
   $block->title = t('Search');
