@@ -1,5 +1,5 @@
 <?php
-include('includes/ubn_utils.inc');
+include('sites/default/includes/ubn_utils.inc');
 
 // UBN environment. For local development environments, set to something unique
 // for example the the unix account on intra
