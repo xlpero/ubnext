@@ -35,8 +35,8 @@
       {% endif %}
       {% if not section.field_referenced_term is empty %}
         {% set term = section.field_referenced_term %}
-        <section class="content-section-term panel-separator">
-          <h2 class="h3 content-section-term-title">{{ term.name.value }}</h2>
+        <section id="content-section-term-{{ drupal_strtolower(drupal_clean_css_identifier(term.name.value)) }}" class="content-section-term panel-separator">
+         <h2 class="small content-section-term-title"><i class="fa fa-info-circle"></i>{{t("In brief")}}:&nbsp;{{ term.name.value }}</h2>
           <div class="content-section-term-description">{{ term.description.value|raw }}</div>
         </section>
       {% endif %}
@@ -107,7 +107,7 @@
   {% endif %}
 {% endmacro %}
 
-{% macro link(text, url, class) %}
-  {% set url = url(url, { 'absolute' : true }) %}
+{% macro link(text, url, class, options) %}
+  {% set url = url(url, { 'absolute' : true }|merge(options|default([]))) %}
   <a{%if not class is empty %} class="{{ class }}"{% endif %} href="{{ url }}">{{ text }}</a>
 {% endmacro %}

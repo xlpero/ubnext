@@ -669,7 +669,10 @@ function ubnext_facetapi_deactivate_widget($variables) {
 //TODO: entity api entity metadata shit alter and add ubn_search_result_item
 //property??
 function _ubnext_preprocess_search_api_page_results(array &$variables) {
-
+  $ubn_database_settings = array(
+  'basePath' => url($variables['page']->path),
+  );
+  drupal_add_js(array('ubn_databases' => $ubn_database_settings), 'setting');
   drupal_add_js(drupal_get_path("theme", "ubnext") . "/js/database-search.js",
   array(
     'scope' => 'footer',

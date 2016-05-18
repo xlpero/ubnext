@@ -178,7 +178,7 @@ function search_api_page_forms($form_id, $args) {
   }
 
   // Make sure we do have a page as the first argument.
-  if (!$args || !($args[0] instanceof Entity)) {
+  if (!$args || !($args[0] instanceof EntityInterface)) {
     return array();
   }
 

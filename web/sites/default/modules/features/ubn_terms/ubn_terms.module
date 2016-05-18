@@ -199,3 +199,18 @@ function ubn_terms_query_UBN_TERMS_LANGUAGE_TERMS_alter(QueryAlterableInterface 
     throw new Exception("Missing name_field table"); //??
   }
 }
+
+function ubn_terms_entity_presave($entity, $type) {
+  _ubn_terms_invalidate_cache($entity, $type);
+}
+
+function ubn_terms_entity_delete($entity, $type) {
+  _ubn_terms_invalidate_cache($entity, $type);
+}
+
+function _ubn_terms_invalidate_cache($entity, $type) {
+  if ($type === 'taxonomy_term' && in_array($entity->vocabulary_machine_name, array('term', 'term_synonym'))) {
+    // Purge cached rendered search result
+    cache_clear_all('ubn_terms_search_result', 'cache');
+  }
+}
