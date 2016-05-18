@@ -107,7 +107,7 @@
   {% endif %}
 {% endmacro %}
 
-{% macro link(text, url, class) %}
-  {% set url = url(url, { 'absolute' : true }) %}
+{% macro link(text, url, class, options) %}
+  {% set url = url(url, { 'absolute' : true }|merge(options|default([]))) %}
   <a{%if not class is empty %} class="{{ class }}"{% endif %} href="{{ url }}">{{ text }}</a>
 {% endmacro %}
