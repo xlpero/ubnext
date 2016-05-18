@@ -43,6 +43,6 @@ function ubn_format_size($size, $langcode = NULL) {
         break;
       }
     }
-    return str_replace('@size', round($size, 2), $unit);
+    return str_replace('@size', round($size, 0), $unit);
   }
 }
