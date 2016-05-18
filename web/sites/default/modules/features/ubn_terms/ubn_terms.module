@@ -208,9 +208,48 @@ function ubn_terms_entity_delete($entity, $type) {
   _ubn_terms_invalidate_cache($entity, $type);
 }
 
+function _ubn_terms_has_active_term_link($entity_type, $entity, $language) {
+  $term = field_get_items($entity_type, $entity, 'field_referenced_term', $language);
+  $no_link = field_get_items($entity_type, $entity, 'field_referenced_term_no_link', $language);
+  return !empty($term) && !(isset($no_link[0]['value']) && $no_link[0]['value']);
+}
+
+function _ubn_terms_cache_clear_all() {
+  cache_clear_all('ubn_terms_search_result_*', 'cache', TRUE);
+}
+
 function _ubn_terms_invalidate_cache($entity, $type) {
   if ($type === 'taxonomy_term' && in_array($entity->vocabulary_machine_name, array('term', 'term_synonym'))) {
     // Purge cached rendered search result
-    cache_clear_all('ubn_terms_search_result', 'cache');
+    _ubn_terms_cache_clear_all();
+  }
+  else if (
+    $type === 'field_collection_item' &&
+    $entity->field_name === 'field_content_sections'
+  ) {
+    $language = entity_translation_language('field_collection_item', $entity);
+    if (empty($entity->original)) {
+      if (_ubn_terms_has_active_term_link('field_collection_item', $entity, $language)) { // (created)
+        //New term reference added
+        _ubn_terms_cache_clear_all();
+      }
+    }
+    else {
+      // Original has active link
+      if (_ubn_terms_has_active_term_link('field_collection_item', $entity->original, $language)) {
+        $field_language = field_language('field_collection_item', $entity, 'field_referenced_term', $language);
+        if(
+          // Removed/hidden or changed in new
+          !_ubn_terms_has_active_term_link('field_collection_item', $entity, $language) || // (deleted)
+          $entity->field_referenced_term[$field_language] != $entity->original->field_referenced_term[$field_language] // (modified)
+        ) {
+          _ubn_terms_cache_clear_all();
+        }
+      }
+      // Original has no active link but link active in new (created)
+      else if (_ubn_terms_has_active_term_link('field_collection_item', $entity, $language)) {
+        _ubn_terms_cache_clear_all();
+      }
+    }
   }
 }
