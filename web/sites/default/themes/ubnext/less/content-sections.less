@@ -9,8 +9,13 @@
     }
 
     .content-section-term {
-        padding: 20px;
-        border:1px solid @gray-light;
+        > div {
+            padding: 20px;
+            border-top: 1px solid @gray-light;
+            border-bottom: 1px solid @gray-light;
+            border-right: 1px solid @gray-light;
+        }
+        border-left: 6px solid @brand-primary;
         .content-section-term-title {
             margin-bottom: 5px;
             .fa {
