@@ -203,6 +203,6 @@ function ubn_terms_query_UBN_TERMS_LANGUAGE_TERMS_alter(QueryAlterableInterface 
 function ubn_terms_entity_presave($entity, $type) {
   if ($type === 'taxonomy_term' && in_array($entity->vocabulary_machine_name, array('term', 'term_synonym'))) {
     // Purge cached rendered search result
-    cache_clear_all('ubn_terms_search_result');
+    cache_clear_all('ubn_terms_search_result', 'cache');
   }
 }
