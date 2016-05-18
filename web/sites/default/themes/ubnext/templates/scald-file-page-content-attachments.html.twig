@@ -7,9 +7,6 @@
   models[file_extension] = item
   models[font_awesome_icon] = item
 #}
-{% set splits = file_size|split(' ') %}
-{% set file_size_rounded = splits[0]|round %}
-{% set file_size_unit = splits[1] %}
 <div class="content-attachments">
 	<table>
 		<tbody>
@@ -19,7 +16,7 @@
 				</td>
 				<td>
 					<a class="file-link" target="_blank" href="{{ file_url }}" title="{{ atom.title.value }}">{{ atom.title.value }}</a>
-					<span class="file-extension">({{ file_extension }}, </span><span class="file-size">{{ file_size_rounded }} {{ file_size_unit }})</span>
+					<span class="file-extension">({{ file_extension }}, </span><span class="file-size">{{ file_size }})</span>
 				</td>
 			</tr>
 		</tbody>

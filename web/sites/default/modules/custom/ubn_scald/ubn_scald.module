@@ -200,7 +200,7 @@ function _ubn_scald_page_content_attachments_render($atom, $context, $options) {
   return slate_render('scald-file-page-content-attachments', array(
     'atom' => $atom,
     'file_url' => file_create_url($atom->base_entity->uri),
-    'file_size' => format_size($atom->base_entity->filesize),
+    'file_size' => ubn_format_size($atom->base_entity->filesize),
     'file_mime' => $atom->base_entity->filemime,
     'file_extension' => _ubn_scald_file_extension($atom->base_entity->filename),
     'font_awesome_icon' => _ubn_scald_font_awesome_icon($atom->base_entity->filemime),
@@ -211,7 +211,7 @@ function _ubn_scald_page_navigation_landing_shortcut_render($atom, $context, $op
   return slate_render('scald-file-page-navigation-landing-shortcut', array(
     'atom' => $atom,
     'file_url' => file_create_url($atom->base_entity->uri),
-    'file_size' => format_size($atom->base_entity->filesize),
+    'file_size' => ubn_format_size($atom->base_entity->filesize),
     'file_mime' => $atom->base_entity->filemime,
     'file_extension' => _ubn_scald_file_extension($atom->base_entity->filename),
     'font_awesome_icon' => _ubn_scald_font_awesome_icon($atom->base_entity->filemime),
