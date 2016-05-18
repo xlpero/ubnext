@@ -204,7 +204,7 @@ function ubn_terms_entity_presave($entity, $type) {
   _ubn_terms_invalidate_cache($entity, $type);
 }
 
-function ubn_terms_entity_presave($entity, $type) {
+function ubn_terms_entity_delete($entity, $type) {
   _ubn_terms_invalidate_cache($entity, $type);
 }
 
