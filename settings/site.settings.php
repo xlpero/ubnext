@@ -1,6 +1,4 @@
 <?php
-include('sites/default/includes/ubn_utils.inc');
-
 // UBN environment. For local development environments, set to something unique
 // for example the the unix account on intra
 $conf['ubn_environment'] = 'xljoha';
