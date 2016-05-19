@@ -215,7 +215,7 @@ function _ubn_terms_has_active_term_link($entity_type, $entity, $language) {
 }
 
 function _ubn_terms_cache_clear_all() {
-  cache_clear_all('ubn_terms_search_result_*', 'cache', TRUE);
+  cache_clear_all('ubn_terms_search_result_', 'cache', TRUE);
 }
 
 function _ubn_terms_invalidate_cache($entity, $type) {
