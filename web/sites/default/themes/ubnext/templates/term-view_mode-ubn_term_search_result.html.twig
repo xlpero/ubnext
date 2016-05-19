@@ -28,6 +28,10 @@
       {% set break = false %}
       {% for section in referencing_content_sections if section.field_referenced_term_no_link.value is empty and not break %}
         {# Only output first valid link found #}
+        {% set page = section.host_entity %}
+        {# Assert language of field collection item #}
+        {# TODO: generic entity type get #}
+        {% if _ubn_terms_field_collection_exists(section.value, 'node', page.value, 'field_content_sections') %}
         {{
           misc.link(
             t('Read more about @term', { '@term' : entity.name.value }),
@@ -37,6 +41,7 @@
           )
         }}
         {% set break = true %}
+        {% endif %}
       {% endfor %}
     {% endif %}
     </div>

@@ -253,3 +253,15 @@ function _ubn_terms_invalidate_cache($entity, $type) {
     }
   }
 }
+
+// Helper function to check if field collection is in field collection field
+function _ubn_terms_field_collection_exists($field_collection, $host_entity_type, $host_entity, $field_name) {
+  global $language_content;
+  $field_language = field_language($host_entity_type, $host_entity, $field_name, $language_content->language);
+  foreach($host_entity->{$field_name}[$field_language] as $item) {
+    if ($field_collection->item_id === $item['value']) {
+      return TRUE;
+    }
+  }
+  return FALSE;
+}
