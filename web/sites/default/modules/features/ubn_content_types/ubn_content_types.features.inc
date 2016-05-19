@@ -76,7 +76,7 @@ function ubn_content_types_image_default_styles() {
         'name' => 'manualcrop_crop_and_scale',
         'data' => array(
           'width' => 750,
-          'height' => 242,
+          'height' => 500,
           'upscale' => 0,
           'respectminimum' => 1,
           'onlyscaleifcrop' => 0,
