@@ -42,7 +42,7 @@
 
       $termlinks = $('.terms-groups-group-item a, .term-synonym-terms a', context);
       $termlinks.on("click", function(e) {
-        var hashTarget = e.currentTarget.hash;
+        var hashTarget = decodeURIComponent(e.currentTarget.hash);
         Drupal.ubnext.scrollTo($(hashTarget, function() {
           // this is where to open the term
           $("a[href='" + hashTarget + "-description']").trigger("click");
