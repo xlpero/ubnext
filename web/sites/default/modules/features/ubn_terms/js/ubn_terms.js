@@ -3,11 +3,18 @@
     attach: function(context, settings) {
       $("#terms-search-controls-search-box", context).focus();
       $('.clear-search-btn', context).on("click", function() {
+          clearFilter(context);
+        /*  $("#terms-search-controls-search-box").val("");// does not trigger change..
+          toggleClearFilters(context, false);
+          $("#terms-search-controls-search-box", context).focus();
+          $("#terms-search-controls-search-box").trigger("change");*/
+      })
+      var clearFilter = function(context) {
           $("#terms-search-controls-search-box").val("");// does not trigger change..
           toggleClearFilters(context, false);
           $("#terms-search-controls-search-box", context).focus();
           $("#terms-search-controls-search-box").trigger("change");
-      })
+      }
       var toggleClearFilters = function(context, show) {
         if (show === true) {
           $(".clear-search-btn", context).fadeIn(200);
@@ -42,6 +49,7 @@
 
       $termlinks = $('.terms-groups-group-item a, .term-synonym-terms a', context);
       $termlinks.on("click", function(e) {
+        $('.clear-search-btn').trigger("click");
         var hashTarget = decodeURIComponent(e.currentTarget.hash);
         Drupal.ubnext.scrollTo($(hashTarget, function() {
           // this is where to open the term
@@ -96,7 +104,7 @@
           $terms.hide();
 
           // 1 disable all links in menu
-          $letterNavItems = $(".letter-nav .terms-groups-group-item", context);
+          var $letterNavItems = $(".letter-nav .terms-groups-group-item", context);
           $letterNavItems.addClass("disabled");
 
           // 2 enable does link that are valid 
