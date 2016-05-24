@@ -5,3 +5,5 @@ package = UBNext
 dependencies[] = search_api_solr
 files[] = includes/service.inc
 files[] = includes/solr_connection.inc
+files[] = includes/spellcheck.inc
+files[] = includes/UBNSearchApiSpellcheckSuggestionLink.inc
