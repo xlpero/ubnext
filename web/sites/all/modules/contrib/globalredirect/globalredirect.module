@@ -132,11 +132,6 @@ function globalredirect_init() {
     $prefix .= '/';
   }
 
-  // Rebuild request path using normalized path ($current_path has been run
-  // through drupal_get_normal_path()), basically we only keep any possible
-  // trailing slash and replace the rest
-  $request_path = $prefix . $current_path . (substr($request_path, -1) === '/' ? '/' : '');
-
   // If Content Translation module is enabled then check the path is correct.
   if ($settings['language_redirect'] && module_exists('translation') && preg_match('/node\/([0-9]+)(\/view|)$/', $current_path, $matches)) {
     switch (variable_get('locale_language_negotiation_url_part', LOCALE_LANGUAGE_NEGOTIATION_URL_PREFIX)) {
@@ -205,9 +200,14 @@ function globalredirect_init() {
     $alias = $settings['case_sensitive_urls'] ? $alias : preg_replace('`^' . $prefix.  '`i', '', $request_path);
   }
 
+  // Construct a normalized request path ($current_path has been run
+  // through drupal_get_normal_path()), basically we only keep any possible
+  // trailing slash and replace the rest
+  $normalized_request_path = $prefix . $current_path . (substr($request_path, -1) === '/' ? '/' : '');
+
   // Compare the request to the alias. This also works as a 'deslashing'
   // agent. If we have a language prefix then prefix the alias
-  if ($request_path != $prefix . $alias) {
+  if ($request_path != $prefix . $alias && $normalized_request_path != $prefix . $alias) {
     // If it's not just a slash or user has deslash on, redirect
     if (str_replace($prefix . $alias, '', $request_path) != '/' || $settings['deslash']) {
       globalredirect_goto($current_path, $options);
