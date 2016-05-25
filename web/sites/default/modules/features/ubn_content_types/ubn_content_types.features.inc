@@ -53,11 +53,11 @@ function ubn_content_types_image_default_styles() {
   $styles['library_hero'] = array(
     'label' => 'Library hero',
     'effects' => array(
-      12 => array(
+      1 => array(
         'name' => 'manualcrop_crop_and_scale',
         'data' => array(
           'width' => 930,
-          'height' => 300,
+          'height' => 340,
           'upscale' => 0,
           'respectminimum' => 1,
           'onlyscaleifcrop' => 0,

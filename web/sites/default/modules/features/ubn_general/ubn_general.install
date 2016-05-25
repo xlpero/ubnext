@@ -581,6 +581,7 @@ function ubn_general_update_7158() {
 }
 
 
+
 function ubn_general_update_7159() {
     if ($instance = field_info_instance('node', 'field_issue_form_instance', 'library')) {
     field_delete_instance($instance);
@@ -599,8 +600,6 @@ function ubn_general_update_7161() {
     field_delete_instance($instance);
   }
 }
-
-
 
 
 //TODO: Disable rdf module?
