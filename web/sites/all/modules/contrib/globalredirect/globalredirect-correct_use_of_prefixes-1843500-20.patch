@@ -1,5 +1,5 @@
 diff --git a/globalredirect.module b/globalredirect.module
-index 8f24754..3137e19 100644
+index 8f24754..af7cc1a 100644
 --- a/globalredirect.module
 +++ b/globalredirect.module
 @@ -43,6 +43,12 @@ function globalredirect_init() {
@@ -62,7 +62,7 @@ index 8f24754..3137e19 100644
    // Optional stripping of "/0". Disabled by default.
    switch ($settings['trailing_zero']) {
      case 2 :
-@@ -137,6 +127,16 @@ function globalredirect_init() {
+@@ -137,6 +127,11 @@ function globalredirect_init() {
      }
    }
  
@@ -71,15 +71,10 @@ index 8f24754..3137e19 100644
 +    $prefix .= '/';
 +  }
 +
-+  // Rebuild request path using normalized path ($current_path has been run
-+  // through drupal_get_normal_path()), basically we only keep any possible
-+  // trailing slash and replace the rest
-+  $request_path = $prefix . $current_path . (substr($request_path, -1) === '/' ? '/' : '');
-+
    // If Content Translation module is enabled then check the path is correct.
    if ($settings['language_redirect'] && module_exists('translation') && preg_match('/node\/([0-9]+)(\/view|)$/', $current_path, $matches)) {
      switch (variable_get('locale_language_negotiation_url_part', LOCALE_LANGUAGE_NEGOTIATION_URL_PREFIX)) {
-@@ -167,15 +167,17 @@ function globalredirect_init() {
+@@ -167,15 +162,17 @@ function globalredirect_init() {
        case LOCALE_LANGUAGE_NEGOTIATION_URL_DOMAIN:
          // Let's check is there other languages on site.
          $all_languages = language_list();
@@ -101,7 +96,7 @@ index 8f24754..3137e19 100644
                  }
                  break;
                }
-@@ -187,17 +189,8 @@ function globalredirect_init() {
+@@ -187,17 +184,8 @@ function globalredirect_init() {
    }
  
    // Find an alias (if any) for the request
@@ -121,7 +116,7 @@ index 8f24754..3137e19 100644
  
    // Alias case sensitivity check.
    // NOTE: This has changed. In D6 the $alias matched the request (in terms of
-@@ -207,9 +200,9 @@ function globalredirect_init() {
+@@ -207,17 +195,22 @@ function globalredirect_init() {
    // enabled, the alias SHOULD be the accurate $alias from above, otherwise it
    // should be the request_path().
    // TODO: Test if this breaks the language checking above!
@@ -132,9 +127,15 @@ index 8f24754..3137e19 100644
 +    $alias = $settings['case_sensitive_urls'] ? $alias : preg_replace('`^' . $prefix.  '`i', '', $request_path);
    }
  
++  // Construct a normalized request path ($current_path has been run
++  // through drupal_get_normal_path()), basically we only keep any possible
++  // trailing slash and replace the rest
++  $normalized_request_path = $prefix . $current_path . (substr($request_path, -1) === '/' ? '/' : '');
++
    // Compare the request to the alias. This also works as a 'deslashing'
-@@ -217,7 +210,7 @@ function globalredirect_init() {
-   if ($request_path != $prefix . $alias) {
+   // agent. If we have a language prefix then prefix the alias
+-  if ($request_path != $prefix . $alias) {
++  if ($request_path != $prefix . $alias && $normalized_request_path != $prefix . $alias) {
      // If it's not just a slash or user has deslash on, redirect
      if (str_replace($prefix . $alias, '', $request_path) != '/' || $settings['deslash']) {
 -      globalredirect_goto($alias, $options);
