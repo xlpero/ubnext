@@ -275,6 +275,32 @@ function ubn_page_default_page_manager_handlers() {
     $display->content['new-7c4c7fc8-306f-4cd3-9d92-608de6b5d877'] = $pane;
     $display->panels['main'][0] = 'new-7c4c7fc8-306f-4cd3-9d92-608de6b5d877';
     $pane = new stdClass();
+    $pane->pid = 'new-0e88fcdc-10ed-4c8e-876d-0c853fdb074f';
+    $pane->panel = 'main';
+    $pane->type = 'slate_render';
+    $pane->subtype = 'slate_render:library-contact-form';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'context' => array(
+        0 => 'argument_entity_id:node_1',
+      ),
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $pane->uuid = '0e88fcdc-10ed-4c8e-876d-0c853fdb074f';
+    $display->content['new-0e88fcdc-10ed-4c8e-876d-0c853fdb074f'] = $pane;
+    $display->panels['main'][1] = 'new-0e88fcdc-10ed-4c8e-876d-0c853fdb074f';
+    $pane = new stdClass();
     $pane->pid = 'new-2b04e45a-7ba0-4d4d-98d6-f874e234fe61';
     $pane->panel = 'main';
     $pane->type = 'slate_render';
@@ -296,11 +322,11 @@ function ubn_page_default_page_manager_handlers() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 2;
     $pane->locks = array();
     $pane->uuid = '2b04e45a-7ba0-4d4d-98d6-f874e234fe61';
     $display->content['new-2b04e45a-7ba0-4d4d-98d6-f874e234fe61'] = $pane;
-    $display->panels['main'][1] = 'new-2b04e45a-7ba0-4d4d-98d6-f874e234fe61';
+    $display->panels['main'][2] = 'new-2b04e45a-7ba0-4d4d-98d6-f874e234fe61';
     $pane = new stdClass();
     $pane->pid = 'new-fc378e18-63ad-4e8e-b4cd-bbc7a8f67fb8';
     $pane->panel = 'main_top';
