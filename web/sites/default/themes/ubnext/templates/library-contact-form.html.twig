@@ -1,0 +1,14 @@
+{# slate
+  name = Library contact form
+  models[library] = entity:node
+  cacheable = FALSE
+#}
+{% import 'macros/contact-list.html.twig' as contacts %}
+
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+      {% if not library.field_contact_instances is empty %}
+        {{  contacts.contact_list(library.field_contact_instances) }}
+      {% endif %}
+  </div>
+</div>

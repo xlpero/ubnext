@@ -3,17 +3,14 @@
   models[library] = entity:node
   cacheable = FALSE
 #}
+{% import 'macros/contact-list.html.twig' as contacts %}
+
 <div class="panel-separator">
   <div class="ubn-pane library-contact-pane row">
-  {% set form_instance = library.field_issue_form_instance %}
-  {% set form_enabled =
-    (not form_instance is empty) and
-    form_instance.field_form_access.value
-  %}
-  <section class="library-contact {%if form_enabled %}col-md-10 col-md-offset-1{% else %}col-sm-8 col-sm-offset-2{% endif %}">
+  <section class="library-contact col-sm-8 col-sm-offset-2">
     <h2>{{ t('Contact information') }}</h2>
     <div class="row">
-      <div class="{% if form_enabled %}col-sm-6 col-md-5{% else %}col-xs-12{% endif %}">
+      <div class="col-xs-12">
         {% set mailing_address = library.field_mailing_address.value %}
         {% if not mailing_address is empty %}
           <section class="library-contact-section">
@@ -34,7 +31,7 @@
             </p>
           </section>
         {% endif %}
-
+        
         {% set delivery_address = library.field_delivery_address.value %}
         {% if not delivery_address is empty %}
           <section class="library-contact-section">
@@ -56,13 +53,9 @@
           </section>
         {% endif %}
       </div>
-      {% if form_enabled %}
-      <div class="col-sm-6 col-md-7">
-        <h3>{{ t('Contact form') }}</h3>
-          {{ ubn_form_instance_render(form_instance, 'issue')|raw }}
-      </div>
-      {% endif %}
     </div>
   </section>
   </div>
 </div>
+
+

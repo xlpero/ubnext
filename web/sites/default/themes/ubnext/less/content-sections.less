@@ -1,126 +1,59 @@
 .main-cms {
-  .content-sections {
-    img {
-      .img-responsive();
-    }
-
-    .field-name-scald-tags {
-    	display: none;
-    }
-
-    .content-section-term {
-        > div {
-            padding: 20px;
-            border-top: 1px solid @gray-light;
-            border-bottom: 1px solid @gray-light;
-            border-right: 1px solid @gray-light;
+    .content-sections {
+        img {
+          .img-responsive();
         }
-        border-left: 6px solid @brand-primary;
-        .content-section-term-title {
-            margin-bottom: 5px;
-            .fa {
-                margin-right: 5px;
-                color: @brand-primary;
-            }
+
+        .field-name-scald-tags {
+        	display: none;
         }
-        .content-section-term-description {
-            p:last-child {
-                margin-bottom: 0;
-            }
-        }
-    }
 
-    .content-attachments {
-    	margin-bottom: 10px;
-    	table {
-    		font-size: 1em !important;
-    		table-layout: fixed;
-        border: none !important;
-        margin: 0;
-
-    		tr {
-    			border: none !important;
-    			td:first-child {
-    				width: 36px;
-    			}
-    			td {
-	    			border: none !important;
-	    			.fa {
-	    				vertical-align: middle;
-	    			}
-	    			a {
-	    				vertical-align: middle;
-	    			}
-    			}
-    		}
-    	}
-    }
-
-    .content-sections-section-contacts-contact {
-        padding: 15px 20px;
-        border: 1px solid @gray-light;
-        .content-sections-section-contacts-contact-head {
-            .fa-comment {
-                position: absolute;
+        .content-section-term {
+            > div {
+                padding: 20px;
+                border-top: 1px solid @gray-light;
+                border-bottom: 1px solid @gray-light;
+                border-right: 1px solid @gray-light;
             }
-            h2 > div {
-                margin-left: 30px;
-                padding-right: 20px;
-            }
-            .btn-toggle {
-                position: absolute;
-                font-size: 1.5em;
-                top: 0;
-                right: 20px;
-            }
-
-        }
-    }
-  }
-
-  .ubn-collapse {
-    .ubn-collapse-head {
-        cursor: pointer;
-        h2 {
-            .fa {
-                color: @brand-primary;
-                margin-right: 5px;
-            }
-            margin-bottom: 0;
-        }
-        .ubn-collapse-head-toggle-btn {
-            position: absolute;
-            top:-5px;
-            right: 20px;
-            color: @gray-darker;
-            font-size: 1.5em;
-            @media (min-width: @screen-sm-min) {
-
-            }
-            .fa {
-                -ms-transform: rotate(45deg); /* IE 9 */
-                -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
-                transform: rotate(45deg);
-                -webkit-transition: .3s ease-in-out;
-                 -moz-transition: .3s ease-in-out;
-                -o-transition: .3s ease-in-out;
-                transition: .3s ease-in-out;
-            }
-            &.collapsed {
+            border-left: 6px solid @brand-primary;
+            .content-section-term-title {
+                margin-bottom: 5px;
                 .fa {
-                    -ms-transform: rotate(0deg); /* IE 9 */
-                    -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
-                    transform: rotate(0deg);
+                    margin-right: 5px;
+                    color: @brand-primary;
+                }
+            }
+            .content-section-term-description {
+                p:last-child {
+                    margin-bottom: 0;
                 }
             }
         }
-    }
-    .ubn-collapse-body {
-        .ubn-collapse-body-inner-wrapper {
-            margin-top: 20px;
-            padding-bottom: 15px;
-        }        
-    }
-  }
 
+        .content-attachments {
+        	margin-bottom: 10px;
+        	table {
+        		font-size: 1em !important;
+        		table-layout: fixed;
+            border: none !important;
+            margin: 0;
+
+        		tr {
+        			border: none !important;
+        			td:first-child {
+        				width: 36px;
+        			}
+        			td {
+            			border: none !important;
+            			.fa {
+            				vertical-align: middle;
+            			}
+            			a {
+            				vertical-align: middle;
+            			}
+        			}
+        		}
+        	}
+        }
+    }
 }
