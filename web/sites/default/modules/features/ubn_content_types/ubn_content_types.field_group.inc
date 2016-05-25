@@ -25,8 +25,9 @@ function ubn_content_types_field_group_info() {
     'children' => array(
       0 => 'field_delivery_address',
       1 => 'field_mailing_address',
-      2 => 'field_visiting_address',
-      3 => 'field_location_override',
+      2 => 'field_phone',
+      3 => 'field_visiting_address',
+      4 => 'field_location_override',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

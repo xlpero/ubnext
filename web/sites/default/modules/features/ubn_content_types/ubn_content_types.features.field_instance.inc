@@ -2328,7 +2328,7 @@ function ubn_content_types_field_default_field_instances() {
         'html5_geolocation' => 0,
       ),
       'type' => 'geofield_latlon',
-      'weight' => 10,
+      'weight' => 11,
     ),
   );
 
@@ -2440,7 +2440,7 @@ function ubn_content_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 12,
+      'weight' => 10,
     ),
   );
 
