@@ -286,7 +286,7 @@ function ubn_general_generate_map($entities) {
  */
 function ubn_general_render_map($coords = array()) {
   // @todo add this as a setting!
-    if (!empty($coords[0]['longitude'] and !empty($coords[0]['latitude']))) {
+    if (!empty($coords[0]['longitude']) && !empty($coords[0]['latitude'])) {
     drupal_add_js('https://maps.googleapis.com/maps/api/js?key=AIzaSyCrHH1UmYwF_jHleEU6rBCf115wBXCb6KM', 'external');
 
     drupal_add_js(array('ubMap' => $coords), 'setting');
