@@ -1,5 +1,7 @@
 <?php
-
+function ubn_databases_database_url_is_public_access($url) {
+  return strpos($row['url'], 'ezproxy.') === FALSE;
+}
 
 function _ubn_databases_access_description_process($info) {
   $info_trimmed = trim($info);
@@ -129,7 +131,7 @@ class UBNDatabasesFeedsFetcher extends UBNDatabasesFeedsFetcherBase {
     $database_public_access = NULL;
     //Urls
     foreach($pdo->query('SELECT db_id as id, url FROM urls', $pdo::FETCH_ASSOC) as $row) {
-      $public_access = strpos($row['url'], 'ezproxy.') === FALSE;
+      $public_access = ubn_databases_database_url_is_public_access($row['url']);
       if(!isset($databases[$row['id']]['public_access']) || !$databases[$row['id']]['public_access'] && $public_access) {
         $databases[$row['id']]['public_access'] = $public_access;
       }
@@ -353,7 +355,7 @@ class UBNDatabasesUrlsFeedsFetcher extends UBNDatabasesFeedsFetcherBase {
       ORDER BY urls.id DESC
 EOD;
     foreach($pdo->query($query, $pdo::FETCH_ASSOC) as $row) {
-      $public_access = strpos($row['url'], '.ezproxy.') === FALSE;
+      $public_access = ubn_databases_database_url_is_public_access($row['url']);
       $guid = md5('ubn_databases_url:' . $row['url'] . $row['database_libris_id']);
       $access_description = _ubn_databases_access_description_process($row['info']);
       $urls[] = array(
