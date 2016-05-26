@@ -29,7 +29,7 @@
 
         {% set visiting_address = library.field_visiting_address.value %}
         {% if not visiting_address is empty %}
-          {% if not (dvisiting_address.premise is empty and visiting_address.thoroughfare is empty) %}
+          {% if not (visiting_address.premise is empty and visiting_address.thoroughfare is empty) %}
             <address class="library-contact-section visiting-address">
               <h3>{{ t("Visiting address") }}</h3>
               {{ (not visiting_address.premise is empty ? visiting_address.premise ~ ', ') ~ visiting_address.thoroughfare }}
@@ -39,16 +39,15 @@
         
         {% set delivery_address = library.field_delivery_address.value %}
         {% if not delivery_address is empty %}
+          {% if not (delivery_address.premise is empty and delivery_address.thoroughfare is empty and delivery_address.postal_code is empty and delivery_address.locality) %}
             <address class="library-contact-section delivery-address">
               <h3>{{ t("Delivery address") }}</h3>
-              <p>
-                {% if not delivery_address.organisation_name is empty %}
-                  {{ delivery_address.organisation_name }}<br>
+                {% if not delivery_address.premise is empty %}
+                  {{ (not delivery_address.premise is empty ? delivery_address.premise ~ ', ') ~ delivery_address.thoroughfare }}<br>
                 {% endif %}
-                {{ (not delivery_address.premise is empty ? delivery_address.premise ~ ', ') ~ delivery_address.thoroughfare }}<br>
                 {{ delivery_address.postal_code }} {{ delivery_address.locality }}<br>
-              </p>
             </address>
+          {% endif %}
         {% endif %}
 
         {% if not library.field_phone.value is empty %}
