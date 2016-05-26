@@ -1,4 +1,5 @@
 {% macro contact_list(contact_instances) %}
+  <div class="panel-separator">
     <ul class="list-unstyled section-contacts">
       {% for contact_instance in contact_instances %}
         {% set contact = contact_instance.field_referenced_contact %}
@@ -39,4 +40,5 @@
           {% endif %}
       {% endfor %}
     </ul>
+  </div>
 {% endmacro %}
