@@ -22,18 +22,7 @@ function ubn_startpage_uuid_entity_default_node() {
     'translate' => 0,
     'uuid' => '4292e4cb-a82f-4ba3-a468-41c7ac7b70f5',
     'revision_uid' => 1,
-    'field_shortcut_links' => array(
-      'sv' => array(
-        0 => array(
-          'value' => 24548,
-          'revision_id' => 24548,
-        ),
-        1 => array(
-          'value' => 24549,
-          'revision_id' => 24549,
-        ),
-      ),
-    ),
+    'field_shortcut_links' => array(),
     'title_field' => array(
       'en' => array(
         0 => array(
