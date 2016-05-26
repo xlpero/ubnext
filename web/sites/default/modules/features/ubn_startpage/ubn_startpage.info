@@ -1,7 +1,7 @@
 name = UBN Startpage
 core = 7.x
 package = UBNext
-version = 7.x-1.2
+version = 7.x-1.3
 dependencies[] = ctools
 dependencies[] = entityqueue
 dependencies[] = features
@@ -12,6 +12,7 @@ dependencies[] = strongarm
 dependencies[] = text
 dependencies[] = ubn_content
 dependencies[] = ubn_content_types
+dependencies[] = ubn_news_panes
 dependencies[] = views
 dependencies[] = views_content
 features[ctools][] = entityqueue:entityqueue_default:1
