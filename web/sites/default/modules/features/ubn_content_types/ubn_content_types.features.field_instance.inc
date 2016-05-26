@@ -2051,9 +2051,14 @@ function ubn_content_types_field_default_field_instances() {
     'entity_type' => 'node',
     'field_name' => 'field_description_short',
     'label' => 'Short description',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
       'text_processing' => 0,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
@@ -2527,6 +2532,11 @@ function ubn_content_types_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
       'text_processing' => 0,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
