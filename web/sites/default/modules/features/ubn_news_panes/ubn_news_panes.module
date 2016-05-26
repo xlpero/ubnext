@@ -1,0 +1,22 @@
+<?php
+/**
+ * @file
+ * Code for the UBN News panes feature.
+ */
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function ubn_news_panes_ctools_plugin_directory($owner, $plugin_type) {
+  if (in_array($plugin_type, array('content_types'))) {
+    return "plugins/$plugin_type";
+  }
+}
+
+function ubn_news_panes_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['ubn_news_panes_latest_news'] = array(
+    'label' => t('UBN News panes latest news'),
+    'custom settings' => FALSE,
+  );
+}
+

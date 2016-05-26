@@ -3,5 +3,5 @@
   models[list] = entity:node
 #}
 
-{% import "macros/panel-links.html.twig" as panelLinks %}
-{{ panelLinks.get_link_list(list.title_field.value, list.field_shortcut_links) }}
+{% import "macros/panel-links.html.twig" as links %}
+{{ links.link_list(list.title_field.value, list.field_shortcut_links) }}

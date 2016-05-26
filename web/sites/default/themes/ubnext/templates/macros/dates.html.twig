@@ -1,3 +1,7 @@
 {% macro date_default(timestamp) %}
   {{ format_date(timestamp, 'custom', 'j F Y', date_default_timezone(FALSE)) }}
 {% endmacro %}
+
+{% macro date_day_and_month(timestamp) %}
+  {{ format_date(timestamp, 'custom', 'j F', date_default_timezone(FALSE)) }}
+{% endmacro %}
