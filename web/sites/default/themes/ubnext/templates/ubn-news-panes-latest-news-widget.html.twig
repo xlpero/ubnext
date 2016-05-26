@@ -1,0 +1,13 @@
+{# slate
+  name = UBN News panes: Latest news widget
+  models[stories] = item
+  models[link_list] = item
+#}
+{% import "macros/misc.html.twig" as misc %}
+<div class="latest-stories-widget">
+  <ol class="list-unstyled latest-stories-widget-stories">
+    {{ stories|raw }}
+  </ol>
+  {{ misc.link(t('Read more'), 'news', 'latest-stories-widget-read-more-link', {absolute : false}) }}
+  {{ link_list|raw }}
+</div>

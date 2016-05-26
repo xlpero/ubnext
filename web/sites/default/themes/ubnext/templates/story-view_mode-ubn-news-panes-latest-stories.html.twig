@@ -1,0 +1,11 @@
+{# slate
+  name = Story: View mode 'UBN News panes latest news'
+  models[entity] = entity:node
+  view_mode[node][story] = ubn_news_panes_latest_news
+#}
+{% import "macros/misc.html.twig" as misc %}
+{% import "macros/dates.html.twig" as dates %}
+<li class="latest-stories-widget-story">
+  <div class="latest-stories-widget-story-publication-date">{{ dates.date_day_and_month(entity.created) }}</div>
+  <div class="latest-stories-widget-story-header"><h2 class="small">{{ misc.link(entity.title.value, entity.url, 'latest-stories-widget-story-link') }}</h2></div>
+</li>

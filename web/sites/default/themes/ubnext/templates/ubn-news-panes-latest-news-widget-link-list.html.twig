@@ -1,0 +1,11 @@
+{# slate
+  name = UBN News panes: Latest news widget link list
+  models[link_list] = entity:node
+#}
+{% import "macros/misc.html.twig" as misc %}
+{% import "macros/panel-links.html.twig" as links %}
+{% if not link_list.field_shortcut_links is empty %}
+  <div class="latest-stories-widget-links">
+    {{ links.link_list_links(link_list.field_shortcut_links, 'latest-stories-widget-links') }}
+  </div>
+{% endif %}

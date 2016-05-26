@@ -1,12 +1,13 @@
-{% macro get_link_list(title, list, extended = false) %}
+{% macro link_list(title, list, extended = false, namespace) %}
+  {% set namespace = namespace|default('ubn-panel-links') %}
   {% import "macros/misc.html.twig" as misc %}
   {% if extended %}
-    <div class="ubn-panel-links extended">
+    <div class="{{ namespace }} extended">
   {% else %}
-    <div class="ubn-panel-links">
+    <div class="{{ namespace }}">
   {% endif %}
-    <div class="ubn-panel-links-head">
-      <div class="ubn-panel-links-head-title">
+    <div class="{{ namespace }}-head">
+      <div class="{{ namespace }}-head-title">
         {% if not title is empty %}
           {% if extended %}
             <h2 class="list primary">{{title}}</h2>
@@ -15,22 +16,28 @@
           {% endif %}
         {% endif %}
       </div>
-      <div class="ubn-panel-links-indicator">
+      <div class="{{ namespace }}-indicator">
         <i class="fa fa-arrow-right pull-right"></i>
       </div>
     </div>
-    <div class="ubn-panel-links-body">
-      <ul class="list-unstyled">
-        {% if not list is empty %}
-          {% for link in list %}
-            {% if link.field_type_to_use.value == "link" %}
-              <li><i class="fa fa-chevron-right"></i><div class="ubn-panel-links-body-link"><a href=" {{url(link.field_link.value.url)}} ">{{link.field_link.value.title}}</a></div></li>
-            {% elseif link.field_type_to_use.value == "file" %}
-              <li><i class="fa fa-chevron-right"></i><div class="ubn-panel-links-body-link">{{misc.file_atom(link.field_file,'page_navigation_landing_shortcut')|raw }}</div></li>
-            {% endif %}
-          {% endfor %}
-        {% endif %}
-      </ul>
+    <div class="{{ namespace }}-body">
+        _self.link_list_links(list, namespace)
     </div>
   </div>
+{% endmacro %}
+
+{% macro link_list_links(list, namespace) %}
+  {% set namespace = namespace|default('ubn-panel-links') %}
+  {% if not list is empty %}
+    <ul class="list-unstyled {{ namespace }}-link-list">
+    {% for link in list %}
+      {% set type = link.field_type_to_use.value %}
+      {% if type == 'link' %}
+        <li><i class="fa fa-chevron-right"></i><div class="{{ namespace }}-body-link"><a href=" {{url(link.field_link.value.url)}} ">{{link.field_link.value.title}}</a></div></li>
+      {% elseif type == 'file' %}
+        <li><i class="fa fa-chevron-right"></i><div class="{{ namespace }}-body-link">{{ misc.file_atom(link.field_file, 'page_navigation_landing_shortcut')|raw }}</div></li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+  {% endif %}
 {% endmacro %}
