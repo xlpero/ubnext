@@ -50,7 +50,7 @@ function ubn_news_panes_latest_news_widget_content_type_render($subtype, $conf, 
 
   $content = slate_render('ubn-news-panes-latest-news-widget', array(
     'stories' => drupal_render($stories_renderable),
-    'link_list' => $link_list_rendered,
+    'link_list' => trim($link_list_rendered),
   ));
 
   $block = new stdClass();
