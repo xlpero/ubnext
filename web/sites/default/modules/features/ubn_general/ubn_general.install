@@ -609,6 +609,9 @@ function ubn_general_update_7163() {
   features_revert_module('ubn_startpage');
 }
 
+function ubn_general_update_7164() {
+  _ubn_general_feeds_import('database_urls_field_collection');
+}
 
 //TODO: Disable rdf module?
 
