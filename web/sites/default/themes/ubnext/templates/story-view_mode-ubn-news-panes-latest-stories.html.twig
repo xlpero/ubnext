@@ -7,5 +7,5 @@
 {% import "macros/dates.html.twig" as dates %}
 <li class="latest-stories-widget-story story-teaser">
   	<div class="latest-stories-widget-story-publication-date story-teaser-publication-date date">{{ dates.date_day_and_month(entity.created) }}</div>
-  	<div class="latest-stories-widget-story-header"><h2 class="story-teaser-header small">{{ misc.link(entity.title.value, entity.url, 'latest-stories-widget-story-link') }}</h2></div>
+  	<div class="latest-stories-widget-story-header"><span class="story-teaser-header">{{ misc.link(entity.title.value, entity.url, 'latest-stories-widget-story-link') }}</span></div>
 </li>

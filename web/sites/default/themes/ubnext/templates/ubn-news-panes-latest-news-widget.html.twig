@@ -3,9 +3,15 @@
   models[stories] = item
   models[link_list] = item
 #}
+
+
 {% import "macros/misc.html.twig" as misc %}
-<div class="latest-stories-widget ubn-panel-links">
-	<h2>{{t("Current events and news")}}</h2>
+<div class="latest-stories-widget ubn-panel-links ">
+	<div class="ubn-panel-links-head">
+		<div class="ubn-panel-links-head-title">
+			<h2 class="h1 small no-top-margin">{{t("Current events and news")}}</h2>
+		</div>
+	</div>
   {{ link_list|raw }}
 
   <hr>
