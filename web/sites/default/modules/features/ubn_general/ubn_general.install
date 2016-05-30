@@ -108,7 +108,7 @@ function ubn_general_entity_translation_enable($entity_types) {
     }
   }
 }
-*/
+ */
 
 function ubn_general_toggle_field_replacement($entity_type, $legacy_field, $bundles = array()) {
   if(empty($bundles)) {
@@ -135,11 +135,11 @@ function ubn_general_toggle_field_replacement($entity_type, $legacy_field, $bund
 }
 
 function ubn_general_install() {
-	theme_enable(array('ubnext'));
-	theme_disable(array('bartik'));
-	variable_set('theme_default', 'ubnext');
-	$modules = array('dashboard', 'overlay', 'shortcut', 'toolbar', 'search');
-	module_disable($modules);
+  theme_enable(array('ubnext'));
+  theme_disable(array('bartik'));
+  variable_set('theme_default', 'ubnext');
+  $modules = array('dashboard', 'overlay', 'shortcut', 'toolbar', 'search');
+  module_disable($modules);
   drupal_uninstall_modules($modules);
   //TODO: Enable feature modules instead of adding as dependencies
 }
@@ -208,12 +208,10 @@ function ubn_general_update_7110() {
   drupal_uninstall_modules($modules);
 }
 
-
-// remove hero_image_field on library contenttype
+// Remove hero_image_field on library contenttype
 function ubn_general_update_7111() {
   field_delete_field('field_hero_image');
 }
-
 
 function ubn_general_update_7112() {
   features_revert_module('ubn_general');
@@ -228,15 +226,14 @@ function ubn_general_update_7114() {
   ubn_general_toggle_field_replacement('scald_atom', 'title');
 }
 
-// disable login_destination module
+// Disable login_destination module
 function ubn_general_update_7115() {
   $modules = array('login_destination');
   module_disable($modules);
   drupal_uninstall_modules($modules);
 }
 
-
-// remove body on page
+// Remove body on page
 function ubn_general_update_7116() {
   field_delete_field('body');
   features_revert_module('ubn_content_types');
@@ -261,8 +258,6 @@ function ubn_general_update_7118() {
     }
   }
 }
-
-
 
 //TODO: revert content types??
 function ubn_general_update_7119() {
@@ -295,7 +290,7 @@ function ubn_general_update_7119() {
       // Modules defining entity or item types might have been disabled. Ignore.
     }
   }
-  */
+   */
 }
 /* Re-import all databases */
 function ubn_general_update_7120() {
@@ -344,7 +339,6 @@ function ubn_general_update_7124() {
   module_enable(array('ubn_news'));
 }
 
-
 function ubn_general_update_7125() {
   field_delete_field('field_special_collections');
   field_delete_field('field_study_seats_count');
@@ -363,7 +357,7 @@ function ubn_general_update_7126() {
   /*
   taxonomy_vocabulary_delete("WLAN");
   features_revert_module('ubn_content_types');
-  */
+   */
 }
 
 function ubn_general_update_7127() {
@@ -371,7 +365,7 @@ function ubn_general_update_7127() {
   $tax = taxonomy_vocabulary_machine_name_load("WLAN");
   taxonomy_vocabulary_delete($tax->vid);
   features_revert_module('ubn_content_types');
-  */
+   */
 }
 
 function ubn_general_update_7128() {
@@ -383,7 +377,6 @@ function ubn_general_update_7128() {
 function ubn_general_update_7129() {
   features_revert_module('ubn_content_types');
 }
-
 
 function ubn_general_update_7130() {
   features_revert(array('ubn_news' => array('variable')));
@@ -400,7 +393,6 @@ function ubn_general_update_7130() {
 function ubn_general_update_7131() {
   module_enable(array('ubn_contact'));
 }
-
 
 // remove body
 function ubn_general_update_7132() {
@@ -469,7 +461,6 @@ function ubn_general_update_7143() {
     field_delete_instance($instance);
   }
 }
-
 
 function ubn_general_update_7144() {
   features_revert_module('ubn_contact');
@@ -580,23 +571,21 @@ function ubn_general_update_7158() {
   features_revert_module('ubn_terms');
 }
 
-
-
 function ubn_general_update_7159() {
-    if ($instance = field_info_instance('node', 'field_issue_form_instance', 'library')) {
+  if ($instance = field_info_instance('node', 'field_issue_form_instance', 'library')) {
     field_delete_instance($instance);
   }
   features_revert_module('ubn_content_types');
 }
 
 function ubn_general_update_7160() {
-    if ($instance = field_info_instance('node', 'field_issue_form_instance', 'library')) {
+  if ($instance = field_info_instance('node', 'field_issue_form_instance', 'library')) {
     field_delete_instance($instance);
   }
 }
 
 function ubn_general_update_7161() {
-    if ($instance = field_info_instance('node', 'field_issue_form_instance', 'library')) {
+  if ($instance = field_info_instance('node', 'field_issue_form_instance', 'library')) {
     field_delete_instance($instance);
   }
 }
@@ -616,7 +605,7 @@ function ubn_general_update_7164() {
 /* Disable and uninstall comment module */
 function ubn_general_update_7165() {
   $modules = array('comment');
-	module_disable($modules);
+  module_disable($modules);
   drupal_uninstall_modules($modules);
 }
 
