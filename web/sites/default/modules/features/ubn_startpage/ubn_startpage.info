@@ -13,6 +13,7 @@ dependencies[] = text
 dependencies[] = ubn_content
 dependencies[] = ubn_content_types
 dependencies[] = ubn_news_panes
+dependencies[] = uuid_entity_features
 dependencies[] = views
 dependencies[] = views_content
 features[ctools][] = entityqueue:entityqueue_default:1

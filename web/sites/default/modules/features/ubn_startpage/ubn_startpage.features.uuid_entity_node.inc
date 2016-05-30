@@ -22,13 +22,12 @@ function ubn_startpage_uuid_entity_default_node() {
     'translate' => 0,
     'uuid' => '4292e4cb-a82f-4ba3-a468-41c7ac7b70f5',
     'revision_uid' => 1,
-    'field_shortcut_links' => array(),
     'title_field' => array(
       'en' => array(
         0 => array(
-          'value' => 'Latest news links',
+          'value' => 'Senaste nyheter länkar',
           'format' => NULL,
-          'safe_value' => 'Latest news links',
+          'safe_value' => 'Senaste nyheter länkar',
         ),
       ),
       'sv' => array(
@@ -36,6 +35,18 @@ function ubn_startpage_uuid_entity_default_node() {
           'value' => 'Senaste nyheter länkar',
           'format' => NULL,
           'safe_value' => 'Senaste nyheter länkar',
+        ),
+      ),
+    ),
+    'field_shortcut_links' => array(
+      'en' => array(
+        0 => array(
+          'value' => 10503,
+          'revision_id' => 10503,
+        ),
+        1 => array(
+          'value' => 10504,
+          'revision_id' => 10504,
         ),
       ),
     ),
