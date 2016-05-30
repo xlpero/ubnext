@@ -107,7 +107,7 @@
                     </div>
                     <div class="row database-links-info">
                       <div class="col-xs-12">
-                        {% if (item.field_public_access.value == 1) %}
+                        {% if not item.field_public_access.value is empty %}
                         <i class="fa fa-unlock"></i>
                         {{t("Freely accessible")}}
                         {% else %}

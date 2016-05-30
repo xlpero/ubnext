@@ -29,25 +29,19 @@
   {%
     set desc = database.field_description_paragraphs[0].value|length > 150 ? database.field_description_paragraphs[0].value|slice(0, 150) ~ '...' : database.field_description_paragraphs[0].value
   %}
-  {%
-    set public_access = database.field_public_access.value
-  %}
-  {%
-    set db_url =  database.field_database_urls[1].field_url.url.value
-  %}
 
   <div class="database-item">
     <div class="database-item-link-title">
-      <a href='{{link_expanded}}'>{{title}}</h2></a>
+      <a href='{{ link_expanded }}'>{{title}}</h2></a>
     </div>
 
     <p class="database-item-description">
-        {{desc}}
+      {{ desc }}
     </p>
     <div class="row">
       <div class="col-xs-12 col-sm-12">
         <div class="database-item-access-level">
-          {% if  (public_access) %}
+          {% if not database.field_public_access.value is empty %}
             <i class='fa fa-unlock'></i>  {{t("Freely accessible")}}
           {% else %}
             <i class='fa fa-lock'></i> {{t("Accessible for University of Gothenburg")}}
@@ -56,12 +50,9 @@
       </div>
       <div class="col-xs-12 col-sm-12">
         <div class="database-item-direct-link">
-            <a href="{{helper.getPreferedUrl(database.field_database_urls)}}">{{t("Directly to")}} {{title}}</a><i class="fa fa-chevron-right"></i>
+            <a href="{{ helper.getPreferedUrl(database.field_database_urls) }}">{{ t("Directly to") }} {{title}}</a><i class="fa fa-chevron-right"></i>
         </div>
       </div>
-
     </div>
   </div>
-
-
 </div>

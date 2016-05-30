@@ -1,6 +1,6 @@
 <?php
 function ubn_databases_database_url_is_public_access($url) {
-  return strpos($row['url'], 'ezproxy.') === FALSE;
+  return strpos($url, 'ezproxy.') === FALSE;
 }
 
 function _ubn_databases_access_description_process($info) {
