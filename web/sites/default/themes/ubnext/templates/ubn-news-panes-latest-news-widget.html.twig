@@ -4,10 +4,13 @@
   models[link_list] = item
 #}
 {% import "macros/misc.html.twig" as misc %}
-<div class="latest-stories-widget">
-  <ol class="list-unstyled latest-stories-widget-stories">
-    {{ stories|raw }}
-  </ol>
-  {{ misc.link(t('Read more'), 'news', 'latest-stories-widget-read-more-link', {absolute : false}) }}
+<div class="latest-stories-widget ubn-panel-links">
+	<h2>{{t("Current events and news")}}</h2>
   {{ link_list|raw }}
+
+  <hr>
+  <ul class="list-unstyled latest-stories-widget-stories">
+    {{ stories|raw }}
+  </ul>
+   <div class="more-news-link clearfix"><span class="pull-right">{{ misc.link(t('More news'), 'news', 'latest-stories-widget-read-more-link', {absolute : false}) }}<i class="fa fa-chevron-right"></i></span></div>
 </div>

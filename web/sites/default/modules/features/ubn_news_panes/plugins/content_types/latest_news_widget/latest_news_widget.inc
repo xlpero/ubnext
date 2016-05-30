@@ -54,7 +54,7 @@ function ubn_news_panes_latest_news_widget_content_type_render($subtype, $conf, 
   ));
 
   $block = new stdClass();
-  $block->title = t('Latest news');
+  $block->title = t('Current events and news');
   $block->content = $content;
   return $block;
 }
