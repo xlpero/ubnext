@@ -48,7 +48,7 @@ global $base_url;
 ?><!DOCTYPE html>
 <html lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>">
 
-<head profile="<?php print $grddl_profile; ?>">
+<head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name = "format-detection" content = "telephone=no">
   
