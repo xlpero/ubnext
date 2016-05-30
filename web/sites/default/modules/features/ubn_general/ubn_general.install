@@ -613,6 +613,13 @@ function ubn_general_update_7164() {
   _ubn_general_feeds_import('database_urls_field_collection');
 }
 
+/* Disable and uninstall comment module */
+function ubn_general_update_7165() {
+  $modules = array('comment');
+	module_disable($modules);
+  drupal_uninstall_modules($modules);
+}
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
