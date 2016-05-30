@@ -603,13 +603,6 @@ function ubn_general_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'create dictionary_term content'.
-  $permissions['create dictionary_term content'] = array(
-    'name' => 'create dictionary_term content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: 'create embedded_page content'.
   $permissions['create embedded_page content'] = array(
     'name' => 'create embedded_page content',
@@ -705,13 +698,6 @@ function ubn_general_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'delete any dictionary_term content'.
-  $permissions['delete any dictionary_term content'] = array(
-    'name' => 'delete any dictionary_term content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: 'delete any embedded_page content'.
   $permissions['delete any embedded_page content'] = array(
     'name' => 'delete any embedded_page content',
@@ -803,13 +789,6 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'delete own database_url content'.
   $permissions['delete own database_url content'] = array(
     'name' => 'delete own database_url content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: 'delete own dictionary_term content'.
-  $permissions['delete own dictionary_term content'] = array(
-    'name' => 'delete own dictionary_term content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -1020,13 +999,6 @@ function ubn_general_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'edit any dictionary_term content'.
-  $permissions['edit any dictionary_term content'] = array(
-    'name' => 'edit any dictionary_term content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: 'edit any embedded_page content'.
   $permissions['edit any embedded_page content'] = array(
     'name' => 'edit any embedded_page content',
@@ -1118,13 +1090,6 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'edit own database_url content'.
   $permissions['edit own database_url content'] = array(
     'name' => 'edit own database_url content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: 'edit own dictionary_term content'.
-  $permissions['edit own dictionary_term content'] = array(
-    'name' => 'edit own dictionary_term content',
     'roles' => array(),
     'module' => 'node',
   );

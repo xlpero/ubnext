@@ -609,6 +609,12 @@ function ubn_general_update_7165() {
   drupal_uninstall_modules($modules);
 }
 
+/* Revert features */
+function ubn_general_update_7166() {
+  features_revert_module('ubn_general');
+  features_revert_module('ubn_content_types');
+}
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
