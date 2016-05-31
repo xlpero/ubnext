@@ -7,7 +7,7 @@
  * @ingroup views_templates
  */
 ?>
-<div class="row panel-separator link-list">
+<div class="row link-list">
 	<?php $index = 0; ?>
 	  <?php foreach ($rows as $id => $row): ?>
 	  	<div class="col-sm-6">
