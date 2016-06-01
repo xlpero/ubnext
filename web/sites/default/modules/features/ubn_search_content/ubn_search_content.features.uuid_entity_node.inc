@@ -1,0 +1,180 @@
+<?php
+/**
+ * @file
+ * ubn_search_content.features.uuid_entity_node.inc
+ */
+
+/**
+ * Implements hook_uuid_entity_default_node().
+ */
+function ubn_search_content_uuid_entity_default_node() {
+  $items = array();
+  $items['84551f72-f8f7-43fc-b4f0-020e0ed5af2a'] = entity_create('node', array(
+    'uid' => 1,
+    'title' => 'Find',
+    'comment' => 1,
+    'promote' => 0,
+    'sticky' => 0,
+    'vuuid' => 'f0e4972d-3091-46e0-b232-4f470446bdbb',
+    'type' => 'navigation_landing',
+    'language' => 'sv',
+    'tnid' => 0,
+    'translate' => 0,
+    'uuid' => '84551f72-f8f7-43fc-b4f0-020e0ed5af2a',
+    'revision_uid' => 1,
+    'title_field' => array(
+      'en' => array(
+        0 => array(
+          'value' => 'Find',
+          'format' => NULL,
+          'safe_value' => 'Find',
+        ),
+      ),
+      'sv' => array(
+        0 => array(
+          'value' => 'Find',
+          'format' => NULL,
+          'safe_value' => 'Find',
+        ),
+      ),
+    ),
+    'field_lead' => array(),
+    'field_theme_link' => array(
+      'en' => array(
+        0 => array(
+          'value' => 10508,
+          'revision_id' => 10508,
+        ),
+      ),
+      'sv' => array(
+        0 => array(
+          'value' => 10439,
+          'revision_id' => 10439,
+        ),
+      ),
+    ),
+    'field_number_of_primary' => array(),
+    'field_shortcut_links' => array(
+      'en' => array(
+        0 => array(
+          'value' => 10509,
+          'revision_id' => 10509,
+        ),
+      ),
+      'sv' => array(
+        0 => array(
+          'value' => 10440,
+          'revision_id' => 10440,
+        ),
+      ),
+    ),
+    'field_shortcut_heading' => array(
+      'en' => array(
+        0 => array(
+          'value' => 'tite',
+          'format' => NULL,
+          'safe_value' => 'tite',
+        ),
+      ),
+      'sv' => array(
+        0 => array(
+          'value' => 'tite',
+          'format' => NULL,
+          'safe_value' => 'tite',
+        ),
+      ),
+    ),
+    'field_content_sections' => array(),
+    'translations' => array(
+      'original' => 'sv',
+      'data' => array(
+        'en' => array(
+          'language' => 'en',
+          'source' => 'sv',
+          'status' => 1,
+          'translate' => 0,
+        ),
+        'sv' => array(
+          'language' => 'sv',
+          'source' => '',
+          'status' => 1,
+          'translate' => 0,
+        ),
+      ),
+    ),
+    '_drafty_revision_requested' => 'FIELD_LOAD_CURRENT',
+    'path' => array(
+      'pathauto' => 1,
+      'pathauto_i18n_status' => 1,
+    ),
+    'name' => 'admin',
+    'picture' => 0,
+    'data' => 'b:0;',
+  ));
+  $items['b1961886-660a-4c82-a142-518506df8a05'] = entity_create('node', array(
+    'uid' => 1,
+    'title' => 'Databaser',
+    'comment' => 1,
+    'promote' => 1,
+    'sticky' => 0,
+    'vuuid' => '47e11c22-b26e-448b-91f0-d8cc12a4d6bf',
+    'type' => 'embedded_page',
+    'language' => 'sv',
+    'tnid' => 0,
+    'translate' => 0,
+    'uuid' => 'b1961886-660a-4c82-a142-518506df8a05',
+    'revision_uid' => 1,
+    'field_content_sections' => array(),
+    'field_lead' => array(
+      'en' => array(
+        0 => array(
+          'value' => 'This is lead',
+          'format' => NULL,
+          'safe_value' => 'This is lead',
+        ),
+      ),
+    ),
+    'title_field' => array(
+      'en' => array(
+        0 => array(
+          'value' => 'Databases',
+          'format' => NULL,
+          'safe_value' => 'Databases',
+        ),
+      ),
+      'sv' => array(
+        0 => array(
+          'value' => 'Databaser',
+          'format' => NULL,
+          'safe_value' => 'Databaser',
+        ),
+      ),
+    ),
+    'translations' => array(
+      'original' => 'sv',
+      'data' => array(
+        'en' => array(
+          'language' => 'en',
+          'source' => 'sv',
+          'status' => 1,
+          'translate' => 0,
+        ),
+        'sv' => array(
+          'language' => 'sv',
+          'source' => '',
+          'status' => 1,
+          'translate' => 0,
+        ),
+      ),
+    ),
+    '_drafty_revision_requested' => 'FIELD_LOAD_CURRENT',
+    'path' => array(
+      'pathauto' => 1,
+      'pathauto_i18n_status' => 1,
+    ),
+    'name' => 'admin',
+    'picture' => 0,
+    'data' => 'b:0;',
+  ));
+  return $items;
+}

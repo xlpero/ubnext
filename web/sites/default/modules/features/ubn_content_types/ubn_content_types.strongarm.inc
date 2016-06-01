@@ -858,9 +858,8 @@ function ubn_content_types_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_embedded_page';
   $strongarm->value = array(
-    0 => 'promote',
-    1 => 'moderation',
-    2 => 'revision',
+    0 => 'status',
+    1 => 'promote',
   );
   $export['node_options_embedded_page'] = $strongarm;
 
@@ -869,8 +868,7 @@ function ubn_content_types_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_library';
   $strongarm->value = array(
-    0 => 'moderation',
-    1 => 'revision',
+    0 => 'status',
   );
   $export['node_options_library'] = $strongarm;
 
@@ -879,8 +877,7 @@ function ubn_content_types_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_navigation_landing';
   $strongarm->value = array(
-    0 => 'moderation',
-    1 => 'revision',
+    0 => 'status',
   );
   $export['node_options_navigation_landing'] = $strongarm;
 
@@ -899,8 +896,7 @@ function ubn_content_types_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_page';
   $strongarm->value = array(
-    0 => 'moderation',
-    1 => 'revision',
+    0 => 'status',
   );
   $export['node_options_page'] = $strongarm;
 
@@ -1006,14 +1002,14 @@ function ubn_content_types_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_database_pattern';
-  $strongarm->value = 'search/databases/[node:title_field]';
+  $strongarm->value = 'find/databases/[node:title_field]';
   $export['pathauto_node_database_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_database_sv_pattern';
-  $strongarm->value = 'sok/databaser/[node:title_field]';
+  $strongarm->value = 'hitta/databaser/[node:title_field]';
   $export['pathauto_node_database_sv_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -1022,6 +1018,34 @@ function ubn_content_types_strongarm() {
   $strongarm->name = 'pathauto_node_database_und_pattern';
   $strongarm->value = '';
   $export['pathauto_node_database_und_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_embedded_page_en_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_embedded_page_en_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_embedded_page_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_embedded_page_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_embedded_page_sv_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_embedded_page_sv_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_embedded_page_und_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_embedded_page_und_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
