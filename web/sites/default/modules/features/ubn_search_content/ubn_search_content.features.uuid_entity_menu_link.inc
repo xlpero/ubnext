@@ -11,7 +11,7 @@ function ubn_search_content_uuid_entity_default_menu_link() {
   $items = array();
   $items['21c050e2-5ef9-4347-af28-192f53a34c05'] = entity_create('menu_link', array(
     'menu_name' => 'main-menu',
-    'plid' => '6e4d0044-7fef-4ba9-9a15-3ce11737e34e',
+    'plid' => '9f38d427-1547-42fb-b878-c35ff0014922',
     'link_path' => 'search/databases/search',
     'router_path' => 'search/databases/search',
     'link_title' => 'Search databases',
@@ -25,7 +25,7 @@ function ubn_search_content_uuid_entity_default_menu_link() {
     'expanded' => 0,
     'depth' => 2,
     'customized' => 1,
-    'p1' => '6e4d0044-7fef-4ba9-9a15-3ce11737e34e',
+    'p1' => '9f38d427-1547-42fb-b878-c35ff0014922',
     'p2' => '21c050e2-5ef9-4347-af28-192f53a34c05',
     'p3' => 0,
     'p4' => 0,
@@ -42,7 +42,7 @@ function ubn_search_content_uuid_entity_default_menu_link() {
     'access' => TRUE,
     'i18n_menu' => TRUE,
   ));
-  $items['6e4d0044-7fef-4ba9-9a15-3ce11737e34e'] = entity_create('menu_link', array(
+  $items['9f38d427-1547-42fb-b878-c35ff0014922'] = entity_create('menu_link', array(
     'menu_name' => 'main-menu',
     'plid' => 0,
     'link_path' => 'node/84551f72-f8f7-43fc-b4f0-020e0ed5af2a',
@@ -61,7 +61,7 @@ function ubn_search_content_uuid_entity_default_menu_link() {
     'expanded' => 0,
     'depth' => 1,
     'customized' => 1,
-    'p1' => '6e4d0044-7fef-4ba9-9a15-3ce11737e34e',
+    'p1' => '9f38d427-1547-42fb-b878-c35ff0014922',
     'p2' => 0,
     'p3' => 0,
     'p4' => 0,
@@ -73,7 +73,7 @@ function ubn_search_content_uuid_entity_default_menu_link() {
     'updated' => 0,
     'language' => 'und',
     'vuuid' => 'f5ab8a50-7967-45a7-a643-39a37abf6c5a',
-    'uuid' => '6e4d0044-7fef-4ba9-9a15-3ce11737e34e',
+    'uuid' => '9f38d427-1547-42fb-b878-c35ff0014922',
     'default_revision' => 1,
     'access' => TRUE,
     'i18n_menu' => TRUE,
