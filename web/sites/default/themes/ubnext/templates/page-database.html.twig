@@ -5,7 +5,7 @@
 
 {% macro buildSearchUrl(propertyName,item) %}
   {%
-    set baseUrl =  base_path() ~ "search/databases/search"
+    set baseUrl =  base_path() ~ "find/databases/search"
   %}
   {% if (propertyName == "field_topics_depth_0") %}
     {% set url = baseUrl ~ "?f[0]=field_topics_depth_0:" ~ item.tid.value %}
