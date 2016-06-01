@@ -620,6 +620,20 @@ function ubn_general_update_7167() {
   features_revert_module('ubn_general');
 }
 
+
+function ubn_general_update_7168() {
+  features_revert(array('ubn_content_types' => array('variable')));
+  $query = new EntityFieldQuery();
+  $result = $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'database')
+    ->execute();
+  if($result['node']) {
+    pathauto_node_update_alias_multiple(array_keys($result['node']), 'bulkupdate', array('message' => TRUE));
+  }
+}
+
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
