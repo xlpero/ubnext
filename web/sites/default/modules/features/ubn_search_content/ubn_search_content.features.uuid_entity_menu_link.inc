@@ -12,8 +12,8 @@ function ubn_search_content_uuid_entity_default_menu_link() {
   $items['21c050e2-5ef9-4347-af28-192f53a34c05'] = entity_create('menu_link', array(
     'menu_name' => 'main-menu',
     'plid' => '9f38d427-1547-42fb-b878-c35ff0014922',
-    'link_path' => 'search/databases/search',
-    'router_path' => 'search/databases/search',
+    'link_path' => 'find/databases/search',
+    'router_path' => 'find/databases/search',
     'link_title' => 'Search databases',
     'options' => array(
       'alter' => TRUE,
