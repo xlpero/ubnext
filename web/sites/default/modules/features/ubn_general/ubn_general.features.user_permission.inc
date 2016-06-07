@@ -69,7 +69,6 @@ function ubn_general_user_default_permissions() {
     'name' => 'access devel information',
     'roles' => array(
       'administrator' => 'administrator',
-      'anonymous user' => 'anonymous user',
     ),
     'module' => 'devel',
   );
@@ -599,13 +598,6 @@ function ubn_general_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'create database_url content'.
-  $permissions['create database_url content'] = array(
-    'name' => 'create database_url content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: 'create embedded_page content'.
   $permissions['create embedded_page content'] = array(
     'name' => 'create embedded_page content',
@@ -690,13 +682,6 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'delete any database content'.
   $permissions['delete any database content'] = array(
     'name' => 'delete any database content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: 'delete any database_url content'.
-  $permissions['delete any database_url content'] = array(
-    'name' => 'delete any database_url content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -789,13 +774,6 @@ function ubn_general_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'delete own database_url content'.
-  $permissions['delete own database_url content'] = array(
-    'name' => 'delete own database_url content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: 'delete own embedded_page content'.
   $permissions['delete own embedded_page content'] = array(
     'name' => 'delete own embedded_page content',
@@ -861,13 +839,6 @@ function ubn_general_user_default_permissions() {
       'administrator' => 'administrator',
     ),
     'module' => 'node',
-  );
-
-  // Exported permission: 'delete terms in database_access_categories'.
-  $permissions['delete terms in database_access_categories'] = array(
-    'name' => 'delete terms in database_access_categories',
-    'roles' => array(),
-    'module' => 'taxonomy',
   );
 
   // Exported permission: 'delete terms in library_properties'.
@@ -995,13 +966,6 @@ function ubn_general_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'edit any database_url content'.
-  $permissions['edit any database_url content'] = array(
-    'name' => 'edit any database_url content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: 'edit any embedded_page content'.
   $permissions['edit any embedded_page content'] = array(
     'name' => 'edit any embedded_page content',
@@ -1090,13 +1054,6 @@ function ubn_general_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'edit own database_url content'.
-  $permissions['edit own database_url content'] = array(
-    'name' => 'edit own database_url content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: 'edit own embedded_page content'.
   $permissions['edit own embedded_page content'] = array(
     'name' => 'edit own embedded_page content',
@@ -1153,13 +1110,6 @@ function ubn_general_user_default_permissions() {
     'name' => 'edit own story content',
     'roles' => array(),
     'module' => 'node',
-  );
-
-  // Exported permission: 'edit terms in database_access_categories'.
-  $permissions['edit terms in database_access_categories'] = array(
-    'name' => 'edit terms in database_access_categories',
-    'roles' => array(),
-    'module' => 'taxonomy',
   );
 
   // Exported permission: 'edit terms in library_properties'.
