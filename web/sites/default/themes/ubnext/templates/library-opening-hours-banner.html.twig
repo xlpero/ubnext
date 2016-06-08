@@ -4,13 +4,17 @@
 #}
 <div class="row library-opening-hours-banner panel-separator">
   <div class="col-xs-12">
+   <a href="#library-opening-hours-header" data-location="#library-opening-hours-header">
+    <span class="library-opening-hours-banner-indicator"><i class="fa fa-angle-double-down"></i></span>
   {% for opening_hours in ubn_opening_hours_items(library.field_referenced_opening_hours, [t('Today'), t('Tomorrow')]) %}
     <div class="library-opening-hours-banner-item center">
+      
       <div class="{{ 'library-opening-hours-banner-' ~ drupal_html_class(opening_hours.weekday) }}">
         <div class="library-opening-hours-banner-label">{{ t("Open !weekday", {'!weekday' : drupal_strtolower(opening_hours.weekday)}) ~ ':' }}</div>
           <div class="library-opening-hours-banner-hours">{{ opening_hours.hours }}</div>
         </div>
       </div>
   {% endfor %}
+  </a>
   </div>
 </div>

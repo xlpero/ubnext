@@ -8,6 +8,7 @@ stylesheets[all][] = css/ubnext.css
 scripts[] = js/vendor/jquery.fitvids.js
 scripts[] = js/vendor/jquery.cookie.js
 scripts[] = js/main.js
+scripts[] = js/library.js
 scripts[] = js/vendor/bootstrap.min.js
 scripts[] = js/vendor/history.js/scripts/bundled/html4+html5/jquery.history.js
 

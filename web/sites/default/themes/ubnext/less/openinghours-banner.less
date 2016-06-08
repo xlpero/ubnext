@@ -1,5 +1,13 @@
 .main-cms {
 	.library-opening-hours-banner {
+		.library-opening-hours-banner-indicator {
+		    color: white;
+		    position: absolute;
+		    left: 50%;
+		    bottom: 5px;
+		    font-size: 1em;
+		    margin-left: -0.3em;
+		}
 		.library-opening-hours-banner-item {
 			background-color: @brand-primary;
 			color: @white;
@@ -12,6 +20,12 @@
 
 			.library-opening-hours-banner-hours {
 				font-size: 1.2em;
+			}
+		}
+
+		.library-opening-hours-banner-item + .library-opening-hours-banner-item {
+			@media (max-width: @screen-sm-min) {
+				padding-bottom: 30px;
 			}
 		}
 	}
