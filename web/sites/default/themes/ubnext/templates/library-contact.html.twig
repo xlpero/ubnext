@@ -8,7 +8,10 @@
 <div class="panel-separator">
   <div class="ubn-pane library-contact-pane row">
   <section class="library-contact col-sm-8 col-sm-offset-2">
+    {% if not (mailing_address.organisation_name is empty and mailing_address.thoroughfare is empty and  mailing_address.postal_code is empty and mailing_address.locality is empty and visiting_address.premise is empty and visiting_address.thoroughfare is empty and delivery_address.premise is empty and delivery_address.thoroughfare is empty) 
+    %}
     <h2>{{ t('Contact information') }}</h2>
+  {% endif %}
     <div class="row">
       <div class="col-xs-12">
         {% set mailing_address = library.field_mailing_address.value %}
@@ -39,7 +42,7 @@
         
         {% set delivery_address = library.field_delivery_address.value %}
         {% if not delivery_address is empty %}
-          {% if not (delivery_address.premise is empty and delivery_address.thoroughfare is empty and delivery_address.postal_code is empty and delivery_address.locality) %}
+          {% if not (delivery_address.premise is empty and delivery_address.thoroughfare is empty) %}
             <address class="library-contact-section delivery-address">
               <h3>{{ t("Delivery address") }}</h3>
                 {% if not delivery_address.premise is empty %}
