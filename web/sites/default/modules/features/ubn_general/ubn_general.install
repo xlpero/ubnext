@@ -633,6 +633,10 @@ function ubn_general_update_7168() {
   }
 }
 
+function ubn_general_update_7169() {
+  features_revert_module('ubn_feeds');
+
+}
 
 //TODO: Disable rdf module?
 
