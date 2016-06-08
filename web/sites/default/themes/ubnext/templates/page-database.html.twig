@@ -16,8 +16,6 @@
   {% else %}
 
   {% endif %}
-
-
 {% endmacro %}
 
 
@@ -40,6 +38,15 @@
         {% endfor %}
       </div>
   </div>
+{% endmacro %}
+
+
+{% macro printAccessRight(url) %}
+    {% if not ('ezproxy.' in url) %}
+      <i class='fa fa-unlock'></i>  {{t("Freely accessible")}}
+    {% else %}
+      <i class='fa fa-lock'></i> {{t("Accessible for University of Gothenburg")}}
+    {% endif %}
 {% endmacro %}
 
 {% import _self as helper %}
@@ -107,12 +114,17 @@
                     </div>
                     <div class="row database-links-info">
                       <div class="col-xs-12">
-                        {% if not item.field_public_access.value is empty %}
-                        <i class="fa fa-unlock"></i>
-                        {{t("Freely accessible")}}
+                        
+                        {% if item.field_public_access.value is null %}
+                          {{helper.printAccessRight(item.field_url.value.url)}}
                         {% else %}
-                          <i class="fa fa-lock"></i>
-                          {{t("Accessible for University of Gothenburg")}}
+                          {% if item.field_public_access.value %}
+                            <i class="fa fa-unlock"></i>
+                            {{t("Freely accessible")}}
+                          {% else %}
+                            <i class="fa fa-lock"></i>
+                            {{t("Accessible for University of Gothenburg")}}
+                          {% endif %}
                         {% endif %}
                       </div>
                     </div>

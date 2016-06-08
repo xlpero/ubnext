@@ -1,7 +1,5 @@
 <?php
-function ubn_databases_database_url_is_public_access($url) {
-  return strpos($url, 'ezproxy.') === FALSE;
-}
+
 
 function _ubn_databases_access_description_process($info) {
   $info_trimmed = trim($info);
