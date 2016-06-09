@@ -620,7 +620,6 @@ function ubn_general_update_7167() {
   features_revert_module('ubn_general');
 }
 
-
 function ubn_general_update_7168() {
   features_revert(array('ubn_content_types' => array('variable')));
   $query = new EntityFieldQuery();
@@ -635,7 +634,11 @@ function ubn_general_update_7168() {
 
 function ubn_general_update_7169() {
   features_revert_module('ubn_feeds');
+}
 
+/* Revert features */
+function ubn_general_update_7170() {
+  features_revert_module('ubn_content_types');
 }
 
 //TODO: Disable rdf module?
