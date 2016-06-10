@@ -410,7 +410,7 @@ function ubn_scald_scald_contexts() {
       'image' => array('passthrough'),
     ),
   );
-  return $contexts;
+  return $contexts + module_invoke_all('ubn_scald_contexts');
 }
 
 //TODO: also define image styles? Probably
