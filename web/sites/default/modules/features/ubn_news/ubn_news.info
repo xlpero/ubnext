@@ -1,7 +1,7 @@
 name = UBN News
 core = 7.x
 package = UBNext
-version = 7.x-0.7
+version = 7.x-0.8
 dependencies[] = ctools
 dependencies[] = entity
 dependencies[] = entity_menu_links
@@ -36,7 +36,6 @@ features[field_instance][] = node-story-title_field
 features[node][] = story
 features[page_manager_handlers][] = node_view__panel_context_8e7fc5ba-4a2f-4e16-8462-a9ef87b5e135
 features[page_manager_handlers][] = search_api_page_stories__panel_context_0eb0f05a-df43-4283-b1ea-7e7bc4f5bade
-features[scald_context_config][] = blurb
 features[search_api_index][] = stories
 features[search_api_page][] = stories
 features[search_api_sort][] = stories__created
