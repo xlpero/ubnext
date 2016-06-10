@@ -11,8 +11,12 @@
 function workbench_moderation_install() {
   // Create tables.
   _workbench_moderation_insert_values();
+  // workbench_moderation_menu_alter() needs to run after
+  // entity_translation_menu_alter(), ctools_translation_menu_alter() and
+  // possibly others. The current weight of entity_translation in the system
+  // table is 11.
   db_update('system')
-    ->fields(array('weight' => 5))
+    ->fields(array('weight' => 12))
     ->condition('name', 'workbench_moderation')
     ->execute();
 }
@@ -682,3 +686,14 @@ function workbench_moderation_update_7300() {
     throw new DrupalUpdateException('Unable to enable the Drafty module, it is a new dependency that must be downloaded.');
   }
 }
+
+/**
+ * Set module weight to be last in hook_menu_alter invokation
+ */
+function workbench_moderation_update_7301() {
+  db_update('system')
+    ->fields(array('weight' => 12))
+    ->condition('name', 'workbench_moderation', '=')
+    ->execute();
+}
+

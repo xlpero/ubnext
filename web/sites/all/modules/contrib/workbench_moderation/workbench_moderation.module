@@ -167,15 +167,35 @@ function workbench_moderation_diff_node_revisions_submit($form, &$form_state) {
 }
 
 /**
+ * Implements hook_module_implements_alter().
+ */
+function workbench_moderation_module_implements_alter(&$implementations, $hook) {
+  switch ($hook) {
+    case 'menu_alter':
+    case 'entity_info_alter':
+      // Move some of our hook implementations to the end of the list.
+      $group = $implementations['workbench_moderation'];
+      unset($implementations['workbench_moderation']);
+      $implementations['workbench_moderation'] = $group;
+      break;
+  }
+}
+
+/**
  * Implements hook_menu_alter().
  */
 function workbench_moderation_menu_alter(&$items) {
-  // Hijack the node/X/edit page to ensure that the right revision (most current) is displayed.
-  $items['node/%node/edit']['page callback'] = 'workbench_moderation_node_edit_page_override';
-
   // Override the node edit menu item title.
   $items['node/%node/edit']['title callback'] = 'workbench_moderation_edit_tab_title';
   $items['node/%node/edit']['title arguments'] = array(1);
+
+  // Switch node edit path
+  $items['node/%_workbench_moderation_node/edit'] = $items['node/%node/edit'];
+  unset($items['node/%node/edit']);
+
+  // Merge in data set by entity_translation_node_menu_alter()
+  $items['node/%_workbench_moderation_node/translate'] = $items['node/%node/translate'] + $items['node/%_workbench_moderation_node/translate'];
+  unset($items['node/%node/translate']);
 
   // Override the node view menu item title.
   $items['node/%node/view']['title callback'] = 'workbench_moderation_view_tab_title';
@@ -1038,27 +1058,18 @@ function workbench_moderation_node_form_submit($form, &$form_state) {
   $form_state['redirect'] = array('node/' . $form_state['node']->nid . '/current-revision');
 }
 
-/**
- * Overrides the node/%/edit page to ensure the proper revision is shown.
- *
- * @param $node
- *   The node being acted upon.
- * @return
- *   A node editing form.
- */
-function workbench_moderation_node_edit_page_override($node) {
-  // Check to see if this is an existing node
-  if (isset($node->nid)) {
-    if (workbench_moderation_node_type_moderated($node->type)) {
-      // Load the node moderation data
-      workbench_moderation_node_data($node);
-      // We ONLY edit the current revision
-      $node = workbench_moderation_node_current_load($node);
-    }
+function _workbench_moderation_node_load($nid) {
+  $node = node_load($nid);
+  if (
+    $node &&
+    //arg(0) === 'node' && (arg(2) === 'edit' || arg(2) === 'translate') &&
+    workbench_moderation_node_type_moderated($node->type)
+  ) {
+    //TODO: review this, already loaded, load performance?
+    workbench_moderation_node_data($node);
+    $node = workbench_moderation_node_current_load($node);
   }
-  // Ensure we have the editing code.
-  module_load_include('inc', 'node', 'node.pages');
-  return node_page_edit($node);
+  return $node;
 }
 
 /**
@@ -2322,6 +2333,25 @@ function workbench_moderation_entity_info() {
   );
 
   return $entity_info;
+}
+
+/**
+ * Implements hook_entity_info_alter().
+ */
+function workbench_moderation_entity_info_alter(&$entity_info) {
+  $path_schemes = &$entity_info['node']['translation']['entity_translation']['path schemes'];
+  unset($path_schemes['default']['edit tabs']);
+
+  // Override the following paths
+  unset($path_schemes['default']['edit path']);
+  unset($path_schemes['default']['translate path']);
+
+  $wildcard = '%_workbench_moderation_node';
+  $path_schemes['workbench_moderation']['edit path'] = "node/$wildcard/edit";
+  $path_schemes['workbench_moderation']['translate path'] = "node/$wildcard/translate";
+  $path_schemes['workbench_moderation']['path wildcard'] = $wildcard;
+  $path_schemes['workbench_moderation']['edit tabs'] = TRUE;
+  $path_schemes['workbench_moderation']['admin theme'] = TRUE;
 }
 
 /**

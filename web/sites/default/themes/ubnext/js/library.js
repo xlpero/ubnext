@@ -27,6 +27,14 @@ var myModule = (function ($) {
 
     init: function(selector) {
      // this is the id of the form
+
+    $(".library-opening-hours-banner a").bind("click", function(e) {
+      var hash = $(".library-opening-hours-banner a").data("location");
+      Drupal.ubnext.scrollTo($(hash));
+      return false;
+    });
+
+
 		$("#issue-entityform-edit-form-10460").submit(function(e) {
 			toggleLoader();
 		    var url = "/ubnext/web/en/libraries/art-library"; // the script where you handle the form input.

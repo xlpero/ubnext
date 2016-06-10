@@ -85,11 +85,6 @@ function ubn_feeds_feeds_importer_default() {
             'target' => 'field_url:title',
             'unique' => FALSE,
           ),
-          5 => array(
-            'source' => 'jsonpath_parser:6',
-            'target' => 'field_public_access',
-            'unique' => FALSE,
-          ),
         ),
         'update_existing' => '2',
         'update_non_existent' => 'delete',
@@ -199,16 +194,11 @@ function ubn_feeds_feeds_importer_default() {
             'autocreate' => 0,
           ),
           7 => array(
-            'source' => 'jsonpath_parser:8',
-            'target' => 'field_public_access',
-            'unique' => FALSE,
-          ),
-          8 => array(
             'source' => 'jsonpath_parser:9',
             'target' => 'field_remote_id',
             'unique' => FALSE,
           ),
-          9 => array(
+          8 => array(
             'source' => 'jsonpath_parser:10',
             'target' => 'field_verde_data_json',
             'unique' => FALSE,
@@ -401,7 +391,7 @@ function ubn_feeds_feeds_importer_default() {
           'jsonpath_parser:6' => 'openhours[*].is_open',
           'jsonpath_parser:7' => 'openhours[*].date',
           'jsonpath_parser:8' => 'openhours[*].date',
-          'jsonpath_parser:9' => 'lang',
+          'jsonpath_parser:9' => '',
         ),
         'debug' => array(
           'options' => array(

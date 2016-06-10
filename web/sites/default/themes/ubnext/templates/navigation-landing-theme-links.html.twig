@@ -77,7 +77,7 @@
 			<ul class="ubn-theme-links secondary list-unstyled clearfix">
 				{% for link in page.field_theme_link %}
 					{% if loop.index > page.field_number_of_primary.value %}
-							{{ _self.themeLink(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value, loop.index, page, isPrimary)}}
+						{{ _self.themeLink(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value, loop.index - page.field_number_of_primary.value, page,false, isPrimary)}}
 					{% endif %}
 				{% endfor %}
 			</ul>
