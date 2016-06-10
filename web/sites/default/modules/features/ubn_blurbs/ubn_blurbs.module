@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the UBN Blurbs feature.
+ */
+
+include_once 'ubn_blurbs.features.inc';
