@@ -5,3 +5,53 @@
  */
 
 include_once 'ubn_startpage.features.inc';
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function ubn_startpage_ctools_plugin_directory($owner, $plugin_type) {
+  if (in_array($plugin_type, array('content_types'))) {
+    return "plugins/$plugin_type";
+  }
+}
+
+//Must be run before slate entity_info_alter?
+function ubn_startpage_entity_info_alter(&$entity_info) {
+  $entity_info['node']['view modes']['ubn_blurb_primary'] = array(
+    'label' => t('UBN Blurb primary'),
+    'custom settings' => FALSE,
+  );
+  $entity_info['node']['view modes']['ubn_blurb'] = array(
+    'label' => t('UBN Blurb'),
+    'custom settings' => FALSE,
+  );
+}
+
+/**
+ * Implements hook_scald_contexts().
+ *
+ * Defines UBN Startpage scald contexts
+ */
+function ubn_startpage_ubn_scald_contexts() {
+  $contexts['blurb_primary'] = array(
+    'title' => t('Blurb primary'),
+    'description' => t('Blurb primary'),
+    'render_language' => 'XHTML',
+    'parseable' => TRUE,
+    'formats' => array(
+      'image' => array('passthrough'), //??
+      'video' => array('passthrough'), //??
+    ),
+  );
+  $contexts['blurb'] = array(
+    'title' => t('Blurb'),
+    'description' => t('Blurb'),
+    'render_language' => 'XHTML',
+    'parseable' => TRUE,
+    'formats' => array(
+      'image' => array('passthrough'), //??
+      'video' => array('passthrough'), //??
+    ),
+  );
+  return $contexts;
+}
