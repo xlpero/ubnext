@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * ubn_content_types.default_picture_mapping.inc
+ * ubn_styles.default_picture_mapping.inc
  */
 
 /**
  * Implements hook_default_picture_mapping().
  */
-function ubn_content_types_default_picture_mapping() {
+function ubn_styles_default_picture_mapping() {
   $export = array();
 
   $picture_mapping = new PictureMapping();

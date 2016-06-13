@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * ubn_content_types.default_breakpoint_group.inc
+ * ubn_styles.default_breakpoint_group.inc
  */
 
 /**
  * Implements hook_default_breakpoint_group().
  */
-function ubn_content_types_default_breakpoint_group() {
+function ubn_styles_default_breakpoint_group() {
   $export = array();
 
   $breakpoint_group = new stdClass();
