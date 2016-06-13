@@ -5,3 +5,23 @@
  */
 
 include_once 'ubn_styles.features.inc';
+
+/**
+ * Implements hook_ubn_scald_contexts().
+ *
+ * Defines UBN Styles scald contexts
+ */
+// TODO: Move all contexts here or use scald custom contexts?
+function ubn_styles_ubn_scald_contexts() {
+  $contexts['blurb'] = array(
+    'title' => t('Blurb'),
+    'description' => t('Blurb'),
+    'render_language' => 'XHTML',
+    'parseable' => TRUE,
+    'formats' => array(
+      'image' => array('passthrough'), //??
+      'video' => array('passthrough'), //??
+    ),
+  );
+  return $contexts;
+}

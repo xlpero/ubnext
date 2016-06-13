@@ -26,32 +26,3 @@ function ubn_startpage_entity_info_alter(&$entity_info) {
     'custom settings' => FALSE,
   );
 }
-
-/**
- * Implements hook_scald_contexts().
- *
- * Defines UBN Startpage scald contexts
- */
-function ubn_startpage_ubn_scald_contexts() {
-  $contexts['blurb_primary'] = array(
-    'title' => t('Blurb primary'),
-    'description' => t('Blurb primary'),
-    'render_language' => 'XHTML',
-    'parseable' => TRUE,
-    'formats' => array(
-      'image' => array('passthrough'), //??
-      'video' => array('passthrough'), //??
-    ),
-  );
-  $contexts['blurb'] = array(
-    'title' => t('Blurb'),
-    'description' => t('Blurb'),
-    'render_language' => 'XHTML',
-    'parseable' => TRUE,
-    'formats' => array(
-      'image' => array('passthrough'), //??
-      'video' => array('passthrough'), //??
-    ),
-  );
-  return $contexts;
-}
