@@ -13,6 +13,6 @@ $plugin = array(
   	'services' => t('Services'),
   	'news' => t('News'),
     'main' => t('Main'),
-
+    'promoted' => t('Promoted'),
   ),
 );
