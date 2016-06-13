@@ -23,5 +23,15 @@ function ubn_styles_ubn_scald_contexts() {
       'video' => array('passthrough'), //??
     ),
   );
+  $contexts['hero_area'] = array(
+    'title' => t('Hero area'),
+    'description' => t('Hero area'),
+    'render_language' => 'XHTML',
+    'parseable' => TRUE,
+    'formats' => array(
+      'image' => array('passthrough'), //??
+      'video' => array('passthrough'), //??
+    ),
+  );
   return $contexts;
 }

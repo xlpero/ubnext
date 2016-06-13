@@ -349,7 +349,17 @@ function ubn_scald_scald_contexts() {
       'video' => array('passthrough'),
     ),
   );
- $contexts['page_content_inline_large'] = array(
+  $contexts['page_content_portrait'] = array(
+    'title' => t('Page content portrait'),
+    'description' => t('Page content portrait'),
+    'render_language' => 'XHTML',
+    'parseable' => TRUE,
+    'formats' => array(
+      'image' => array('passthrough'),
+      'video' => array('passthrough'),
+    ),
+  );
+  $contexts['page_content_inline_large'] = array(
     'title' => t('Page content inline large'),
     'description' => t('Page content'),
     'render_language' => 'XHTML',
@@ -359,7 +369,7 @@ function ubn_scald_scald_contexts() {
       'video' => array('passthrough'),
     ),
   );
- $contexts['page_content_inline_medium'] = array(
+  $contexts['page_content_inline_medium'] = array(
     'title' => t('Page content inline medium'),
     'description' => t('Page content'),
     'render_language' => 'XHTML',
@@ -369,7 +379,7 @@ function ubn_scald_scald_contexts() {
       'video' => array('passthrough'),
     ),
   );
- $contexts['page_content_inline_small'] = array(
+  $contexts['page_content_inline_small'] = array(
     'title' => t('Page content inline small'),
     'description' => t('Page content'),
     'render_language' => 'XHTML',
@@ -379,7 +389,7 @@ function ubn_scald_scald_contexts() {
       'video' => array('passthrough'),
     ),
   );
- $contexts['page_content_inline_extra_small'] = array(
+  $contexts['page_content_inline_extra_small'] = array(
     'title' => t('Page content inline extra small'),
     'description' => t('Page content'),
     'render_language' => 'XHTML',

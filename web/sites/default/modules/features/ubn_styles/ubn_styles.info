@@ -52,5 +52,4 @@ features[variable][] = picture_img_sizes_output_method
 features[variable][] = picture_js_scope
 features[variable][] = picture_polyfill_version
 features[variable][] = picture_updated_to_file_entity_2
-features[variable][] = scald_custom_contexts
 features[variable][] = scald_switch_feature_export
