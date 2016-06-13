@@ -1,0 +1,13 @@
+{% macro hero(atom) %}
+  {# TODO: check if works with video #}
+  {# TODO: get rid of code duplication (wrapper)? #}
+  <div class="img-responsive-wrapper">
+    {{ scald_render(atom.value, 'hero_area')|raw }}
+  </div>
+{% endmacro %}
+
+{% macro blurb(atom) %}
+  <div class="img-responsive-wrapper">
+    {{ scald_render(atom.value, 'blurb')|raw }}
+  </div>
+{% endmacro %}

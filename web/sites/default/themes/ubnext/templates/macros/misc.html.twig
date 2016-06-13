@@ -1,10 +1,9 @@
-
 {% macro media_atom(atom, context) %}
   {{ scald_render(atom.value, context)|raw }}
 {% endmacro %}
 
 {%macro file_atom(atom, context) %}
-{{scald_render(atom.value, context)|raw}}
+  {{ scald_render(atom.value, context)|raw }}
 {% endmacro %}
 
 {%macro media_atoms_layout(atoms_layout) %}

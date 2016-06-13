@@ -2,12 +2,10 @@
   name = Hero image: the hero image displayed on a page
   models[library] = entity:node
 #}
-{% import "macros/misc.html.twig" as misc %}
+{% import "macros/atom_styles.html.twig" as atom_styles %}
 
 <div class="panel-separator">
   {% if not library.field_image_atom is empty %}
-    <div class="hero-image img-responsive-wrapper">
-      {{ misc.media_atom(library.field_image_atom, 'hero_area') }}
-    </div>
+    {{ atom_styles.hero(library.field_image_atom) }}
   {% endif %}
 </div>
