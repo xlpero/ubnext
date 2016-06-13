@@ -5,7 +5,7 @@
 {% import "macros/misc.html.twig" as misc %}
 
 <div class="panel-separator">
-  {% if library.field_image_atom.value %}
+  {% if not library.field_image_atom is empty %}
     <div class="hero-image img-responsive-wrapper">
       {{ misc.media_atom(library.field_image_atom, 'hero_area') }}
     </div>
