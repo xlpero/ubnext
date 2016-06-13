@@ -1,0 +1,11 @@
+{# slate
+  name = Blurb: View mode 'UBN Blurb primary'
+  models[entity] = entity:node
+  view_mode[node][blurb] = ubn_blurb_primary
+#}
+{% import "macros/atom_styles.html.twig" as atom_styles %}
+<div class="panel-separator">
+  {% if not entity.field_image_atom is empty %}
+    {{ atom_styles.hero(entity.field_image_atom) }}
+  {% endif %}
+</div>
