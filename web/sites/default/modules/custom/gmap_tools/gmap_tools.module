@@ -3,8 +3,8 @@
 function gmap_tools_init() {
   // Quick fix, remove as soon as gets view 'js' working in gmap_tools_views
   //TODO: fix this so not need to include on every page?
-  $js_path = libraries_get_path('hoverintent') . '/jquery.hoverIntent.minified.js';
-  drupal_add_js($js_path);
+  //$js_path = libraries_get_path('hoverintent') . '/jquery.hoverIntent.minified.js';
+  //drupal_add_js($js_path);
   gmap_tools_add_js();
   drupal_add_js(array('gmap_tools' => array('maps' => array('imanobject' => ''))), 'setting');
 }
