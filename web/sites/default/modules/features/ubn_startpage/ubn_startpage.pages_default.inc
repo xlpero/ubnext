@@ -60,6 +60,8 @@ function ubn_startpage_default_page_manager_pages() {
       'services' => NULL,
       'search' => NULL,
       'news' => NULL,
+      'promoted' => NULL,
+      'promoted_top' => NULL,
     ),
   );
   $display->cache = array();
@@ -112,6 +114,53 @@ function ubn_startpage_default_page_manager_pages() {
     $pane->uuid = 'e1fe5984-202d-4942-ab93-0b41cca68dd6';
     $display->content['new-e1fe5984-202d-4942-ab93-0b41cca68dd6'] = $pane;
     $display->panels['news'][0] = 'new-e1fe5984-202d-4942-ab93-0b41cca68dd6';
+    $pane = new stdClass();
+    $pane->pid = 'new-564b1454-9c7d-4497-8b20-3258f9912243';
+    $pane->panel = 'promoted';
+    $pane->type = 'front_page_blurbs';
+    $pane->subtype = 'front_page_blurbs';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '564b1454-9c7d-4497-8b20-3258f9912243';
+    $display->content['new-564b1454-9c7d-4497-8b20-3258f9912243'] = $pane;
+    $display->panels['promoted'][0] = 'new-564b1454-9c7d-4497-8b20-3258f9912243';
+    $pane = new stdClass();
+    $pane->pid = 'new-e1e92e85-a8e9-42aa-8d1a-3727c4ee87fa';
+    $pane->panel = 'promoted_top';
+    $pane->type = 'front_page_blurbs_primary';
+    $pane->subtype = 'front_page_blurbs_primary';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+      'style' => 'naked',
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'e1e92e85-a8e9-42aa-8d1a-3727c4ee87fa';
+    $display->content['new-e1e92e85-a8e9-42aa-8d1a-3727c4ee87fa'] = $pane;
+    $display->panels['promoted_top'][0] = 'new-e1e92e85-a8e9-42aa-8d1a-3727c4ee87fa';
     $pane = new stdClass();
     $pane->pid = 'new-40c86ccc-6666-442a-a994-f89c035b8757';
     $pane->panel = 'search';
