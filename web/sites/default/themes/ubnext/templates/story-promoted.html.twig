@@ -9,9 +9,7 @@
 <div class="story-promoted col-sm-6 col-md-4">
   <div class="story-promoted-image">
   {% set atom = ubn_content_sections_atoms(story.field_content_sections, 'image', 1)|first %}
-  {{ atom_styles.blurb(atom, 'news-item-placeholder.png') }}
-  {# <img src="{{ placeholder_path }}" alt="{{t("No image has been added to this article")}}" title="{{t("No image has been added to this article")}}"> #}
-
+  {{ atom_styles.blurb(atom, 'news-item-placeholder.png', t('No image has been added to this article')) }}
   </div>
   <div class="story-promoted-publication-date">{{ dates.date_default(story.created) }}</div>
   <h2 class="story-promoted-header list primary">{{ misc.link(story.title_field.value, story.url) }}</h2>
