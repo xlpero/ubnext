@@ -1,0 +1,14 @@
+{# slate
+  name = Blurb: View mode 'UBN Blurb'
+  models[entity] = entity:node
+  view_mode[node][blurb] = ubn_blurb
+#}
+{% import "macros/atom_styles.html.twig" as atom_styles %}
+{% import "macros/misc.html.twig" as misc %}
+<div class="blurb panel-separator col-sm-6 col-md-4">
+  <div class="blurb-image">
+    {{ atom_styles.blurb(entity.field_image_atom, 'front-page-blurb-placeholder-todo.png') }}
+  </div>
+  <h2 class="blurb-header list primary">{{ misc.link(entity.title.value, entity.field_link.url.value) }}</h2>
+  <div class="blurb-excerpt">{{ truncate_utf8(entity.field_description.value, 125, TRUE, TRUE) }}</div>
+</div>
