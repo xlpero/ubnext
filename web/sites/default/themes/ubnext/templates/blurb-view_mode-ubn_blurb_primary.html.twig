@@ -6,10 +6,12 @@
 {% import "macros/atom_styles.html.twig" as atom_styles %}
 <div class="panel-separator row">
 <div class="col-xs-12">
-  <a href={{ entity.field_link.url.value }}>
   <div class="blurb-primary">
+    <a href={{ entity.field_link.url.value }}>
     {% if not entity.field_image_atom is empty %}
-      {{ atom_styles.hero(entity.field_image_atom) }}
+      <div class="story-primary-image">
+        {{ atom_styles.hero(entity.field_image_atom) }}
+      </div>
       {% endif %}
         <div class="blurb-primary-teaser">
           <h2>{{ entity.title.value }}</h2>
@@ -17,7 +19,7 @@
             <div class="blurb-primary-teaser-body">{{ entity.field_description.value }}</div>
           {% endif %}
         </div>
-    </div>
-  </a>
+    </a>
+  </div>
 </div>
 </div>
