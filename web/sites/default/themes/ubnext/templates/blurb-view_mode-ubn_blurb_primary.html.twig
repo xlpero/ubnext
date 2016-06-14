@@ -5,17 +5,19 @@
 #}
 {% import "macros/atom_styles.html.twig" as atom_styles %}
 <div class="panel-separator row">
-<a href={{ entity.field_link.url.value }}>
-<div class="blurb-primary col-xs-12">
-  {% if not entity.field_image_atom is empty %}
-    {{ atom_styles.hero(entity.field_image_atom) }}
-  {% endif %}
-    <div class="blurb-primary-teaser">
-      <h2>{{ entity.title.value }}</h2>
-      {% if not entity.field_description is empty %}
-        <div class="blurb-primary-teaser-body">{{ entity.field_description.value }}</div>
+<div class="col-xs-12">
+  <a href={{ entity.field_link.url.value }}>
+  <div class="blurb-primary">
+    {% if not entity.field_image_atom is empty %}
+      {{ atom_styles.hero(entity.field_image_atom) }}
       {% endif %}
+        <div class="blurb-primary-teaser">
+          <h2>{{ entity.title.value }}</h2>
+          {% if not entity.field_description is empty %}
+            <div class="blurb-primary-teaser-body">{{ entity.field_description.value }}</div>
+          {% endif %}
+        </div>
     </div>
+  </a>
 </div>
-</a>
 </div>
