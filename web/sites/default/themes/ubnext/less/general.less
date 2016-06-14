@@ -25,7 +25,7 @@
 
 .img-responsive-wrapper {
   img {
-    .img-responsive();
+    &:extend(.img-responsive);
   }
 }
 
@@ -38,14 +38,13 @@ a {
       display: inline-block;
       color: @gray-dark;
       text-decoration: none;
-
     }
   }
 }
 
 .date {
   color: @gray;
-  font-weight: bold;  
+  font-weight: bold;
 }
 
 .container {

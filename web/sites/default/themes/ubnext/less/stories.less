@@ -47,12 +47,9 @@
     .story-promoted {
       margin-bottom: 20px;
       .story-promoted-publication-date {
-        .date();
+        &:extend(.date);
       }
       .story-promoted-image img {
-        //.img-responsive();
-        width: 100%;
-        display: block;
         margin-bottom: 10px;
       }
       .story-promoted-header {
@@ -67,5 +64,4 @@
       }
     }
   }
-
 }

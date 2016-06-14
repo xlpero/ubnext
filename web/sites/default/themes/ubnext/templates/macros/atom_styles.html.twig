@@ -1,13 +1,31 @@
-{% macro hero(atom) %}
-  {# TODO: check if works with video #}
-  {# TODO: get rid of code duplication (wrapper)? #}
+{# TODO: check if works with video #}
+{# TODO: get rid of code duplication (wrapper)? #}
+
+{% macro hero(atom, placeholder) %}
   <div class="img-responsive-wrapper">
-    {{ scald_render(atom.value, 'hero_area')|raw }}
+    {% if not atom is empty %}
+      {{ scald_render(atom.value, 'hero_area')|raw }}
+    {% else %}
+      {{ _self._placeholder_picture_mapping(placeholder, 'hero_area', 'library_hero')|raw }}
+    {% endif %}
   </div>
 {% endmacro %}
 
-{% macro blurb(atom) %}
+{% macro blurb(atom, placeholder) %}
   <div class="img-responsive-wrapper">
-    {{ scald_render(atom.value, 'blurb')|raw }}
+    {% if not atom is empty %}
+      {{ scald_render(atom.value, 'blurb')|raw }}
+    {% else %}
+      {{ _self._placeholder_picture_mapping(placeholder, 'blurb', 'blurb_small') }}
+    {% endif %}
   </div>
+{% endmacro %}
+
+{% macro _placeholder_picture_mapping(filename, mapping_name, fallback_image_style) %}
+  {# TODO: get fallback_image_style automatically, see scald(?) #}
+  {# TODO: attributes? title alt #}
+  {% set attributes = {} %}
+  {% set placeholder_uri = 'public://unmanaged_files/' ~ filename %}
+  {% set mapping = picture_mapping_load(mapping_name) %}
+  {{ theme('picture', { 'uri': placeholder_uri, 'style_name': fallback_image_style, 'breakpoints': mapping.mapping } | merge(attributes))|raw }}
 {% endmacro %}
