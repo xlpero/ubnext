@@ -1,7 +1,7 @@
 name = UBN Startpage
 core = 7.x
 package = UBNext
-version = 7.x-1.4
+version = 7.x-1.5
 dependencies[] = ctools
 dependencies[] = entityqueue
 dependencies[] = features
@@ -20,6 +20,7 @@ features[ctools][] = entityqueue:entityqueue_default:1
 features[ctools][] = page_manager:pages_default:1
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
+features[entityqueue_queue][] = front_page_blurbs
 features[entityqueue_queue][] = panels_links_primary_on_frontpage
 features[features_api][] = api:2
 features[field_instance][] = node-link_list-field_shortcut_links
