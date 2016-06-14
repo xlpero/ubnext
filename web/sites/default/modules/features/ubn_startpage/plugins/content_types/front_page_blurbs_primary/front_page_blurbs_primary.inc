@@ -28,9 +28,15 @@ function ubn_startpage_front_page_blurbs_primary_content_type_render($subtype, $
   $queue = entityqueue_subqueue_load('front_page_blurbs');
   $wrapper = entity_metadata_wrapper('entityqueue_subqueue', $queue);
 
+  $first_blurb = NULL;
+  foreach($wrapper->eq_node as $blurb) {
+    $first_blurb = $blurb->value();
+    break;
+  }
+
+  $renderable = array();
   //TODO: Hardcoded for now, or load queue and check entity type?
-  if(!empty($wrapper->eq_node)) {
-    $first_blurb = $wrapper->eq_node[0]->value();
+  if(!empty($first_blurb)) {
     $renderable = entity_view('node', array($first_blurb), 'ubn_blurb_primary');
   }
 
