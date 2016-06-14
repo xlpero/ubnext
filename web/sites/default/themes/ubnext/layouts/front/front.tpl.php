@@ -18,6 +18,12 @@
   </div>
 <?php endif ?>
 
+<div class="container fullwidth-on-xs">
+  <?php if (!empty ($content['promoted_top'])) : ?>
+    <?php print render($content['promoted_top']); ?>
+  <?php endif; ?>
+</div>
+
 <?php if (!empty($content['news'])): ?>
   <div id="news" class="container panel-separator">
     <div class="row">
@@ -28,6 +34,12 @@
   </div>
 <?php endif ?>
 
+<div class="container">
+  <?php if (!empty ($content['promoted'])) : ?>
+    <?php print render($content['promoted']); ?>
+  <?php endif; ?>
+</div>
+
 <?php if (!empty($content['main'])): ?>
   <div id="main" class="container panel-separator">
     <div class="row">
@@ -37,9 +49,3 @@
     </div>
   </div>
 <?php endif ?>
-
-<div class="container fullwidth-on-xs">
-  <?php if (!empty ($content['promoted'])) : ?>
-    <?php print render($content['promoted']); ?>
-  <?php endif; ?>
-</div>

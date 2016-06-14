@@ -9,10 +9,11 @@ $plugin = array(
   'icon' => '',
   'category' => 'UBNext',
   'regions' => array(
-  	'search' => t('Search'),
-  	'services' => t('Services'),
-  	'news' => t('News'),
-    'main' => t('Main'),
+    'search' => t('Search'),
+    'services' => t('Services'),
+    'promoted_top' => t('Promoted top'),
+    'news' => t('News'),
     'promoted' => t('Promoted'),
+    'main' => t('Main'),
   ),
 );
