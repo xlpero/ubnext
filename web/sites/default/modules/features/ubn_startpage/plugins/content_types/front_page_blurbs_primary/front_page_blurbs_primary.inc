@@ -34,14 +34,14 @@ function ubn_startpage_front_page_blurbs_primary_content_type_render($subtype, $
     break;
   }
 
-  $renderable = array();
+  $block = new stdClass();
+  $block->title = '';
+  $block->content = '';
   //TODO: Hardcoded for now, or load queue and check entity type?
   if(!empty($first_blurb)) {
     $renderable = entity_view('node', array($first_blurb), 'ubn_blurb_primary');
+    $block->content = drupal_render($renderable);
   }
 
-  $block = new stdClass();
-  $block->title = '';
-  $block->content = drupal_render($renderable);
   return $block;
 }
