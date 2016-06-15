@@ -13,6 +13,19 @@ function ubn_blurbs_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'entity_translation_settings_node__blurb';
+  $strongarm->value = array(
+    'default_language' => 'sv',
+    'hide_language_selector' => 1,
+    'exclude_language_none' => 1,
+    'lock_language' => 0,
+    'shared_fields_original_only' => 0,
+  );
+  $export['entity_translation_settings_node__blurb'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__blurb';
   $strongarm->value = array(
     'view_modes' => array(),
@@ -40,7 +53,7 @@ function ubn_blurbs_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'language_content_type_blurb';
-  $strongarm->value = '0';
+  $strongarm->value = '4';
   $export['language_content_type_blurb'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -62,8 +75,9 @@ function ubn_blurbs_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'node_options_blurb';
   $strongarm->value = array(
-    0 => 'status',
-    1 => 'promote',
+    0 => 'promote',
+    1 => 'moderation',
+    2 => 'revision',
   );
   $export['node_options_blurb'] = $strongarm;
 
