@@ -25,6 +25,8 @@ function ubn_startpage_front_page_blurbs_content_type_settings($form, &$form_sta
  * Render callback.
  */
 function ubn_startpage_front_page_blurbs_content_type_render($subtype, $conf, $panel_args, $context) {
+  drupal_add_js(drupal_get_path('module', 'ubn_startpage') . '/ubn_startpage.js');
+
   $queue = entityqueue_subqueue_load('front_page_blurbs');
   $wrapper = entity_metadata_wrapper('entityqueue_subqueue', $queue);
 
