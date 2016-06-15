@@ -5,3 +5,12 @@
  */
 
 include_once 'ubn_news.features.inc';
+
+
+// Might be a better hook for this, but since we will probably replace
+// view with ctools content type this is good enough for now
+function ubn_news_views_pre_render($view) {
+  if ($view->current_display === 'latest_stories_promoted') {
+    drupal_add_js(drupal_get_path('module', 'ubn_news') . '/ubn_news.js');
+  }
+}
