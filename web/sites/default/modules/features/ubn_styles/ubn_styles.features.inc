@@ -62,9 +62,9 @@ function ubn_styles_image_default_styles() {
     ),
   );
 
-  // Exported image style: library_hero.
-  $styles['library_hero'] = array(
-    'label' => 'Library hero',
+  // Exported image style: hero_small.
+  $styles['hero_small'] = array(
+    'label' => 'Hero small',
     'effects' => array(
       1 => array(
         'name' => 'manualcrop_crop_and_scale',
@@ -74,16 +74,16 @@ function ubn_styles_image_default_styles() {
           'upscale' => 0,
           'respectminimum' => 1,
           'onlyscaleifcrop' => 0,
-          'style_name' => 'library_hero',
+          'style_name' => 'hero_small',
         ),
         'weight' => 0,
       ),
     ),
   );
 
-  // Exported image style: library_hero_extra_small.
-  $styles['library_hero_extra_small'] = array(
-    'label' => 'Library hero extra small',
+  // Exported image style: hero_small_extra_small.
+  $styles['hero_small_extra_small'] = array(
+    'label' => 'Hero extra small',
     'effects' => array(
       2 => array(
         'name' => 'manualcrop_crop_and_scale',
@@ -93,7 +93,7 @@ function ubn_styles_image_default_styles() {
           'upscale' => 0,
           'respectminimum' => 1,
           'onlyscaleifcrop' => 0,
-          'style_name' => 'library_hero_extra_small',
+          'style_name' => 'hero_small_extra_small',
         ),
         'weight' => 0,
       ),

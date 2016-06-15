@@ -114,13 +114,13 @@ function ubn_styles_default_scald_context_config() {
   $context_config = new stdClass();
   $context_config->disabled = FALSE; /* Edit this to true to make a default context_config disabled initially */
   $context_config->api_version = 1;
-  $context_config->context = 'hero_area';
+  $context_config->context = 'hero';
   $context_config->transcoder = array(
     'file' => array(
       '*' => 'passthrough',
     ),
     'image' => array(
-      '*' => 'group-library_hero',
+      '*' => 'group-hero',
     ),
     'video' => array(
       '*' => 'passthrough',
@@ -143,7 +143,7 @@ function ubn_styles_default_scald_context_config() {
     'width' => '',
     'height' => '',
   );
-  $export['hero_area'] = $context_config;
+  $export['hero'] = $context_config;
 
   $context_config = new stdClass();
   $context_config->disabled = FALSE; /* Edit this to true to make a default context_config disabled initially */

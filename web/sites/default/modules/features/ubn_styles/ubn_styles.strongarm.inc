@@ -25,11 +25,11 @@ function ubn_styles_strongarm() {
     'page_content' => array(
       'enabled' => 0,
       'weight' => '1',
-      'fallback' => 'library_hero',
+      'fallback' => 'hero_small',
       'lazyload' => 0,
       'lazyload_aspect_ratio' => 0,
     ),
-    'library_hero' => array(
+    'hero_small' => array(
       'enabled' => 0,
       'weight' => '1',
       'fallback' => 'page_content',

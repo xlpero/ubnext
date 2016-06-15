@@ -23,9 +23,9 @@ function ubn_styles_ubn_scald_contexts() {
       'video' => array('passthrough'), //??
     ),
   );
-  $contexts['hero_area'] = array(
-    'title' => t('Hero area'),
-    'description' => t('Hero area'),
+  $contexts['hero'] = array(
+    'title' => t('Hero'),
+    'description' => t('Hero'),
     'render_language' => 'XHTML',
     'parseable' => TRUE,
     'formats' => array(

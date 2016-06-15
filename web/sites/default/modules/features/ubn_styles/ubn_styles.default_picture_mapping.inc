@@ -13,24 +13,24 @@ function ubn_styles_default_picture_mapping() {
   $picture_mapping = new PictureMapping();
   $picture_mapping->disabled = FALSE; /* Edit this to true to make a default picture_mapping disabled initially */
   $picture_mapping->api_version = 2;
-  $picture_mapping->label = 'Library hero';
-  $picture_mapping->machine_name = 'library_hero';
-  $picture_mapping->breakpoint_group = 'library_hero';
+  $picture_mapping->label = 'Hero';
+  $picture_mapping->machine_name = 'hero';
+  $picture_mapping->breakpoint_group = 'hero';
   $picture_mapping->mapping = array(
     'breakpoints.theme.ubnext.small' => array(
       '1x' => array(
         'mapping_type' => 'image_style',
-        'image_style' => 'library_hero',
+        'image_style' => 'hero_small',
       ),
     ),
     'breakpoints.theme.ubnext.extra_small' => array(
       '1x' => array(
         'mapping_type' => 'image_style',
-        'image_style' => 'library_hero_extra_small',
+        'image_style' => 'hero_small_extra_small',
       ),
     ),
   );
-  $export['library_hero'] = $picture_mapping;
+  $export['hero_small'] = $picture_mapping;
 
   $picture_mapping = new PictureMapping();
   $picture_mapping->disabled = FALSE; /* Edit this to true to make a default picture_mapping disabled initially */
