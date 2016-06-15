@@ -4,9 +4,9 @@
 {% macro hero(atom, placeholder, placeholder_alt, placeholder_title) %}
   <div class="img-responsive-wrapper">
     {% if not atom is empty %}
-      {{ scald_render(atom.value, 'hero_area')|raw }}
+      {{ scald_render(atom.value, 'hero')|raw }}
     {% else %}
-      {{ _self._placeholder_picture_mapping(placeholder, 'hero_area', 'library_hero', placeholder_alt, placeholder_title)|raw }}
+      {{ _self._placeholder_picture_mapping(placeholder, 'hero', 'hero_small', placeholder_alt, placeholder_title)|raw }}
     {% endif %}
   </div>
 {% endmacro %}
