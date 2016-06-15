@@ -16,16 +16,37 @@
     {% if not atom is empty %}
       {{ scald_render(atom.value, 'blurb')|raw }}
     {% else %}
-      {{ _self._placeholder_picture_mapping(placeholder, 'blurb', 'blurb_small', placeholder_alt, placeholder_title) }}
+      {{ _self._placeholder_image_style(placeholder, 'blurb_extra_small', placeholder_alt, placeholder_title) }}
     {% endif %}
   </div>
 {% endmacro %}
 
+
+{% macro _placeholder_image_style(filename, style_name, alt, title) %}
+  {% set placeholder_uri = 'public://unmanaged_files/' ~ filename %}
+  {% set info = image_get_info(placeholder_uri) %}
+  {% set variables = {
+      'alt': alt,
+      'title': title|default(alt),
+      'width': info.width,
+      'height' : info.height,
+      'style_name': style_name,
+      'path': placeholder_uri,
+    }
+  %}
+  {{ theme('image_style', variables)|raw }}
+{% endmacro %}
+
 {% macro _placeholder_picture_mapping(filename, mapping_name, fallback_image_style, alt, title) %}
   {# TODO: get fallback_image_style automatically, see scald(?) #}
-  {# TODO: attributes? title alt #}
   {% set attributes = { 'alt' : alt, 'title' : title|default(alt) } %}
   {% set placeholder_uri = 'public://unmanaged_files/' ~ filename %}
   {% set mapping = picture_mapping_load(mapping_name) %}
-  {{ theme('picture', { 'uri': placeholder_uri, 'style_name': fallback_image_style, 'breakpoints': mapping.mapping } | merge(attributes))|raw }}
+  {% set variables = {
+      'uri': placeholder_uri,
+      'style_name': fallback_image_style,
+      'breakpoints': mapping.mapping
+    }|merge(attributes)
+  %}
+  {{ theme('picture', variables)|raw }}
 {% endmacro %}
