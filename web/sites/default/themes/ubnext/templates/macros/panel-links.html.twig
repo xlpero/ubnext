@@ -2,27 +2,21 @@
   {% set namespace = namespace|default('ubn-panel-links') %}
   {% import "macros/misc.html.twig" as misc %}
   {% if extended %}
-    <div class="{{ namespace }} extended">
+    <div class="{{ namespace }} no-padding extended">
   {% else %}
-    <div class="{{ namespace }}">
+    <div class="{{ namespace }} no-padding">
   {% endif %}
-    <span class="ubn-panel-links-border-left"></span>
-    <div class="{{ namespace }}-head">
-      <div class="{{ namespace }}-head-title">
-        {% if not title is empty %}
-          {% if extended %}
-            <h2 class="list primary">{{title}}</h2>
-          {% else %}
-            <h2 class="h1 small no-top-margin">{{title}}</h2>
-          {% endif %}
-        {% endif %}
-      </div>
-      <div class="{{ namespace }}-indicator">
-        <i class="fa fa-arrow-right pull-right"></i>
-      </div>
-    </div>
-    <div class="{{ namespace }}-body">
-      {{ _self.link_list_links(list, namespace) }}
+    <div class="{{ namespace }}-inner-wrapper">
+	    <div class="{{ namespace }}-head">
+	      <div class="{{ namespace }}-head-title">
+	        {% if not title is empty %}
+	          <h2 class="h1 small no-top-margin">{{title}}</h2>
+	        {% endif %}
+	      </div>
+	    </div>
+	    <div class="{{ namespace }}-body">
+	      {{ _self.link_list_links(list, namespace) }}
+	    </div>
     </div>
   </div>
 {% endmacro %}
