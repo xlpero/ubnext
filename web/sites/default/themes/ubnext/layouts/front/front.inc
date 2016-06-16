@@ -11,6 +11,7 @@ $plugin = array(
   'regions' => array(
     'search' => t('Search'),
     'services' => t('Services'),
+    'navigation' => t('Navigation'),
     'promoted_top' => t('Promoted top'),
     'news' => t('News'),
     'promoted' => t('Promoted'),

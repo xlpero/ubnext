@@ -18,6 +18,12 @@
   </div>
 <?php endif ?>
 
+<div class="container">
+  <?php if (!empty ($content['navigation'])) : ?>
+    <?php print render($content['navigation']); ?>
+  <?php endif; ?>
+</div>
+
 <div class="container fullwidth-on-xs">
   <?php if (!empty ($content['promoted_top'])) : ?>
     <?php print render($content['promoted_top']); ?>
