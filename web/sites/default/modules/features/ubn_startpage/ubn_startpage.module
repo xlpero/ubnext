@@ -21,6 +21,10 @@ function ubn_startpage_entity_info_alter(&$entity_info) {
     'label' => t('UBN Blurb primary'),
     'custom settings' => FALSE,
   );
+  $entity_info['node']['view modes']['ubn_blurb_navigation'] = array(
+    'label' => t('UBN Blurb navigation'),
+    'custom settings' => FALSE,
+  );
   $entity_info['node']['view modes']['ubn_blurb'] = array(
     'label' => t('UBN Blurb'),
     'custom settings' => FALSE,
