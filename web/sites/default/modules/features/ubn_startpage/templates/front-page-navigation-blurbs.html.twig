@@ -3,5 +3,9 @@
   models[blurbs] = item
 #}
 <div id="front-page-navigatin-blurbs" class="row">
+  <div class="col-xs-12">
+    {# TODO: h1? extend? margin-bottom fix? #}
+    <h2 class="h1 small no-top-margin">{{ t('On the website') ~ ':' }}</h2>
+  </div>
   {{ blurbs|raw }}
 </div>
