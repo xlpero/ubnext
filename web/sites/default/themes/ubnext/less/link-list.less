@@ -8,22 +8,6 @@
   margin-bottom: 10px;
 }
 
-
-/* (Partly) Collapsible behaviour */
-/* TODO: possible to use boostraps collaspible? Probably not worth the effort */
-.ubn-panel-links.collapsed ul.ubn-panel-links-link-list {
-  @media (max-width: @screen-xs-max) {
-    li {
-      display: none;
-    }
-  }
-  @media (min-width: @screen-xs-min) {
-    li:nth-child(n + 6) {
-      display: none;
-    }
-  }
-}
-
 /* Link panels context: */
 .ubn-panel-links {
   padding: 20px;
@@ -68,4 +52,23 @@
   //    min-height: @inner-wrapper-min-height-extended;
   //  }
   //}
+
+}
+
+/* (Partly) Collapsible behaviour */
+/* TODO: possible to use boostraps collaspible? Probably not worth the effort */
+.ubn-panel-links.collapsed ul.ubn-panel-links-link-list {
+  @media (max-width: @screen-xs-max) {
+    li {
+      display: none;
+    }
+  }
+  @media (min-width: @screen-xs-min) {
+    li:nth-child(n + 6) {
+      display: none;
+    }
+  }
+  @media (max-width: @screen-xs-max) {
+    margin-bottom: 0;
+  }
 }
