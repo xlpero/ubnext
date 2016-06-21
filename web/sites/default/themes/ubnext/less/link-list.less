@@ -46,6 +46,23 @@
     }
   }
 
+  &.collapsed .ubn-panel-links-body ul {
+    @media (max-width: @screen-xs-max) {
+      li {
+        display: none;
+      }
+    }
+    @media (min-width: @screen-xs-min) {
+      li:nth-child(n + 6) {
+        display: none;
+      }
+    }
+    @media (max-width: @screen-xs-max) {
+      margin-bottom: 0;
+    }
+  }
+}
+
   //&.extended {
   //  min-height: @boxes-min-height-extended;
   //  .ubn-panel-links-inner-wrapper {
@@ -53,22 +70,6 @@
   //  }
   //}
 
-}
 
 /* (Partly) Collapsible behaviour */
 /* TODO: possible to use boostraps collaspible? Probably not worth the effort */
-.ubn-panel-links.collapsed ul.ubn-panel-links-link-list {
-  @media (max-width: @screen-xs-max) {
-    li {
-      display: none;
-    }
-  }
-  @media (min-width: @screen-xs-min) {
-    li:nth-child(n + 6) {
-      display: none;
-    }
-  }
-  @media (max-width: @screen-xs-max) {
-    margin-bottom: 0;
-  }
-}

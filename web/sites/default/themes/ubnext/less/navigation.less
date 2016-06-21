@@ -1,190 +1,189 @@
-
-// applies to all
+// Applies to all
 .menu {
-	.clearfix();
-	.list-unstyled();
-	li {
-		  float: left;
-		  a {
-		  	&:hover {
-		  		text-decoration: underline !important;
-		  	}
-		  }
-	}
+  &:extend(.clearfix all);
+  &:extend(.list-unstyled);
+  li {
+    float: left;
+    a {
+      &:hover {
+        text-decoration: underline !important;
+      }
+    }
+  }
 }
 
 .primary-nav-cms {
-	border-bottom: 1px solid @gray-light;
-	@media (min-width: @screen-sm-min) {
-		margin-top: -20px;
-	}
+  border-bottom: 1px solid @gray-light;
+  @media (min-width: @screen-sm-min) {
+    margin-top: -20px;
+  }
 
-	.ubn-menu-level-top {
-		.clearfix();
-		.menu-toggle {
-			@media (min-width: @screen-sm-min) {
-				display: none !important;
-			}
-			margin-left: 20px;
-			#toggle-menu-btn {
-				min-width: 80px;
-				font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
-				text-transform: uppercase;
-				text-decoration: none;
-				margin-bottom: 10px;
-				&.btn {
-					border-radius: 1px;
-					&:focus {
-						background: none;
-					}
-				}
-				.fa-bars {
-					display: inline-block;
-				}
-				.fa-close {
-					display: none;
-				}
-				&.open {
-					.fa-bars {
-						display: none;
-					}
-					.fa-close {
-						display: inline-block;
-					}
-				}
-			}
-		}
-		.menu {
-			@media (max-width: @screen-xs-max) {
-				display: none !important;
-			}
-			margin-bottom: 10px;
-			font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
-			.pull-right();
-			li {
-				margin-left: 10px;
-				a {
-				  text-decoration: none;
-				  text-transform: uppercase;
-				  color: @gray-darker;
-				  font-size: 1.125em;
-				}
-				&:not(:last-child) {
-				    a {
-				    	border-right: 1px solid @gray-dark;
-				    	padding-right: 10px;
-				    }
-				}
-				&.active-trail {
-					a {
-					  /*text-decoration: underline; */ // maybe we should use this
-					  color: @brand-primary;
+  .ubn-menu-level-top {
+    &:extend(.clearfix all);
+    .menu-toggle {
+      @media (min-width: @screen-sm-min) {
+        display: none !important;
+      }
+      margin-left: 20px;
+      #toggle-menu-btn {
+        min-width: 80px;
+        font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
+        text-transform: uppercase;
+        text-decoration: none;
+        margin-bottom: 10px;
+        &.btn {
+          border-radius: 1px;
+          &:focus {
+            background: none;
+          }
+        }
+        .fa-bars {
+          display: inline-block;
+        }
+        .fa-close {
+          display: none;
+        }
+        &.open {
+          .fa-bars {
+            display: none;
+          }
+          .fa-close {
+            display: inline-block;
+          }
+        }
+      }
+    }
+    .menu {
+      @media (max-width: @screen-xs-max) {
+        display: none !important;
+      }
+      margin-bottom: 10px;
+      font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
+      .pull-right();
+      li {
+        margin-left: 10px;
+        a {
+          text-decoration: none;
+          text-transform: uppercase;
+          color: @gray-darker;
+          font-size: 1.125em;
+        }
+        &:not(:last-child) {
+          a {
+            border-right: 1px solid @gray-dark;
+            padding-right: 10px;
+          }
+        }
+        &.active-trail {
+          a {
+            /*text-decoration: underline; */ // maybe we should use this
+            color: @brand-primary;
 
-					}
-				}
-			}
-		}
-	}
+          }
+        }
+      }
+    }
+  }
 }
 
 .primary-nav-cms-dropdown {
-	margin-bottom: 20px;
-	.ubn-mobile-menu {
-		@media (min-width: @screen-sm-min) {
-			display: none !important;
-		}
-		background: @gray-darker;
-		.clearfix();
-		.menu-mobile {
-			margin-bottom: 0;
-			padding:20px;
-			li {
-				display: block;
-				width: 100%;
-				&.ubn-mobile-menu-lang-switch-block {
-					border-top: 1px solid @gray;
-					padding-top: 10px;
-					.language-switcher-locale-url {
-						padding-left: 0;
-						a {
-							font-size: 0.9em;
-							text-transform: none;
-							font-family: @font-family-sans-serif;
-							padding-bottom: 0;
-						}
-					}
-				}
+  margin-bottom: 20px;
+  .ubn-mobile-menu {
+    @media (min-width: @screen-sm-min) {
+      display: none !important;
+    }
+    background: @gray-darker;
+    &:extend(.clearfix all);
+    .menu-mobile {
+      margin-bottom: 0;
+      padding:20px;
+      li {
+        display: block;
+        width: 100%;
+        &.ubn-mobile-menu-lang-switch-block {
+          border-top: 1px solid @gray;
+          padding-top: 10px;
+          .language-switcher-locale-url {
+            padding-left: 0;
+            a {
+              font-size: 0.9em;
+              text-transform: none;
+              font-family: @font-family-sans-serif;
+              padding-bottom: 0;
+            }
+          }
+        }
 
-				a {
-					padding-bottom: 10px;
-					font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
-					display: block;
-					width: 100%;
-					text-decoration: none;
-				  	text-transform: uppercase;
-				  	color: @gray-lighter;
-				  	font-size: 1.125em;
+        a {
+          padding-bottom: 10px;
+          font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
+          display: block;
+          width: 100%;
+          text-decoration: none;
+          text-transform: uppercase;
+          color: @gray-lighter;
+          font-size: 1.125em;
 
-				}
+        }
 
-				&.active-trail {
-					a {
-					  /*text-decoration: underline; */ // maybe we should use this
-					  color: @brand-primary;
+        &.active-trail {
+          a {
+            /*text-decoration: underline; */ // maybe we should use this
+            color: @brand-primary;
 
-					}
-				}
-				&.lang-switch-link {
-					border-top: 1px solid @gray;
-					padding-top: 10px;
+          }
+        }
+        &.lang-switch-link {
+          border-top: 1px solid @gray;
+          padding-top: 10px;
 
-					a {
-						font-size: .8em;
-						font-family: @font-family-sans-serif;
-						text-transform: lowercase;
-					}
-				}
-			}
-		}
-	}
+          a {
+            font-size: .8em;
+            font-family: @font-family-sans-serif;
+            text-transform: lowercase;
+          }
+        }
+      }
+    }
+  }
 }
 
 .secondary-nav-cms {
-	.menu {
-		margin-top: 7px;
-		li {
-			margin-right: 15px;
-			.fa {
-				margin-left: 5px;
-			}
-			a {
-        &:extend(.navigation-secondary);
-			}
-			&.active-trail {
-				a {
-					color: @brand-primary;
-				}
-			}
-		}
-	}
+  .menu {
+    margin-top: 7px;
+    li {
+      margin-right: 15px;
+      .fa {
+        margin-left: 5px;
+      }
+      a {
+        &:extend(.navigation-secondary all);
+      }
+      &.active-trail {
+        a {
+          color: @brand-primary;
+        }
+      }
+    }
+  }
 }
 
 .breadcrumb-nav-cms {
-	font-size: .8em;
-	.menu-trail {
-		.clearfix();
-		.list-unstyled();
-		li {
-		  float: left;
-		  margin-right: 10px;
-		  .fa {
-		    margin-left: 10px;
-		  }
-		  a {
-		  	text-decoration: none;
+  font-size: .8em;
+  .menu-trail {
+    &:extend(.clearfix all);
+    &:extend(.list-unstyled);
+    li {
+      float: left;
+      margin-right: 10px;
+      .fa {
+        margin-left: 10px;
+      }
+      a {
+        text-decoration: none;
 
-		  }
-		}
-		margin-bottom: 20px;
-	}
+      }
+    }
+    margin-bottom: 20px;
+  }
 }
