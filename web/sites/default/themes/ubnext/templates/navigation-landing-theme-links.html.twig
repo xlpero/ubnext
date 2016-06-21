@@ -2,84 +2,67 @@
   name = Navigation landing: theme-links
   models[page] = entity:node
 #}
-
-{% macro themeLink(linkTitle, url, description, index, page, addShortcuts, isPrimary) %}
-	{% import "macros/misc.html.twig" as misc %}
-
-	<li class="col-xs-12 col-sm-6 col-md-4">
-			<div class="ubn-theme-links-item">
-			<div class="ubn-theme-links-item-head">
-				<div class="ubn-theme-links-item-head-link">
-					{% if isPrimary %}
-						<h2 class="list primary"><a href="{{ url(url) }}">{{linkTitle}}</a></h2>
-					{% else %}
-						<h2 class="list secondary"><a href="{{ url(url) }}">{{linkTitle}}</a></h2>
-					{% endif %}
-
-				</div>
-				<div class="ubn-theme-links-item-head-indicator">
-					<i class="fa fa-chevron-right pull-right"></i>
-				</div>
-			</div>
-			<div class="ubn-theme-links-item-body">
-				{{description | raw}}
-			</div>
-		</div>
-	</li>
-	{% if addShortcuts %}
-		{%
-			set adjustedForExtraItem = 1
-		%}
-	{% else %}
-		{% set adjustedForExtraItem = 0 %}
-	{% endif %}
-	{% if (index + adjustedForExtraItem) % (3) == 0 %}
-		<div class="clearfix visible-md-block visible-lg-block"></div>
-	{% endif %}
-	{% if (index + adjustedForExtraItem) % (2) == 0 %}
-		<div class="clearfix visible-sm-block"></div>
-	{% endif %}
-{% endmacro %}
-
 {% import "macros/misc.html.twig" as misc %}
 {% import "macros/panel-links.html.twig" as links %}
 
-		{% if not page.field_theme_link is empty %}
-		<div class="row">
-			<ul class="ubn-theme-links primary list-unstyled clearfix">
-				{% if not page.field_shortcut_links is empty %}
-					{%
-						set addShortcuts = true
-					%}
-					<li class="col-xs-12 col-sm-6 col-md-4">
-							<div>
-								{% set extended = true %}
-								{{ links.link_list(page.field_shortcut_heading.value, page.field_shortcut_links, extended) }}
-							</div>
-					</li>
-				{% endif %}
+{% macro theme_link(linkTitle, url, description, index, page, addShortcuts, isPrimary) %}
+  {% import "macros/misc.html.twig" as misc %}
 
-				{%
-					set isPrimary = true
-				%}
-				{% for link in page.field_theme_link %}
-					{% if loop.index <= page.field_number_of_primary.value %}
-						{{ _self.themeLink(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value, loop.index, page, addShortcuts, isPrimary)}}
-					{% endif %}
-				{% endfor %}
-			</ul>
-		</div>
+  <li class="col-xs-12 col-sm-6 col-md-4">
+    <div class="ubn-theme-links-item">
+      <div class="ubn-theme-links-item-head">
+        <div class="ubn-theme-links-item-head-link">
+          {% if isPrimary %}
+            <h2 class="list primary"><a href="{{ url(url) }}">{{linkTitle}}</a></h2>
+          {% else %}
+            <h2 class="list secondary"><a href="{{ url(url) }}">{{linkTitle}}</a></h2>
+          {% endif %}
+        </div>
+        <div class="ubn-theme-links-item-head-indicator">
+          <i class="fa fa-chevron-right pull-right"></i>
+        </div>
+      </div>
+      <div class="ubn-theme-links-item-body">
+        {{ description|raw }}
+      </div>
+    </div>
+  </li>
+  {% set adjustedForExtraItem = addShortcuts ? 1 : 0 %}
+  {% if (index + adjustedForExtraItem) % (3) == 0 %}
+    <div class="clearfix visible-md-block visible-lg-block"></div>
+  {% endif %}
+  {% if (index + adjustedForExtraItem) % (2) == 0 %}
+    <div class="clearfix visible-sm-block"></div>
+  {% endif %}
+{% endmacro %}
 
-		{%
-			set isPrimary = false
-		%}
-		<div class="row">
-			<ul class="ubn-theme-links secondary list-unstyled clearfix">
-				{% for link in page.field_theme_link %}
-					{% if loop.index > page.field_number_of_primary.value %}
-						{{ _self.themeLink(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value, loop.index - page.field_number_of_primary.value, page,false, isPrimary)}}
-					{% endif %}
-				{% endfor %}
-			</ul>
-		</div>
-		{% endif %}
+{% if not page.field_theme_link is empty %}
+  <div class="row">
+    <ul class="ubn-theme-links primary list-unstyled clearfix">
+      {% if not page.field_shortcut_links is empty %}
+        {% set addShortcuts = true %}
+        <li class="col-xs-12 col-sm-6 col-md-4">
+          <div>
+            {{ links.link_list(page.field_shortcut_heading.value, page.field_shortcut_links, true) }}
+          </div>
+        </li>
+      {% endif %}
+      {% set isPrimary = true %}
+      {% for link in page.field_theme_link %}
+        {% if loop.index <= page.field_number_of_primary.value %}
+          {{ _self.theme_link(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value, loop.index, page, addShortcuts, isPrimary)}}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  {% set isPrimary = false %}
+  <div class="row">
+    <ul class="ubn-theme-links secondary list-unstyled clearfix">
+      {% for link in page.field_theme_link %}
+        {% if loop.index > page.field_number_of_primary.value %}
+          {{ _self.theme_link(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value, loop.index - page.field_number_of_primary.value, page,false, isPrimary)}}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+{% endif %}
