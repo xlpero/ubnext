@@ -3,7 +3,15 @@
     attach: function(context, settings) {
       $('.ubn-video-player', context).fitVids();
     }
-  }
+  };
+
+  Drupal.behaviors.ubnext_equal_heights = {
+    attach : function(context, settings) {
+      /* TODO: rename ubn-pane */
+      $('.ubn-panel-links', context).matchHeight();
+    }
+  };
+
   Drupal.ubnext = {
     scrollTo : function($element, callback) {
       if($element.length) {

@@ -1,46 +1,70 @@
-{% macro link_list(title, list, extended = false, namespace) %}
-  {% set namespace = namespace|default('ubn-panel-links') %}
-  {% if extended %}
-    <div class="{{ namespace }} no-padding extended">
-  {% else %}
-    <div class="{{ namespace }} no-padding">
-  {% endif %}
-    <div class="{{ namespace }}-inner-wrapper">
-	    <div class="{{ namespace }}-head">
-	      <div class="{{ namespace }}-head-title">
-	        {% if not title is empty %}
-	          <h2 class="h1 small no-top-margin">{{title}}</h2>
-	        {% endif %}
-	      </div>
-	    </div>
-	    <div class="{{ namespace }}-body">
-	      {{ _self.link_list_links(list, namespace) }}
-	    </div>
+{% macro link_list(title, list, promoted = true, namespace) %}
+  {{ _self.pane_begin(namespace, promoted) }}
+    {{ _self.pane_head_begin(namespace) }}
+      {{ _self.pane_head_title(title, namespace) }}
+    {{ _self.pane_head_end() }}
+    {{ _self.pane_body_begin(namespace) }}
+	    {{ _self.link_list_links(list, namespace) }}
+    {{ _self.pane_body_end() }}
+  {{ _self.pane_end(promoted) }}
+{% endmacro %}
+
+{% macro pane_begin(namespace, promoted) %}
+  <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace) }}{% if promoted %} no-padding{% endif %}">
+    {% if not promoted is empty %} {# or just if promoted? #}
+      <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'inner-wrapper') }}">
+    {% endif %}
+{% endmacro %}
+
+{% macro pane_end(promoted) %}
+  {% if not promoted is empty %}
     </div>
+  {% endif %}
+  </div>
+{% endmacro %}
+
+{% macro pane_head_begin(namespace) %}
+  <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'head') }}">
+	  <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'head-title') }}">
+{% endmacro %}
+
+{% macro pane_head_end() %}
+	  </div>
+	</div>
+{% endmacro %}
+
+{% macro pane_head_title(title, namespace) %}
+  {% if not title is empty %}
+    <h2 class="h1 small no-top-margin">{{ title }}</h2>
+  {% endif %}
+{% endmacro %}
+
+{% macro pane_body_begin(namespace) %}
+	<div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'body') }}">
+{% endmacro %}
+
+{% macro pane_body_end() %}
   </div>
 {% endmacro %}
 
 {# TODO: change order of params, namespace last? #}
 {% macro link_list_links(list, namespace, hide_icon) %}
   {% import "macros/misc.html.twig" as misc %}
-  {% set namespace = namespace|default('ubn-panel-links') %}
   {% if not list is empty %}
-    <ul class="list-unstyled {{ namespace }}-link-list ubn-panel-links-link-list">
+    <ul class="list-unstyled {{ ubn_namespace_classes('ubn-panel-links', namespace, 'link-list') }}">
     {% for link in list %}
       {{ _self.link_list_links_item_begin(namespace, hide_icon) }}
-
-      {% set link_bundle = link.getBundle %}
-      {% if link_bundle == 'field_theme_link' %}
-        <a href="{{ url(link.field_link_to_theme.value.url) }}">{{ link.field_link_to_theme.value.title }}</a>
-      {% elseif link_bundle == 'field_shortcut_links' %}
-        {% set type = link.field_type_to_use.value %}
-        {% if type == 'link' %}
-          <a href="{{ url(link.field_link.value.url) }}">{{ link.field_link.value.title }}</a>
-        {% elseif type == 'file' %}
-          {{ misc.file_atom(link.field_file, 'page_navigation_landing_shortcut')|raw }}
+        {% set link_bundle = link.getBundle %}
+        {% if link_bundle == 'field_theme_link' %}
+          <a href="{{ url(link.field_link_to_theme.value.url) }}">{{ link.field_link_to_theme.value.title }}</a>
+        {% elseif link_bundle == 'field_shortcut_links' %}
+          {% set type = link.field_type_to_use.value %}
+          {% if type == 'link' %}
+            <a href="{{ url(link.field_link.value.url) }}">{{ link.field_link.value.title }}</a>
+          {% elseif type == 'file' %}
+            {{ misc.file_atom(link.field_file, 'page_navigation_landing_shortcut')|raw }}
+          {% endif %}
         {% endif %}
-      {% endif %}
-
       {{ _self.link_list_links_item_end() }}
     {% endfor %}
     </ul>
@@ -49,8 +73,8 @@
 
 {% macro link_list_links_item_begin(namespace, hide_icon) %}
   <li>
-    <i{% if hide_icon is empty %} class="fa fa-chevron-right"{% endif %}></i>
-    <div class="{{ namespace }}-body-link ubn-panel-links-body-link">
+    {% if hide_icon is empty %}<i class="fa fa-chevron-right"></i>{% endif %}
+    <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'body-link') }}">
 {% endmacro %}
 
 

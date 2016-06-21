@@ -1,8 +1,14 @@
   @boxes-min-height: 200px;
-  @boxes-min-height-extended: 230px;
+  //@boxes-min-height-extended: 230px;
   @inner-wrapper-min-height: 160px;
-  @inner-wrapper-min-height-extended: 190px;
+  //@inner-wrapper-min-height-extended: 190px;
 
+/* General: */
+.ubn-panel-links-body-link {
+  margin-bottom: 10px;
+}
+
+/* Link panels context: */
 .ubn-panel-links {
   padding: 20px;
   min-height: @boxes-min-height;
@@ -18,7 +24,7 @@
     min-height: @inner-wrapper-min-height;
   }
   .ubn-panel-links-head {
-    .clearfix();
+    &:extend(.clearfix all);
     margin-bottom: 10px;
     .ubn-panel-links-head-title {
       float: left;
@@ -31,12 +37,13 @@
       li {
         .fa {
           position: absolute;
+          //width: 20px;
           margin-top: 5px;
         }
         .ubn-panel-links-body-link {
+          //display: inline-block;
           margin-left: 20px;
         }
-        margin-bottom: 10px;
         .fa {
           margin-right: 5px;
         }
@@ -47,10 +54,10 @@
     }
   }
 
-  &.extended {
-    min-height: @boxes-min-height-extended;
-    .ubn-panel-links-inner-wrapper {
-      min-height: @inner-wrapper-min-height-extended;
-    }
-  }
+  //&.extended {
+  //  min-height: @boxes-min-height-extended;
+  //  .ubn-panel-links-inner-wrapper {
+  //    min-height: @inner-wrapper-min-height-extended;
+  //  }
+  //}
 }
