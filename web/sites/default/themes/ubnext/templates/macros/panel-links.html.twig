@@ -6,7 +6,7 @@
       {{ _self.pane_head_title(title, namespace) }}
     {{ _self.pane_head_end() }}
     {{ _self.pane_body_begin(namespace) }}
-	    {{ _self.link_list_links(list, namespace, hide_icon) }}
+      {{ _self.link_list_links(list, namespace, hide_icon) }}
     {{ _self.pane_body_end() }}
   {{ _self.pane_end(promoted) }}
 {% endmacro %}
@@ -27,12 +27,12 @@
 
 {% macro pane_head_begin(namespace) %}
   <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'head') }}">
-	  <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'head-title') }}">
+    <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'head-title') }}">
 {% endmacro %}
 
 {% macro pane_head_end() %}
-	  </div>
-	</div>
+    </div>
+  </div>
 {% endmacro %}
 
 {% macro pane_head_title(title, namespace) %}
@@ -42,7 +42,7 @@
 {% endmacro %}
 
 {% macro pane_body_begin(namespace) %}
-	<div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'body') }}">
+  <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'body') }}">
 {% endmacro %}
 
 {% macro pane_body_end() %}
@@ -80,7 +80,6 @@
     <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'body-link') }}">
   {% endspaceless %}
 {% endmacro %}
-
 
 {% macro link_list_links_item_end() %}
     </div>
