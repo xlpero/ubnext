@@ -4,8 +4,7 @@
   view_mode[node][navigation_landing] = ubn_blurb_navigation
 #}
 {% import "macros/misc.html.twig" as misc %}
-{% import "macros/panel-links.html.twig" as links %}
-<div class="blurb-navigation panel-separator col-xs-12 col-sm-3">
-  <h2 class="blurb-header list primary">{{ misc.link(entity.title.value, entity.url.value) }}</h2>
-  {{ links.link_list_links(entity.field_theme_link, NULL, true) }}
+{% import "macros/panel-links.html.twig" as pane %}
+<div class="col-xs-12 col-sm-3">
+  {{ pane.link_list(l(entity.title.value, entity.url.value), entity.field_theme_link, false, 'blurb-navigation', true) }}
 </div>
