@@ -1,6 +1,6 @@
-  @boxes-min-height: 200px;
+  //@boxes-min-height: 200px;
   //@boxes-min-height-extended: 230px;
-  @inner-wrapper-min-height: 160px;
+  //@inner-wrapper-min-height: 160px;
   //@inner-wrapper-min-height-extended: 190px;
 
 /* General: */
@@ -8,10 +8,25 @@
   margin-bottom: 10px;
 }
 
+
+/* (Partly) Collapsible behaviour */
+/* TODO: possible to use boostraps collaspible? Probably not worth the effort */
+.ubn-panel-links.collapsed ul.ubn-panel-links-link-list {
+  @media (max-width: @screen-xs-max) {
+    li {
+      display: none;
+    }
+  }
+  @media (min-width: @screen-xs-min) {
+    li:nth-child(n + 6) {
+      display: none;
+    }
+  }
+}
+
 /* Link panels context: */
 .ubn-panel-links {
   padding: 20px;
-  min-height: @boxes-min-height;
   border: 1px solid @gray-light;
   margin-bottom: 20px;
   &.no-padding {
@@ -21,7 +36,6 @@
     border-left: 6px @brand-primary solid;
     padding-left: 20px;
     margin: 20px 20px 20px 0;
-    min-height: @inner-wrapper-min-height;
   }
   .ubn-panel-links-head {
     &:extend(.clearfix all);
