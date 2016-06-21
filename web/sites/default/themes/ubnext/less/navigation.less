@@ -158,12 +158,8 @@
 				margin-left: 5px;
 			}
 			a {
-				font-size: 1.2em;
-				text-decoration: none;
-				font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
-				color: @gray-darker;
+        &:extend(.navigation-secondary);
 			}
-
 			&.active-trail {
 				a {
 					color: @brand-primary;
@@ -172,7 +168,6 @@
 		}
 	}
 }
-
 
 .breadcrumb-nav-cms {
 	font-size: .8em;
