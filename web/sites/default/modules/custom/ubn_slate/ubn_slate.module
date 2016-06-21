@@ -92,6 +92,18 @@ function _ubn_slate_number_format($number, $decimals = 2) {
   return rtrim(rtrim(number_format($number, $decimals, ',', ' '), '0'), ',');
 }
 
+// "Skip base" option?
+function _ubn_slate_namespace_classes($base, $namespace = '', $suffix = '') {
+  $classes = array();
+  if($base) {
+    $classes[] = implode('-', array_filter(array($base, $suffix)));
+  }
+  if($namespace) {
+    $classes[] = implode('-', array_filter(array($namespace, $suffix)));
+  }
+  return implode(' ', array_unique(array_filter($classes)));
+}
+
 /**
  * Implements hook_slate_twig_alter().
  *
@@ -103,6 +115,12 @@ function ubn_slate_slate_twig_alter(&$twig) {
   $function = new Twig_SimpleFunction(
     'ubn_content_sections_atoms',
     '_ubn_slate_content_sections_atoms'
+  );
+  $twig->addFunction($function);
+
+  $function = new Twig_SimpleFunction(
+    'ubn_namespace_classes',
+    '_ubn_slate_namespace_classes'
   );
   $twig->addFunction($function);
 
