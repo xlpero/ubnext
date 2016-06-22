@@ -193,7 +193,11 @@ function workbench_moderation_menu_alter(&$items) {
   $items['node/%_workbench_moderation_current_node/edit'] = $items['node/%node/edit'];
   unset($items['node/%node/edit']);
 
-  if (module_exists('entity_translation')) {
+  if (
+    module_exists('entity_translation') &&
+    isset($items['node/%node/translate']) &&
+    isset($items['node/%_workbench_moderation_current_node/translate'])
+  ) {
     // Merge in data set by entity_translation_node_menu_alter()
     $items['node/%_workbench_moderation_current_node/translate'] = $items['node/%node/translate'] + $items['node/%_workbench_moderation_current_node/translate'];
     unset($items['node/%node/translate']);
