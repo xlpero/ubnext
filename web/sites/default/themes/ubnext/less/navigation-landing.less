@@ -1,39 +1,26 @@
 .main-cms {
+  // Remove?
   @boxes-min-height: 230px;
-  .mixin-primary {
-    border: 1px solid @gray-light;
-  }
 
   .mixin-indicator {
     font-size: 1.75em;
     float: right;
   }
 
-  .mixin-head {
-    .clearfix();
-    margin-bottom: 20px;
-  }
-
-
-
   /* theme-link box */
   .ubn-theme-links {
     margin-bottom: 10px;
     &.primary {
-      .ubn-theme-links-item {
-        .mixin-primary();
-      }
     }
     .ubn-theme-links-item {
       min-height: @boxes-min-height;
-      padding: 20px;
-      margin-bottom: 20px;
-      .clearfix();
+      &:extend(.clearfix all);
     }
     &.secondary {
       .ubn-theme-links-item {
         min-height: initial;
         margin-bottom: 10px;
+        border: none;
       }
       .ubn-theme-links-item-head {
         margin-bottom: 10px;
@@ -44,7 +31,8 @@
     }
 
     .ubn-theme-links-item-head {
-      .mixin-head();
+      &:extend(.clearfix all);
+      margin-bottom: 20px;
 
       .ubn-theme-links-item-head-link {
         float: left;

@@ -1,7 +1,7 @@
-{# TODO: replaced promoted, hide_icon, with options hash #}
+{# TODO: replaced promoted, hide_icon, etc with options hash #}
 
-{% macro link_list(title, list, promoted, namespace, hide_icon) %}
-  {{ _self.pane_begin(namespace, promoted) }}
+{% macro link_list(title, list, promoted, namespace, hide_icon, min_height) %}
+  {{ _self.pane_begin(namespace, promoted, min_height) }}
     {{ _self.pane_head_begin(namespace) }}
       {{ _self.pane_head_title(title, namespace) }}
     {{ _self.pane_head_end() }}
@@ -11,8 +11,8 @@
   {{ _self.pane_end(promoted) }}
 {% endmacro %}
 
-{% macro pane_begin(namespace, promoted) %}
-  <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace) }}{% if promoted %} no-padding{% endif %}">
+{% macro pane_begin(namespace, promoted, min_height) %}
+  <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace) }}{% if promoted %} no-padding{% endif %}{% if min_height %} min-height{% endif %}">
     {% if not promoted is empty %} {# or just if promoted? #}
       <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'inner-wrapper') }}">
     {% endif %}

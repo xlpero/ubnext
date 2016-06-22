@@ -3,13 +3,14 @@
   models[page] = entity:node
 #}
 {% import "macros/misc.html.twig" as misc %}
-{% import "macros/panel-links.html.twig" as links %}
+{% import "macros/panel-links.html.twig" as pane %}
 
 {% macro theme_link(linkTitle, url, description, index, page, addShortcuts, isPrimary) %}
   {% import "macros/misc.html.twig" as misc %}
+  {% import "macros/panel-links.html.twig" as pane %}
 
   <li class="col-xs-12 col-sm-6 col-md-4">
-    <div class="ubn-theme-links-item">
+    {{ pane.pane_begin('ubn-theme-links-item', false, true) }}
       <div class="ubn-theme-links-item-head">
         <div class="ubn-theme-links-item-head-link">
           {% if isPrimary %}
@@ -25,7 +26,7 @@
       <div class="ubn-theme-links-item-body">
         {{ description|raw }}
       </div>
-    </div>
+    {{ pane.pane_end() }}
   </li>
   {% set adjustedForExtraItem = addShortcuts ? 1 : 0 %}
   {% if (index + adjustedForExtraItem) % (3) == 0 %}
@@ -43,7 +44,7 @@
         {% set addShortcuts = true %}
         <li class="col-xs-12 col-sm-6 col-md-4">
           <div>
-            {{ links.link_list(page.field_shortcut_heading.value, page.field_shortcut_links, true) }}
+            {{ pane.link_list(page.field_shortcut_heading.value, page.field_shortcut_links, true, 'shortcuts', false, true) }}
           </div>
         </li>
       {% endif %}

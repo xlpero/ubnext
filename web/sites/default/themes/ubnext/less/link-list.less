@@ -1,7 +1,7 @@
-  //@boxes-min-height: 200px;
-  //@boxes-min-height-extended: 230px;
-  //@inner-wrapper-min-height: 160px;
-  //@inner-wrapper-min-height-extended: 190px;
+@boxes-min-height: 200px;
+//@boxes-min-height-extended: 230px;
+@inner-wrapper-min-height: 160px;
+//@inner-wrapper-min-height-extended: 190px;
 
 /* General: */
 .ubn-panel-links-body-link {
@@ -10,6 +10,13 @@
 
 /* Link panels context: */
 .ubn-panel-links {
+  &.min-height {
+    min-height: @boxes-min-height;
+    .ubn-panel-links-inner-wrapper {
+      min-height: @inner-wrapper-min-height;
+    }
+  }
+
   padding: 20px;
   border: 1px solid @gray-light;
   margin-bottom: 20px;
