@@ -78,7 +78,7 @@
 {% macro link_list_links_item_begin(namespace, hide_icon) %}
   <li>
     {% if hide_icon is empty %}<i class="fa fa-chevron-right"></i>{% endif %}
-    <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'body-link') }}">
+    <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'body-link') }}{% if hide_icon is empty %} icon{% endif %}">
 {% endmacro %}
 
 {% macro link_list_links_item_end() %}
