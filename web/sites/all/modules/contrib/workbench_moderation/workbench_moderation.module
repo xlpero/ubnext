@@ -190,12 +190,14 @@ function workbench_moderation_menu_alter(&$items) {
   $items['node/%node/edit']['title arguments'] = array(1);
 
   // Switch node edit path
-  $items['node/%_workbench_moderation_node/edit'] = $items['node/%node/edit'];
+  $items['node/%_workbench_moderation_current_node/edit'] = $items['node/%node/edit'];
   unset($items['node/%node/edit']);
 
-  // Merge in data set by entity_translation_node_menu_alter()
-  $items['node/%_workbench_moderation_node/translate'] = $items['node/%node/translate'] + $items['node/%_workbench_moderation_node/translate'];
-  unset($items['node/%node/translate']);
+  if (module_exists('entity_translation')) {
+    // Merge in data set by entity_translation_node_menu_alter()
+    $items['node/%_workbench_moderation_current_node/translate'] = $items['node/%node/translate'] + $items['node/%_workbench_moderation_current_node/translate'];
+    unset($items['node/%node/translate']);
+  }
 
   // Override the node view menu item title.
   $items['node/%node/view']['title callback'] = 'workbench_moderation_view_tab_title';
@@ -1058,7 +1060,10 @@ function workbench_moderation_node_form_submit($form, &$form_state) {
   $form_state['redirect'] = array('node/' . $form_state['node']->nid . '/current-revision');
 }
 
-function _workbench_moderation_node_load($nid) {
+/**
+ * Load the "current" node revision by node id.
+ */
+function _workbench_moderation_current_node_load($nid) {
   $node = node_load($nid);
   if (
     $node &&
@@ -2339,19 +2344,21 @@ function workbench_moderation_entity_info() {
  * Implements hook_entity_info_alter().
  */
 function workbench_moderation_entity_info_alter(&$entity_info) {
-  $path_schemes = &$entity_info['node']['translation']['entity_translation']['path schemes'];
-  unset($path_schemes['default']['edit tabs']);
+  if (module_exists('entity_translation')) {
+    $path_schemes = &$entity_info['node']['translation']['entity_translation']['path schemes'];
+    unset($path_schemes['default']['edit tabs']);
 
-  // Override the following paths
-  unset($path_schemes['default']['edit path']);
-  unset($path_schemes['default']['translate path']);
+    // Override the following paths
+    unset($path_schemes['default']['edit path']);
+    unset($path_schemes['default']['translate path']);
 
-  $wildcard = '%_workbench_moderation_node';
-  $path_schemes['workbench_moderation']['edit path'] = "node/$wildcard/edit";
-  $path_schemes['workbench_moderation']['translate path'] = "node/$wildcard/translate";
-  $path_schemes['workbench_moderation']['path wildcard'] = $wildcard;
-  $path_schemes['workbench_moderation']['edit tabs'] = TRUE;
-  $path_schemes['workbench_moderation']['admin theme'] = TRUE;
+    $wildcard = '%_workbench_moderation_current_node';
+    $path_schemes['workbench_moderation']['edit path'] = "node/$wildcard/edit";
+    $path_schemes['workbench_moderation']['translate path'] = "node/$wildcard/translate";
+    $path_schemes['workbench_moderation']['path wildcard'] = $wildcard;
+    $path_schemes['workbench_moderation']['edit tabs'] = TRUE;
+    $path_schemes['workbench_moderation']['admin theme'] = TRUE;
+  }
 }
 
 /**
