@@ -33,7 +33,7 @@
               '<span class="blurb-navigation-show-more-label">',
               show_all_text,
               '</span>',
-              ' (<span class="blurb-navigation-show-more-count"></span>)',
+              ' <span class="blurb-navigation-show-more-count"></span>',
               '</a>',
               ' <i class="fa fa-chevron-down aria-hidden="true">',
               '</div>'
@@ -71,9 +71,14 @@
         $('.blurb-navigation.collapsible', context).each(function() {
           var $this = $(this);
           var items_count = $('li', $this).length;
+          var $show_more = $('.blurb-navigation-show-more', $this);
           if(items_count > threshold) {
             var hidden_items = items_count - threshold;
-            $('.blurb-navigation-show-more-count', $this).text(hidden_items);
+            $('.blurb-navigation-show-more-count', $this).text('(' + hidden_items + ')');
+            $show_more.show();
+          }
+          else {
+            $show_more.hide();
           }
         });
       }
