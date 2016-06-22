@@ -55,6 +55,7 @@
   {% if not list is empty %}
     <ul class="list-unstyled {{ ubn_namespace_classes('ubn-panel-links', namespace, 'link-list') }}">
     {% for link in list %}
+      {% spaceless %}
       {{ _self.link_list_links_item_begin(namespace, hide_icon) }}
         {% set link_bundle = link.getBundle %}
         {% if link_bundle == 'field_theme_link' %}
@@ -68,17 +69,16 @@
           {% endif %}
         {% endif %}
       {{ _self.link_list_links_item_end() }}
+      {% endspaceless %}
     {% endfor %}
     </ul>
   {% endif %}
 {% endmacro %}
 
 {% macro link_list_links_item_begin(namespace, hide_icon) %}
-  {% spaceless %}
   <li>
     {% if hide_icon is empty %}<i class="fa fa-chevron-right"></i>{% endif %}
     <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'body-link') }}">
-  {% endspaceless %}
 {% endmacro %}
 
 {% macro link_list_links_item_end() %}
