@@ -9,7 +9,7 @@
 <?php endif ?>
 
 <?php if (!empty($content['services'])): ?>
-  <div id="services" class="container  panel-separator">
+  <div id="services" class="container panel-separator">
     <div class="row">
       <div class="col-xs-12 col-md-10 col-md-offset-1">
         <?php print render($content['services']); ?>
