@@ -12,7 +12,7 @@
 {% endmacro %}
 
 {% macro pane_begin(namespace, promoted, min_height) %}
-  <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace) }}{% if promoted %} no-padding{% endif %}{% if min_height %} min-height{% endif %}">
+  <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace) }}{% if promoted %} promoted{% endif %}{% if min_height %} min-height{% endif %}">
     {% if not promoted is empty %} {# or just if promoted? #}
       <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'inner-wrapper') }}">
     {% endif %}

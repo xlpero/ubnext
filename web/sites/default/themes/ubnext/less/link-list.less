@@ -10,24 +10,26 @@
 
 /* Link panels context: */
 .ubn-panel-links {
-  &.min-height {
-    min-height: @boxes-min-height;
-    .ubn-panel-links-inner-wrapper {
-      min-height: @inner-wrapper-min-height;
-    }
-  }
-
   padding: 20px;
   border: 1px solid @gray-light;
   margin-bottom: 20px;
-  &.no-padding {
+
+  &.min-height {
+    min-height: @boxes-min-height;
+  }
+  &.promoted {
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    .ubn-panel-links-inner-wrapper {
+      flex: 1;
+      min-height: @inner-wrapper-min-height;
+      border-left: 6px @brand-primary solid;
+      padding-left: 20px;
+      margin: 20px 20px 20px 0;
+    }
   }
-  .ubn-panel-links-inner-wrapper {
-    border-left: 6px @brand-primary solid;
-    padding-left: 20px;
-    margin: 20px 20px 20px 0;
-  }
+
   .ubn-panel-links-head {
     &:extend(.clearfix all);
     .ubn-panel-links-head-title {
