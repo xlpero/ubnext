@@ -69,7 +69,7 @@
         }
       });
 
-      var sm_mql = window.matchMedia('(max-width: 768px)');
+      var sm_mql = window.matchMedia('(max-width: 767px)');
       var set_items_count = function(threshold) {
         $('.blurb-navigation.collapsible', context).each(function() {
           var $this = $(this);
