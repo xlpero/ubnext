@@ -145,12 +145,12 @@ function slate_twig_instance() {
   return $twig;
 }
 
-function slate_is_cacheable($allow_caching = NULL, $initialize_context = NULL) {
+function slate_is_cacheable($allow_caching = NULL, $initialize_context = FALSE) {
   $allow_caching_static = &drupal_static(__FUNCTION__, array());
-  if(!empty($initialize_context)) {
-    array_push($allow_caching_static, TRUE);
+  if ($initialize_context) {
+    array_push($allow_caching_static, $allow_caching);
   }
-  if(isset($allow_caching)) {
+  else if (isset($allow_caching)) {
     end($allow_caching_static);
     $i = key($allow_caching_static);
     $allow_caching_static[$i] = $allow_caching;
@@ -238,7 +238,7 @@ function slate_render($slate, $models = array()) {
     if(!isset($content)) {
       if($cache_enabled) {
         // Initialize cache context on stack
-        slate_is_cacheable(NULL, TRUE);
+        slate_is_cacheable(TRUE, TRUE);
       }
       $content = slate_twig_instance()->render($slate_info['file'], $models);
       if($cache_enabled) {
