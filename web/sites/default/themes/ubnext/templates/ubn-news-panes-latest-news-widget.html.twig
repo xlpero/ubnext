@@ -6,8 +6,7 @@
 {% import "macros/misc.html.twig" as misc %}
 {% import "macros/panel-links.html.twig" as pane %}
 
-{# Note that we don't need namespace here since no special styling #}
-{{ pane.pane_begin('', false) }}
+{{ pane.pane_begin() }}
   {{ pane.pane_head_begin() }}
     {{ pane.pane_head_title(t("Current and news")) }}
   {{ pane.pane_head_end() }}

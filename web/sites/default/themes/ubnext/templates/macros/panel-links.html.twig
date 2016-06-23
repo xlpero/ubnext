@@ -1,25 +1,26 @@
-{# TODO: replaced promoted, hide_icon, etc with options hash #}
-
-{% macro link_list(title, list, promoted, namespace, hide_icon, min_height) %}
-  {{ _self.pane_begin(namespace, promoted, min_height) }}
+{% macro link_list(title, list, namespace, options) %}
+  {% set options = { 'promoted': false, 'hide_icon': false, 'min_height': false, 'header_level': 2 }|merge(options|default({})) %}
+  {{ _self.pane_begin(namespace, options) }}
     {{ _self.pane_head_begin(namespace) }}
-      {{ _self.pane_head_title(title, namespace) }}
+      {{ _self.pane_head_title(title, namespace, options) }}
     {{ _self.pane_head_end() }}
     {{ _self.pane_body_begin(namespace) }}
-      {{ _self.link_list_links(list, namespace, hide_icon) }}
+      {{ _self.link_list_links(list, namespace, options) }}
     {{ _self.pane_body_end() }}
-  {{ _self.pane_end(promoted) }}
+  {{ _self.pane_end(options) }}
 {% endmacro %}
 
-{% macro pane_begin(namespace, promoted, min_height) %}
-  <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace) }}{% if promoted %} promoted{% endif %}{% if min_height %} min-height{% endif %}">
-    {% if not promoted is empty %} {# or just if promoted? #}
+{% macro pane_begin(namespace, options) %}
+  {% set options = { 'promoted': false, 'min_height': false }|merge(options|default({})) %}
+  <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace) }}{% if options.promoted %} promoted{% endif %}{% if options.min_height %} min-height{% endif %}">
+    {% if options.promoted %}
       <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'inner-wrapper') }}">
     {% endif %}
 {% endmacro %}
 
-{% macro pane_end(promoted) %}
-  {% if not promoted is empty %}
+{% macro pane_end(options) %}
+  {% set options = { 'promoted': false }|merge(options|default({})) %}
+  {% if options.promoted %}
     </div>
   {% endif %}
   </div>
@@ -35,9 +36,10 @@
   </div>
 {% endmacro %}
 
-{% macro pane_head_title(title, namespace) %}
+{% macro pane_head_title(title, namespace, options) %}
+  {% set options = { 'header_level': 2 }|merge(options|default({})) %}
   {% if not title is empty %}
-    <h2 class="h1 small no-top-margin">{{ title|raw }}</h2>
+    <h{{ options.header_level }} class="h1 small no-top-margin">{{ title|raw }}</h2>
   {% endif %}
 {% endmacro %}
 
@@ -49,13 +51,14 @@
   </div>
 {% endmacro %}
 
-{# TODO: change order of params, namespace last? #}
-{% macro link_list_links(list, namespace, hide_icon) %}
+{% macro link_list_links(list, namespace, options) %}
   {% import "macros/misc.html.twig" as misc %}
+  {% set options = { 'hide_icon': false }|merge(options|default({})) %}
+
   {% if not list is empty %}
     <ul class="list-unstyled {{ ubn_namespace_classes('ubn-panel-links', namespace, 'link-list') }}">
     {% for link in list %}
-      {{ _self.link_list_links_item_begin(namespace, hide_icon) }}
+      {{ _self.link_list_links_item_begin(namespace, options) }}
         {% set link_bundle = link.getBundle %}
         {% if link_bundle == 'field_theme_link' %}
           <a href="{{ url(link.field_link_to_theme.value.url) }}">{{ link.field_link_to_theme.value.title }}</a>
@@ -73,10 +76,11 @@
   {% endif %}
 {% endmacro %}
 
-{% macro link_list_links_item_begin(namespace, hide_icon) %}
+{% macro link_list_links_item_begin(namespace, options) %}
+  {% set options = { 'hide_icon' : false }|merge(options|default({})) %}
   <li>
-    {% if hide_icon is empty %}<i class="fa fa-chevron-right"></i>{% endif %}
-    <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'body-link') }}{% if hide_icon is empty %} icon{% endif %}">
+    {% if not options.hide_icon %}<i class="fa fa-chevron-right"></i>{% endif %}
+    <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'body-link') }}{% if not options.hide_icon %} icon{% endif %}">
 {% endmacro %}
 
 {% macro link_list_links_item_end() %}
