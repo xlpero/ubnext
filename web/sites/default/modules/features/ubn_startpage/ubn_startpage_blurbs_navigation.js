@@ -56,10 +56,13 @@
             else {
               //$extra_items.fadeIn(200); //or just .hide()?
               //$extra_items.show();
+              /*
               $show_more_link_a_label.text(hide_text);
               $show_more_link_i.removeClass('fa-chevron-down');
               $show_more_link_i.addClass('fa-chevron-up');
+              */
               $blurb_container.removeClass('collapsed');
+              $show_more_link.remove();
             }
             $.fn.matchHeight._update(false);
           });
