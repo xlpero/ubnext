@@ -211,7 +211,8 @@ function slate_render($slate, $models = array()) {
           $language = $model->getPropertyLanguage();
           $cache_data[] = array(
             $language->language,
-            $model->value(),
+            // function_exists is actually a lot faster than module_exists
+            function_exists('entity_modified_last') ? entity_modified_last($model->type(), $model->value()) : $model->value(),
           );
         }
         else {
