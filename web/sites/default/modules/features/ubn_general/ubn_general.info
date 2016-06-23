@@ -16,6 +16,7 @@ dependencies[] = diff
 dependencies[] = dnd
 dependencies[] = entity
 dependencies[] = entity_modified
+dependencies[] = entity_modified_nodequeue
 dependencies[] = entity_translation
 dependencies[] = entity_translation_i18n_menu
 dependencies[] = entityform
