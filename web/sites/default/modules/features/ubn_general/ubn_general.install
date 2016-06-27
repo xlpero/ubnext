@@ -657,6 +657,10 @@ function ubn_general_update_7173() {
 }
 
 function ubn_general_update_7174() {
+  features_revert_module('ubn_general');
+}
+
+function ubn_general_update_7175() {
   $modules = array('entity_modified_nodequeue', 'entity_modified');
   module_disable($modules);
   drupal_uninstall_modules($modules);
