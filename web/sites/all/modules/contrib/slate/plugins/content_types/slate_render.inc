@@ -126,6 +126,7 @@ function slate_slate_render_content_type_render($subtype, $conf, $panel_args, $c
   }
   else if (isset($slate_info['conf'])) {
     $models['conf'] = array_intersect_key($conf, $slate_info['conf']);
+    unset($slate_info['models']['conf']);
   }
 
   foreach ($slate_info['models'] as $model => $model_type) {
