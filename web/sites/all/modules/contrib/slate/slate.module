@@ -198,7 +198,6 @@ function slate_render($slate, $models = array()) {
     $models[$model] = $plugin->wrapper($models[$model]);
   }
 
-  global $language_content;
   $cache_enabled = variable_get('slate_cache_enabled', FALSE) && !(isset($slate_info['cacheable']) && empty($slate_info['cacheable']));
   try {
     if($cache_enabled) {
@@ -236,12 +235,11 @@ function slate_render($slate, $models = array()) {
           );
         }
         else {
-          $cache_data[] = array(
-            $language_content->language,
-            $model,
-          );
+          $cache_data[] = $model;
         }
       }
+      global $language_content;
+      $cache_data[] = $language_content->language;
       $cache_data[] = $slate;
 
       if(variable_get('slate_cache_slate_file_hash', FALSE)) {

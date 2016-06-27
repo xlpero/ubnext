@@ -1,21 +1,21 @@
 {# slate
-  name = Footer 
+  name = Footer
+  cacheable = FALSE
 #}
-
 <footer id="footer" class="container">
-	<div class="row">
-		<div class="col-sm-6 col-md-4">
-			{{check_markup(variable_get('footer_col1', NULL)['value'], variable_get('footer_col1', NULL)['format']) | raw}}	
-		</div>
-		<div class="col-sm-6 col-md-8">
-			<div class="row">
-				<div class="col-md-6">
-					{{check_markup(variable_get('footer_col2', NULL)['value'], variable_get('footer_col2', NULL)['format']) | raw}}	
-				</div>
-				<div class="col-md-6">
-					{{check_markup(variable_get('footer_col3', NULL)['value'], variable_get('footer_col3', NULL)['format']) | raw}}	
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-sm-6 col-md-4">
+      {{ check_markup(variable_get('footer_col1', { 'value': '' })['value'], variable_get('footer_col1', { 'format': NULL })['format'], '', TRUE)|raw }}
+    </div>
+    <div class="col-sm-6 col-md-8">
+      <div class="row">
+        <div class="col-md-6">
+          {{ check_markup(variable_get('footer_col2', { 'value': '' })['value'], variable_get('footer_col2', { 'format': NULL })['format'], '', TRUE)|raw }}
+        </div>
+        <div class="col-md-6">
+          {{ check_markup(variable_get('footer_col3', { 'value': '' })['value'], variable_get('footer_col3', { 'format': NULL })['format'], '', TRUE)|raw }}
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>
