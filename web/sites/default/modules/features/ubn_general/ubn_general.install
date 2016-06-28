@@ -4,6 +4,31 @@
  * Utility functions
  */
 
+function ubn_general_content_type_delete($type) {
+  if (node_type_load($type)) {
+    $results = db_select('node', 'n')
+      ->fields('n', array('nid'))
+      ->condition('type', $type)
+      ->execute();
+    foreach ($results as $result) {
+      $nids[] = $result->nid;
+    }
+    if (!empty($nids)) {
+      node_delete_multiple($nids);
+      drupal_set_message(t('%count nodes has been deleted.', array('%count' => count($nids))));
+    }
+    // Then, delete content type
+    node_type_delete($type);
+    variable_del('node_preview_' . $type); //???
+    drupal_set_message(t('%type content type has been deleted.', array('%type' => $type)));
+  }
+  else {
+    drupal_set_message(t('No content type of type %type to delete.', array('%type' => $type)));
+  }
+  node_types_rebuild();
+  menu_rebuild();
+}
+
 function ubn_general_entity_translation_fields_enable($field_names) {
   module_load_include('inc', 'entity_translation', 'entity_translation.node');
   module_load_include('inc', 'entity_translation', 'entity_translation.admin');
@@ -664,6 +689,10 @@ function ubn_general_update_7175() {
   $modules = array('entity_modified_nodequeue', 'entity_modified');
   module_disable($modules);
   drupal_uninstall_modules($modules);
+}
+
+function ubn_general_update_7176() {
+  ubn_general_content_type_delete('article');
 }
 
 //TODO: Disable rdf module?
