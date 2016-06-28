@@ -214,7 +214,6 @@ features[linkit_profiles][] = ubnext
 features[node][] = database
 features[node][] = embedded_page
 features[node][] = library
-features[node][] = navigation_landing
 features[node][] = opening_hours
 features[node][] = page
 features[taxonomy][] = library_properties

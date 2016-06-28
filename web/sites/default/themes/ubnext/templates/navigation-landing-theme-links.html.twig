@@ -1,6 +1,7 @@
 {# slate
   name = Navigation landing: theme-links
-  models[page] = entity:node
+  models[page] = item
+  models[children] = item
 #}
 {% import "macros/misc.html.twig" as misc %}
 {% import "macros/panel-links.html.twig" as pane %}
@@ -37,7 +38,7 @@
   {% endif %}
 {% endmacro %}
 
-{% if not page.field_theme_link is empty %}
+{% if not children is empty %}
   <div class="row">
     <ul class="ubn-theme-links primary list-unstyled clearfix">
       {% if not page.field_shortcut_links is empty %}
@@ -49,9 +50,9 @@
         </li>
       {% endif %}
       {% set isPrimary = true %}
-      {% for link in page.field_theme_link %}
+      {% for link in children %}
         {% if loop.index <= page.field_number_of_primary.value %}
-          {{ _self.theme_link(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value, loop.index, page, addShortcuts, isPrimary)}}
+          {{ _self.theme_link(link['link']['link_title'], link['link']['link_path'], link['link']['options']['attributes']['title'], loop.index, page, addShortcuts, isPrimary)}}
         {% endif %}
       {% endfor %}
     </ul>
@@ -59,9 +60,9 @@
   {% set isPrimary = false %}
   <div class="row">
     <ul class="ubn-theme-links secondary list-unstyled clearfix">
-      {% for link in page.field_theme_link %}
+      {% for link in children %}
         {% if loop.index > page.field_number_of_primary.value %}
-          {{ _self.theme_link(link.field_link_to_theme.value.title, link.field_link_to_theme.value.url, link.field_description.value, loop.index - page.field_number_of_primary.value, page,false, isPrimary)}}
+          {{ _self.theme_link(link['link']['link_title'], link['link']['link_path'], link['link']['options']['attributes']['title'], loop.index - page.field_number_of_primary.value, page,false, isPrimary)}}
         {% endif %}
       {% endfor %}
     </ul>

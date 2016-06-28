@@ -1,0 +1,12 @@
+name = UBN Nav
+core = 7.x
+package = UBNext
+version = 7.x-1.0
+dependencies[] = ctools
+dependencies[] = features
+dependencies[] = strongarm
+dependencies[] = ubn_content_types
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[node][] = navigation_landing
+project path = sites/default/modules/features

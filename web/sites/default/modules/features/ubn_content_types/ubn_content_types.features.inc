@@ -57,14 +57,6 @@ function ubn_content_types_node_info() {
       'title_label' => t('Title'),
       'help' => '',
     ),
-    'navigation_landing' => array(
-      'name' => t('Navigation Landing'),
-      'base' => 'node_content',
-      'description' => '',
-      'has_title' => '1',
-      'title_label' => t('Title'),
-      'help' => '',
-    ),
     'opening_hours' => array(
       'name' => t('Opening hours'),
       'base' => 'node_content',
