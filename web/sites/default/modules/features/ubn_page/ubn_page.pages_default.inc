@@ -53,6 +53,9 @@ function ubn_page_default_page_manager_handlers() {
       'default' => NULL,
       'main' => NULL,
       'header' => NULL,
+      'promoted_top' => NULL,
+      'main_top' => NULL,
+      'promoted' => NULL,
     ),
     'main' => array(
       'style' => 'naked',
@@ -121,32 +124,29 @@ function ubn_page_default_page_manager_handlers() {
     $display->content['new-42a20fe0-8b58-4b7d-bbd7-cfaa600af309'] = $pane;
     $display->panels['main'][0] = 'new-42a20fe0-8b58-4b7d-bbd7-cfaa600af309';
     $pane = new stdClass();
-    $pane->pid = 'new-20483623-b8ec-4ed2-ac70-64e8b0856028';
+    $pane->pid = 'new-a0a45809-6ee5-4758-b7fb-10a998c8fa73';
     $pane->panel = 'main';
-    $pane->type = 'slate_render';
-    $pane->subtype = 'slate_render:navigation-landing-theme-links';
+    $pane->type = 'sub_menu_items';
+    $pane->subtype = 'sub_menu_items';
     $pane->shown = TRUE;
     $pane->access = array();
     $pane->configuration = array(
-      'context' => array(
-        0 => 'argument_entity_id:node_1',
-      ),
-      'override_title' => 1,
+      'context' => 'argument_entity_id:node_1',
+      'override_title' => 0,
       'override_title_text' => '',
       'override_title_heading' => 'h2',
     );
     $pane->cache = array();
     $pane->style = array(
       'settings' => NULL,
-      'style' => 'naked',
     );
     $pane->css = array();
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = '20483623-b8ec-4ed2-ac70-64e8b0856028';
-    $display->content['new-20483623-b8ec-4ed2-ac70-64e8b0856028'] = $pane;
-    $display->panels['main'][1] = 'new-20483623-b8ec-4ed2-ac70-64e8b0856028';
+    $pane->uuid = 'a0a45809-6ee5-4758-b7fb-10a998c8fa73';
+    $display->content['new-a0a45809-6ee5-4758-b7fb-10a998c8fa73'] = $pane;
+    $display->panels['main'][1] = 'new-a0a45809-6ee5-4758-b7fb-10a998c8fa73';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
