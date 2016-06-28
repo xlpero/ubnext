@@ -198,7 +198,6 @@ function slate_render($slate, $models = array()) {
     $models[$model] = $plugin->wrapper($models[$model]);
   }
 
-  global $language_content;
   $cache_enabled = variable_get('slate_cache_enabled', FALSE) && !(isset($slate_info['cacheable']) && empty($slate_info['cacheable']));
   try {
     if($cache_enabled) {
@@ -208,20 +207,39 @@ function slate_render($slate, $models = array()) {
         //TODO: Or add language content only once for small speed gain + small
         //risk of errant caching?
         if($model instanceof SlateModelPluginEntityWrapper) {
+          static $uuid_enabled = NULL;
+          static $uuid_revision_keys = array();
+
+          // module_exists is actually not super-fast, so cache result to avoid
+          // multiple calls
+          if (!isset($uuid_enabled)) {
+            $uuid_enabled = module_exists('uuid');
+          }
+          if ($uuid_enabled) {
+            $entity_type = $model->type();
+            if (!isset($uuid_revision_keys[$entity_type])) {
+              $entity_info = $model->entityInfo();
+              $uuid_revision_keys[$entity_type] =
+                isset($entity_info['entity keys']['revision uuid']) ? $entity_info['entity keys']['revision uuid'] : FALSE;
+            }
+          }
+
           $language = $model->getPropertyLanguage();
+          $entity_value = $model->value();
+
           $cache_data[] = array(
             $language->language,
-            // function_exists is actually a lot faster than module_exists
-            function_exists('entity_modified_last') ? entity_modified_last($model->type(), $model->value()) : $model->value(),
+            isset($uuid_revision_keys[$entity_type]) && $uuid_revision_keys[$entity_type] ?
+              $entity_value->{$uuid_revision_keys[$entity_type]} :
+              $entity_value,
           );
         }
         else {
-          $cache_data[] = array(
-            $language_content->language,
-            $model,
-          );
+          $cache_data[] = $model;
         }
       }
+      global $language_content;
+      $cache_data[] = $language_content->language;
       $cache_data[] = $slate;
 
       if(variable_get('slate_cache_slate_file_hash', FALSE)) {
@@ -361,6 +379,10 @@ function slate_slate_info() {
       if (empty($info['name'])) {
         // @todo some kind of warning?
         continue;
+      }
+
+      if (isset($info['conf'])) {
+        $info['models']['conf'] = 'item';
       }
 
       if (!empty($info['models'])) {
