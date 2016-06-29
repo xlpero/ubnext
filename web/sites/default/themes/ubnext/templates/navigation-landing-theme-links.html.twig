@@ -1,6 +1,6 @@
 {# slate
   name = Navigation landing: theme-links
-  models[page] = item
+  models[page] = entity:node
   models[children] = item
 #}
 {% import "macros/misc.html.twig" as misc %}
@@ -9,7 +9,6 @@
 {% macro theme_link(linkTitle, url, description, index, page, addShortcuts, isPrimary) %}
   {% import "macros/misc.html.twig" as misc %}
   {% import "macros/panel-links.html.twig" as pane %}
-
   <li class="col-xs-12 col-sm-6 col-md-4">
     {{ pane.pane_begin('ubn-theme-links-item', { 'hide_icon': true } ) }}
       <div class="ubn-theme-links-item-head">
