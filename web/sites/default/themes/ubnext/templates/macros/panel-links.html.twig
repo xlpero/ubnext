@@ -59,15 +59,19 @@
     <ul class="list-unstyled {{ ubn_namespace_classes('ubn-panel-links', namespace, 'link-list') }}">
     {% for link in list %}
       {{ _self.link_list_links_item_begin(namespace, options) }}
-        {% set link_bundle = link.getBundle %}
-        {% if link_bundle == 'field_theme_link' %}
-          <a href="{{ url(link.field_link_to_theme.value.url) }}">{{ link.field_link_to_theme.value.title }}</a>
-        {% elseif link_bundle == 'field_shortcut_links' %}
-          {% set type = link.field_type_to_use.value %}
-          {% if type == 'link' %}
-            <a href="{{ url(link.field_link.value.url) }}">{{ link.field_link.value.title }}</a>
-          {% elseif type == 'file' %}
-            {{ misc.file_atom(link.field_file, 'page_navigation_landing_shortcut')|raw }}
+        {% if is_array(link) %}
+            <a href="{{ url(link.url) }}">{{ link.title }}</a> 
+        {% else %}
+          {% set link_bundle = link.getBundle %}
+          {% if link_bundle == 'field_theme_link' %}
+            <a href="{{ url(link.field_link_to_theme.value.url) }}">{{ link.field_link_to_theme.value.title }}</a>
+          {% elseif link_bundle == 'field_shortcut_links' %}
+            {% set type = link.field_type_to_use.value %}
+            {% if type == 'link' %}
+              <a href="{{ url(link.field_link.value.url) }}">{{ link.field_link.value.title }}</a>
+            {% elseif type == 'file' %}
+              {{ misc.file_atom(link.field_file, 'page_navigation_landing_shortcut')|raw }}
+            {% endif %}
           {% endif %}
         {% endif %}
       {{ _self.link_list_links_item_end() }}

@@ -21,6 +21,7 @@ function ubn_startpage_front_page_blurbs_navigation_content_type_settings($form,
   return $form;
 }
 
+
 /**
  * Render callback.
  */
@@ -33,9 +34,30 @@ function ubn_startpage_front_page_blurbs_navigation_content_type_render($subtype
   //TODO: Hardcoded for now, or load queue and check entity type?
   $blurbs = array();
   foreach($wrapper->eq_node as $delta => $blurb) {
+    
+    // Set $path to the internal Drupal path of the parent or
+    // to NULL for the current path 
+    $path = $blurb->value()->path['source'];
+    $parent = menu_link_get_preferred($path);
+    $parameters = array(
+        'active_trail' => array($parent['plid']),
+        'only_active_trail' => FALSE,
+        'min_depth' => $parent['depth']+1,
+        'max_depth' => $parent['depth']+1,
+        'conditions' => array('plid' => $parent['mlid']),
+      );
+    $children = menu_build_tree($parent['menu_name'], $parameters);
+
+    // convert to array and cherry-pick attributes
+    $arr_children = array();
+    foreach ($children as $child) {
+      $temp_child = array('url' => $child['link']['link_path'], 'title' => $child['link']['title']);
+      $arr_children[] = $temp_child;
+    }
+
+    $blurb->value()->ubn_menu_children = $arr_children;
     $blurbs[] = $blurb->value();
   }
-
   $block = new stdClass();
   $block->title = '';
   $block->content  = '';
