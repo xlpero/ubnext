@@ -695,6 +695,11 @@ function ubn_general_update_7176() {
   ubn_general_content_type_delete('article');
 }
 
+function ubn_general_update_7177() {
+  features_revert(array('ubn_search_content' => array('uuid_entity_node')));
+  features_revert(array('ubn_search_content' => array('uuid_entity_menu_link')));
+}
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
