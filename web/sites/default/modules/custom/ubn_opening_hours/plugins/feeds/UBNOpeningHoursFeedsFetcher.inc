@@ -56,6 +56,7 @@ class UBNOpeningHoursFeedsFetcher extends FeedsFetcher {
       }
       foreach($location['openhours'] as &$openhour) {
         $openhour['id'] = md5($location['id'] . $openhour['date']);
+        $openhour['location_id'] = $location['id'];
       }
     }
     $raw = drupal_json_encode($result_json);
