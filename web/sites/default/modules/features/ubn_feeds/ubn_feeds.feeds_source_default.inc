@@ -62,18 +62,5 @@ function ubn_feeds_feeds_source_default() {
   $feeds_source->source = 'pgsql:host=130.241.16.44;port=5432;dbname=librisdb;user=xgudav';
   $export['databases_topics'] = $feeds_source;
 
-  $feeds_source = new stdClass();
-  $feeds_source->disabled = FALSE; /* Edit this to true to make a default feeds_source disabled initially */
-  $feeds_source->api_version = 1;
-  $feeds_source->id = 'libraries_opening_hours';
-  $feeds_source->feed_nid = 0;
-  $feeds_source->config = array(
-    'UBNOpeningHoursFeedsFetcher' => array(
-      'source' => 'http://130.241.35.161:3014/locations',
-    ),
-  );
-  $feeds_source->source = 'http://130.241.35.161:3014/locations';
-  $export['libraries_opening_hours'] = $feeds_source;
-
   return $export;
 }
