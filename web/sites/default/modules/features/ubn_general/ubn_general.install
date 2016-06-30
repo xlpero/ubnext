@@ -708,6 +708,10 @@ function ubn_general_update_7179() {
   module_enable(array('ubn_library_feeds'));
 }
 
+function ubn_general_update_7180() {
+  features_revert_module('ubn_content_types');
+}
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
