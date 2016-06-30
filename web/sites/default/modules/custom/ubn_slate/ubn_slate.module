@@ -74,9 +74,9 @@ function _ubn_slate_opening_hours_items($opening_hours_values, $weekdays = NULL,
     if($opening_hours_items[$i]['is_open']) {
       //TODO: would be more correct to get timezone from field, or if ->value()
       //produced an ISO-formatted time-string with timezone-information
-      $opening_hours_from = new DateTime('@' . $opening_hours->field_opening_hours->value->value());
+      $opening_hours_from = new DateTime('@' . $opening_hours->field_opening_hours_datetime->value->value());
       $opening_hours_from->setTimezone($tz);
-      $opening_hours_to = new DateTime('@' . $opening_hours->field_opening_hours->value2->value());
+      $opening_hours_to = new DateTime('@' . $opening_hours->field_opening_hours_datetime->value2->value());
       $opening_hours_to->setTimezone($tz);
       $opening_hours_items[$i]['hours'] = $opening_hours_from->format('H:i') . ' - ' . $opening_hours_to->format('H:i');
     }
