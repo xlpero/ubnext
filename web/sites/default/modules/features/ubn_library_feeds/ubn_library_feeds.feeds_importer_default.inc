@@ -158,7 +158,7 @@ function ubn_library_feeds_feeds_importer_default() {
         'update_existing' => '2',
         'update_non_existent' => 'skip',
         'input_format' => 'plain_text',
-        'skip_hash_check' => 1,
+        'skip_hash_check' => 0,
         'bundle' => 'field_opening_hours',
         'host_entity_importer_id' => 'libraries_opening_hours',
         'host_entity_importer_nid' => NULL,
