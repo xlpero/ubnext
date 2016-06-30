@@ -166,7 +166,7 @@ function ubn_library_feeds_feeds_importer_default() {
     ),
     'content_type' => '',
     'update' => 0,
-    'import_period' => '-1',
+    'import_period' => '0',
     'expire_period' => 3600,
     'import_on_create' => 1,
     'process_in_background' => 0,
