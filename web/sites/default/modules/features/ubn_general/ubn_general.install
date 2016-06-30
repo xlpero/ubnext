@@ -700,6 +700,10 @@ function ubn_general_update_7177() {
   features_revert(array('ubn_search_content' => array('uuid_entity_menu_link')));
 }
 
+function ubn_general_update_7178() {
+  module_enable(array('ubn_library'));
+}
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
