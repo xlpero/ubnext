@@ -701,6 +701,7 @@ function ubn_general_update_7177() {
 }
 
 function ubn_general_update_7178() {
+  field_delete_field('field_opening_hours');
   module_enable(array('ubn_library'));
 }
 
