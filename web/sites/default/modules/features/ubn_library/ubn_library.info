@@ -1,7 +1,7 @@
 name = UBN Library
 core = 7.x
 package = UBNext
-version = 7.x-0.2
+version = 7.x-0.3
 dependencies[] = addressfield
 dependencies[] = atom_reference
 dependencies[] = ctools
@@ -20,6 +20,7 @@ features[ctools][] = field_group:field_group:1
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[field_base][] = field_library_resources
+features[field_base][] = field_opening_hours
 features[field_base][] = field_opening_hours_date
 features[field_base][] = field_opening_hours_datetime
 features[field_base][] = field_opening_hours_is_exception

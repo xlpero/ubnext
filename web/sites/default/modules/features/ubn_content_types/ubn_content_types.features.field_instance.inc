@@ -2125,159 +2125,6 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-opening_hours-field_opening_hours_date'.
-  $field_instances['node-opening_hours-field_opening_hours_date'] = array(
-    'bundle' => 'opening_hours',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'date',
-        'settings' => array(
-          'format_type' => 'long',
-          'fromto' => 'both',
-          'multiple_from' => '',
-          'multiple_number' => '',
-          'multiple_to' => '',
-          'show_remaining_days' => FALSE,
-        ),
-        'type' => 'date_default',
-        'weight' => 4,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_opening_hours_date',
-    'label' => 'Opening hours date',
-    'required' => 0,
-    'settings' => array(
-      'default_value' => 'now',
-      'default_value2' => 'same',
-      'default_value_code' => '',
-      'default_value_code2' => '',
-      'entity_translation_sync' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'date',
-      'settings' => array(
-        'increment' => 15,
-        'input_format' => 'm/d/Y - H:i:s',
-        'input_format_custom' => '',
-        'label_position' => 'above',
-        'no_fieldset' => 0,
-        'text_parts' => array(),
-        'year_range' => '-3:+3',
-      ),
-      'type' => 'date_text',
-      'weight' => 3,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'node-opening_hours-field_opening_hours_is_exception'.
-  $field_instances['node-opening_hours-field_opening_hours_is_exception'] = array(
-    'bundle' => 'opening_hours',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 1,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_opening_hours_is_exception',
-    'label' => 'Is exception',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'ubn_property_field' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 6,
-    ),
-  );
-
-  // Exported field_instance: 'node-opening_hours-field_opening_hours_is_open'.
-  $field_instances['node-opening_hours-field_opening_hours_is_open'] = array(
-    'bundle' => 'opening_hours',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 3,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_opening_hours_is_open',
-    'label' => 'Is open',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'ubn_property_field' => FALSE,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 7,
-    ),
-  );
-
   // Exported field_instance: 'node-opening_hours-title_field'.
   $field_instances['node-opening_hours-title_field'] = array(
     'bundle' => 'opening_hours',
@@ -3274,8 +3121,6 @@ function ubn_content_types_field_default_field_instances() {
   t('Homepage of the Author');
   t('If checked this link will be visible amongst the shortcuts on the database search page. ');
   t('Image');
-  t('Is exception');
-  t('Is open');
   t('Lead');
   t('Link');
   t('Link to theme');
@@ -3287,7 +3132,6 @@ function ubn_content_types_field_default_field_instances() {
   t('Name');
   t('No link');
   t('Number of primary themelinks');
-  t('Opening hours date');
   t('Promote to shortcut');
   t('Public access');
   t('Publishers');

@@ -688,32 +688,6 @@ function ubn_content_types_field_default_field_bases() {
     'type' => 'number_integer',
   );
 
-  // Exported field_base: 'field_opening_hours'.
-  $field_bases['field_opening_hours'] = array(
-    'active' => 1,
-    'cardinality' => -1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_opening_hours',
-    'indexes' => array(
-      'revision_id' => array(
-        0 => 'revision_id',
-      ),
-      'value' => array(
-        0 => 'value',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'field_collection',
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'hide_blank_items' => 1,
-      'path' => '',
-    ),
-    'translatable' => 0,
-    'type' => 'field_collection',
-  );
-
   // Exported field_base: 'field_phone'.
   $field_bases['field_phone'] = array(
     'active' => 1,
