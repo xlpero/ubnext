@@ -15,6 +15,14 @@ function ubn_startpage_ctools_plugin_directory($owner, $plugin_type) {
   }
 }
 
+
+
+function ubn_startpage_entity_update($entity, $type) {
+  if ($type === 'entityqueue_subqueue') {
+    cache_clear_all();
+  }
+}
+
 //Must be run before slate entity_info_alter?
 function ubn_startpage_entity_info_alter(&$entity_info) {
   $entity_info['node']['view modes']['ubn_blurb_primary'] = array(
@@ -30,3 +38,4 @@ function ubn_startpage_entity_info_alter(&$entity_info) {
     'custom settings' => FALSE,
   );
 }
+

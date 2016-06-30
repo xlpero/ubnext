@@ -3,6 +3,7 @@
  * @file
  */
 
+
 function ubnext_links__locale_block($variables) {
   global $language;
   unset($variables['links'][$language->language]);
@@ -788,7 +789,6 @@ function ubnext_search_api_sorts_sort($variables) {
   }
   return $output;
 }
-
 
 
 
