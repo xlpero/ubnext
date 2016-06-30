@@ -73,8 +73,10 @@ class FeedsFieldCollectionProcessor extends FeedsProcessor {
     return array(
       'field_name' => NULL,
       'host_entity_type' => NULL,
-      'is_field' => NULL,
+      'host_entity_importer_id' => NULL,
+      'host_entity_importer_nid' => NULL,
       'guid_field_name' => '',
+      'is_field' => NULL,
     ) + parent::configDefaults();
   }
 
@@ -88,6 +90,8 @@ class FeedsFieldCollectionProcessor extends FeedsProcessor {
     foreach (field_read_fields(array('type' => 'field_collection')) as $field_name => $field) {
       $field_names[$field_name] = $field_name;
     }
+
+    // This setting is redundant, can be derived from bundle name?
     $form['field_name'] = array(
       '#type' => 'select',
       '#title' => t('Field name'),
@@ -101,24 +105,40 @@ class FeedsFieldCollectionProcessor extends FeedsProcessor {
     foreach (entity_get_info() as $entity_type => $entity_info) {
       $entity_types[$entity_type] = $entity_info['label'];
     }
-
+    //TODO: use states api for better ux
+    //TODO: these should really be replaced with targets with custom settings
+    // using form_callbacks/summary_callbacks
+    // this is a total kludge:
     $form['host_entity_type'] = array(
       '#type' => 'select',
       '#title' => t('Host entity type'),
       '#options' => $entity_types,
       '#default_value' => isset($this->config['host_entity_type']) ? $this->config['host_entity_type'] : NULL,
     );
-    $form['is_field'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Is field'),
-      '#description' => t('A flag that indicate that whether it is a property or field.'),
-      '#default_value' => isset($this->config['is_field']) ? $this->config['is_field'] : NULL,
+    $form['host_entity_importer_id'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Host entity importer id'),
+      '#description' => t('The importer feed id of the importer importing host entities. Can be left empty if host entity GUIDs are globally unique among importers or if feed item GUIDs are not used for host entity look-ups.'),
+      '#default_value' => isset($this->config['host_entity_importer_id']) ? $this->config['host_entity_importer_id'] : NULL,
+    );
+    $form['host_entity_importer_feed_nid'] = array(
+      '#type' => 'textfield',
+      '#title' => t('Host entity feed nid'),
+      '#description' => t(''),
+      '#description' => t('The importer feed nid of the importer importing host entities. Can be left empty if host entity GUIDs are globally unique among importers, the importer is not attached a node, or if feed item GUIDs are not used for host entity look-ups.'),
+      '#default_value' => isset($this->config['host_entity_importer_feed_nid']) ? $this->config['host_entity_importer_feed_nid'] : NULL,
     );
     $form['guid_field_name'] = array(
       '#type' => 'textfield',
       '#title' => t('Field/property name of Host entity GUID'),
-      '#description' => t('Machine name of the field/property that used for Host Entity GUID.'),
+      '#description' => t('Machine name of the field/property that used for host entity GUID. If left empty GUID of the host entity feed item will be used for host entity lookup.'),
       '#default_value' => isset($this->config['guid_field_name']) ? $this->config['guid_field_name'] : '',
+    );
+    $form['is_field'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Is field'),
+      '#description' => t('A flag that indicate that whether it is a property or field. If field/property name of host entity GUID is left empty this setting has no effect.'),
+      '#default_value' => isset($this->config['is_field']) ? $this->config['is_field'] : NULL,
     );
     return $form;
   }
@@ -128,26 +148,45 @@ class FeedsFieldCollectionProcessor extends FeedsProcessor {
    */
   public function setTargetElement(FeedsSource $source, $target_item, $target_element, $value) {
     switch ($target_element) {
-      //TODO: add feeds host entity guid?
       case 'host_entity_guid':
-        $query = new EntityFieldQuery();
-        $query->entityCondition('entity_type', $this->config['host_entity_type']);
-        if (!empty($this->config['is_field'])) {
-          $query->fieldCondition($this->config['guid_field_name'], 'value', $value);
+        $entity_id = NULL;
+        if (!empty($this->config['guid_field_name'])) {
+          $query = new EntityFieldQuery();
+          $query->entityCondition('entity_type', $this->config['host_entity_type']);
+          if (!empty($this->config['is_field'])) {
+            $query->fieldCondition($this->config['guid_field_name'], 'value', $value);
+          }
+          else{
+            $query->propertyCondition($this->config['guid_field_name'], $value);
+          }
+          $result = $query->execute();
+          if(!empty($result)) {
+            list(, $data) = each($result);
+            $entity_id = key($data);
+          }
         }
-        else{
-          $query->propertyCondition($this->config['guid_field_name'], $value);
+        else {
+          $query = db_select('feeds_item')
+            ->fields('feeds_item', array('entity_id'))
+            ->condition('entity_type', $this->config['host_entity_type']);
+          if (!empty($this->config['host_entity_importer_id'])) {
+            $query->condition('id', $this->config['host_entity_importer_id']);
+          }
+          if (!empty($this->config['host_entity_importer_feed_nid'])) {
+            $query->condition('feed_nid', $this->config['host_entity_importer_feed_nid']);
+          }
+          //TODO: make target configurable, guid/url?
+          $entity_id = $query->condition('guid', $value)
+            ->execute()
+            ->fetchField();
         }
-        $result = $query->execute();
-        if(!empty($result)) {
-          list($hostEntityType, $data) = each($result);
-          $entity_id = key($data);
+        if (!empty($entity_id)) {
           //Load skipping cache with $reset = TRUE, or will static cache reset on
           //save?
-          $host_entity = entity_load($hostEntityType, array($entity_id), array(), TRUE);
+          $host_entity = entity_load($this->config['host_entity_type'], array($entity_id), array(), TRUE);
           $host_entity = current($host_entity);
           if(!$target_item->hostEntityId()) {
-            $target_item->setHostEntity($hostEntityType, $host_entity);
+            $target_item->setHostEntity($this->config['host_entity_type'], $host_entity);
           }
           else {
             $target_item->updateHostEntity($host_entity);
