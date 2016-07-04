@@ -626,13 +626,6 @@ function ubn_general_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'create opening_hours content'.
-  $permissions['create opening_hours content'] = array(
-    'name' => 'create opening_hours content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: 'create page content'.
   $permissions['create page content'] = array(
     'name' => 'create page content',
@@ -723,13 +716,6 @@ function ubn_general_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'delete any opening_hours content'.
-  $permissions['delete any opening_hours content'] = array(
-    'name' => 'delete any opening_hours content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: 'delete any page content'.
   $permissions['delete any page content'] = array(
     'name' => 'delete any page content',
@@ -807,13 +793,6 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'delete own navigation_landing content'.
   $permissions['delete own navigation_landing content'] = array(
     'name' => 'delete own navigation_landing content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: 'delete own opening_hours content'.
-  $permissions['delete own opening_hours content'] = array(
-    'name' => 'delete own opening_hours content',
     'roles' => array(),
     'module' => 'node',
   );
@@ -1003,13 +982,6 @@ function ubn_general_user_default_permissions() {
     'module' => 'node',
   );
 
-  // Exported permission: 'edit any opening_hours content'.
-  $permissions['edit any opening_hours content'] = array(
-    'name' => 'edit any opening_hours content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
   // Exported permission: 'edit any page content'.
   $permissions['edit any page content'] = array(
     'name' => 'edit any page content',
@@ -1087,13 +1059,6 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'edit own navigation_landing content'.
   $permissions['edit own navigation_landing content'] = array(
     'name' => 'edit own navigation_landing content',
-    'roles' => array(),
-    'module' => 'node',
-  );
-
-  // Exported permission: 'edit own opening_hours content'.
-  $permissions['edit own opening_hours content'] = array(
-    'name' => 'edit own opening_hours content',
     'roles' => array(),
     'module' => 'node',
   );
