@@ -156,7 +156,7 @@ function ubn_library_feeds_feeds_importer_default() {
           ),
         ),
         'update_existing' => '2',
-        'update_non_existent' => 'skip',
+        'update_non_existent' => 'delete',
         'input_format' => 'plain_text',
         'skip_hash_check' => 0,
         'bundle' => 'field_opening_hours',
