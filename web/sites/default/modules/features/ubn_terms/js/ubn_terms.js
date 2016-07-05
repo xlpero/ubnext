@@ -106,11 +106,13 @@
           }
           var terms_group_ids = {};
           for(i in results) {
-            $('#' + results[i].ref).show().parents('.term-group').show();
-            var group_id = $('#' + results[i].ref).data('term-group-id');
+            var $term = $('#' + results[i].ref);
+            $term.show();
+            var group_id = $term.data('term-group-id');
             terms_group_ids[group_id] = group_id;
           }
           for(group_id in terms_group_ids) {
+            $('.term-group-' + group_id, context).show();
             $letter_nav_items.filter('.terms-groups-group-' + group_id).removeClass('disabled');
           }
         }
