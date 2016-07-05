@@ -1,9 +1,4 @@
 (function($) {
-  Drupal.behaviors.ubn_terms = {
-    attach: function(context, settings) {
-
-    }
-  };
   Drupal.behaviors.ubn_terms_collapsible = {
     attach : function(context, settings) {
       $collapsibles = $('.term-collapsible', context);
@@ -20,7 +15,6 @@
   };
   Drupal.behaviors.ubn_terms_lunr = {
     attach : function(context, settings) {
-
       /*
        * Lunr initialization
        */
@@ -39,7 +33,7 @@
         var doc = {
           id: $this.attr('id'),
           title: $this.children('.term-name').text()/*,
-                                                      body: $this.children('.term-description').text()*/
+          body: $this.children('.term-description').text()*/
         };
         idx.add(doc);
       });
@@ -57,7 +51,7 @@
          }, 100);
          };
          }
-         */
+      */
 
       /*
        * Search behaviour
