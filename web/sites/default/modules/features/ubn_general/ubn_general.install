@@ -700,6 +700,23 @@ function ubn_general_update_7177() {
   features_revert(array('ubn_search_content' => array('uuid_entity_menu_link')));
 }
 
+function ubn_general_update_7178() {
+  field_delete_field('field_opening_hours');
+  module_enable(array('ubn_library'));
+}
+
+function ubn_general_update_7179() {
+  module_enable(array('ubn_library_feeds'));
+}
+
+function ubn_general_update_7180() {
+  features_revert_module('ubn_content_types');
+}
+
+function ubn_general_update_7181() {
+  ubn_general_content_type_delete('opening_hours');
+}
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library

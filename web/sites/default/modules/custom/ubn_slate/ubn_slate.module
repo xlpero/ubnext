@@ -41,14 +41,10 @@ function _ubn_slate_opening_hours_items($opening_hours_values, $weekdays = NULL,
     $opening_hours_date = $opening_hours_date_datetime->format('Y-m-d');
 
     $weekday = NULL;
-    //$is_today = FALSE;
-    //$is_tomorrow = FALSE;
     if ($opening_hours_date === $today) {
-      //$is_today = TRUE;
       $weekday = t('Today');
     }
     elseif ($opening_hours_date === $tomorrow) {
-      //$is_tomorrow = TRUE;
       $weekday = t('Tomorrow');
     }
     else {
@@ -66,17 +62,17 @@ function _ubn_slate_opening_hours_items($opening_hours_values, $weekdays = NULL,
 
     $opening_hours_items[$i] = array(
       'weekday' => $weekday,
-      //'is_today' => $is_today,
-      //'is_tomorrow' => $is_tomorrow,
+      'timestamp' => $opening_hours_date_datetime->getTimestamp(),
       'is_open' => (bool) $opening_hours->field_opening_hours_is_open->value(),
+      'date' => $opening_hours_date,
     );
 
     if($opening_hours_items[$i]['is_open']) {
       //TODO: would be more correct to get timezone from field, or if ->value()
       //produced an ISO-formatted time-string with timezone-information
-      $opening_hours_from = new DateTime('@' . $opening_hours->field_opening_hours->value->value());
+      $opening_hours_from = new DateTime('@' . $opening_hours->field_opening_hours_datetime->value->value());
       $opening_hours_from->setTimezone($tz);
-      $opening_hours_to = new DateTime('@' . $opening_hours->field_opening_hours->value2->value());
+      $opening_hours_to = new DateTime('@' . $opening_hours->field_opening_hours_datetime->value2->value());
       $opening_hours_to->setTimezone($tz);
       $opening_hours_items[$i]['hours'] = $opening_hours_from->format('H:i') . ' - ' . $opening_hours_to->format('H:i');
     }
@@ -85,7 +81,12 @@ function _ubn_slate_opening_hours_items($opening_hours_values, $weekdays = NULL,
     }
     $opening_hours_items[$i]['is_exception'] = (bool) $opening_hours->field_opening_hours_is_exception->value();
   }
+  usort($opening_hours_items, '_ubn_slate_opening_hours_timestamp_compare');
   return array_values($opening_hours_items);
+}
+
+function _ubn_slate_opening_hours_timestamp_compare($opening_hours_a, $opening_hours_b) {
+  return $opening_hours_a['timestamp'] - $opening_hours_b['timestamp'];
 }
 
 function _ubn_slate_number_format($number, $decimals = 2) {

@@ -10,7 +10,7 @@
   </div>
   <div class="col-xs-5 col-sm-4">
     <div class="pull-right">
-      {% set opening_hours_today = ubn_opening_hours_items(library.field_referenced_opening_hours, [t("Today")])|first %}
+      {% set opening_hours_today = ubn_opening_hours_items(library.field_opening_hours, [t("Today")])|first %}
       {{ opening_hours_today.hours }}
     </div>
   </div>
