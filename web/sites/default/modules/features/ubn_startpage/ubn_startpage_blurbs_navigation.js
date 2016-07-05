@@ -9,9 +9,9 @@
   */
   Drupal.behaviors.ubn_startpage_blurbs_navigation_show_more = {
     attach: function(context, settings) {
-      var sm_threshold = 3;
-      var md_threshold = 5;
-      var show_all_text = Drupal.t('Show more');
+      var sm_threshold = 0;
+      var md_threshold = 3;
+      var show_all_text = Drupal.t('Show all');
       var hide_text = Drupal.t('Hide');
 
       $('.blurb-navigation', context).each(function() {
@@ -20,7 +20,7 @@
 
         var $extra_items = $('.ubn-panel-links-link-list li:gt(' + (sm_threshold - 1) + ')', $this);
 
-        if ($extra_items.length) {
+        if ($extra_items.length >= 0) {
           // Set initial state
           //$extra_items.hide();
           $blurb_container.addClass('collapsed');
@@ -77,7 +77,7 @@
           var $show_more = $('.blurb-navigation-show-more', $this);
           if(items_count > threshold) {
             var hidden_items = items_count - threshold;
-            $('.blurb-navigation-show-more-count', $this).text('(' + hidden_items + ')');
+            $('.blurb-navigation-show-more-count', $this).text('(' + items_count + ')');
             $show_more.show();
           }
           else {
