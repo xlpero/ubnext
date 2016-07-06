@@ -1,39 +1,4 @@
 (function($) {
-  Drupal.behaviors.ubn_terms = {
-    attach: function(context, settings) {
-      $("#terms-search-controls-search-box", context).focus();
-      $('.clear-search-btn', context).on("click", function() {
-          clearFilter(context);
-        /*  $("#terms-search-controls-search-box").val("");// does not trigger change..
-          toggleClearFilters(context, false);
-          $("#terms-search-controls-search-box", context).focus();
-          $("#terms-search-controls-search-box").trigger("change");*/
-      })
-      var clearFilter = function(context) {
-          $("#terms-search-controls-search-box").val("");// does not trigger change..
-          toggleClearFilters(context, false);
-          $("#terms-search-controls-search-box", context).focus();
-          $("#terms-search-controls-search-box").trigger("change");
-      }
-      var toggleClearFilters = function(context, show) {
-        if (show === true) {
-          $(".clear-search-btn", context).fadeIn(200);
-        }
-        else {
-          $(".clear-search-btn", context).fadeOut(200);
-        }
-      };
-
-      $("#terms-search-controls-search-box", context).on("change paste keyup", function() {
-          if ($(this).val().length > 0) {
-            toggleClearFilters(context, true);
-          }
-          else {
-            toggleClearFilters(context, false);
-          }
-      });
-    }
-  };
   Drupal.behaviors.ubn_terms_collapsible = {
     attach : function(context, settings) {
       $collapsibles = $('.term-collapsible', context);
@@ -46,20 +11,13 @@
         $(this).find('.fa.fa-dynamic').removeClass('fa-chevron-up').addClass('fa-chevron-down');
       });
 
-
-      $termlinks = $('.terms-groups-group-item a, .term-synonym-terms a', context);
-      $termlinks.on("click", function(e) {
-        $('.clear-search-btn').trigger("click");
-        var hashTarget = decodeURIComponent(e.currentTarget.hash);
-        Drupal.ubnext.scrollTo($(hashTarget, function() {
-          // this is where to open the term
-          $("a[href='" + hashTarget + "-description']").trigger("click");
-        }));
-      });
     }
   };
   Drupal.behaviors.ubn_terms_lunr = {
     attach : function(context, settings) {
+      /*
+       * Lunr initialization
+       */
       var language = $('html').attr('lang');
       var idx = lunr(function() {
         if(language in lunr) {
@@ -74,71 +32,109 @@
         $this = $(this);
         var doc = {
           id: $this.attr('id'),
-          title: $this.children('.term-name').text(),
-//          body: $this.children('.term-description').text(),
+          title: $this.children('.term-name').text()/*,
+          body: $this.children('.term-description').text()*/
         };
         idx.add(doc);
       });
 
       //TODO:
-      var debounce = function (fn) {
-        var timeout;
-        return function () {
-          var args = Array.prototype.slice.call(arguments),
-          ctx = this;
-          clearTimeout(timeout);
-          timeout = setTimeout(function () {
-            fn.apply(ctx, args);
-          }, 100);
-        };
-      }
-      $terms = $('.term', context);
-      $term_groups = $('.term-group', context);
+      /*
+         var debounce = function (fn) {
+         var timeout;
+         return function () {
+         var args = Array.prototype.slice.call(arguments),
+         ctx = this;
+         clearTimeout(timeout);
+         timeout = setTimeout(function () {
+         fn.apply(ctx, args);
+         }, 100);
+         };
+         }
+      */
 
+      /*
+       * Search behaviour
+       */
+      var $search = $('#terms-search-controls-search-box', context);
+      $search.focus();
+
+      // Clear search button
+      var $clear_btn = $('.clear-search-btn', context);
+
+      var toggle_clear_filters = function(show) {
+        if (show) {
+          $clear_btn.fadeIn(200);
+        }
+        else {
+          $clear_btn.fadeOut(200);
+        }
+      };
+
+      $clear_btn.on('click', function() {
+        $search.val(''); // does not trigger change..
+        toggle_clear_filters(false);
+        $search.focus();
+        $search.trigger('change');
+      });
+
+      var $terms = $('.term', context);
+      var $term_groups = $('.term-group', context);
+      var $letter_nav_items = $('.letter-nav .terms-groups-group-item', context);
+      var $terms_search_results = $('#terms-search-results', context);
+
+      // Free text search
       $('#terms-search-controls-search-box', context).on('keyup change', function() {
         var query = $(this).val();
+
         if(query) {
           var results = idx.search(query);
           // Focus out show all
           $term_groups.hide();
           $terms.hide();
+          toggle_clear_filters(true);
 
-          // 1 disable all links in menu
-          var $letterNavItems = $(".letter-nav .terms-groups-group-item", context);
-          $letterNavItems.addClass("disabled");
+          // Disable all links in menu
+          $letter_nav_items.addClass('disabled');
 
-          // 2 enable does link that are valid 
-          if (results.length == 0) {
-            $("#terms-search-results", context).addClass("no-result");
+          // Enable does link that are valid
+          if (results.length) {
+            $terms_search_results.removeClass('no-result');
           }
           else {
-            $("#terms-search-results", context).removeClass("no-result"); 
+            $terms_search_results.addClass('no-result');
           }
-
+          var terms_group_ids = {};
           for(i in results) {
-           // var dataGroupStr = "[data-term-group-id='" + results[i].ref + "]'";
-           // $(dataGroupStr).removeClass("disabled");
-            $('#' + results[i].ref).show().parents('.term-group').show();
-            $('#' + results[i].ref).show().parents('.term-group').show();
-            var groupId = $('#' + results[i].ref).data('term-group-id');
-            $letterNavItems.each(function(index) {
-              if ($(this).hasClass("terms-groups-group-" + groupId)) {
-                $(this).removeClass("disabled");
-              }
-            });
+            var $term = $('#' + results[i].ref);
+            $term.show();
+            var group_id = $term.data('term-group-id');
+            terms_group_ids[group_id] = group_id;
+          }
+          for(group_id in terms_group_ids) {
+            $('.term-group-' + group_id, context).show();
+            $letter_nav_items.filter('.terms-groups-group-' + group_id).removeClass('disabled');
           }
         }
         else {
           $term_groups.show();
           $terms.show();
-          if ($letterNavItems) {
-            $letterNavItems.removeClass("disabled");
-          }
-          $("#terms-search-results", context).removeClass("no-result"); 
-
+          toggle_clear_filters(false);
+          $letter_nav_items.removeClass('disabled');
+          $terms_search_results.removeClass('no-result');
         }
       });
 
+      // Clear search on term/term-group click
+      $term_links = $('.terms-groups-group-item a, .term-synonym-terms a', context);
+      $term_links.on('click', function(e) {
+        $clear_btn.trigger('click');
+        var hash_target = decodeURIComponent(e.currentTarget.hash);
+        Drupal.ubnext.scrollTo($(hash_target, context), function() {
+          // this is where to open the term
+          $(hash_target, context).find('.term-name').trigger('click');
+        });
+      });
     }
   };
 })(jQuery);
