@@ -42,7 +42,9 @@
     .ubn-panel-links {
       &.blurb-navigation {
         padding-top: 0;
-        text-align: center !important;
+        @media (min-width: @screen-sm-max) {
+          text-align: center !important;
+        }
         border: none;
         .blurb-navigation-head-title {
           float:none;
@@ -50,7 +52,9 @@
             font-size: 0.8em;
           }
           h3 {
-            font-size: 1.4em;
+            a {
+              font-size: 1.2em; 
+            }
           }
           a {
             &:extend(.navigation-secondary all);
