@@ -186,7 +186,7 @@ namespace :drupal do
       on release_roles :app do
         within current_path.join(fetch(:app_path)) do
           #TODO: drop before import?
-          execute :drush, "sql-drop -y"
+          # execute :drush, "sql-drop -y"
           execute :drush, "sql-cli < \"#{current_path.join('database.sql')}\""
           invoke 'drupal:clear-cache'
         end
