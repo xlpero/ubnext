@@ -21,9 +21,6 @@ function ubn_menu_translated_menu_link_alter(&$item, $map) {
     if ($item['link_title'] == 'News') {
       $item['hidden'] = 1;
     }
-    else {
-      $item['hidden'] = 0;      
-    }
   }
 
 }

@@ -100,7 +100,7 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       $menu_bottom_level = _ubn_menu_menu_tree_expanded_level($page_tree_by_level);
       $block->content = '';
       if (!empty($menu_bottom_level)) {
-        $links = _ubn_menu_menu_tree_links($menu_bottom_level);
+        $links = _ubn_menu_menu_tree_links($menu_bottom_level, FALSE);
         //TODO: implement menu-name wild card
         if (!empty($links)) {
           $block->content = slate_render('ubn-menu-bottom-level', array(
@@ -181,7 +181,7 @@ function _ubn_menu_menu_tree_links($tree, $show_hidden_items = FALSE) {
   // Pull out just the menu links we are going to render so that we
   // get an accurate count for the first/last classes.
   foreach ($tree as $data) {
-    if ($data['link']['access'] && (!$data['link']['hidden'] || $show_hidden_items)) {
+    if ($data['link']['access'] && (!$data['link']['hidden'] || $show_hidden_items) ) {
       $items[] = $data;
     }
   }
