@@ -53,6 +53,7 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
   $cache = &drupal_static(__FUNCTION__);
   $menu_name = 'main-menu';
   if(!isset($cache[$menu_name . ':page_tree_by_level'])) {
+
     $page_tree = menu_tree_page_data($menu_name);
     _ubn_menu_prune($page_tree);
     $page_tree_by_level = _ubn_menu_menu_tree_by_level($page_tree);
@@ -125,7 +126,7 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       $trail = drupal_set_breadcrumb();
       if (empty($trail)) {
         foreach ($page_tree_by_level as $level) {
-          $links = _ubn_menu_menu_tree_links($level);
+          $links = _ubn_menu_menu_tree_links($level, TRUE);
           foreach ($links as $link) {
             if ($link['in_active_trail']) {
               // There is a slight inconsistency
@@ -175,12 +176,12 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
   return $block;
 }
 
-function _ubn_menu_menu_tree_links($tree) {
+function _ubn_menu_menu_tree_links($tree, $show_hidden_items = FALSE) {
   $items = array();
   // Pull out just the menu links we are going to render so that we
   // get an accurate count for the first/last classes.
   foreach ($tree as $data) {
-    if ($data['link']['access'] && !$data['link']['hidden']) {
+    if ($data['link']['access'] && (!$data['link']['hidden'] || $show_hidden_items)) {
       $items[] = $data;
     }
   }
@@ -261,6 +262,9 @@ function _ubn_menu_prune(&$tree) {
     }
   }
 }
+
+
+
 
 /*
 function _ubn_menu_partition_by_level($tree, $level = 0) {

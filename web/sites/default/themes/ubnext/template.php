@@ -790,5 +790,3 @@ function ubnext_search_api_sorts_sort($variables) {
   return $output;
 }
 
-
-

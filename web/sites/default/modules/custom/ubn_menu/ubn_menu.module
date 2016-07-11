@@ -7,3 +7,23 @@ function ubn_menu_ctools_plugin_directory($owner, $plugin_type) {
     return "plugins/$plugin_type";
   }
 }
+
+
+function ubn_menu_menu_link_alter(&$item) {
+  // Flag a link to be altered by hook_translated_menu_link_alter().
+  if ($item['link_title'] == 'News') {
+    $item['options']['alter'] = TRUE;
+  }
+}
+
+function ubn_menu_translated_menu_link_alter(&$item, $map) {
+  if ($item['menu_name'] == 'main-menu') {
+    if ($item['link_title'] == 'News') {
+      $item['hidden'] = 1;
+    }
+    else {
+      $item['hidden'] = 0;      
+    }
+  }
+
+}
