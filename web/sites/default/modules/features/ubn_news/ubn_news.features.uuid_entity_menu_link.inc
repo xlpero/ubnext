@@ -22,7 +22,7 @@ function ubn_news_uuid_entity_default_menu_link() {
       'alter' => TRUE,
     ),
     'module' => 'menu',
-    'hidden' => 0,
+    'hidden' => 1,
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
@@ -39,11 +39,10 @@ function ubn_news_uuid_entity_default_menu_link() {
     'p9' => 0,
     'updated' => 0,
     'language' => 'und',
-    'vuuid' => '83765b17-1647-41f4-8f00-ee74d835649a',
+    'vuuid' => '2189e300-40ad-45bb-8967-2aac9770ca84',
     'uuid' => '91931532-ff81-4a88-8c0a-6bfd5e0d1009',
     'default_revision' => 1,
     'access' => TRUE,
-    'i18n_menu' => TRUE,
   ));
   return $items;
 }
