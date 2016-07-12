@@ -182,7 +182,7 @@ function _ubn_menu_menu_tree_links($tree, $is_menu_trail = FALSE) {
   // get an accurate count for the first/last classes.
   //&& (!isset($data['link']['ubn_menu_hidden']) || !$data['link']['ubn_menu_hidden'] && !$is_menu_trail)
   foreach ($tree as $data) {
-    if ($data['link']['access'] && !$data['link']['hidden'] && (!isset($data['link']['ubn_menu_hidden']) || (!$data['link']['ubn_menu_hidden'] || $is_menu_trail))) {
+    if  ($data['link']['access'] && !$data['link']['hidden'] && !(isset($data['link']['ubn_menu_hidden']) && $data['link']['ubn_menu_hidden'] && !$is_menu_trail)) {
       $items[] = $data;
     }
   }
