@@ -176,12 +176,12 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
   return $block;
 }
 
-function _ubn_menu_menu_tree_links($tree, $show_hidden_items = FALSE) {
+function _ubn_menu_menu_tree_links($tree, $is_menu_trail = FALSE) {
   $items = array();
   // Pull out just the menu links we are going to render so that we
   // get an accurate count for the first/last classes.
   foreach ($tree as $data) {
-    if ($data['link']['access'] && (!$data['link']['hidden'] || $show_hidden_items) ) {
+    if ($data['link']['access'] && (!$data['link']['ubn_menu_hidden'] || $is_menu_trail) ) {
       $items[] = $data;
     }
   }
