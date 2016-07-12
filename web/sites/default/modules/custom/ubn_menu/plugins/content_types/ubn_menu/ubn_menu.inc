@@ -84,7 +84,7 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
     case 'top-level':
       $menu_top_level = array_shift($page_tree_by_level);
       if (!empty($menu_top_level)) {
-        $links = _ubn_menu_menu_tree_links($menu_top_level);
+        $links = _ubn_menu_menu_tree_links($menu_top_level, FALSE);
         //TODO: implement menu-name wild card
         if (!empty($links)) {
           $block->content = slate_render('ubn-menu-top-level', array(
@@ -111,7 +111,7 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       break;
     case 'bottom-level-dropdown':
       $menu_top_level = array_shift($page_tree_by_level);
-      $links = _ubn_menu_menu_tree_links($menu_top_level);
+      $links = _ubn_menu_menu_tree_links($menu_top_level, FALSE);
       $block->content = slate_render('ubn-menu-top-level-dropdown', array(
         'links' => $links
       ));
@@ -180,8 +180,9 @@ function _ubn_menu_menu_tree_links($tree, $is_menu_trail = FALSE) {
   $items = array();
   // Pull out just the menu links we are going to render so that we
   // get an accurate count for the first/last classes.
+  //&& (!isset($data['link']['ubn_menu_hidden']) || !$data['link']['ubn_menu_hidden'] && !$is_menu_trail)
   foreach ($tree as $data) {
-    if ($data['link']['access'] && (!$data['link']['ubn_menu_hidden'] || $is_menu_trail) ) {
+    if ($data['link']['access'] && !$data['link']['hidden'] && (!isset($data['link']['ubn_menu_hidden']) || (!$data['link']['ubn_menu_hidden'] || $is_menu_trail))) {
       $items[] = $data;
     }
   }
