@@ -22,6 +22,7 @@ function ubn_menu_translated_menu_link_alter(&$item, $map) {
       //$item['hidden'] = 1;
       $item['ubn_menu_hidden'] = TRUE;
     }
+    
   }
 
 }
