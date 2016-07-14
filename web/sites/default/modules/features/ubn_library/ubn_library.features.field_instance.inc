@@ -811,7 +811,7 @@ function ubn_library_field_default_field_instances() {
   // Exported field_instance: 'node-library-field_opening_hours'.
   $field_instances['node-library-field_opening_hours'] = array(
     'bundle' => 'library',
-    'default_value' => array(),
+    'default_value' => NULL,
     'deleted' => 0,
     'description' => '',
     'display' => array(
