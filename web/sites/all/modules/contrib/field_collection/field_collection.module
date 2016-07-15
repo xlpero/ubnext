@@ -488,10 +488,19 @@ function field_collection_field_update($host_entity_type, $host_entity, $field, 
   // When entity language is changed field values are moved to the new language
   // and old values are marked as removed. We need to avoid processing them in
   // this case.
+  /*
   $entity_langcode = field_collection_entity_language($host_entity_type, $host_entity);
   $original = isset($host_entity->original) ? $host_entity->original : $host_entity;
   $original_langcode = field_collection_entity_language($host_entity_type, $original);
   $langcode = $langcode == $original_langcode ? $entity_langcode : $langcode;
+  */
+  $entity_langcode = field_collection_entity_language($host_entity_type, $host_entity);
+  if (
+    isset($host_entity->original) &&
+    field_collection_entity_language($host_entity_type, $host_entity->original) == $langcode // != ??
+  ) {
+    $langcode = $entity_langcode;
+  }
 
   $top_host = $host_entity;
   while (method_exists($top_host, 'hostEntity')) {

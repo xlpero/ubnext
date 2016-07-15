@@ -12,6 +12,8 @@
  */
 class EntityTranslationFieldCollectionItemHandler extends EntityTranslationDefaultHandler {
 
+  protected $setFormLanguage = NULL;
+
   /**
    * {@inheritdoc}
    */
@@ -32,6 +34,11 @@ class EntityTranslationFieldCollectionItemHandler extends EntityTranslationDefau
     return field_collection_item_access($op, $this->entity);
   }
 
+  public function setFormLanguage($langcode) {
+    parent::setFormLanguage($langcode);
+    $this->setFormLanguage = $langcode;
+  }
+
   /**
    * {@inheritdoc}
    */
@@ -40,7 +47,10 @@ class EntityTranslationFieldCollectionItemHandler extends EntityTranslationDefau
     // field_collection_entity_language() which again calls us!
     // If the current field is untranslatable, try inherit the host entity
     // language.
-    if (($host_entity_type = $this->entity->hostEntityType()) && entity_translation_enabled($host_entity_type) && ($host_entity = $this->entity->hostEntity())) {
+    if (isset($this->setFormLanguage)) {
+      $langcode = $this->setFormLanguage;
+    }
+    else if (($host_entity_type = $this->entity->hostEntityType()) && entity_translation_enabled($host_entity_type) && ($host_entity = $this->entity->hostEntity())) {
       $handler = $this->factory->getHandler($host_entity_type, $host_entity);
       $langcode = $handler->getFormLanguage();
     }
@@ -51,5 +61,4 @@ class EntityTranslationFieldCollectionItemHandler extends EntityTranslationDefau
     }
     return $langcode;
   }
-
 }
