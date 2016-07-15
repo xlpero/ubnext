@@ -90,6 +90,7 @@ function entity_menu_links_menu_link_alter(&$menu_link) {
     );
     $entity = (object) $menu_link;
     module_invoke_all('entity_presave', $entity, 'menu_link');
+    //$menu_link = get_object_vars($entity);
   }
 }
 
@@ -124,9 +125,11 @@ function entity_menu_links_menu_link_update($menu_link) {
     $original = isset($menu_link['original_item']) ? $menu_link['original_item'] : (array) entity_load_unchanged('menu_link', $menu_link['mlid']);
     $menu_link['uuid'] = empty($original['uuid']) ? uuid_generate() : $original['uuid'];
     $menu_link['vid'] = entity_menu_links_insert_revision($menu_link);
+    /*
     if (!empty($menu_link['plid']) && $parent_link = menu_link_load($menu_link['plid'])) {
       entity_menu_links_menu_link_update($parent_link);
     }
+    */
 
     db_update('menu_links')
       ->fields(array('uuid' => $menu_link['uuid'], 'vid' => $menu_link['vid']))

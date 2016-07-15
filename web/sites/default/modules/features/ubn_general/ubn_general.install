@@ -717,12 +717,20 @@ function ubn_general_update_7181() {
   ubn_general_content_type_delete('opening_hours');
 }
 
-
-
-/* Enable entitycache module */
+/* Enable ubn_nav feature module */
 function ubn_general_update_7182() {
   module_enable(array('ubn_nav'));
 }
+
+/* Enable ubn_search_content feature module */
+function ubn_general_update_7183() {
+  module_enable(array('ubn_search_content'));
+}
+
+function ubn_general_update_7184() {
+  features_revert_module('ubn_library');
+}
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library

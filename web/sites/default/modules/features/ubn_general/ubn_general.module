@@ -6,6 +6,44 @@
 
 include_once 'ubn_general.features.inc';
 
+/**
+ * Implements hook_node_update()
+ */
+function ubn_general_node_update($node) {
+  if (
+    $node->type === 'page' &&
+    isset($node->menu) &&
+    isset($node->menu['mlid']) &&
+    isset($node->path) &&
+    (!isset($node->path['old_alias']) || $node->path['alias'] !== $node->path['old_alias'])
+  ) {
+    $mlid = $node->menu['mlid'];
+    $children_nids = _ubn_general_menu_children_nids($mlid);
+    if(!empty($children_nids)) {
+      drupal_set_message(t('Updating path aliases for menu children pages.'));
+      pathauto_node_update_alias_multiple($children_nids, 'bulkupdate', array('message' => TRUE));
+    }
+  }
+}
+
+function _ubn_general_menu_children_nids($plid) {
+  $result = db_select('menu_links', 'ml')
+    ->fields('ml', array('link_path', 'mlid', 'has_children'))
+    ->condition('plid', $plid)
+    ->condition('link_path', 'node/%', 'LIKE')
+    ->execute();
+  $nids = array();
+  foreach($result as $item) {
+    //Possible UUID Path!? menu_get_object?
+    list(, $nid) = explode('/', $item->link_path);
+    $nids[] = $nid;
+    if ($item->has_children) {
+      $nids = array_merge($nids, _ubn_general_menu_children_nids($item->mlid));
+    }
+  }
+  return $nids;
+}
+
 function _ubn_general_import_databases() {
   foreach(
     array(
@@ -64,8 +102,6 @@ function ubn_general_ctools_plugin_directory($owner, $plugin_type) {
     return 'plugins/' . $plugin_type;
   }
 }
-
-
 
 /**
  * Implements hook_strongarm_alter().
@@ -296,7 +332,6 @@ function ubn_general_render_map($coords = array()) {
 
     return '<div id="ub-map-canvas"></div>';
   }
-
 }
 
 /**
