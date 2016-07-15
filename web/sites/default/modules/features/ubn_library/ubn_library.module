@@ -5,3 +5,10 @@
  */
 
 include_once 'ubn_library.features.inc';
+
+function ubn_library_entity_presave($entity, $type) {
+  if($type === 'field_collection_item' && $entity->field_name === 'field_opening_hours') {
+    $handler = entity_translation_get_handler($type, $entity);
+    $handler->setFormLanguage($handler->getDefaultLanguage());
+  }
+}
