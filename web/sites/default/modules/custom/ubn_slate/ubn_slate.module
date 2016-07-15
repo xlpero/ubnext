@@ -59,7 +59,6 @@ function _ubn_slate_opening_hours_items($opening_hours_values, $weekdays = NULL,
         continue;
       }
     }
-
     $opening_hours_items[$i] = array(
       'weekday' => $weekday,
       'timestamp' => $opening_hours_date_datetime->getTimestamp(),

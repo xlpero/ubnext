@@ -51,6 +51,16 @@ global $base_url;
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name = "format-detection" content = "telephone=no">
+
+  <link rel="apple-touch-icon" sizes="57x57" href=<?php  print $base_url . "/" . path_to_theme(); ?>/css/img/apple-touch-icon-_57x57.png>
+  <link rel="apple-touch-icon" sizes="114x114" href=<?php print $base_url . "/" . path_to_theme(); ?>/css//img/apple-touch-icon-_114x114.png>
+  <link rel="apple-touch-icon" sizes="72x72" href=<?php print $base_url . "/" . path_to_theme(); ?>/css/img/apple-touch-icon-_72x72.png>    
+  <link rel="apple-touch-icon" sizes="144x144" href=<?php print $base_url . "/" . path_to_theme(); ?>/css/img/apple-touch-icon-_144x144.png>
+  <link rel="apple-touch-icon" sizes="60x60" href=<?php print $base_url . "/" . path_to_theme();?>/css/img/apple-touch-icon-_60x60.png>
+  <link rel="apple-touch-icon" sizes="120x120" href=<?php print $base_url . "/" . path_to_theme(); ?>/css/img/apple-touch-icon-_120x120.png>
+  <link rel="apple-touch-icon" sizes="76x76" href=<?php print $base_url . "/" . path_to_theme();?>/css/img/apple-touch-icon-_76x76.png>
+  <link rel="apple-touch-icon" sizes="152x152" href=<?php print $base_url . "/" . path_to_theme();?>/css/img/apple-touch-icon-_152x152.png>
+  <link rel="apple-touch-icon" sizes="180x180" href=<?php print $base_url . "/" . path_to_theme();?>/css/img/apple-touch-icon-_180x180.png>
   
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
