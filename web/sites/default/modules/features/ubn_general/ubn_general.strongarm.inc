@@ -254,7 +254,7 @@ function ubn_general_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_ignore_words_en_language';
-  $strongarm->value = 'a, an, as, at, before, but, by, for, from, is, in, into, like, of, off, on, onto, per, since, than, the, this, that, to, up, via, with';
+  $strongarm->value = '';
   $export['pathauto_ignore_words_en_language'] = $strongarm;
 
   $strongarm = new stdClass();
