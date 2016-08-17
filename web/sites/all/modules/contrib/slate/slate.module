@@ -215,7 +215,10 @@ function slate_render($slate, $models = array()) {
           if (!isset($uuid_enabled)) {
             $uuid_enabled = module_exists('uuid');
           }
-          if ($uuid_enabled) {
+          $cache_key_source = isset($slate_info['cache_key']) ? $slate_info['cache_key'] : ($uuid_enabled ? 'vuuid' : 'hash');
+
+          //Replace with constants?
+          if ($cache_key_source === 'vuuid') {
             $entity_type = $model->type();
             if (!isset($uuid_revision_keys[$entity_type])) {
               $entity_info = $model->entityInfo();
@@ -223,16 +226,22 @@ function slate_render($slate, $models = array()) {
                 isset($entity_info['entity keys']['revision uuid']) ? $entity_info['entity keys']['revision uuid'] : FALSE;
             }
           }
-
           $language = $model->getPropertyLanguage();
           $entity_value = $model->value();
 
+          // VUUID not set, fall back to hash-based key
+          if ($cache_key_source === 'vuuid' && (!isset($uuid_revision_keys[$entity_type]) || empty($uuid_revision_keys[$entity_type]))) {
+            $cache_key_source = 'hash';
+          }
           $cache_data[] = array(
             $language->language,
-            isset($uuid_revision_keys[$entity_type]) && $uuid_revision_keys[$entity_type] ?
-              $entity_value->{$uuid_revision_keys[$entity_type]} :
-              $entity_value,
           );
+          if ($cache_key_source === 'vuuid') {
+            $cache_data[] = $entity_value->{$uuid_revision_keys[$entity_type]};
+          }
+          else if($cache_key_source === 'hash') {
+            $cache_data[] = $entity_value;
+          }
         }
         else {
           $cache_data[] = $model;
