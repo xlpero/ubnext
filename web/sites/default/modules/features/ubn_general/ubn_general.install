@@ -742,6 +742,20 @@ function ubn_general_update_7185() {
   }
 }
 
+// Since updating aliases did not seem to work
+// instead re-save all libraries
+function ubn_general_update_7186() {
+  $query = new EntityFieldQuery();
+  $result = $query
+    ->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'library')
+    ->execute();
+  if($result['node']) {
+    $nodes = entity_load('node', array_keys($result['node']));
+    array_map('node_save', $nodes);
+  }
+}
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
