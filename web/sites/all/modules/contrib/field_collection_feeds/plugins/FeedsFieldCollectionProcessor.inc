@@ -30,6 +30,7 @@ class FeedsFieldCollectionProcessor extends FeedsProcessor {
   protected function newEntity(FeedsSource $source) {
     $field_collection_item = new FieldCollectionItemEntity(array('field_name' => $this->config['field_name']), $this->config['host_entity_type']);
     $field_collection_item->is_new = TRUE;
+    $this->feedsFieldCollectionSetFormLanguage($field_collection_item);
     return $field_collection_item;
   }
 
@@ -38,7 +39,16 @@ class FeedsFieldCollectionProcessor extends FeedsProcessor {
    *
    */
   protected function entityLoad(FeedsSource $source, $id) {
-    return entity_load_single($this->entityType(), $id);
+    $entity = entity_load_single($this->entityType(), $id);
+    $this->feedsFieldCollectionSetFormLanguage($entity);
+    return $entity;
+  }
+
+  protected function feedsFieldCollectionSetFormLanguage($entity) {
+    if (module_exists('entity_translation')) {
+      $handler = entity_translation_get_handler('field_collection_item', $entity);
+      $handler->setFormLanguage($handler->getDefaultLanguage());
+    }
   }
 
   /**
@@ -223,12 +233,7 @@ class FeedsFieldCollectionProcessor extends FeedsProcessor {
       'description' => t('The item id of the field collection. NOTE: use this feature with care, field collection item ids are usually assigned by Drupal.'),
       'optional_unique' => TRUE,
     );
-
-    // Let other modules expose mapping targets.
-    self::loadMappers();
-    $entity_type = $this->entityType();
-    $bundle = $this->config['field_name'];
-    drupal_alter('feeds_processor_targets', $targets, $entity_type, $bundle);
+    $this->getHookTargets($targets);
 
     return $targets;
   }
