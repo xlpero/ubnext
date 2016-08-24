@@ -106,12 +106,13 @@ function language_cookie_set($lang = NULL) {
     module_invoke($module, 'language_cookie_alter', $cookie);
   }
 
+  global $base_url;
   setrawcookie(
     $cookie->name,
     rawurlencode($cookie->value),
     REQUEST_TIME + $cookie->expire,
     $cookie->path,
-    $cookie->domain,
+    !empty($cookie->domain) ? $cookie->domain : $base_url,
     $cookie->secure,
     $cookie->httponly
   );

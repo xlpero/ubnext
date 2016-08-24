@@ -33,7 +33,7 @@ function language_cookie_admin_form($form, &$form_state) {
     '#title' => t('Cookie domain scope'),
     '#type' => 'textfield',
     '#default_value' => variable_get('language_cookie_domain', ''),
-    '#description' => t('The cookie domain scope'),
+    '#description' => t('The cookie domain scope, if not set the current domain of the site will be used.'),
   );
 
   $form['language_cookie_set_on_every_pageload'] = array(
