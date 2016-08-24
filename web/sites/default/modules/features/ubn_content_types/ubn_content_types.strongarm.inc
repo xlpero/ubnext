@@ -470,29 +470,6 @@ function ubn_content_types_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'field_bundle_settings_node__opening_hours';
-  $strongarm->value = array(
-    'view_modes' => array(),
-    'extra_fields' => array(
-      'form' => array(
-        'path' => array(
-          'weight' => '2',
-        ),
-        'redirect' => array(
-          'weight' => '1',
-        ),
-        'xmlsitemap' => array(
-          'weight' => '8',
-        ),
-      ),
-      'display' => array(),
-    ),
-  );
-  $export['field_bundle_settings_node__opening_hours'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'field_bundle_settings_node__page';
   $strongarm->value = array(
     'view_modes' => array(),
@@ -835,13 +812,6 @@ function ubn_content_types_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_preview_opening_hours';
-  $strongarm->value = '1';
-  $export['node_preview_opening_hours'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'node_preview_page';
   $strongarm->value = '0';
   $export['node_preview_page'] = $strongarm;
@@ -971,13 +941,6 @@ function ubn_content_types_strongarm() {
   $strongarm->name = 'pathauto_node_navigation_landing_und_pattern';
   $strongarm->value = '';
   $export['pathauto_node_navigation_landing_und_pattern'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'pathauto_node_opening_hours_pattern';
-  $strongarm->value = '';
-  $export['pathauto_node_opening_hours_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

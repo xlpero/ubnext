@@ -756,6 +756,11 @@ function ubn_general_update_7186() {
   }
 }
 
+/* Revert features */
+function ubn_general_update_7187() {
+  features_revert_module('ubn_content_types');
+}
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
