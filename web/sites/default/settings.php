@@ -31,3 +31,7 @@ if (
   ) {
   $_SERVER['HTTPS'] = 'on';
 }
+
+if (isset($_SERVER['HTTP_X_FORWARDED_PORT'])) {
+  $_SERVER['SERVER_PORT'] = intval($_SERVER['HTTP_X_FORWARDED_PORT']);
+}
