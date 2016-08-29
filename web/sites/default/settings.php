@@ -24,3 +24,14 @@ $conf['i18n_variables'] = array(
   'footer_col2',
   'footer_col3',
 );
+
+if (
+  isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
+  strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']) == 'https'
+  ) {
+  $_SERVER['HTTPS'] = 'on';
+}
+
+if (isset($_SERVER['HTTP_X_FORWARDED_PORT'])) {
+  $_SERVER['SERVER_PORT'] = intval($_SERVER['HTTP_X_FORWARDED_PORT']);
+}
