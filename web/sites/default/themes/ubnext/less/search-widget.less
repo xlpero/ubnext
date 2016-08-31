@@ -1,20 +1,52 @@
 .main-cms {
 	#search-widget {
 		text-align: center;
-		.slogan {
-			font-size: 25px;
-			margin-bottom: 30px;
-			@media (min-width: @screen-sm-min) {
-				font-size: 35px;
+		.search-widget-cover {
+			height: 375px;
+			overflow: hidden;
+			img {
+				position:absolute;
+				left: 0;
+			    right: 0;
+			    margin-left: auto;
+			    margin-right: auto;
+				z-index:-1;
+				height:375px;
+			}
+			.search-widget-cover-content {
+				z-index: 1;
 			}
 		}
-		input {
-			height: 48px;
-	      	border-radius: @border-radius-base 0 0 @border-radius-base;
+		.search-widget-content {
+			.search-widget-content-plate {
+				height: 200px;
+				text-align: left;
+				background-color: @brand-primary;
+				padding: 30px 20px; 
+				border-radius: @border-radius-small;
+			}
+			.slogan {
+				.slogan-theme-light {
+					color: #fff;
+				}
+				.slogan-theme-dark {
+					color: @gray-darker;
+				}
+				font-size: 25px;
+				margin-bottom: 30px;
+				@media (min-width: @screen-sm-min) {
+					font-size: 35px;
+				}
+			}
+			input {
+				height: 48px;
+		      	border-radius: @border-radius-base 0 0 @border-radius-base;
+			}
+			button {
+				border-radius: 0 5px 5px 0;
+				background: @gray-darker;
+			}
 		}
-		button {
-			border-radius: 0 5px 5px 0;
-			background: @gray-darker;
-		}
+
 	}
 }
