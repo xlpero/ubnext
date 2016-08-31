@@ -452,7 +452,7 @@ function slate_slate_twig_environment_alter(&$environment) {
     $environment['auto_reload'] = TRUE;
   }
   else {
-    $environment['cache'] = file_directory_temp();
+    $environment['cache'] = file_directory_temp() . '/twig';
   }
 }
 
