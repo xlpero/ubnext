@@ -21,14 +21,27 @@ function ubn_startpage_uuid_entity_default_node() {
     'tnid' => 0,
     'translate' => 0,
     'uuid' => '4292e4cb-a82f-4ba3-a468-41c7ac7b70f5',
-    'revision_uid' => 1,
-    'field_shortcut_links' => array(),
+    'revision_uid' => '12fd9141-f2d1-4774-8caf-d9d721b8fc92',
+    'field_shortcut_links' => array(
+      'en' => array(
+        0 => array(
+          'value' => 97815,
+          'revision_id' => 97911,
+        ),
+      ),
+      'sv' => array(
+        0 => array(
+          'value' => 97814,
+          'revision_id' => 97910,
+        ),
+      ),
+    ),
     'title_field' => array(
       'en' => array(
         0 => array(
-          'value' => 'Latest news links',
+          'value' => 'Current and news links',
           'format' => NULL,
-          'safe_value' => 'Latest news links',
+          'safe_value' => 'Current and news links',
         ),
       ),
       'sv' => array(
@@ -56,10 +69,7 @@ function ubn_startpage_uuid_entity_default_node() {
         ),
       ),
     ),
-    'path' => array(
-      'pathauto' => 1,
-      'pathauto_i18n_status' => 1,
-    ),
+    '_drafty_revision_requested' => 'FIELD_LOAD_CURRENT',
     'name' => 'admin',
     'picture' => 0,
     'data' => 'b:0;',

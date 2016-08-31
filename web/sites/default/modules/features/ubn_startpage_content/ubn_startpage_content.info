@@ -1,0 +1,11 @@
+name = UBN Startpage content
+core = 7.x
+package = UBNext
+dependencies[] = ctools
+dependencies[] = strongarm
+dependencies[] = ubn_content
+dependencies[] = uuid_entity_features
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[uuid_entity_node][] = 56371bfa-65af-430d-8675-cc28b6d78c71
+project path = sites/default/modules/features

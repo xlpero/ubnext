@@ -221,8 +221,8 @@ function ubn_startpage_default_page_manager_pages() {
       'override_title_heading' => 'h2',
       'slogan' => 'Search among <strong class="hidden-xs"> @number </strong> books, articles, magazines and more...',
       'placeholder' => 'Search for...',
-      'aria_label' => 'Search terms',
-      'number_of_items' => '',
+      'aria_label' => 'Search in Supersök',
+      'number_of_items' => '100000',
     );
     $pane->cache = array();
     $pane->style = array(
