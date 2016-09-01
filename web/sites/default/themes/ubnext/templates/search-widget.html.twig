@@ -13,7 +13,11 @@
           <div class="search-widget-cover-content">
             <div class="search-widget-content container">
             	<div class="slogan">
-              		<h2 class="slogan-header slogan-theme-light h1">{{ slogan | raw }}</h2>
+            		{% if dark_theme %}
+              			<h2 class="slogan-header slogan-theme-light h1">{{ slogan | raw }}</h2>
+              		{% else %}
+              			<h2 class="slogan-header slogan-theme-dark h1">{{ slogan | raw }}</h2>
+              		{% endif %}
               	</div>
               <div class="row">
                 <div class="col-sm-12 search-widget-content-plate">

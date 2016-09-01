@@ -47,6 +47,12 @@ function ubn_general_search_widget_content_type_settings($form, &$form_state) {
     '#title' => t('ARIA label'),
     '#default_value' => !empty($conf['aria_label']) ? $conf['aria_label'] : 'Search terms',
   );
+
+  $form['dark_theme'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Check to use light text (on a dark image)'),
+    '#default_value' => !empty($conf['dark_theme']) ? $conf['dark_theme'] : TRUE,
+  );
   return $form;
 }
 
@@ -59,7 +65,7 @@ function ubn_general_search_widget_content_type_settings($form, &$form_state) {
  * @param $form_state
  */
 function ubn_general_search_widget_content_type_settings_submit($form, &$form_state) {
-  foreach (array('slogan', 'placeholder', 'aria_label') as $key) {
+  foreach (array('slogan', 'placeholder', 'aria_label', 'dark_theme') as $key) {
     $form_state['conf'][$key] = $form_state['values'][$key];
   }
   $form_state['conf']['number_of_items'] = str_replace(' ', '', $form_state['values']['number_of_items']);
@@ -72,7 +78,7 @@ function ubn_general_search_widget_content_type_settings_submit($form, &$form_st
  */
 function ubn_general_search_widget_content_type_render($subtype, $conf, $panel_args, $context) {
   global $language;
-
+  dsm($conf);
   $number = '100000'; // default number
   if (!empty($conf['number_of_items'])) {
     $number = $conf['number_of_items'];
@@ -103,6 +109,7 @@ function ubn_general_search_widget_content_type_render($subtype, $conf, $panel_a
       'slogan' =>  $slogan,
       'placeholder' => $conf['placeholder'],
       'aria_label' => $conf['aria_label'],
+      'dark_theme' => $conf['dark_theme'],
       'link_list' => trim($link_list_rendered),
     )
   );
