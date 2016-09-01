@@ -9,11 +9,11 @@
  */
 function ubn_content_types_workbench_scheduler_export_schedules() {
   $items = array(
-    'draft_published' => array(
-      'name' => 'draft_published',
-      'label' => 'Publish draft',
-      'start_state' => 'draft',
-      'end_state' => 'published',
+    'published_unpublished' => array(
+      'name' => 'published_unpublished',
+      'label' => 'Publish/Unpublish',
+      'start_state' => 'published',
+      'end_state' => 'unpublished',
       'types' => array(
         0 => 'blurb',
         1 => 'page',
