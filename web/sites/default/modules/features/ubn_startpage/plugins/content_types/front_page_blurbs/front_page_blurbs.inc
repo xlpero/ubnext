@@ -32,9 +32,15 @@ function ubn_startpage_front_page_blurbs_content_type_render($subtype, $conf, $p
 
   //TODO: Hardcoded for now, or load queue and check entity type?
   $blurbs = array();
+  $first_blurb_found = FALSE;
   foreach($wrapper->eq_node as $delta => $blurb) {
-    if ($delta > 0) {
-      $blurbs[] = $blurb->value();
+    $blurb_node = $blurb->value();
+    if ($blurb_node->status == NODE_PUBLISHED) {
+      if(!$first_blurb_found) {
+        $first_blurb_found = TRUE;
+        continue;
+      }
+      $blurbs[] = $blurb_node;
     }
   }
 
