@@ -1,0 +1,8 @@
+{# slate
+    name = Search-widget-linklist
+    models[link_list] = entity:node
+#}
+
+
+{% import "macros/panel-links.html.twig" as links %}
+{{ links.link_list(link_list.title_field.value, link_list.field_shortcut_links, 'search-widget-link-list', { 'promoted': false , 'min_height': false }) }}

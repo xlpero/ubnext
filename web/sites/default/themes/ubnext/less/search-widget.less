@@ -2,9 +2,11 @@
 	#search-widget {
 		text-align: center;
 		.search-widget-cover {
-			height: 375px;
 			overflow: hidden;
+			position: relative;
+			height: 375px;
 			img {
+				display: none;
 				position:absolute;
 				left: 0;
 			    right: 0;
@@ -12,6 +14,9 @@
 			    margin-right: auto;
 				z-index:-1;
 				height:375px;
+				@media (min-width: @screen-sm-min) {
+					display: block;
+				}
 			}
 			.search-widget-cover-content {
 				z-index: 1;
@@ -19,32 +24,69 @@
 		}
 		.search-widget-content {
 			.search-widget-content-plate {
-				height: 200px;
+				label {
+					color: #fff;
+				}
 				text-align: left;
 				background-color: @brand-primary;
 				padding: 30px 20px; 
-				border-radius: @border-radius-small;
+				
+				@media (min-width: @screen-sm-min) {
+					height: 200px;
+					border-radius: @border-radius-small;
+				}
+
 			}
 			.slogan {
+				display: none;
+				@media (min-width: @screen-sm-min) {
+					display: block;
+				}
+
+				height: 105px;
+				.slogan-header {
+					font-size: 25px;
+					margin:0;
+					padding-top: 30px;
+					@media (min-width: @screen-sm-min) {
+						font-size: 35px;
+					}
+				}
 				.slogan-theme-light {
 					color: #fff;
 				}
 				.slogan-theme-dark {
 					color: @gray-darker;
 				}
-				font-size: 25px;
-				margin-bottom: 30px;
-				@media (min-width: @screen-sm-min) {
-					font-size: 35px;
-				}
 			}
 			input {
 				height: 48px;
 		      	border-radius: @border-radius-base 0 0 @border-radius-base;
+		      	border: none;
 			}
 			button {
 				border-radius: 0 5px 5px 0;
+				border: 1px solid @gray-darker;
 				background: @gray-darker;
+			}
+
+			.ubn-panel-links {
+
+				&.search-widget-link-list {
+					margin-top: 20px;
+					margin-bottom: 0;
+					@media (min-width: @screen-sm-min) {
+						margin-top: 0;
+
+					}
+
+					a {
+						color: #fff;
+					}
+					padding:0;
+					border:none;
+					color: #fff;
+				}
 			}
 		}
 

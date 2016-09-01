@@ -1,39 +1,6 @@
 <?php if (!empty($content['search'])): ?>
   <div id="search">
-
-    <div id="search-widget" class="panel-separator">
-      <div class="search-widget-cover">
-          <img src="<?php print path_to_theme();?>/css/img/search-widget-bg.jpg"/>
-          <div class="search-widget-cover-content">
-
-            <div class="search-widget-content container">
-              <h2 class="slogan h1 no-top-margin">{{ slogan | raw }}</h2>
-              <div class="row">
-                <div class="col-sm-12 search-widget-content-plate">
-                  <div class="row">
-                    <div class="col-sm-8">
-                      <form action="{{ url }}">
-                        <label for="q">{{Label here}}</label>
-                        <div class="input-group">
-                          <input type="text" name="q" class="form-control input-lg" aria-label="{{ aria_label }}" placeholder="{{ placeholder }}">
-                          <span class="input-group-btn">
-                          <button class="btn btn-lg btn-primary" type="submit"><i class="fa fa-search"></i></button>
-                          </span>
-                        </div><!-- /input-group -->
-                      </form>
-                    </div>
-                    <div class="col-sm-4">
-                      Linklist here
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-    </div>
-
-      <?php //print render($content['search']); ?>
+      <?php print render($content['search']); ?>
   </div>
 <?php endif ?>
 

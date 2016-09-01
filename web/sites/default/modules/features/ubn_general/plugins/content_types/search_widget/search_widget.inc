@@ -11,9 +11,11 @@ $plugin = array(
   'title' => t('General: Search widget'),
   'description' => t('This is the search widget that will forward search to Summon'),
   'category' => 'UBNext',
+  'required context' => new ctools_context_required(t('Link list'), 'entity:node'),
   'edit form' => 'ubn_general_search_widget_content_type_settings',
   'i18n_settings' => array('slogan', 'placeholder', 'aria_label'),
 );
+
 
 /**
  * Settings callback.
@@ -87,6 +89,12 @@ function ubn_general_search_widget_content_type_render($subtype, $conf, $panel_a
     $url = "https://gothenburg.summon.serialssolutions.com/sv-SE/search/";
   }
 
+  $link_list_rendered = '';
+  if (!empty($context->data)) {
+    $link_list = $context->data;
+    $link_list_rendered = slate_render('search-widget-link-list', array('link_list' => $link_list));
+  }
+
   $slogan = format_string($conf['slogan'], array('@number' => _ubn_slate_number_format($number)));
   $block = new stdClass();
   $block->content = slate_render('search-widget',
@@ -95,6 +103,7 @@ function ubn_general_search_widget_content_type_render($subtype, $conf, $panel_a
       'slogan' =>  $slogan,
       'placeholder' => $conf['placeholder'],
       'aria_label' => $conf['aria_label'],
+      'link_list' => trim($link_list_rendered),
     )
   );
 
