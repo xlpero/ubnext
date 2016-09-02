@@ -48,6 +48,15 @@ function ubn_general_search_widget_content_type_settings($form, &$form_state) {
     '#default_value' => !empty($conf['aria_label']) ? $conf['aria_label'] : 'Search terms',
   );
 
+  $form['background_image'] = array(
+    '#type' => 'managed_file',
+    '#name' => 'background_image',
+    '#title' => t('Background image'),
+    '#description' => "Image should be as wide as possible and at least (best is exactly) 375px high. Use JPG format. Please optimize for web.",
+    '#default_value' => variable_get('background_image', ''),
+    '#upload_location' => 'public://search-widget',
+  ); 
+
   $form['dark_theme'] = array(
     '#type' => 'checkbox',
     '#title' => t('Check to use light text (on a dark image)'),
@@ -65,6 +74,15 @@ function ubn_general_search_widget_content_type_settings($form, &$form_state) {
  * @param $form_state
  */
 function ubn_general_search_widget_content_type_settings_submit($form, &$form_state) {
+   //if (isset($form_state['values']['background_image'])) {
+   // $file = file_load($form_state['values']['background_image']);
+   // $file->status = FILE_STATUS_PERMANENT;
+
+    //$file_saved =file_save($file);
+    // Record that the module is using the file. 
+ //   file_usage_add($file_saved, 'ubn_general_search_widget_background_image', 'background_image', $file_saved->fid); 
+ // }
+
   foreach (array('slogan', 'placeholder', 'aria_label', 'dark_theme') as $key) {
     $form_state['conf'][$key] = $form_state['values'][$key];
   }
@@ -78,7 +96,6 @@ function ubn_general_search_widget_content_type_settings_submit($form, &$form_st
  */
 function ubn_general_search_widget_content_type_render($subtype, $conf, $panel_args, $context) {
   global $language;
-  dsm($conf);
   $number = '100000'; // default number
   if (!empty($conf['number_of_items'])) {
     $number = $conf['number_of_items'];
