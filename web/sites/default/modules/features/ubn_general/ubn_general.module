@@ -11,11 +11,13 @@ include_once 'ubn_general.features.inc';
  */
 function ubn_general_node_update($node) {
   if (
-    $node->type === 'page' &&
+    in_array($node->type, array('page', 'navigation_landing')) &&
+    empty($node->is_draft_revision) && //Hmmmm??
     isset($node->menu) &&
-    isset($node->menu['mlid']) &&
+    isset($node->menu['mlid']) /* &&
     isset($node->path) &&
     (!isset($node->path['old_alias']) || $node->path['alias'] !== $node->path['old_alias'])
+    */
   ) {
     $mlid = $node->menu['mlid'];
     $children_nids = _ubn_general_menu_children_nids($mlid);
