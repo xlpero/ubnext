@@ -13,19 +13,25 @@ function ubn_content_types_workbench_moderation_export_states() {
       'name' => 'draft',
       'label' => 'Draft',
       'description' => 'Work in progress',
-      'weight' => -99,
+      'weight' => -10,
     ),
     'needs_review' => array(
       'name' => 'needs_review',
       'label' => 'Needs Review',
       'description' => 'Ready for moderation',
-      'weight' => 0,
+      'weight' => -9,
     ),
     'published' => array(
       'name' => 'published',
       'label' => 'Published',
       'description' => 'Make this version live',
-      'weight' => 99,
+      'weight' => -8,
+    ),
+    'unpublished' => array(
+      'name' => 'unpublished',
+      'label' => 'Unpublished',
+      'description' => 'Unpublish this version',
+      'weight' => -7,
     ),
   );
   return $items;
