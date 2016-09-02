@@ -30,8 +30,11 @@ function ubn_startpage_front_page_blurbs_primary_content_type_render($subtype, $
 
   $first_blurb = NULL;
   foreach($wrapper->eq_node as $blurb) {
-    $first_blurb = $blurb->value();
-    break;
+    $blurb_node = $blurb->value();
+    if($blurb_node->status == NODE_PUBLISHED) {
+      $first_blurb = $blurb_node;
+      break;
+    }
   }
 
   $block = new stdClass();
