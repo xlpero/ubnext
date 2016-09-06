@@ -7,7 +7,7 @@
 include_once 'ubn_general.features.inc';
 
 /**
- * Implements hook_node_update()
+ * Implements hook_node_insert()
  */
 function ubn_general_node_insert($node) {
   _ubn_general_node_save($node);
@@ -29,7 +29,6 @@ function ubn_general_node_update($node) {
     */
   ) {
     $mlid = $node->menu['mlid'];
-
     $children_nids = _ubn_general_menu_children_nids($mlid);
     if(!empty($children_nids)) {
       drupal_set_message(t('Updating path aliases for menu children pages.'));
