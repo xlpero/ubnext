@@ -105,7 +105,6 @@ features[user_permission][] = access devel information
 features[user_permission][] = access scald dnd library
 features[user_permission][] = access site in maintenance mode
 features[user_permission][] = access site reports
-features[user_permission][] = access stories search_api_page
 features[user_permission][] = access user profiles
 features[user_permission][] = administer actions
 features[user_permission][] = administer advanced pane settings

@@ -139,13 +139,13 @@ function ubn_general_strongarm() {
     'name' => 'Swedish',
     'native' => 'Svenska',
     'direction' => '0',
-    'enabled' => 1,
+    'enabled' => '1',
     'plurals' => '2',
     'formula' => '($n!=1)',
     'domain' => '',
     'prefix' => 'sv',
     'weight' => '0',
-    'javascript' => '',
+    'javascript' => 'Ccg3fZ37KDbhwd6r6mguTuBUJ5zi-p4XZWmSFUkEahg',
   );
   $export['language_default'] = $strongarm;
 
@@ -303,6 +303,9 @@ function ubn_general_strongarm() {
     3 => 'footer_col1',
     4 => 'footer_col2',
     5 => 'footer_col3',
+    6 => 'slogan',
+    7 => 'placeholder',
+    8 => 'aria_label',
   );
   $export['variable_realm_list_language'] = $strongarm;
 

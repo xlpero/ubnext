@@ -163,20 +163,28 @@ function ubn_startpage_variable_info($options) {
  
   $variables['slogan'] = array(
     'type' => 'text_format',
+    'title' => t('slogan'),
     'default' => 'This is the slogan',
     'group' => 'site_information',
+    'localize' => TRUE,
   );
 
   $variables['placeholder'] = array(
     'type' => 'text_format',
+    'title' => t('placeholder'),
     'default' => 'Placeholder here',
     'group' => 'site_information',
+    'localize' => TRUE,
+
   );
 
   $variables['aria_label'] = array(
     'type' => 'text_format',
+    'title' => t('aria_label'),
     'default' => 'Aria label here',
     'group' => 'site_information',
+    'localize' => TRUE,
+
   );
   return $variables;
 }  

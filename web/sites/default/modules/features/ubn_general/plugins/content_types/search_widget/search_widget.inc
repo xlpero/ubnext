@@ -13,7 +13,6 @@ $plugin = array(
   'category' => 'UBNext',
   'required context' => new ctools_context_required(t('Link list'), 'entity:node'),
   'edit form' => 'ubn_general_search_widget_content_type_settings',
-  'i18n_settings' => array('slogan', 'placeholder', 'aria_label'),
 );
 
 

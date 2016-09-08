@@ -100,15 +100,6 @@ function ubn_general_user_default_permissions() {
     'module' => 'system',
   );
 
-  // Exported permission: 'access stories search_api_page'.
-  $permissions['access stories search_api_page'] = array(
-    'name' => 'access stories search_api_page',
-    'roles' => array(
-      'anonymous user' => 'anonymous user',
-    ),
-    'module' => 'search_api_page',
-  );
-
   // Exported permission: 'access user profiles'.
   $permissions['access user profiles'] = array(
     'name' => 'access user profiles',
