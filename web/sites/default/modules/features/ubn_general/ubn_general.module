@@ -6,6 +6,28 @@
 
 include_once 'ubn_general.features.inc';
 
+function ubn_general_module_implements_alter(&$implementations, $hook) {
+  if($hook === 'search_api_query_alter') {
+    // Prepend ubn_general_search_api_query_alter at front
+    // of array so we get to run first
+    $group = $implementations['ubn_general'];
+    unset($implementations['ubn_general']);
+    $implementations = array('ubn_general' => $group) + $implementations;
+  }
+}
+
+/**
+ * Implements hook_search_api_query_alter().
+ *
+ * Set anonymous user as user to authenticate against
+ *
+ * @param SearchApiQueryInterface $query
+ *   The SearchApiQueryInterface object representing the search query.
+ */
+function ubn_general_search_api_query_alter(SearchApiQueryInterface $query) {
+  $query->setOption('search_api_access_account', drupal_anonymous_user());
+}
+
 /**
  * Implements hook_node_insert()
  */
