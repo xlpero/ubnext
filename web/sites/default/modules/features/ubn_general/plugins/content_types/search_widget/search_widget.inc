@@ -113,13 +113,19 @@ function ubn_general_search_widget_content_type_render($subtype, $conf, $panel_a
 
   $slogan = format_string(variable_get('slogan'), array('@number' => _ubn_slate_number_format($number)));
   $block = new stdClass();
-  $file = file_load(variable_get('ubn_search_widget_fid'));
+
+  $file = NULL;
+  if (variable_get('ubn_search_widget_fid')) {
+    $file = file_load(variable_get('ubn_search_widget_fid'));
+  }
+  
   if ($file) {
     $file_uri = file_create_url($file->uri);
   }
   else {
-    $file_uri = null; 
+    $file_uri = ""; 
   }
+
   $block->content = slate_render('search-widget',
     array(
       'url' => $url,
@@ -131,7 +137,6 @@ function ubn_general_search_widget_content_type_render($subtype, $conf, $panel_a
       'link_list' => trim($link_list_rendered),
     )
   );
-
   drupal_add_js(drupal_get_path('module', 'ubn_general') . '/plugins/content_types/search_widget/search-widget.js');
 
   return $block;
