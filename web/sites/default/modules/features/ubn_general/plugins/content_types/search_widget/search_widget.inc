@@ -21,7 +21,8 @@ $plugin = array(
  * Settings callback.
  */
 function ubn_general_search_widget_content_type_settings($form, &$form_state) {
-  $conf = $form_state['conf'];
+ /* $conf = $form_state['conf'];
+  file_put_contents("/tmp/debug", "ubn_general_search_widget_content_type_settings"  . "\n", FILE_APPEND);
   $form['number_of_items'] = array(
     '#type' => 'textfield',
     '#title' => t('Number of items'),
@@ -48,24 +49,22 @@ function ubn_general_search_widget_content_type_settings($form, &$form_state) {
     '#default_value' => !empty($conf['aria_label']) ? $conf['aria_label'] : 'Search terms',
   );
 
-  $form['background_image'] = array(
+  $form['ubn_background_image'] = array(
     '#type' => 'managed_file',
-    '#name' => 'background_image',
     '#title' => t('Background image'),
     '#description' => "Image should be as wide as possible and at least (best is exactly) 375px high. Use JPG format. Please optimize for web.",
-    '#default_value' => variable_get('background_image', ''),
-    '#upload_location' => 'public://search-widget',
-  ); 
+    '#progress_indicator' => "bar",
+    '#upload_location' => 'public://search-widget-2',
+    '#default_value' => '', //variable_get('ubn_search_widget_fid', ''),
+  );
 
   $form['dark_theme'] = array(
     '#type' => 'checkbox',
     '#title' => t('Check to use light text (on a dark image)'),
     '#default_value' => !empty($conf['dark_theme']) ? $conf['dark_theme'] : TRUE,
   );
-  return $form;
+  return $form;*/
 }
-
-
 
 /**
  * Ctools edit form submit handler.
@@ -74,15 +73,7 @@ function ubn_general_search_widget_content_type_settings($form, &$form_state) {
  * @param $form_state
  */
 function ubn_general_search_widget_content_type_settings_submit($form, &$form_state) {
-   //if (isset($form_state['values']['background_image'])) {
-   // $file = file_load($form_state['values']['background_image']);
-   // $file->status = FILE_STATUS_PERMANENT;
-
-    //$file_saved =file_save($file);
-    // Record that the module is using the file. 
- //   file_usage_add($file_saved, 'ubn_general_search_widget_background_image', 'background_image', $file_saved->fid); 
- // }
-
+  file_put_contents("/tmp/debug", "ubn_general_search_widget_content_type_settings_submit"  . "\n", FILE_APPEND);
   foreach (array('slogan', 'placeholder', 'aria_label', 'dark_theme') as $key) {
     $form_state['conf'][$key] = $form_state['values'][$key];
   }
@@ -97,8 +88,8 @@ function ubn_general_search_widget_content_type_settings_submit($form, &$form_st
 function ubn_general_search_widget_content_type_render($subtype, $conf, $panel_args, $context) {
   global $language;
   $number = '100000'; // default number
-  if (!empty($conf['number_of_items'])) {
-    $number = $conf['number_of_items'];
+  if (!variable_get('number_of_items')) {
+    $number = variable_get('number_of_items');
   }
   elseif ($record_count = variable_get('ubn_general_summon_record_count', FALSE)) {
     $number = $record_count;
@@ -118,15 +109,24 @@ function ubn_general_search_widget_content_type_render($subtype, $conf, $panel_a
     $link_list_rendered = slate_render('search-widget-link-list', array('link_list' => $link_list));
   }
 
-  $slogan = format_string($conf['slogan'], array('@number' => _ubn_slate_number_format($number)));
+
+  $slogan = format_string(variable_get('slogan'), array('@number' => _ubn_slate_number_format($number)));
   $block = new stdClass();
+  $file = file_load(variable_get('ubn_search_widget_fid'));
+  if ($file) {
+    $file_uri = file_create_url($file->uri);
+  }
+  else {
+    $file_uri = null; 
+  }
   $block->content = slate_render('search-widget',
     array(
       'url' => $url,
       'slogan' =>  $slogan,
-      'placeholder' => $conf['placeholder'],
-      'aria_label' => $conf['aria_label'],
-      'dark_theme' => $conf['dark_theme'],
+      'placeholder' => variable_get('placeholder'),
+      'aria_label' => variable_get('aria_label'),
+      'dark_theme' => variable_get('dark_theme'),
+      'file_url' => $file_uri,
       'link_list' => trim($link_list_rendered),
     )
   );

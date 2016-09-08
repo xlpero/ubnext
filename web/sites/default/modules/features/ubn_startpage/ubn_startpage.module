@@ -39,3 +39,146 @@ function ubn_startpage_entity_info_alter(&$entity_info) {
   );
 }
 
+
+/**
+ * 
+ */
+function ubn_startpage_form_system_site_information_settings_alter(&$form, &$form_state, $form_id) {
+  if ($form_state['submitted']) {
+    if (isset($form_state['values']['ubn_background_image'])) {
+        if ($form_state['values']['ubn_background_image'] != 0) {
+          // Load the file via file.fid.
+          $file = file_load($form_state['values']['ubn_background_image']);
+          // Change status to permanent.
+          $file->status = FILE_STATUS_PERMANENT;
+          // Save.
+          file_save($file);
+          // Record that the module (in this example, user module) is using the file. 
+          file_usage_add($file, 'ubn_startpage', 'user', 1);  
+          variable_set('ubn_search_widget_fid', $form_state['values']['ubn_background_image']);
+          drupal_set_message("Image was saved");
+        }
+    }
+    else {
+      // Retrieve the old file's id.
+      $fid = variable_get('ubn_search_widget_fid', FALSE);
+      $file = $fid ? file_load($fid) : FALSE;
+      if ($file) {
+        // When a module is managing a file, it must manage the usage count.
+        // Here we decrement the usage count with file_usage_delete().
+        file_usage_delete($file, 'ubn_startpage', 'user', 1);
+
+        // The file_delete() function takes a file object and checks to see if
+        // the file is being used by any other modules. If it is the delete
+        // operation is cancelled, otherwise the file is deleted.
+        file_delete($file);
+      }
+
+      // Either way the module needs to update it's reference since even if the
+      // file is in use by another module and not deleted we no longer want to
+      // use it.
+      variable_set('ubn_search_widget_fid', FALSE);
+      drupal_set_message(t('The image was removed.'));
+    }
+  }
+
+
+  $form['search_widget_fieldset'] = array(
+      '#type' => 'fieldset',
+      '#title' => t('SEARCH WIDGET'),
+      '#collapsible' => TRUE,
+  //        '#tree' => TRUE,
+  );
+
+  $default_value = variable_get('number_of_items', '1001');
+  $form['search_widget_fieldset']['number_of_items'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Number of items'),
+    '#description' => t('The number of items in Summon'),
+    '#default_value' => $default_value,
+  );
+
+  $default_value = variable_get('slogan', 'Search among <strong class="hidden-xs"> @number </strong> books, articles, magazines and more...');
+  $form['search_widget_fieldset']['slogan'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Search slogan'),
+    '#default_value' => $default_value,
+  );
+
+  $default_value = variable_get('placeholder', 'Search for...');
+  $form['search_widget_fieldset']['placeholder'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Placeholder'),
+    '#description' => t('Enter placeholder (shows up in input-box'),
+    '#default_value' => $default_value,
+  );
+
+  $default_value = variable_get('aria_label', 'Search terms');
+  $form['search_widget_fieldset']['aria_label'] = array(
+    '#type' => 'textfield',
+    '#title' => t('ARIA label'),
+    '#default_value' => $default_value,
+  );
+
+  $form['search_widget_fieldset']['ubn_background_image'] = array(
+    '#type' => 'managed_file',
+    '#title' => t('Background image'),
+    '#description' => "Image should be as wide as possible and at least (best is exactly) 375px high. Use JPG format. Please optimize for web.",
+    '#progress_indicator' => "bar",
+    '#upload_location' => 'public://search-widget',
+    '#default_value' => variable_get('ubn_search_widget_fid', ''),
+  );
+
+  $default_value = variable_get('dark_theme', TRUE);
+  $form['search_widget_fieldset']['dark_theme'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Check to use light text (on a dark image)'),
+    '#default_value' => $default_value,
+  );
+}
+
+
+function ubn_startpage_form_system_site_information_settings_submit(&$form, &$form_state) {
+   drupal_set_message ("ubn_startpage_form_system_site_information_settings_alter");
+}
+
+/**
+ * Implements hook_variable_info().
+ */
+
+function ubn_startpage_variable_info($options) {
+    // Site configuration, site information
+
+  $variables['dark_theme'] = array(
+    'type' => 'boolean',
+    'default' => TRUE,
+    'group' => 'site_information',
+  );
+
+  $variables['number_of_items'] = array(
+    'type' => 'text_format',
+    'default' => '1000',
+    'group' => 'site_information',
+  );
+ 
+  $variables['slogan'] = array(
+    'type' => 'text_format',
+    'default' => 'This is the slogan',
+    'group' => 'site_information',
+  );
+
+  $variables['placeholder'] = array(
+    'type' => 'text_format',
+    'default' => 'Placeholder here',
+    'group' => 'site_information',
+  );
+
+  $variables['aria_label'] = array(
+    'type' => 'text_format',
+    'default' => 'Aria label here',
+    'group' => 'site_information',
+  );
+  return $variables;
+}  
+
+

@@ -32,6 +32,7 @@ function ubn_footer_form_system_site_information_settings_alter(&$form, &$form_s
        '#default_value' => $default_value['value'],
        '#format' => $default_value['format'],
     );
+
 }
 
 

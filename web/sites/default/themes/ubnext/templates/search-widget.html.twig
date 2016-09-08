@@ -4,12 +4,15 @@
     models[slogan] = item
     models[placeholder] = item
     models[aria_label] = item
+    models[file_url] = item
     models[link_list] = item
 #}
 
     <div id="search-widget" class="panel-separator">
       <div class="search-widget-cover">
-          <img src="{{path_to_theme()}}/css/img/search-widget-bg.jpg"/>
+      	{% if file_url %}
+          <img src="{{file_url}}"/>
+        {% endif %}
           <div class="search-widget-cover-content">
             <div class="search-widget-content container">
             	<div class="slogan">
