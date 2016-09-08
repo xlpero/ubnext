@@ -99,6 +99,7 @@ function ubn_search_default_search_api_index() {
         "fallback language" : ""
       },
       "fields" : {
+        "author" : { "type" : "integer", "entity_type" : "user" },
         "field_alternate_titles" : { "type" : "list\\u003Ctext\\u003E" },
         "field_description_paragraphs" : { "type" : "list\\u003Ctext\\u003E" },
         "field_media_types" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
@@ -110,8 +111,10 @@ function ubn_search_default_search_api_index() {
         "field_topics_depth_0:name" : { "type" : "list\\u003Ctext\\u003E" },
         "field_topics_depth_1" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_topics_depth_1:name" : { "type" : "list\\u003Ctext\\u003E" },
+        "search_api_access_node" : { "type" : "list\\u003Cstring\\u003E" },
         "search_api_aggregation_1" : { "type" : "string" },
         "search_api_language" : { "type" : "string" },
+        "status" : { "type" : "boolean" },
         "title_field" : { "type" : "text" }
       },
       "data_alter_callbacks" : {
@@ -120,14 +123,6 @@ function ubn_search_default_search_api_index() {
           "weight" : "-10",
           "settings" : { "default" : "1", "bundles" : [] }
         },
-        "search_api_alter_node_access" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_alter_node_status" : { "status" : 0, "weight" : "0", "settings" : [] },
-        "search_api_alter_language_control" : {
-          "status" : 0,
-          "weight" : "0",
-          "settings" : { "lang_field" : "", "languages" : [] }
-        },
-        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
         "search_api_alter_add_url" : { "status" : 0, "weight" : "0", "settings" : [] },
         "search_api_alter_add_aggregation" : {
           "status" : 1,
@@ -141,7 +136,15 @@ function ubn_search_default_search_api_index() {
             }
           }
         },
-        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } }
+        "search_api_alter_add_viewed_entity" : { "status" : 0, "weight" : "0", "settings" : { "mode" : "full" } },
+        "search_api_alter_add_hierarchy" : { "status" : 0, "weight" : "0", "settings" : { "fields" : [] } },
+        "search_api_alter_language_control" : {
+          "status" : 0,
+          "weight" : "0",
+          "settings" : { "lang_field" : "", "languages" : [] }
+        },
+        "search_api_alter_node_access" : { "status" : 1, "weight" : "0", "settings" : [] },
+        "search_api_alter_node_status" : { "status" : 0, "weight" : "0", "settings" : [] }
       },
       "processors" : {
         "search_api_case_ignore" : {
@@ -424,7 +427,7 @@ function ubn_search_default_search_api_server() {
       "scheme" : "http",
       "host" : "130.241.35.208",
       "port" : "8983",
-      "path" : "\\/solr\\/drupal7_ubnext_xljoha",
+      "path" : "\\/solr\\/drupal7_ubnext_xgudav",
       "http_user" : "admin",
       "http_pass" : "admin",
       "excerpt" : 1,
