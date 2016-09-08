@@ -771,6 +771,12 @@ function ubn_general_update_7189() {
   workbench_scheduler_delete_schedules('draft_published');
 }
 
+function ubn_general_update_7190() {
+  features_revert_module('ubn_search');
+  features_revert_module('ubn_news');
+}
+
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
