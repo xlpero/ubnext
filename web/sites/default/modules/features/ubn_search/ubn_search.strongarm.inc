@@ -38,6 +38,7 @@ function ubn_search_strongarm() {
     'databases' => array(
       'search_api_page:search/databases/search' => 'search_api_page:search/databases/search',
       'search_api_autocomplete:search_api_page_databases' => 'search_api_autocomplete:search_api_page_databases',
+      'search_api_page:find/databases/search' => 'search_api_page:find/databases/search',
     ),
   );
   $export['search_api_facets_search_ids'] = $strongarm;
