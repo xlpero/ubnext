@@ -776,6 +776,11 @@ function ubn_general_update_7190() {
   features_revert_module('ubn_news');
 }
 
+function ubn_general_update_7191() {
+  features_revert_module('ubn_startpage_content');
+  features_revert_module('ubn_startpage');
+}
+
 
 //TODO: Disable rdf module?
 
