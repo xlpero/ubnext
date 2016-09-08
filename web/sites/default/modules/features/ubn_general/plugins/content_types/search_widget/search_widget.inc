@@ -64,6 +64,7 @@ function ubn_general_search_widget_content_type_settings($form, &$form_state) {
     '#default_value' => !empty($conf['dark_theme']) ? $conf['dark_theme'] : TRUE,
   );*/
   return $form;
+  
 }
 
 /**
