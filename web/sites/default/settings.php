@@ -23,6 +23,9 @@ $conf['i18n_variables'] = array(
   'footer_col1',
   'footer_col2',
   'footer_col3',
+  'slogan',
+  'placeholder',
+  'aria_label',
 );
 
 if (
