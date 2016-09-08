@@ -47,6 +47,13 @@ function ubn_startpage_default_page_manager_pages() {
         'uuid' => '4292e4cb-a82f-4ba3-a468-41c7ac7b70f5',
         'id' => 1,
       ),
+      1 => array(
+        'identifier' => 'Search-widget links',
+        'keyword' => 'node',
+        'name' => 'entity_uuid:node',
+        'uuid' => '56371bfa-65af-430d-8675-cc28b6d78c71',
+        'id' => 2,
+      ),
     ),
     'relationships' => array(),
   );
@@ -223,6 +230,8 @@ function ubn_startpage_default_page_manager_pages() {
       'placeholder' => 'Search for...',
       'aria_label' => 'Search in Supersök',
       'number_of_items' => '100000',
+      'context' => 'context_entity_uuid:node_2',
+      'dark_theme' => 1,
     );
     $pane->cache = array();
     $pane->style = array(
