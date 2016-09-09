@@ -70,6 +70,7 @@ function ubn_startpage_default_page_manager_pages() {
       'promoted' => NULL,
       'promoted_top' => NULL,
       'navigation' => NULL,
+      'messages' => NULL,
     ),
     'promoted_top' => array(
       'style' => 'naked',
@@ -118,6 +119,29 @@ function ubn_startpage_default_page_manager_pages() {
     $pane->uuid = 'ea3f5579-ce3d-4d53-a14a-726f1d81d213';
     $display->content['new-ea3f5579-ce3d-4d53-a14a-726f1d81d213'] = $pane;
     $display->panels['main'][0] = 'new-ea3f5579-ce3d-4d53-a14a-726f1d81d213';
+    $pane = new stdClass();
+    $pane->pid = 'new-6f8ff259-1397-45f7-b4c6-a0d95f687f3a';
+    $pane->panel = 'messages';
+    $pane->type = 'slate_render';
+    $pane->subtype = 'slate_render:beta-indicator';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '6f8ff259-1397-45f7-b4c6-a0d95f687f3a';
+    $display->content['new-6f8ff259-1397-45f7-b4c6-a0d95f687f3a'] = $pane;
+    $display->panels['messages'][0] = 'new-6f8ff259-1397-45f7-b4c6-a0d95f687f3a';
     $pane = new stdClass();
     $pane->pid = 'new-eeed91b1-56c6-43ab-b159-6098813eda7c';
     $pane->panel = 'navigation';

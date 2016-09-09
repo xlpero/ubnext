@@ -56,6 +56,7 @@ function ubn_page_default_page_manager_handlers() {
       'promoted_top' => NULL,
       'main_top' => NULL,
       'promoted' => NULL,
+      'messages' => NULL,
     ),
     'main' => array(
       'style' => 'naked',
@@ -147,6 +148,29 @@ function ubn_page_default_page_manager_handlers() {
     $pane->uuid = 'a0a45809-6ee5-4758-b7fb-10a998c8fa73';
     $display->content['new-a0a45809-6ee5-4758-b7fb-10a998c8fa73'] = $pane;
     $display->panels['main'][1] = 'new-a0a45809-6ee5-4758-b7fb-10a998c8fa73';
+    $pane = new stdClass();
+    $pane->pid = 'new-c33077d5-1d92-47fd-840e-cdc7b28876f5';
+    $pane->panel = 'messages';
+    $pane->type = 'slate_render';
+    $pane->subtype = 'slate_render:beta-indicator';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'c33077d5-1d92-47fd-840e-cdc7b28876f5';
+    $display->content['new-c33077d5-1d92-47fd-840e-cdc7b28876f5'] = $pane;
+    $display->panels['messages'][0] = 'new-c33077d5-1d92-47fd-840e-cdc7b28876f5';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -198,6 +222,7 @@ function ubn_page_default_page_manager_handlers() {
       'promoted_top' => NULL,
       'main_top' => NULL,
       'promoted' => NULL,
+      'messages' => NULL,
     ),
     'main' => array(
       'style' => 'naked',
@@ -382,6 +407,29 @@ function ubn_page_default_page_manager_handlers() {
     $display->content['new-f49d8c04-39d9-4b89-aca9-3d19c20fcc82'] = $pane;
     $display->panels['main_top'][1] = 'new-f49d8c04-39d9-4b89-aca9-3d19c20fcc82';
     $pane = new stdClass();
+    $pane->pid = 'new-bb0e1e51-4299-490d-a9b2-891d4fb16017';
+    $pane->panel = 'messages';
+    $pane->type = 'slate_render';
+    $pane->subtype = 'slate_render:beta-indicator';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'bb0e1e51-4299-490d-a9b2-891d4fb16017';
+    $display->content['new-bb0e1e51-4299-490d-a9b2-891d4fb16017'] = $pane;
+    $display->panels['messages'][0] = 'new-bb0e1e51-4299-490d-a9b2-891d4fb16017';
+    $pane = new stdClass();
     $pane->pid = 'new-955d37a7-32c7-4b87-b14b-4273a1ea33a0';
     $pane->panel = 'promoted';
     $pane->type = 'slate_gmap';
@@ -554,6 +602,10 @@ function ubn_page_default_page_manager_handlers() {
       'default' => NULL,
       'main' => NULL,
       'header' => NULL,
+      'messages' => NULL,
+      'promoted_top' => NULL,
+      'main_top' => NULL,
+      'promoted' => NULL,
     ),
     'main' => array(
       'style' => 'naked',
@@ -689,6 +741,29 @@ function ubn_page_default_page_manager_handlers() {
     $pane->uuid = 'b3b3304e-4b2b-4310-b0d8-913b909b9ac8';
     $display->content['new-b3b3304e-4b2b-4310-b0d8-913b909b9ac8'] = $pane;
     $display->panels['main'][1] = 'new-b3b3304e-4b2b-4310-b0d8-913b909b9ac8';
+    $pane = new stdClass();
+    $pane->pid = 'new-368d5bb4-9873-4b76-9466-b19ffa4d0325';
+    $pane->panel = 'messages';
+    $pane->type = 'slate_render';
+    $pane->subtype = 'slate_render:beta-indicator';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = '368d5bb4-9873-4b76-9466-b19ffa4d0325';
+    $display->content['new-368d5bb4-9873-4b76-9466-b19ffa4d0325'] = $pane;
+    $display->panels['messages'][0] = 'new-368d5bb4-9873-4b76-9466-b19ffa4d0325';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-376e1c75-6e4c-43c2-903d-0a3ce654c613';
   $handler->conf['display'] = $display;
@@ -847,6 +922,10 @@ function ubn_page_default_page_manager_handlers() {
       'default' => NULL,
       'main' => NULL,
       'header' => NULL,
+      'messages' => NULL,
+      'promoted_top' => NULL,
+      'main_top' => NULL,
+      'promoted' => NULL,
     ),
     'main' => array(
       'style' => 'naked',
@@ -941,6 +1020,29 @@ function ubn_page_default_page_manager_handlers() {
     $pane->uuid = 'd28ce43c-79fd-4c00-be39-515358c58ce4';
     $display->content['new-d28ce43c-79fd-4c00-be39-515358c58ce4'] = $pane;
     $display->panels['main'][1] = 'new-d28ce43c-79fd-4c00-be39-515358c58ce4';
+    $pane = new stdClass();
+    $pane->pid = 'new-f26a13d8-7831-4045-a93c-0df8ec4a64f0';
+    $pane->panel = 'messages';
+    $pane->type = 'slate_render';
+    $pane->subtype = 'slate_render:beta-indicator';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 1,
+      'override_title_text' => '',
+      'override_title_heading' => 'h2',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'f26a13d8-7831-4045-a93c-0df8ec4a64f0';
+    $display->content['new-f26a13d8-7831-4045-a93c-0df8ec4a64f0'] = $pane;
+    $display->panels['messages'][0] = 'new-f26a13d8-7831-4045-a93c-0df8ec4a64f0';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = 'new-f5c386c1-afc9-4a08-96c3-2cd3ee33e780';
   $handler->conf['display'] = $display;

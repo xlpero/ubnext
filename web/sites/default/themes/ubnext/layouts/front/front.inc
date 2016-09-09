@@ -10,6 +10,7 @@ $plugin = array(
   'category' => 'UBNext',
   'regions' => array(
     'search' => t('Search'),
+    'messages' => t('Messages'),
     'services' => t('Services'),
     'navigation' => t('Navigation'),
     'promoted_top' => t('Promoted top'),

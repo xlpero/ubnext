@@ -9,6 +9,7 @@ $plugin = array(
   'icon' => '',
   'category' => 'UBNext',
   'regions' => array(
+    'messages' => t('Messages'),
     'header' => t('Header'),
     'promoted_top' => t('Promoted top'),
     'main_top' => t('Main top'),

@@ -3,12 +3,11 @@
   cacheable = FALSE
 #}
 
-<div class="container">
-	<div class="row beta-indicator-wrapper">
-		<div class="col-xs-12">
-			<div class="beta-indicator center">
-				{{ check_markup(variable_get('beta_info', NULL)['value'], variable_get('beta_info', NULL)['format'], '', TRUE)|raw }}
-			</div>
+
+<div class="beta-indicator-wrapper">
+		<div class="beta-indicator center">
+			{{ check_markup(variable_get('beta_info', NULL)['value'], variable_get('beta_info', NULL)['format'], '', TRUE)|raw }}
 		</div>
 	</div>
 </div>
+

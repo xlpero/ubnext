@@ -1,4 +1,16 @@
 <div class="main">
+
+  <?php if (!empty ($content['messages'])) : ?>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <?php print render($content['messages']); ?>
+        </div>
+      </div>
+    </div>
+  <?php endif; ?>
+
+
   <?php if (!empty ($content['header'])) : ?>
     <div class="container">
       <div class="row">

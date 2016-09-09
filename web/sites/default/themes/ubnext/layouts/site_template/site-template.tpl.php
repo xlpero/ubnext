@@ -78,11 +78,6 @@
 </div>
 <?php endif; ?>
 
-<?php if (!empty($content['beta'])): ?>
-  <div class="panel-separator">
-    <?php print render($content['beta']); ?>
-  </div>
-<?php endif; ?>
 
 <?php if(!empty($content['navigation_secondary'])): ?>
 <div class="nav-cms secondary-nav-cms">
