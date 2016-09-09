@@ -41,10 +41,10 @@ function ubn_general_node_insert($node) {
 function ubn_general_node_update($node) {
   if (
     in_array($node->type, array('page', 'navigation_landing')) &&
-    empty($node->is_draft_revision) && //Hmmmm??
+    //empty($node->is_draft_revision) && //Hmmmm??
     isset($node->menu) &&
     isset($node->menu['mlid']) &&
-    !empty($node->menu['mild'])
+    !empty($node->menu['mlid'])
     /* &&
     isset($node->path) &&
     (!isset($node->path['old_alias']) || $node->path['alias'] !== $node->path['old_alias'])
