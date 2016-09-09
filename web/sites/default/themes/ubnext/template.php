@@ -774,7 +774,7 @@ function ubnext_search_api_sorts_sort($variables) {
       'asc' => 'fa-sort-desc',
       'desc' => 'fa-sort-asc',
     );
-    $fa_icon = '<i class="fa ' . $fa_class[$order_options['query']['order']] . '"></i>';
+    $fa_icon = '<i class="fa ' . $fa_class[$order_options['query']['order']] . '" aria-hidden="true"></i>';
     $output = theme(
       'link',
       array(

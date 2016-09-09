@@ -83,7 +83,7 @@
 {% macro link_list_links_item_begin(namespace, options) %}
   {% set options = { 'hide_icon' : false }|merge(options|default({})) %}
   <li>
-    {% if not options.hide_icon %}<i class="fa fa-chevron-right"></i>{% endif %}
+    {% if not options.hide_icon %}<i class="fa fa-chevron-right" aria-hidden="true"></i>{% endif %}
     <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'body-link') }}{% if not options.hide_icon %} icon{% endif %}">
 {% endmacro %}
 

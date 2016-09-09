@@ -5,7 +5,10 @@
 		.search-widget-cover {
 			overflow: hidden;
 			position: relative;
-			height: 375px;
+			@media (min-width: @screen-sm-min) {
+				height: 375px;
+			}
+			
 			img {
 				display: none;
 				position:absolute;
@@ -72,7 +75,6 @@
 			}
 
 			.ubn-panel-links {
-
 				&.search-widget-link-list {
 					margin-top: 20px;
 					margin-bottom: 0;
