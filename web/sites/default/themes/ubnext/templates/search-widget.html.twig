@@ -9,10 +9,11 @@
 #}
 
     <div id="search-widget" class="panel-separator">
-      <div class="search-widget-cover">
-      	{% if file_url %}
-          <img src="{{file_url}}"/>
-        {% endif %}
+    {% if file_url %}
+      <div class="search-widget-cover" style="background-image: url({{file_url}}); background-repeat: no-repeat; background-position: center;" >
+    {% else %}
+     	<div class="search-widget-cover">
+    {% endif %}
           <div class="search-widget-cover-content">
             <div class="search-widget-content container">
             	<div class="slogan">
@@ -30,9 +31,9 @@
                         <label for="q">{{aria_label}}</label>
                         <div class="input-group">
                           <input type="text" name="q" class="form-control input-lg" aria-label="{{ aria_label }}" placeholder="{{ placeholder }}">
-                          <span class="input-group-btn">
-                          <button class="btn btn-lg btn-primary" type="submit"><i class="fa fa-search"></i></button>
-                          </span>
+                          <div class="input-group-btn">
+                          <button class="btn btn-lg btn-primary" type="submit" aria-label="{{ aria_label }}"><i class="fa fa-search" aria-hidden="true"></i></button>
+                          </div>
                         </div><!-- /input-group -->
                       </form>
                     </div>
