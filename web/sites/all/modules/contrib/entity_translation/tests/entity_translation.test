@@ -64,6 +64,7 @@ class EntityTranslationTestCase extends DrupalWebTestCase {
       $this->admin_user = $this->drupalCreateUser(array_merge(array(
         'bypass node access',
         'administer nodes',
+        'administer fields',
         'administer languages',
         'administer content types',
         'administer blocks',

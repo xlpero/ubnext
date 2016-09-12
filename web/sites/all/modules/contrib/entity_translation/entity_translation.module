@@ -6,6 +6,7 @@
  */
 
 module_load_include('inc', 'entity_translation', 'entity_translation.node');
+module_load_include('inc', 'entity_translation', 'entity_translation.taxonomy');
 
 
 /**
@@ -22,6 +23,11 @@ define('ENTITY_TRANSLATION_LANGUAGE_CURRENT', 'xx-et-current');
  * Language code identifying the author's preferred language.
  */
 define('ENTITY_TRANSLATION_LANGUAGE_AUTHOR', 'xx-et-author');
+
+/**
+ * Defines an i18n translation mode for Entity Translation.
+ */
+define('I18N_MODE_ENTITY_TRANSLATION', 32768);
 
 
 /**
@@ -105,8 +111,11 @@ function entity_translation_entity_info() {
       'translation' => array(
         'entity_translation' => array(
           'class' => 'EntityTranslationTaxonomyTermHandler',
+          'access callback' => 'entity_translation_taxonomy_term_tab_access',
+          'access arguments' => array(1),
           'base path' => 'taxonomy/term/%taxonomy_term',
           'edit form' => 'term',
+          'bundle callback' => 'entity_translation_taxonomy_term_enabled_vocabulary',
         ),
       ),
     );
@@ -290,7 +299,7 @@ function _entity_translation_validate_path_schemes(&$schemes, $entity_type_label
     if (empty($scheme['path wildcard'])) {
       if ($warnings) {
         $t_args = array('%scheme' => $delta, '%entity_type' => $entity_type_label);
-        drupal_set_message(t('Entity Translation path scheme %scheme for entities of type %entity_type does not declare a path wildcard.', $t_args), 'warning');
+        watchdog('entity_translation', 'Entity Translation path scheme %scheme for entities of type %entity_type does not declare a path wildcard.', $t_args);
       }
       unset($schemes[$delta]);
       continue;
@@ -504,12 +513,13 @@ function entity_translation_menu_alter(&$items) {
       }
 
       if ($translate_ui_attached == FALSE) {
-        drupal_set_message(t('The entities of type %entity_type do not define a valid path scheme: it will not be possible to translate them.', array('%entity_type' => $info['label'])), 'warning');
+        watchdog('entity_translation', 'The entities of type %entity_type do not define a valid path scheme: it will not be possible to translate them.', array('%entity_type' => $info['label']));
       }
 
-      // Node-specific menu alterations.
-      if ($entity_type == 'node') {
-        entity_translation_node_menu_alter($items, $backup);
+      // Entity-type-specific menu alterations.
+      $function = 'entity_translation_' . $entity_type . '_menu_alter';
+      if (function_exists($function)) {
+        $function($items, $backup);
       }
     }
   }
@@ -871,13 +881,6 @@ function entity_translation_field_extra_fields() {
     if (entity_translation_enabled($entity_type)) {
       $bundles = !empty($info[$entity_type]['bundles']) ? array_keys($info[$entity_type]['bundles']) : array($entity_type);
       foreach ($bundles as $bundle) {
-        // @todo Clean this up in https://www.drupal.org/node/1661348.
-        if ($entity_type == 'taxonomy_term') {
-          $vocabulary = taxonomy_vocabulary_machine_name_load($bundle);
-          if ($vocabulary && module_invoke('i18n_taxonomy', 'vocabulary_mode', $vocabulary, 4)) {
-            continue;
-          }
-        }
         $settings = entity_translation_settings($entity_type, $bundle);
         if (empty($settings['hide_language_selector']) && entity_translation_enabled_bundle($entity_type, $bundle) && ($handler = entity_translation_get_handler($entity_type, $bundle))) {
           $language_key = $handler->getLanguageKey();
@@ -1459,6 +1462,10 @@ function _entity_translation_element_title_append(&$element, $suffix) {
   // is because some elements have a #title attribute even though it is not
   // rendered, e.g. field containers.
   if (isset($element['#type']) && isset($fapi_title_elements[$element['#type']]) && isset($element['#title'])) {
+    $element['#title'] .= $suffix;
+  }
+  // If this is a multi-valued field, apply the suffix to the container.
+  elseif (isset($element['#title']) && isset($element['#cardinality']) && $element['#cardinality'] != 1) {
     $element['#title'] .= $suffix;
   }
   // If the current element does not have a (valid) title, try child elements.
