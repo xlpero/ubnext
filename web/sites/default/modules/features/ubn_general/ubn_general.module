@@ -77,6 +77,20 @@ function _ubn_general_node_save($node) {
   }
 }
 
+/**
+ * Implements hook_entity_translation_delete()
+ */
+function ubn_general_entity_translation_delete() {
+  _ubn_general_clear_content_caches();
+}
+
+/**
+ * Implements hook_entity_translation_insert()
+ */
+function ubn_general_entity_translation_insert() {
+  _ubn_general_clear_content_caches();
+}
+
 function ubn_general_entity_delete($entity) {
   _ubn_general_clear_content_caches();
 }
