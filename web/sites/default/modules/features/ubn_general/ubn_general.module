@@ -61,17 +61,38 @@ function ubn_general_node_update($node) {
 }
 
 function _ubn_general_node_save($node) {
+  _ubn_general_clear_slate_cache();
   if (empty($node->is_draft_revision) &&
     (
       ($node->is_new && $node->status == NODE_PUBLISHED) ||
-      ($node->workbench_moderation['my_revision']->published != $node->status) //TODO: a bit too "clever"
+      (
+        isset($node->workbench_moderation) &&
+        $node->workbench_moderation['my_revision']->published != $node->status
+      ) //TODO: a bit too "clever"
     )
   ) {
     // Node is new or has changed publication status
     // (gone from published -> unpublished or unpublished -> published
-    cache_clear_all(NULL, 'cache_page');
-    cache_clear_all(NULL, 'cache');
+    _ubn_general_clear_page_cache();
   }
+}
+
+function ubn_general_entity_delete($entity) {
+  _ubn_general_clear_content_caches();
+}
+
+function _ubn_general_clear_content_caches() {
+  _ubn_general_clear_page_cache();
+  _ubn_general_clear_slate_cache();
+}
+
+function _ubn_general_clear_page_cache() {
+  cache_clear_all(NULL, 'cache_page');
+}
+
+//TODO: this should not be here
+function _ubn_general_clear_slate_cache() {
+  cache_clear_all('slate:', 'cache', TRUE);
 }
 
 function _ubn_general_menu_children_nids($plid) {
