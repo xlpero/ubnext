@@ -273,7 +273,7 @@ function slate_render($slate, $models = array()) {
         $cache_data[] = md5_file($slate_info['path'] . DIRECTORY_SEPARATOR . $slate_info['file']);
       }
 
-      $cache_key = md5(extension_loaded('igbinary') ? igbinary_serialize($cache_data) : serialize($cache_data));
+      $cache_key = 'slate:' . (md5(extension_loaded('igbinary') ? igbinary_serialize($cache_data) : serialize($cache_data)));
       //TODO: our own cache bin?
       $cache = cache_get($cache_key);
       if(isset($cache->data)) {
