@@ -268,7 +268,7 @@ function field_language($entity_type, $entity, $field_name = NULL, $langcode = N
   list($id, , $bundle) = entity_extract_ids($entity_type, $entity);
   $langcode = field_valid_language($langcode, FALSE);
 
-  if (!isset($display_languages[$entity_type][$id][$langcode]) || empty($id)) {
+  if (!isset($display_languages[$entity_type][$id][$langcode])) {
     $display_language = array();
 
     // By default display language is set to LANGUAGE_NONE if the field

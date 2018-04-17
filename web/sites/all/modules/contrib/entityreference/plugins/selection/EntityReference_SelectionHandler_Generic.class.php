@@ -271,7 +271,7 @@ class EntityReference_SelectionHandler_Generic implements EntityReference_Select
         $query->fieldOrderBy($field, $column, $sort_settings['direction']);
       }
     }
-
+    drupal_alter('entityreference_selectionhandler_efq', $query, $this);
     return $query;
   }
 

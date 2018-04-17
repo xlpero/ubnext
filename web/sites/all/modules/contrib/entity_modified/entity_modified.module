@@ -147,7 +147,7 @@ function entity_modified_supported_core_entities($enabled = FALSE) {
   $modified_property_names = array();
   // Core entity types.
   $modified_property_names['comment'] = 'changed';
-  $modified_property_names['node'] = 'changed';
+  $modified_property_names['node'] = 'revision_timestamp';
 
   // File entity module.
   $modified_property_names['file'] = 'timestamp';
