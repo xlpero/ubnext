@@ -578,7 +578,7 @@ class SearchApiSolrService extends SearchApiAbstractService {
 
       // Now add all fields contained in the item, with dynamic fields. Also,
       // gather the contents of all text fields to also add them to "content".
-      $text_content = '';
+      $text_content = array();
       foreach ($item as $key => $field) {
         // If the field is not known for the index, something weird has
         // happened. We refuse to index the items and hope that the others are
