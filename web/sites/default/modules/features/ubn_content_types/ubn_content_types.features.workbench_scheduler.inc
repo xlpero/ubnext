@@ -15,9 +15,10 @@ function ubn_content_types_workbench_scheduler_export_schedules() {
       'start_state' => 'published',
       'end_state' => 'unpublished',
       'types' => array(
-        0 => 'blurb',
-        1 => 'page',
-        2 => 'story',
+        0 => 'alert_and_info_message',
+        1 => 'blurb',
+        2 => 'page',
+        3 => 'story',
       ),
     ),
   );

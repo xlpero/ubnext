@@ -893,6 +893,158 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-alert_and_info_message-body'.
+  $field_instances['node-alert_and_info_message-body'] = array(
+    'bundle' => 'alert_and_info_message',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 0,
+      ),
+      'teaser' => array(
+        'label' => 'hidden',
+        'module' => 'text',
+        'settings' => array(
+          'trim_length' => 600,
+        ),
+        'type' => 'text_summary_or_trimmed',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'body',
+    'label' => 'Body',
+    'required' => FALSE,
+    'settings' => array(
+      'display_summary' => TRUE,
+      'entity_translation_sync' => FALSE,
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => 1,
+    ),
+  );
+
+  // Exported field_instance: 'node-alert_and_info_message-field_is_warning'.
+  $field_instances['node-alert_and_info_message-field_is_warning'] = array(
+    'bundle' => 'alert_and_info_message',
+    'default_value' => array(
+      0 => array(
+        'value' => 0,
+      ),
+    ),
+    'deleted' => 0,
+    'description' => 'Click this if you want to mark this alert as a warning. This will place this item above any published alerts. It will be redish in color. ',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 2,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_is_warning',
+    'label' => 'is_warning',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(
+        'display_label' => 0,
+      ),
+      'type' => 'options_onoff',
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'node-alert_and_info_message-title_field'.
+  $field_instances['node-alert_and_info_message-title_field'] = array(
+    'bundle' => 'alert_and_info_message',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'title_field',
+    'label' => 'Title',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'ubn_property_field' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 0,
+    ),
+  );
+
   // Exported field_instance: 'node-database-field_alternate_titles'.
   $field_instances['node-database-field_alternate_titles'] = array(
     'bundle' => 'database',
@@ -3058,6 +3210,7 @@ function ubn_content_types_field_default_field_instances() {
   t('App');
   t('Authors');
   t('Body');
+  t('Click this if you want to mark this alert as a warning. This will place this item above any published alerts. It will be redish in color. ');
   t('Contact');
   t('Contacts');
   t('Content');
@@ -3101,6 +3254,7 @@ function ubn_content_types_field_default_field_instances() {
   t('Type to use');
   t('URL');
   t('Url');
+  t('is_warning');
 
   return $field_instances;
 }
