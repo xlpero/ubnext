@@ -1,0 +1,35 @@
+{# slate
+  name = Alert: item
+  models[alert] = entity:node
+#}
+{% import "dates.html.twig" as dates %}
+{% if alert.field_is_warning.value == 1 %}
+<div class="alert-indicator-wrapper alert-indicator-danger" role="alert">
+{% else %}
+<div class="alert-indicator-wrapper alert-indicator-warning" role="alert">
+{% endif %}
+  <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="alert-indicator">
+            {% if alert.field_is_warning.value == 1 %}
+              <i class="fa fa-exclamation-triangle"></i>
+            {% else %}
+              <i class="fa fa-info-circle"></i>
+            {% endif %}
+            <div class="alert-indicator-content-wrapper">
+              <div class="alert-indicator-content-header">
+                {{alert.title}} 
+              </div>
+              <div class="alert-indicator-content-date">
+                {{t("Publicerad")}}: {{dates.date_default(alert.created.value)}}
+              </div>
+              <div class="alert-indicator-content-body">
+                {{alert.body.value|raw}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

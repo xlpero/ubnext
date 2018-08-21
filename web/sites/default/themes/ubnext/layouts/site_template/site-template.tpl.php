@@ -62,6 +62,13 @@
     </nav>
 </div>
 
+<?php if (!empty($content['warning_message'])): ?>
+    <div class="container-full">
+        <?php print render($content['warning_message']); ?>
+    </div>
+<?php endif; ?>
+
+
 <?php if(!empty($content['breadcrumb'])): ?>
 <div class="nav-cms breadcrumb-nav-cms">
  <div class="container">

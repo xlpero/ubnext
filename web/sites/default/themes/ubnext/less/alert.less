@@ -8,3 +8,34 @@
     }
   }
 }
+
+.alert-indicator-wrapper {
+  &.alert-indicator-warning {
+    background: @alert-warning-bg;
+    color: @alert-warning-text;
+  }
+  &.alert-indicator-danger {
+    background: @alert-danger-bg;
+    color: @alert-danger-text;
+  }
+
+  .alert-indicator {
+    .fa {
+      position: absolute;
+      margin-top: 5px;
+    }
+    .alert-indicator-content-wrapper {
+      margin-left:25px;
+      .alert-indicator-content-header {
+        font-weight: bold;
+      }
+      .alert-indicator-content-date {
+        font-style: italic;
+      }
+      .alert-indicator-content-body > p {
+        margin-bottom: 0px;
+      }
+    }
+    padding: 15px 0;
+  }
+}

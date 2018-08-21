@@ -13,6 +13,7 @@ $plugin = array(
     'toplinks' => t('Top links'),
     'navigation' => t('Navigation'),
     'dropdown_navigation' => t('Dropdown navigation used on mobile'),
+    'warning_message' => t('Warning and information messages'),
     'breadcrumb' => t("Breadcrumb"),
     'navigation_secondary' => t('Secondary navigation'),
     'beta' => t('Beta'),
