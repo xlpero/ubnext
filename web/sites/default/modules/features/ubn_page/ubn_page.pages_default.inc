@@ -1086,11 +1086,15 @@ function ubn_page_default_page_manager_handlers() {
       'dropdown_navigation' => NULL,
       'breadcrumb' => NULL,
       'beta' => NULL,
+      'warning_message' => NULL,
     ),
     'tabs' => array(
       'style' => 'default',
     ),
     'navigation' => array(
+      'style' => 'naked',
+    ),
+    'pagetitle' => array(
       'style' => 'naked',
     ),
   );
@@ -1367,6 +1371,25 @@ function ubn_page_default_page_manager_handlers() {
     $pane->uuid = '179c37da-32bb-42e2-900c-6dbcaec09453';
     $display->content['new-179c37da-32bb-42e2-900c-6dbcaec09453'] = $pane;
     $display->panels['toplinks'][0] = 'new-179c37da-32bb-42e2-900c-6dbcaec09453';
+    $pane = new stdClass();
+    $pane->pid = 'new-d7e006c7-cc3d-4685-8393-060d731a3efd';
+    $pane->panel = 'warning_message';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'alert_message-panel_pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array();
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $pane->uuid = 'd7e006c7-cc3d-4685-8393-060d731a3efd';
+    $display->content['new-d7e006c7-cc3d-4685-8393-060d731a3efd'] = $pane;
+    $display->panels['warning_message'][0] = 'new-d7e006c7-cc3d-4685-8393-060d731a3efd';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
@@ -1463,7 +1486,7 @@ function ubn_page_default_page_manager_pages() {
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
-  $pages['error_404'] = $page;
+  $pages[''] = $page;
 
   return $pages;
 
