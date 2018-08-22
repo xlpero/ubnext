@@ -800,7 +800,7 @@ function ubn_general_update_7194() {
 
 
 function ubn_general_update_7195() {
-  $modules = array('publication_date');
+  $modules = array('publication_date', 'ubn_alert');
   module_enable($modules);
   features_revert_module('ubn_page');
   features_revert_module('ubn_alert');
