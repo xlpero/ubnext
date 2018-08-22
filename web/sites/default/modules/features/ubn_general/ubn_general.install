@@ -799,6 +799,14 @@ function ubn_general_update_7194() {
 }
 
 
+function ubn_general_update_7195() {
+  $modules = array('publication_date');
+  module_enable($modules);
+  features_revert_module('ubn_page');
+  features_revert_module('ubn_alert');
+}
+
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
