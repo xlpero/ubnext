@@ -22,7 +22,7 @@
                 {{alert.title}} 
               </div>
               <div class="alert-indicator-content-date">
-                {{t("Publicerad")}}: {{dates.date_default(alert.created.value)}}
+                {{t("Publicerad")}}: {{dates.date_default_with_time(alert.published_at.value)}}
               </div>
               <div class="alert-indicator-content-body">
                 {{alert.body.value|raw}}
