@@ -264,6 +264,60 @@ function ubn_library_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-library-field_availability_description'.
+  $field_instances['node-library-field_availability_description'] = array(
+    'bundle' => 'library',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 29,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_availability_description',
+    'label' => 'Availability description',
+    'required' => 0,
+    'settings' => array(
+      'display_summary' => 0,
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => 7,
+    ),
+  );
+
   // Exported field_instance: 'node-library-field_contact_instances'.
   $field_instances['node-library-field_contact_instances'] = array(
     'bundle' => 'library',
@@ -310,7 +364,7 @@ function ubn_library_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -424,7 +478,7 @@ function ubn_library_field_default_field_instances() {
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 9,
+      'weight' => 10,
     ),
   );
 
@@ -630,7 +684,7 @@ function ubn_library_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 25,
+      'weight' => 7,
     ),
   );
 
@@ -740,7 +794,7 @@ function ubn_library_field_default_field_instances() {
         'html5_geolocation' => 0,
       ),
       'type' => 'geofield_latlon',
-      'weight' => 11,
+      'weight' => 12,
     ),
   );
 
@@ -854,7 +908,7 @@ function ubn_library_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_hidden',
-      'weight' => 31,
+      'weight' => 14,
     ),
   );
 
@@ -902,7 +956,57 @@ function ubn_library_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 10,
+      'weight' => 11,
+    ),
+  );
+
+  // Exported field_instance: 'node-library-field_referenced_opening_hours'.
+  $field_instances['node-library-field_referenced_opening_hours'] = array(
+    'bundle' => 'library',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'entityreference',
+        'settings' => array(
+          'link' => FALSE,
+        ),
+        'type' => 'entityreference_label',
+        'weight' => 3,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_referenced_opening_hours',
+    'label' => 'Opening hours',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'entityreference',
+      'settings' => array(
+        'match_operator' => 'CONTAINS',
+        'path' => '',
+        'size' => 60,
+      ),
+      'type' => 'entityreference_autocomplete',
+      'weight' => 13,
     ),
   );
 
@@ -1019,7 +1123,7 @@ function ubn_library_field_default_field_instances() {
         ),
       ),
       'type' => 'addressfield_standard',
-      'weight' => 8,
+      'weight' => 9,
     ),
   );
 
@@ -1075,6 +1179,7 @@ function ubn_library_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Availability description');
   t('Contact');
   t('Content');
   t('Delivery address');

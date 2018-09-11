@@ -21,12 +21,12 @@ function ubn_library_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Address information',
-    'weight' => '7',
+    'weight' => '8',
     'children' => array(
       0 => 'field_delivery_address',
       1 => 'field_mailing_address',
-      2 => 'field_visiting_address',
-      3 => 'field_phone',
+      2 => 'field_phone',
+      3 => 'field_visiting_address',
       4 => 'field_location_override',
     ),
     'format_type' => 'fieldset',

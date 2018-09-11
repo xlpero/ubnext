@@ -73,7 +73,7 @@ function ubn_library_strongarm() {
           'weight' => '10',
         ),
         'redirect' => array(
-          'weight' => '11',
+          'weight' => '12',
         ),
         'language' => array(
           'weight' => '8',
