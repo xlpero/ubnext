@@ -27,15 +27,16 @@
                 <div class="col-sm-12 search-widget-content-plate">
                   <div class="row">
                     <div class="col-sm-8">
-                      <form action="{{ url }}">
-                        <label for="q">{{aria_label}}</label>
+                      <!--<form action="{{ url }}">-->
+                      <div id="custom-form">
+                        <label for="query">{{aria_label}}</label>
                         <div class="input-group">
-                          <input type="text" name="q" class="form-control input-lg" aria-label="{{ aria_label }}" placeholder="{{ placeholder }}">
+                          <input type="text" name="query" class="form-control input-lg" aria-label="{{ aria_label }}" placeholder="{{ placeholder }}">
                           <div class="input-group-btn">
-                          <button class="btn btn-lg btn-primary" type="submit" aria-label="{{ aria_label }}"><i class="fa fa-search" aria-hidden="true"></i></button>
+                          <button class="btn btn-lg btn-primary" type="button" aria-label="{{ aria_label }}"><i class="fa fa-search" aria-hidden="true"></i></button>
                           </div>
                         </div><!-- /input-group -->
-                      </form>
+                      </div>
                     </div>
                     <div class="col-sm-4">
 						{{ link_list|raw }}
