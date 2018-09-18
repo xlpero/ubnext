@@ -415,10 +415,10 @@ function ubn_content_types_strongarm() {
           'weight' => '-5',
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '2',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '1',
         ),
         'xmlsitemap' => array(
           'weight' => '30',

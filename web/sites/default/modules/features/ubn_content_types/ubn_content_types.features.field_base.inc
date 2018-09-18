@@ -54,6 +54,34 @@ function ubn_content_types_field_default_field_bases() {
     'type' => 'text_with_summary',
   );
 
+  // Exported field_base: 'field_access_information'.
+  $field_bases['field_access_information'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_access_information',
+    'indexes' => array(
+      'tid' => array(
+        0 => 'tid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'taxonomy',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'database_availability',
+          'parent' => 0,
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'options_list_callback' => 'title_taxonomy_allowed_values',
+    ),
+    'translatable' => 1,
+    'type' => 'taxonomy_term_reference',
+  );
+
   // Exported field_base: 'field_alternate_titles'.
   $field_bases['field_alternate_titles'] = array(
     'active' => 1,
@@ -175,6 +203,54 @@ function ubn_content_types_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
+  // Exported field_base: 'field_course_pack_print'.
+  $field_bases['field_course_pack_print'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_course_pack_print',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'Yes' => 'Yes',
+        'No' => 'No',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_course_pack_print_desc'.
+  $field_bases['field_course_pack_print_desc'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_course_pack_print_desc',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
   // Exported field_base: 'field_database_urls'.
   $field_bases['field_database_urls'] = array(
     'active' => 1,
@@ -281,6 +357,54 @@ function ubn_content_types_field_default_field_bases() {
     'type' => 'text_long',
   );
 
+  // Exported field_base: 'field_download_article_chap_desc'.
+  $field_bases['field_download_article_chap_desc'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_download_article_chap_desc',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_download_article_chapter'.
+  $field_bases['field_download_article_chapter'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_download_article_chapter',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'Yes' => 'Yes',
+        'No' => 'No',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
   // Exported field_base: 'field_file'.
   $field_bases['field_file'] = array(
     'active' => 1,
@@ -323,6 +447,54 @@ function ubn_content_types_field_default_field_bases() {
     'type' => 'atom_reference',
   );
 
+  // Exported field_base: 'field_gul_course_pack_elect_desc'.
+  $field_bases['field_gul_course_pack_elect_desc'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_gul_course_pack_elect_desc',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_gul_course_pack_electronic'.
+  $field_bases['field_gul_course_pack_electronic'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_gul_course_pack_electronic',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'Yes' => 'Yes',
+        'No' => 'No',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
   // Exported field_base: 'field_image_atom'.
   $field_bases['field_image_atom'] = array(
     'active' => 1,
@@ -342,6 +514,54 @@ function ubn_content_types_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'atom_reference',
+  );
+
+  // Exported field_base: 'field_interlibrary_loan'.
+  $field_bases['field_interlibrary_loan'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_interlibrary_loan',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'Yes' => 'Yes',
+        'No' => 'No',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_interlibrary_loan_desc'.
+  $field_bases['field_interlibrary_loan_desc'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_interlibrary_loan_desc',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
   );
 
   // Exported field_base: 'field_is_warning'.
@@ -759,6 +979,32 @@ function ubn_content_types_field_default_field_bases() {
     'type' => 'text',
   );
 
+  // Exported field_base: 'field_print_article_chapter'.
+  $field_bases['field_print_article_chapter'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_print_article_chapter',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'Yes' => 'Yes',
+        'No' => 'No',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
   // Exported field_base: 'field_promote_to_shortcut'.
   $field_bases['field_promote_to_shortcut'] = array(
     'active' => 1,
@@ -829,6 +1075,34 @@ function ubn_content_types_field_default_field_bases() {
       'allowed_values' => array(
         0 => array(
           'vocabulary' => 'publishers',
+          'parent' => 0,
+        ),
+      ),
+      'entity_translation_sync' => FALSE,
+      'options_list_callback' => 'title_taxonomy_allowed_values',
+    ),
+    'translatable' => 0,
+    'type' => 'taxonomy_term_reference',
+  );
+
+  // Exported field_base: 'field_recommended_in_subjects'.
+  $field_bases['field_recommended_in_subjects'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_recommended_in_subjects',
+    'indexes' => array(
+      'tid' => array(
+        0 => 'tid',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'taxonomy',
+    'settings' => array(
+      'allowed_values' => array(
+        0 => array(
+          'vocabulary' => 'topics',
           'parent' => 0,
         ),
       ),
@@ -985,6 +1259,54 @@ function ubn_content_types_field_default_field_bases() {
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_remote_id',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
+  );
+
+  // Exported field_base: 'field_scholarly_sharing'.
+  $field_bases['field_scholarly_sharing'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_scholarly_sharing',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'Yes' => 'Yes',
+        'No' => 'No',
+      ),
+      'allowed_values_function' => '',
+      'entity_translation_sync' => FALSE,
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_scholarly_sharing_desc'.
+  $field_bases['field_scholarly_sharing_desc'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_scholarly_sharing_desc',
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -1200,6 +1522,28 @@ function ubn_content_types_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'taxonomy_term_reference',
+  );
+
+  // Exported field_base: 'field_tou_article_chapt_desc'.
+  $field_bases['field_tou_article_chapt_desc'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_tou_article_chapt_desc',
+    'indexes' => array(
+      'format' => array(
+        0 => 'format',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'text',
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'max_length' => 255,
+    ),
+    'translatable' => 0,
+    'type' => 'text',
   );
 
   // Exported field_base: 'field_type_to_use'.

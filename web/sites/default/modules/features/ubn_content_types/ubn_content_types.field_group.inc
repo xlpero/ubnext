@@ -154,6 +154,44 @@ function ubn_content_types_field_group_info() {
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
+  $field_group->identifier = 'group_terms_of_use|node|database|form';
+  $field_group->group_name = 'group_terms_of_use';
+  $field_group->entity_type = 'node';
+  $field_group->bundle = 'database';
+  $field_group->mode = 'form';
+  $field_group->parent_name = '';
+  $field_group->data = array(
+    'label' => 'terms of use',
+    'weight' => '19',
+    'children' => array(
+      0 => 'field_tou_article_chapt_desc',
+      1 => 'field_download_article_chap_desc',
+      2 => 'field_course_pack_print_desc',
+      3 => 'field_gul_course_pack_elect_desc',
+      4 => 'field_scholarly_sharing_desc',
+      5 => 'field_interlibrary_loan_desc',
+      6 => 'field_print_article_chapter',
+      7 => 'field_download_article_chapter',
+      8 => 'field_course_pack_print',
+      9 => 'field_gul_course_pack_electronic',
+      10 => 'field_scholarly_sharing',
+      11 => 'field_interlibrary_loan',
+    ),
+    'format_type' => 'fieldset',
+    'format_settings' => array(
+      'formatter' => 'collapsible',
+      'instance_settings' => array(
+        'description' => '',
+        'classes' => 'group-terms-of-use field-group-fieldset',
+        'required_fields' => 1,
+      ),
+    ),
+  );
+  $export['group_terms_of_use|node|database|form'] = $field_group;
+
+  $field_group = new stdClass();
+  $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
+  $field_group->api_version = 1;
   $field_group->identifier = 'group_term|field_collection_item|field_content_sections|form';
   $field_group->group_name = 'group_term';
   $field_group->entity_type = 'field_collection_item';

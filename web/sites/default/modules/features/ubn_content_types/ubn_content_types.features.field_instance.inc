@@ -1045,6 +1045,51 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-database-field_access_information'.
+  $field_instances['node-database-field_access_information'] = array(
+    'bundle' => 'database',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 21,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_access_information',
+    'label' => 'Access information',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 18,
+    ),
+  );
+
   // Exported field_instance: 'node-database-field_alternate_titles'.
   $field_instances['node-database-field_alternate_titles'] = array(
     'bundle' => 'database',
@@ -1089,7 +1134,105 @@ function ubn_content_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 36,
+      'weight' => 6,
+    ),
+  );
+
+  // Exported field_instance: 'node-database-field_course_pack_print'.
+  $field_instances['node-database-field_course_pack_print'] = array(
+    'bundle' => 'database',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 37,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_course_pack_print',
+    'label' => 'Course pack print',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 27,
+    ),
+  );
+
+  // Exported field_instance: 'node-database-field_course_pack_print_desc'.
+  $field_instances['node-database-field_course_pack_print_desc'] = array(
+    'bundle' => 'database',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 28,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_course_pack_print_desc',
+    'label' => 'Course pack print description',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 28,
     ),
   );
 
@@ -1140,7 +1283,7 @@ function ubn_content_types_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 41,
+      'weight' => 10,
     ),
   );
 
@@ -1188,7 +1331,301 @@ function ubn_content_types_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 31,
+      'weight' => 3,
+    ),
+  );
+
+  // Exported field_instance: 'node-database-field_download_article_chap_desc'.
+  $field_instances['node-database-field_download_article_chap_desc'] = array(
+    'bundle' => 'database',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 26,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_download_article_chap_desc',
+    'label' => 'Download article/chapter description',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 26,
+    ),
+  );
+
+  // Exported field_instance: 'node-database-field_download_article_chapter'.
+  $field_instances['node-database-field_download_article_chapter'] = array(
+    'bundle' => 'database',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 36,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_download_article_chapter',
+    'label' => 'Download article/chapter',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 25,
+    ),
+  );
+
+  // Exported field_instance: 'node-database-field_gul_course_pack_elect_desc'.
+  $field_instances['node-database-field_gul_course_pack_elect_desc'] = array(
+    'bundle' => 'database',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 30,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_gul_course_pack_elect_desc',
+    'label' => 'GUL / Course pack electronic description',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 30,
+    ),
+  );
+
+  // Exported field_instance: 'node-database-field_gul_course_pack_electronic'.
+  $field_instances['node-database-field_gul_course_pack_electronic'] = array(
+    'bundle' => 'database',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 38,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_gul_course_pack_electronic',
+    'label' => 'GUL / Course pack electronic',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 29,
+    ),
+  );
+
+  // Exported field_instance: 'node-database-field_interlibrary_loan'.
+  $field_instances['node-database-field_interlibrary_loan'] = array(
+    'bundle' => 'database',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 40,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_interlibrary_loan',
+    'label' => 'Interlibrary loan',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 33,
+    ),
+  );
+
+  // Exported field_instance: 'node-database-field_interlibrary_loan_desc'.
+  $field_instances['node-database-field_interlibrary_loan_desc'] = array(
+    'bundle' => 'database',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 34,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_interlibrary_loan_desc',
+    'label' => 'Interlibrary loan description',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 34,
     ),
   );
 
@@ -1236,7 +1673,7 @@ function ubn_content_types_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 49,
+      'weight' => 16,
     ),
   );
 
@@ -1287,7 +1724,7 @@ function ubn_content_types_field_default_field_instances() {
         'display_label' => 0,
       ),
       'type' => 'options_onoff',
-      'weight' => 50,
+      'weight' => 17,
     ),
   );
 
@@ -1335,7 +1772,52 @@ function ubn_content_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 33,
+      'weight' => 5,
+    ),
+  );
+
+  // Exported field_instance: 'node-database-field_print_article_chapter'.
+  $field_instances['node-database-field_print_article_chapter'] = array(
+    'bundle' => 'database',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 35,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_print_article_chapter',
+    'label' => 'Print article/chapter',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 23,
     ),
   );
 
@@ -1386,7 +1868,7 @@ function ubn_content_types_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 47,
+      'weight' => 14,
     ),
   );
 
@@ -1431,7 +1913,7 @@ function ubn_content_types_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 40,
+      'weight' => 9,
     ),
   );
 
@@ -1479,7 +1961,55 @@ function ubn_content_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 32,
+      'weight' => 4,
+    ),
+  );
+
+  // Exported field_instance: 'node-database-field_recommended_in_subjects'.
+  $field_instances['node-database-field_recommended_in_subjects'] = array(
+    'bundle' => 'database',
+    'default_value' => array(),
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'taxonomy',
+        'settings' => array(),
+        'type' => 'taxonomy_term_reference_link',
+        'weight' => 20,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_recommended_in_subjects',
+    'label' => 'Recommended in subjects',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 0,
+      'module' => 'options',
+      'settings' => array(
+        'autocomplete_path' => 'taxonomy/autocomplete',
+        'size' => 60,
+      ),
+      'type' => 'options_select',
+      'weight' => 8,
     ),
   );
 
@@ -1527,7 +2057,105 @@ function ubn_content_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 42,
+      'weight' => 11,
+    ),
+  );
+
+  // Exported field_instance: 'node-database-field_scholarly_sharing'.
+  $field_instances['node-database-field_scholarly_sharing'] = array(
+    'bundle' => 'database',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 39,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_scholarly_sharing',
+    'label' => 'Scholarly sharing',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 31,
+    ),
+  );
+
+  // Exported field_instance: 'node-database-field_scholarly_sharing_desc'.
+  $field_instances['node-database-field_scholarly_sharing_desc'] = array(
+    'bundle' => 'database',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 32,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_scholarly_sharing_desc',
+    'label' => 'Scholarly sharing description',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 32,
     ),
   );
 
@@ -1572,7 +2200,7 @@ function ubn_content_types_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_select',
-      'weight' => 37,
+      'weight' => 7,
     ),
   );
 
@@ -1620,7 +2248,7 @@ function ubn_content_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 45,
+      'weight' => 12,
     ),
   );
 
@@ -1668,7 +2296,60 @@ function ubn_content_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 46,
+      'weight' => 13,
+    ),
+  );
+
+  // Exported field_instance: 'node-database-field_tou_article_chapt_desc'.
+  $field_instances['node-database-field_tou_article_chapt_desc'] = array(
+    'bundle' => 'database',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 23,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_tou_article_chapt_desc',
+    'label' => 'Print article/chapter description',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 24,
     ),
   );
 
@@ -1717,7 +2398,7 @@ function ubn_content_types_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 48,
+      'weight' => 15,
     ),
   );
 
@@ -1767,7 +2448,7 @@ function ubn_content_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => -5,
+      'weight' => 0,
     ),
   );
 
@@ -3013,6 +3694,84 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'taxonomy_term-database_availability-description_field'.
+  $field_instances['taxonomy_term-database_availability-description_field'] = array(
+    'bundle' => 'database_availability',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 1,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'description_field',
+    'label' => 'Description',
+    'required' => FALSE,
+    'settings' => array(
+      'display_summary' => 0,
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'rows' => 20,
+        'summary_rows' => 5,
+      ),
+      'type' => 'text_textarea_with_summary',
+      'weight' => -5,
+    ),
+  );
+
+  // Exported field_instance: 'taxonomy_term-database_availability-name_field'.
+  $field_instances['taxonomy_term-database_availability-name_field'] = array(
+    'bundle' => 'database_availability',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'name_field',
+    'label' => 'Name',
+    'required' => TRUE,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'hide_label' => array(
+        'entity' => FALSE,
+        'page' => FALSE,
+      ),
+      'text_processing' => 0,
+      'ubn_property_field' => FALSE,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => -5,
+    ),
+  );
+
   // Exported field_instance: 'taxonomy_term-media_types-description_field'.
   $field_instances['taxonomy_term-media_types-description_field'] = array(
     'bundle' => 'media_types',
@@ -3204,6 +3963,7 @@ function ubn_content_types_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Access information');
   t('Add your malfunction message here. If you want it to be active check the active checkbox below.  ');
   t('Alternate titles');
   t('Anonymous allowed');
@@ -3214,16 +3974,24 @@ function ubn_content_types_field_default_field_instances() {
   t('Contact');
   t('Contacts');
   t('Content');
+  t('Course pack print');
+  t('Course pack print description');
   t('Database urls');
   t('Description');
   t('Descriptions');
   t('Don\'t show a link to this page for the term view on the alphabetical listing.');
+  t('Download article/chapter');
+  t('Download article/chapter description');
   t('Enables the Service disruption message (ie makes it visible to users)');
   t('File');
   t('Files');
+  t('GUL / Course pack electronic');
+  t('GUL / Course pack electronic description');
   t('Homepage of the Author');
   t('If checked this link will be visible amongst the shortcuts on the database search page. ');
   t('Image');
+  t('Interlibrary loan');
+  t('Interlibrary loan description');
   t('Lead');
   t('Link');
   t('Link to theme');
@@ -3235,10 +4003,15 @@ function ubn_content_types_field_default_field_instances() {
   t('Name');
   t('No link');
   t('Number of primary themelinks');
+  t('Print article/chapter');
+  t('Print article/chapter description');
   t('Promote to shortcut');
   t('Public access');
   t('Publishers');
+  t('Recommended in subjects');
   t('Remote id');
+  t('Scholarly sharing');
+  t('Scholarly sharing description');
   t('Service disruption');
   t('Short description');
   t('Shortcut heading');
