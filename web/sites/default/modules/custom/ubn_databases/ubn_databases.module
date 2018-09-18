@@ -81,6 +81,7 @@ function ubn_databases_form_node_form_alter(&$form, $form_state, $form_id) {
     $form['field_topics']['und']['#size'] = 25; //Field widget setting for this?
     $form['field_topics_depth_0']['#access'] = FALSE;
     $form['field_topics_depth_1']['#access'] = FALSE;
+    $form['field_recommended_in_subjects']['und']['#size'] = 25; //Field widget setting for this?
   }
 }
 

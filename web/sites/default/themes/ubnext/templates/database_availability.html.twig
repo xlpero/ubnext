@@ -1,0 +1,15 @@
+{# slate
+  name = Database availability text
+  models[database] = entity:node
+  cacheable = FALSE
+#}
+
+
+<div class="database-availability-text">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      {{database.field_access_information.value.name}}
+    </div>
+  </div>
+</div>
+

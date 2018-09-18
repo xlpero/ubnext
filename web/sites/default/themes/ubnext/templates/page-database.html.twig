@@ -3,23 +3,21 @@
   models[database] = entity:node
 #}
 
-{% macro buildSearchUrl(propertyName,item) %}
+{% macro buildSearchUrl(item) %}
   {%
     set baseUrl =  base_path() ~ "find/databases/search"
   %}
-  {% if (propertyName == "field_topics_depth_0") %}
+
+  {% if item.parent[0].value.tid is empty %}
     {% set url = baseUrl ~ "?f[0]=field_topics_depth_0:" ~ item.tid.value %}
     {{url}}
-  {% elseif (propertyName == "field_topics_depth_1") %}
+  {% else %}
     {% set url = baseUrl ~ "?f[0]=field_topics_depth_0:" ~ item.parent[0].value.tid ~ "&f[1]=field_topics_depth_1:" ~ item.tid.value %}
     {{url}}
-  {% else %}
-
   {% endif %}
 {% endmacro %}
 
-
-{% macro databasePropertyRow(headerStr, propertyName, propertyObj, field) %}
+{% macro databasePropertyRow(headerStr, propertyObj, field) %}
   {% import _self as help %}
   <div class="col-xs-12 database-property">
       <div class="database-property-header">{{t(headerStr)}}:</div>
@@ -30,8 +28,8 @@
             {% else %}
               {% set theAttribute = "value" %}
             {% endif %}
-            {% if propertyName == "field_topics_depth_0" or propertyName == "field_topics_depth_1" %}
-              <a href="{{help.buildSearchUrl(propertyName, item)}}">{{attribute(item,theAttribute)}}</a> {% if not loop.last %} | {% endif %}
+            {% if propertyObj.value is not empty  %}
+              <a href="{{help.buildSearchUrl(item)}}">{{attribute(item,theAttribute)}}</a> {% if not loop.last %} | {% endif %}
             {% else %}
               {{attribute(item,theAttribute)}} {% if not loop.last %} | {% endif %}
             {% endif %}
@@ -40,7 +38,6 @@
   </div>
 {% endmacro %}
 
-
 {% macro printAccessRight(url) %}
     {% if not ('ezproxy.' in url) %}
       <i class='fa fa-unlock' aria-hidden="true"></i>  {{t("Freely accessible")}}
@@ -48,6 +45,26 @@
       <i class='fa fa-lock' aria-hidden="true"></i> {{t("Accessible for University of Gothenburg")}}
     {% endif %}
 {% endmacro %}
+
+
+{% macro databaseTOURow(val, text, desc) %}
+    {% if not val is null %}
+      <tr class="{{ desc.value ? 'has-desc' : 'no-desc'}}">
+        <td>{{text}}</td>
+        {% if val.value == "Yes" %}
+          <td><strong>{{t('Yes')}}</strong></td>
+        {% else %}
+          <td><strong>{{t('No')}}</strong></td>
+        {% endif %}
+      </tr>
+      {% if not desc.value is empty %}
+      <tr class="database-tou-table-desc">
+        <td colspan="2"><i>{{desc.value}}</i></td>
+      </tr>
+      {% endif %}
+    {% endif %}
+{% endmacro %}
+
 
 {% import _self as helper %}
 
@@ -99,8 +116,20 @@
         </div>
 
         <div class="row">
-          <div class="col-xs-12 center">
+          <div class="col-xs-12">
               {% if not database.field_database_urls is empty %}
+                {% if database.field_public_access.value is null %}
+                  {{helper.printAccessRight(item.field_url.value.url)}}
+                {% else %}
+                  <div class="database-public-access-info">
+                    {% if field_public_access.field_public_access.value %}
+                      <i class="fa fa-unlock" aria-hidden="true"></i>
+                    {% else %}
+                      <i class="fa fa-lock" aria-hidden="true"></i>
+                    {% endif %}
+                    {{database.field_access_information.value.name}}
+                  </div>
+                {% endif %}
                 {% for item in database.field_database_urls %}
                   <div class="database-links">
                     <div class="row database-links-link">
@@ -112,22 +141,6 @@
                         </a>
                       </div>
                     </div>
-                    <div class="row database-links-info">
-                      <div class="col-xs-12">
-                        
-                        {% if item.field_public_access.value is null %}
-                          {{helper.printAccessRight(item.field_url.value.url)}}
-                        {% else %}
-                          {% if item.field_public_access.value %}
-                            <i class="fa fa-unlock" aria-hidden="true"></i>
-                            {{t("Freely accessible")}}
-                          {% else %}
-                            <i class="fa fa-lock" aria-hidden="true"></i>
-                            {{t("Accessible for University of Gothenburg")}}
-                          {% endif %}
-                        {% endif %}
-                      </div>
-                    </div>
                   </div> <!-- end database-links -->
                 {% endfor %}
               {% endif %}
@@ -135,28 +148,50 @@
         </div>
       </div> <!-- end abstract -->
 
+      <div class="divider"></div>
 
 
-    <div class="row database-properties">
-      {% if not database.field_topics.value is empty %}
-        {{helper.databasePropertyRow("Subjects", "field_topics_depth_0", database.field_topics_depth_0, "name")}}
-      {% endif %}
+      <div class="row database-properties">
+        {% if not database.field_recommended_in_subjects.value is empty %}
+          {{helper.databasePropertyRow("Recommended in", database.field_recommended_in_subjects, "name")}}
+        {% endif %}
 
-      {% if not database.field_topics_depth_1.value is empty %}
-        {{helper.databasePropertyRow("Subject terms", "field_topics_depth_1", database.field_topics_depth_1, "name")}}
-      {% endif %}
+        {% if not database.field_topics.value is empty %}
+          {{helper.databasePropertyRow("Subjects", database.field_topics, "name")}}
+        {% endif %}
 
-      {% if not database.field_publishers.value is empty %}
-        {{helper.databasePropertyRow("Vendor", null, database.field_publishers, "name")}}
-      {% endif %}
+        {% if not database.field_publishers.value is empty %}
+          {{helper.databasePropertyRow("Vendor", database.field_publishers, "name")}}
+        {% endif %}
 
-      {% if not database.field_media_types.value is empty %}
-        {{helper.databasePropertyRow("Mediatypes", null, database.field_media_types, "name")}}
-      {% endif %}
+        {% if not database.field_media_types.value is empty %}
+          {{helper.databasePropertyRow("Mediatypes", database.field_media_types, "name")}}
+        {% endif %}
 
-      {% if not database.field_alternate_titles is empty %}
-        {{helper.databasePropertyRow("Alternative title", null,  database.field_alternate_titles, null)}}
+        {% if not database.field_alternate_titles is empty %}
+          {{helper.databasePropertyRow("Alternative title",  database.field_alternate_titles, null)}}
+        {% endif %}
+      </div>
+
+      <div class="divider"></div>
+
+
+      {% if (database.field_print_article_chapter is not null) or (database.field_download_article_chapter is not null) or (database.field_course_pack_print is not null) or (database.field_gul_course_pack_electronic is not null) or (database.field_scholarly_sharing is not null) or (database.field_interlibrary_loan is not null) %}
+      <div class="row database-tou">
+          <div class="col-xs-12">
+              <table class="table database-tou-table">
+                <strong>{{t("Användningsvillkor")}}</strong>
+                <tbody>
+                  {{helper.databaseTOURow(database.field_print_article_chapter,t("Print article/chapter"), database.field_tou_article_chapt_desc)}}
+                  {{helper.databaseTOURow(database.field_download_article_chapter,t("Download article/chapter"), database.field_download_article_chap_desc)}}
+                  {{helper.databaseTOURow(database.field_course_pack_print,t("Course pack print"), database.field_course_pack_print_desc)}}
+                  {{helper.databaseTOURow(database.field_gul_course_pack_electronic,t("GUL / Course pack electronic"), database.field_gul_course_pack_elect_desc)}}
+                  {{helper.databaseTOURow(database.field_scholarly_sharing,t("Scholarly sharing"), database.field_scholarly_sharing_desc)}}
+                  {{helper.databaseTOURow(database.field_interlibrary_loan,t("Interlibrary loan"), database.field_interlibrary_loan_desc)}}
+                </tbody>
+              </table>
+          </div>
+      </div>
       {% endif %}
     </div>
-  </div>
 </div>
