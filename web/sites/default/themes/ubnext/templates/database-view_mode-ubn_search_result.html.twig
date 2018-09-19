@@ -43,9 +43,9 @@
       <div class="col-xs-12 col-sm-12">
         <div class="database-item-access-level">
           {% if not database.field_public_access.value is empty %}
-            <i class='fa fa-unlock' aria-hidden="true"></i>  {{database.field_public_access.value}}
+            <i class='fa fa-unlock' aria-hidden="true"></i>  {{database.field_access_information.value.name}}
           {% else %}
-            <i class='fa fa-lock' aria-hidden="true"></i> {{database.field_public_access.value}}
+            <i class='fa fa-lock' aria-hidden="true"></i> {{database.field_access_information.value.name}}
           {% endif %}
         </div>
       </div>
