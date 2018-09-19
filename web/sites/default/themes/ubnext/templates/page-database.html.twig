@@ -17,7 +17,10 @@
   {% endif %}
 {% endmacro %}
 
-{% macro databasePropertyRow(headerStr, propertyObj, field) %}
+{% macro databasePropertyRow(headerStr, propertyObj, field, buildlink) %}
+  {% if buildlink is null %}
+     {% set buildlink = true %}
+  {% endif %}
   {% import _self as help %}
   <div class="col-xs-12 database-property">
       <div class="database-property-header">{{t(headerStr)}}:</div>
@@ -28,7 +31,7 @@
             {% else %}
               {% set theAttribute = "value" %}
             {% endif %}
-            {% if propertyObj.value is not empty  %}
+            {% if propertyObj.value is not empty and buildlink %}
               <a href="{{help.buildSearchUrl(item)}}">{{attribute(item,theAttribute)}}</a> {% if not loop.last %} | {% endif %}
             {% else %}
               {{attribute(item,theAttribute)}} {% if not loop.last %} | {% endif %}
@@ -52,9 +55,9 @@
       <tr class="{{ desc.value ? 'has-desc' : 'no-desc'}}">
         <td>{{text}}</td>
         {% if val.value == "Yes" %}
-          <td><strong>{{t('Yes')}}</strong></td>
+          <td><strong>{{t('Permitted')}}</strong></td>
         {% else %}
-          <td><strong>{{t('No')}}</strong></td>
+          <td><strong>{{t('Prohibited')}}</strong></td>
         {% endif %}
       </tr>
       {% if not desc.value is empty %}
@@ -169,7 +172,7 @@
         {% endif %}
 
         {% if not database.field_alternate_titles is empty %}
-          {{helper.databasePropertyRow("Alternative title",  database.field_alternate_titles, null)}}
+          {{helper.databasePropertyRow("Alternative title",  database.field_alternate_titles, null, false)}}
         {% endif %}
       </div>
 
@@ -182,10 +185,10 @@
               <table class="table database-tou-table">
                 <strong>{{t("Användningsvillkor")}}</strong>
                 <tbody>
-                  {{helper.databaseTOURow(database.field_print_article_chapter,t("Print article/chapter"), database.field_tou_article_chapt_desc)}}
-                  {{helper.databaseTOURow(database.field_download_article_chapter,t("Download article/chapter"), database.field_download_article_chap_desc)}}
-                  {{helper.databaseTOURow(database.field_course_pack_print,t("Course pack print"), database.field_course_pack_print_desc)}}
-                  {{helper.databaseTOURow(database.field_gul_course_pack_electronic,t("GUL / Course pack electronic"), database.field_gul_course_pack_elect_desc)}}
+                  {{helper.databaseTOURow(database.field_print_article_chapter,t("Print article or chapter"), database.field_tou_article_chapt_desc)}}
+                  {{helper.databaseTOURow(database.field_download_article_chapter,t("Download article or chapter"), database.field_download_article_chap_desc)}}
+                  {{helper.databaseTOURow(database.field_course_pack_print,t("Print course pack"), database.field_course_pack_print_desc)}}
+                  {{helper.databaseTOURow(database.field_gul_course_pack_electronic,t("Upload course pack to learning management system"), database.field_gul_course_pack_elect_desc)}}
                   {{helper.databaseTOURow(database.field_scholarly_sharing,t("Scholarly sharing"), database.field_scholarly_sharing_desc)}}
                   {{helper.databaseTOURow(database.field_interlibrary_loan,t("Interlibrary loan"), database.field_interlibrary_loan_desc)}}
                 </tbody>

@@ -578,7 +578,7 @@ function ubn_content_types_field_default_field_instances() {
     ),
     'entity_type' => 'field_collection_item',
     'field_name' => 'field_url',
-    'label' => 'Url',
+    'label' => 'Platform',
     'required' => 0,
     'settings' => array(
       'absolute_url' => 1,
@@ -595,6 +595,11 @@ function ubn_content_types_field_default_field_instances() {
       ),
       'enable_tokens' => 1,
       'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
       'rel_remove' => 'default',
       'title' => 'optional',
       'title_label_use_field_label' => 0,
@@ -1283,7 +1288,7 @@ function ubn_content_types_field_default_field_instances() {
       'module' => 'field_collection',
       'settings' => array(),
       'type' => 'field_collection_embed',
-      'weight' => 10,
+      'weight' => 9,
     ),
   );
 
@@ -1673,7 +1678,7 @@ function ubn_content_types_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 16,
+      'weight' => 15,
     ),
   );
 
@@ -1724,7 +1729,7 @@ function ubn_content_types_field_default_field_instances() {
         'display_label' => 0,
       ),
       'type' => 'options_onoff',
-      'weight' => 17,
+      'weight' => 16,
     ),
   );
 
@@ -1868,7 +1873,7 @@ function ubn_content_types_field_default_field_instances() {
         'display_label' => 1,
       ),
       'type' => 'options_onoff',
-      'weight' => 14,
+      'weight' => 13,
     ),
   );
 
@@ -1913,7 +1918,7 @@ function ubn_content_types_field_default_field_instances() {
       'module' => 'options',
       'settings' => array(),
       'type' => 'options_buttons',
-      'weight' => 9,
+      'weight' => 17,
     ),
   );
 
@@ -2057,7 +2062,7 @@ function ubn_content_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 11,
+      'weight' => 10,
     ),
   );
 
@@ -2248,7 +2253,7 @@ function ubn_content_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 12,
+      'weight' => 11,
     ),
   );
 
@@ -2296,7 +2301,7 @@ function ubn_content_types_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'taxonomy_autocomplete',
-      'weight' => 13,
+      'weight' => 12,
     ),
   );
 
@@ -2398,7 +2403,7 @@ function ubn_content_types_field_default_field_instances() {
         'rows' => 5,
       ),
       'type' => 'text_textarea',
-      'weight' => 15,
+      'weight' => 14,
     ),
   );
 
@@ -4003,6 +4008,7 @@ function ubn_content_types_field_default_field_instances() {
   t('Name');
   t('No link');
   t('Number of primary themelinks');
+  t('Platform');
   t('Print article/chapter');
   t('Print article/chapter description');
   t('Promote to shortcut');
@@ -4026,7 +4032,6 @@ function ubn_content_types_field_default_field_instances() {
   t('Title');
   t('Type to use');
   t('URL');
-  t('Url');
   t('is_warning');
 
   return $field_instances;
