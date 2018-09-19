@@ -1234,7 +1234,7 @@ function ubn_content_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'size' => 200,
       ),
       'type' => 'text_textfield',
       'weight' => 28,
@@ -1386,7 +1386,7 @@ function ubn_content_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'size' => 200,
       ),
       'type' => 'text_textfield',
       'weight' => 26,
@@ -1484,7 +1484,7 @@ function ubn_content_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'size' => 200,
       ),
       'type' => 'text_textfield',
       'weight' => 30,
@@ -1627,7 +1627,7 @@ function ubn_content_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'size' => 200,
       ),
       'type' => 'text_textfield',
       'weight' => 34,
@@ -1880,7 +1880,11 @@ function ubn_content_types_field_default_field_instances() {
   // Exported field_instance: 'node-database-field_public_access'.
   $field_instances['node-database-field_public_access'] = array(
     'bundle' => 'database',
-    'default_value' => NULL,
+    'default_value' => array(
+      0 => array(
+        'value' => 1,
+      ),
+    ),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -2157,7 +2161,7 @@ function ubn_content_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'size' => 200,
       ),
       'type' => 'text_textfield',
       'weight' => 32,
@@ -2351,7 +2355,7 @@ function ubn_content_types_field_default_field_instances() {
       'active' => 1,
       'module' => 'text',
       'settings' => array(
-        'size' => 60,
+        'size' => 200,
       ),
       'type' => 'text_textfield',
       'weight' => 24,

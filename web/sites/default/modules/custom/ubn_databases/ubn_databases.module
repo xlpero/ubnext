@@ -163,7 +163,7 @@ function ubn_databases_field_attach_update($type, $entity) {
   static $saving = FALSE;
   if($type === 'node' && $entity->type === 'database' && !$saving) {
      $saving = TRUE;
-    _ubn_databases_set_access_rule($entity);
+ //   _ubn_databases_set_access_rule($entity);
     $saving = FALSE;
   }
 }
@@ -172,7 +172,7 @@ function ubn_databases_field_attach_insert($type, $entity) {
   static $saving = FALSE;
   if($type === 'node' && $entity->type === 'database' && !$saving) {
      $saving = TRUE;
-    _ubn_databases_set_access_rule($entity);
+//    _ubn_databases_set_access_rule($entity);
     $saving = FALSE;
   }
 }
