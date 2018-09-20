@@ -33,7 +33,7 @@ function ubn_content_types_taxonomy_default_vocabularies() {
       ),
     ),
     'media_types' => array(
-      'name' => 'Media types',
+      'name' => 'Database media types',
       'machine_name' => 'media_types',
       'description' => '',
       'hierarchy' => 0,
@@ -56,7 +56,7 @@ function ubn_content_types_taxonomy_default_vocabularies() {
       ),
     ),
     'publishers' => array(
-      'name' => 'Publishers',
+      'name' => 'Database publishers',
       'machine_name' => 'publishers',
       'description' => '',
       'hierarchy' => 0,
@@ -148,7 +148,7 @@ function ubn_content_types_taxonomy_default_vocabularies() {
       ),
     ),
     'topics' => array(
-      'name' => 'Topics',
+      'name' => 'Database subjects',
       'machine_name' => 'topics',
       'description' => '',
       'hierarchy' => 0,
