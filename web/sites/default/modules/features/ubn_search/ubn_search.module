@@ -16,14 +16,14 @@ function ubn_search_menu() {
 }
 
 function ubn_search_url_inbound_alter(&$path, $original_path, $path_language) {
-  if(strpos($path, 'hitta/databaser/sok') === 0) {
-    $path = str_replace('hitta/databaser/sok', 'find/databases/search', $path);
+  if(strpos($path, 'databaser') === 0) {
+    $path = str_replace('databaser', 'databases', $path);
   }
 }
 
 function ubn_search_database_search_redirect() {
   //303 is more correct than 302 since POST/GET should follow the redirect
   drupal_goto('find/databases/search', array(), 303);
-}https://open.spotify.com/track/0zhNoNKhia3RRFzrmHlml6
+}
 
 include_once 'ubn_search.features.inc';

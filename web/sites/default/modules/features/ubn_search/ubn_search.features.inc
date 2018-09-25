@@ -367,7 +367,7 @@ function ubn_search_default_search_api_page() {
   $items = array();
   $items['databases'] = entity_import('search_api_page', '{
     "index_id" : "databases",
-    "path" : "find\\/databases\\/search",
+    "path" : "databases",
     "name" : "Databases",
     "machine_name" : "databases",
     "description" : "",
@@ -425,9 +425,9 @@ function ubn_search_default_search_api_server() {
       "clean_ids" : true,
       "site_hash" : true,
       "scheme" : "http",
-      "host" : "130.241.35.208",
+      "host" : "solr",
       "port" : "8983",
-      "path" : "\\/solr\\/drupal7_ubnext_xgudav",
+      "path" : "\\/solr\\/drupal7_ubnext_devel",
       "http_user" : "admin",
       "http_pass" : "admin",
       "excerpt" : 1,

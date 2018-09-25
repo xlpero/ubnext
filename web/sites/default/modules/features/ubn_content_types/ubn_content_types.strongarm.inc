@@ -943,6 +943,34 @@ function ubn_content_types_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_alert_and_info_message_en_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_alert_and_info_message_en_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_alert_and_info_message_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_alert_and_info_message_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_alert_and_info_message_sv_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_alert_and_info_message_sv_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_alert_and_info_message_und_pattern';
+  $strongarm->value = '';
+  $export['pathauto_node_alert_and_info_message_und_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_database_en_pattern';
   $strongarm->value = '';
   $export['pathauto_node_database_en_pattern'] = $strongarm;
@@ -951,14 +979,14 @@ function ubn_content_types_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_database_pattern';
-  $strongarm->value = 'find/databases/[node:title_field]';
+  $strongarm->value = 'databases/[node:title_field]';
   $export['pathauto_node_database_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'pathauto_node_database_sv_pattern';
-  $strongarm->value = 'hitta/databaser/[node:title_field]';
+  $strongarm->value = 'databaser/[node:title_field]';
   $export['pathauto_node_database_sv_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -1058,6 +1086,13 @@ function ubn_content_types_strongarm() {
   $strongarm->name = 'pathauto_node_pattern';
   $strongarm->value = 'content/[node:title_field]';
   $export['pathauto_node_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_database_availability_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_database_availability_pattern'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

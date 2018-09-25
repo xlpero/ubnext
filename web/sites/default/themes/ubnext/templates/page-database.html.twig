@@ -5,7 +5,7 @@
 
 {% macro buildSearchUrl(item) %}
   {%
-    set baseUrl =  base_path() ~ "find/databases/search"
+    set baseUrl =  base_path() ~ "databases"
   %}
 
   {% if item.parent[0].value.tid is empty %}
