@@ -4,9 +4,10 @@
  * Code for the Search feature.
  */
 
+/*
 function ubn_search_menu() {
   $items = array();
-  $items['databases'] = array(
+  $items['??databases'] = array(
     'title'=> 'Redirecting to database search',
     'type' => MENU_CALLBACK,
     'page callback' => 'ubn_search_database_search_redirect',
@@ -14,7 +15,7 @@ function ubn_search_menu() {
   );
   return $items;
 }
-
+*/
 function ubn_search_url_inbound_alter(&$path, $original_path, $path_language) {
   if(strpos($path, 'databaser') === 0) {
     $path = str_replace('databaser', 'databases', $path);
