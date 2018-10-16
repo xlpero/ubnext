@@ -24,4 +24,3 @@ features[feeds_source][] = database_urls_field_collection
 features[feeds_source][] = databases
 features[feeds_source][] = databases_categories
 features[feeds_source][] = databases_topics
-project path = sites/default/modules/features
