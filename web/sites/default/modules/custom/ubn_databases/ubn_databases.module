@@ -82,6 +82,30 @@ function ubn_databases_form_node_form_alter(&$form, $form_state, $form_id) {
     $form['field_topics_depth_0']['#access'] = FALSE;
     $form['field_topics_depth_1']['#access'] = FALSE;
     $form['field_recommended_in_subjects']['und']['#size'] = 25; //Field widget setting for this?
+    $form['#validate'][] = 'ubn_databases_form_validate';
+  }
+}
+
+function ubn_databases_form_validate($form, &$form_state) {
+  $all_terms = $form_state['values']['field_topics'];
+  $all_terms_clean = array();
+  $parent_terms_that_should_exist = array();
+  $parent_terms_that_should_exist_clean = array();
+  foreach ($all_terms['und'] as $item) {
+    $all_terms_clean[] = $item['tid']; 
+  }
+  foreach ($all_terms_clean as $item) {
+    $temp_arr = taxonomy_get_parents($item);
+    if (!empty($temp_arr)) {
+      $parent_terms_that_should_exist[] = $temp_arr;
+    }
+  }
+  foreach ($parent_terms_that_should_exist as $item) {
+    $parent_terms_that_should_exist_clean[] = (string)key($item);
+  }
+  $result_diff = array_diff($parent_terms_that_should_exist_clean, $all_terms_clean);
+  if (!empty($result_diff)) {
+    form_set_error('field_topics', 'A subject need its parent to be selected.');
   }
 }
 
