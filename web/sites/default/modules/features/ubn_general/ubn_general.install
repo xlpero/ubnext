@@ -831,6 +831,26 @@ function ubn_general_update_7199() {
 function ubn_general_update_7200() {
   features_revert_module('ubn_content_types');
 }
+
+
+function ubn_general_update_7201() {
+  /* remove fields database contentype */
+  if ($instance = field_info_instance('node', 'field_remote_id', 'database')) {
+    field_delete_instance($instance);
+  }
+  if ($instance = field_info_instance('node', 'field_verde_data_json', 'database')) {
+    field_delete_instance($instance);
+  }
+  if ($instance = field_info_instance('field_collection_item', 'field_description_short', 'field_database_urls')) {
+    field_delete_instance($instance);
+  }
+  if ($instance = field_info_instance('field_collection_item', 'field_public_access', 'field_database_urls')) {
+    field_delete_instance($instance);
+  }
+  if ($instance = field_info_instance('field_collection_item', 'field_remote_id', 'field_database_urls')) {
+    field_delete_instance($instance);
+  }
+}
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
