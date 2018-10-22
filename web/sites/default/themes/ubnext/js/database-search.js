@@ -2,6 +2,12 @@
 Drupal.behaviors.database = {
   attach: function(context, settings) {
       Drupal.setupHistory();
+      if ($(".form-autocomplete").val() === "") {
+        $('.ubn-search-sorts .last').hide();
+      }
+      else {
+        $('.ubn-search-sorts .last').show();
+      }
       $(".form-autocomplete", context).focus();
       $(".form-autocomplete", context).on("change paste keyup", function() {
           if ($(this).val().length > 0) {
