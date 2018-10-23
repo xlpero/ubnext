@@ -94,7 +94,7 @@ function ubn_news_views_default_views() {
   $handler->display->display_options['row_plugin'] = 'slate';
   $handler->display->display_options['row_options']['slate'] = 'story-teaser';
   $handler->display->display_options['defaults']['row_options'] = FALSE;
-  $handler->display->display_options['pane_title'] = 'Latest stories';
+  $handler->display->display_options['pane_title'] = 'Latest news';
   $export['stories'] = $view;
 
   return $export;
