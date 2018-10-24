@@ -278,9 +278,16 @@ function gmap_tools_slate_slate_gmap_content_type_render($subtype, $conf, $panel
   //This will add all js-settings etc
   gmap_tools_gmap($gmap_namespace, $gmap_container_id, $gmap_items, $conf['gmap_tools_settings']);
 
+  if (!empty($context->data)) {
+    $wrapper = entity_metadata_wrapper($entity_type, $context->data);
+    $block->title = $wrapper->label();
+  }
+
+
   $block->content = slate_render($conf['gmap_slate'], array(
     //or setting for id? Yes, with default as namespace css identifier
     'id' => $gmap_container_id,
+    'title' => $block->title,
   ));
 
   return $block;

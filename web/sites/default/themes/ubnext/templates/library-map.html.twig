@@ -2,10 +2,12 @@
   name = Library map
   type = gmap_tools_slate_gmap
   models[id] = item
+  models[title] = item
 #}
 
 <div class="panel-separator row">
 	<div class="col-xs-12">
+    <h2 class="center">{{t('Contact ')}} {{ title }}</h2>
 		<div id="{{ id }}" class="ubn-map-sm">{{ t("Loading map") }}</div>
 	</div>
 </div>
