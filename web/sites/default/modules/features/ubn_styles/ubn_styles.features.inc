@@ -69,7 +69,7 @@ function ubn_styles_image_default_styles() {
       1 => array(
         'name' => 'manualcrop_crop_and_scale',
         'data' => array(
-          'width' => 930,
+          'width' => 1200,
           'height' => 340,
           'upscale' => 0,
           'respectminimum' => 1,

@@ -851,6 +851,12 @@ function ubn_general_update_7201() {
     field_delete_instance($instance);
   }
 }
+
+
+function ubn_general_update_7202() {
+  features_revert_module('ubn_styles');
+}
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
