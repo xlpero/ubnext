@@ -17,6 +17,9 @@ function ubn_menu_menu_link_alter(&$item) {
   if ($item['link_title'] == 'Databases') {
     $item['options']['alter'] = TRUE;
   }
+  if ($item['link_title'] == 'A-Z') {
+    $item['options']['alter'] = TRUE;
+  }
 }
 
 function ubn_menu_translated_menu_link_alter(&$item, $map) {
@@ -26,6 +29,10 @@ function ubn_menu_translated_menu_link_alter(&$item, $map) {
       $item['ubn_menu_hidden'] = TRUE;
     }
     if ($item['link_title'] == 'Databases') {
+      //$item['hidden'] = 1;
+      $item['ubn_menu_hidden'] = TRUE;
+    }
+    if ($item['link_title'] == 'A-Z') {
       //$item['hidden'] = 1;
       $item['ubn_menu_hidden'] = TRUE;
     }
