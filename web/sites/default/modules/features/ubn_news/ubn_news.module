@@ -6,6 +6,19 @@
 
 include_once 'ubn_news.features.inc';
 
+function ubn_news_url_inbound_alter(&$path, $original_path, $path_language) {
+  if($path === 'nyheter') {
+    $path = 'news';
+  }
+}
+
+function ubn_news_url_outbound_alter(&$path, &$options, $original_path) {
+  if($path === 'news' && $options['language']->language == 'sv') {
+    $path = 'nyheter';
+  }
+}
+
+
 
 // Might be a better hook for this, but since we will probably replace
 // view with ctools content type this is good enough for now
