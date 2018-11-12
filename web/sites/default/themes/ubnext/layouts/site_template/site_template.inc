@@ -11,6 +11,7 @@ $plugin = array(
   'regions' => array(
     'topbar' => t('Top bar'),
     'toplinks' => t('Top links'),
+    'shortcuts' => t('Shortcuts menu'),
     'navigation' => t('Navigation'),
     'dropdown_navigation' => t('Dropdown navigation used on mobile'),
     'warning_message' => t('Warning and information messages'),

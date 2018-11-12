@@ -39,7 +39,7 @@
 		}
 		.toplinks {
 			display: none;
-			@media (min-width: @screen-sm-min) {
+			@media (min-width: @screen-md-min) {
 				display:block;
 			}
 
@@ -49,11 +49,21 @@
 				display: inline-block;
 				margin-left: 10px;
 				li {
-					text-transform: uppercase;
 					float: left;
 					a {
+						&.language-link::before {
+							font-family: "FontAwesome"; font-weight: 900; content: "\f0ac\00a0\00a0";
+            }
+            &.rsbtn_play::before {
+            	font-family: "FontAwesome"; font-weight: 900; content: "\f028\00a0\00a0";
+            }
 						color: @black;
-						font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
+						font-family: @font-family-sans-serif;
+						text-decoration: none;
+						&:hover {
+							text-decoration: underline;
+						}
+
 					}
 				}
 				li + li {

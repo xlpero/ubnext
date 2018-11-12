@@ -8,11 +8,15 @@
     {% if not loop.last %}
       <li>
         {% if link is iterable %}
-          <a href="{{ link.href }}">{{ link.title }}</a>
+          {% if loop.first %}
+            <a class="menu-trail-home" href="{{ link.href }}" title="{{t('Home')}}"><i class="fa fa-home"></i></a>
+          {% else  %}
+            <a href="{{ link.href }}">{{ link.title }}</a>
+          {% endif %}
         {% else %}
           {{ link|raw }}
         {% endif %}
-        <i class="fa fa-angle-right"></i>
+        <span class="menu-trail-slash">/</span>
       </li>
     {% elseif link is iterable %}
       <li>{{ link.title }}</li>

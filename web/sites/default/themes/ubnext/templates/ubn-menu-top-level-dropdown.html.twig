@@ -4,10 +4,26 @@
 #}
 {% import "macros/menus.html.twig" as menus %}
 <div class="ubn-mobile-menu">
-    <ul class="menu menu-mobile">
+    <div class="ubn-mobile-menu-header">
+      <button id="menu-btn-close" class="btn btn-link"><i class="fa fa-close"></i>{{t('Close')}}</button>
+    </div>
+    <div class="shortcuts-menu">
+      {{ drupal_render(menu_tree('menu-shortcut-menu')) | raw }}
+    </div>
+    <ul class="menu main-menu">
       {% for link in links %}
         {{ menus.menu_item(link) }}
       {% endfor %}
+      </li>
+    </ul>
+    <ul class="menu toplinks">
+      <li class="ubn-mobile-menu-listen">
+        <ul class="list-unstyled">
+          <li>
+            <a class="rsbtn_play" rel="nofollow" accesskey="L" title="{{t("Listen to the page content")}}" href="javascript:alert('To be implemented')" data-rsevent-id="rs_139679" role="button"><span class="rsbtn_left rsimg rspart"><span class="rsbtn_text"><span>{{t('Listen')}}</span></span></span><span class="rsbtn_right rsimg rsplay rspart"></span></a>
+          </li>            
+        </ul>
+      </li>
       <li class="ubn-mobile-menu-lang-switch-block">
         {{ block_render('locale', 'language') | raw }}
       </li>
