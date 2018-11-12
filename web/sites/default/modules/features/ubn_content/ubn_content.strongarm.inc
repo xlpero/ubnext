@@ -20,7 +20,6 @@ function ubn_content_strongarm() {
       'bundles' => array(
         'page' => 'page',
         'embedded_page' => 'embedded_page',
-        'link_list' => 'link_list',
         'navigation_landing' => 'navigation_landing',
       ),
       'rebuild_behavior' => '0',

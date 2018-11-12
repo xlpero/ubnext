@@ -14,15 +14,15 @@ function ubn_content_uuid_entity_default_menu_link() {
     'plid' => 0,
     'link_path' => 'node/f8bcf20f-d066-41fc-9e41-c1b3d97dccee',
     'router_path' => 'node/%',
-    'link_title' => 'Libraries',
+    'link_title' => 'Opening hours and libraries',
     'options' => array(
       'alter' => TRUE,
       'attributes' => array(),
     ),
     'module' => 'menu',
-    'hidden' => 0,
+    'hidden' => 1,
     'external' => 0,
-    'has_children' => 0,
+    'has_children' => 1,
     'expanded' => 0,
     'depth' => 1,
     'customized' => 1,
@@ -37,11 +37,10 @@ function ubn_content_uuid_entity_default_menu_link() {
     'p9' => 0,
     'updated' => 0,
     'language' => 'und',
-    'vuuid' => 'f587d693-c89d-4140-af26-c7e3ae301651',
+    'vuuid' => '6a91f87d-b8db-4bfc-982c-84c7ddbc751c',
     'uuid' => '2e9f59f7-b291-49c9-9726-e61d85e5c0ee',
     'default_revision' => 1,
     'access' => TRUE,
-    'i18n_menu' => TRUE,
   ));
   return $items;
 }

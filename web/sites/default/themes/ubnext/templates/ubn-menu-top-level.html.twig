@@ -3,12 +3,12 @@
   models[links] = item
 #}
 {% import "macros/menus.html.twig" as menus %}
+
+<div class="menu-toggle pull-right">
+    <a id="toggle-menu-btn" class="btn btn-sm btn-default" href="javascript:void(0);"><i class="fa fa-bars"></i><i class="fa fa-close"></i> {{t("Menu")}}</a>
+</div> 
 <div class="ubn-menu">
   <div class="ubn-menu-level ubn-menu-level-top">
-  	<div class="menu-toggle pull-right">
-		<a id="toggle-menu-btn" class="btn btn-sm btn-default" href="javascript:void(0);"><i class="fa fa-bars"></i><i class="fa fa-close"></i> {{t("Menu")}}</a>
-	</div>	
-
     <ul class="menu">
       {% for link in links %}
         {{ menus.menu_item(link) }}

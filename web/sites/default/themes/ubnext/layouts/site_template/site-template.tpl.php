@@ -15,7 +15,7 @@
   <header>
     <div class="container">
       <div class="row">
-        <div class="col-sm-10 col-xs-12">
+        <div class="col-sm-9 col-xs-12">
           <div class="siteNav-logo <?php echo $language->language; ?>">
             <div class="logo">
               <a href="<?php echo $GLOBALS['base_url']; ?>"><div class="logo-image"></div></a>
@@ -27,7 +27,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-3">
           <nav class="toplinks">
             <?php print render($content['toplinks']); ?>
           </nav>
@@ -39,10 +39,21 @@
 
 <!-- ### END HEADER ### -->
 
+<div class="nav-cms shortcut-nav-cms">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <?php print render($content['shortcuts']); ?>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <!-- ### MAIN NAVIGATION ### -->
 <div class="nav-cms primary-nav-cms">
   <div class="container">
-    <div class="row">
+    <div class="row border-mobile">
       <div class="col-xs-12">
         <nav class="nav-primary">
           <!-- PRIMARY NAV -->
