@@ -17,8 +17,14 @@ function ubn_search_menu() {
 }
 */
 function ubn_search_url_inbound_alter(&$path, $original_path, $path_language) {
-  if(strpos($path, 'databaser') === 0) {
-    $path = str_replace('databaser', 'databases', $path);
+  if($path === 'databaser') {
+    $path = 'databases';
+  }
+}
+
+function ubn_search_url_outbound_alter(&$path, &$options, $original_path) {
+  if($path === 'databases' && $options['language']->language == 'sv') {
+    $path = 'databaser';
   }
 }
 
