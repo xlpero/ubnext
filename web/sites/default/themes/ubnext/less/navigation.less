@@ -95,19 +95,20 @@
           text-decoration: none;
           color: @gray-dark;
           font-size: 1.125em;
+          &:hover, &:focus {
+            text-decoration: none !important;
+            padding-bottom: 10px;
+            border-bottom: 6px solid @gray-dark;
+          }
         }
         &:not(:last-child) {
           padding-right: 20px;
-          a {
-            
-          }
         }
         &.active-trail {
           a {
             /*text-decoration: underline; */ // maybe we should use this
             padding-bottom: 10px;
             border-bottom: 6px solid @gray-dark;
-
           }
         }
       }
@@ -293,8 +294,10 @@
         }
         text-decoration: none;
         color: @gray-darker;
-        &:hover {
-          text-decoration: underline !important;
+        &:hover, &:focus {
+          text-decoration: none !important;
+          padding-bottom: 10px;
+          border-bottom: 4px solid @gray-darker;
         }
         &.active-trail {
           padding-bottom: 10px;
