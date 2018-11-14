@@ -29,10 +29,10 @@
     padding-top:10px;
     padding-bottom:0;
   }
-  padding-bottom: 37px;
+  padding-bottom: 20px;
   border-bottom: 1px solid @gray-light;
   @media (min-width: @screen-md-min) {  
-    margin-top: 60px;
+    margin-top: 52px;
   }
   .menu-toggle {
     @media (min-width: @screen-sm-min) {
@@ -97,17 +97,17 @@
           font-size: 1.125em;
           &:hover, &:focus {
             text-decoration: none !important;
-            padding-bottom: 10px;
+            padding-bottom: 9px;
             border-bottom: 6px solid @gray-dark;
           }
         }
         &:not(:last-child) {
-          padding-right: 20px;
+          padding-right: 40px;
         }
         &.active-trail {
           a {
             /*text-decoration: underline; */ // maybe we should use this
-            padding-bottom: 10px;
+            padding-bottom: 9px;
             border-bottom: 6px solid @gray-dark;
           }
         }
@@ -212,10 +212,12 @@
         text-decoration: none;
         font-family: @font-family-sans-serif;
         &.language-link::before {
-          font-family: "FontAwesome"; font-weight: 900; content: "\f0ac\00a0\00a0";
+          font-family: "FontAwesome"; content: "\f0ac";
+          margin-right:8px;
         }
         &.rsbtn_play::before {
-          font-family: "FontAwesome"; font-weight: 900; content: "\f028\00a0\00a0";
+          font-family: "FontAwesome";  content: "\f028";
+          margin-right:8px;
         }
       }
     }
@@ -274,7 +276,7 @@
   }
   margin-top:-33px;
   font-family: @font-family-sans-serif;
-  font-size:1em;
+  font-size:15px;
   ul {
     &.menu {
        ul {
@@ -294,27 +296,30 @@
     float:right;
     li {
       float: left;
-      margin-left: 20px;
+      margin-left: 30px;
       a {
         &[title~="Contact"]::before, &[title~="Kontakta"]::before {
-          font-family: "FontAwesome"; font-weight: 900; content: "\f075\00a0\00a0";
+          font-family: "FontAwesome"; content: "\f075";
+          margin-right:8px;
         }
         &[title~="News"]::before, &[title~="Nyheter"]::before  {
-          font-family: "FontAwesome"; font-weight: 900; content: "\f1ea\00a0\00a0";
+          font-family: "FontAwesome"; content: "\f1ea";
+          margin-right:8px;
         }
 
         &[title~="Opening"]::before, &[title~="Öppetider"]::before {
-          font-family: "FontAwesome"; font-weight: 900; content: "\f041\00a0\00a0";
+          font-family: "FontAwesome"; content: "\f041";
+          margin-right:8px;
         }
         text-decoration: none;
         color: @gray-darker;
         &:hover, &:focus {
           text-decoration: none !important;
-          padding-bottom: 10px;
+          padding-bottom: 8px;
           border-bottom: 4px solid @gray-darker;
         }
         &.active-trail {
-          padding-bottom: 10px;
+          padding-bottom: 8px;
           border-bottom: 4px solid @gray-darker;
         }
       }
