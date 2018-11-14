@@ -276,6 +276,20 @@
   font-family: @font-family-sans-serif;
   font-size:1em;
   ul {
+    &.menu {
+       ul {
+        &.menu {
+          display:none;
+          ul {
+            &.menu {
+              display:none;
+            }
+          }
+        }
+      }
+    }
+  }
+  ul {
     margin-bottom:0;
     float:right;
     li {
