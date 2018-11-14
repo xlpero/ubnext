@@ -28,33 +28,36 @@ function ubn_content_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -48,
+    'weight' => 0,
     'customized' => 1,
-    'language' => 'en',
+    'language' => 'und',
     'menu_links_customized' => 1,
   );
-  // Exported menu link: menu-shortcut-menu_kontakta-oss:node/101876.
-  $menu_links['menu-shortcut-menu_kontakta-oss:node/101876'] = array(
+  // Exported menu link: menu-shortcut-menu_news-menu-position-rule:menu-position/3.
+  $menu_links['menu-shortcut-menu_news-menu-position-rule:menu-position/3'] = array(
     'menu_name' => 'menu-shortcut-menu',
-    'link_path' => 'node/101876',
-    'router_path' => 'node/%',
-    'link_title' => 'Kontakta oss',
+    'link_path' => 'menu-position/3',
+    'router_path' => 'menu-position/%',
+    'link_title' => 'News (menu position rule)',
     'options' => array(
-      'attributes' => array(
-        'title' => 'Kontakta oss',
-      ),
       'alter' => TRUE,
-      'identifier' => 'menu-shortcut-menu_kontakta-oss:node/101876',
+      'attributes' => array(
+        'class' => array(
+          0 => 'menu-position-link',
+        ),
+      ),
+      'identifier' => 'menu-shortcut-menu_news-menu-position-rule:menu-position/3',
     ),
-    'module' => 'menu',
-    'hidden' => 0,
+    'module' => 'menu_position',
+    'hidden' => 1,
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
     'weight' => 0,
-    'customized' => 1,
-    'language' => 'sv',
-    'menu_links_customized' => 1,
+    'customized' => 0,
+    'language' => 'und',
+    'menu_links_customized' => 0,
+    'parent_identifier' => 'menu-shortcut-menu_news:news',
   );
   // Exported menu link: menu-shortcut-menu_news:news.
   $menu_links['menu-shortcut-menu_news:news'] = array(
@@ -74,32 +77,9 @@ function ubn_content_menu_default_menu_links() {
     'external' => 0,
     'has_children' => 0,
     'expanded' => 0,
-    'weight' => -49,
-    'customized' => 1,
-    'language' => 'en',
-    'menu_links_customized' => 1,
-  );
-  // Exported menu link: menu-shortcut-menu_nyheter:news.
-  $menu_links['menu-shortcut-menu_nyheter:news'] = array(
-    'menu_name' => 'menu-shortcut-menu',
-    'link_path' => 'news',
-    'router_path' => 'news',
-    'link_title' => 'Nyheter',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'Nyheter',
-      ),
-      'alter' => TRUE,
-      'identifier' => 'menu-shortcut-menu_nyheter:news',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
     'weight' => 0,
     'customized' => 1,
-    'language' => 'sv',
+    'language' => 'und',
     'menu_links_customized' => 1,
   );
   // Exported menu link: menu-shortcut-menu_opening-hours--libraries:node/101183.
@@ -118,45 +98,20 @@ function ubn_content_menu_default_menu_links() {
     'module' => 'menu',
     'hidden' => 0,
     'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => -50,
-    'customized' => 1,
-    'language' => 'en',
-    'menu_links_customized' => 1,
-  );
-  // Exported menu link: menu-shortcut-menu_ppetider--bibliotek:node/101183.
-  $menu_links['menu-shortcut-menu_ppetider--bibliotek:node/101183'] = array(
-    'menu_name' => 'menu-shortcut-menu',
-    'link_path' => 'node/101183',
-    'router_path' => 'node/%',
-    'link_title' => 'Öppetider & bibliotek',
-    'options' => array(
-      'attributes' => array(
-        'title' => 'Öppetider & bibliotek',
-      ),
-      'alter' => TRUE,
-      'identifier' => 'menu-shortcut-menu_ppetider--bibliotek:node/101183',
-    ),
-    'module' => 'menu',
-    'hidden' => 0,
-    'external' => 0,
-    'has_children' => 0,
+    'has_children' => 1,
     'expanded' => 0,
     'weight' => 0,
     'customized' => 1,
-    'language' => 'sv',
+    'language' => 'und',
     'menu_links_customized' => 1,
   );
 
   // Translatables
   // Included for use with string extractors like potx.
   t('Contact us');
-  t('Kontakta oss');
   t('News');
-  t('Nyheter');
+  t('News (menu position rule)');
   t('Opening hours & libraries');
-  t('Öppetider & bibliotek');
 
   return $menu_links;
 }
