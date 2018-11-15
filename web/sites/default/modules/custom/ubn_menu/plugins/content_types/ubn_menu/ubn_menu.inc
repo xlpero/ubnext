@@ -122,8 +122,8 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       //if no breadcrumb is set. We have already handled that
       //case below.
       $breadcrumb_max_length = variable_get('ubn_menu_breadcrumb_max_length', 36);
-
-      $trail = drupal_set_breadcrumb();
+      $trail = drupal_get_breadcrumb();
+      $trail[] = drupal_get_title();
       if (empty($trail)) {
         foreach ($page_tree_by_level as $level) {
           $links = _ubn_menu_menu_tree_links($level, TRUE);
