@@ -15,7 +15,6 @@ features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[menu_custom][] = menu-shortcut-menu
 features[menu_links][] = menu-shortcut-menu_contact-us:node/101876
-features[menu_links][] = menu-shortcut-menu_news-menu-position-rule:menu-position/3
 features[menu_links][] = menu-shortcut-menu_news:news
 features[menu_links][] = menu-shortcut-menu_opening-hours--libraries:node/101183
 features[uuid_entity_node][] = f8bcf20f-d066-41fc-9e41-c1b3d97dccee

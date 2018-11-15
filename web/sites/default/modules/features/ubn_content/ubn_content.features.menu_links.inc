@@ -33,32 +33,6 @@ function ubn_content_menu_default_menu_links() {
     'language' => 'und',
     'menu_links_customized' => 1,
   );
-  // Exported menu link: menu-shortcut-menu_news-menu-position-rule:menu-position/3.
-  $menu_links['menu-shortcut-menu_news-menu-position-rule:menu-position/3'] = array(
-    'menu_name' => 'menu-shortcut-menu',
-    'link_path' => 'menu-position/3',
-    'router_path' => 'menu-position/%',
-    'link_title' => 'News (menu position rule)',
-    'options' => array(
-      'alter' => TRUE,
-      'attributes' => array(
-        'class' => array(
-          0 => 'menu-position-link',
-        ),
-      ),
-      'identifier' => 'menu-shortcut-menu_news-menu-position-rule:menu-position/3',
-    ),
-    'module' => 'menu_position',
-    'hidden' => 1,
-    'external' => 0,
-    'has_children' => 0,
-    'expanded' => 0,
-    'weight' => 0,
-    'customized' => 0,
-    'language' => 'und',
-    'menu_links_customized' => 0,
-    'parent_identifier' => 'menu-shortcut-menu_news:news',
-  );
   // Exported menu link: menu-shortcut-menu_news:news.
   $menu_links['menu-shortcut-menu_news:news'] = array(
     'menu_name' => 'menu-shortcut-menu',
@@ -110,7 +84,6 @@ function ubn_content_menu_default_menu_links() {
   // Included for use with string extractors like potx.
   t('Contact us');
   t('News');
-  t('News (menu position rule)');
   t('Opening hours & libraries');
 
   return $menu_links;

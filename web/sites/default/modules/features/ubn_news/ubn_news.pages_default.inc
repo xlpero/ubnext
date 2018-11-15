@@ -185,13 +185,14 @@ function ubn_news_default_page_manager_handlers() {
       'promoted_top' => NULL,
       'main_top' => NULL,
       'promoted' => NULL,
+      'messages' => NULL,
     ),
     'main' => array(
       'style' => 'naked',
     ),
   );
   $display->cache = array();
-  $display->title = '';
+  $display->title = 'News';
   $display->uuid = 'a0e72b8b-9862-40cf-a574-a424253ccee2';
   $display->content = array();
   $display->panels = array();
@@ -355,7 +356,7 @@ if(isset($_GET[\'page\'])) {
     $pane->uuid = '56ed45fb-5919-4a83-b79f-fda1c0ad9d60';
     $display->content['new-56ed45fb-5919-4a83-b79f-fda1c0ad9d60'] = $pane;
     $display->panels['main_top'][0] = 'new-56ed45fb-5919-4a83-b79f-fda1c0ad9d60';
-  $display->hide_title = PANELS_TITLE_FIXED;
+  $display->hide_title = PANELS_TITLE_PANE;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
   $export['search_api_page_stories__panel_context_0eb0f05a-df43-4283-b1ea-7e7bc4f5bade'] = $handler;
