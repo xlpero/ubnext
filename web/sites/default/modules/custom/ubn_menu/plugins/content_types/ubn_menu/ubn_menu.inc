@@ -14,6 +14,8 @@ $plugin = array(
   'category' => 'UBN Menu',
 );
 
+
+
 function ubn_menu_ubn_menu_content_type_content_types() {
   $types = array();
   //TODO: Perhaps don't hard code
@@ -23,13 +25,27 @@ function ubn_menu_ubn_menu_content_type_content_types() {
   );
   $menu_name = 'main-menu';
   $menu_label = 'Main menu';
+  $active_link = menu_get_item();
+  $links = menu_load_links('menu-shortcut-menu');
+  $is_found = null;
+  foreach ($links as $link) {
+    if ($link['link_path'] == $active_link['href']) {
+      $is_found = true;
+    }
+  }
+  if ($is_found) {
+    $active_menu_trail = menu_get_active_breadcrumb();
+    $active_menu_trail[] = drupal_get_title();
+    drupal_set_breadcrumb($active_menu_trail);
+  }
+ // drupal_set_breadcrumb($links);
   //TODO: full instead of all
   foreach(array('all', 'top-level', 'menu-trail', 'bottom-level', 'bottom-level-dropdown') as $variant) { 
     $types['ubn_menu:' . $menu_name . ':' . $variant ] = $plugin + array('title' => 'UBN Menu: ' .  $menu_label . ' (' . $variant . ')'); //t?
   }
-
   return $types;
 }
+
 
 /**
  * Settings callback.
@@ -52,6 +68,7 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
   list(, $menu_name, $type) = explode(':', $subtype);
   $cache = &drupal_static(__FUNCTION__);
   $menu_name = 'main-menu';
+  
   if(!isset($cache[$menu_name . ':page_tree_by_level'])) {
 
     $page_tree = menu_tree_page_data($menu_name);
@@ -122,8 +139,7 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       //if no breadcrumb is set. We have already handled that
       //case below.
       $breadcrumb_max_length = variable_get('ubn_menu_breadcrumb_max_length', 36);
-      $trail = drupal_get_breadcrumb();
-      $trail[] = drupal_get_title();
+      $trail = drupal_set_breadcrumb();
       if (empty($trail)) {
         foreach ($page_tree_by_level as $level) {
           $links = _ubn_menu_menu_tree_links($level, TRUE);
@@ -142,7 +158,6 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
         // trail is still empty, check if we may use node title for breadcrumb
         if (empty($trail)) {
           $node = menu_get_object();
-          
           if (!empty($node)) {
             $link = array(
               'href' => url($node->title),
