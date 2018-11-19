@@ -10,3 +10,5 @@ todo
 *~
 *.swp
 *.swo
+
+web/sites/default/themes/ubnext/package-lock.json

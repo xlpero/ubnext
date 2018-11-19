@@ -3,8 +3,8 @@
   @boxes-min-height: 230px;
 
   .mixin-indicator {
-    font-size: 1.75em;
-    float: right;
+    font-size: 10px;
+    /*float: right;*/
   }
 
   /* theme-link box */
@@ -36,11 +36,16 @@
 
       .ubn-theme-links-item-head-link {
         float: left;
-        width: 90%;
+        h2{
+          font-size: 18px;
+        }
+        
       }
       .ubn-theme-links-item-head-indicator {
         .mixin-indicator();
-        width: 10%;
+          margin-left: 10px;
+          display: inline-block;
+          margin-top: 5px;
       }
 
       .ubn-theme-links-item-body {

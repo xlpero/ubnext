@@ -33,4 +33,11 @@ function ubn_search_database_search_redirect() {
   drupal_goto('/databases', array(), 303);
 }
 
+function ubn_search_form_search_api_page_search_form_databases_alter(&$form, &$form_state){
+  
+  $form['keys_19']['#suffix'] = '<i class="fa fa-search"></i>';
+
+
+}
+
 include_once 'ubn_search.features.inc';

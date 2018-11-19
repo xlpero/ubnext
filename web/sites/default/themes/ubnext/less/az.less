@@ -1,16 +1,27 @@
 .main-cms {
 	#terms-search-controls {
-		input {
-			height: 48px;
-	      	border-radius: @border-radius-base 0 0 @border-radius-base;
-	      	background: @gray-lighter;
+
+		.input-group{
+			width: 100%;
+			.fa-filter{
+				position: absolute;
+    			left: 15px;
+    			z-index: 10;
+    			top: 17px;
+			}
+		}
+		input { 
+			height: 48px; 
+	      	border-radius: @border-radius-base;
+	      	padding-left: 35px;
+	      	/*background: @gray-lighter;*/
 		}
 
 		.clear-search-btn {
 	      position: absolute;
 	      z-index: 100;
 	      top: 12px;
-	      right: 65px;
+	      right: 15px;
 	      color: @gray-dark;
 	      display: none;
 	    }
@@ -108,6 +119,9 @@
 					padding-bottom: 50px;
 					.term-description-read-more-links {
 						margin-top: 20px;
+						a{
+							font-size: 1.0em;
+						}
 					}
 				}
 				
