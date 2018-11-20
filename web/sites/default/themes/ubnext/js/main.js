@@ -3,11 +3,11 @@
   Drupal.attachBehaviors = function(context, settings) {
     var links = $('.content-sections a');
     links.each(function(){
-        var t = $(this).parent().html().indexOf('<a');
-        if(t>0){
-            $(this).addClass('no-arrow');
-        }
-
+      var parent = $(this).parent().get(0); 
+      var nodes = parent.childNodes;
+      if(nodes.length > 1){
+        $(this).addClass('no-arrow');
+      }
     });
   };
 
