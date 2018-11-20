@@ -1,4 +1,14 @@
-
+.link-arrow{
+  &::after  {
+    font-family: "FontAwesome"; 
+    content: "\00a0\f061\00a0";
+    position: relative;
+    top: -2px;
+    left: 3px;
+    display: inline-block;
+    font-size: 12px;
+  }
+}
 .page-databases {
 
   .ubn-search-results-show-all {
@@ -45,7 +55,8 @@
 
     &.ubn-facet-active-items {
       .ubn-facet-header {
-        background: @brand-primary;
+
+        background: #025da6;
         color: #fff;
       }
       .fa {
@@ -71,7 +82,8 @@
       float: left;
       width: 100%;
       cursor: pointer;
-      background: @gray-lighter;
+      //background: @gray-lighter;
+      background: #F0F0F0;
       padding: 15px;
       border-bottom: 1px solid @gray-light;
       .ubn-facet-header-title {
@@ -238,14 +250,9 @@
         }
        .database-item-link-title {
           a{
-            &::after  {
-              font-family: "FontAwesome"; 
-              content: "\00a0\f061\00a0";
-              position: relative;
-              top: -2px;
-              left: 3px;
-              display: inline-block;
-              font-size: 12px;
+            .link-arrow();
+            &:hover{
+              color: #025da6;
             }
           }
          font-size: 1.4em;
@@ -263,12 +270,23 @@
          @media (min-width: @screen-sm-min) {
            margin-top : 0;
          }
+         a{
+           &:hover{
+              color: #025da6;
+            }
+         }
+         
          .fa {
-           color: @gray-darker;
-           display: inline;
-           text-decoration: none;
-           margin-left: 5px;
-           vertical-align: middle;
+          color: #025da6;
+          top: 0px;
+          left: 5px;
+          position: relative;
+          display: inline-block;
+          font-size: 12px;
+          //display: inline;
+          text-decoration: none;
+          //margin-left: 5px;
+          vertical-align: middle;
          }
        }
      }
