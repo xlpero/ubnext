@@ -1,6 +1,6 @@
 (function ($) {
 
-  Drupal.attachBehaviors = function(context, settings) {
+  Drupal.behaviors.ubnext_links = function(context, settings) {
     var links = $('.content-sections a');
     links.each(function(){
       var parent = $(this).parent().get(0); 
