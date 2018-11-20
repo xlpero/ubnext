@@ -12,8 +12,7 @@
       color: #9f9f9f;
     }
     a {
-      color: #f2f2f2;
-
+      color: @gray-light;
       &::after  {
         font-family: "FontAwesome"; 
         //font-weight: 900;
@@ -23,6 +22,11 @@
         left: 3px;
         display: inline-block;
         font-size: 12px;
+      }
+      &[href^="tel:"] {
+        &::after {
+          content:'';
+        }
       }
     }
 
