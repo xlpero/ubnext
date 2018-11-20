@@ -1,4 +1,16 @@
 (function ($) {
+
+  Drupal.attachBehaviors = function(context, settings) {
+    var links = $('.content-sections a');
+    links.each(function(){
+      var parent = $(this).parent().get(0); 
+      var nodes = parent.childNodes;
+      if(nodes.length > 1){
+        $(this).addClass('no-arrow');
+      }
+    });
+  };
+
   Drupal.behaviors.ubnext_fitvids = {
     attach: function(context, settings) {
       $('.ubn-video-player', context).fitVids();
