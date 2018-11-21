@@ -34,8 +34,11 @@ function ubn_menu_ubn_menu_content_type_content_types() {
     }
   }
   if ($is_found) {
+    dsm($is_found);
+    dsm(menu_get_active_breadcrumb());
+    dsm(drupal_get_title());
     $active_menu_trail = menu_get_active_breadcrumb();
-    $active_menu_trail[] = drupal_get_title();
+    $active_menu_trail[] = menu_get_active_title();
     drupal_set_breadcrumb($active_menu_trail);
   }
  // drupal_set_breadcrumb($links);
