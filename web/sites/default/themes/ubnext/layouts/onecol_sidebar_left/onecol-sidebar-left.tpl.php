@@ -16,7 +16,7 @@
 
   <div class="row">
     <?php if (!empty ($content['search_bar_top'])) : ?>
-      <div class="searchbar-top col-xs-12 col-sm-8 col-sm-offset-2">
+      <div class="searchbar-top col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
         <?php print render($content['search_bar_top']); ?>
       </div>
     <?php endif; ?>
