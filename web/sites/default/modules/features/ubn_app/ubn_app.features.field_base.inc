@@ -10,21 +10,13 @@
 function ubn_app_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'field_app_base_url'
+  // Exported field_base: 'field_app_base_url'.
   $field_bases['field_app_base_url'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_app_base_url',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -40,21 +32,13 @@ function ubn_app_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_app_name'
+  // Exported field_base: 'field_app_name'.
   $field_bases['field_app_name'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_app_name',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -70,17 +54,19 @@ function ubn_app_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_app_properties'
+  // Exported field_base: 'field_app_properties'.
   $field_bases['field_app_properties'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_app_properties',
-    'foreign keys' => array(),
     'indexes' => array(
       'revision_id' => array(
         0 => 'revision_id',
+      ),
+      'value' => array(
+        0 => 'value',
       ),
     ),
     'locked' => 0,
@@ -94,21 +80,13 @@ function ubn_app_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
-  // Exported field_base: 'field_app_properties_name'
+  // Exported field_base: 'field_app_properties_name'.
   $field_bases['field_app_properties_name'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_app_properties_name',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -124,21 +102,13 @@ function ubn_app_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_app_properties_value'
+  // Exported field_base: 'field_app_properties_value'.
   $field_bases['field_app_properties_value'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_app_properties_value',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',

@@ -10,7 +10,8 @@
 function ubn_app_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'field_collection_item-field_app_properties-field_app_properties_name'
+  // Exported field_instance:
+  // 'field_collection_item-field_app_properties-field_app_properties_name'.
   $field_instances['field_collection_item-field_app_properties-field_app_properties_name'] = array(
     'bundle' => 'field_app_properties',
     'default_value' => NULL,
@@ -32,6 +33,7 @@ function ubn_app_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'text_processing' => 0,
+      'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -45,7 +47,8 @@ function ubn_app_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_app_properties-field_app_properties_value'
+  // Exported field_instance:
+  // 'field_collection_item-field_app_properties-field_app_properties_value'.
   $field_instances['field_collection_item-field_app_properties-field_app_properties_value'] = array(
     'bundle' => 'field_app_properties',
     'default_value' => NULL,
@@ -67,6 +70,7 @@ function ubn_app_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'text_processing' => 0,
+      'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -80,7 +84,7 @@ function ubn_app_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-app-field_app_base_url'
+  // Exported field_instance: 'node-app-field_app_base_url'.
   $field_instances['node-app-field_app_base_url'] = array(
     'bundle' => 'app',
     'default_value' => NULL,
@@ -100,6 +104,12 @@ function ubn_app_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_app_base_url',
@@ -108,6 +118,7 @@ function ubn_app_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'text_processing' => 0,
+      'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -121,7 +132,7 @@ function ubn_app_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-app-field_app_name'
+  // Exported field_instance: 'node-app-field_app_name'.
   $field_instances['node-app-field_app_name'] = array(
     'bundle' => 'app',
     'default_value' => NULL,
@@ -141,6 +152,12 @@ function ubn_app_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_app_name',
@@ -149,6 +166,7 @@ function ubn_app_field_default_field_instances() {
     'settings' => array(
       'entity_translation_sync' => FALSE,
       'text_processing' => 0,
+      'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
@@ -162,7 +180,7 @@ function ubn_app_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-app-field_app_properties'
+  // Exported field_instance: 'node-app-field_app_properties'.
   $field_instances['node-app-field_app_properties'] = array(
     'bundle' => 'app',
     'default_value' => NULL,
@@ -189,6 +207,12 @@ function ubn_app_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'field_app_properties',
@@ -207,7 +231,7 @@ function ubn_app_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-app-title_field'
+  // Exported field_instance: 'node-app-title_field'.
   $field_instances['node-app-title_field'] = array(
     'bundle' => 'app',
     'default_value' => NULL,
@@ -226,6 +250,12 @@ function ubn_app_field_default_field_instances() {
         'type' => 'hidden',
         'weight' => 0,
       ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
     ),
     'entity_type' => 'node',
     'field_name' => 'title_field',
@@ -238,6 +268,7 @@ function ubn_app_field_default_field_instances() {
         'page' => FALSE,
       ),
       'text_processing' => 0,
+      'ubn_property_field' => FALSE,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
