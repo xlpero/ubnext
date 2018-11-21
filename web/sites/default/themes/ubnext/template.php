@@ -502,7 +502,7 @@ function ubnext_form_search_api_page_search_form_databases_alter(&$form, &$form_
 function _ubnext_search_form_alter(&$form, &$form_state, $form_id) {
   // Add bootstrap classes
   $suffix = '_' . $form['id']['#value'];
-  $form['keys' . $suffix]['#attributes']['placeholder'] = t("Search");
+  $form['keys' . $suffix]['#attributes']['placeholder'] = t('Title, subject, supplier...');
   $form['keys' . $suffix]['#attributes']['class'][] = 'form-control';
   $form['keys' . $suffix]['#attributes']['class'][] = 'input-lg';
 
@@ -519,9 +519,9 @@ function _ubnext_search_form_alter(&$form, &$form_state, $form_id) {
   // http://drupal.stackexchange.com/questions/13796/generating-button-type-submit-with-the-form-api
   $form['submit' . $suffix]['#attributes']['class'][] = 'btn';
   $form['submit' . $suffix]['#attributes']['class'][] = 'btn-primary';
-  $form['submit' . $suffix]['#attributes']['class'][] = 'btn-lg';
+  //$form['submit' . $suffix]['#attributes']['class'][] = 'btn-lg';
   $form['submit' . $suffix]['#attributes']['class'][] = 'submit-btn';
-  $form['submit' . $suffix]['#value'] = decode_entities('&#xf002;');
+  $form['submit' . $suffix]['#value'] = t('Search');  //decode_entities('&#xf002;');
 
 //  $form['submit' . $suffix]["#prefix"] = '<button type="submit" title="' . t("Click here to search for database") . '" class="submit-btn btn btn-lg btn-primary" id="submit-' . $form['id']['#value'] . '"><i class="fa fa-search">';
   //$form['submit' . $suffix]["#suffix"] = '</i></button>';
