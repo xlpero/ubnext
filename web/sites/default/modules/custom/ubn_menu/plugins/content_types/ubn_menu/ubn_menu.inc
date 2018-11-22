@@ -14,8 +14,6 @@ $plugin = array(
   'category' => 'UBN Menu',
 );
 
-
-
 function ubn_menu_ubn_menu_content_type_content_types() {
   $types = array();
   //TODO: Perhaps don't hard code
@@ -25,23 +23,10 @@ function ubn_menu_ubn_menu_content_type_content_types() {
   );
   $menu_name = 'main-menu';
   $menu_label = 'Main menu';
-  $active_link = menu_get_item();
-  $links = menu_load_links('menu-shortcut-menu');
-  $is_found = null;
-  foreach ($links as $link) {
-    if ($link['link_path'] == $active_link['href']) {
-      $is_found = true;
-    }
-  }
-  if ($is_found) {
-    $active_menu_trail = menu_get_active_breadcrumb();
-    $active_menu_trail[] = menu_get_active_title();
-    drupal_set_breadcrumb($active_menu_trail);
-  }
- // drupal_set_breadcrumb($links);
+
   //TODO: full instead of all
-  foreach(array('all', 'top-level', 'menu-trail', 'bottom-level', 'bottom-level-dropdown') as $variant) { 
-    $types['ubn_menu:' . $menu_name . ':' . $variant ] = $plugin + array('title' => 'UBN Menu: ' .  $menu_label . ' (' . $variant . ')'); //t?
+  foreach(array('all', 'top-level', 'menu-trail', 'bottom-level', 'bottom-level-dropdown') as $variant) {
+    $types['ubn_menu:' . $menu_name . ':' . $variant ] = $plugin + array('title' => 'UBN Menu: ' .  $menu_label . ' (' . $variant . ')');
   }
   return $types;
 }
@@ -67,16 +52,24 @@ function ubn_menu_ubn_menu_content_type_settings_submit($form, &$form_state) {
 function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $context) {
   list(, $menu_name, $type) = explode(':', $subtype);
   $cache = &drupal_static(__FUNCTION__);
-  $menu_name = 'main-menu';
-  
-  if(!isset($cache[$menu_name . ':page_tree_by_level'])) {
+  $menu_names = array('main-menu');
+  $active_menu_name = 'main-menu';
+  $preferred_item = menu_link_get_preferred();
 
-    $page_tree = menu_tree_page_data($menu_name);
-    _ubn_menu_prune($page_tree);
-    $page_tree_by_level = _ubn_menu_menu_tree_by_level($page_tree);
-    $cache[$menu_name . ':page_tree_by_level'] = $page_tree_by_level;
+  if ($preferred_item['menu_name'] !== 'main-menu') {
+    $active_menu_name = $preferred_item['menu_name'];
+    array_push($menu_names, $preferred_item['menu_name']);
   }
-  $page_tree_by_level = $cache[$menu_name . ':page_tree_by_level'];
+
+  foreach($menu_names as $menu_name) {
+    if(!isset($cache[$menu_name . ':page_tree_by_level'])) {
+      $page_tree = menu_tree_page_data($menu_name);
+      _ubn_menu_prune($page_tree);
+      $page_tree_by_level = _ubn_menu_menu_tree_by_level($page_tree);
+      $cache[$menu_name . ':page_tree_by_level'] = $page_tree_by_level;
+    }
+  }
+  $main_menu_page_tree_by_level = $cache['main-menu:page_tree_by_level'];
   $block = new stdClass();
   $block->title = t('UBN Menu'); //title?, none?
 
@@ -99,7 +92,7 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       break;
       */
     case 'top-level':
-      $menu_top_level = array_shift($page_tree_by_level);
+      $menu_top_level = array_shift($main_menu_page_tree_by_level);
       if (!empty($menu_top_level)) {
         $links = _ubn_menu_menu_tree_links($menu_top_level, FALSE);
         //TODO: implement menu-name wild card
@@ -112,9 +105,9 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       break;
     case 'bottom-level':
       // First unshift top-level
-      //array_shift($page_tree_by_level);
-      //$menu_bottom_level = array_pop($page_tree_by_level);
-      $menu_bottom_level = _ubn_menu_menu_tree_expanded_level($page_tree_by_level);
+      //array_shift($main_menu_page_tree_by_level);
+      //$menu_bottom_level = array_pop($main_menu_page_tree_by_level);
+      $menu_bottom_level = _ubn_menu_menu_tree_expanded_level($main_menu_page_tree_by_level);
       $block->content = '';
       if (!empty($menu_bottom_level)) {
         $links = _ubn_menu_menu_tree_links($menu_bottom_level, FALSE);
@@ -127,28 +120,27 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       }
       break;
     case 'bottom-level-dropdown':
-      $menu_top_level = array_shift($page_tree_by_level);
+      $menu_top_level = array_shift($main_menu_page_tree_by_level);
       $links = _ubn_menu_menu_tree_links($menu_top_level, FALSE);
       $block->content = slate_render('ubn-menu-top-level-dropdown', array(
         'links' => $links
       ));
       break;
     case 'menu-trail':
-      //We don't call drupal_get_breadcrumb() since
-      //we do not whant menu_get_active_breadcrumb() called
-      //if no breadcrumb is set. We have already handled that
-      //case below.
+      // We don't call drupal_get_breadcrumb() since
+      // we don't whant menu_get_active_breadcrumb() called
+      // if no breadcrumb is set. We have already handled that
+      // case below.
       $breadcrumb_max_length = variable_get('ubn_menu_breadcrumb_max_length', 36);
       $trail = drupal_set_breadcrumb();
       if (empty($trail)) {
-        foreach ($page_tree_by_level as $level) {
+        foreach ($cache[$active_menu_name . ':page_tree_by_level'] as $level) {
           $links = _ubn_menu_menu_tree_links($level, TRUE);
           foreach ($links as $link) {
             if ($link['in_active_trail']) {
-              // There is a slight inconsistency
-              // that we cannot easliy truncate
-              // breakcrumb titles set by drupal_set_breadcrumb()
-              // (since already rendered) but we can live with that
+              // There is a slight inconsistency that we cannot easliy truncate
+              // breakcrumb titles set by drupal_set_breadcrumb() (since already
+              // rendered), but we can live with that.
               $link['title'] = truncate_utf8($link['title'], $breadcrumb_max_length, TRUE, TRUE);
               $trail[] = $link;
               break;
