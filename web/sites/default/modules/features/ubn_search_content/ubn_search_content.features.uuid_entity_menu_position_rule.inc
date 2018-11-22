@@ -9,8 +9,8 @@
  */
 function ubn_search_content_uuid_entity_default_menu_position_rule() {
   $items = array();
-  $items['fb0e614d-5b06-4623-b3b8-d2206914d8b6'] = entity_create('menu_position_rule', array(
-    'admin_title' => 'Database',
+  $items['bac8c57e-2086-45f1-9cb9-9a46a0b7a22c'] = entity_create('menu_position_rule', array(
+    'admin_title' => 'Databases',
     'enabled' => 1,
     'conditions' => array(
       'content_type' => array(
@@ -20,9 +20,9 @@ function ubn_search_content_uuid_entity_default_menu_position_rule() {
       ),
     ),
     'menu_name' => 'main-menu',
-    'plid' => '21c050e2-5ef9-4347-af28-192f53a34c05',
+    'plid' => '74e6bc5b-5d90-41d4-bd22-50ab89cead16',
     'weight' => 0,
-    'uuid' => 'fb0e614d-5b06-4623-b3b8-d2206914d8b6',
+    'uuid' => 'bac8c57e-2086-45f1-9cb9-9a46a0b7a22c',
   ));
   return $items;
 }

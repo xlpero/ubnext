@@ -852,11 +852,11 @@ function ubn_general_update_7201() {
   }
 }
 
-
 function ubn_general_update_7202() {
   features_revert_module('ubn_styles');
 }
 
+/* Revert features */
 function ubn_general_update_7203() {
   array_map(
     'features_revert_module',
@@ -868,9 +868,7 @@ function ubn_general_update_7203() {
       'ubn_styles'
     )
   );
-
 }
-
 
 //TODO: Disable rdf module?
 
