@@ -14,3 +14,4 @@ features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[uuid_entity_menu_link][] = 74e6bc5b-5d90-41d4-bd22-50ab89cead16
 features[uuid_entity_menu_position_rule][] = bac8c57e-2086-45f1-9cb9-9a46a0b7a22c
+features[uuid_entity_node][] = b1961886-660a-4c82-a142-518506df8a05
