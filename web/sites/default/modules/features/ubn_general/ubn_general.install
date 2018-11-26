@@ -881,6 +881,13 @@ function ubn_general_update_7206() {
 }
 
 
+/* Uninstall ubn_menu_position, enable ubn_library_content */
+function ubn_general_update_7207() {
+  $modules = array('ubn_menu_position');
+  module_disable($modules);
+  drupal_uninstall_modules($modules);
+  module_enable(array('ubn_library_content'));
+}
 
 //TODO: Disable rdf module?
 

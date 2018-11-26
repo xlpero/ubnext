@@ -8,6 +8,13 @@ function ubn_menu_ctools_plugin_directory($owner, $plugin_type) {
   }
 }
 
+/**
+  * Implements hook_menu_alter().
+ */
+function ubn_menu_menu_alter(&$items) {
+  $items['databases']['type'] = MENU_CALLBACK;
+  $items['news']['type'] = MENU_CALLBACK;
+}
 
 function ubn_menu_menu_link_alter(&$item) {
   // Flag a link to be altered by hook_translated_menu_link_alter().

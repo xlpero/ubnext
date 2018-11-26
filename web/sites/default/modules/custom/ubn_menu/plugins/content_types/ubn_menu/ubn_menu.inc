@@ -52,14 +52,14 @@ function ubn_menu_ubn_menu_content_type_settings_submit($form, &$form_state) {
 function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $context) {
   list(, $menu_name, $type) = explode(':', $subtype);
   $cache = &drupal_static(__FUNCTION__);
-  $menu_names = array('main-menu');
-  $active_menu_name = 'main-menu';
-  $preferred_item = menu_link_get_preferred();
+  $menu_names = array('main-menu', 'menu-shortcut-menu');
 
-  if ($preferred_item['menu_name'] !== 'main-menu') {
-    $active_menu_name = $preferred_item['menu_name'];
-    array_push($menu_names, $preferred_item['menu_name']);
+  if (!isset($cache['active_menu_name'])) {
+    $preferred_item = menu_link_get_preferred();
+    // Hmm, really set main-menu if no active??
+    $cache['active_menu_name'] = $preferred_item['menu_name'] ? $preferred_item['menu_name'] : 'main-menu';
   }
+  $active_menu_name = $cache['active_menu_name'];
 
   foreach($menu_names as $menu_name) {
     if(!isset($cache[$menu_name . ':page_tree_by_level'])) {
@@ -133,6 +133,7 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       // case below.
       $breadcrumb_max_length = variable_get('ubn_menu_breadcrumb_max_length', 36);
       $trail = drupal_set_breadcrumb();
+
       if (empty($trail)) {
         foreach ($cache[$active_menu_name . ':page_tree_by_level'] as $level) {
           $links = _ubn_menu_menu_tree_links($level, TRUE);

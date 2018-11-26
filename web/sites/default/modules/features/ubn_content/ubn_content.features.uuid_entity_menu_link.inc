@@ -9,24 +9,27 @@
  */
 function ubn_content_uuid_entity_default_menu_link() {
   $items = array();
-  $items['2e9f59f7-b291-49c9-9726-e61d85e5c0ee'] = entity_create('menu_link', array(
-    'menu_name' => 'main-menu',
+  $items['0d675f63-cf7b-4350-ac82-a5f216886c03'] = entity_create('menu_link', array(
+    'menu_name' => 'menu-shortcut-menu',
     'plid' => 0,
-    'link_path' => 'node/f8bcf20f-d066-41fc-9e41-c1b3d97dccee',
+    'link_path' => 'node/e5180327-a052-4a35-882b-2f0852935fe3',
     'router_path' => 'node/%',
-    'link_title' => 'Opening hours and libraries',
+    'link_title' => 'Contact us',
     'options' => array(
+      'attributes' => array(
+        'title' => 'Contact us',
+      ),
       'alter' => TRUE,
-      'attributes' => array(),
+      'identifier' => 'menu-shortcut-menu_contact-us:node/101876',
     ),
     'module' => 'menu',
-    'hidden' => 1,
+    'hidden' => 0,
     'external' => 0,
-    'has_children' => 1,
+    'has_children' => 0,
     'expanded' => 0,
     'depth' => 1,
     'customized' => 1,
-    'p1' => '2e9f59f7-b291-49c9-9726-e61d85e5c0ee',
+    'p1' => '0d675f63-cf7b-4350-ac82-a5f216886c03',
     'p2' => 0,
     'p3' => 0,
     'p4' => 0,
@@ -37,10 +40,11 @@ function ubn_content_uuid_entity_default_menu_link() {
     'p9' => 0,
     'updated' => 0,
     'language' => 'und',
-    'vuuid' => '6a91f87d-b8db-4bfc-982c-84c7ddbc751c',
-    'uuid' => '2e9f59f7-b291-49c9-9726-e61d85e5c0ee',
+    'vuuid' => 'fa119d65-73af-45c9-8ac5-db6771d0222c',
+    'uuid' => '0d675f63-cf7b-4350-ac82-a5f216886c03',
     'default_revision' => 1,
     'access' => TRUE,
+    'i18n_menu' => TRUE,
   ));
   return $items;
 }

@@ -27,8 +27,8 @@ function ubn_content_strongarm() {
     'taxonomy_term' => array(
       'enabled' => 1,
       'bundles' => array(
-        'ttx_library' => 'ttx_library',
         'ttx_group' => 'ttx_group',
+        'ttx_library' => 'ttx_library',
       ),
       'rebuild_behavior' => '0',
     ),
@@ -56,6 +56,7 @@ function ubn_content_strongarm() {
       'enabled' => 1,
       'bundles' => array(
         'main-menu' => 'main-menu',
+        'menu-shortcut-menu' => 'menu-shortcut-menu',
       ),
       'rebuild_behavior' => '2',
     ),
