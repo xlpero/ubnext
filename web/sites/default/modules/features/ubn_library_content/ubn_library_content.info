@@ -1,0 +1,17 @@
+name = UBN Library content
+core = 7.x
+package = UBNext
+version = 7.x-0.1
+dependencies[] = ctools
+dependencies[] = entity
+dependencies[] = entity_menu_links
+dependencies[] = menu_position
+dependencies[] = menu_position_uuid
+dependencies[] = strongarm
+dependencies[] = ubn_content
+dependencies[] = uuid_entity_features
+features[ctools][] = strongarm:strongarm:1
+features[features_api][] = api:2
+features[uuid_entity_menu_link][] = e85c6a8a-e005-4b74-9c29-e1e714d80b85
+features[uuid_entity_menu_position_rule][] = 4151802e-d30f-4358-b860-9f64a8271611
+features[uuid_entity_node][] = f8bcf20f-d066-41fc-9e41-c1b3d97dccee
