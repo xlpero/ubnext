@@ -14,3 +14,9 @@ function ubn_library_entity_presave($entity, $type) {
   }
 }
 */
+
+function ubn_library_form_node_form_alter(&$form, $form_state, $form_id) {
+  if ($form_id === 'library_node_form') {
+    $form['menu']['#access'] = FALSE;
+  }
+}

@@ -1,23 +1,16 @@
 <?php
 
-function ubn_menu_position_form_node_form_alter(&$form, $form_state, $form_id) {
-  if ($form_id === 'library_node_form') {
-    $form['menu']['#access'] = FALSE;
-  }
-}
-
+/*
 function ubn_menu_position_node_presave($node) {
   if($node->type === 'library' && isset($node->menu)) {
     //$parent_link = _ubn_menu_position_page_template_menu_link('libraries');
     //f8bcf20f-d066-41fc-9e41-c1b3d97dccee is "Libraries" page uuid
     $parent_link = _ubn_menu_position_uuid_node_menu_link('f8bcf20f-d066-41fc-9e41-c1b3d97dccee');
     if (isset($parent_link)) {
-      /*
       //node_object_prepare() ?
-      if (!isset($node->menu)) {
-        menu_node_prepare($node);
-      }
-       */
+      //if (!isset($node->menu)) {
+      //  menu_node_prepare($node);
+      //}
       $link = &$node->menu;
       $link['enabled'] = TRUE;
       $link['link_title'] = trim($node->title);
@@ -40,6 +33,7 @@ function _ubn_menu_position_uuid_node_menu_link($uuid) {
   }
   return NULL;
 }
+*/
 
 /*
 function _ubn_menu_position_page_template_menu_link($page_template_value) {

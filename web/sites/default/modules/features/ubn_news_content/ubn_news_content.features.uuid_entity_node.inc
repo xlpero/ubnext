@@ -15,7 +15,7 @@ function ubn_news_content_uuid_entity_default_node() {
     'comment' => 2,
     'promote' => 1,
     'sticky' => 0,
-    'vuuid' => 'a64b50dd-2528-4afe-a0a8-684123da415b',
+    'vuuid' => '4581cac7-27f5-4698-bb21-673ea1bda5f9',
     'type' => 'embedded_page',
     'language' => 'sv',
     'tnid' => 0,
@@ -52,17 +52,11 @@ function ubn_news_content_uuid_entity_default_node() {
         ),
       ),
     ),
-    'path' => array(
-      'pathauto' => 1,
-      'pathauto_i18n_status' => 1,
-    ),
-    'cid' => 0,
-    'last_comment_name' => NULL,
-    'last_comment_uid' => 1,
-    'comment_count' => 0,
+    '_drafty_revision_requested' => 'FIELD_LOAD_CURRENT',
     'name' => 'admin',
     'picture' => 0,
     'data' => 'b:0;',
+    'published_at' => 0,
   ));
   return $items;
 }

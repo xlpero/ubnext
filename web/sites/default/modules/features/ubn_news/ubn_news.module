@@ -27,6 +27,7 @@ function ubn_news_url_outbound_alter(&$path, &$options, $original_path) {
  * hook_page_build (when blocks are added). We're using this hook for its
  * timing, not its data.
  */
+/*
 function ubn_news_page_delivery_callback_alter() {
   // refactor set active trail
   // Build a small context.
@@ -51,10 +52,11 @@ function ubn_news_page_delivery_callback_alter() {
       $breadcrumb[] = l('Home', '<front>');
       $breadcrumb[] = l(t('News'), 'news');
       $breadcrumb[] = drupal_get_title();
-      drupal_set_breadcrumb($breadcrumb);
+      //drupal_set_breadcrumb($breadcrumb);
     }
   }
-};
+}
+*/
 
 // Might be a better hook for this, but since we will probably replace
 // view with ctools content type this is good enough for now

@@ -852,9 +852,41 @@ function ubn_general_update_7201() {
   }
 }
 
-
 function ubn_general_update_7202() {
   features_revert_module('ubn_styles');
+}
+
+/* Revert features */
+function ubn_general_update_7203() {
+  array_map(
+    'features_revert_module',
+    array(
+      'ubn_app',
+      'ubn_contact',
+      'ubn_content_types',
+      'ubn_startpage',
+      'ubn_styles'
+    )
+  );
+}
+
+/* Revert features */
+function ubn_general_update_7204() {
+  features_revert_module('ubn_search_content');
+}
+
+/* Revert features */
+function ubn_general_update_7206() {
+  features_revert_module('ubn_news_content');
+}
+
+
+/* Uninstall ubn_menu_position, enable ubn_library_content */
+function ubn_general_update_7207() {
+  $modules = array('ubn_menu_position');
+  module_disable($modules);
+  drupal_uninstall_modules($modules);
+  module_enable(array('ubn_library_content'));
 }
 
 //TODO: Disable rdf module?
