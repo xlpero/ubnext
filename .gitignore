@@ -12,3 +12,4 @@ todo
 *.swo
 
 web/sites/default/themes/ubnext/package-lock.json
+/web/sites/default/settings.php

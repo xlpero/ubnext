@@ -5,7 +5,7 @@
 <div class="row library-opening-hours-banner panel-separator">
   <div class="col-xs-12">
    <a href="#library-opening-hours-header" data-location="#library-opening-hours-header">
-    <span class="library-opening-hours-banner-indicator"><i class="fa fa-angle-double-down"></i></span>
+    <span class="row library-opening-hours-banner-indicator">{{ t('More hours') }}<i class="fa fa-arrow-down"></i></span>
   {% for opening_hours in ubn_opening_hours_items(library.field_opening_hours, [t('Today'), t('Tomorrow')]) %}
     <div class="library-opening-hours-banner-item center">
       
