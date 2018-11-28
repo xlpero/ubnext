@@ -1,9 +1,9 @@
 <?php global $language; ?>
+<?php parse_url($current_path = $GLOBALS['base_url'] . "/" . current_path()); ?>
 
 <div id="spinner">
   <i class="fa fa-circle-o-notch fa-spin"></i>
 </div>
-
 <?php if (!empty($content['topbar'])): ?>
   <div class="topbar clearfix">
     <?php print render($content['topbar']); ?>
@@ -15,7 +15,7 @@
   <header>
     <div class="container">
       <div class="row">
-        <div class="col-sm-9 col-xs-12">
+        <div class="col-sm-7 col-xs-12">
           <div class="siteNav-logo <?php echo $language->language; ?>">
             <div class="logo">
               <a href="<?php echo $GLOBALS['base_url']; ?>"><div class="logo-image"></div></a>
@@ -27,9 +27,12 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-5">
           <nav class="toplinks">
-            <?php print render($content['toplinks']); ?>
+            <div class="rs_skip rsbtn rs_preserve rs_portal"><a class="rsbtn_play" accesskey="L" rel="nofollow" title="<?php t('Listen to the page content') ?>" href="https://app-eu.readspeaker.com/cgi-bin/rsent?customerid=9467&amp;lang=sv_se&amp;readclass=html&amp;url=<?php echo $current_path ?>" data-rsevent-id="rs_599740" role="button"><?php print t('Listen') ?></a></div>
+            <div class="lang-area">              
+              <?php print render($content['toplinks']); ?>
+            </div>
           </nav>
         </div>
       </div>
