@@ -35,7 +35,7 @@
         </div>
         <div class="col-sm-5">
           <nav class="toplinks">
-            <div class="rs_skip rsbtn rs_preserve rs_portal"><a class="rsbtn_play" accesskey="L" rel="nofollow" title="<?php t('Listen to the page content') ?>" href="https://app-eu.readspeaker.com/cgi-bin/rsent?customerid=9467&amp;lang="<?php echo $readspeaker_lang ?>"&amp;readclass=html&amp;url=<?php echo $current_path ?>" data-rsevent-id="rs_599740" role="button"><?php print t('Listen') ?></a></div>
+            <div class="rs_skip rsbtn rs_preserve rs_portal"><a class="rsbtn_play" accesskey="L" rel="nofollow" title="<?php t('Listen to the page content') ?>" href="https://app-eu.readspeaker.com/cgi-bin/rsent?customerid=9467&amp;lang=<?php echo $readspeaker_lang ?>&amp;readclass=html&amp;url=<?php echo $current_path ?>" data-rsevent-id="rs_599740" role="button"><?php print t('Listen') ?></a></div>
             <div class="lang-area">              
               <?php print render($content['toplinks']); ?>
             </div>
