@@ -1,11 +1,14 @@
 <?php
-error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_WARNING);
 
 include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'secret.settings.php';
 include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'site.settings.php';
 
 
 $conf['page_cache_invoke_hooks'] = TRUE;
+$conf['slate_cache_enabled'] = FALSE;
+$conf['slate_debug_enabled'] = TRUE;
+
 
 /**
  * Multilingual settings
