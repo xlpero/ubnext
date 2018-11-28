@@ -4,7 +4,7 @@
 <?php 
   $readspeaker_lang = 'sv_se';
   if ($language->language == 'en') {
-    $readspeaker_lang = 'en_g';
+    $readspeaker_lang = 'en_us';
   }
  ?>
 <div id="spinner">
