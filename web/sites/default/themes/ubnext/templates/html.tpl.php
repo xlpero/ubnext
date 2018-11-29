@@ -68,7 +68,7 @@ global $base_url;
   <?php print $scripts; ?>
 </head>
 <body class="<?php print $classes; ?>" <?php print $attributes;?>>
-  <div id="skip-link" class="sr-only">
+  <div id="skip-link" class="sr-only rs_skip">
     <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
   </div>
   <?php print $page_top; ?>
