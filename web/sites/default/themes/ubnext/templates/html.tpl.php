@@ -61,7 +61,6 @@ global $base_url;
   <link rel="apple-touch-icon" sizes="76x76" href=<?php print $base_url . "/" . path_to_theme();?>/css/img/apple-touch-icon-_76x76.png>
   <link rel="apple-touch-icon" sizes="152x152" href=<?php print $base_url . "/" . path_to_theme();?>/css/img/apple-touch-icon-_152x152.png>
   <link rel="apple-touch-icon" sizes="180x180" href=<?php print $base_url . "/" . path_to_theme();?>/css/img/apple-touch-icon-_180x180.png>
-  <script src="//f1-eu.readspeaker.com/script/9467/ReadSpeaker.js?pids=embhl" type="text/javascript"></script>
   
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
