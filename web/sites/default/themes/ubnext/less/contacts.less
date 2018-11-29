@@ -44,6 +44,10 @@
             font-size: 1.5em;
             @media (min-width: @screen-sm-min) {
 
+            &::after{
+                content: none;
+            }
+
             }
             .fa {
                 -ms-transform: rotate(45deg); /* IE 9 */
@@ -53,12 +57,17 @@
                  -moz-transition: .3s ease-in-out;
                 -o-transition: .3s ease-in-out;
                 transition: .3s ease-in-out;
+                
             }
             &.collapsed {
+                &::after{
+                   content: none;
+                }
                 .fa {
                     -ms-transform: rotate(0deg); /* IE 9 */
                     -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
                     transform: rotate(0deg);
+                   
                 }
             }
         }
