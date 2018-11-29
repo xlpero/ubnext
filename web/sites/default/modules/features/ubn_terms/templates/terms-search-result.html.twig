@@ -21,7 +21,7 @@
 
 
 {% macro generate_evenly_distributed_rows(term_groups, number_of_items_per_row) %}
-    <div class="col-sm-12">
+    <div class="col-sm-12 rs_preserve rs_skip">
       <div id="terms-groups">
         {% for term_group_batch in term_groups|batch(number_of_items_per_row) %}
           <div class="terms-groups-group term-group-{{ loop.index }}">
