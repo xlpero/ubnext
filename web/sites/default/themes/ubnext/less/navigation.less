@@ -203,15 +203,31 @@
     .toplinks {
       background: @gray-dark;
       padding:20px;
-      font-size:14px;
+      font-size:14px !important;
       ul {
         margin-right:20px;
+        li {
+          margin-left:10px;
+        }
         .menu();
+      }
+      .rsbtn {
+        float: left;
+        margin-top: 3px;
+        margin-bottom:0;
+        .rsbtn_exp {
+          top:-6px;
+          left: 5px;
+        }
+        &.rsexpanded {
+          width:300px !important;
+        }
       }
       a {
         color:@gray-lighter;
         text-decoration: none;
         font-family: @font-family-sans-serif;
+        font-size:14px !important;
         &.language-link::before {
           font-family: "FontAwesome"; content: "\f0ac";
           margin-right:8px;
@@ -225,6 +241,9 @@
     }
   }
 }
+
+
+
 
 .secondary-nav-cms {
   .menu {
