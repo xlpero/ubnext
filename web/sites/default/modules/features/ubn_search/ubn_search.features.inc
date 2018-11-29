@@ -40,14 +40,7 @@ function ubn_search_default_search_api_autocomplete_search() {
     "enabled" : "1",
     "options" : {
       "suggester_configuration" : {
-        "fields" : [
-          "field_alternate_titles",
-          "field_media_types:name",
-          "field_publishers:name",
-          "field_topics_depth_0:name",
-          "field_topics_depth_1:name",
-          "title_field"
-        ],
+        "fields" : [ "field_alternate_titles", "title_field" ],
         "solr_server" : { "suggester_dictionaries" : [ "databases_infix", "databases_fuzzy" ] }
       },
       "min_length" : "1",
@@ -100,22 +93,23 @@ function ubn_search_default_search_api_index() {
       },
       "fields" : {
         "author" : { "type" : "integer", "entity_type" : "user" },
-        "field_alternate_titles" : { "type" : "list\\u003Ctext\\u003E" },
-        "field_description_paragraphs" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_alternate_titles" : { "type" : "list\\u003Ctext\\u003E", "boost" : "5.0" },
+        "field_description_paragraphs" : { "type" : "list\\u003Ctext\\u003E", "boost" : "0.8" },
         "field_media_types" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
-        "field_media_types:name" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_media_types:name" : { "type" : "list\\u003Ctext\\u003E", "boost" : "2.0" },
         "field_public_access" : { "type" : "boolean" },
         "field_publishers" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_publishers:name" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_recommended_in_subjects:name" : { "type" : "list\\u003Ctext\\u003E", "boost" : "21.0" },
         "field_topics_depth_0" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
-        "field_topics_depth_0:name" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_topics_depth_0:name" : { "type" : "list\\u003Ctext\\u003E", "boost" : "2.0" },
         "field_topics_depth_1" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_topics_depth_1:name" : { "type" : "list\\u003Ctext\\u003E" },
         "search_api_access_node" : { "type" : "list\\u003Cstring\\u003E" },
         "search_api_aggregation_1" : { "type" : "string" },
         "search_api_language" : { "type" : "string" },
         "status" : { "type" : "boolean" },
-        "title_field" : { "type" : "text" }
+        "title_field" : { "type" : "text", "boost" : "8.0" }
       },
       "data_alter_callbacks" : {
         "search_api_alter_bundle_filter" : {

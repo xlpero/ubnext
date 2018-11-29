@@ -20,3 +20,34 @@ function ubn_search_api_solr_search_api_service_info() {
   return $services;
 }
 
+/**
+ * Lets modules alter a Solr search request before sending it.
+ *
+ * Apache_Solr_Service::search() is called afterwards with these parameters.
+ * Please see this method for details on what should be altered where and what
+ * is set afterwards.
+ *
+ * @param array $call_args
+ *   An associative array containing all three arguments to the
+ *   SearchApiSolrConnectionInterface::search() call ("query", "params" and
+ *   "method") as references.
+ * @param SearchApiQueryInterface $query
+ *   The SearchApiQueryInterface object representing the executed search query.
+ */
+function ubn_search_api_solr_search_api_solr_query_alter(&$call_args, $query) {
+  //if ($call_args['params']['sort'] && substr($call_args['params']['sort'], 0, 5) === "score") {
+  //  $call_args['params']['sort'] = $call_args['params']['sort'] . ',sort_search_api_aggregation_1 asc';
+  //}
+  foreach($call_args['params']['qf'] as $key=>$data) {
+    if (substr($data, 0, 37) === 'tm_field_recommended_in_subjects$name') {
+      $call_args['params']['qf'][$key] = 'tm_field_recommended_in_subjects$name^1000.0';
+      break;
+    }
+  }
+  if ($call_args['params']['spellcheck']) {
+    # Use default value in solr config
+    unset($call_args['params']['spellcheck']);
+  }
+
+  return $call_args;
+}

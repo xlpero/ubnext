@@ -11,6 +11,7 @@ class UBNSearchApiSolrConnection extends SearchApiSolrConnection  {
    */
   public function search($query = NULL, array $params = array(), $method = 'GET') {
     $response = parent::search($query, $params, $method);
+    /*
     if(!empty($response->response->numFound)) {
       unset($response->spellcheck);
     }
@@ -25,6 +26,7 @@ class UBNSearchApiSolrConnection extends SearchApiSolrConnection  {
       $response = parent::search($query, $params, $method);
       $response->spellcheck = $first_response_suggestions;
     }
+    */
     return $response;
   }
 }
