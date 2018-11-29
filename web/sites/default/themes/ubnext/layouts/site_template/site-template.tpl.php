@@ -1,5 +1,5 @@
 <?php global $language; ?>
-<?php parse_url($current_path = $GLOBALS['base_url'] . "/" . current_path()); ?>
+<?php parse_url($current_path = $GLOBALS['base_url'] . "/" . $language->language . "/" . current_path()); ?>
 
 <?php 
   $readspeaker_lang = 'sv_se';
