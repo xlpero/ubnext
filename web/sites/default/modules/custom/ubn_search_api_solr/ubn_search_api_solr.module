@@ -66,5 +66,6 @@ function ubn_search_api_solr_search_api_solr_query_alter(&$call_args, $query) {
       $call_args['params']['sort'] = 'score desc,' . $call_args['params']['sort'];
     }
   }
+
   return $call_args;
 }
