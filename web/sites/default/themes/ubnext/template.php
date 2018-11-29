@@ -245,7 +245,7 @@ function ubnext_select($variables) {
 function ubnext_preprocess_html(&$vars) {
   global $is_https;
   drupal_add_css(($is_https ? 'https' : 'http') . '://fonts.googleapis.com/css?family=Open+Sans:400,400i,700', array('type' => 'external'));
-  drupal_add_js(($is_https ? 'https' : 'http') . '://f1-eu.readspeaker.com/script/9467/ReadSpeaker.js?pids=embhl', 'external');
+  //drupal_add_js(($is_https ? 'https' : 'http') . '://f1-eu.readspeaker.com/script/9467/ReadSpeaker.js?pids=embhl', 'external');
   // If the Guide feature is enabled, add chapter-1 class to body if the first
   // chapter on a guide is active.
   if (module_exists('ubn_guide')) {
