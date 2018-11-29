@@ -1,9 +1,11 @@
 {# slate
   name = UBN menu: main-menu (bottom-level-dropdown)
   models[links] = item
+  models[readspeaker_lang] = item
+  models[current_path] = item
 #}
 {% import "macros/menus.html.twig" as menus %}
-<div class="ubn-mobile-menu rs_skip">
+<div class="ubn-mobile-menu">
     <div class="ubn-mobile-menu-header">
       <button id="menu-btn-close" class="btn btn-link"><i class="fa fa-close"></i>{{t('Close')}}</button>
     </div>
@@ -20,7 +22,7 @@
       <li class="ubn-mobile-menu-listen">
         <ul class="list-unstyled">
           <li>
-            <a class="rsbtn_play" rel="nofollow" accesskey="L" title="{{t("Listen to the page content")}}" href="javascript:alert('To be implemented')" data-rsevent-id="rs_139679" role="button"><span class="rsbtn_left rsimg rspart"><span class="rsbtn_text"><span>{{t('Listen')}}</span></span></span><span class="rsbtn_right rsimg rsplay rspart"></span></a>
+            <div class="rs_skip rsbtn rs_preserve rs_portal"><a class="rsbtn_play" accesskey="L" rel="nofollow" title="{{t('Listen to the page content')}}" href="https://app-eu.readspeaker.com/cgi-bin/rsent?customerid=9467&amp;lang={{readspeaker_lang}}&amp;readclass=main-cms&amp;url={{current_path}}" data-rsevent-id="rs_599741" role="button">{{t('Listen')}}</a></div>
           </li>            
         </ul>
       </li>

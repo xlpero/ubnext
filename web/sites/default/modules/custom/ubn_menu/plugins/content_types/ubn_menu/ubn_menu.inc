@@ -120,10 +120,18 @@ function ubn_menu_ubn_menu_content_type_render($subtype, $conf, $panel_args, $co
       }
       break;
     case 'bottom-level-dropdown':
+      global $language; 
+      $current_path = $GLOBALS['base_url'] . "/" . $language->language . "/" . current_path();
+      $readspeaker_lang = 'sv_se';
+      if ($language->language == 'en') {
+        $readspeaker_lang = 'en_gb';
+      }
       $menu_top_level = array_shift($main_menu_page_tree_by_level);
       $links = _ubn_menu_menu_tree_links($menu_top_level, FALSE);
       $block->content = slate_render('ubn-menu-top-level-dropdown', array(
-        'links' => $links
+        'links' => $links,
+        'readspeaker_lang' => $readspeaker_lang,
+        'current_path' => $current_path,
       ));
       break;
     case 'menu-trail':
