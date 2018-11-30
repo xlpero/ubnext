@@ -1,6 +1,6 @@
 <?php //TODO: rename to search page or similar ?>
 
-<div class="container">
+<div class="container rs_preserve">
 
   <?php if (!empty ($content['header'])) : ?>
     <div class="row">
