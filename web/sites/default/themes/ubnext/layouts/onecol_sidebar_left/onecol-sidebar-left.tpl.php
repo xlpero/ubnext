@@ -22,7 +22,7 @@
     <?php endif; ?>
   </div>
   </div>
-  <div class="row ajax-container">
+  <div class="row ajax-container rs_preserve">
     <?php if (!empty ($content['sidebar'])) : ?>
     <aside class="sidebar  col-xs-12 col-sm-4">
       <div class="facet-filter rs_preserve">
