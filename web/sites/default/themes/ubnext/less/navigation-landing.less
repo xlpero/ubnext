@@ -3,7 +3,8 @@
   @boxes-min-height: 230px;
 
   .mixin-indicator {
-    font-size: 10px;
+    font-size: 12px;
+    color: @ub-link-color;
     /*float: right;*/
   }
 
@@ -43,9 +44,10 @@
       }
       .ubn-theme-links-item-head-indicator {
         .mixin-indicator();
-          margin-left: 10px;
-          display: inline-block;
+        .fa{
+          margin-left:8px;
           margin-top: 5px;
+        }
       }
 
       .ubn-theme-links-item-body {

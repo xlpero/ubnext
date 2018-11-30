@@ -19,6 +19,6 @@
       $options = array();
       $options['attributes']['class'] =  'more-news-link';
     ?>
-    <div class="more-news-link pull-right"><?php print l(t("More news"), "/news") ?> <i class="fa fa-chevron-right"></i></div>
+    <div class="more-news-link pull-right"><?php print l(t("More news"), "/news") ?> <i class="fa fa-arrow-right"></i></div>
   </div>
 </div>

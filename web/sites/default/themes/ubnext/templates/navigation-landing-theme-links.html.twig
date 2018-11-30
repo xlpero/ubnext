@@ -11,6 +11,9 @@
   {% import "macros/panel-links.html.twig" as pane %}
   <li class="col-xs-12 col-sm-6 col-md-4">
     {{ pane.pane_begin('ubn-theme-links-item', { 'hide_icon': true } ) }}
+    {% if isPrimary %}
+      <a href="{{ url(url) }}" class="link-wrapper">
+    {% endif %}
       <div class="ubn-theme-links-item-head">
         <div class="ubn-theme-links-item-head-link">
           {% if isPrimary %}
@@ -26,6 +29,9 @@
       <div class="ubn-theme-links-item-body">
         {{ description|raw }}
       </div>
+      {% if isPrimary %}
+        </a>
+      {% endif %}
     {{ pane.pane_end() }}
   </li>
   {% set adjustedForExtraItem = addShortcuts ? 1 : 0 %}
