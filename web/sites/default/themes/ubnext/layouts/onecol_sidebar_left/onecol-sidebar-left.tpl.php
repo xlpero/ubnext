@@ -8,15 +8,17 @@
       </div>
     </div>
   <?php endif; ?>
-</div>
 
-<div class="container rs_preserve">
+
+
   <?php if (!empty ($content['main_top'])) : ?>
     <div class="rs_preserve">
       <?php print render($content['main_top']) ?>
     </div>
   <?php endif; ?>
-
+</div>
+  
+<div class="container rs_preserve">
   <div class="row rs_preserve rs_skip">
     <?php if (!empty ($content['search_bar_top'])) : ?>
       <div class="searchbar-top col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
