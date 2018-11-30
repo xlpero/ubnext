@@ -159,7 +159,7 @@
   </div>
 <?php endif; ?>
 
-<div class="footer-cms">
+<div class="footer-cms rs_skip">
   <!-- ### FOOTER ### -->
   <div class="footer-area">
       <?php print render($content['footer']); ?>
