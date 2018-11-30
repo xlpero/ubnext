@@ -1,7 +1,5 @@
 .DS_Store
 
-web/sites/default/settings.php
-
 # Ignore drupal-capistrano data dir
 /data
 
@@ -14,4 +12,3 @@ todo
 *.swo
 
 web/sites/default/themes/ubnext/package-lock.json
-/web/sites/default/settings.php
