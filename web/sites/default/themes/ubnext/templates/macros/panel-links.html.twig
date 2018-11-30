@@ -14,7 +14,7 @@
   {% set options = { 'promoted': false, 'min_height': false }|merge(options|default({})) %}
   <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace) }}{% if options.promoted %} promoted{% endif %}{% if options.min_height %} min-height{% endif %}">
     {% if options.promoted %}
-      <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'inner-wrapper') }}">Lars
+      <div class="{{ ubn_namespace_classes('ubn-panel-links', namespace, 'inner-wrapper') }}">
     {% endif %}
 {% endmacro %}
 
