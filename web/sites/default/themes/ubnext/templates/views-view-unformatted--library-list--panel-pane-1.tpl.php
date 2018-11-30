@@ -10,7 +10,7 @@
  */
 ?>
 
-<h2 class="center"><?php print $view->get_title(); ?></h2>
+<h2><?php print $view->get_title(); ?></h2>
 <ul class="list-unstyled ub-list-of-links">
 	<?php foreach ($rows as $id => $row): ?>
 	  <li><?php print $row; ?></li>
