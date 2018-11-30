@@ -24,8 +24,8 @@
   </div>
   <div class="row ajax-container">
     <?php if (!empty ($content['sidebar'])) : ?>
-    <aside class="sidebar col-xs-12 col-sm-4">
-      <div class="facet-filter">
+    <aside class="sidebar  col-xs-12 col-sm-4">
+      <div class="facet-filter rs_preserve">
         <?php print render($content['sidebar']); ?>
       </div>
     </aside>
