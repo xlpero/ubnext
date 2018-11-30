@@ -12,12 +12,10 @@
 
 
   <?php if (!empty ($content['main_top'])) : ?>
-    <div class="rs_preserve">
       <?php print render($content['main_top']) ?>
-    </div>
   <?php endif; ?>
 </div>
-  
+
 <div class="container rs_preserve">
   <div class="row rs_preserve rs_skip">
     <?php if (!empty ($content['search_bar_top'])) : ?>
