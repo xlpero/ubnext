@@ -10,7 +10,7 @@
   <?php endif; ?>
 </div>
 
-<div class="container rs_preserve rs_skip">
+<div class="container rs_preserve">
   <?php if (!empty ($content['main_top'])) : ?>
     <div class="rs_preserve">
       <?php print render($content['main_top']) ?>
