@@ -9,27 +9,18 @@
 #}
 
     <div id="search-widget" class="panel-separator">
-    {% if file_url %}
-      <div class="search-widget-cover" style="background-image: url({{file_url}}); background-repeat: no-repeat; background-position: center;" >
-    {% else %}
      	<div class="search-widget-cover">
-    {% endif %}
           <div class="search-widget-cover-content">
             <div class="search-widget-content container">
             	<div class="slogan">
-            		{% if dark_theme %}
-              			<h2 class="slogan-header slogan-theme-light h1">{{ slogan | raw }}</h2>
-              		{% else %}
-              			<h2 class="slogan-header slogan-theme-dark h1">{{ slogan | raw }}</h2>
-              		{% endif %}
-              	</div>
+              		<h2 class="slogan-header slogan-theme-light h1">{{ slogan | raw }}</h2>
+              </div>
               <div class="row">
                 <div class="col-sm-12 search-widget-content-plate">
                   <div class="row">
                     <div class="col-sm-8">
                       <!--<form action="{{ url }}">-->
                       <form class="custom-form">
-                        <label for="query">{{aria_label}}</label>
                         <div class="input-group">
                           <input type="text" name="query" class="form-control input-lg" aria-label="{{ aria_label }}" placeholder="{{ placeholder }}">
                           <div class="input-group-btn">
