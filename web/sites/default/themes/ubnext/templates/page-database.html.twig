@@ -32,9 +32,9 @@
               {% set theAttribute = "value" %}
             {% endif %}
             {% if propertyObj.value is not empty and buildlink %}
-              <a href="{{help.buildSearchUrl(item)}}">{{attribute(item,theAttribute)}}</a> {% if not loop.last %} | {% endif %}
+              <a href="{{help.buildSearchUrl(item)}}">{{attribute(item,theAttribute)}}</a>{% if not loop.last %}, {% endif %}
             {% else %}
-              {{attribute(item,theAttribute)}} {% if not loop.last %} | {% endif %}
+              {{attribute(item,theAttribute)}}{% if not loop.last %}, {% endif %}
             {% endif %}
         {% endfor %}
       </div>
