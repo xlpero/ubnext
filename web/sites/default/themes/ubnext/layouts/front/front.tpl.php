@@ -16,8 +16,8 @@
 
 <?php if (!empty($content['services'])): ?>
   <div id="services" class="container panel-separator">
-    <div class="row">
-      <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <div class="">
+      <div class="">
         <?php print render($content['services']); ?>
       </div>
     </div>

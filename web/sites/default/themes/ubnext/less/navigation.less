@@ -13,34 +13,7 @@
 }
 
 .primary-nav-cms {
-  .row {
-    &.border-mobile {
-      @media (max-width: @screen-xs-max) {
-        border-top: 1px solid @gray-light;
-        border-bottom: 1px solid @gray-light;
-      }
-    }
-  }
-  @media (max-width: @screen-xs-max) {
-    padding-bottom:0;
-    border-bottom: none;
-  }
-  @media (max-width: @screen-sm-max) {
-    padding-top:10px;
-    padding-bottom:0;
-  }
-  padding-bottom: 20px;
-  border-bottom: 1px solid @gray-light;
-  @media (min-width: @screen-md-min) {  
-    margin-top: 52px;
-  }
   .menu-toggle {
-    @media (min-width: @screen-sm-min) {
-      margin-top: -100px;
-    }
-    @media (min-width: @screen-md-min) {
-      display: none !important;
-    }
     margin-left: 20px;
     #toggle-menu-btn {
       padding-top:14px;
@@ -49,13 +22,6 @@
       font-family:@font-family-sans-serif;
       font-size:14px;
       text-decoration: none;
-      @media (max-width: @screen-xs-max) {
-        border:0;
-        border-left:1px solid @gray-light;
-        margin-right:-15px;
-        padding-top:10px;
-        padding-bottom: 10px;
-      }
       &.btn {
         border-radius: 1px;
         &:focus {
@@ -116,22 +82,17 @@
   }
 }
 
+
 .primary-nav-cms-dropdown {
   position: relative;
   z-index: 100;
   .ubn-mobile-menu {
-    @media (max-width: @screen-xs-max) {
-      margin-top: -43px;
-    }
+
     font-size: 1em;
-    @media (min-width: @screen-md) {
-      display: none !important;
-    }
+
     &:extend(.clearfix all);
     .ubn-mobile-menu-header {
-      @media (min-width: @screen-sm-min) {
-        display: none !important;
-      }
+
       padding:10px;
       background: @gray-dark;
       color:@gray-lighter;
@@ -227,15 +188,18 @@
         color:@gray-lighter;
         text-decoration: none;
         font-family: @font-family-sans-serif;
-        font-size:14px !important;
+        font-size:12px !important;
         &.language-link::before {
+          display: inline-block;
           font-family: "FontAwesome"; content: "\f0ac";
           margin-right:8px;
           font-weight: normal;
         }
         &.rsbtn_play::before {
+          display: inline-block;
           font-family: "FontAwesome";  content: "\f028";
           margin-right:8px;
+          font-weight: normal;
         }
       }
     }
@@ -292,9 +256,6 @@
 
 
 .shortcut-nav-cms {
-  @media (max-width: @screen-sm-max) {
-    display: none !important;
-  }
   margin-top:-33px;
   font-family: @font-family-sans-serif;
   font-size:15px;
@@ -322,15 +283,18 @@
         &[title~="Contact"]::before, &[title~="Kontakta"]::before {
           font-family: "FontAwesome"; content: "\f075";
           margin-right:8px;
+          display: inline-block;
         }
         &[title~="News"]::before, &[title~="Nyheter"]::before  {
           font-family: "FontAwesome"; content: "\f1ea";
           margin-right:8px;
+          display: inline-block;
         }
 
         &[title~="Opening"]::before, &[title~="Bibliotek"]::before {
           font-family: "FontAwesome"; content: "\f041";
           margin-right:8px;
+          display: inline-block;
         }
         text-decoration: none;
         color: @gray-darker;
@@ -347,3 +311,79 @@
     }
   }
 }
+
+
+
+
+
+
+
+
+// media queries 
+.primary-nav-cms-dropdown {
+  .ubn-mobile-menu { 
+    @media (max-width: @screen-xs-max) {
+      margin-top: -50px;
+    }
+    @media (min-width: @screen-md-min) {
+      display: none !important;
+    }
+    .ubn-mobile-menu-header {
+      @media (min-width: @screen-sm-min) {
+        display: none !important;
+      }
+    }
+  }
+}
+
+.shortcut-nav-cms {
+  @media (max-width: @screen-sm-max) {
+    display: none !important;
+  }
+}
+
+
+
+.primary-nav-cms {
+  .row {
+    &.border-mobile {
+      @media (max-width: @screen-xs-max) {
+        border-top: 1px solid @gray-light;
+        border-bottom: 1px solid @gray-light;
+      }
+    }
+  }
+  @media (max-width: @screen-xs-max) {
+    padding-bottom:0;
+    border-bottom: none;
+  }
+  @media (max-width: @screen-sm-max) {
+    padding-top:10px;
+    padding-bottom:0;
+  }
+  padding-bottom: 20px;
+  border-bottom: 1px solid @gray-light;
+  @media (min-width: @screen-md-min) {  
+    margin-top: 52px;
+  }
+  .menu-toggle {
+    @media (min-width: @screen-sm-min) {
+      margin-top: -100px;
+    }
+    @media (min-width: @screen-md-min) {
+      display: none !important;
+    }
+  }
+  #toggle-menu-btn {
+    @media (max-width: @screen-xs-max) {
+      border:0;
+      border-left:1px solid @gray-light;
+      margin-right:-15px;
+      padding-top:10px;
+      padding-bottom: 10px;
+    }
+  }
+}
+
+
+// end queries

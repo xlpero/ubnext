@@ -3,4 +3,4 @@
   models[list] = entity:node
 #}
 {% import "macros/panel-links.html.twig" as links %}
-{{ links.link_list(list.title_field.value, list.field_shortcut_links, 'latest-stories-widget', { 'promoted': true , 'min_height': true }) }}
+{{ links.link_list(list.title_field.value, list.field_shortcut_links, 'latest-stories-widget', { 'promoted': false , 'min_height': true }) }}

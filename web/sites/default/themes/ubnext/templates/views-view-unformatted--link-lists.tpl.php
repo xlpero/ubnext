@@ -7,10 +7,10 @@
  * @ingroup views_templates
  */
 ?>
-<div class="row link-list">
+<div class="link-list">
 	<?php $index = 0; ?>
 	  <?php foreach ($rows as $id => $row): ?>
-	  	<div class="col-sm-6">
+	  	<div>
 	    	<?php print $row; ?>
 	    	<?php $index++; ?>
 		</div>
