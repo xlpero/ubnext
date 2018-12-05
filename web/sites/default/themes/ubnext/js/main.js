@@ -1,14 +1,28 @@
 (function ($) {
 
-  Drupal.behaviors.ubnext_links = function(context, settings) {
-    var links = $('.content-sections a');
-    links.each(function(){
-      var parent = $(this).parent().get(0); 
-      var nodes = parent.childNodes;
-      if(nodes.length > 1){
-        $(this).addClass('no-arrow');
+  Drupal.behaviors.ubnext_shortcuts = {
+    attach : function(context, settings) {
+      var items = $('.latest-stories-widget-link-list li');
+      if (items.length > 3) {
+        $('.latest-stories-widget-link-list li:nth-child(5n)').hide();
       }
-    });
+      $('#btn-load-more-shortcuts').bind('click', function() {
+        $('.latest-stories-widget-link-list li:nth-child(5n)').toggle();
+        if ($('#btn-load-more-shortcuts').hasClass("closed")) {
+          $('#btn-load-more-shortcuts').removeClass("closed");
+        }
+        else {
+          $('#btn-load-more-shortcuts').addClass("closed");
+        }
+      });
+
+      $('.latest-stories-widget-link-list li').bind('click', function() {
+        let url = $(this).find('a').attr("href");
+        window.location.href = url;
+      });
+
+
+    }
   };
 
   Drupal.behaviors.ubnext_fitvids = {
