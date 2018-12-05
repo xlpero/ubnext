@@ -1,6 +1,8 @@
 .main-cms {
   .ubn-library-name-link {
     font-size: @font-size-h4;
+    display: inline-block;
+    padding-right: 24px;
     &::after{
     	font-family: "FontAwesome"; 
     	content: "\f061";
@@ -9,6 +11,17 @@
 	    margin-left: 8px;
 	    display: inline-block;
 	    font-size: 12px;
+      width: 24px;
+      margin-right: -24px;
+
     }
+  }
+
+  .faculty-name{
+    margin-top: 20px;
+  }
+
+  [class*="libraries-list-item-opening-hours-"]{
+    font-weight: bold;
   }
 }
