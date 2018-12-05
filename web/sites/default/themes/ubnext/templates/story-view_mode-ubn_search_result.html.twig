@@ -8,5 +8,5 @@
 {% set story = entity %}
 <li class="archive-story-teaser">
   <div class="archive-story-teaser-publication-date">{{ dates.date_day_and_month(story.created) }}</div>
-  <div class="archive-story-teaser-header"><h2 class="small">{{ misc.link(story.title_field.value, story.url) }}</h2></div>
+  <div class="archive-story-teaser-header">{{ misc.link(story.title_field.value, story.url) }}</div>
 </li>
