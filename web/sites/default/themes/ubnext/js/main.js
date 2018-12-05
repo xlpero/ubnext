@@ -6,6 +6,9 @@
       if (items.length > 3) {
         $('.latest-stories-widget-link-list li:nth-child(5n)').hide();
       }
+      if (items.length < 5) {
+        $("#btn-load-more-shortcuts").hide();
+      }
       $('#btn-load-more-shortcuts').bind('click', function() {
         $('.latest-stories-widget-link-list li:nth-child(5n)').toggle();
         if ($('#btn-load-more-shortcuts').hasClass("closed")) {
