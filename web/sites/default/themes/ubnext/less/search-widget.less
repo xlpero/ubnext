@@ -69,13 +69,36 @@
 
 			.ubn-panel-links {
 				&.search-widget-link-list {
+					.search-widget-link-list-head {
+						display: none;
+					}
+					.search-widget-link-list-body {
+						.search-widget-link-list-link-list {
+							.fa {
+								display: none;
+							}
+							li {
+								a {
+						      color: @gray-light;
+						      &::after  {
+						        font-family: "FontAwesome";
+						        //font-weight: 900;
+						        content: "\f061";
+						        position: relative;
+						        top: -2px;
+						        left: 8px;
+						        display: inline-block;
+						        font-size: 12px;
+						      }
+								}
+							}
+						}
+					}
 					margin-top: 20px;
 					margin-bottom: 0;
 					@media (min-width: @screen-sm-min) {
 						margin-top: 0;
-
 					}
-
 					a {
 						color: #fff;
 					}
