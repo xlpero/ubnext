@@ -4,17 +4,16 @@
 	.library-opening-hours-banner {
 		.show-more-hours-link{
 			overflow: auto;
-		border: 1px solid #DBDBDB;
-		border-radius: 4px;
+    		border: 1px solid #DBDBDB;
+    		border-radius: 4px;
     		display: block;
-		background: #FBFBFB;
+    		background: #FBFBFB;
 		}
 		.library-opening-hours-banner-indicator {
 		    font-size: 16px;
 		    text-align: center;
 		    padding-top:38px;
 		    padding-left: 0px;
-
     		padding-right: 0px;
     		.fa{
     			font-size:12px;
@@ -26,13 +25,17 @@
     		}
 		}
 		.library-opening-hours-banner-item {
+			.opening-wrapper{
+				display: table;
+				text-align: left;
+				margin: 0 auto;
+			}
 			color: #000;
 			padding: 10px;
 			float: left;
 				@media (max-width: 767px){
 					&:first-child{
-						margin-top: 9px;
-
+						margin-top: 9px;	
 					}
 			 }
 
