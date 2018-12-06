@@ -3,6 +3,7 @@
 @inner-wrapper-min-height: 160px;
 //@inner-wrapper-min-height-extended: 190px;
 #btn-load-more-shortcuts {
+  font-size: 18px;
   .closed-text {
     display: none;
   }
@@ -25,6 +26,7 @@
     padding: 0 !important;
     border: none;
     min-height: 0 !important;
+    margin-bottom: 0;
     .row();
     .latest-stories-widget-head {
       .make-xs-column(12);
@@ -33,6 +35,7 @@
       ul {
         li { 
           .ubn-panel-links-body-link  {
+            margin-bottom:0;
             position: relative;
             &.icon {
               margin-left: 0 !important;
@@ -42,7 +45,7 @@
           &::after {
             position: absolute;
             right: 30px;
-            bottom: 25px;
+            bottom: 15px;
             font-family: "FontAwesome";
             content: "\f061";
             font-weight: normal;
@@ -50,13 +53,14 @@
             @media (max-width: @screen-sm) { 
             }
           }
+          margin-bottom:30px;
           .make-sm-column(3);
           .make-xs-column(6);
           @media (max-width: @screen-sm) { 
             padding-right: 5px;
             &::after {
               right: 20px;
-              bottom: 15px;
+              bottom: 5px;
             }
             &:nth-child(2n) {
               padding-left: 5px;
@@ -65,14 +69,14 @@
             &:nth-child(odd) {
               &::after {
                 right: 10px;
-                bottom: 15px;
+                bottom: 5px;
               }
             }
           }
           @media (min-width: @screen-sm) and (max-width: @screen-md) { 
             &::after {
               right: 30px;
-              bottom: 20px;
+              bottom: 10px;
             }
           }
           .latest-stories-widget-body-link {
@@ -89,22 +93,25 @@
             position: absolute;
             bottom: 0;
             left: 0;
+            font-weight:bold;
             margin-bottom: 20px;
             margin-left: 20px;
-            max-width: 80%;
+            max-width: 70%;
             font-family: @font-family-sans-serif;
             font-size: 18px;
             line-height:20px;
             color:@gray-lighter;
             padding:0;
             @media (min-width: @screen-sm) and (max-width: @screen-md) { 
+              max-width: 80%;
               font-size: 13px;
               line-height:16px;
               margin-left: 15px;
               margin-bottom: 15px;
 
             }
-            @media (max-width: @screen-sm) { 
+            @media (max-width: @screen-sm) {
+              max-width: 80%; 
               font-size: 13px;
               line-height:16px;
               margin-left: 10px;
