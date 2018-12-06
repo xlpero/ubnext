@@ -163,12 +163,12 @@
           {{helper.databasePropertyRow("Subjects", database.field_topics, "name")}}
         {% endif %}
 
-        {% if not database.field_publishers.value is empty %}
-          {{helper.databasePropertyRow("Vendor", database.field_publishers, "name")}}
-        {% endif %}
-
         {% if not database.field_media_types.value is empty %}
           {{helper.databasePropertyRow("Mediatypes", database.field_media_types, "name")}}
+        {% endif %}
+        
+        {% if not database.field_publishers.value is empty %}
+          {{helper.databasePropertyRow("Vendor", database.field_publishers, "name")}}
         {% endif %}
 
         {% if not database.field_alternate_titles is empty %}
@@ -176,7 +176,7 @@
         {% endif %}
       </div>
 
-      <div class="divider"></div>
+      <!--<div class="divider"></div>-->
 
 
       {% if (database.field_print_article_chapter is not null) or (database.field_download_article_chapter is not null) or (database.field_course_pack_print is not null) or (database.field_gul_course_pack_electronic is not null) or (database.field_scholarly_sharing is not null) or (database.field_interlibrary_loan is not null) %}
