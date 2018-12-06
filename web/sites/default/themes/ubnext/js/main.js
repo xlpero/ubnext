@@ -4,13 +4,13 @@
     attach : function(context, settings) {
       var items = $('.latest-stories-widget-link-list li');
       if (items.length > 3) {
-        $('.latest-stories-widget-link-list li:nth-child(5n)').hide();
+        $('.latest-stories-widget-link-list li:nth-child(n+5)').hide();
       }
       if (items.length < 5) {
         $("#btn-load-more-shortcuts").hide();
       }
       $('#btn-load-more-shortcuts').bind('click', function() {
-        $('.latest-stories-widget-link-list li:nth-child(5n)').toggle();
+        $('.latest-stories-widget-link-list li:nth-child(n+5)').toggle();
         if ($('#btn-load-more-shortcuts').hasClass("closed")) {
           $('#btn-load-more-shortcuts').removeClass("closed");
         }
