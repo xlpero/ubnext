@@ -22,7 +22,6 @@
 
 .ubn-panel-links {
   &.latest-stories-widget {
-    cursor:pointer;
     padding: 0 !important;
     border: none;
     min-height: 0 !important;
@@ -35,6 +34,12 @@
       ul {
         li { 
           .ubn-panel-links-body-link  {
+            cursor:pointer;
+            &:hover {
+              a {
+                text-decoration: underline;
+              }
+            };
             margin-bottom:0;
             position: relative;
             &.icon {

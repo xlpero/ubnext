@@ -10,7 +10,7 @@
         $("#btn-load-more-shortcuts").hide();
       }
       $('#btn-load-more-shortcuts').bind('click', function() {
-        $('.latest-stories-widget-link-list li:nth-child(n+5)').toggle();
+        $('.latest-stories-widget-link-list li:nth-child(n+5)').slideToggle(50);
         if ($('#btn-load-more-shortcuts').hasClass("closed")) {
           $('#btn-load-more-shortcuts').removeClass("closed");
         }
