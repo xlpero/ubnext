@@ -1,55 +1,8 @@
 .main-cms {
 	#search-widget {
-		text-align: center;
-		.search-widget-cover {
-			overflow: hidden;
-			position: relative;
-			@media (min-width: @screen-sm-min) {
-				height: 375px;
-			}
-			
-			.search-widget-cover-content {
-				z-index: 1;
-			}
+		.bg-plate {
+			background: red;
 		}
-		.search-widget-content {
-			.search-widget-content-plate {
-				label {
-					color: #fff;
-				}
-				text-align: left;
-				background-color: @brand-primary;
-				padding: 30px 20px; 
-				
-				@media (min-width: @screen-sm-min) {
-					min-height: 200px;
-					border-radius: @border-radius-small;
-				}
-
-			}
-			.slogan {
-				display: none;
-				@media (min-width: @screen-sm-min) {
-					display: block;
-				}
-
-				height: 105px;
-				.slogan-header {
-					font-size: 25px;
-					margin:0;
-					padding-top: 30px;
-					text-shadow: 0 0 3px rgba(0, 0, 0, 0.4), 0 0 7px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 0, 0, 0.3);
-					@media (min-width: @screen-sm-min) {
-						font-size: 35px;
-					}
-				}
-				.slogan-theme-light { /// to be placed on dark images
-					color: #fff;
-				}
-				.slogan-theme-dark { // to be placed on light images
-					color: @gray-darker;
-				}
-			}
 			input {
 				height: 48px;
 		      	border-radius: @border-radius-base 0 0 @border-radius-base;
@@ -107,7 +60,5 @@
 					color: #fff;
 				}
 			}
-		}
-
 	}
 }

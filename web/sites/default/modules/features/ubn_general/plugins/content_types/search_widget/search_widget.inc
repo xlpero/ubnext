@@ -131,7 +131,6 @@ function ubn_general_search_widget_content_type_render($subtype, $conf, $panel_a
       'slogan' =>  $slogan,
       'placeholder' => variable_get('placeholder'),
       'aria_label' => variable_get('aria_label'),
-      'dark_theme' => variable_get('dark_theme'),
       'file_url' => $file_uri,
       'link_list' => trim($link_list_rendered),
     )
