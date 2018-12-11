@@ -21,13 +21,23 @@
 }
 
 .ubn-panel-links {
-  &.latest-stories-widget {
+  &.shortcut-widget {
+    max-height: 154px;
+    transition: all .2s linear;
+    &.open {
+      max-height: 500px;
+      transition: all .2s linear;
+    }
+    @media (max-width: @screen-sm) {
+      max-height: 202px;
+    }
     padding: 0 !important;
     border: none;
     min-height: 0 !important;
     margin-bottom: 0;
+    overflow: hidden;
     .row();
-    .latest-stories-widget-head {
+    .shortcut-widget-head {
       .make-xs-column(12);
     }
     .ubn-panel-links-body {
@@ -36,8 +46,9 @@
           .ubn-panel-links-body-link  {
             cursor:pointer;
             &:hover {
+              .btn-primary();
               a {
-                text-decoration: underline;
+                text-decoration: none !important;
               }
             };
             margin-bottom:0;
@@ -62,10 +73,11 @@
           .make-sm-column(3);
           .make-xs-column(6);
           @media (max-width: @screen-sm) { 
+            margin-bottom: 10px;
             padding-right: 5px;
             &::after {
               font-size: 13px;
-              right: 20px;
+              right: 25px;
               bottom: 5px;
             }
             &:nth-child(2n) {
@@ -85,7 +97,7 @@
               bottom: 10px;
             }
           }
-          .latest-stories-widget-body-link {
+          .shortcut-widget-body-link {
             background: @brand-primary;
             border-radius: 4px;
             height: 90px !important;
@@ -109,7 +121,7 @@
             color:@gray-lighter;
             padding:0;
             @media (min-width: @screen-sm) and (max-width: @screen-md) { 
-              max-width: 80%;
+              max-width: 70%;
               font-size: 13px;
               line-height:16px;
               margin-left: 15px;
@@ -117,7 +129,7 @@
 
             }
             @media (max-width: @screen-sm) {
-              max-width: 80%; 
+              max-width: 70%;
               font-size: 13px;
               line-height:16px;
               margin-left: 10px;
