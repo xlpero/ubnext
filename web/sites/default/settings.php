@@ -6,6 +6,8 @@ include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'site.settings.php';
 
 
 $conf['page_cache_invoke_hooks'] = TRUE;
+$conf[‘slate_cache_enabled’] = FALSE;
+$conf[‘slate_debug_enabled’] = TRUE;
 
 /**
  * Multilingual settings

@@ -55,10 +55,12 @@
 </div>
 
 <?php if (!empty($content['main'])): ?>
-  <div id="main" class="container panel-separator">
-    <div class="row">
-      <div class="col-xs-12 col-sm-8 col-sm-offset-2">
-        <?php print render($content['main']); ?>
+  <div class="fullwidth bg-grey start-page-opening-hours-wrapper">
+    <div id="main" class="container panel-separator">
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+          <?php print render($content['main']); ?>
+        </div>
       </div>
     </div>
   </div>
