@@ -321,11 +321,11 @@ function ubn_search_default_search_api_index() {
             "spaces" : "[^[:alnum:]]",
             "ignorable" : "[\\u0027]"
           }
-        },
-        "search_api_stopwords" : {
-          "status" : 0,
-          "weight" : "30",
-          "settings" : {
+        },'
+        "search_api_stopwords" : {'
+          "status" : 0,'
+          "weight" : "30",'
+          "settings" : {'
             "fields" : {
               "title_field" : true,
               "field_description_paragraphs" : true,
