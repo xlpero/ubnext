@@ -361,7 +361,7 @@ function ubn_search_default_search_api_page() {
   $items = array();
   $items['databases'] = entity_import('search_api_page', '{
     "index_id" : "databases",
-    "path" : "databases",
+    "path" : "databases/search",
     "name" : "Databases",
     "machine_name" : "databases",
     "description" : "",
