@@ -1,7 +1,7 @@
 (function($) {
   Drupal.behaviors.searchWidget = {
     attach: function(context, settings) {
-      $('input[name="query"]', context).focus();
+     // $('input[name="query"]', context).focus();
     }
   };
   // hijack form and redirect to Primo

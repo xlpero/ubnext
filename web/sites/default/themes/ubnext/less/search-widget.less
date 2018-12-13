@@ -88,6 +88,7 @@
 
 		.ubn-panel-links {
 			&.search-widget-link-list {
+
 				.search-widget-link-list-head {
 					display: none;
 				}
@@ -106,6 +107,7 @@
 						li {
 							a {
 					      color: @gray-lighter;
+					      padding-right: 34px;
 					      &::after  {
 					        font-family: "FontAwesome";
 					        //font-weight: 900;
@@ -115,15 +117,16 @@
 					        left: 8px;
 					        display: inline-block;
 					        font-size: 12px;
+					        margin-right: -34px;
 					      }
 							}
 						}
 					}
 				}
-				margin-top: 20px;
 				margin-bottom: 0;
-				@media (min-width: @screen-sm-min) {
-					margin-top: 0;
+				margin-top: -10px;
+				@media (max-width: @screen-sm) {
+					margin-top: 30px;
 				}
 				a {
 					color: #fff;
