@@ -100,6 +100,7 @@ function ubn_search_default_search_api_index() {
         "field_public_access" : { "type" : "boolean" },
         "field_publishers" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_publishers:name" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_recommended_in_subjects" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_recommended_in_subjects:name" : { "type" : "list\\u003Ctext\\u003E", "boost" : "21.0" },
         "field_topics_depth_0" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_topics_depth_0:name" : { "type" : "list\\u003Ctext\\u003E", "boost" : "2.0" },
