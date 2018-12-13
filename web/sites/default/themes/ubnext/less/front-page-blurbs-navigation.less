@@ -1,33 +1,45 @@
 .main-cms {
 
   #front-page-navigation-blurbs {
-    @media (min-width: @screen-sm-max) {
-      h2 {
-        display: none;
-      }
+    padding-top: 30px;
+    h2 {
+      margin-bottom: 20px;
     }
     .ubn-blurb-navigation {
-      font-size: 0.875em;
       .blurb-navigation-head-title {
+
         h3 {
-          font-size: 1.2em;
+          @media (max-width: @screen-sm) {
+            margin-bottom: 20px;
+          }
+          a {
+            font-size: 18px;
+            font-family: @font-family-sans-serif;
+          }
+        }
+        .fa {
+          font-size: 18px;
+          color: #333;
         }
       }
-      border-right: 1px solid @gray-light;
-      &:last-child {
-        border-right: none;
-      }
-      @media (max-width: @screen-sm-max) {
-        border:none;
-        .blurb-navigation {
-          padding-top: 20px;
-          border: 1px solid @gray-light;
+      .blurb-navigation-body-link {
+        a {
+          &::after {
+            font-family: "FontAwesome";
+            content: "\f061";
+            position: relative;
+            top: -1px;
+            left: 8px;
+            display: inline-block;
+            font-size: 12px;
+            margin-right: -24px;
+          }
         }
-      } 
-      @media (min-width: @screen-sm-max) {
-        &:nth-child(5n) {
-          border: none;
-        }  
+      }
+
+      .blurb-navigation {
+        padding-top: 20px;
+        background-color: #fff;
       }
     }
   }
@@ -40,14 +52,9 @@
     @media (min-width: @screen-sm-max) {
       margin-bottom: 20px;
     }
-    border-right: 1px solid @gray-light;
     .ubn-panel-links {
       &.blurb-navigation {
         padding-top: 0;
-        @media (min-width: @screen-sm-max) {
-          text-align: center !important;
-        }
-        border: none;
         .blurb-navigation-head-title {
           float:none;
           .fa {
