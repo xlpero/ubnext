@@ -8,6 +8,10 @@
   margin: @line-height-computed 0;
   list-style: none;
   text-align: center;
+  @media (min-width: 768px){
+    white-space: nowrap;  
+  }
+  
   &:extend(.clearfix all);
   li {
     display: inline;

@@ -11,8 +11,14 @@
   {% set atom = ubn_content_sections_atoms(story.field_content_sections, 'image', 1)|first %}
   {{ atom_styles.blurb(atom, 'news-item-placeholder.png', t('No image has been added to this article')) }}
   </div>
-  <div class="story-promoted-publication-date">{{ dates.date_default(story.created) }}</div>
-  <h2 class="story-promoted-header list primary">{{ misc.link(story.title_field.value, story.url) }}</h2>
-  <div class="story-promoted-excerpt">{{ truncate_utf8(story.field_lead.value, 125, TRUE, TRUE) }}</div>
+	<div class="story-promoted-text-wrapper">
+		<div class="story-promoted-container">
+			<div class="story-promoted-text">
+				<div class="story-promoted-publication-date">{{ dates.date_default(story.created) }}</div>
+				<h2 class="story-promoted-header list primary">{{ misc.link(story.title_field.value, story.url) }}</h2>
+			</div>
+		</div>
+	</div>
+  <!--<div class="story-promoted-excerpt">{{ truncate_utf8(story.field_lead.value, 125, TRUE, TRUE) }}</div>-->
 </div>
 <!-- <div class="clearfix-wrapper"><div class="clearfix visible-sm"></div></div> -->
