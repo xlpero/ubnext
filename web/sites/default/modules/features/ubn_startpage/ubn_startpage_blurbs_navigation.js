@@ -12,7 +12,7 @@
       var sm_threshold = 0;
       var md_threshold = 3;
       var show_all_text = Drupal.t('Show all');
-      var hide_text = Drupal.t('Hide');
+      var hide_text = Drupal.t('Show less');
 
       $('.blurb-navigation', context).each(function() {
         $this = $(this);
