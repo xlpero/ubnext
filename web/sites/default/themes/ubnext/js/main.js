@@ -37,7 +37,9 @@
   Drupal.behaviors.ubnext_equal_heights = {
     attach : function(context, settings) {
       /* TODO: rename ubn-pane */
-      $('.ubn-panel-links', context).matchHeight();
+      if ($.fn.matchHeight) {
+        $('.ubn-panel-links', context).matchHeight();
+      }
     }
   };
 
