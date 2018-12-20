@@ -6,7 +6,7 @@
 {% import "macros/misc.html.twig" as misc %}
 {% import "macros/atom_styles.html.twig" as atom_styles %}
 
-<div class="story-promoted col-sm-6 col-md-4">
+<div class="story-promoted">
   <div class="story-promoted-image">
   {% set atom = ubn_content_sections_atoms(story.field_content_sections, 'image', 1)|first %}
   {{ atom_styles.blurb(atom, 'news-item-placeholder.png', t('No image has been added to this article')) }}
