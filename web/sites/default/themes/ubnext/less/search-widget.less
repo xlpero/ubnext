@@ -45,7 +45,7 @@
 			}
 			.input-icon {
 				position: absolute;
-		    left: 10px;
+		    left: 20px;
 		    top: 20px;
 		    @media (max-width: @screen-sm) {
 					left: 10px;
@@ -71,6 +71,9 @@
 				button {
 					&.btn-primary {
 						border-color: @gray-dark;
+						&:hover {
+							background: #1a1a1a;
+						}
 					}
 					padding-right: 20px;
 					padding-left: 20px;
@@ -91,14 +94,18 @@
 
 		.ubn-panel-links {
 			&.search-widget-link-list {
+				@media (min-width: @screen-md) {
+					margin-left: 20px;
+				}
 
 				.search-widget-link-list-head {
-					display: none;
+					display: block;
 				}
 				.search-widget-link-list-body {
 					.search-widget-link-list-link-list {
 						.search-widget-link-list-body-link {
 							&.icon {
+								margin-left:0;
 								@media (max-width: @screen-sm) {
 									margin-left: 0;
 								}
@@ -128,7 +135,7 @@
 				}
 				margin-bottom: 0;
 				margin-top: -10px;
-				@media (max-width: @screen-sm) {
+				@media (max-width: @screen-md) {
 					margin-top: 30px;
 				}
 				a {
