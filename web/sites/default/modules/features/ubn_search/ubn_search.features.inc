@@ -110,6 +110,7 @@ function ubn_search_default_search_api_index() {
         "search_api_aggregation_1" : { "type" : "string" },
         "search_api_language" : { "type" : "string" },
         "status" : { "type" : "boolean" },
+        "title" : { "type" : "string" },
         "title_field" : { "type" : "text", "boost" : "8.0" }
       },
       "data_alter_callbacks" : {
@@ -362,7 +363,7 @@ function ubn_search_default_search_api_page() {
   $items = array();
   $items['databases'] = entity_import('search_api_page', '{
     "index_id" : "databases",
-    "path" : "databases/search",
+    "path" : "databases\\/search",
     "name" : "Databases",
     "machine_name" : "databases",
     "description" : "",
@@ -458,19 +459,6 @@ function ubn_search_default_search_api_sort() {
     "options" : { "field_name" : "Public access" },
     "rdf_mapping" : []
   }');
-  $items['databases__search_api_aggregation_1'] = entity_import('search_api_sort', '{
-    "index_id" : "databases",
-    "field" : "search_api_aggregation_1",
-    "name" : "A-Z",
-    "enabled" : "1",
-    "weight" : "-100",
-    "identifier" : "databases__search_api_aggregation_1",
-    "default_sort" : "0",
-    "default_sort_no_terms" : "1",
-    "default_order" : "asc",
-    "options" : { "field_name" : "A-Z" },
-    "rdf_mapping" : []
-  }');
   $items['databases__search_api_relevance'] = entity_import('search_api_sort', '{
     "index_id" : "databases",
     "field" : "search_api_relevance",
@@ -482,6 +470,19 @@ function ubn_search_default_search_api_sort() {
     "default_sort_no_terms" : "0",
     "default_order" : "desc",
     "options" : { "field_name" : "search_api_relevance" },
+    "rdf_mapping" : []
+  }');
+  $items['databases__title'] = entity_import('search_api_sort', '{
+    "index_id" : "databases",
+    "field" : "title",
+    "name" : "A-Z",
+    "enabled" : "1",
+    "weight" : "-100",
+    "identifier" : "databases__title",
+    "default_sort" : "0",
+    "default_sort_no_terms" : "1",
+    "default_order" : "asc",
+    "options" : { "field_name" : "Title" },
     "rdf_mapping" : []
   }');
   return $items;
