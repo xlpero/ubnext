@@ -1,90 +1,143 @@
 .main-cms {
 	#search-widget {
-		text-align: center;
-		.search-widget-cover {
-			overflow: hidden;
+		.bg-plate {
+	padding: 30px 50px 30px 50px;
+			background-image: linear-gradient(-173deg, #0079BE 0%, #004B89 100%);
+			@media (max-width: @screen-sm) {
+				padding: 30px 15px 30px 15px;
+			}
+		}
+		.search-widget-slogan {
+			margin:0;
+			margin-bottom: 20px;
+			font-family: 'NimbusSanNovCon-Bol', 'Arial Narrow', Helvetica, Arial, 'Lucida Grande', sans-serif;
+			font-size: 2.75em;
+			color:@gray-lighter;
+			@media (max-width: @screen-sm) {
+				font-size: 2.1875em;
+			}
+
+			@media (max-width: @screen-md) and (min-width: @screen-sm){
+				font-size: 2.25em;
+			}
+		}
+		.custom-form {
 			position: relative;
-			@media (min-width: @screen-sm-min) {
-				height: 375px;
-			}
-			
-			.search-widget-cover-content {
-				z-index: 1;
-			}
-		}
-		.search-widget-content {
-			.search-widget-content-plate {
-				label {
-					color: #fff;
-				}
-				text-align: left;
-				background-color: @brand-primary;
-				padding: 30px 20px; 
-				
-				@media (min-width: @screen-sm-min) {
-					min-height: 200px;
-					border-radius: @border-radius-small;
-				}
-
-			}
-			.slogan {
-				display: none;
-				@media (min-width: @screen-sm-min) {
-					display: block;
-				}
-
-				height: 105px;
-				.slogan-header {
-					font-size: 25px;
-					margin:0;
-					padding-top: 30px;
-					text-shadow: 0 0 3px rgba(0, 0, 0, 0.4), 0 0 7px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 0, 0, 0.3);
-					@media (min-width: @screen-sm-min) {
-						font-size: 35px;
-					}
-				}
-				.slogan-theme-light { /// to be placed on dark images
-					color: #fff;
-				}
-				.slogan-theme-dark { // to be placed on light images
-					color: @gray-darker;
-				}
-			}
 			input {
-				height: 48px;
-		      	border-radius: @border-radius-base 0 0 @border-radius-base;
-		      	border: none;
-
+				&::placeholder {
+					color:#dbdbdb;
+				}
+				height: 70px;
+				border-radius: @border-radius-base;
+				box-shadow: 1px 5px 20px rgba(51, 51, 51, .5);
+				border: none;
+				padding-left: 60px;
+				padding-right: 20%;
+				font-size: 1.5em;
 				&:focus {
-				    outline: 0;
-				    -webkit-box-shadow: inset 0 1px 1px rgba(255,255,255,.075), 0 0 8px rgba(102, 175, 233, 0.6);
-				    box-shadow: inset 0 1px 1px rgba(255,255,255,0.5), 0 0 8px #eee;
+				    outline: 5px solid #333;
+				}
+				@media (max-width: @screen-sm) {
+					height: 46px;
+					padding-left: 40px;
+					font-size: 1.25em;
 				}
 			}
-			button {
-				border-radius: 0 5px 5px 0;
-				border: 1px solid @gray-darker;
-				background: @gray-darker;
-			}
-
-			.ubn-panel-links {
-				&.search-widget-link-list {
-					margin-top: 20px;
-					margin-bottom: 0;
-					@media (min-width: @screen-sm-min) {
-						margin-top: 0;
-
+			.input-icon {
+				position: absolute;
+		    left: 10px;
+		    top: 20px;
+		    @media (max-width: @screen-sm) {
+					left: 10px;
+					top: 12px;
+		    }
+				.fa {
+					transform: rotate(90deg);
+					color: #333;
+					font-size: 30px;
+					@media (max-width: @screen-sm) {
+						font-size:20px;
 					}
-
-					a {
-						color: #fff;
-					}
-					padding:0;
-					border:none;
-					color: #fff;
 				}
 			}
+			.input-btn {
+				position: absolute;
+		    right: 10px;
+		    top: 10px;
+		    @media (max-width: @screen-sm) {
+					right: 5px;
+			top: 5px;
+		    }
+				button {
+					&.btn-primary {
+						border-color: @gray-dark;
+					}
+					padding-right: 20px;
+					padding-left: 20px;
+					height: 50px;
+					border-radius: 5px;
+					background: #333;
+					font-size: 1.375em;
+					@media (max-width: @screen-sm) {
+						font-size: 1.125em;
+						height: 35px;
+						padding:0;
+						padding:0 10px;
+					}
+				}
+			}
+
 		}
 
+		.ubn-panel-links {
+			&.search-widget-link-list {
+
+				.search-widget-link-list-head {
+					display: none;
+				}
+				.search-widget-link-list-body {
+					.search-widget-link-list-link-list {
+						.search-widget-link-list-body-link {
+							&.icon {
+								@media (max-width: @screen-sm) {
+									margin-left: 0;
+								}
+							}
+						}
+						.fa {
+							display: none;
+						}
+						li {
+							a {
+					      color: @gray-lighter;
+					      padding-right: 34px;
+					      &::after  {
+					        font-family: "FontAwesome";
+					        //font-weight: 900;
+					        content: "\f061";
+					        position: relative;
+					        top: -2px;
+					        left: 8px;
+					        display: inline-block;
+					        font-size: 12px;
+					        margin-right: -34px;
+					      }
+							}
+						}
+					}
+				}
+				margin-bottom: 0;
+				margin-top: -10px;
+				@media (max-width: @screen-sm) {
+					margin-top: 30px;
+				}
+				a {
+					color: #fff;
+				}
+				padding:0;
+				border:none;
+				color: #fff;
+			}
+		}
 	}
 }

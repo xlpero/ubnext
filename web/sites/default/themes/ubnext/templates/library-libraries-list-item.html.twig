@@ -6,13 +6,13 @@
   <div class="row vertical-align">
     <div class="col-xs-12 col-sm-12">
       <div class="row">
-        <div class="col-xs-12 col-sm-7">
+        <div class="col-xs-12 col-sm-7 col-md-8">
           <a href="{{ library.url.value }}" class="ubn-library-name-link">{{library.title}}</a>
           {%if library.field_description_short.value %}
             <p class="hidden-xs faculty-name">{{ library.field_description_short.value }}</p>
           {% endif %}
         </div>
-        <div class="col-xs-12 col-sm-5">
+        <div class="col-xs-12 col-sm-5 col-md-4">
           {% for opening_hours in ubn_opening_hours_items(library.field_opening_hours, [t('Today'), t('Tomorrow')]) %}
             <div class="row {{ 'libraries-list-item-opening-hours-' ~ drupal_html_class(opening_hours.weekday) }}">
               <div class="col-sm-4 col-xs-4 libraries-list-item-opening-hours-label">{{ opening_hours.weekday }}</div>

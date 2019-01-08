@@ -2,19 +2,22 @@
   name = Library opening hours banner
   models[library] = entity:node
 #}
+
 <div class="row library-opening-hours-banner panel-separator">
   <div class="col-xs-12">
-   <a href="#library-opening-hours-header" data-location="#library-opening-hours-header">
-    <span class="row library-opening-hours-banner-indicator">{{ t('More hours') }}<i class="fa fa-arrow-down"></i></span>
+ <a href="#library-opening-hours-header" class="show-more-hours-link" data-location="#library-opening-hours-header">
   {% for opening_hours in ubn_opening_hours_items(library.field_opening_hours, [t('Today'), t('Tomorrow')]) %}
-    <div class="library-opening-hours-banner-item center">
-      
+    <div class="{% if loop.index == 1 %}col-md-offset-2 col-xs-offset-0 {% endif %}{% if loop.index == 2%}col-sm-push-2 {% endif %}col-sm-5 col-md-3 col-xs-12 library-opening-hours-banner-item center">
+
       <div class="{{ 'library-opening-hours-banner-' ~ drupal_html_class(opening_hours.weekday) }}">
         <div class="library-opening-hours-banner-label">{{ t("Open !weekday", {'!weekday' : drupal_strtolower(opening_hours.weekday)}) ~ ':' }}</div>
           <div class="library-opening-hours-banner-hours">{{ opening_hours.hours }}</div>
         </div>
       </div>
+      {% if loop.index == 2 %}
+        <div class="col-sm-pull-5 col-md-pull-3 col-md-2 col-xs-12 col-sm-2 library-opening-hours-banner-indicator">{{ t('More hours') }}<i class="fa fa-arrow-down"></i></div>
+      {% endif %}
   {% endfor %}
   </a>
-  </div>
+</div>
 </div>

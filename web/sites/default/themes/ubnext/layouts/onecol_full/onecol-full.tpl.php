@@ -21,6 +21,12 @@
     </div>
   <?php endif; ?>
 
+  <?php if (!empty($content['banner'])) : ?>
+    <div class="container">
+      <?php print render($content['banner']); ?>
+    </div>
+  <?php endif; ?>
+
   <?php if (!empty($content['promoted_top'])) : ?>
     <div class="container fullwidth-on-xs">
       <?php print render($content['promoted_top']); ?>

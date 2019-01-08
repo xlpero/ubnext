@@ -1,12 +1,12 @@
 (function($) {
   Drupal.behaviors.searchWidget = {
     attach: function(context, settings) {
-      $('input[name="query"]', context).focus();
+     // $('input[name="query"]', context).focus();
     }
   };
   // hijack form and redirect to Primo
   $(document).ready(function() {
-    $('body').on('click', '.search-widget-content-plate .custom-form button', function(e) {
+    $('body').on('click', '.custom-form button', function(e) {
       e.preventDefault();
       var lang = $('html').attr('lang');
       lang = lang == 'sv' ? 'sv_SE' : 'en_US';

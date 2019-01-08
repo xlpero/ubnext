@@ -16,19 +16,19 @@
 
 <?php if (!empty($content['services'])): ?>
   <div id="services" class="container panel-separator">
-    <div class="">
-      <div class="">
-        <?php print render($content['services']); ?>
-      </div>
-    </div>
+    <?php print render($content['services']); ?>
   </div>
 <?php endif ?>
 
-<div class="container">
-  <?php if (!empty ($content['navigation'])) : ?>
-    <?php print render($content['navigation']); ?>
-  <?php endif; ?>
-</div>
+
+<?php if (!empty ($content['navigation'])) : ?>
+  <div class="fullwidth bg-grey">
+    <div class="container">
+      <?php print render($content['navigation']); ?>
+    </div>
+  </div>
+<?php endif; ?>
+
 
 <div class="divider fullwidth hidden-xs hidden-sm no-margin-top"></div>
 

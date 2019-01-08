@@ -12,7 +12,7 @@
       var sm_threshold = 0;
       var md_threshold = 3;
       var show_all_text = Drupal.t('Show all');
-      var hide_text = Drupal.t('Hide');
+      var hide_text = Drupal.t('Show less');
 
       $('.blurb-navigation', context).each(function() {
         $this = $(this);
@@ -54,15 +54,14 @@
               $blurb_container.addClass('collapsed');
             }
             else {
-              //$extra_items.fadeIn(200); //or just .hide()?
-              //$extra_items.show();
-              /*
+              $extra_items.fadeIn(200); //or just .hide()?
+              $extra_items.show();
+
               $show_more_link_a_label.text(hide_text);
               $show_more_link_i.removeClass('fa-chevron-down');
               $show_more_link_i.addClass('fa-chevron-up');
-              */
               $blurb_container.removeClass('collapsed');
-              $show_more_link.remove();
+              //$show_more_link.remove();
             }
             $.fn.matchHeight._update(false);
           });

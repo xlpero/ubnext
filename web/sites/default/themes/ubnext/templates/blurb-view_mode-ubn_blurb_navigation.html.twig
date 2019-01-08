@@ -5,10 +5,10 @@
 #}
 {% import "macros/misc.html.twig" as misc %}
 {% import "macros/panel-links.html.twig" as pane %}
-<div class="col-xs-12 col-sm-12 col-md-3 ubn-blurb-navigation">
+<div class="col-xs-12 col-sm-6 col-md-4 ubn-blurb-navigation">
   {{
     pane.link_list(
-      l(entity.title.value ~ ' <i class="fa fa-chevron-right" aria-hidden="true"></i>', entity.url.value, { 'html': true }) ,
+      l(entity.title.value ~ ' <i class="fa fa-arrow-right" aria-hidden="true"></i>', entity.url.value, { 'html': true }) ,
       entity.value.ubn_menu_children,
       'blurb-navigation',
       { 'hide_icon': true, 'header_level': 3 }
