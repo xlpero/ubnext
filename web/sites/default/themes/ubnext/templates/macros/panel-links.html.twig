@@ -1,5 +1,5 @@
 {% macro link_list(title, list, namespace, options) %}
-  {% set options = { 'promoted': false, 'hide_icon': true, 'min_height': false, 'header_level': 2 }|merge(options|default({})) %}
+  {% set options = { 'promoted': false, 'hide_icon': false, 'min_height': false, 'header_level': 2 }|merge(options|default({})) %}
   {{ _self.pane_begin(namespace, options) }}
     {{ _self.pane_head_begin(namespace) }}
       {{ _self.pane_head_title(title, namespace, options) }}
