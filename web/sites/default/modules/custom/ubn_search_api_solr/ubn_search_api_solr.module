@@ -20,3 +20,51 @@ function ubn_search_api_solr_search_api_service_info() {
   return $services;
 }
 
+/**
+ * Lets modules alter a Solr search request before sending it.
+ *
+ * Apache_Solr_Service::search() is called afterwards with these parameters.
+ * Please see this method for details on what should be altered where and what
+ * is set afterwards.
+ *
+ * @param array $call_args
+ *   An associative array containing all three arguments to the
+ *   SearchApiSolrConnectionInterface::search() call ("query", "params" and
+ *   "method") as references.
+ * @param SearchApiQueryInterface $query
+ *   The SearchApiQueryInterface object representing the executed search query.
+ */
+function ubn_search_api_solr_search_api_solr_query_alter(&$call_args, $query) {
+  //if ($call_args['params']['sort'] && substr($call_args['params']['sort'], 0, 5) === "score") {
+  //  $call_args['params']['sort'] = $call_args['params']['sort'] . ',sort_search_api_aggregation_1 asc';
+  //}
+
+  if ($call_args['params']['spellcheck']) {
+    # Use default value in solr config
+    unset($call_args['params']['spellcheck']);
+  }
+
+  foreach($call_args['params']['qf'] as $key=>$data) {
+    if (substr($data, 0, 37) === 'tm_field_recommended_in_subjects$name') {
+      $call_args['params']['qf'][$key] = 'tm_field_recommended_in_subjects$name^1000.0';
+      break;
+    }
+  }
+
+  // Boost recommended in subject if choosen as subject
+  $topics_depth_1 = preg_grep("/.+im_field_topics_depth_1.+/" , $call_args['params']['fq']);
+  if ($topics_depth_1) {
+    preg_match_all("/\"\d+\"/", reset($topics_depth_1), $topic_ids);
+    $call_args['params']['bq'] = 'im_field_recommended_in_subjects:(' . implode(' OR ', reset($topic_ids)) . ')';
+    $call_args['params']['sort'] = 'score desc,' . $call_args['params']['sort'];
+  }
+  else {
+    $topics_depth_0 = preg_grep("/.+im_field_topics_depth_0.+/" , $call_args['params']['fq']);
+    if ($topics_depth_0) {
+      $topic_id = end(explode('im_field_topics_depth_0:', reset($topics_depth_0)));
+      $call_args['params']['bq'] = 'im_field_recommended_in_subjects:' . $topic_id;
+      $call_args['params']['sort'] = 'score desc,' . $call_args['params']['sort'];
+    }
+  }
+  return $call_args;
+}

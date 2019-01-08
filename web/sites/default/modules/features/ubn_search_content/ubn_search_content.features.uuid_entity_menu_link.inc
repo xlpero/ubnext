@@ -39,7 +39,7 @@ function ubn_search_content_uuid_entity_default_menu_link() {
     'p9' => 0,
     'updated' => 0,
     'language' => 'und',
-    'vuuid' => '1d888319-a0dd-4eec-93f6-8fbbcffe39dc',
+    'vuuid' => '9d038384-b7e4-45e3-bef5-8933e7abe0a6',
     'uuid' => '74e6bc5b-5d90-41d4-bd22-50ab89cead16',
     'default_revision' => 1,
     'access' => TRUE,

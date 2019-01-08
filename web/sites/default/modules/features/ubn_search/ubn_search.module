@@ -17,14 +17,14 @@ function ubn_search_menu() {
 }
 */
 function ubn_search_url_inbound_alter(&$path, $original_path, $path_language) {
-  if($path === 'databaser') {
-    $path = 'databases';
+  if(strpos($path, 'databaser/sok') === 0) {
+    $path = str_replace('databaser/sok', 'databases/search', $path);
   }
 }
 
 function ubn_search_url_outbound_alter(&$path, &$options, $original_path) {
-  if($path === 'databases' && $options['language']->language == 'sv') {
-    $path = 'databaser';
+  if(strpos($path, 'databases/search') === 0 && $options['language']->language == 'sv') {
+    $path = str_replace('databases/search', 'databaser/sok', $path);
   }
 }
 
@@ -34,7 +34,7 @@ function ubn_search_database_search_redirect() {
 }
 
 function ubn_search_form_search_api_page_search_form_databases_alter(&$form, &$form_state){
-  
+
   $form['keys_19']['#suffix'] = '<i class="fa fa-search"></i>';
 
 

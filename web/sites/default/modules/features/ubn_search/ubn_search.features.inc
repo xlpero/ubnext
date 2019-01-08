@@ -40,14 +40,7 @@ function ubn_search_default_search_api_autocomplete_search() {
     "enabled" : "1",
     "options" : {
       "suggester_configuration" : {
-        "fields" : [
-          "field_alternate_titles",
-          "field_media_types:name",
-          "field_publishers:name",
-          "field_topics_depth_0:name",
-          "field_topics_depth_1:name",
-          "title_field"
-        ],
+        "fields" : [ "field_alternate_titles", "title_field" ],
         "solr_server" : { "suggester_dictionaries" : [ "databases_infix", "databases_fuzzy" ] }
       },
       "min_length" : "1",
@@ -100,22 +93,25 @@ function ubn_search_default_search_api_index() {
       },
       "fields" : {
         "author" : { "type" : "integer", "entity_type" : "user" },
-        "field_alternate_titles" : { "type" : "list\\u003Ctext\\u003E" },
-        "field_description_paragraphs" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_alternate_titles" : { "type" : "list\\u003Ctext\\u003E", "boost" : "5.0" },
+        "field_description_paragraphs" : { "type" : "list\\u003Ctext\\u003E", "boost" : "0.8" },
         "field_media_types" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
-        "field_media_types:name" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_media_types:name" : { "type" : "list\\u003Ctext\\u003E", "boost" : "2.0" },
         "field_public_access" : { "type" : "boolean" },
         "field_publishers" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_publishers:name" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_recommended_in_subjects" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
+        "field_recommended_in_subjects:name" : { "type" : "list\\u003Ctext\\u003E", "boost" : "21.0" },
         "field_topics_depth_0" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
-        "field_topics_depth_0:name" : { "type" : "list\\u003Ctext\\u003E" },
+        "field_topics_depth_0:name" : { "type" : "list\\u003Ctext\\u003E", "boost" : "2.0" },
         "field_topics_depth_1" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_topics_depth_1:name" : { "type" : "list\\u003Ctext\\u003E" },
         "search_api_access_node" : { "type" : "list\\u003Cstring\\u003E" },
         "search_api_aggregation_1" : { "type" : "string" },
         "search_api_language" : { "type" : "string" },
         "status" : { "type" : "boolean" },
-        "title_field" : { "type" : "text" }
+        "title" : { "type" : "string" },
+        "title_field" : { "type" : "text", "boost" : "8.0" }
       },
       "data_alter_callbacks" : {
         "search_api_alter_bundle_filter" : {
@@ -367,7 +363,7 @@ function ubn_search_default_search_api_page() {
   $items = array();
   $items['databases'] = entity_import('search_api_page', '{
     "index_id" : "databases",
-    "path" : "databases",
+    "path" : "databases\\/search",
     "name" : "Databases",
     "machine_name" : "databases",
     "description" : "",
@@ -463,19 +459,6 @@ function ubn_search_default_search_api_sort() {
     "options" : { "field_name" : "Public access" },
     "rdf_mapping" : []
   }');
-  $items['databases__search_api_aggregation_1'] = entity_import('search_api_sort', '{
-    "index_id" : "databases",
-    "field" : "search_api_aggregation_1",
-    "name" : "A-Z",
-    "enabled" : "1",
-    "weight" : "-100",
-    "identifier" : "databases__search_api_aggregation_1",
-    "default_sort" : "0",
-    "default_sort_no_terms" : "1",
-    "default_order" : "asc",
-    "options" : { "field_name" : "A-Z" },
-    "rdf_mapping" : []
-  }');
   $items['databases__search_api_relevance'] = entity_import('search_api_sort', '{
     "index_id" : "databases",
     "field" : "search_api_relevance",
@@ -487,6 +470,19 @@ function ubn_search_default_search_api_sort() {
     "default_sort_no_terms" : "0",
     "default_order" : "desc",
     "options" : { "field_name" : "search_api_relevance" },
+    "rdf_mapping" : []
+  }');
+  $items['databases__title'] = entity_import('search_api_sort', '{
+    "index_id" : "databases",
+    "field" : "title",
+    "name" : "A-Z",
+    "enabled" : "1",
+    "weight" : "-100",
+    "identifier" : "databases__title",
+    "default_sort" : "0",
+    "default_sort_no_terms" : "1",
+    "default_order" : "asc",
+    "options" : { "field_name" : "Title" },
     "rdf_mapping" : []
   }');
   return $items;
