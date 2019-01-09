@@ -1,2 +1,3 @@
 #!/bin/bash
+test -e "<%= current_path.join(fetch(:files_path)) %>" || exit 0
 chown -R <%= primary(:app).user %> "<%= current_path.join(fetch(:files_path)) %>"
