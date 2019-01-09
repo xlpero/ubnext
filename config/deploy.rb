@@ -8,7 +8,7 @@ set :repo_url, 'https://github.com/ub-digit/ubnext.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
-set :branch, 'libraries-and-openinghours'
+set :branch, 'master'
 
 # Default deploy_to directory is /var/www/my_app
 # set :deploy_to, '/var/www/drupal/staging'
