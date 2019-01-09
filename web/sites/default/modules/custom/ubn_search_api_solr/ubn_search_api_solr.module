@@ -56,14 +56,18 @@ function ubn_search_api_solr_search_api_solr_query_alter(&$call_args, $query) {
   if ($topics_depth_1) {
     preg_match_all("/\"\d+\"/", reset($topics_depth_1), $topic_ids);
     $call_args['params']['bq'] = 'im_field_recommended_in_subjects:(' . implode(' OR ', reset($topic_ids)) . ')';
-    $call_args['params']['sort'] = 'score desc,' . $call_args['params']['sort'];
+    if (!($call_args['query'])) {
+      $call_args['params']['sort'] = 'score desc,' . $call_args['params']['sort'];
+    }
   }
   else {
     $topics_depth_0 = preg_grep("/.+im_field_topics_depth_0.+/" , $call_args['params']['fq']);
     if ($topics_depth_0) {
       $topic_id = end(explode('im_field_topics_depth_0:', reset($topics_depth_0)));
       $call_args['params']['bq'] = 'im_field_recommended_in_subjects:' . $topic_id;
-      $call_args['params']['sort'] = 'score desc,' . $call_args['params']['sort'];
+      if (!($call_args['query'])) {
+        $call_args['params']['sort'] = 'score desc,' . $call_args['params']['sort'];
+      }
     }
   }
   return $call_args;
