@@ -4,12 +4,16 @@ a {
 
 .navigation-secondary {
   text-decoration: none;
-  font-family: NimbusSanNovCon-Med, "Arial Narrow", Arial, sans-serif;
+  font-family: @font-family-sans-serif;
+  font-size: 14px;
+  font-weight: bold;
   color: @gray-darker;
 }
 
-.navigation-secondary:hover {
-  text-decoration: underline;
+.navigation-secondary:hover, .navigation-secondary:focus  {
+    text-decoration: none !important;
+    padding-bottom: 2px;
+    border-bottom: 3px solid @gray-darker;
 }
 
 p {
