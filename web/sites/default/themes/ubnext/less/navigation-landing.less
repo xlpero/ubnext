@@ -8,12 +8,57 @@
     /*float: right;*/
   }
 
+  /* ubn-panel-links  overrides */
+  .ubn-panel-links {
+    &.shortcuts {
+      background: #fbfbfb;
+      .shortcuts-head {
+        .shortcuts-head-title {
+          h2 {
+            font-size: 18px;
+          }
+        }
+      }
+      .shortcuts-body {
+        .shortcuts-link-list {
+          .shortcuts-body-link {
+            a {
+              &::after  {
+                font-family: "FontAwesome";
+                //font-weight: 900;
+                content: "\f061";
+                position: relative;
+                top: -2px;
+                left: 8px;
+                display: inline-block;
+                font-size: 12px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+
   /* theme-link box */
   .ubn-theme-links {
     margin-bottom: 10px;
     &.primary {
+      .ubn-theme-links-item {
+        &:hover {
+          background: #FBFBFB;
+        }
+      }
     }
     .ubn-theme-links-item {
+      &:hover {
+        cursor: pointer;
+        a {
+          text-decoration: underline;
+        }
+      }
       min-height: @boxes-min-height;
       &:extend(.clearfix all);
     }
@@ -33,12 +78,27 @@
 
     .ubn-theme-links-item-head {
       &:extend(.clearfix all);
-      margin-bottom: 20px;
+      margin-bottom: 10px;
 
       .ubn-theme-links-item-head-link {
         float: left;
-        h2{
+        h2 {
           font-size: 18px;
+          &.secondary {
+            font-size: 16px;
+          }
+          a {
+            &::after  {
+              font-family: "FontAwesome";
+              //font-weight: 900;
+              content: "\f061";
+              position: relative;
+              top: -2px;
+              left: 8px;
+              display: inline-block;
+              font-size: 12px;
+            }
+          }
         }
         
       }
