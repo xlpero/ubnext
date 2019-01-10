@@ -6,17 +6,12 @@
 {% import "macros/misc.html.twig" as misc %}
 {% import "macros/panel-links.html.twig" as pane %}
 
-{{ pane.pane_begin() }}
-  {{ pane.pane_head_begin() }}
-    {{ pane.pane_head_title(t("Current and news")) }}
-  {{ pane.pane_head_end() }}
+{{ pane.pane_begin("news-widget") }}
   {# Body does nothing right now, just an extra wrapper, skip? #}
   {{ pane.pane_body_begin() }}
-  {{ link_list|raw }}
-  <hr>
   <ul class="list-unstyled latest-stories-widget-stories">
     {{ stories|raw }}
   </ul>
-  <div class="more-news-link clearfix"><span class="pull-right">{{ misc.link(t('More news'), 'news', 'latest-stories-widget-read-more-link', {absolute : false}) }}<i class="fa fa-arrow-right"></i></span></div>
+  <div class="more-news-link clearfix"><span>{{ misc.link(t('More news'), 'news', 'latest-stories-widget-read-more-link', {absolute : false}) }}<i class="fa fa-arrow-right"></i></span></div>
   {{ pane.pane_body_end() }}
 {{ pane.pane_end() }}
