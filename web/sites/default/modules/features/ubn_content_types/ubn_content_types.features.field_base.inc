@@ -1252,28 +1252,6 @@ function ubn_content_types_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_remote_id'.
-  $field_bases['field_remote_id'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_remote_id',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'max_length' => 255,
-    ),
-    'translatable' => 0,
-    'type' => 'text',
-  );
-
   // Exported field_base: 'field_scholarly_sharing'.
   $field_bases['field_scholarly_sharing'] = array(
     'active' => 1,
@@ -1600,27 +1578,6 @@ function ubn_content_types_field_default_field_bases() {
     ),
     'translatable' => 1,
     'type' => 'link_field',
-  );
-
-  // Exported field_base: 'field_verde_data_json'.
-  $field_bases['field_verde_data_json'] = array(
-    'active' => 1,
-    'cardinality' => 1,
-    'deleted' => 0,
-    'entity_types' => array(),
-    'field_name' => 'field_verde_data_json',
-    'indexes' => array(
-      'format' => array(
-        0 => 'format',
-      ),
-    ),
-    'locked' => 0,
-    'module' => 'text',
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-    ),
-    'translatable' => 0,
-    'type' => 'text_long',
   );
 
   // Exported field_base: 'field_visiting_address'.
