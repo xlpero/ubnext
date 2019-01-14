@@ -168,7 +168,7 @@
         {% endif %}
         
         {% if not database.field_publishers.value is empty %}
-          {{helper.databasePropertyRow("Vendor", database.field_publishers, "name")}}
+          {{helper.databasePropertyRow("Vendor", database.field_publishers, "name", false)}}
         {% endif %}
 
         {% if not database.field_alternate_titles is empty %}
