@@ -3,7 +3,12 @@ Drupal.behaviors.database = {
   attach: function(context, settings) {
       Drupal.setupHistory();
       if ($(".form-autocomplete").val() === "") {
-        $('.ubn-search-sorts .last').hide();
+        if (/=field_topics_depth_/.test(window.location.href)) {
+          $('.ubn-search-sorts').hide();
+        }
+        else {
+          $('.ubn-search-sorts .last').hide();
+        }
       }
       else {
         $('.ubn-search-sorts .last').show();
