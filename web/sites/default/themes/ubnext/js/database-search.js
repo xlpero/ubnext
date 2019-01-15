@@ -29,10 +29,9 @@ Drupal.behaviors.database = {
           return false;
       });
 
-
-
       $('.database-item-link-title a', context).on( "click", function() {
-        alert($(this).attr("href"));
+        window.location.href = $(this).attr("href") + "?refering=" + escape(window.location.href);
+        return false;
       });
 
       $('.ubn-facet-header', context).on( "click", function() {

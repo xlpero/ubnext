@@ -21,21 +21,12 @@
     set link = database.url.value
   %}
   {%
-    set temp_uri = request_uri() | url_encode
-  %}
-  {%
-    set refering_link = "/?refering=" ~  temp_uri
-  %}
-  {%
-    set link_expanded =  link ~ refering_link
-  %}
-  {%
     set desc = database.field_description_paragraphs[0].value|length > 150 ? database.field_description_paragraphs[0].value|slice(0, 150) ~ '...' : database.field_description_paragraphs[0].value
   %}
 
   <div class="database-item">
     <div class="database-item-link-title">
-      <a href='{{ link_expanded }}'>{{title}}</h2></a>
+      <a href='{{ link }}'>{{title}}</h2></a>
       <!--<span class="recommended-database label label-default">Recommended</span>-->
     </div>
 
