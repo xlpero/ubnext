@@ -1217,7 +1217,12 @@ function ubn_content_types_field_default_field_instances() {
     'required' => 0,
     'settings' => array(
       'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 1,
       'ubn_property_field' => 0,
       'user_register_form' => FALSE,
     ),
@@ -1914,54 +1919,6 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-database-field_remote_id'.
-  $field_instances['node-database-field_remote_id'] = array(
-    'bundle' => 'database',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 11,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_remote_id',
-    'label' => 'Remote id',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'ubn_property_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'size' => 60,
-      ),
-      'type' => 'text_textfield',
-      'weight' => 10,
-    ),
-  );
-
   // Exported field_instance: 'node-database-field_scholarly_sharing'.
   $field_instances['node-database-field_scholarly_sharing'] = array(
     'bundle' => 'database',
@@ -2251,55 +2208,6 @@ function ubn_content_types_field_default_field_instances() {
       ),
       'type' => 'text_textfield',
       'weight' => 24,
-    ),
-  );
-
-  // Exported field_instance: 'node-database-field_verde_data_json'.
-  $field_instances['node-database-field_verde_data_json'] = array(
-    'bueditor_profile' => -1,
-    'bundle' => 'database',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 17,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_verde_data_json',
-    'label' => 'Terms of use',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'text_processing' => 0,
-      'ubn_property_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 14,
     ),
   );
 
@@ -3911,7 +3819,6 @@ function ubn_content_types_field_default_field_instances() {
   t('Public access');
   t('Publishers');
   t('Recommended in subjects');
-  t('Remote id');
   t('Scholarly sharing');
   t('Scholarly sharing description');
   t('Service disruption');
@@ -3921,7 +3828,6 @@ function ubn_content_types_field_default_field_instances() {
   t('Subject terms');
   t('Tags');
   t('Term');
-  t('Terms of use');
   t('Theme links');
   t('Thumbnail');
   t('Title');
