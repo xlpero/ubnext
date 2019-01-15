@@ -33,7 +33,7 @@
     set desc = database.field_description_paragraphs[0].value|length > 150 ? database.field_description_paragraphs[0].value|slice(0, 150) ~ '...' : database.field_description_paragraphs[0].value
   %}
 
-
+  {{dsm(link_expanded)}}
   <div class="database-item">
     <div class="database-item-link-title">
       <a href='{{ link_expanded }}'>{{title}}</h2></a>
