@@ -21,7 +21,10 @@
     set link = database.url.value
   %}
   {%
-    set refering_link = "/?refering=" ~ request_uri()
+    set temp_uri = request_uri() | url_encode
+  %}
+  {%
+    set refering_link = "/?refering=" ~  temp_uri
   %}
   {%
     set link_expanded =  link ~ refering_link
