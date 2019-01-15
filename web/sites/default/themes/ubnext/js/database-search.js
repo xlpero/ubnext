@@ -29,6 +29,12 @@ Drupal.behaviors.database = {
           return false;
       });
 
+
+
+      $('.database-item-link-title a', context).on( "click", function() {
+        alert($(this).attr("href"));
+      });
+
       $('.ubn-facet-header', context).on( "click", function() {
         var $next = $(this).next();
         if ($next.hasClass("item-list")) {
@@ -56,7 +62,7 @@ Drupal.behaviors.database = {
       });
 
 
-      $('.submit-btn', context).on("click", function() {
+       $('.submit-btn', context).on("click", function() {
         var query = $(".form-autocomplete").val();
         var actionUrl = Drupal.settings.ubn_databases.basePath;
         var lastChar = actionUrl.substr(-1); // Selects the last character
