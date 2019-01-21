@@ -12,7 +12,7 @@
   {%
     set excerpt = database.value.ubn_search_result_item.excerpt ?
     database.value.ubn_search_result_item.excerpt :
-    database.field_description_paragraphs[0].value
+    database.field_description.value
   %}
   {%
     set title = database.title.value
@@ -21,7 +21,7 @@
     set link = database.url.value
   %}
   {%
-    set desc = database.field_description_paragraphs[0].value|length > 150 ? database.field_description_paragraphs[0].value|slice(0, 150) ~ '...' : database.field_description_paragraphs[0].value
+    set desc = database.field_description.value|length > 150 ? database.field_description.valueslice(0, 150) ~ '...' : database.field_description.value
   %}
 
   <div class="database-item">
