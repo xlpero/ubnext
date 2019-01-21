@@ -908,12 +908,19 @@ function ubn_general_update_7208() {
   }
 }
 
-function ubn_general_update_7209() {
+function ubn_general_update_7210() {
+  foreach(array('ubn_content_types') as $module) {
+    features_revert_module($module);
+  }
+}
+
+function ubn_general_update_7211() {
+
   $nodes = node_load_multiple(array(), array('type' => 'database'));
   foreach($nodes as $node) {
     $node_wrapper = entity_metadata_wrapper('node', $node);
     if ($node_wrapper->field_description_paragraphs ) {
-      if (count($node_wrapper->field_description_paragraphs) > 0) {
+      if ($node_wrapper->field_description_paragraphs) {
         $arr_old_paragraphs = [];
         foreach ($node_wrapper->field_description_paragraphs as $paragraphs => $value) {
           array_push($arr_old_paragraphs, $value->value());
