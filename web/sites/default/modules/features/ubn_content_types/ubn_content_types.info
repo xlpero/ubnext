@@ -150,6 +150,7 @@ features[field_instance][] = node-database-field_alternate_titles
 features[field_instance][] = node-database-field_course_pack_print
 features[field_instance][] = node-database-field_course_pack_print_desc
 features[field_instance][] = node-database-field_database_urls
+features[field_instance][] = node-database-field_description
 features[field_instance][] = node-database-field_description_paragraphs
 features[field_instance][] = node-database-field_download_article_chap_desc
 features[field_instance][] = node-database-field_download_article_chapter
