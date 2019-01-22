@@ -21,7 +21,10 @@
     set link = database.url.value
   %}
   {%
-    set desc = database.field_description.value|length > 150 ? database.field_description.valueslice(0, 150) ~ '...' : database.field_description.value
+    set desc_stripped = strip_tags(database.field_description.value)
+  %}
+  {%
+    set desc = desc_stripped |length > 150 ? desc_stripped | slice(0, 150) ~ '...' : desc_stripped
   %}
 
   <div class="database-item">
@@ -30,9 +33,9 @@
       <!--<span class="recommended-database label label-default">Recommended</span>-->
     </div>
 
-    <p class="database-item-description">
-      {{ desc | raw }}
-    </p>
+    <div class="database-item-description">
+      {{ desc }}
+    </div>
     <div class="row">
       <div class="col-xs-12 col-sm-12">
         <div class="database-item-access-level">
