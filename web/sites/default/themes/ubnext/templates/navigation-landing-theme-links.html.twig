@@ -10,7 +10,7 @@
   {% import "macros/misc.html.twig" as misc %}
   {% import "macros/panel-links.html.twig" as pane %}
   <li class="col-xs-12 col-sm-6 col-md-4">
-    {{ pane.pane_begin('ubn-theme-links-item', { 'hide_icon': true } ) }}
+    {{ pane.pane_begin('ubn-theme-links-item', { 'hide_icon': true, 'min_height': false } ) }}
       <div class="ubn-theme-links-item-head">
         <div class="ubn-theme-links-item-head-link">
           {% if isPrimary %}
@@ -44,7 +44,7 @@
         {% set addShortcuts = true %}
         <li class="col-xs-12 col-sm-6 col-md-4">
           <div>
-            {{ pane.link_list(page.field_shortcut_heading.value, page.field_shortcut_links, 'shortcuts', { 'hide_icon': true, 'promoted': false, 'min_height': true }) }}
+            {{ pane.link_list(page.field_shortcut_heading.value, page.field_shortcut_links, 'shortcuts', { 'hide_icon': true, 'promoted': false, 'min_height': false }) }}
           </div>
         </li>
       {% endif %}
