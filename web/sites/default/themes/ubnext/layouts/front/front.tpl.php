@@ -41,7 +41,7 @@
 <?php if (!empty($content['news'])): ?>
   <div id="news" class="container panel-separator">
     <div class="row">
-      <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+      <div class="col-xs-12">
         <?php print render($content['news']); ?>
       </div>
     </div>

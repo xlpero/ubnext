@@ -7,7 +7,7 @@
 {% import "macros/atom_styles.html.twig" as atom_styles %}
 
 <div class="story-promoted col-sm-4">
-  <div class="story-promoted-image">
+  <div class="story-promoted-image news-archive">
   {% set atom = ubn_content_sections_atoms(story.field_content_sections, 'image', 1)|first %}
   {{ atom_styles.blurb(atom, 'news-item-placeholder.png', t('No image has been added to this article')) }}
   </div>
@@ -17,6 +17,7 @@
 				<div class="story-promoted-publication-date">{{ dates.date_default(story.created) }}</div>
 				<h2 class="story-promoted-header list primary">{{ misc.link(story.title_field.value, story.url) }}</h2>
 			</div>
+			<i class="story-arrow fa fa-arrow-right"></i>
 		</div>
 	</div>
 </div>
