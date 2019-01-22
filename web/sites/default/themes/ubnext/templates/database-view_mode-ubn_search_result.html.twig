@@ -12,7 +12,7 @@
   {%
     set excerpt = database.value.ubn_search_result_item.excerpt ?
     database.value.ubn_search_result_item.excerpt :
-    database.field_description_paragraphs[0].value
+    database.field_description.value
   %}
   {%
     set title = database.title.value
@@ -21,25 +21,21 @@
     set link = database.url.value
   %}
   {%
-    set refering_link = "/?refering=" ~ request_uri()
+    set desc_stripped = strip_tags(database.field_description.value)
   %}
   {%
-    set link_expanded =  link ~ refering_link
+    set desc = desc_stripped |length > 150 ? desc_stripped | slice(0, 150) ~ '...' : desc_stripped
   %}
-  {%
-    set desc = database.field_description_paragraphs[0].value|length > 150 ? database.field_description_paragraphs[0].value|slice(0, 150) ~ '...' : database.field_description_paragraphs[0].value
-  %}
-
 
   <div class="database-item">
     <div class="database-item-link-title">
-      <a href='{{ link_expanded }}'>{{title}}</h2></a>
+      <a href='{{ link }}'>{{title}}</h2></a>
       <!--<span class="recommended-database label label-default">Recommended</span>-->
     </div>
 
-    <p class="database-item-description">
+    <div class="database-item-description">
       {{ desc }}
-    </p>
+    </div>
     <div class="row">
       <div class="col-xs-12 col-sm-12">
         <div class="database-item-access-level">

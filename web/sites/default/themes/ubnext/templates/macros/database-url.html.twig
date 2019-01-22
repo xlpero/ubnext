@@ -1,13 +1,9 @@
 {% macro getPreferedUrl(arr) %}
   {# if open access exist print that url otherwise print protected url #}
-  {% if count(arr) > 1 %}
-    {% for url in arr %}
-      {% if url.public_access.value == 1 %}
-        {{url.field_url.url.value}}
+  {% if count(arr) >= 1 %}
+      {% if arr[0].field_url is not empty %}
+        {{arr[0].field_url.url.value}}
       {% endif %}
-    {% endfor %}
-  {% else %}
-    {{arr[0].field_url.url.value}}
   {% endif %}
 {% endmacro %}
 

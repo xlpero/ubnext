@@ -889,6 +889,60 @@ function ubn_general_update_7207() {
   module_enable(array('ubn_library_content'));
 }
 
+function ubn_general_update_7208() {
+  /* remove fields database contentype */
+  if ($instance = field_info_instance('node', 'field_remote_id', 'database')) {
+    field_delete_instance($instance);
+  }
+  if ($instance = field_info_instance('node', 'field_verde_data_json', 'database')) {
+    field_delete_instance($instance);
+  }
+  if ($instance = field_info_instance('field_collection_item', 'field_description_short', 'field_database_urls')) {
+    field_delete_instance($instance);
+  }
+  if ($instance = field_info_instance('field_collection_item', 'field_public_access', 'field_database_urls')) {
+    field_delete_instance($instance);
+  }
+  if ($instance = field_info_instance('field_collection_item', 'field_remote_id', 'field_database_urls')) {
+    field_delete_instance($instance);
+  }
+}
+
+function ubn_general_update_7210() {
+  foreach(array('ubn_content_types') as $module) {
+    features_revert_module($module);
+  }
+}
+
+function ubn_general_update_7211() {
+
+  $nodes = node_load_multiple(array(), array('type' => 'database'));
+  foreach($nodes as $node) {
+    $node_wrapper = entity_metadata_wrapper('node', $node);
+    if ($node_wrapper->field_description_paragraphs ) {
+      if ($node_wrapper->field_description_paragraphs) {
+        $arr_old_paragraphs = [];
+        foreach ($node_wrapper->field_description_paragraphs as $paragraphs => $value) {
+          array_push($arr_old_paragraphs, $value->value());
+        }
+        $node_wrapper->field_description->set(array('value' => join("\n\n", $arr_old_paragraphs)));
+        $node_wrapper->save();
+      }
+    };
+  }
+  if ($instance = field_info_instance('node', 'field_description_paragraphs', 'database')) {
+    field_delete_instance($instance);
+  }
+  field_delete_field('field_description_paragraphs');
+}
+
+function ubn_general_update_7212() {
+  foreach(array('ubn_search') as $module) {
+    features_revert_module($module);
+  }
+}
+
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library

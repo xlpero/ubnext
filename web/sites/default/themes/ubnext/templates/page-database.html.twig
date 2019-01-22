@@ -108,12 +108,10 @@
 
         <div class="row">
           <div class="col-xs-12">
-            {% if not database.field_description_paragraphs is empty %}
-              {% for paragraph in database.field_description_paragraphs %}
+            {% if not database.field_description is empty %}
                 <p>
-                  {{paragraph}}
+                  {{database.field_description.value | raw}}
                 </p>
-              {% endfor %}
             {% endif %}
           </div>
         </div>
@@ -168,7 +166,7 @@
         {% endif %}
         
         {% if not database.field_publishers.value is empty %}
-          {{helper.databasePropertyRow("Vendor", database.field_publishers, "name")}}
+          {{helper.databasePropertyRow("Vendor", database.field_publishers, "name", false)}}
         {% endif %}
 
         {% if not database.field_alternate_titles is empty %}

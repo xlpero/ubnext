@@ -749,7 +749,6 @@ function ubn_content_types_strongarm() {
   $strongarm->name = 'menu_options_page';
   $strongarm->value = array(
     0 => 'main-menu',
-    1 => 'menu-shortcut-menu',
   );
   $export['menu_options_page'] = $strongarm;
 
