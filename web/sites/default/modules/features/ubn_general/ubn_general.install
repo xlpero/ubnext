@@ -936,7 +936,11 @@ function ubn_general_update_7211() {
   field_delete_field('field_description_paragraphs');
 }
 
-
+function ubn_general_update_7212() {
+  foreach(array('ubn_search') as $module) {
+    features_revert_module($module);
+  }
+}
 
 
 //TODO: Disable rdf module?
