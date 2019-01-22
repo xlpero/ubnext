@@ -94,7 +94,7 @@ function ubn_search_default_search_api_index() {
       "fields" : {
         "author" : { "type" : "integer", "entity_type" : "user" },
         "field_alternate_titles" : { "type" : "list\\u003Ctext\\u003E", "boost" : "5.0" },
-        "field_description_paragraphs" : { "type" : "list\\u003Ctext\\u003E", "boost" : "0.8" },
+        "field_description:value" : { "type" : "text", "boost" : "0.8" },
         "field_media_types" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_media_types:name" : { "type" : "list\\u003Ctext\\u003E", "boost" : "2.0" },
         "field_public_access" : { "type" : "boolean" },
@@ -234,7 +234,6 @@ function ubn_search_default_search_api_index() {
       "search_api_et" : { "include" : "incomplete", "fallback language" : "" },
       "fields" : {
         "field_alternate_titles" : { "type" : "list\\u003Ctext\\u003E" },
-        "field_description_paragraphs" : { "type" : "list\\u003Ctext\\u003E" },
         "field_media_types" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
         "field_public_access" : { "type" : "boolean" },
         "field_publishers" : { "type" : "list\\u003Cinteger\\u003E", "entity_type" : "taxonomy_term" },
