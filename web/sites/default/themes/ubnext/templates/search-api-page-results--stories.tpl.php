@@ -41,7 +41,7 @@
   <?php if ($result_count): ?>
     <div class="col-xs-12 col-sm-8 col-sm-offset-2">
       <?php if (!isset($_GET['page'])): ?>
-        <h1 class="small"><?php print t('Latest news'); ?></h1>
+        <h2 class="small news-archive-heading"><?php print t('Latest news'); ?></h2>
       <?php endif; ?>
 
       <ol class="archive-stories list-unstyled">
