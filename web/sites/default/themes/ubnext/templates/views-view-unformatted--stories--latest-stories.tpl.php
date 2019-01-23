@@ -11,7 +11,7 @@
 <div class="row panel-separator">
   <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
     <div class="divider"></div>
-    <h1 class="small"><?php print $view->get_title(); ?></h1>
+    <h2 class="small story-header"><?php print $view->get_title(); ?></h2>
     <?php foreach ($rows as $id => $row): ?>
       <?php print $row; ?>
     <?php endforeach; ?>
