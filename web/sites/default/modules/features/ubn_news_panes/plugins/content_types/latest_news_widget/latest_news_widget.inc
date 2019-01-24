@@ -33,19 +33,13 @@ function ubn_news_panes_latest_news_widget_content_type_render($subtype, $conf, 
     ->propertyCondition('status', 1) // is publishd
     ->propertyOrderBy('created', 'DESC') // TODO: order by publication date not created?
     ->addTag('ENTITY_TRANSLATION')
-    ->range(0, 5) //TODO: make configurable
+    ->range(0, 3) //TODO: make configurable
     ->execute();
 
   $stories = array();
   if (isset($results['node'])) {
     $stories = entity_load('node', array_keys($results['node']));
   }
-
-  
-  $promoted  = array_slice($stories, 0, 2);
-  dsm($stories);
-  dsm(' - - - - - ');
-  dsm($promoted);
 
   $stories_renderable = entity_view('node', $stories, 'ubn_news_panes_latest_news');
   $link_list_rendered = '';
@@ -59,7 +53,7 @@ function ubn_news_panes_latest_news_widget_content_type_render($subtype, $conf, 
     'stories' => drupal_render($stories_renderable),
     'link_list' => trim($link_list_rendered),
   ));
-  $content = '<div> STUFF</div>' . $content;
+  
   $block = new stdClass();
   $block->title = t('Current events and news');
   $block->content = $content;
