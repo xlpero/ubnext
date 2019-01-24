@@ -146,7 +146,7 @@ function ubn_news_default_search_api_page() {
     "options" : {
       "mode" : "terms",
       "fields" : [],
-      "per_page" : "5",
+      "per_page" : "10",
       "result_page_search_form" : 0,
       "get_per_page" : 0,
       "view_mode" : "ubn_search_result",

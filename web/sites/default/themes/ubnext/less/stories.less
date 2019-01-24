@@ -5,7 +5,15 @@
   }
 
   .story-teaser-publication-date{
-    color: #000!important;
+    color: #333!important;
+  }
+  .lead{
+    font-size: 18px;
+  }
+
+  .news-archive-heading{
+    font-family: "Open Sans", Arial, sans-serif;
+    font-size: 22px;
   }
   .story-teaser {
     margin-bottom: 20px;
@@ -40,6 +48,7 @@
       margin-bottom: 20px;
 
       .archive-story-teaser-publication-date {
+        color:#333;
         @media (min-width: @screen-sm-min) {
           position: absolute;
           margin-right: 10px;
@@ -58,19 +67,90 @@
   }
   .more-news-link{
     .fa{
-      color: #025da6;
+      color: #025da6; 
       font-size: 12px;
     }
   }
   .promoted-news {
+    
     .story-promoted {
       margin-bottom: 20px;
+      height: auto;
       .story-promoted-publication-date {
-        &:extend(.date);
-      }
-      .story-promoted-image img {
+        font-size: 14px;
+        font-weight: normal; 
         margin-bottom: 10px;
+        &:extend(.date);
+        color: #fff;
+
       }
+
+      .story-promoted-container{
+        position: relative;
+        border-radius: 4px;
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 23%, rgba(0,0,0,0.8) 67%); 
+        width: 100%;
+        height: 100%;
+        .story-arrow{
+          position: absolute;
+          color: #fff;
+          bottom: 30px;
+          right: 30px;
+          font-size: 22px;
+          @media (min-width: @screen-sm) and (max-width: @screen-sm-max){
+            bottom: 20px;
+            right: 20px;
+            font-size: 18px;
+          }
+        }
+      }
+
+
+      .story-promoted-text-wrapper{
+        padding-right: 15px;
+        padding-left: 15px;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        .story-promoted-text{
+          width: 100%;
+          padding-left: 30px;
+          padding-right: 70px;
+          position: absolute;
+          bottom: 30px;
+           @media (min-width: @screen-sm) and (max-width: @screen-sm-max){
+            padding-left: 20px;
+            padding-right: 55px;
+            bottom: 20px;
+          }
+          h2{
+            font-size: 22px;
+            font-weight: bold;
+            line-height: 28px;
+            margin-bottom: 0px!important;
+            @media (min-width: @screen-sm) and (max-width: @screen-sm-max){
+              font-size: 18px;
+              line-height: 22px;
+            }
+
+            a{
+              padding: 0px;
+              font-family: "Open Sans", Arial, sans-serif;
+              color:  #fff;
+            }
+          }
+        }
+      }
+
+
+      .story-promoted-image img {
+        border-radius: 4px;
+        margin-bottom: 0px!important;
+        width: 100%;
+      }
+
       .story-promoted-header {
         margin-bottom: 10px;
       }
