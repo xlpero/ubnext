@@ -1,6 +1,28 @@
 (function ($) {
 Drupal.behaviors.database = {
+
+  showRecommended: function(url) {
+    if (url.includes('field_topics_depth')) {
+      var ids = [];
+      url.split('?')[1].split('&').forEach(function(param) {
+        if (param.includes("field_topics_depth_0%3A")) {
+          ids = [param.split('field_topics_depth_0%3A')[1]];
+          return;
+        }
+        else {
+          if (param.includes("field_topics_depth_1%3A")) {
+            ids.push(param.split('field_topics_depth_1%3A')[1])
+          }
+        }
+      });
+      ids.forEach(function(id) {
+        $(".recommended-database.recid_" + id).show();
+      });
+    }
+  },
   attach: function(context, settings) {
+      var that = this;
+      that.showRecommended(window.location.href);
       Drupal.setupHistory();
       if ($(".form-autocomplete").val() === "") {
         if (/=field_topics_depth_/.test(window.location.href)) {
@@ -24,7 +46,7 @@ Drupal.behaviors.database = {
       });
 
       $(".facet-filter a, .clear-search-btn, .ubn-search-results-show-all, .sort-item", context).on("click", function() {
-          Drupal.loadHTMLFragment($(this).attr("href"));
+          Drupal.loadHTMLFragment($(this).attr("href"), that.showRecommended);
           if ($(this).hasClass("clear-search-btn"))
           {
             $('.form-autocomplete',context).val(''); // does not trigger change..
@@ -124,7 +146,7 @@ Drupal.behaviors.database = {
 
   };
 
-  Drupal.loadHTMLFragment = function(url) {
+  Drupal.loadHTMLFragment = function(url, callback) {
     Drupal.toggleLoader();
     $.get(url, function(data) {
       var newContent = $(".ajax-container").html($(data).find(".ajax-container").html());
@@ -132,6 +154,9 @@ Drupal.behaviors.database = {
       Drupal.toggleLoader();
       Drupal.attachBehaviors(newContent);
       Drupal.alreadyTriggered = false;
+      if (callback) {
+        callback(url);
+      }
     });
   };
 
