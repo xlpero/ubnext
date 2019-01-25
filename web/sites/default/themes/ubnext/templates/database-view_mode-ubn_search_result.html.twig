@@ -27,10 +27,15 @@
     set desc = desc_stripped |length > 150 ? desc_stripped | slice(0, 150) ~ '...' : desc_stripped
   %}
 
+  {% set recommended_list = "" %} 
+  {% for term in database.field_recommended_in_subjects %}
+    {% set recommended_list = recommended_list ~ "recid_" ~ term.tid.value ~ " " %}
+  {% endfor %}
+
   <div class="database-item">
     <div class="database-item-link-title">
       <a href='{{ link }}'>{{title}}</h2></a>
-      <!--<span class="recommended-database label label-default">Recommended</span>-->
+      <span class="recommended-database label label-default {{recommended_list}}">Recommended</span>
     </div>
 
     <div class="database-item-description">
