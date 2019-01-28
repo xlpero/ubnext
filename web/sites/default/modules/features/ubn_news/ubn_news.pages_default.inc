@@ -309,7 +309,7 @@ if(isset($_GET[\'page\'])) {
     $pane->access = array();
     $pane->configuration = array(
       'page' => 'stories',
-      'per_page' => '5',
+      'per_page' => '10',
       'result_page_search_form' => 0,
       'get_per_page' => 0,
       'view_mode' => 'ubn_search_result',
