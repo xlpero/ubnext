@@ -4,7 +4,7 @@
 #}
 
 <div class="row panel-separator">
-  <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+  <div class="col-lg-6 col-lg-offset-3 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
     <div id="terms-search-controls">
       <div class="input-group">
         <input id="terms-search-controls-search-box" autocomplete="off" type="text" name="q" placeholder="{{t('Title, subject, supplier...')}}" class="form-control input-lg">
@@ -60,7 +60,7 @@
 
 
 <div class="row">
-  <div class="col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+  <div class="col-lg-6 col-lg-offset-3 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
     <div id="terms-search-results" class="panel-separator">
         <div class="no-result center rs_skip">{{ t('No term was found. Change your search and try again.') }}</div>
       {% for term_group in term_groups if not term_group.terms is empty %}

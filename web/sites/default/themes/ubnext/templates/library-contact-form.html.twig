@@ -6,7 +6,7 @@
 {% import 'macros/contact-list.html.twig' as contacts %}
 
 <div class="row">
-  <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+  <div class="col-xs-12 col-lg-6 col-lg-offset-3 col-sm-8 col-sm-offset-2">
       {% if not library.field_contact_instances is empty %}
         {{  contacts.contact_list(library.field_contact_instances) }}
       {% endif %}

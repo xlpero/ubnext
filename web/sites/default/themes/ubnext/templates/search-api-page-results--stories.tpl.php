@@ -39,7 +39,7 @@
 ?>
 <div class="row">
   <?php if ($result_count): ?>
-    <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+    <div class="col-xs-12 col-sm-8 col-lg-6 col-lg-offset-3 col-sm-offset-2">
       <?php if (!isset($_GET['page'])): ?>
         <h2 class="small news-archive-heading"><?php print t('Latest news'); ?></h2>
       <?php endif; ?>
