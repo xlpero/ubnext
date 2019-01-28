@@ -3,18 +3,26 @@ Drupal.behaviors.database = {
 
   showRecommended: function(url) {
     if (url.includes('field_topics_depth')) {
+      var ids_1 = [];
+      var ids_0 = [];
       var ids = [];
       url.split('?')[1].split('&').forEach(function(param) {
-        if (param.includes("field_topics_depth_0%3A")) {
-          ids = [param.split('field_topics_depth_0%3A')[1]];
-          return;
+        if (param.includes("field_topics_depth_1%3A")) {
+            ids_1.push(param.split('field_topics_depth_1%3A')[1]);
+            return;
         }
         else {
-          if (param.includes("field_topics_depth_1%3A")) {
-            ids.push(param.split('field_topics_depth_1%3A')[1])
+          if (param.includes("field_topics_depth_0%3A")) {
+            ids_0.push(param.split('field_topics_depth_0%3A')[1]);
           }
         }
       });
+      if (ids_1.length > 0) {
+        ids = ids_1;
+      }
+      else {
+        ids = ids_0;
+      }
       ids.forEach(function(id) {
         $(".recommended-database.recid_" + id).show();
       });
