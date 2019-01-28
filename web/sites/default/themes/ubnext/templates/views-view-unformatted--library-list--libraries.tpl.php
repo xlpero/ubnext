@@ -19,7 +19,7 @@ $view->display_handler->options['pane_conf']['ubn_i18n'] : array();
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="row">
-					<div class="col-sm-offset-7 col-md-offset-8 col-sm-6 hidden-xs library-libraries-opening-hours-header">
+					<div class="col-sm-offset-7 col-md-offset-8 col-lg-offset-7 col-sm-6 hidden-xs library-libraries-opening-hours-header">
 						<div class="row">
 							<div class="col-xs-12">
 								<strong><?php print $ubn_i18n['opening_hours_title'] ? $ubn_i18n['opening_hours_title'] : t('Opening hours'); ?></strong>
