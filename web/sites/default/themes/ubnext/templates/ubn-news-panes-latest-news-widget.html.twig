@@ -2,6 +2,7 @@
   name = UBN News panes: Latest news widget
   models[stories] = item
   models[link_list] = item
+ 
 #}
 {% import "macros/misc.html.twig" as misc %}
 {% import "macros/panel-links.html.twig" as pane %}
@@ -9,9 +10,22 @@
 {{ pane.pane_begin("news-widget") }}
   {# Body does nothing right now, just an extra wrapper, skip? #}
   {{ pane.pane_body_begin() }}
-  <ul class="list-unstyled latest-stories-widget-stories">
-    {{ stories|raw }}
-  </ul>
-  <div class="more-news-link clearfix"><span>{{ misc.link(t('More news'), 'news', 'latest-stories-widget-read-more-link', {absolute : false}) }}<i class="fa fa-arrow-right"></i></span></div>
+  {{ image_stories|raw }}   
+  
+  
+  
+  <div class="col-xs-12 col-md-4">
+    <div class="latest-stories-widget-stories-wrapper bg-grey">
+      <ul class="list-unstyled latest-stories-widget-stories">
+        {{ stories|raw }}
+      </ul>
+      <div class="more-news-link clearfix">
+        <span>{{ misc.link(t('More news'), 'news', 'latest-stories-widget-read-more-link', {  absolute : false}) }}<i class="fa fa-arrow-right"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+  
+  
   {{ pane.pane_body_end() }}
 {{ pane.pane_end() }}
