@@ -3,9 +3,10 @@
   models[database] = entity:node
 #}
 
+
 {% macro buildSearchUrl(item) %}
   {%
-    set baseUrl =  base_path() ~ "databases/search"
+    set baseUrl = url() ~ "/databases/search"
   %}
 
   {% if item.parent[0].value.tid is empty %}
