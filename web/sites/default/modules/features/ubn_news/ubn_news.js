@@ -5,14 +5,27 @@
         $('.story-promoted', context).matchHeight();
       }
       // mouse enter on promoted story
-      $('div.story-promoted-container').on('mouseenter',function(){
-      	$(this).css('cursor', 'pointer');
-      	$(this).find('a').css('text-decoration', 'underline');
+      $('div.story-promoted').on('mouseenter',function(){
+        var el = $(this);
+      	el.css('cursor', 'pointer');
+      	el.find('a').css('text-decoration', 'underline');
+
+        var img = el.find('.image-placeholder');
+        if(img){
+          img.addClass('active');
+        }
+
   		});
   		// mouse leave on promoted story
-  		$('div.story-promoted-container').on('mouseleave',function(){
-      	$(this).css('cursor', 'default');
-      	$(this).find('a').css('text-decoration', 'none');
+  		$('div.story-promoted').on('mouseleave',function(){
+        var el = $(this);
+      	el.css('cursor', 'default');
+      	el.find('a').css('text-decoration', 'none');
+
+        var img = el.find('.image-placeholder');
+        if(img){
+          img.removeClass('active');
+        }
 
   		});
 

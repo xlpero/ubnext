@@ -10,10 +10,10 @@
 {{ pane.pane_begin("news-widget") }}
   {# Body does nothing right now, just an extra wrapper, skip? #}
   {{ pane.pane_body_begin() }}
+  <div class="col-xs-12">
+    <h2 class="small header-list">{{t('News')}}</h2>
+  </div>
   {{ image_stories|raw }}   
-  
-  
-  
   <div class="col-xs-12 col-md-4">
     <div class="latest-stories-widget-stories-wrapper bg-grey">
       <ul class="list-unstyled latest-stories-widget-stories">
