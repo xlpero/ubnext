@@ -1,6 +1,14 @@
 .main-cms {
-
+  .promoted-wrapper{
+    &.active{
+      cursor: pointer;
+      a{
+        text-decoration: underline;
+      }
+    }
+  }
   .news-widget{
+
     .story-arrow{
       @media(max-width: @screen-sm-max){
         bottom: 30px!important;
@@ -149,6 +157,7 @@
         position: absolute;
         bottom: 0px;
         left: 0px;
+        pointer-events: none;
         .story-promoted-text{
           width: 100%;
           padding-left: 30px;
