@@ -17,8 +17,13 @@
       {{ scald_render(atom.value, 'blurb')|raw }}
     {% else %}
       {{ _self._placeholder_image_style(placeholder, 'blurb_extra_small', placeholder_alt, placeholder_title) }}
+      <div class="image-gradient-overlay image-placeholder"></div>
+    {% endif %}
+    {% if not atom is empty %}
+      <div class="image-gradient-overlay"></div>
     {% endif %}
   </div>
+
 {% endmacro %}
 
 

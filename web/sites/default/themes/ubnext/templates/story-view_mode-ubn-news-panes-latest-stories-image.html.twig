@@ -1,0 +1,27 @@
+{# slate
+  name = Story: View mode 'UBN News panes latest news image'
+  models[entity] = entity:node
+  view_mode[node][story] = ubn_news_panes_latest_news_image
+#}
+{% import "macros/dates.html.twig" as dates %}
+{% import "macros/misc.html.twig" as misc %}
+{% import "macros/atom_styles.html.twig" as atom_styles %}
+
+<div class="col-sm-6 col-md-4 col-xs-12 story-promoted">
+  <div class="promoted-wrapper">
+    <div class="story-promoted-image">
+  	{% set atom = ubn_content_sections_atoms(entity.field_content_sections, 'image', 1)|first %}
+  	{{ atom_styles.blurb(atom, 'news-item-placeholder.png', t('No image has been added to this article')) }}
+  	</div>
+  	<div class="story-promoted-text-wrapper">
+      <div class="story-promoted-container">
+        <div class="story-promoted-text">
+          <div class="story-promoted-publication-date">{{ dates.date_default(entity.created) }}</div>
+          <h2 class="story-promoted-header list primary">{{ misc.link(entity.title_field.value, entity.url) }}</h2>
+        </div>
+        <i class="story-arrow fa fa-arrow-right"></i>
+      </div>
+    </div>
+  </div>
+</div>
+

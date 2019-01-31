@@ -21,13 +21,7 @@
 <?php endif ?>
 
 
-<?php if (!empty ($content['navigation'])) : ?>
-  <div class="fullwidth bg-grey">
-    <div class="container">
-      <?php print render($content['navigation']); ?>
-    </div>
-  </div>
-<?php endif; ?>
+
 
 
 <div class="divider fullwidth hidden-xs hidden-sm no-margin-top"></div>
@@ -44,12 +38,20 @@
   <?php endif; ?>
 </div>
 
+<?php if (!empty ($content['navigation'])) : ?>
+  <div class="fullwidth bg-grey">
+    <div class="container">
+      <?php print render($content['navigation']); ?>
+    </div>
+  </div>
+<?php endif; ?>
+
 <?php if (!empty($content['news'])): ?>
   <div id="news" class="container panel-separator">
-    <div class="row">
-      <div class="col-xs-12">
+    <div class="row promoted-news">
+      <!--<div class="col-xs-12">-->
         <?php print render($content['news']); ?>
-      </div>
+      <!--</div>-->
     </div>
   </div>
 <?php endif ?>

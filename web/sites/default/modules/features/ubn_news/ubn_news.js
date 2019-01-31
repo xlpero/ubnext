@@ -4,23 +4,24 @@
       if ($.fn.matchHeight) {
         $('.story-promoted', context).matchHeight();
       }
-      // mouse enter on promoted story
-      $('div.story-promoted-container').on('mouseenter',function(){
-      	$(this).css('cursor', 'pointer');
-      	$(this).find('a').css('text-decoration', 'underline');
-  		});
-  		// mouse leave on promoted story
-  		$('div.story-promoted-container').on('mouseleave',function(){
-      	$(this).css('cursor', 'default');
-      	$(this).find('a').css('text-decoration', 'none');
+    }
+  };
 
-  		});
+  Drupal.behaviors.ubn_news_blurb_mouse = {
+    attach: function(context, settings) {
+      $('.promoted-wrapper').on('mouseenter mouseleave', function(){
+        let el = $(this);
+        el.toggleClass('active');
+         let img = el.find('.image-placeholder');
+        if(img){
+          img.toggleClass('active');
+        }
+      });
 
-  		$('div.story-promoted-container').on('click',function(){
-  			let url = $(this).find('a').attr("href");
+      $('.promoted-wrapper').on('click', function(){
+        let url = $(this).find('a').attr("href");
         window.location.href = url;
-  		});
-
+      });
     }
   };
 })(jQuery);
