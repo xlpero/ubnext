@@ -24,19 +24,20 @@ end
   #invoke shit
 #end
 
-# Install drush
-namespace :drush do
+namespace :drupal do
+
   desc "Install Drush"
-  task :install do
+  task :install_drush do
     on release_roles :app do
       within shared_path do
-        execute :composer, 'require drush/drush:7.*'
+        execute :curl, '-fsSL -o drush https://github.com/drush-ops/drush/releases/download/8.1.17/drush.phar'
+        execute :chmod, '+x drush'
+        # TODO: FIX THIS ABOMINATION, RIGHT NOW HAVE NO IDEA
+        SSHKit.config.command_map[:drush] = "#{shared_path.join("drush")}"
+        #execute :composer, 'require drush/drush:7.*'
       end
     end
   end
-end
-
-namespace :drupal do
 
   #Is this kosher?
   def data_permit_write
@@ -181,12 +182,13 @@ namespace :drupal do
       end
     end
 
-    task :'apply' do
+    desc "Apply stashed database"
+    task :'apply' => :'drupal:install_drush' do
       next unless data_permit_write
       on release_roles :app do
+        #TODO: drop before import?
+        # execute :drush, "sql-drop -y"a
         within current_path.join(fetch(:app_path)) do
-          #TODO: drop before import?
-          # execute :drush, "sql-drop -y"
           execute :drush, "sql-cli < \"#{current_path.join('database.sql')}\""
           invoke 'drupal:clear-cache'
         end
@@ -205,7 +207,7 @@ namespace :drupal do
   end
 
   desc "Clear all caches"
-    task :'clear-cache' do
+    task :'clear-cache' => :'install_drush' do
     on release_roles :app do
       within release_path.join(fetch(:app_path)) do
         execute :drush, 'cache-clear all -y'
@@ -214,7 +216,7 @@ namespace :drupal do
   end
 
   desc "Put site in maintenance mode"
-  task :'site-offline' do
+  task :'site-offline' => :'install_drush' do
     on release_roles :app do
       within release_path.join(fetch(:app_path)) do
         execute :drush, 'vset maintenance_mode 1 -y'
@@ -224,7 +226,7 @@ namespace :drupal do
   end
 
   desc "Take site off maintenance mode"
-  task :'site-online' do
+  task :'site-online' => :'install_drush' do
     on release_roles :app do
       within release_path.join(fetch(:app_path)) do
         execute :drush, 'vset maintenance_mode 0 -y'
@@ -234,7 +236,7 @@ namespace :drupal do
   end
 
   desc 'Apply any database updates required (as with running update.php).'
-  task :updatedb do
+  task :updatedb  => :'install_drush' do
     on release_roles :app do
       within release_path.join(fetch(:app_path)) do
         execute :drush, 'updatedb -y'

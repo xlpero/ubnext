@@ -5,6 +5,10 @@ require 'capistrano/setup'
 # Includes default deployment tasks
 require 'capistrano/deploy'
 
+# Include git
+require "capistrano/scm/git"
+install_plugin Capistrano::SCM::Git
+
 # Composer is needed to install drush on the server
 require 'capistrano/composer'
 

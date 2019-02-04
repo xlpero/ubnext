@@ -13,7 +13,7 @@ set :branch, 'master'
 # Default deploy_to directory is /var/www/my_app
 # set :deploy_to, '/var/www/drupal/staging'
 
-set :scm, :git
+# set :scm, :git
 set :format, :pretty
 set :log_level, :info
 
@@ -50,8 +50,7 @@ set :npm_prune_flags, ''
 
 namespace :deploy do
   before :starting, :set_command_map_paths do
-    SSHKit.config.command_map[:composer] = "php #{shared_path.join("composer.phar")}"
-    SSHKit.config.command_map[:drush] = "#{shared_path.join("vendor/drush/drush/drush")}"
+    SSHKit.config.command_map[:drush] = "#{shared_path.join("drush")}"
   end
   before :starting, :site_settings do
     on roles :app do
