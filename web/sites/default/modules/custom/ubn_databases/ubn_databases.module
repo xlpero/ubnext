@@ -92,7 +92,7 @@ function ubn_databases_form_validate($form, &$form_state) {
   $parent_terms_that_should_exist = array();
   $parent_terms_that_should_exist_clean = array();
   foreach ($all_terms['und'] as $item) {
-    $all_terms_clean[] = $item['tid']; 
+    $all_terms_clean[] = $item['tid'];
   }
   foreach ($all_terms_clean as $item) {
     $temp_arr = taxonomy_get_parents($item);
@@ -109,34 +109,31 @@ function ubn_databases_form_validate($form, &$form_state) {
   }
 }
 
-
 function ubn_databases_database_url_is_public_access($url) {
   return strpos($url, 'ezproxy.') === FALSE;
 }
 
 function _ubn_databases_is_this_database_public($node) {
   $wrapper = entity_metadata_wrapper('node', $node);
-  $isPublic = FALSE; // PRIVATE 
+  $isPublic = FALSE; // PRIVATE
   foreach ($wrapper->field_database_urls as $url) {
-      if (is_null($url->field_public_access->value())) {
-         if (ubn_databases_database_url_is_public_access($url->field_url->url->value())) {
-            // make database public
-            $isPublic = TRUE;
-            break;
-          }
+    if (is_null($url->field_public_access->value())) {
+      if (ubn_databases_database_url_is_public_access($url->field_url->url->value())) {
+        // make database public
+        $isPublic = TRUE;
+        break;
       }
-      else {
-        if ($url->field_public_access->value()) {
-          // make dababase public
-          $isPublic = TRUE;
-          break;
-        }        
+    }
+    else {
+      if ($url->field_public_access->value()) {
+        // make dababase public
+        $isPublic = TRUE;
+        break;
       }
+    }
   }
  return $isPublic;
 }
-
-
 
 function ubn_databases_node_presave($node) {
   if($node->type === 'database') {
@@ -154,18 +151,19 @@ function ubn_databases_node_presave($node) {
           if(!isset($terms_by_depth[$depth])) {
             $terms_by_depth[$depth] = array();
           }
-          $terms_by_depth[$depth][$term->getIdentifier()] = $term;
+          $terms_by_depth[$depth][$term->getIdentifier()] = $term->value();
         }
       }
     }
-    foreach($terms_by_depth as $depth => $terms) {
+    foreach(array(0, 1) as $depth) {
       $field = 'field_topics_depth_' . $depth;
-      $tids = array();
-      foreach($terms as $term) {
-        $tids[] = $term->getIdentifier();
+      if (isset($terms_by_depth[$depth])) {
+        if($wrapper->get($field)) {
+          $wrapper->get($field)->set(array_keys($terms_by_depth[$depth]));
+        }
       }
-      if($wrapper->get($field)) {
-        $wrapper->get($field)->set($tids);
+      else {
+        $wrapper->get($field)->set(array());
       }
     }
   }
@@ -183,28 +181,24 @@ function _ubn_databases_set_access_rule($node) {
   $wrapper->save();
 }
 
+/*
 function ubn_databases_field_attach_update($type, $entity) {
   static $saving = FALSE;
   if($type === 'node' && $entity->type === 'database' && !$saving) {
      $saving = TRUE;
- //   _ubn_databases_set_access_rule($entity);
+    _ubn_databases_set_access_rule($entity);
     $saving = FALSE;
   }
 }
+*/
 
+/*
 function ubn_databases_field_attach_insert($type, $entity) {
   static $saving = FALSE;
   if($type === 'node' && $entity->type === 'database' && !$saving) {
      $saving = TRUE;
-//    _ubn_databases_set_access_rule($entity);
+    _ubn_databases_set_access_rule($entity);
     $saving = FALSE;
   }
 }
-
-function ubn_databases_node_update($node) {
-  if($node->type === 'database') {
-  }
-  
-}
-
-
+*/
