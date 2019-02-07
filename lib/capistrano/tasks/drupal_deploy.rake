@@ -259,8 +259,7 @@ namespace :deploy do
       drupal_deploy_prepare_script('drupal-stash-files-apply-merge.sh', shared_path)
     end
   end
-  after :starting, 'composer:install_executable'
-  after :starting, 'drush:install'
+  after :starting, 'drupal:install_drush'
   after :starting, :backup_previous_revision_database do
     if fetch(:previous_revision)
       #invoke 'drupal:stash-database'
