@@ -946,6 +946,20 @@ function ubn_general_update_7213() {
   features_revert_module('ubn_content_types');
 }
 
+/* Remove feeds import related fields from database */
+function ubn_general_update_7214() {
+  foreach (array(
+    'field_remote_id',
+    'field_verde_data_json',
+    'field_public_access') as $field_name
+  ) {
+    field_delete_field($field_name);
+  }
+  if ($instance = field_info_instance('field_collection_item', 'field_description_short', 'field_database_urls')) {
+    field_delete_instance($instance);
+  }
+}
+
 //TODO: Disable rdf module?
 
 // Enable entity translation for library
