@@ -951,7 +951,8 @@ function ubn_general_update_7214() {
   foreach (array(
     'field_remote_id',
     'field_verde_data_json',
-    'field_public_access') as $field_name
+    'field_public_access',
+    'field_description_paragraphs') as $field_name
   ) {
     field_delete_field($field_name);
   }
