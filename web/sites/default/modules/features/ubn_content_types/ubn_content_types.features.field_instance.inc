@@ -1774,55 +1774,6 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-database-field_public_access'.
-  $field_instances['node-database-field_public_access'] = array(
-    'bundle' => 'database',
-    'default_value' => array(
-      0 => array(
-        'value' => 1,
-      ),
-    ),
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'list',
-        'settings' => array(),
-        'type' => 'list_default',
-        'weight' => 9,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_public_access',
-    'label' => 'Public access',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'ubn_property_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 16,
-    ),
-  );
-
   // Exported field_instance: 'node-database-field_publishers'.
   $field_instances['node-database-field_publishers'] = array(
     'bundle' => 'database',
@@ -2065,7 +2016,7 @@ function ubn_content_types_field_default_field_instances() {
   // Exported field_instance: 'node-database-field_topics_depth_0'.
   $field_instances['node-database-field_topics_depth_0'] = array(
     'bundle' => 'database',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -2100,12 +2051,12 @@ function ubn_content_types_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'taxonomy',
+      'module' => 'options',
       'settings' => array(
         'autocomplete_path' => 'taxonomy/autocomplete',
         'size' => 60,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 11,
     ),
   );
@@ -2113,7 +2064,7 @@ function ubn_content_types_field_default_field_instances() {
   // Exported field_instance: 'node-database-field_topics_depth_1'.
   $field_instances['node-database-field_topics_depth_1'] = array(
     'bundle' => 'database',
-    'default_value' => NULL,
+    'default_value' => array(),
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -2148,12 +2099,12 @@ function ubn_content_types_field_default_field_instances() {
     ),
     'widget' => array(
       'active' => 0,
-      'module' => 'taxonomy',
+      'module' => 'options',
       'settings' => array(
         'autocomplete_path' => 'taxonomy/autocomplete',
         'size' => 60,
       ),
-      'type' => 'taxonomy_autocomplete',
+      'type' => 'options_select',
       'weight' => 12,
     ),
   );
@@ -3815,7 +3766,6 @@ function ubn_content_types_field_default_field_instances() {
   t('Print article/chapter');
   t('Print article/chapter description');
   t('Promote to shortcut');
-  t('Public access');
   t('Publishers');
   t('Recommended in subjects');
   t('Scholarly sharing');
