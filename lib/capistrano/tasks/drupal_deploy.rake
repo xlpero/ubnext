@@ -197,7 +197,7 @@ namespace :drupal do
   end
 
   desc "Stash database"
-  task :'stash-database' do
+  task :'stash-database' => :'drupal:install_drush' do
     on release_roles :app do
       within current_path.join(fetch(:app_path)) do
         #TODO: inconsistent use of quotes for paths, fix
