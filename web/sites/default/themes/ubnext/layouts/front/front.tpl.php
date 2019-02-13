@@ -20,18 +20,6 @@
   </div>
 <?php endif ?>
 
-
-
-
-
-<div class="divider fullwidth hidden-xs hidden-sm no-margin-top"></div>
-
-<div class="container fullwidth-on-xs">
-  <?php if (!empty ($content['promoted_top'])) : ?>
-    <?php print render($content['promoted_top']); ?>
-  <?php endif; ?>
-</div>
-
 <div class="container">
   <?php if (!empty ($content['promoted'])) : ?>
     <?php print render($content['promoted']); ?>
