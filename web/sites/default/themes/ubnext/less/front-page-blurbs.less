@@ -35,13 +35,14 @@
   }
   .blurb {
     .blurb-wrapper{
-        &.active{
+      height:100%;
+      &.active{
         cursor: pointer;
-        a{
-          text-decoration: underline;
-        }
-      }  
-    }
+      a{
+        text-decoration: underline;
+      }
+    }  
+  }
     
    .story-arrow{
         position: absolute;
@@ -55,9 +56,12 @@
           font-size: 18px;
         }
       }
-    .blurb-image img {
-      margin-bottom: 10px;
-    }
+    .blurb-image{
+      height: 100%;
+      img {
+        margin-bottom: 10px;
+      }
+    } 
     .blurb-header {
       margin-bottom: 10px;
     }
@@ -125,7 +129,7 @@
     }
 
     .image-gradient-overlay{
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 23%, rgba(0, 0, 0, 0.8) 67%);
+      background: linear-gradient(0deg, rgba(0,0,0,0.85) 23%, rgba(0,0,0,0.00) 74%)
       position: absolute;
       border-radius: 4px;
       width: inherit;
