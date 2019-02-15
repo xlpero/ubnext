@@ -909,30 +909,29 @@ function ubn_general_update_7208() {
 }
 
 function ubn_general_update_7210() {
-  foreach(array('ubn_content_types') as $module) {
-    features_revert_module($module);
-  }
+  features_revert_module('ubn_content_types');
 }
 
 function ubn_general_update_7211() {
-
-  $nodes = node_load_multiple(array(), array('type' => 'database'));
+  $query = new EntityFieldQuery();
+  $result = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'database')
+    ->execute();
+  $nids = array_keys($result['node']);
+  $nodes = entity_load('node', $nids);
   foreach($nodes as $node) {
     $node_wrapper = entity_metadata_wrapper('node', $node);
-    if ($node_wrapper->field_description_paragraphs ) {
-      if ($node_wrapper->field_description_paragraphs) {
-        $arr_old_paragraphs = [];
-        foreach ($node_wrapper->field_description_paragraphs as $paragraphs => $value) {
-          array_push($arr_old_paragraphs, $value->value());
-        }
-        $node_wrapper->field_description->set(array('value' => join("\n\n", $arr_old_paragraphs)));
-        $node_wrapper->save();
+    $paragraphs_field = $node_wrapper->field_description_paragraphs;
+    if ($paragraphs_field) {
+      $old_paragraphs = array();
+      foreach ($paragraphs_field as $item) {
+        array_push($old_paragraphs, $item->value());
       }
-    };
+      $node_wrapper->field_description->set(array('value' => join("\n\n", $old_paragraphs)));
+      $node_wrapper->save();
+    }
   }
-  if ($instance = field_info_instance('node', 'field_description_paragraphs', 'database')) {
-    field_delete_instance($instance);
-  }
+  //field_delete_field also deletes instances
   field_delete_field('field_description_paragraphs');
 }
 
