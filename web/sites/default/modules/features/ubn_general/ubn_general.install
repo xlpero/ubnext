@@ -943,7 +943,7 @@ function ubn_general_update_7212() {
 }
 
 function ubn_general_update_7213() {
-  features_revert_module('ubn_content_types');
+  features_revert_module('ubn_search_content');
 }
 
 /* Remove feeds import related fields from database */
@@ -959,6 +959,7 @@ function ubn_general_update_7214() {
   if ($instance = field_info_instance('field_collection_item', 'field_description_short', 'field_database_urls')) {
     field_delete_instance($instance);
   }
+  features_revert_module('ubn_content_types');
 }
 
 //TODO: Disable rdf module?
