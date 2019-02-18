@@ -31,7 +31,7 @@ Drupal.behaviors.database = {
   attach: function(context, settings) {
       var that = this;
       that.showRecommended(window.location.href);
-      Drupal.setupHistory();
+      //Drupal.setupHistory();
       if ($(".form-autocomplete").val() === "") {
         if (/=field_topics_depth_/.test(window.location.href)) {
           $('.ubn-search-sorts').hide();
@@ -43,6 +43,7 @@ Drupal.behaviors.database = {
       else {
         $('.ubn-search-sorts .last').show();
       }
+
       $(".form-autocomplete", context).focus();
       $(".form-autocomplete", context).on("change paste keyup", function() {
           if ($(this).val().length > 0) {
@@ -54,18 +55,26 @@ Drupal.behaviors.database = {
       });
 
       $(".facet-filter a, .clear-search-btn, .ubn-search-results-show-all, .sort-item", context).on("click", function() {
-          Drupal.loadHTMLFragment($(this).attr("href"), that.showRecommended);
+          //Drupal.loadHTMLFragment($(this).attr("href"), that.showRecommended);
           if ($(this).hasClass("clear-search-btn"))
           {
             $('.form-autocomplete',context).val(''); // does not trigger change..
             Drupal.toggleClearFilters(context, false);
+            let sv = window.location.pathname.indexOf('/sv/');
+            if (sv != - 1) {
+              window.location.href = "/sv/databaser/sok";
+            }
+            else {
+              window.location.href = "/en/databases/search";
+            }
             $(".form-autocomplete", context).focus();
+            return false; 
           }
-          return false;
+          //return false;
       });
 
       $('.database-item-link-title a', context).on( "click", function() {
-        window.location.href = $(this).attr("href") + "?refering=" + escape(window.location.href);
+        window.location.href = $(this).attr("href") + "#refering";
         return false;
       });
 
@@ -90,40 +99,9 @@ Drupal.behaviors.database = {
 
           }
         }
-        else {
-          Drupal.loadHTMLFragment($(this).children().find("a").attr('href'));
-        }
       });
-
-
-       $('.submit-btn', context).on("click", function() {
-        var query = $(".form-autocomplete").val();
-        var actionUrl = Drupal.settings.ubn_databases.basePath;
-        var lastChar = actionUrl.substr(-1); // Selects the last character
-        if (lastChar !== '/') {         // If the last character is not a slash
-          actionUrl += "/";
-        }
-        actionUrl = actionUrl + query;
-        Drupal.loadHTMLFragment(actionUrl);
-        return false;
-      })
-
-      }
+    }
   };
-
-  Drupal.alreadyTriggered = false;
-
-  Drupal.setupHistory = function() {
-    // Prepare
-    History = window.History; // Note: We are using a capital H instead of a lower h
-
-    History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
-      // Log the State
-    //  var State = History.getState(); // Note: We are using History.getState() instead of event.state
-    //  History.log('statechange:', State.data, State.title, State.url);
-    });
-  };
-
 
   Drupal.toggleClearFilters = function(context, show) {
     if (show === true) {
@@ -133,42 +111,6 @@ Drupal.behaviors.database = {
       $(".clear-search-btn", context).fadeOut(200);
     }
   };
-
-  Drupal.toggleLoader = function() {
-    var height = $(".main").height();
-    if ($("body").hasClass("loading")) {
-      // remove it
-      $(".main-inner").hide();
-      $(".facet-filter").fadeTo("fast", 1);
-      $(".main-inner").fadeIn();
-      $("body").removeClass("loading");
-      $(".main").height("auto");
-    }
-    else {
-      // add it
-      $(".main").height(height);
-      $(".facet-filter").fadeTo("fast", 0.5);
-      $(".main-inner").fadeOut();
-      $("body").addClass("loading");
-    }
-
-  };
-
-  Drupal.loadHTMLFragment = function(url, callback) {
-    Drupal.toggleLoader();
-    $.get(url, function(data) {
-      var newContent = $(".ajax-container").html($(data).find(".ajax-container").html());
-      History.pushState(null, null, url);
-      Drupal.toggleLoader();
-      Drupal.attachBehaviors(newContent);
-      Drupal.alreadyTriggered = false;
-      if (callback) {
-        callback(url);
-      }
-    });
-  };
-
-
 
 
   var getSetting = function (input, setting, defaultValue) {

@@ -21,6 +21,18 @@
     }
   };
 
+
+  Drupal.behaviors.ubnext_database = {
+    attach : function(context, settings) {
+      if (!$(".node-type-database").length) {
+        return;
+      }
+      if (window.location.hash.substr(1) != "refering") {
+        $('.database-back-link-wrapper').hide();
+      }
+    }
+  };
+
   Drupal.behaviors.ubnext_landing = {
     attach : function(context, settings) {
       $('.ubn-theme-links .ubn-theme-links-item').bind('click', function() {
