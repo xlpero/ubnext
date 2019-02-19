@@ -42,6 +42,7 @@ Drupal.behaviors.database = {
       }
       else {
         $('.ubn-search-sorts .last').show();
+        $(".clear-search-btn").show();
       }
 
       $(".form-autocomplete", context).focus();
