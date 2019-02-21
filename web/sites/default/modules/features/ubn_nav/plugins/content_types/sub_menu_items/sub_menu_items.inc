@@ -38,8 +38,15 @@ function ubn_nav_sub_menu_items_content_type_render($subtype, $conf, $panel_args
       'conditions' => array('plid' => $parent['mlid']),
     );
 
+  $use_one_col_layout = false;
+  if (count($context->data->field_layout) > 0) {
+    if ($context->data->field_layout['und'][0]['value'] == '1-column') {
+      $use_one_col_layout = true;
+    }
+  }
+
   $children = menu_build_tree($parent['menu_name'], $parameters);
-  $content = slate_render('navigation-landing-theme-links', array('page' => $context->data, 'children' => $children));
+  $content = slate_render('navigation-landing-theme-links', array('page' => $context->data, 'children' => $children, 'use_one_col_layout' => $use_one_col_layout));
 
   $block = new stdClass();
   $block->title = '';
