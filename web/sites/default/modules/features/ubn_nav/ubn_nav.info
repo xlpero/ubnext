@@ -8,5 +8,7 @@ dependencies[] = strongarm
 dependencies[] = ubn_content_types
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
+features[field_base][] = field_layout
+features[field_instance][] = node-navigation_landing-field_layout
 features[node][] = navigation_landing
 project path = sites/default/modules/features
