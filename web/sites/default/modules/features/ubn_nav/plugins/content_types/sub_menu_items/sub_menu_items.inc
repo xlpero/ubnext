@@ -46,7 +46,7 @@ function ubn_nav_sub_menu_items_content_type_render($subtype, $conf, $panel_args
   }
 
   $children = menu_build_tree($parent['menu_name'], $parameters);
-  $content = slate_render('navigation-landing-theme-links', array('page' => $context->data, 'children' => $children, 'use_one_col_layout' => $use_one_col_layout));
+  $content = slate_render('navigation-landing-theme-links', array('page' => $context->data, 'children' => $children, 'onecol' => $use_one_col_layout));
 
   $block = new stdClass();
   $block->title = '';
