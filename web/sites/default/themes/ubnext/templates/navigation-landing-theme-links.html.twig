@@ -2,7 +2,8 @@
   name = Navigation landing: theme-links
   models[page] = entity:node
   models[children] = item
-  models[use_one_col_layout] = use_one_col_layout
+  models[onecol] = item
+
 #}
 {% import "macros/misc.html.twig" as misc %}
 {% import "macros/panel-links.html.twig" as pane %}
@@ -47,7 +48,7 @@
     <ul class="ubn-theme-links primary list-unstyled clearfix">
       {% if not page.field_shortcut_links is empty %}
         {% set addShortcuts = true %}
-          {% if use_one_col_layout %}
+          {% if onecol %}
             <li class="col-xs-12 col-sm-6 col-sm-offset-1 col-md-4 col-md-offset-2 col-lg-4 col-lg-offset-3">
           {% else %}
             <li class="col-xs-12 col-sm-6 col-md-4">
@@ -60,7 +61,7 @@
       {% set isPrimary = true %}
       {% for link in children %}
         {% if loop.index <= page.field_number_of_primary.value %}
-          {{ _self.theme_link(link['link']['title'], link['link']['link_path'], link['link']['localized_options']['attributes']['title'], loop.index, page, addShortcuts, isPrimary, use_one_col_layout)}}
+          {{ _self.theme_link(link['link']['title'], link['link']['link_path'], link['link']['localized_options']['attributes']['title'], loop.index, page, addShortcuts, isPrimary, onecol)}}
         {% endif %}
       {% endfor %}
     </ul>
@@ -70,7 +71,7 @@
     <ul class="ubn-theme-links secondary list-unstyled clearfix">
       {% for link in children %}
         {% if loop.index > page.field_number_of_primary.value %}
-          {{ _self.theme_link(link['link']['title'], link['link']['link_path'], link['link']['localized_options']['attributes']['title'], loop.index - page.field_number_of_primary.value, page,false, isPrimary, use_one_col_layout)}}
+          {{ _self.theme_link(link['link']['title'], link['link']['link_path'], link['link']['localized_options']['attributes']['title'], loop.index - page.field_number_of_primary.value, page,false, isPrimary, onecol)}}
         {% endif %}
       {% endfor %}
     </ul>
