@@ -38,7 +38,7 @@
 			}
 		}
 		.toplinks {
-			margin-top:5px;
+			margin-top:8px;
 			display: none;
 			@media (min-width: @screen-md-min) {
 				display:block;
@@ -57,7 +57,9 @@
 			}
 			.rsbtn {
 				float: left;
-				margin-top: 6px;
+				margin-bottom: 0 !important;
+				height: auto !important;
+				//margin-top: 6px;
 				.rsbtn_exp {
 					top:-6px;
 					left: 5px;
@@ -74,6 +76,7 @@
 			}
 			.lang-area {
 				float: left;
+				font-size: 12px;
 				ul {
 					.list-unstyled();
 					display: inline-block;
@@ -83,6 +86,7 @@
 					    position: relative;
 			      	}
 						a {
+							font-size: 12px;
 							&.language-link::before {
 								font-family: "FontAwesome"; content: "\f0ac";
 								margin-right:8px;
