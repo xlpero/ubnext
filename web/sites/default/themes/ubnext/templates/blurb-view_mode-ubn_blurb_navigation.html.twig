@@ -5,7 +5,7 @@
 #}
 {% import "macros/misc.html.twig" as misc %}
 {% import "macros/panel-links.html.twig" as pane %}
-<div class="col-xs-12 col-sm-6 col-md-4 ubn-blurb-navigation">
+<div class="col-xs-12 col-sm-6 col-md-4 ubn-blurb-navigation rs_preserve">
   {{
     pane.link_list(
       l(entity.title.value ~ ' <i class="fa fa-arrow-right" aria-hidden="true"></i>', entity.url.value, { 'html': true }) ,
