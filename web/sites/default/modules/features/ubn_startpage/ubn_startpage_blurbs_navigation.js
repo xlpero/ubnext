@@ -63,7 +63,9 @@
               $blurb_container.removeClass('collapsed');
               //$show_more_link.remove();
             }
+            $.fn.matchHeight._maintainScroll = true;
             $.fn.matchHeight._update(false);
+            return false;
           });
         }
       });
