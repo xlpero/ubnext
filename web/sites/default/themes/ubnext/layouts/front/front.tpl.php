@@ -15,7 +15,7 @@
 <?php endif ?>
 
 <?php if (!empty($content['services'])): ?>
-  <div id="services" class="container panel-separator">
+  <div id="services" class="container panel-separator rs_preserve">
     <?php print render($content['services']); ?>
   </div>
 <?php endif ?>
