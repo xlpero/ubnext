@@ -690,106 +690,6 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance:
-  // 'field_collection_item-field_theme_link-field_description'.
-  $field_instances['field_collection_item-field_theme_link-field_description'] = array(
-    'bundle' => 'field_theme_link',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 1,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_description',
-    'label' => 'Description',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'linkit' => array(
-        'button_text' => 'Search',
-        'enable' => 0,
-        'profile' => '',
-      ),
-      'text_processing' => 1,
-      'ubn_property_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 2,
-    ),
-  );
-
-  // Exported field_instance:
-  // 'field_collection_item-field_theme_link-field_link_to_theme'.
-  $field_instances['field_collection_item-field_theme_link-field_link_to_theme'] = array(
-    'bundle' => 'field_theme_link',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'link',
-        'settings' => array(),
-        'type' => 'link_default',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'field_collection_item',
-    'field_name' => 'field_link_to_theme',
-    'label' => 'Link to theme',
-    'required' => 0,
-    'settings' => array(
-      'absolute_url' => 1,
-      'attributes' => array(
-        'class' => '',
-        'configurable_class' => 0,
-        'configurable_title' => 0,
-        'rel' => '',
-        'target' => 'default',
-        'title' => '',
-      ),
-      'display' => array(
-        'url_cutoff' => 80,
-      ),
-      'enable_tokens' => 1,
-      'entity_translation_sync' => FALSE,
-      'linkit' => array(
-        'button_text' => 'Search',
-        'enable' => 1,
-        'profile' => 'ubnext',
-      ),
-      'rel_remove' => 'default',
-      'title' => 'optional',
-      'title_label_use_field_label' => 0,
-      'title_maxlength' => 128,
-      'title_value' => '',
-      'url' => 0,
-      'user_register_form' => FALSE,
-      'validate_url' => 1,
-    ),
-    'widget' => array(
-      'active' => 0,
-      'module' => 'link',
-      'settings' => array(),
-      'type' => 'link_field',
-      'weight' => 1,
-    ),
-  );
-
   // Exported field_instance: 'node-alert_and_info_message-body'.
   $field_instances['node-alert_and_info_message-body'] = array(
     'bundle' => 'alert_and_info_message',
@@ -2518,6 +2418,60 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'node-navigation_landing-field_field_number_of_primary'.
+  $field_instances['node-navigation_landing-field_field_number_of_primary'] = array(
+    'bundle' => 'navigation_landing',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 11,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+      'ubn_search_result' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_field_number_of_primary',
+    'label' => 'Number of primary themelinks',
+    'required' => 0,
+    'settings' => array(
+      'entity_translation_sync' => FALSE,
+      'linkit' => array(
+        'button_text' => 'Search',
+        'enable' => 0,
+        'profile' => '',
+      ),
+      'text_processing' => 0,
+      'ubn_property_field' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 11,
+    ),
+  );
+
   // Exported field_instance: 'node-navigation_landing-field_lead'.
   $field_instances['node-navigation_landing-field_lead'] = array(
     'bundle' => 'navigation_landing',
@@ -3752,7 +3706,6 @@ function ubn_content_types_field_default_field_instances() {
   t('Interlibrary loan description');
   t('Lead');
   t('Link');
-  t('Link to theme');
   t('Malfunction message');
   t('Media aspect ratio');
   t('Media atoms');
@@ -3760,6 +3713,7 @@ function ubn_content_types_field_default_field_instances() {
   t('Media type');
   t('Name');
   t('No link');
+  t('Number of primary themelinks');
   t('Platform');
   t('Print article/chapter');
   t('Print article/chapter description');

@@ -108,8 +108,8 @@ function ubn_content_types_field_group_info() {
     'label' => 'Shortcut links',
     'weight' => '5',
     'children' => array(
-      0 => 'field_shortcut_links',
-      1 => 'field_shortcut_heading',
+      0 => 'field_shortcut_heading',
+      1 => 'field_shortcut_links',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
