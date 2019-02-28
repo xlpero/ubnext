@@ -92,21 +92,29 @@
           &.secondary {
             font-size: 16px;
           }
+
           a {
-            position: relative;
             .fa {
-              position: absolute;
               display: inline-block;
-              font-size: 12px;
               text-decoration: none;
               margin-left: 5px;
-              margin-top: 7px;
+              /* width: 17px; */
+       
+              vertical-align: middle;
+              font-size: 12px;
+            }
+          }
+          &.primary {
+            a {
+              .fa {
+                height:14px;
+              }
             }
           }
           &.secondary {
             a {
               .fa {
-                margin-top: 5px;
+                height: 13px;
               }
             }
           }
