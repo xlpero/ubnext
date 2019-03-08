@@ -981,9 +981,6 @@ function ubn_general_update_7215() {
 
 function ubn_general_update_7216() {
   field_delete_field('field_description_paragraphs');
-  if ($instance = field_info_instance('field_description_paragraphs')) {
-    field_delete_instance($instance);
-  }
 }
 
 
