@@ -1137,59 +1137,6 @@ function ubn_content_types_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-database-field_description_paragraphs'.
-  $field_instances['node-database-field_description_paragraphs'] = array(
-    'bundle' => 'database',
-    'default_value' => NULL,
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'module' => 'text',
-        'settings' => array(),
-        'type' => 'text_default',
-        'weight' => 0,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-      'ubn_search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 0,
-      ),
-    ),
-    'entity_type' => 'node',
-    'field_name' => 'field_description_paragraphs',
-    'label' => 'Descriptions',
-    'required' => 0,
-    'settings' => array(
-      'entity_translation_sync' => FALSE,
-      'linkit' => array(
-        'button_text' => 'Search',
-        'enable' => 0,
-        'profile' => '',
-      ),
-      'text_processing' => 0,
-      'ubn_property_field' => 0,
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'text',
-      'settings' => array(
-        'rows' => 5,
-      ),
-      'type' => 'text_textarea',
-      'weight' => 3,
-    ),
-  );
-
   // Exported field_instance: 'node-database-field_download_article_chap_desc'.
   $field_instances['node-database-field_download_article_chap_desc'] = array(
     'bundle' => 'database',
@@ -3690,7 +3637,6 @@ function ubn_content_types_field_default_field_instances() {
   t('Course pack print description');
   t('Database urls');
   t('Description');
-  t('Descriptions');
   t('Don\'t show a link to this page for the term view on the alphabetical listing.');
   t('Download article/chapter');
   t('Download article/chapter description');
