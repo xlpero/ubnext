@@ -978,16 +978,17 @@ function ubn_general_update_7215() {
   }
 }
 
-
 function ubn_general_update_7216() {
   field_delete_field('field_description_paragraphs');
 }
 
-
-
+function ubn_general_update_7217() {
+  $modules = array('ubn_summon');
+  module_disable($modules);
+  drupal_uninstall_modules($modules);
+}
 
 //TODO: Disable rdf module?
-
 // Enable entity translation for library
 /*
 function ubn_general_update_7101() {
