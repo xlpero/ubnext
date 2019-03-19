@@ -24,6 +24,8 @@ function ubn_menu_menu_alter(&$items) {
       );
     }
   }
+  // hides registration link on login page
+  unset($items['user/register']);
 }
 
 function ubn_menu_query_preferred_menu_links_alter(QueryAlterableInterface $query) {
