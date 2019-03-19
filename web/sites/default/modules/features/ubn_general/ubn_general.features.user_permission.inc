@@ -1544,6 +1544,7 @@ function ubn_general_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'anonymous user' => 'anonymous user',
+      'database editor' => 'database editor',
     ),
     'module' => 'search_api_autocomplete',
   );
