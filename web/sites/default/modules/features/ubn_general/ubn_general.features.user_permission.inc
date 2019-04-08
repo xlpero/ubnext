@@ -16,6 +16,7 @@ function ubn_general_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'admin_menu',
   );
@@ -26,6 +27,7 @@ function ubn_general_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'system',
   );
@@ -45,6 +47,7 @@ function ubn_general_user_default_permissions() {
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'node',
   );
@@ -55,6 +58,7 @@ function ubn_general_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'node',
   );
@@ -83,6 +87,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'access scald dnd library',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'scald_dnd_library',
   );
@@ -92,6 +97,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'access site in maintenance mode',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'system',
   );
@@ -110,6 +116,8 @@ function ubn_general_user_default_permissions() {
     'name' => 'access user profiles',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
+      'user administrator' => 'user administrator',
     ),
     'module' => 'user',
   );
@@ -165,6 +173,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'administer dnd',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'dnd',
   );
@@ -186,7 +195,9 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'administer entityqueue'.
   $permissions['administer entityqueue'] = array(
     'name' => 'administer entityqueue',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'entityqueue',
   );
 
@@ -265,6 +276,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'administer menu',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'menu',
   );
@@ -329,7 +341,9 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'administer pathauto'.
   $permissions['administer pathauto'] = array(
     'name' => 'administer pathauto',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'pathauto',
   );
 
@@ -338,6 +352,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'administer permissions',
     'roles' => array(
       'administrator' => 'administrator',
+      'user administrator' => 'user administrator',
     ),
     'module' => 'user',
   );
@@ -345,7 +360,9 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'administer pictures'.
   $permissions['administer pictures'] = array(
     'name' => 'administer pictures',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'picture',
   );
 
@@ -354,6 +371,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'administer redirects',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'redirect',
   );
@@ -403,6 +421,7 @@ function ubn_general_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'taxonomy',
   );
@@ -428,6 +447,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'administer users',
     'roles' => array(
       'administrator' => 'administrator',
+      'user administrator' => 'user administrator',
     ),
     'module' => 'user',
   );
@@ -487,6 +507,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'cancel account',
     'roles' => array(
       'administrator' => 'administrator',
+      'user administrator' => 'user administrator',
     ),
     'module' => 'user',
   );
@@ -505,6 +526,8 @@ function ubn_general_user_default_permissions() {
     'name' => 'change own username',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
+      'user administrator' => 'user administrator',
     ),
     'module' => 'user',
   );
@@ -528,6 +551,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'create atom of any type',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'scald',
   );
@@ -535,28 +559,36 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'create atom of file type'.
   $permissions['create atom of file type'] = array(
     'name' => 'create atom of file type',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'scald',
   );
 
   // Exported permission: 'create atom of image type'.
   $permissions['create atom of image type'] = array(
     'name' => 'create atom of image type',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'scald',
   );
 
   // Exported permission: 'create atom of video type'.
   $permissions['create atom of video type'] = array(
     'name' => 'create atom of video type',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'scald',
   );
 
   // Exported permission: 'create contact content'.
   $permissions['create contact content'] = array(
     'name' => 'create contact content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
@@ -565,6 +597,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'create database content',
     'roles' => array(
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'node',
   );
@@ -572,42 +605,54 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'create embedded_page content'.
   $permissions['create embedded_page content'] = array(
     'name' => 'create embedded_page content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'create library content'.
   $permissions['create library content'] = array(
     'name' => 'create library content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'create link_list content'.
   $permissions['create link_list content'] = array(
     'name' => 'create link_list content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'create navigation_landing content'.
   $permissions['create navigation_landing content'] = array(
     'name' => 'create navigation_landing content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'create page content'.
   $permissions['create page content'] = array(
     'name' => 'create page content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'create story content'.
   $permissions['create story content'] = array(
     'name' => 'create story content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
@@ -616,6 +661,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'create url aliases',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'path',
   );
@@ -632,6 +678,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'delete any atom',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'scald',
   );
@@ -639,7 +686,9 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'delete any contact content'.
   $permissions['delete any contact content'] = array(
     'name' => 'delete any contact content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
@@ -648,6 +697,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'delete any database content',
     'roles' => array(
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'node',
   );
@@ -655,7 +705,9 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'delete any embedded_page content'.
   $permissions['delete any embedded_page content'] = array(
     'name' => 'delete any embedded_page content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
@@ -664,6 +716,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'delete any entityform',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'entityform',
   );
@@ -671,35 +724,45 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'delete any library content'.
   $permissions['delete any library content'] = array(
     'name' => 'delete any library content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'delete any link_list content'.
   $permissions['delete any link_list content'] = array(
     'name' => 'delete any link_list content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'delete any navigation_landing content'.
   $permissions['delete any navigation_landing content'] = array(
     'name' => 'delete any navigation_landing content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'delete any page content'.
   $permissions['delete any page content'] = array(
     'name' => 'delete any page content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'delete any story content'.
   $permissions['delete any story content'] = array(
     'name' => 'delete any story content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
@@ -715,6 +778,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'delete own atom',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'scald',
   );
@@ -722,7 +786,9 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'delete own contact content'.
   $permissions['delete own contact content'] = array(
     'name' => 'delete own contact content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
@@ -731,6 +797,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'delete own database content',
     'roles' => array(
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'node',
   );
@@ -738,7 +805,9 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'delete own embedded_page content'.
   $permissions['delete own embedded_page content'] = array(
     'name' => 'delete own embedded_page content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
@@ -747,6 +816,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'delete own entityform',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'entityform',
   );
@@ -754,35 +824,45 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'delete own library content'.
   $permissions['delete own library content'] = array(
     'name' => 'delete own library content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'delete own link_list content'.
   $permissions['delete own link_list content'] = array(
     'name' => 'delete own link_list content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'delete own navigation_landing content'.
   $permissions['delete own navigation_landing content'] = array(
     'name' => 'delete own navigation_landing content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'delete own page content'.
   $permissions['delete own page content'] = array(
     'name' => 'delete own page content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'delete own story content'.
   $permissions['delete own story content'] = array(
     'name' => 'delete own story content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
@@ -799,7 +879,9 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'delete terms in library_properties'.
   $permissions['delete terms in library_properties'] = array(
     'name' => 'delete terms in library_properties',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'taxonomy',
   );
 
@@ -808,6 +890,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'delete terms in media_types',
     'roles' => array(
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'taxonomy',
   );
@@ -817,6 +900,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'delete terms in publishers',
     'roles' => array(
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'taxonomy',
   );
@@ -824,21 +908,27 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'delete terms in scald_authors'.
   $permissions['delete terms in scald_authors'] = array(
     'name' => 'delete terms in scald_authors',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'taxonomy',
   );
 
   // Exported permission: 'delete terms in scald_tags'.
   $permissions['delete terms in scald_tags'] = array(
     'name' => 'delete terms in scald_tags',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'taxonomy',
   );
 
   // Exported permission: 'delete terms in special_collection'.
   $permissions['delete terms in special_collection'] = array(
     'name' => 'delete terms in special_collection',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'taxonomy',
   );
 
@@ -852,7 +942,9 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'delete terms in term_synonym'.
   $permissions['delete terms in term_synonym'] = array(
     'name' => 'delete terms in term_synonym',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'taxonomy',
   );
 
@@ -861,6 +953,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'delete terms in topics',
     'roles' => array(
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'taxonomy',
   );
@@ -895,6 +988,7 @@ function ubn_general_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'admin_menu',
   );
@@ -911,6 +1005,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'edit any atom',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'scald',
   );
@@ -918,7 +1013,9 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'edit any contact content'.
   $permissions['edit any contact content'] = array(
     'name' => 'edit any contact content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
@@ -927,6 +1024,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'edit any database content',
     'roles' => array(
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'node',
   );
@@ -934,7 +1032,9 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'edit any embedded_page content'.
   $permissions['edit any embedded_page content'] = array(
     'name' => 'edit any embedded_page content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
@@ -943,6 +1043,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'edit any entityform',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'entityform',
   );
@@ -950,35 +1051,45 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'edit any library content'.
   $permissions['edit any library content'] = array(
     'name' => 'edit any library content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'edit any link_list content'.
   $permissions['edit any link_list content'] = array(
     'name' => 'edit any link_list content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'edit any navigation_landing content'.
   $permissions['edit any navigation_landing content'] = array(
     'name' => 'edit any navigation_landing content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'edit any page content'.
   $permissions['edit any page content'] = array(
     'name' => 'edit any page content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'edit any story content'.
   $permissions['edit any story content'] = array(
     'name' => 'edit any story content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
@@ -994,6 +1105,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'edit own atom',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'scald',
   );
@@ -1001,7 +1113,9 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'edit own contact content'.
   $permissions['edit own contact content'] = array(
     'name' => 'edit own contact content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
@@ -1010,6 +1124,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'edit own database content',
     'roles' => array(
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'node',
   );
@@ -1017,7 +1132,9 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'edit own embedded_page content'.
   $permissions['edit own embedded_page content'] = array(
     'name' => 'edit own embedded_page content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
@@ -1026,6 +1143,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'edit own entityform',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'entityform',
   );
@@ -1033,42 +1151,54 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'edit own library content'.
   $permissions['edit own library content'] = array(
     'name' => 'edit own library content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'edit own link_list content'.
   $permissions['edit own link_list content'] = array(
     'name' => 'edit own link_list content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'edit own navigation_landing content'.
   $permissions['edit own navigation_landing content'] = array(
     'name' => 'edit own navigation_landing content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'edit own page content'.
   $permissions['edit own page content'] = array(
     'name' => 'edit own page content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'edit own story content'.
   $permissions['edit own story content'] = array(
     'name' => 'edit own story content',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'node',
   );
 
   // Exported permission: 'edit terms in library_properties'.
   $permissions['edit terms in library_properties'] = array(
     'name' => 'edit terms in library_properties',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'taxonomy',
   );
 
@@ -1077,6 +1207,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'edit terms in media_types',
     'roles' => array(
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'taxonomy',
   );
@@ -1086,6 +1217,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'edit terms in publishers',
     'roles' => array(
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'taxonomy',
   );
@@ -1093,21 +1225,27 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'edit terms in scald_authors'.
   $permissions['edit terms in scald_authors'] = array(
     'name' => 'edit terms in scald_authors',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'taxonomy',
   );
 
   // Exported permission: 'edit terms in scald_tags'.
   $permissions['edit terms in scald_tags'] = array(
     'name' => 'edit terms in scald_tags',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'taxonomy',
   );
 
   // Exported permission: 'edit terms in special_collection'.
   $permissions['edit terms in special_collection'] = array(
     'name' => 'edit terms in special_collection',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'taxonomy',
   );
 
@@ -1121,7 +1259,9 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'edit terms in term_synonym'.
   $permissions['edit terms in term_synonym'] = array(
     'name' => 'edit terms in term_synonym',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'taxonomy',
   );
 
@@ -1130,6 +1270,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'edit terms in topics',
     'roles' => array(
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'taxonomy',
   );
@@ -1160,6 +1301,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'fetch any atom',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'scald',
   );
@@ -1169,6 +1311,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'fetch own atom',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'scald',
   );
@@ -1179,6 +1322,7 @@ function ubn_general_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'admin_menu',
   );
@@ -1308,6 +1452,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'manipulate all entityqueues',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'entityqueue',
   );
@@ -1317,6 +1462,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'manipulate entityqueues',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'entityqueue',
   );
@@ -1348,6 +1494,7 @@ function ubn_general_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'node',
   );
@@ -1357,6 +1504,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'select account cancellation method',
     'roles' => array(
       'administrator' => 'administrator',
+      'user administrator' => 'user administrator',
     ),
     'module' => 'user',
   );
@@ -1392,6 +1540,7 @@ function ubn_general_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'entity_translation',
   );
@@ -1399,7 +1548,9 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'translate field_collection_item entities'.
   $permissions['translate field_collection_item entities'] = array(
     'name' => 'translate field_collection_item entities',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'entity_translation',
   );
 
@@ -1408,6 +1559,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'translate interface',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'locale',
   );
@@ -1415,21 +1567,27 @@ function ubn_general_user_default_permissions() {
   // Exported permission: 'translate node entities'.
   $permissions['translate node entities'] = array(
     'name' => 'translate node entities',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'entity_translation',
   );
 
   // Exported permission: 'translate scald_atom entities'.
   $permissions['translate scald_atom entities'] = array(
     'name' => 'translate scald_atom entities',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'entity_translation',
   );
 
   // Exported permission: 'translate taxonomy_term entities'.
   $permissions['translate taxonomy_term entities'] = array(
     'name' => 'translate taxonomy_term entities',
-    'roles' => array(),
+    'roles' => array(
+      'editor' => 'editor',
+    ),
     'module' => 'entity_translation',
   );
 
@@ -1438,6 +1596,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'translate user-defined strings',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'i18n_string',
   );
@@ -1454,6 +1613,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'update panels_links_primary_on_frontpage entityqueue',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'entityqueue',
   );
@@ -1491,6 +1651,7 @@ function ubn_general_user_default_permissions() {
       'administrator' => 'administrator',
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
+      'editor' => 'editor',
     ),
     'module' => 'manualcrop',
   );
@@ -1545,6 +1706,7 @@ function ubn_general_user_default_permissions() {
       'administrator' => 'administrator',
       'anonymous user' => 'anonymous user',
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'search_api_autocomplete',
   );
@@ -1567,6 +1729,7 @@ function ubn_general_user_default_permissions() {
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'filter',
   );
@@ -1577,6 +1740,7 @@ function ubn_general_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'filter',
   );
@@ -1588,6 +1752,7 @@ function ubn_general_user_default_permissions() {
       'administrator' => 'administrator',
       'authenticated user' => 'authenticated user',
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'filter',
   );
@@ -1599,6 +1764,7 @@ function ubn_general_user_default_permissions() {
       'administrator' => 'administrator',
       'anonymous user' => 'anonymous user',
       'authenticated user' => 'authenticated user',
+      'editor' => 'editor',
     ),
     'module' => 'scald',
   );
@@ -1608,6 +1774,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'view any entityform',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'entityform',
   );
@@ -1617,6 +1784,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'view own atom',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'scald',
   );
@@ -1626,6 +1794,7 @@ function ubn_general_user_default_permissions() {
     'name' => 'view own entityform',
     'roles' => array(
       'administrator' => 'administrator',
+      'editor' => 'editor',
     ),
     'module' => 'entityform',
   );
@@ -1636,6 +1805,7 @@ function ubn_general_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'node',
   );
@@ -1655,6 +1825,7 @@ function ubn_general_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'node',
   );
@@ -1665,6 +1836,7 @@ function ubn_general_user_default_permissions() {
     'roles' => array(
       'administrator' => 'administrator',
       'database editor' => 'database editor',
+      'editor' => 'editor',
     ),
     'module' => 'system',
   );
