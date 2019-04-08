@@ -22,5 +22,17 @@ function ubn_general_user_default_roles() {
     'weight' => 3,
   );
 
+  // Exported role: editor.
+  $roles['editor'] = array(
+    'name' => 'editor',
+    'weight' => 4,
+  );
+
+  // Exported role: user administrator.
+  $roles['user administrator'] = array(
+    'name' => 'user administrator',
+    'weight' => 5,
+  );
+
   return $roles;
 }
