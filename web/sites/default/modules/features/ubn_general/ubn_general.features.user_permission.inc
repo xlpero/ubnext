@@ -111,6 +111,16 @@ function ubn_general_user_default_permissions() {
     'module' => 'system',
   );
 
+  // Exported permission: 'access stories search_api_page'.
+  $permissions['access stories search_api_page'] = array(
+    'name' => 'access stories search_api_page',
+    'roles' => array(
+      'anonymous user' => 'anonymous user',
+      'editor' => 'editor',
+    ),
+    'module' => 'search_api_page',
+  );
+
   // Exported permission: 'access user profiles'.
   $permissions['access user profiles'] = array(
     'name' => 'access user profiles',
@@ -539,6 +549,15 @@ function ubn_general_user_default_permissions() {
     'module' => 'feeds',
   );
 
+  // Exported permission: 'create alert_and_info_message content'.
+  $permissions['create alert_and_info_message content'] = array(
+    'name' => 'create alert_and_info_message content',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'create app content'.
   $permissions['create app content'] = array(
     'name' => 'create app content',
@@ -581,6 +600,13 @@ function ubn_general_user_default_permissions() {
       'editor' => 'editor',
     ),
     'module' => 'scald',
+  );
+
+  // Exported permission: 'create blurb content'.
+  $permissions['create blurb content'] = array(
+    'name' => 'create blurb content',
+    'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: 'create contact content'.
@@ -666,6 +692,15 @@ function ubn_general_user_default_permissions() {
     'module' => 'path',
   );
 
+  // Exported permission: 'delete any alert_and_info_message content'.
+  $permissions['delete any alert_and_info_message content'] = array(
+    'name' => 'delete any alert_and_info_message content',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'delete any app content'.
   $permissions['delete any app content'] = array(
     'name' => 'delete any app content',
@@ -681,6 +716,13 @@ function ubn_general_user_default_permissions() {
       'editor' => 'editor',
     ),
     'module' => 'scald',
+  );
+
+  // Exported permission: 'delete any blurb content'.
+  $permissions['delete any blurb content'] = array(
+    'name' => 'delete any blurb content',
+    'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: 'delete any contact content'.
@@ -766,6 +808,15 @@ function ubn_general_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'delete own alert_and_info_message content'.
+  $permissions['delete own alert_and_info_message content'] = array(
+    'name' => 'delete own alert_and_info_message content',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'delete own app content'.
   $permissions['delete own app content'] = array(
     'name' => 'delete own app content',
@@ -781,6 +832,13 @@ function ubn_general_user_default_permissions() {
       'editor' => 'editor',
     ),
     'module' => 'scald',
+  );
+
+  // Exported permission: 'delete own blurb content'.
+  $permissions['delete own blurb content'] = array(
+    'name' => 'delete own blurb content',
+    'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: 'delete own contact content'.
@@ -993,6 +1051,15 @@ function ubn_general_user_default_permissions() {
     'module' => 'admin_menu',
   );
 
+  // Exported permission: 'edit any alert_and_info_message content'.
+  $permissions['edit any alert_and_info_message content'] = array(
+    'name' => 'edit any alert_and_info_message content',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'edit any app content'.
   $permissions['edit any app content'] = array(
     'name' => 'edit any app content',
@@ -1008,6 +1075,13 @@ function ubn_general_user_default_permissions() {
       'editor' => 'editor',
     ),
     'module' => 'scald',
+  );
+
+  // Exported permission: 'edit any blurb content'.
+  $permissions['edit any blurb content'] = array(
+    'name' => 'edit any blurb content',
+    'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: 'edit any contact content'.
@@ -1093,6 +1167,15 @@ function ubn_general_user_default_permissions() {
     'module' => 'node',
   );
 
+  // Exported permission: 'edit own alert_and_info_message content'.
+  $permissions['edit own alert_and_info_message content'] = array(
+    'name' => 'edit own alert_and_info_message content',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'node',
+  );
+
   // Exported permission: 'edit own app content'.
   $permissions['edit own app content'] = array(
     'name' => 'edit own app content',
@@ -1108,6 +1191,13 @@ function ubn_general_user_default_permissions() {
       'editor' => 'editor',
     ),
     'module' => 'scald',
+  );
+
+  // Exported permission: 'edit own blurb content'.
+  $permissions['edit own blurb content'] = array(
+    'name' => 'edit own blurb content',
+    'roles' => array(),
+    'module' => 'node',
   );
 
   // Exported permission: 'edit own contact content'.
@@ -1509,6 +1599,125 @@ function ubn_general_user_default_permissions() {
     'module' => 'user',
   );
 
+  // Exported permission: 'set alert_and_info_message published on date'.
+  $permissions['set alert_and_info_message published on date'] = array(
+    'name' => 'set alert_and_info_message published on date',
+    'roles' => array(
+      'editor' => 'editor',
+    ),
+    'module' => 'publication_date',
+  );
+
+  // Exported permission: 'set any published on date'.
+  $permissions['set any published on date'] = array(
+    'name' => 'set any published on date',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'editor' => 'editor',
+    ),
+    'module' => 'publication_date',
+  );
+
+  // Exported permission: 'set app published on date'.
+  $permissions['set app published on date'] = array(
+    'name' => 'set app published on date',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'publication_date',
+  );
+
+  // Exported permission: 'set blurb published on date'.
+  $permissions['set blurb published on date'] = array(
+    'name' => 'set blurb published on date',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'editor' => 'editor',
+    ),
+    'module' => 'publication_date',
+  );
+
+  // Exported permission: 'set contact published on date'.
+  $permissions['set contact published on date'] = array(
+    'name' => 'set contact published on date',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'editor' => 'editor',
+    ),
+    'module' => 'publication_date',
+  );
+
+  // Exported permission: 'set database published on date'.
+  $permissions['set database published on date'] = array(
+    'name' => 'set database published on date',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'database editor' => 'database editor',
+      'editor' => 'editor',
+    ),
+    'module' => 'publication_date',
+  );
+
+  // Exported permission: 'set embedded_page published on date'.
+  $permissions['set embedded_page published on date'] = array(
+    'name' => 'set embedded_page published on date',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'editor' => 'editor',
+    ),
+    'module' => 'publication_date',
+  );
+
+  // Exported permission: 'set library published on date'.
+  $permissions['set library published on date'] = array(
+    'name' => 'set library published on date',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'editor' => 'editor',
+    ),
+    'module' => 'publication_date',
+  );
+
+  // Exported permission: 'set link_list published on date'.
+  $permissions['set link_list published on date'] = array(
+    'name' => 'set link_list published on date',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'editor' => 'editor',
+    ),
+    'module' => 'publication_date',
+  );
+
+  // Exported permission: 'set navigation_landing published on date'.
+  $permissions['set navigation_landing published on date'] = array(
+    'name' => 'set navigation_landing published on date',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'editor' => 'editor',
+    ),
+    'module' => 'publication_date',
+  );
+
+  // Exported permission: 'set page published on date'.
+  $permissions['set page published on date'] = array(
+    'name' => 'set page published on date',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'editor' => 'editor',
+    ),
+    'module' => 'publication_date',
+  );
+
+  // Exported permission: 'set story published on date'.
+  $permissions['set story published on date'] = array(
+    'name' => 'set story published on date',
+    'roles' => array(
+      'administrator' => 'administrator',
+      'editor' => 'editor',
+    ),
+    'module' => 'publication_date',
+  );
+
   // Exported permission: 'switch users'.
   $permissions['switch users'] = array(
     'name' => 'switch users',
@@ -1606,6 +1815,20 @@ function ubn_general_user_default_permissions() {
     'name' => 'unlock libraries_opening_hours feeds',
     'roles' => array(),
     'module' => 'feeds',
+  );
+
+  // Exported permission: 'update front_page_blurbs entityqueue'.
+  $permissions['update front_page_blurbs entityqueue'] = array(
+    'name' => 'update front_page_blurbs entityqueue',
+    'roles' => array(),
+    'module' => 'entityqueue',
+  );
+
+  // Exported permission: 'update front_page_blurbs_navigation entityqueue'.
+  $permissions['update front_page_blurbs_navigation entityqueue'] = array(
+    'name' => 'update front_page_blurbs_navigation entityqueue',
+    'roles' => array(),
+    'module' => 'entityqueue',
   );
 
   // Exported permission: 'update panels_links_primary_on_frontpage entityqueue'.
