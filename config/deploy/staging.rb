@@ -26,6 +26,9 @@ server 'beta-staging.ub.gu.se', user: 'drupal-deploy', roles: %w{app},
 #fetch(:stage)?
 set :deploy_to, '/var/www/drupal/staging'
 
+# Set release tag
+set :branch, 'release-2019.04-004'
+
 # Custom SSH Options
 # ==================
 # You may pass any option but keep in mind that net/ssh understands a
